@@ -4,9 +4,9 @@ require File.expand_path('../lib/rizzo/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Marc"]
   gem.email         = ["marcky.sharky@googlemail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{LonelyPlanet user interface engine for Rails}
+  gem.summary       = %q{Rails engine for centralising user interface logic}
+  gem.homepage      = "www.lonelyplanet.com"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
