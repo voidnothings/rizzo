@@ -1,0 +1,27 @@
+@mixin transform
+  -moz-transform: scale(1) rotate(15deg) translate(0px, 0px) skew(0deg, 0deg)
+  -webkit-transform: scale(1) rotate(15deg) translate(0px, 0px) skew(0deg, 0deg)
+  -o-transform: scale(1) rotate(15deg) translate(0px, 0px) skew(0deg, 0deg)
+  -ms-transform: scale(1) rotate(15deg) translate(0px, 0px) skew(0deg, 0deg)
+  transform: scale(1) rotate(15deg) translate(0px, 0px) skew(0deg, 0deg)
+
+@mixin round($side, $radius: 2px)
+  border-#{$side}-radius: $radius
+  -moz-border-radius-#{$side}: $radius
+  -webkit-border-#{$side}-radius: $radius
+
+@mixin round-all($radius: 2px)
+  -moz-border-radius: $radius
+  -webkit-border-radius: $radius
+  border-radius: $radius
+
+@mixin img($url, $color: transparent, $x:0px, $y:0px, $r:no-repeat)
+  background: $color url($url) $r $x $y
+
+@mixin img-pos($x:0px, $y:0px)
+  background-position: $x $y
+
+@mixin box-shadow($dist: 2px, $color: #f3f3f3)
+  -moz-box-shadow:    2px 2px 4px 4px $color
+  -webkit-box-shadow: 2px 2px 4px 4px $color
+  box-shadow:         2px 2px 4px 4px $color

@@ -1,0 +1,43 @@
+#omniture.hidden
+  = javascript_include_tag ('http://static.lonelyplanet.com/static-ui/omniture/destinations/s_code.js')
+  :javascript
+    var s = s || {}
+    s.pageName= "lpHotels : search results list view"
+    s.server=""
+    s.channel="lpHotels"
+    s.prop1="search results"
+    s.prop4  = ''
+    s.prop32 = 'vietnam : ho chi minh city'
+    s.prop33 = 'GBP'
+    s.prop34 = '1'
+    s.prop36 = 'Lonely Planet Reviewed'
+    s.prop37 = 'All properties'
+    s.prop38 = 'Show All'
+    s.prop40 = 'Show All'
+    s.prop48 = 'Hotels,Hostel/Backpacker,BB/Guesthouses,Apartments/other'
+    s.prop49 = 'Show All'
+    s.prop50 = ''
+    s.eVar2="lphotels"
+    s.eVar3="search results"
+    s.eVar6=''
+    s.eVar37='vietnam : ho chi minh city'
+    s.eVar38='GBP'
+    s.eVar39='1'
+    s.eVar41='Lonely Planet Reviewed'
+    s.eVar42='All properties'
+    s.eVar43='Show All'
+    s.eVar50='Show All'
+    s.eVar45='Hotels,Hostel/Backpacker,BB/Guesthouses,Apartments/other'
+    s.eVar48='Show All'
+    s.eVar49=''
+    s.events="event11,event12"
+    
+    if(navigator.appVersion.indexOf('MSIE')>=0) document.write(unescape('%3C')+'\!-'+'-');
+    
+  - unless Rails.env.production?
+    :javascript  
+      var s_account="lonelyplanet-global-dev,lonelyplanet-lphotels-dev"
+
+%noscript
+  %img{:src => "http://om.lonelyplanet.com/b/ss/lonelyplanetcom/1/H.5--NS/0?[AQB]&amp;cdp=3&amp;[AQE]", :height => "1", :width => "1", :alt => ""}
+

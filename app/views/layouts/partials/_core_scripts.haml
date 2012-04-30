@@ -1,0 +1,10 @@
+= render "shared/tracking/omniture_base"
+:javascript
+  (function() {
+    var script = document.createElement('script');
+    script.src = "/assets/application.js";
+    script.async = true;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(script, s);
+  })();
+
