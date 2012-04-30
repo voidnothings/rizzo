@@ -1,6 +1,6 @@
-#omniture.hidden
-  = javascript_include_tag ('http://static.lonelyplanet.com/static-ui/omniture/destinations/s_code.js')
-  :javascript
+<div id='omniture' class='hidden'>
+  <%= javascript_include_tag ('http://static.lonelyplanet.com/static-ui/omniture/destinations/s_code.js') %>
+  <script type="text/javascript">
     var s = s || {}
     s.pageName= "lpHotels : search results list view"
     s.server=""
@@ -31,13 +31,14 @@
     s.eVar48='Show All'
     s.eVar49=''
     s.events="event11,event12"
-    
-    if(navigator.appVersion.indexOf('MSIE')>=0) document.write(unescape('%3C')+'\!-'+'-');
-    
-  - unless Rails.env.production?
-    :javascript  
-      var s_account="lonelyplanet-global-dev,lonelyplanet-lphotels-dev"
 
-%noscript
-  %img{:src => "http://om.lonelyplanet.com/b/ss/lonelyplanetcom/1/H.5--NS/0?[AQB]&amp;cdp=3&amp;[AQE]", :height => "1", :width => "1", :alt => ""}
-
+    if(navigator.appVersion.indexOf('MSIE')>=0) {
+      document.write(unescape('%3C')+'\!-'+'-');
+    }
+  </script>
+  <% unless Rails.env.production? %>
+    <script type="text/javascript">
+      var s_account="lonelyplanet-global-dev,lonelyplanet-lphotels-dev";
+    </script>
+  <% end %>
+</div>

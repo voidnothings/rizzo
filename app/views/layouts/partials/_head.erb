@@ -1,0 +1,23 @@
+<meta charset='utf-8'>
+<meta name="author" content='Lonely Planet'>
+<meta name="description" content='Ho Chi Minh City, Vietnam, Hotels, Hostels and accomodation. Read independent author reviews and book online with Lonely Planet Hotels and Hostels.'>
+<meta name="keywords" content='Ho Chi Minh City Hotels, Vietnam, Ho Chi Minh City Hostels, Ho Chi Minh City Backpackers, Accommodation, Lonely Planet Hotels, Hostels, Guest Houses, Hotel Bookings, Reviews, Guides, Services, Cheap Hotels, Discount Hotels, Travel, Traveller, Lonelyplanet, Lonely Planet'>
+<!--<meta name="fb:app_id" content="111537044496">-->
+<title><%= title ||= 'Lonely Planet Travel Guides and Travel Information' %></title>
+<% if is_client_browser_less_then_ie9?(request.user_agent) %>
+  <script type="text/javascript">
+    document.createElement('header');
+    document.createElement('nav');
+    document.createElement('section');
+    document.createElement('article');
+    document.createElement('aside');
+    document.createElement('footer');
+    document.createElement('figure');
+    document.createElement('figurecap');
+    document.createElement('hgroup');
+  </script>
+<% end %>
+<%= stylesheet_link_tag "application", :media => "all" %>
+<link rel="canonical" href="http://www.lonelyplanet.com/vietnam/ho-chi-minh-city/hotels">
+<link rel="icon" type="image/gif" href="http://www.lonelyplanet.com/favicon.ico">
+<%= csrf_meta_tags %>
