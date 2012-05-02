@@ -26,9 +26,10 @@
       self.userStatus();
       self.showShoppingCart();
       self.loadBreadcrumbs();
-      self.loadLeaderBoard();
-      self.bindEvents();
+      self.bindBaseEvents();
+      self.bindDetailViewEvents();
       // self.setupOmnitureUserInfo();
+      self.loadLeaderBoard();
     };
 
     self.destinationsNav = function(){
@@ -106,14 +107,21 @@
       }
     };
 
-    self.bindEvents =  function(){
+    self.bindBaseEvents =  function(){
       $("#language").removeClass('javascriptDisabled');
       $("#languageSelect").change(function() {
         $("#language").submit();
       });
     };
 
+    self.bindDetailViewEvents = function(){
+      var _self = self;
+      $('..partner-review .handler').on('click', function(e){_self.toggleDescription(this,e);});
+    };
 
+    self.toggleDescription = function(handler, e){
+      $('.partner-review .details, .partner-review .facilities').toggleClass('closed').toggleClass('open');
+    };
 
     return self;
     });

@@ -5,9 +5,10 @@
   background: url(image_path("ttd/dest-spt.png")) $R $x $y $color
 @mixin btn-spt
   background: url(image_path("ttd/btn-spt.png")) 0 0 no-repeat
+@mixin lodging-spt($x:0px,$y:0px, $R:no-repeat, $color:transparent)
+  background: url(image_path("lodgings-spt.png")) $R $x $y $color
 @mixin arrows-spt($x:0px,$y:0px, $R:no-repeat, $color:transparent)
   background: url(image_path("ttd/arrows-spt.png")) $R $x $y $color
-
 // main section background
 @mixin bck-v-line
   background: url(image_path("ttd/global-sl-bg.gif")) repeat-y 0 0 transparent
@@ -120,3 +121,13 @@
 // endorsment
 @mixin endorsement-lp-review-small
   background: url(image_path("ttd/authorLp-19x19.gif")) no-repeat 0 3px transparent
+
+// lodging details
+@mixin lp-bubble
+  @include lodging-spt(-125px,-1px)
+@mixin lodging-star-rating
+  @include lodging-spt(-1px,-2px)
+@mixin lodging-map-thumb
+  @include lodging-spt(-1px,-29px)
+
+
