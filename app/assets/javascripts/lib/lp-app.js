@@ -25,7 +25,7 @@
       self.destinationsNav();
       self.userStatus();
       self.showShoppingCart();
-      //self.loadBreadcrumbs();
+      self.loadBreadcrumbs();
       self.bindBaseEvents();
       self.bindDetailViewEvents();
       // self.setupOmnitureUserInfo();
@@ -81,7 +81,7 @@
         try {
           jQuery.ajax({
             type: "GET",
-            url: "/breadcrumb?destId=357884",
+            url: "http://origin-aws.lonelyplanet.com/breadcrumb?destId=357884",
             contentType: "text/xml",
             dataType: "html",
             cache: true,
@@ -128,4 +128,3 @@
 
   new window.lpGlobal(jQuery).init();
 }).call(this);
-
