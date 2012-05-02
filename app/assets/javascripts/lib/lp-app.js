@@ -25,7 +25,7 @@
       self.destinationsNav();
       self.userStatus();
       self.showShoppingCart();
-      self.loadBreadcrumbs();
+      //self.loadBreadcrumbs();
       self.bindBaseEvents();
       self.bindDetailViewEvents();
       // self.setupOmnitureUserInfo();
