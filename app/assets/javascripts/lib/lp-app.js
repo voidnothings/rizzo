@@ -81,7 +81,7 @@
         try {
           jQuery.ajax({
             type: "GET",
-            url: "http://origin-aws.lonelyplanet.com/breadcrumb?destId=357884",
+            url: location.origin + "/breadcrumb?destId=357884",
             contentType: "text/xml",
             dataType: "html",
             cache: true,
