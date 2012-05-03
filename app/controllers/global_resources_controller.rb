@@ -14,8 +14,4 @@ class GlobalResourcesController < ActionController::Base
     render :template => 'layouts/partials/_footer'
   end
 
-  def breadcrumb
-    render :template => 'shared/breadcrumbs'
-  end
-
 end

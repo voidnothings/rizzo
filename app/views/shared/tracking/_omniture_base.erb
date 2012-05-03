@@ -1,6 +1,6 @@
-<div id='omniture' class='hidden'>
-  <%= javascript_include_tag ('http://static.lonelyplanet.com/static-ui/omniture/destinations/s_code.js') %>
-  <script type="text/javascript">
+%{id: 'omniture', class: 'hidden'}
+  = javascript_include_tag ('http://static.lonelyplanet.com/static-ui/omniture/destinations/s_code.js')
+  :javascript
     var s = s || {}
     s.pageName= "lpHotels : search results list view"
     s.server=""
@@ -35,10 +35,7 @@
     if(navigator.appVersion.indexOf('MSIE')>=0) {
       document.write(unescape('%3C')+'\!-'+'-');
     }
-  </script>
-  <% unless Rails.env.production? %>
-    <script type="text/javascript">
+
+  - unless Rails.env.production?
+    :javascript
       var s_account="lonelyplanet-global-dev,lonelyplanet-lphotels-dev";
-    </script>
-  <% end %>
-</div>
