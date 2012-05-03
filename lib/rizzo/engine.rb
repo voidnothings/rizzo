@@ -3,6 +3,10 @@ module Rizzo
 
     initializer "rizzo.configure_rails_initialization" do |app|
 
+      Sass::Engine::DEFAULT_OPTIONS[:load_paths].tap do |load_paths|
+        load_paths << File.expand_path('../../../app/assets/stylesheets', __FILE__)
+      end
+
       app.routes.prepend do
         match 'global_head'    => 'global_resources#head'
         match 'global_header'  => 'global_resources#header'
