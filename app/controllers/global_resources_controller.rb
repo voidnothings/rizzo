@@ -1,4 +1,4 @@
-class GlobalResourcesController < ActionController::Base
+class GlobalResourcesController < GlobalController
   helper GlobalResourcesHelper
   layout nil
 
