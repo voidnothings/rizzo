@@ -9,4 +9,7 @@ require 'haml'
 
 RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
+  config.include RSpec::Rails::ViewExampleGroup, :type => :model, :example_group => {
+    :file_path => config.escaped_path(%w[spec assets])
+  }
 end
