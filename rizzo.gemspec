@@ -16,14 +16,14 @@ Gem::Specification.new do |gem|
   gem.version       = Rizzo::VERSION
 
   gem.add_development_dependency 'rspec'
-  gem.add_development_dependency 'rspec-rails'
+  gem.add_development_dependency 'rspec-rails', '2.10.0'
   gem.add_development_dependency 'guard'
   gem.add_development_dependency 'guard-rspec'
   gem.add_development_dependency 'rails'
-  gem.add_development_dependency 'haml'
+  gem.add_development_dependency 'haml', '3.1.4'
   gem.add_development_dependency 'sass'
   gem.add_development_dependency 'capybara'
-  gem.add_development_dependency 'cucumber'
+  gem.add_development_dependency 'cucumber', '1.1.9'
   gem.add_development_dependency 'guard-cucumber'
   gem.add_development_dependency 'pickle'
   gem.add_development_dependency 'cucumber-rails'
