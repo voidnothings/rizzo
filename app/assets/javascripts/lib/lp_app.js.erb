@@ -1,5 +1,6 @@
 (function() {
-  window.lpGlobal = (function($) {
+  window.lp = window.lp || {};
+  window.lp.rizzo = (function($) {
     var self = {};
     if (window.lp && lp.ads){
       self.adZone = window.lp.ads.adZone;
@@ -22,25 +23,33 @@
     };
 
     self.start = function() {
-      self.destinationsNav();
-      self.userStatus();
-      self.showShoppingCart();
-      self.loadBreadcrumbs();
-      self.bindBaseEvents();
-      self.bindDetailViewEvents();
-      // self.setupOmnitureUserInfo();
-      self.loadLeaderBoard();
+      //TODO: dependencies loading
+      self.loadRequired("<%= javascript_path('app.js') %>");
+      self.initUserStatus();
+      self.initShoppingCart();
+      self.initBreadcrumbs();
+      self.bindEvents();
+      self.initLeaderBoard();
+      self.initDestinationsNav();
     };
 
-    self.destinationsNav = function(){
-      var script = document.createElement('script');
-      script.src = "http://www.lonelyplanet.com/global-navigation";
-      script.async = true;
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(script, s);
+    self.loadRequired = function(_required){
+      var _c = document.createElement('script');
+      _c.src = _required;
+      _c.async = true;
+      var _s = document.getElementsByTagName('script')[0];
+      _s.parentNode.insertBefore(_c, _s);
     };
 
-    self.userStatus = function(){
+    self.initDestinationsNav = function(){
+      var _c = document.createElement('script');
+      _c.src = "http://www.lonelyplanet.com/global-navigation";
+      _c.async = true;
+      var _s = document.getElementsByTagName('script')[0];
+      _s.parentNode.insertBefore(_c, _s);
+    };
+
+    self.initUserStatus = function(){
       var lpLoggedInUsername;
       var auth = new Lp.Authentication();
       window.auth = auth;
@@ -49,10 +58,10 @@
       script.async = true;
       script.onload = script.onreadystatechange = function(){auth.update();};
       var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(script, s);
+      s.parentNode.appendChild(script, s);
     };
     
-    self.showShoppingCart = function(){
+    self.initShoppingCart = function(){
       var itemCount = 0;
       var cartData = $.cookies.get("shopCartCookie");
       if (cartData !== null && cartData.A !== undefined) {
@@ -61,7 +70,7 @@
       $("nav.primary ul li.globalCartHead a").html("Cart: " + itemCount);
     };
 
-    self.loadLeaderBoard = function(unit, target){
+    self.initLeaderBoard = function(unit, target){
       var iframe = document.createElement('iframe');
       ord=Math.random()*10000000000000000;
       iframe.src = 'http://ad.doubleclick.net/adi/2009.lonelyplanet/' + self.adZone + ';' + self.adKeywords + ';' + self.segQS + ';' +  'tile=' + self.tile + ';sz=728x90;ord=' + ord + '?';
@@ -74,7 +83,7 @@
       s.appendChild(iframe);
     };
 
-    self.loadBreadcrumbs = function(){
+    self.initBreadcrumbs = function(){
       jQuery(document).ready(function($){
         var location = window.location;
         breadcrumbSelector = "#breadcrumb";
@@ -97,34 +106,16 @@
       });
     };
 
-    //omniture
-    self.setupOmnitureUserInfo = function(s){
-      if (lpSignedInUser()) {
-        s.eVar24 = Base64.encode(lpSignedInUser());
-        s.eVar25 = isUserNewlyRegistered() ? "just registered" : "logged in";
-      } else {
-        s.eVar25 = "guest";
-      }
-    };
-
-    self.bindBaseEvents =  function(){
+    self.bindEvents =  function(){
       $("#language").removeClass('javascriptDisabled');
       $("#languageSelect").change(function() {
         $("#language").submit();
       });
     };
 
-    self.bindDetailViewEvents = function(){
-      var _self = self;
-      $('..partner-review .handler').on('click', function(e){_self.toggleDescription(this,e);});
-    };
-
-    self.toggleDescription = function(handler, e){
-      $('.partner-review .details, .partner-review .facilities').toggleClass('closed').toggleClass('open');
-    };
-
     return self;
     });
 
-  new window.lpGlobal(jQuery).init();
+  new window.lp.rizzo(jQuery).init();
 }).call(this);
+

@@ -84,7 +84,7 @@ var createMainNavTab = function() {
   });
 };
 
-var DestinationsGlobalNav = function(navHtmlSnippet, selector) {
+var globalNav = function(navHtmlSnippet, selector) {
   jQuery(selector).append(navHtmlSnippet);
   jQuery(selector + 'span.arrow').removeClass('invisible');
   jQuery(selector).each(createMainNavTab);
@@ -126,10 +126,10 @@ function lpSignedInUser() {
 function isUserNewlyRegistered() {
   return jQuery.cookies.get("lpNewUser") ? true : false;
 }
-// 
-// var _destinationsGlobalNav = function (data) {
-//   var destinations = new DestinationsGlobalNav(data.nav, "nav.primary ul li.destinations");
-// };
+
+var _destinationsGlobalNav = function (data) {
+  var destinations = new globalNav(data.nav, "nav.primary ul li.destinations");
+};
 
 function callback(object, methodName){
   var context = object;
@@ -230,6 +230,5 @@ function BreadcrumbBar(domElement)
   };
   this.init(domElement);
 }
-
 
 

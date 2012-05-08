@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "/assets/javascripts/lib/lp-app", :type => :view do
+describe "/assets/javascripts/lib/lp_app", :type => :view do
 
   before :each do
     view.view_paths << File.expand_path('app', Rails.root)
