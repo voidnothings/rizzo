@@ -3,6 +3,8 @@ module Rizzo
 
     initializer "rizzo.configure_rails_initialization" do |app|
 
+      app.config.assets.precompile += ['rizzo.js']
+
       Sass::Engine::DEFAULT_OPTIONS[:load_paths].tap do |load_paths|
         load_paths << File.expand_path('../../../app/assets/stylesheets', __FILE__)
       end
