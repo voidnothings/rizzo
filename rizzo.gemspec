@@ -15,7 +15,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = Rizzo::VERSION
 
-  gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'rspec', '2.10.0'
   gem.add_development_dependency 'rspec-rails', '2.10.0'
   gem.add_development_dependency 'guard'
   gem.add_development_dependency 'guard-rspec'
