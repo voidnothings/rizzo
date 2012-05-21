@@ -7,6 +7,7 @@
       self.adKeywords = window.lp.ads.adKeywords;
       self.tile = window.lp.ads.tile;
       self.segQS = window.lp.ads.segQS;
+      self.mtfIFPath = window.lp.ads.mtfIFPath || '/';
     }
     
     self.init = function() {
@@ -73,7 +74,7 @@
     self.initLeaderBoard = function(unit, target){
       var iframe = document.createElement('iframe');
       ord=Math.random()*10000000000000000;
-      iframe.src = 'http://ad.doubleclick.net/adi/2009.lonelyplanet/' + self.adZone + ';' + self.adKeywords + ';' + self.segQS + ';' +  'tile=' + self.tile + ';sz=728x90;ord=' + ord + '?';
+      iframe.src = 'http://ad.doubleclick.net/adi/2009.lonelyplanet/' + self.adZone + ';' + self.adKeywords + ';' + self.segQS + ';' +  'tile=' + self.tile + ';' + 'mtfIFPath=' + self.mtfIFPath + ';sz=728x90;ord=' + ord + '?';
       iframe.style.height = '90px';
       iframe.style.width = '728px';
       iframe.marginHeight="0";
