@@ -25,3 +25,12 @@
   -moz-box-shadow:    $dist $dist $dist $dist $color
   -webkit-box-shadow: $dist $dist $dist $dist $color
   box-shadow:         $dist $dist $dist $dist $color
+
+@mixin linear-gradient($from, $to, $dir:top)
+  background-image: -webkit-linear-gradient($dir,$from, $to)
+  background-image: -moz-linear-gradient($dir, $from, $to)
+  background-image: -o-linear-gradient($dir, $from, $to)
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=’$from’,endColorstr=’$to’,GradientType=0)
+  background: $from
+
+
