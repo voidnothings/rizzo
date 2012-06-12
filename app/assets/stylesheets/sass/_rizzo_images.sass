@@ -1,18 +1,33 @@
-// sprite references
+//
+// Sprite references for global header and footer components
+// 
+
+// Core layout sprite (header/footer)
 @mixin core-spt($x:0px,$y:0px, $R:no-repeat, $color:transparent)
   background: url(image_path("global/core-spt.png")) $R $x $y $color
+
+// Things-to-do navigation bare
 @mixin ttd-spt($x:0px,$y:0px, $R:no-repeat, $color:transparent)
-  background: url(image_path("ttd/dest-spt.png")) $R $x $y $color
+  background: url(image_path("ttd/dest-spt-bar.png")) $R $x $y $color
+
+// Core buttons icons  
 @mixin btn-spt
   background: url(image_path("ttd/btn-spt.png")) 0 0 no-repeat
-@mixin lodging-spt($x:0px,$y:0px, $R:no-repeat, $color:transparent)
-  background: url(image_path("lodgings-spt.png")) $R $x $y $color
+
+// Arrows chevrons icons
 @mixin arrows-spt($x:0px,$y:0px, $R:no-repeat, $color:transparent)
   background: url(image_path("ttd/arrows-spt.png")) $R $x $y $color
+
 // main section background
 @mixin bck-v-line
   background: url(image_path("ttd/global-sl-bg.gif")) repeat-y 0 0 transparent
-// header
+
+// Ad vertical notice
+@mixin leaderboard-ad-notice
+  background: url(image_path("global/advertisement_vertical.gif")) no-repeat right 3px transparent
+
+
+// Header elements coordinates & hover behaviour
 @mixin icn-cart-nav
   @include core-spt(-92px,-65px)
 @mixin btn-arrow-down
@@ -35,7 +50,8 @@
   background-position: -2px -203px
 @mixin footer-shadow-stripe
   @include core-spt(0,-479px, repeat-x, #ddddd5)
-// footer icons
+
+// Footer icons
 @mixin icn-newsletter
   @include core-spt(0,-370px)
 @mixin icn-mobile
@@ -53,12 +69,13 @@
 @mixin icn-mail-msg
   @include core-spt(-99px,-115px)
 
+// Breadcrumgs
 @mixin breadcrumb-slash
   @include core-spt(right,-155px)
 
-// things-to-do nav bar
+// TTD navigation bar
 @mixin bck-ttd-nav
-  @include ttd-spt(0,-887px, repeat-x)
+  @include ttd-spt(0,-553px, repeat-x)
 @mixin icn-ttd-all
   @include ttd-spt(5px, 8px)
 @mixin icn-ttd-activities
@@ -77,19 +94,12 @@
   @include ttd-spt(5px,-434px)
 @mixin icn-ttd-hotels-gray
   @include ttd-spt(0px,-710px)
-@mixin icn-ttd-price-1
-  @include ttd-spt(0px,-669px)
-@mixin icn-ttd-price-2
-  @include ttd-spt(0px,-631px)
-@mixin icn-ttd-price-3
-  @include ttd-spt(0px,-589px)
 
-// secondary nav bar bck
+// TTD nav bar bck
 @mixin title-bar-inner-shadow
   @include core-spt(0,-230px, repeat-x)
 
-
-//buttons
+// Base actions buttons
 @mixin btn-white
   background-position: 0 -150px
 @mixin btn-white-angle
@@ -103,7 +113,6 @@
 @mixin btn-orange-dark-angle
   background-position: 100% -90px
 
-
 // arrows & chevrons
 @mixin icn-arrow-down
   @include arrows-spt(100%,-417px)
@@ -114,20 +123,6 @@
 @mixin icon-chevron-forward
   @include arrows-spt(-3px,-2px)
 
-// ads
-@mixin leaderboard-ad-notice
-  background: url(image_path("global/advertisement_vertical.gif")) no-repeat right 3px transparent
 
-// endorsment
-@mixin endorsement-lp-review-small
-  background: url(image_path("ttd/authorLp-19x19.gif")) no-repeat 0 3px transparent
-
-// lodging details
-@mixin lp-bubble
-  @include lodging-spt(-125px,-1px)
-@mixin lodging-star-rating
-  @include lodging-spt(-1px,-2px)
-@mixin lodging-map-thumb
-  @include lodging-spt(-1px,-29px)
 
 
