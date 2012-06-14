@@ -1,7 +1,7 @@
 require 'uri'
 
 module Rizzo
-  class UrlEncryptor
+  module UrlEncryptor
     class BadUrl < StandardError; end
 
     # token used for encrypting redirected links
@@ -14,7 +14,7 @@ module Rizzo
     
     def self.decrypt(encoded_encrypted_url = "")
       encryptor.decrypt(URI.decode(encoded_encrypted_url)).tap do |clean_url|
-        validate_url(url)
+        validate_url(clean_url)
       end
     end
 
