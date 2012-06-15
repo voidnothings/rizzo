@@ -2,7 +2,7 @@
 
 # Creating a new project
 - Create a new directory for your project with an empty sass file.
-- Import _base-project (include all of utils and core)
+- Import _base-project (includes all of utils and core)
 - Create a subfolder for any project partials
 
 # _utils
@@ -16,8 +16,6 @@ Only @include this in development. Toggle .debug class on the body to activate d
 - None of these files are included by default
 - If you want to use elements of common ui - @import them
 
-# _dev
-Playground for sass experimentation
 
 ## Writing Sass
 - Nest with care ;)
