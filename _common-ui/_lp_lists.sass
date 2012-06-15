@@ -1,0 +1,71 @@
+// --------------------------------------------------------------------------------------
+// These styles allow you to create a LP <ol> with stylised numbers
+// 
+// Example markup:
+// <ol class="lp-ol">
+//   <li>A lonely list item</li>
+// </ol>
+// 
+// Modifiers:
+// .top-picks
+// 
+// --------------------------------------------------------------------------------------
+
+
+
+.lp-ol
+  $number-size: 30px
+  list-style: none
+
+  li
+    position: relative
+    counter-increment: top-pick
+    margin-bottom: 10px
+    padding-left: $number-size
+    min-height: $number-size
+    line-height: $number-size
+
+    &:before
+      content: counter(top-pick)
+      position: absolute
+      left: 0
+      width: $number-size
+      font-size: $number-size
+      font-weight: bold
+      color: #999999
+
+
+  &.top-picks
+    border-left: 3px solid #9A9A9A
+    padding: 10px 10px 0 10px
+
+    > li
+      border-bottom: 1px dotted #CDCDCD
+      line-height: normal
+      padding-bottom: 10px
+
+      strong
+        display: block
+        margin-bottom: 5px
+        line-height: 1.2em
+
+      span
+        font-size: 11px
+
+
+// --------------------------------------------------------------------------------------
+// Top Picks
+// 
+// Example markup:
+// <ol class="lp-ol top-picks">
+//   <li>
+//     <div>
+// 		   <strong>Make a pitstop at <a href="#">Carhenge, Nebraska</a></strong>
+// 		   <span>Automobile art at its best</span>
+// 	   </div>
+//   </li>
+// </ol>
+//
+// --------------------------------------------------------------------------------------
+	      
+  

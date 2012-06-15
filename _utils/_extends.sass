@@ -1,0 +1,49 @@
+// --------------------------------------------------------------------------------------
+// These are Non-semantic Helper Classes
+//
+// They exist to be extended and built upon by other classes
+// --------------------------------------------------------------------------------------
+
+
+// Negative Classes
+
+%no-brd-t
+  border-top: none
+%no-pad-t
+  padding-top: 0
+
+// Clearfix 
+
+.cf
+  &:before, &:after
+    content: ""
+    display: table
+  &:after
+    clear: both
+  zoom: 1
+
+// Image Replacement
+%ir
+  display: block
+  border: 0
+  text-indent: -999em
+  overflow: hidden
+  background-color: transparent
+  background-repeat: no-repeat
+  text-align: left
+  direction: ltr
+  *line-height: 0
+
+
+// Positioning
+.rgt
+  float: right
+  
+.lft
+  float: left
+
+%no-float
+  float: none
+
+%single-box-shadow
+  @include box-shadow(0px, 1px, 2px, 0, rgba(0,0,0,0.3))
