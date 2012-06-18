@@ -1,3 +1,7 @@
+@mixin fontsize($sizeValue: 14)
+  font-size: #{$sizeValue + px}
+  font-size: #{($sizeValue / $base_font_size) + rem}
+  
 @mixin img($url, $color: transparent, $x:0px, $y:0px, $r:no-repeat)
   background: $color url($url) $r $x $y
 
@@ -21,7 +25,7 @@
   border-radius:         $a $b $c $d
 
 
-@mixin box-shadow($x: 2px, $y: 2px, $blur: 4px, $spread: 0, $color: rgba(0,0,0,0.3))
+@mixin box-shadow($x: 0px, $y: 1px, $blur: 4px, $spread: 0, $color: rgba(0,0,0,0.3))
   -webkit-box-shadow: $x $y $blur $spread $color
   -moz-box-shadow:    $x $y $blur $spread $color
   -ms-box-shadow:     $x $y $blur $spread $color
@@ -73,10 +77,19 @@
   
 @mixin text-shadow($x: 0px, $y: 1px, $blur: 0px, $color: rgba(255,255,255,.8))
   text-shadow: $x $y $blur $color
+
+
+@mixin card-flip($perspective: 300)
+  -webkit-perspective: $perspective
+  -moz-perspective:    $perspective 
+  -ms-perspective:     $perspective 
+  perspective:         $perspective
   
-  
-@mixin fontsize($sizeValue: 1.4)
-  font-size: #{($sizeValue * 10) + px}
-  font-size: #{$sizeValue + rem}
-  
-  
+  -webkit-transform:       rotateY(180deg)
+  -webkit-transform-style: preserve-3d
+  -moz-transform:          rotateY(180deg)
+  -moz-transform-style:    preserve-3d
+  -ms-transform:           rotateY(180deg)
+  -ms-transform-style:     preserve-3d
+  transform:               rotateY(180deg)
+  transform-style:         preserve-3d

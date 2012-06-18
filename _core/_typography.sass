@@ -9,7 +9,7 @@ body
   font-family: Arial, Helvetica, sans-serif
   color: $core_color
   line-height: 1.4
-  @include fontsize(1) // Just here to revert font-size to 100% after global-static sets it to 75%
+  @include fontsize(14) // Just here to revert font-size to 100% after global-static sets it to 75%
 
 h1, .h1,
 h2, .h2,
@@ -22,20 +22,20 @@ p
   padding: 0
 
 h2, .h2
-  @include fontsize(22px / $new_base_font_size)
+  @include fontsize(22)
   font-weight: bold
 
 h3, .h3
-  @include fontsize(18px / $new_base_font_size)
+  @include fontsize(18)
   
 h4, .h4
-  @include fontsize(16px / $new_base_font_size)
+  @include fontsize(16)
   
 h5, .h5
-  @include fontsize(14px / $new_base_font_size)
+  @include fontsize(14)
 
 p
-  @include fontsize(14px / $new_base_font_size)
+  @include fontsize(14)
 
 a,
 a.h1,
@@ -58,11 +58,11 @@ a.h6
 // Backwards compatability - revert the font size for the legacy header/footer
 
 #headerWrap, #pageTitleWrap, #infoSourcesWrap, #footerWrap
-  @include fontsize(0.85714)
+  @include fontsize(12)
 
 #footerWrap
   p
-    @include fontsize(0.7857)
+    @include fontsize(11)
     
 #infoSourcesWrap
   p
