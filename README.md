@@ -46,11 +46,13 @@ Don't leave others in the team guessing as to the purpose of uncommon or non-obv
 
 Comments should follow the below pattern:
 
+```css
 //----------------------------------------------------------
 // UI Object Title
 //
 // Description, modifier classes, styleguide reference 
 //----------------------------------------------------------
+```
 
 * Always use // rather than /* as the latter will persist after compilation.
 * Be overly verbose. All comments will be stripped out on build, they are there for our understanding and to help the team develop faster.
@@ -110,7 +112,7 @@ When naming mixins that deal with css properties use the same name. Eg:
 * @mixin border-radius()
 * @mixin font-size()
 
-When naming mixins, variables and placeholders be verbose and use intuitive naming. Eg:
+When naming custom mixins, variables and placeholders be verbose and use intuitive naming. Eg:
 * $header-background-blue: #0a4f9c
 * %hotels-card-texture
 
@@ -142,7 +144,7 @@ _Utils.sass and the _utils folder contain all of our library code in the form of
 
 No code should go into _utils if it is not protected by one of the above to avoid unnecessary css bloat as all of this code is included by default.
 
-Utils also includes a set of debug styles, designed to highlight common development errors in markup. To activate these @include debug() and add a .debug class to the <body>. Obviously this should only be used in development.
+Utils also includes a set of debug styles, designed to highlight common development errors in markup. To activate these @include debug() and add a .debug class to the body element. Obviously this should only be used in development.
 
 <a name="common-ui"></a>
 ## 10. Common-Ui
