@@ -13,7 +13,7 @@ module Rizzo
     end
     
     def self.decrypt(encoded_encrypted_url = "")
-      encryptor.decrypt(URI.decode(encoded_encrypted_url)).tap do |clean_url|
+      encryptor.decrypt_and_verify(URI.decode(encoded_encrypted_url)).tap do |clean_url|
         validate_url(clean_url)
       end
     end

@@ -12,14 +12,14 @@ describe Rizzo::UrlEncryptor do
   subject { Rizzo::UrlEncryptor }
   
   before do
-    subject.stub(:encryptor => message_encryptor)
+    subject.stub(encryptor: message_encryptor)
   end
   
   describe ".decrypt" do
     context "generally" do      
       before do
-        message_encryptor.stub(:decrypt => decrypted_url)
-        URI.stub(:decode => decoded_url, :parse => URI(url))
+        message_encryptor.stub(decrypt_and_verify: decrypted_url)
+        URI.stub(decode: decoded_url, parse: URI(url))
       end
 
       it "URL-decodes the redirected url" do
@@ -28,7 +28,7 @@ describe Rizzo::UrlEncryptor do
       end
       
       it "decrypts the decoded url" do
-        message_encryptor.should_receive(:decrypt).with(decoded_url).and_return(decrypted_url)
+        message_encryptor.should_receive(:decrypt_and_verify).with(decoded_url).and_return(decrypted_url)
         subject.decrypt(redirector_url)
       end
 
@@ -44,7 +44,7 @@ describe Rizzo::UrlEncryptor do
       let(:bad_url) { bad_url }
       
       before do
-        message_encryptor.stub(:decrypt => bad_url)
+        message_encryptor.stub(decrypt_and_verify: bad_url)
       end
       
       it "raises UrlEncryptor::BadUrl" do
@@ -67,8 +67,8 @@ describe Rizzo::UrlEncryptor do
 
   describe ".encrypt" do
     before do
-      message_encryptor.stub(:encrypt_and_sign => encrypted_url)
-      URI.stub(:encode => encoded_url)
+      message_encryptor.stub(encrypt_and_sign: encrypted_url)
+      URI.stub(encode: encoded_url)
     end
     
     it "encrypts the url" do
