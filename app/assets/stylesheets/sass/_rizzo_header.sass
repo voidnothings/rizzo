@@ -70,8 +70,7 @@ nav.primary
       float: left
       background-color: #EAE1D8
       margin-right: 3px
-      @include round(top-right, 2px)
-      @include round(top-left, 2px)
+      @include round-each(2px, 2px, 0, 0)
       &.current
         background-color: #D6CDC0
         border-bottom: 1px solid #D6CDC0
