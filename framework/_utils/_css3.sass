@@ -53,11 +53,11 @@
 @mixin background-gradient($startColor: #3C3C3C, $endColor: #999999, $fallbackImg: false, $imgPosition: 0 0 )
   @if $fallbackImg != false
     background: $startColor url($fallbackImg) $imgPosition repeat-x
-  background: $startColor -webkit-linear-gradient(top, $startColor, $endColor) 0 0 no-repeat
-  background:    $startColor -moz-linear-gradient(top, $startColor, $endColor) 0 0 no-repeat
-  background:     $startColor -ms-linear-gradient(top, $startColor, $endColor) 0 0 no-repeat
-  background:      $startColor -o-linear-gradient(top, $startColor, $endColor) 0 0 no-repeat
-  background:         $startColor linear-gradient(top, $startColor, $endColor) 0 0 no-repeat
+  background:   $startColor -webkit-linear-gradient(top, $startColor, $endColor) $imgPosition no-repeat
+  background:      $startColor -moz-linear-gradient(top, $startColor, $endColor) $imgPosition no-repeat
+  background:       $startColor -ms-linear-gradient(top, $startColor, $endColor) $imgPosition no-repeat
+  background:        $startColor -o-linear-gradient(top, $startColor, $endColor) $imgPosition no-repeat
+  background:           $startColor linear-gradient(top, $startColor, $endColor) $imgPosition no-repeat
 
 
 @mixin box-sizing($sizing: border-box)
@@ -71,10 +71,17 @@
 @mixin transition($property: all, $duration: 0.5s, $style: ease)  
   -webkit-transition: $property $duration $style
   -moz-transition:    $property $duration $style
+  -ms-transition:     $property $duration $style
   -o-transition:      $property $duration $style
   transition:         $property $duration $style
   
-  
+@mixin transform($scale: 1, $rotate: 15deg, $translateX: 0px, $translateY: 0px, $skewX: 0deg, $skewY: 0deg)
+  -webkit-transform: scale($scale) rotate($rotate) translate($translateX, $translateY) skew($skewX, $skewY)
+  -moz-transform:    scale($scale) rotate($rotate) translate($translateX, $translateY) skew($skewX, $skewY)
+  -ms-transform:     scale($scale) rotate($rotate) translate($translateX, $translateY) skew($skewX, $skewY)
+  -o-transform:      scale($scale) rotate($rotate) translate($translateX, $translateY) skew($skewX, $skewY)
+  transform:         scale($scale) rotate($rotate) translate($translateX, $translateY) skew($skewX, $skewY)
+
 @mixin text-shadow($x: 0px, $y: 1px, $blur: 0px, $color: rgba(255,255,255,.8))
   text-shadow: $x $y $blur $color
 
@@ -83,8 +90,7 @@
   -webkit-perspective: $perspective
   -moz-perspective:    $perspective 
   -ms-perspective:     $perspective 
-  perspective:         $perspective
-  
+  perspective:         $perspective  
   -webkit-transform:       rotateY(180deg)
   -webkit-transform-style: preserve-3d
   -moz-transform:          rotateY(180deg)
