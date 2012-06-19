@@ -63,6 +63,18 @@ describe Rizzo::UrlEncryptor do
     context "when the url cannot be parsed as a URI at all" do
       it_behaves_like "bad url", "lka q39n woi3"
     end
+
+    context "when the url cannot be decrypted" do
+      it_behaves_like "bad url", "_"
+
+      #
+      # NOTE: override the :stub in the before block of
+      # shared_examples for bad_url
+      #
+      before do
+        message_encryptor.stub(:decrypt_and_verify).and_raise(ActiveSupport::MessageEncryptor::InvalidMessage)
+      end
+    end
   end
 
   describe ".encrypt" do

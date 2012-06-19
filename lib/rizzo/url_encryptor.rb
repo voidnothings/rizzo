@@ -16,6 +16,8 @@ module Rizzo
       encryptor.decrypt_and_verify(URI.decode(encoded_encrypted_url)).tap do |clean_url|
         validate_url(clean_url)
       end
+    rescue ActiveSupport::MessageEncryptor::InvalidMessage
+      raise BadUrl
     end
 
     private
