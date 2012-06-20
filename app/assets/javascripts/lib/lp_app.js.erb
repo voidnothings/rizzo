@@ -75,11 +75,12 @@
       var iframe = document.createElement('iframe');
       ord=Math.random()*10000000000000000;
       iframe.src = 'http://ad.doubleclick.net/adi/2009.lonelyplanet/' + self.adZone + ';' + self.adKeywords + ';' + self.segQS + ';' +  'tile=' + self.tile + ';' + 'mtfIFPath=' + self.mtfIFPath + ';sz=728x90;ord=' + ord + '?';
-      iframe.style.height = '90px';
-      iframe.style.width = '728px';
       iframe.marginHeight="0";
       iframe.marginWidth="0";
       iframe.frameBorder="0";
+      iframe.scrolling='no';
+      iframe.style.height = '90px';
+      iframe.style.width = '728px';
       var s = document.getElementById('ad_masthead');
       s.appendChild(iframe);
     };
