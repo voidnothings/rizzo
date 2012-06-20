@@ -108,6 +108,21 @@ Using @extend to link to abstracted classes makes for more readable code as we c
 
 Balance the necessity for semantic classnames with terseness when naming classes: short but readable.
 
+We use two types of prefix:
+ * Prefix states with is- Eg. is-hidden
+ * Prefix hooks with js- Eg. js-toggle
+ 
+Prefixing with js: 
+ * This ensures that we maintain a distinction between content and functionality
+ * If there is no id to the element you can place your js-hook as the id.
+ * If there is an id and you need to style the element with a class it is ok to duplicate the class, eg:
+ ```html
+ <a id="#someContent" class="toggle js-toggle">View content</a>
+ ```
+ * Do NOT style js-classes in your CSS
+ * Do NOT select an element from the DOM without a js-hook.
+
+
 When naming mixins that deal with css properties use the same name. Eg:
 * @mixin border-radius()
 * @mixin font-size()
