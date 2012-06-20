@@ -6,10 +6,12 @@ html
   font-size: 87.5%
 
 body
+  min-height: 100%
   font-family: Arial, Helvetica, sans-serif
-  color: $core_color
+  color: $base_font_color
   line-height: 1.4
-  @include font-size(14) // Just here to revert font-size to 100% after global-static sets it to 75%
+  @include font-size(14) // Just here to revert font-size to 100% after global-static sets it to 75% - $$legacy --
+
 
 h1, .h1,
 h2, .h2,
@@ -57,7 +59,7 @@ a.h6
 
 // Backwards compatability - revert the font size for the legacy header/footer
 
-#headerWrap, #pageTitleWrap, #infoSourcesWrap, #footerWrap
+#headerWrap, #pageTitleWrap, #infoSourcesWrap, #footerWrap, .hwrap, nav.primary, #breadcrumbWrap
   @include font-size(12)
 
 #footerWrap
