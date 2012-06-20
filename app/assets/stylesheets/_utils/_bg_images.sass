@@ -155,3 +155,117 @@
   @include arrows-spt(-7px,-102px)
 @mixin icon-chevron-forward
   @include arrows-spt(-3px,-2px)
+
+
+// ----------------------------------------------------------
+// Hotels & Lodgings
+//
+// Sprite mixin references
+//
+// sample usage:
+//   @include lodging-spt(-1px,-288px)
+//
+// ----------------------------------------------------------
+
+// Main lodging sprite for hotel generic images elements
+@mixin lodging-spt($x:0px,$y:0px, $R:no-repeat, $color:transparent)
+  background: url(image_path("lodgings-spt.png")) $R $x $y $color
+
+// Partners logo sprite
+@mixin partners-spt($x:0px,$y:0px, $R:no-repeat, $color:transparent)
+  background: url(image_path("partners-spt.png")) $R $x $y $color
+
+// Lodging icons sprite
+@mixin icons-spt($x:0px,$y:0px, $R:no-repeat, $color:transparent)
+  background: url(image_path("icons-spt.png")) $R $x $y $color
+
+// Lodging map pins   
+@mixin lp-map-pins-spt($x:0px,$y:0px, $R:no-repeat, $color:transparent)
+  background: url(image_path("lp-map-pins-spt.png")) $R $x $y $color
+
+// endorsment
+@mixin endorsement-lp-review-small
+  background: url(image_path("ttd/authorLp-19x19.gif")) no-repeat 0 3px transparent
+
+// Lodging details
+@mixin lp-bubble
+  @include lodging-spt(-1px,-288px)
+@mixin lodging-star-rating
+  @include lodging-spt(-1px,-2px)
+@mixin lodging-map-thumb
+  @include lodging-spt(-1px,-29px)
+
+// Lodging maps
+@mixin bed-pin
+  @include lp-map-pins-spt(0px,-55px)
+
+// Lodging endorsment
+@mixin endorsement-top-choice
+  @include lodging-spt(-1px,-179px)
+  width: 103px
+  height: 45px
+
+// Lp Endorsment Lp author review small
+@mixin endorsement-lp-review-small 
+  @include lodging-spt(-125px,3px)
+
+
+// Lodging booking-form
+@mixin booking-nights-bck
+  @include lodging-spt(-1px,-109px, no-repeat, #f3f3f3)
+  width: 70px
+  height: 70px
+
+// Lodging provider logo
+@mixin booking-provider-expedia
+  width: 98px
+  height: 31px
+  @include partners-spt(-1px,-1px, no-repeat, #ececec)
+
+@mixin booking-provider-hostelworld
+  width: 128px
+  height: 31px
+  @include partners-spt(-1px,-33px, no-repeat, #ececec)
+
+
+//Lodging icon
+@mixin icon-telephone-large
+  @include icons-spt(18px,-55px, no-repeat, $bookable-orange)
+@mixin icon-telephone
+  @include icons-spt(right,-29px)
+@mixin icon-mouse
+  @include icons-spt(right,-29px)
+@mixin icon-url
+  @include icons-spt(right,-29px)
+@mixin icon-calendar
+  @include icons-spt(right,-2px)
+@mixin icon-selector-handler
+  @include icons-spt(right,-29px)
+@mixin icon-email-small
+  @include icons-spt(-9px,-172px)
+@mixin icon-phone-small
+  @include icons-spt(-9px,-110px)
+@mixin icon-url-small
+  @include icons-spt(-9px,-142px)
+
+//Lodging gallery arrows
+@mixin icon-move-right
+  @include icons-spt(-1px,-244px)
+  &:hover
+    background-position-x: -21px
+@mixin icon-move-left
+  @include icons-spt(0px,-204px)
+  &:hover
+    background-position-x: -20px
+
+// Things-to-do nav bar
+@mixin icn-ttd-price-1
+  @include icons-spt(-1px,-405px)
+@mixin icn-ttd-price-2
+  @include icons-spt(-1px,-356px)
+@mixin icn-ttd-price-3
+  @include icons-spt(-1px,-306px)
+
+// secondary nav bar bck
+@mixin title-bar-inner-shadow
+  @include core-spt(0,-230px, repeat-x)
