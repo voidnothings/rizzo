@@ -156,7 +156,7 @@ nav.primary
           &:hover
             background-color: #07408a
       p
-        +font-size(12)
+        @extend %smaller-body-copy
         float: right
         margin-right: 0
         a
@@ -325,7 +325,7 @@ header.title
     span
       width: 100%
       display: block
-      @include font-size(12)
+      @extend %smaller-body-copy
 
 nav.ttd, div.ttd
   @include bck-ttd-nav
