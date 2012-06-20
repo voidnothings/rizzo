@@ -1,0 +1,73 @@
+.sort-controls
+  ul
+    li
+      float: left
+      border-right: 1px solid #CCC
+      padding: 0 8px
+      a
+        color: #333
+      &.title
+        color: #666
+        padding: 0 8px 0 0
+        border-right: none
+      &.current
+        font-weight: bold
+        a
+          padding-right: 10px
+          color: #0186CB
+      &.down
+        @include icn-arrow-down
+      &.up
+        @include icn-arrow-up
+
+.lodgings-header
+  .paginate-controls
+    ul
+      float: right
+      li
+        float: left
+        padding: 0
+        margin: 0
+        &.prev
+          margin-right: 5px
+      span, a, label
+        padding: 0 4px
+      span  
+        color: #BBB
+      input
+        margin-top: -2px
+        text-align: right
+        font-size: 12px
+        color: #444
+        float: left
+        width: 28px
+      label
+        float: left
+
+.lodgings-footer
+  .paginate-controls
+    overflow: hidden
+    width: 100%
+    margin-top: 20px
+    ul
+      text-align: center
+      li
+        &.next, &.prev
+          span
+            color: #BBB
+        display: inline
+        margin-right: 1px
+        a
+          &:hover
+            background-color: #07C 
+            text-decoration: none
+            color: #fff
+        span, a
+          @include round-all(3px)
+          display: inline
+          line-height: 3em
+          padding: 3px 6px 2px 8px
+        &.current
+          span, a
+            background: #666
+            color: #fff
