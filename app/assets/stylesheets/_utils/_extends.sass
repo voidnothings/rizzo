@@ -5,47 +5,25 @@
 // --------------------------------------------------------------------------------------
 
 
-// Hidden elements
 
-.hd, .is-hidden
-  display: none
-  visibility: hidden
+// -----------------------------------------------------
+// Type
+// -----------------------------------------------------
 
+%smaller-body-copy
+  +font-size(12)
 
-// Negative Classes
-
-%no-brd-t
-  border-top: none
-%no-pad-t
-  padding-top: 0
-
-%no-list-style
-  list-style: none
-
-// Clearfix 
-
-.cf, .clearfix
-  &:before, &:after
-    content: ""
-    display: table
-  &:after
-    clear: both
-  zoom: 1
-
-// Image Replacement
-%ir
-  display: block
-  border: 0
-  text-indent: -999em
-  overflow: hidden
-  background-color: transparent
-  background-repeat: no-repeat
-  text-align: left
-  direction: ltr
-  *line-height: 0
+%larger-body-copy
+  +font-size(16)
 
 
+
+
+
+// -----------------------------------------------------
 // Positioning
+// -----------------------------------------------------
+
 .rgt
   float: right
   
@@ -95,12 +73,85 @@
   left: 0
   right: 0
 
+
+
+
+// -----------------------------------------------------
+// States
+// -----------------------------------------------------
+
+
+.hd, .is-hidden
+  display: none
+  visibility: hidden
+
+
+
+
+
+
+// -----------------------------------------------------
+// Negative classes
+// -----------------------------------------------------
+
+%no-brd-t
+  border-top: none
+%no-pad-t
+  padding-top: 0
+
+%no-list-style
+  list-style: none
+
+
+
+
+
+// -----------------------------------------------------
+// Micro Clearfix
+// -----------------------------------------------------
+
+.cf, .clearfix
+  &:before, &:after
+    content: ""
+    display: table
+  &:after
+    clear: both
+  zoom: 1
+
+
+
+
+// -----------------------------------------------------
+// Image Replacement
+// -----------------------------------------------------
+
+%ir
+  display: block
+  border: 0
+  text-indent: -999em
+  overflow: hidden
+  background-color: transparent
+  background-repeat: no-repeat
+  text-align: left
+  direction: ltr
+  *line-height: 0
+
+
+
+
+// -----------------------------------------------------
 // Decorative
+// -----------------------------------------------------
 
 %single-box-shadow
   @include box-shadow(0px, 1px, 2px, 0, rgba(0,0,0,0.3))
   
-// $$Legacy
+
+
+// -----------------------------------------------------
+// $$legacy
+// -----------------------------------------------------
+
 
 .linkChevronBack
   &.strong

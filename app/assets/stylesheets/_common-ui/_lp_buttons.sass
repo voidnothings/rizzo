@@ -27,6 +27,10 @@ $icon_grey: #999
 // -----------------------------------------------------------
 
 .lp-btn
+  @extend %smaller-body-copy
+  @include round-all(2px)
+  @include background-gradient(#FFFFFF, #DFDFDC, $bg_image, 0 -200px)
+  @include multiple-box-shadow(0px 1px 2px 0 rgba(0,0,0,0.3), 0px 1px 0px 0 rgba(255,255,255,0.4) inset)
   position: relative
   display: inline-block
   zoom: 1
@@ -35,12 +39,8 @@ $icon_grey: #999
   line-height: $btn_height
   padding: 0 15px
   color: $base_font_color
-  @include font-size(12)
   font-weight: bold
   border: 1px solid #dfdfdc
-  @include round-all(2px)
-  @include background-gradient(#FFFFFF, #DFDFDC, $bg_image, 0 -200px)
-  @include multiple-box-shadow(0px 1px 2px 0 rgba(0,0,0,0.3), 0px 1px 0px 0 rgba(255,255,255,0.4) inset)
   &:hover
     @include background-gradient(#F5F5F5, #D9D9D9, $bg_image, 0 -225px)
     text-decoration: none
