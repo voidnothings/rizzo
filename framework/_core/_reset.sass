@@ -1,32 +1,100 @@
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-nav,
-section,
-summary
+// -----------------------------------------------------------------------------
+// Html5 Elements
+// -----------------------------------------------------------------------------
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary, iframe
   display: block
 
-// Slim Reset
+audio[controls], canvas, video
+  display: inline-block
+  *display: inline
 
-figure, ul
+audio
+  display: none
+  _display: expression(this.controls ? 'inline' : 'none')
+  *zoom: 1
+
+audio[controls]
+  display: inline-block
+
+// -----------------------------------------------------------------------------
+// Slim Normalize - See normalize source code for clarification on rule purposes
+//
+// I have slimmed it down to adapt it for our supported browser set
+//
+// https://github.com/necolas/normalize.css
+// -----------------------------------------------------------------------------
+
+html
+  cursor: default
+  font-size: 100%
+  overflow-y: scroll
+  -webkit-tap-highlight-color: transparent
+  -ms-text-size-adjust: 100%
+  -webkit-text-size-adjust: 100%
+
+body, form, input, button, select, textarea
+  font-size: 100%
+
+a, a:active, a:hover
+  outline: none
+
+a:focus
+  outline: thin dotted
+  
+small
+  font-size: 75%
+
+img
+  border: 0
+  -ms-interpolation-mode: bicubic
+  max-width: 100%
+  
+svg:not(:root)
+  overflow: hidden
+  
+button, input, select, textarea
+  -webkit-appearance: none
+  border-radius: 0
+  vertical-align: baseline
+  *vertical-align: middle
+
+button, input
+  line-height: normal
+
+button, input[type="button"], input[type="reset"], input[type="submit"]
+  overflow: visible
+
+input[type="checkbox"], input[type="radio"]
+  box-sizing: border-box
+
+textarea
+  overflow: auto
+  vertical-align: top
+
+table
+  border-collapse: collapse
+  border-spacing: 0
+
+// -----------------------------------------------------------------------------
+// Slim Reset
+// -----------------------------------------------------------------------------
+
+body, iframe, figure, ul
   margin: 0
   padding: 0
 
+nav ul
+  list-style: none
 
-nav
-  ul
-    list-style: none
+a > img 
+  display: block
 
-img 
-  max-width: 100%
+h1,h2,h3,h4,h5, h6
+  text-rendering: optimizeLegibility
 
 
-// Global static overrides
+// Global static overrides - $$Legacy - Remove when possible
 
 .clearfix
   display: block
