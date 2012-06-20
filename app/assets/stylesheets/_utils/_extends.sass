@@ -96,3 +96,14 @@
 
 %single-box-shadow
   @include box-shadow(0px, 1px, 2px, 0, rgba(0,0,0,0.3))
+  
+// $$Legacy
+
+.linkChevronBack
+  &.strong
+    font-weight: bold
+  @include icon-chevron-back  
+  padding-left: 10px
+  color: #333
+  &:hover
+    color: #07C
