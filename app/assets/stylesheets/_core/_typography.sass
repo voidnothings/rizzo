@@ -59,10 +59,10 @@ a.h6
 
 // Backwards compatability - revert the font size for the legacy header/footer
 
-#headerWrap, #pageTitleWrap, #infoSourcesWrap, #footerWrap, .hwrap, nav.primary, #breadcrumbWrap
+#headerWrap, #pageTitleWrap, #infoSourcesWrap, #footerWrap, .hwrap, nav.primary, #breadcrumbWrap, footer > .info, footer > .foot
   @include font-size(12)
 
-#footerWrap
+#footerWrap, .footer-info
   p
     @include font-size(11)
     
