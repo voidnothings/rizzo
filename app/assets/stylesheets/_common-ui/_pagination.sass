@@ -1,73 +1,100 @@
-.sort-controls
+// --------------------------------------------------------------------------------------
+// Concise pagination features a prev/next and page listing with form input
+//
+// Example markup:
+//
+// <div class="concise-pagination">
+//   <ul>
+//     <li class="prev">
+//       <a href="">‹ Prev</a>
+//     </li>
+//     <li class="jump">
+//       <form action="" method="get">
+//         <input name="page" type="text" value="2">
+//         <label>of 7</label>
+//       </form>
+//     </li>
+//     <li class="next">
+//       <a href="">Next ›</a>
+//     </li>
+//   </ul>
+// </div>
+//
+// --------------------------------------------------------------------------------------
+
+
+.concise-pagination
   ul
-    li
-      float: left
-      border-right: 1px solid #CCC
-      padding: 0 8px
-      a
-        color: #333
-      &.title
-        color: #666
-        padding: 0 8px 0 0
-        border-right: none
-      &.current
-        font-weight: bold
-        a
-          padding-right: 10px
-          color: #0186CB
-      &.down
-        @include icn-arrow-down
-      &.up
-        @include icn-arrow-up
+    float: right
+  li
+    float: left
+    padding: 0
+    margin: 0
+    &.prev
+      margin-right: 5px
+  span, a, label
+    padding: 0 4px
+  span  
+    color: #BBB
+  input
+    margin-top: -2px
+    text-align: right
+    font-size: 12px
+    color: #444
+    float: left
+    width: 28px
+  label
+    float: left
 
-.lodgings-header
-  .paginate-controls
-    ul
-      float: right
-      li
-        float: left
-        padding: 0
-        margin: 0
-        &.prev
-          margin-right: 5px
-      span, a, label
-        padding: 0 4px
-      span  
+
+
+
+// --------------------------------------------------------------------------------------
+// Expanded pagination features a prev/next and links for all pages
+//
+// Example markup:
+//
+// <div class="expanded-pagination">
+//   <ul>
+//     <li class="prev">
+//       <span>‹ Prev</span>
+//     </li>
+//     <li class="current">
+//       <span>1</span>
+//     </li>
+//     <li>
+//       <a href="/vietnam/ho-chi-minh-city/hotels?page=2">2</a>
+//     </li>
+//     <li>
+//       <a href="/vietnam/ho-chi-minh-city/hotels?page=3">3</a>
+//     </li>
+//   </ul>
+// </div>
+// --------------------------------------------------------------------------------------
+
+.expanded-pagination
+  overflow: hidden
+  width: 100%
+  margin-top: 20px
+  ul
+    text-align: center
+  li
+    &.next, &.prev
+      span
         color: #BBB
-      input
-        margin-top: -2px
-        text-align: right
-        font-size: 12px
-        color: #444
-        float: left
-        width: 28px
-      label
-        float: left
-
-.lodgings-footer
-  .paginate-controls
-    overflow: hidden
-    width: 100%
-    margin-top: 20px
-    ul
-      text-align: center
-      li
-        &.next, &.prev
-          span
-            color: #BBB
-        display: inline
-        margin-right: 1px
-        a
-          &:hover
-            background-color: #07C 
-            text-decoration: none
-            color: #fff
-        span, a
-          @include round-all(3px)
-          display: inline
-          line-height: 3em
-          padding: 3px 6px 2px 8px
-        &.current
-          span, a
-            background: #666
-            color: #fff
+    display: inline
+    margin-right: 1px
+    a
+      &:hover
+        background-color: #07C 
+        text-decoration: none
+        color: #fff
+    span, a
+      @include round-all(3px)
+      display: inline
+      line-height: 3em
+      padding: 3px 6px 2px 8px
+    &.current
+      span, a
+        background: #666
+        color: #fff
