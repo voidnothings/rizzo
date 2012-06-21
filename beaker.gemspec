@@ -4,7 +4,7 @@ require File.expand_path('../lib/beaker/version', __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "beaker"
-  s.version     = Beaker::VERSION
+  s.version     = Beaker::Rails::VERSION
   s.authors     = ["Ian Feather"]
   s.email       = ["info@ianfeather.co.uk"]
   s.homepage    = ""
@@ -13,6 +13,8 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "beaker"
 
-  s.files = `git ls-files`.split($\)
+  # s.files = `git ls-files`.split($\)
+  s.files = Dir["{app,lib}/**/*"]
+  s.require_paths = ["lib"]
 
 end

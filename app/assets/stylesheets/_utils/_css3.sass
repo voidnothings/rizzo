@@ -1,4 +1,4 @@
-@mixin fontsize($sizeValue: 14)
+@mixin font-size($sizeValue: 14)
   font-size: #{$sizeValue + px}
   font-size: #{($sizeValue / $base_font_size) + rem}
   
@@ -16,7 +16,7 @@
   -o-border-radius:      $radius
   border-radius:         $radius
 
-  
+
 @mixin round-each($a: 2px, $b: 2px, $c: 2px, $d: 2px)
   -webkit-border-radius: $a $b $c $d
   -moz-border-radius:    $a $b $c $d
@@ -32,7 +32,7 @@
   -o-box-shadow:      $x $y $blur $spread $color
   box-shadow:         $x $y $blur $spread $color
 
-  
+
 @mixin multiple-box-shadow($shadow1, $shadow2:false, $shadow3:false, $shadow4:false, $shadow5:false)
   $params: $shadow1
   @if $shadow2 != false
@@ -66,15 +66,15 @@
   -ms-box-sizing:     $sizing
   -o-box-sizing:      $sizing
   box-sizing:         $sizing
-  
-  
+
+
 @mixin transition($property: all, $duration: 0.5s, $style: ease)  
   -webkit-transition: $property $duration $style
   -moz-transition:    $property $duration $style
   -ms-transition:     $property $duration $style
   -o-transition:      $property $duration $style
   transition:         $property $duration $style
-  
+
 @mixin transform($scale: 1, $rotate: 15deg, $translateX: 0px, $translateY: 0px, $skewX: 0deg, $skewY: 0deg)
   -webkit-transform: scale($scale) rotate($rotate) translate($translateX, $translateY) skew($skewX, $skewY)
   -moz-transform:    scale($scale) rotate($rotate) translate($translateX, $translateY) skew($skewX, $skewY)
@@ -88,9 +88,9 @@
 
 @mixin card-flip($perspective: 300)
   -webkit-perspective: $perspective
-  -moz-perspective:    $perspective 
-  -ms-perspective:     $perspective 
-  perspective:         $perspective  
+  -moz-perspective:    $perspective
+  -ms-perspective:     $perspective
+  perspective:         $perspective
   -webkit-transform:       rotateY(180deg)
   -webkit-transform-style: preserve-3d
   -moz-transform:          rotateY(180deg)

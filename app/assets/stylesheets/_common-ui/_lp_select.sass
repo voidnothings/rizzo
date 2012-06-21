@@ -1,0 +1,77 @@
+// --------------------------------------------------------------------------------------
+// These styles allow you to create a LP <select> which scales to its container's width 
+//
+// Example markup:
+// <div class="lp-select js-lp-select">
+//   <label class="overlay js-select-overlay">Select...</label>
+//   <select>...</select>
+// </div>    
+// --------------------------------------------------------------------------------------
+
+
+@mixin custom_select($height: 30px, $width: 100%, $project: false)
+
+  $arrow_width: 35px
+
+  .lp-select
+    position: relative
+    width: $width
+    height: $height
+
+    .overlay
+      position: relative
+      display: block
+      width: $width
+      height: $height
+      line-height: $height
+      padding-right: $arrow-width + 5px
+      overflow: hidden
+      text-indent: 10px
+      background-color: #fff
+      border: 1px solid #BEBEBE
+      word-break: break-all
+      @include round-all(15px)
+      @include box-sizing(border-box)
+
+      .no-boxsizing &
+        padding: 0
+        width: 95%
+
+      .no-generatedcontent &
+        @if $project == waldorf
+          @include icon-selector-handler
+          background-repeat: no-repeat
+          background-position: 95% center
+        @else
+          background: #fff url("../../images/common-ui/select-box-arrow-down.png") no-repeat 95% center
+
+      &:after
+        content: ''
+        position: absolute
+        display: block
+        right: 1px
+        top: 0
+        border-left: 1px solid #BEBEBE
+        height: 28px
+        width: ($arrow-width - 6px)
+        @include round-each(0, 15px, 15px, 0)
+        @if $project == waldorf
+          @include icon-selector-handler
+        @else
+          background: #fff url("../../images/common-ui/select-box-arrow-down.png") no-repeat 8px 8px  
+
+    select
+      position: absolute
+      top: 0
+      left: 0
+      opacity: 0
+      width: $width
+      height: 100%
+
+      .no-opacity &
+        filter: alpha(opacity = 0)
+
+      .no-js &
+        opacity: 1
+        filter: alpha(opacity = 1)
+      

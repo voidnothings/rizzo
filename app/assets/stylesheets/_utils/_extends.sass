@@ -1,0 +1,175 @@
+// --------------------------------------------------------------------------------------
+// These are Non-semantic Helper Classes
+//
+// They exist to be extended and built upon by other classes
+// --------------------------------------------------------------------------------------
+
+
+
+// -----------------------------------------------------
+// Type
+// -----------------------------------------------------
+
+%smaller-body-copy
+  +font-size(12)
+
+%larger-body-copy
+  +font-size(16)
+
+
+// -----------------------------------------------------
+// Links
+// -----------------------------------------------------
+
+%blue-link-reverse
+  background-color: $link_color
+  text-decoration: none
+  color: #fff
+
+%grey-link-reverse  
+  background: #666
+  color: #fff
+
+// -----------------------------------------------------
+// Positioning
+// -----------------------------------------------------
+
+.rgt
+  float: right
+  
+.lft
+  float: left
+
+%block-center
+  margin: 0 auto
+
+%no-float
+  float: none
+
+%absolute-top
+  position: absolute
+  top: 0
+
+%absolute-top-left
+  position: absolute
+  top: 0
+  left: 0
+
+%absolute-top-right
+  position: absolute
+  top: 0
+  right: 0
+  
+%absolute-top-full-width
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  
+%absolute-bottom
+  position: absolute
+  bottom: 0
+
+%absolute-bottom-left
+  position: absolute
+  bottom: 0
+  left: 0
+
+%absolute-bottom-right
+  position: absolute
+  bottom: 0
+  right: 0
+
+%absolute-bottom-full-width
+  position: absolute
+  bottom: 0
+  left: 0
+  right: 0
+
+
+
+
+// -----------------------------------------------------
+// States
+// -----------------------------------------------------
+
+.hd, .is-hidden
+  display: none
+  visibility: hidden
+
+
+
+
+
+
+// -----------------------------------------------------
+// Negative classes
+// -----------------------------------------------------
+
+%no-brd-t
+  border-top: none
+%no-pad-t
+  padding-top: 0
+
+%no-list-style
+  list-style: none
+
+
+
+
+
+// -----------------------------------------------------
+// Micro Clearfix
+// -----------------------------------------------------
+
+.cf, .clearfix
+  &:before, &:after
+    content: ""
+    display: table
+  &:after
+    clear: both
+  zoom: 1
+
+
+
+
+// -----------------------------------------------------
+// Image Replacement
+// -----------------------------------------------------
+
+%ir
+  display: block
+  border: 0
+  text-indent: -999em
+  overflow: hidden
+  background-color: transparent
+  background-repeat: no-repeat
+  text-align: left
+  direction: ltr
+  *line-height: 0
+
+
+
+
+// -----------------------------------------------------
+// Decorative
+// -----------------------------------------------------
+
+%single-box-shadow
+  @include box-shadow(0px, 1px, 2px, 0, rgba(0,0,0,0.3))
+  
+
+
+// -----------------------------------------------------
+// $$legacy
+// -----------------------------------------------------
+
+
+.linkChevronBack
+  &.strong
+    font-weight: bold
+  @include icon-chevron-back  
+  padding-left: 10px
+  color: $link_color
+  &:hover
+    color: $link_color
