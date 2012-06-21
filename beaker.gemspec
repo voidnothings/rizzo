@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "beaker"
 
-  s.files = `git ls-files`.split($\)
+  s.files = `git ls-files`.split($\) 
   # s.files = Dir["{app,lib}/**/*"]
   s.require_paths = ["lib"]
 
