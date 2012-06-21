@@ -116,7 +116,7 @@ Prefixing with js:
  * This ensures that we maintain a distinction between content and functionality
  * If there is no id to the element you can place your js-hook as the id.
  * If there is an id and you need to style the element with a class it is ok to duplicate the class, eg:
- ```html
+ ```
  <a id="#someContent" class="toggle js-toggle">View content</a>
  ```
  * Do NOT style js-classes in your CSS
