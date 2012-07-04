@@ -53,11 +53,11 @@
 @mixin background-gradient($startColor: #3C3C3C, $endColor: #999999, $fallbackImg: false, $imgPosition: 0 0 )
   @if $fallbackImg != false
     background: $startColor url($fallbackImg) $imgPosition repeat-x
-  background:   $startColor -webkit-linear-gradient(top, $startColor, $endColor) $imgPosition no-repeat
-  background:      $startColor -moz-linear-gradient(top, $startColor, $endColor) $imgPosition no-repeat
-  background:       $startColor -ms-linear-gradient(top, $startColor, $endColor) $imgPosition no-repeat
-  background:        $startColor -o-linear-gradient(top, $startColor, $endColor) $imgPosition no-repeat
-  background:           $startColor linear-gradient(top, $startColor, $endColor) $imgPosition no-repeat
+  background:   $startColor -webkit-linear-gradient(top, $startColor, $endColor)
+  background:      $startColor -moz-linear-gradient(top, $startColor, $endColor)
+  background:       $startColor -ms-linear-gradient(top, $startColor, $endColor)
+  background:        $startColor -o-linear-gradient(top, $startColor, $endColor)
+  background:           $startColor linear-gradient(top, $startColor, $endColor)
 
 
 @mixin box-sizing($sizing: border-box)
