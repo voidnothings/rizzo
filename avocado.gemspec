@@ -11,6 +11,6 @@ Gem::Specification.new do |s|
   s.files         = ["lib/avocado.rb"]
   s.require_paths = ["lib"]
   s.homepage      = 'http://rubygems.org/gems/avocado'
-  s.version       = Rizzo::VERSION
+  s.version       = Avocado::VERSION
 end
 
