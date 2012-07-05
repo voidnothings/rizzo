@@ -28,4 +28,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'pickle'
   gem.add_development_dependency 'cucumber-rails'
   gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'avocado'
 end
