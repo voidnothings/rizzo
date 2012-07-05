@@ -1,15 +1,9 @@
-avocado_files = ['base',
-                 'dependencies',
-                 'config',
-                 'server',
-                 'selenium_driver',
-                 'spec_builder',
-                 'command_line_tool',
-                 'page']
+avocado_files = ['base','dependencies','version']
 
-jasmine_files.each do |file|
-  require File.join('jasmine', file)
+avocado_files.each do |file|
+  require File.join('avocado', file)
 end
 
-require File.join('jasmine', "railtie") if Jasmine::Dependencies.rails3?
+require "rizzo/engine" if defined?(Rails)
+# require File.join('avocado', "railtie") if Avocado::Dependencies.rails3?
 
