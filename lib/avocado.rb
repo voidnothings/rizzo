@@ -1,9 +1,15 @@
-require 'avocado/translator'
+avocado_files = ['base',
+                 'dependencies',
+                 'config',
+                 'server',
+                 'selenium_driver',
+                 'spec_builder',
+                 'command_line_tool',
+                 'page']
 
-class Avocado
-  def self.hi(language = :english)
-    translator = Translator.new(language)
-    translator.hi
-  end
+jasmine_files.each do |file|
+  require File.join('jasmine', file)
 end
+
+require File.join('jasmine', "railtie") if Jasmine::Dependencies.rails3?
 
