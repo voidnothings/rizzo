@@ -1,0 +1,163 @@
+// Button
+// The largest clickable button used on form submits.
+//
+// Sample:
+// %button.orange
+//   Find Rooms
+//
+// %a.btn.orange(href='javascript:;')
+//   Find Rooms
+//
+
+.btn, button
+  -webkit-user-select: none
+  @include round-all(3px)
+  color: #666
+  cursor: pointer
+  display: inline-block
+  &:hover
+    text-decoration: none
+  &.standard
+    @include box-shadow(1px, 1px, 1px, 0, #e3e3e3)
+    @include background-gradient(whiteSmoke, #E5E5E5)
+    border-color: #DDD #DDD #BBB
+    border-style: solid
+    border-width: 1px
+    font-size: 13px
+    font-weight: bold
+    line-height: normal
+    overflow: auto
+    padding: 6px 15px
+    position: relative
+    &:active
+      margin-top: 1px
+    &:hover
+      background-color: #cc5c01
+      @include background-gradient(#cc5c01, #a74b02)
+
+  &.orange
+    @include background-gradient(#ff7e00, #ff7e00)
+    border-color: #f8a350
+    color: #fff
+    &:hover
+      border-color: #a74b02
+      @include background-gradient(#cc5c01, #a74b02)
+
+  &.blue
+    @include background-gradient(#0278ce, #0465aa)
+    border-color: #0465aa
+    color: #fff
+    &:hover
+      border-color: #0954a7
+      @include background-gradient(#0954a7, #064488)
+
+  &.link
+    @include background-gradient(#ff7e00, #f48116)
+    color: #fff
+  
+  &.disabled, &.disabled:hover, &.disabled:active
+    @include box-shadow( 1px,  #e3e3e3)
+    @include background-gradient(whiteSmoke, #E5E5E5)
+    color: #666
+    cursor: default
+    margin-top: 0
+    border-color: #DDD #DDD #BBB
+    border-style: solid
+    border-width: 1px
+    font-size: 13px
+    font-weight: bold
+    line-height: normal
+    overflow: auto
+    padding: 6px 15px
+    position: relative
+
+.std
+  -webkit-user-select: none
+  @include round-all(3px)
+  cursor: pointer
+  font-size: 12px
+  font-weight: bold
+  line-height: normal
+  text-align: center
+  display: inline
+  padding: 4px 10px
+  border: 1px solid #e3e3e3
+  color: #333
+
+.btn-soft
+  color: #999
+  border: 1px solid #e3e3e3
+  &:hover
+    @include background-gradient(#f7f7f7, #f3f3f3)
+    border: 1px solid #dedede
+    color: #333
+
+.btn-regular
+  @include background-gradient(#f3f3f3, #dedede)
+  border: 1px solid #e3e3e3
+  color: #333
+  &:hover
+    @include background-gradient(#fff, #dedede)
+
+.btn-exit
+  border: 1px solid transparent
+  color: #ccc
+  &:hover
+    border-color: #aaa
+    color: #333
+.btn-close
+  @include background-gradient(#f3f3f3, #dedede)
+  border: 1px solid #e3e3e3
+  color: #333
+  &:hover
+    @include background-gradient(#fff, #dedede)
+
+// -----------------------------------------------------------
+// 
+// $$Legacy
+// 
+// -----------------------------------------------------------
+
+.whiteAngleButton
+  a.lpButton2010
+    @include btn-white-angle
+    color: #333
+    span
+      @include btn-white
+    &:hover
+      @include btn-orange-angle
+      span
+        color: #fff
+        @include btn-orange
+    &:active
+      margin-top: 2px
+      @include btn-orange-dark-angle
+      span
+        color: #fff
+        @include btn-orange-dark
+
+.lpButton2010
+  cursor: pointer
+  @include btn-spt
+  @include btn-white-angle
+  text-decoration: none
+  overflow: visible
+  padding: 0 17px 0 0
+  text-align: center
+  text-decoration: none!important
+  cursor: pointer
+  float: left
+  position: relative
+  font-size: 12px
+  span
+    @include btn-spt
+    @include btn-white
+    padding: 0 0 2px 18px
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1)
+    position: relative
+    white-space: nowrap
+    float: left
+    color: #333
+    font-weight: bold
+    line-height: 30px
+    padding: 0 8px 0 18px
