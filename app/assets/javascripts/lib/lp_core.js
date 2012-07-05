@@ -90,6 +90,7 @@ var globalNav = function(navHtmlSnippet, selector) {
   jQuery(selector).each(createMainNavTab);
 };
 
+// callback after hochiminh content download....
 lp.nav.createMainNav = function(jQuery) {
   jQuery(function() {
     var mainNav = jQuery('#mainNav');
@@ -98,38 +99,39 @@ lp.nav.createMainNav = function(jQuery) {
   });
 };
 
-lp.nav.createMainNav(jQuery);
-
-//omniture
-self.setupOmnitureUserInfo = function(s){
-  if (lpSignedInUser()) {
-    s.eVar24 = Base64.encode(lpSignedInUser());
-    s.eVar25 = isUserNewlyRegistered() ? "just registered" : "logged in";
-  } else {
-    s.eVar25 = "guest";
-  }
-};
-
-// sign in
-function lpSignedInUser() {
-  var lpCookie = jQuery.cookies.get("lpCookie");
-  if (lpCookie) {
-    var userCookieVal = lpCookie.split(/#/);
-    return userCookieVal ? userCookieVal[0] : null;
-  }
-  var lpNewUser = jQuery.cookies.get("lpNewUser");
-  if (lpNewUser) {
-    return lpNewUser;
-  }
-}
-
-function isUserNewlyRegistered() {
-  return jQuery.cookies.get("lpNewUser") ? true : false;
-}
 
 var _destinationsGlobalNav = function (data) {
   var destinations = new globalNav(data.nav, "nav.primary ul li.destinations");
 };
+
+lp.nav.createMainNav(jQuery);
+
+// //omniture
+// self.setupOmnitureUserInfo = function(s){
+//   if (lpSignedInUser()) {
+//     s.eVar24 = Base64.encode(lpSignedInUser());
+//     s.eVar25 = isUserNewlyRegistered() ? "just registered" : "logged in";
+//   } else {
+//     s.eVar25 = "guest";
+//   }
+// };
+// 
+// // sign in
+// function lpSignedInUser() {
+//   var lpCookie = jQuery.cookies.get("lpCookie");
+//   if (lpCookie) {
+//     var userCookieVal = lpCookie.split(/#/);
+//     return userCookieVal ? userCookieVal[0] : null;
+//   }
+//   var lpNewUser = jQuery.cookies.get("lpNewUser");
+//   if (lpNewUser) {
+//     return lpNewUser;
+//   }
+// }
+// 
+// function isUserNewlyRegistered() {
+//   return jQuery.cookies.get("lpNewUser") ? true : false;
+// }
 
 function callback(object, methodName){
   var context = object;
