@@ -1,5 +1,4 @@
 require "beaker/version"
-require 'beaker/railtie' if defined?(::Rails)
 
 module Beaker
   module Rails
