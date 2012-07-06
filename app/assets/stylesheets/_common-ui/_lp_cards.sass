@@ -1,46 +1,47 @@
 .card
+  @extend %inline-block
   position: relative
-  max-width: 300px
-  background-color: #fff
-  border-top: 1px solid #fff
-  display: inline-block
-  margin: 0 10px 10px 0
-  @include box-shadow()  
+  margin: 0 4px 10px 0
+  max-width: 237px
+  background-color: $light-grey
 
-  .overlay
-    @extend absolute-top-full-width
-    b
-      background-color: $header-blue
-      padding: 3px 5px
-      color: #fff
-      @include round-all(5px)
-  .ext-detail
-    position: absolute
-    bottom: 0
-    left: 0
-    right: 0
-    z-index: 1
-  .map
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
-    background-color: blue
-    color: #fff
-    z-index: -1
-    overflow: hidden
-    .detail
-      position: absolute
-      bottom: 10px
-      right: 10px
+  &.deal
+    &:after
+      @extend %absolute-top-right
 
-  &:target
-    +transition(all, 1s, ease-out)
-    +card-flip()
-    .map
-      z-index: 1000
-      +card_flip()
+.card-hero,
+.card-hero img
+  display: block
+    
 
 .card-content
+  position: relative
   padding: 10px
+  
+  .h4
+    line-height: 20px
+    margin-bottom: 10px
+  
+  .locale
+    @extend %tiny-type
+    position: relative
+    padding-left: 19px
+    text-transform: uppercase
+    &:before
+      @extend %empty-generated-content
+      @extend %absolute-top-left
+      background: red
+      width: 19px
+      height: 19px
+  
+  .price
+    @extend %heading-size-type
+    @include vertically-center(28px)
+    @include background-gradient-with-stops(#F17822, #F17822 89%, #D25427 100%)
+    position: absolute
+    left: 9px
+    bottom: 100%
+    padding: 0 6px 0 25px
+    color: white
+    &:hover
+      text-decoration: none
