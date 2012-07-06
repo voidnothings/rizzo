@@ -28,13 +28,11 @@ $icon_grey: #999
 
 .lp-btn
   @extend %smaller-body-copy
+  @extend %inline-block
   @include round-all(2px)
   @include background-gradient(#FFFFFF, #DFDFDC, $bg_image, 0 -200px)
   @include multiple-box-shadow(0px 1px 2px 0 rgba(0,0,0,0.3), 0px 1px 0px 0 rgba(255,255,255,0.4) inset)
   position: relative
-  display: inline-block
-  zoom: 1
-  *display: inline
   height: $btn_height
   line-height: $btn_height
   padding: 0 15px
