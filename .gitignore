@@ -1,0 +1,13 @@
+/.bundle
+coverage
+.rvmrc
+config/database.yml
+*DS_Store
+.idea
+bin
+.bundle
+.rvmrc
+*.swp
+tags
+Gemfile.lock
+spec/reports
