@@ -1,4 +1,8 @@
-$(document).ready ->
+_dep = [
+  'jquery'
+]
+
+define _dep, ($) ->
   $('.lp-slider').each ->
     slider = $(this)
     container = slider.find('.lp-slider-container')

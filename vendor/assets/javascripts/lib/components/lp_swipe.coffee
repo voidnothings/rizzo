@@ -53,7 +53,7 @@ _dep = [
   'vendor/handlebars-1.0.0.beta.6'
 ]
 
-define _dep, ($, Handlebars) ->
+define _dep, ($) ->
 
   class Swipe
 
