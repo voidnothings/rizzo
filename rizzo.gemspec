@@ -25,7 +25,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'capybara'
   gem.add_development_dependency 'cucumber', '1.1.9'
   gem.add_development_dependency 'guard-cucumber'
-  gem.add_development_dependency 'pickle'
   gem.add_development_dependency 'cucumber-rails'
   gem.add_development_dependency 'rake'
 end
