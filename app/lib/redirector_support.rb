@@ -1,5 +1,4 @@
 module RedirectorSupport
-
   def increment_stats_bucket_for_bad_redirected_url(url = "blank")
     increment_stats_bucket("redirector", "bad_url", url)
   end
@@ -14,5 +13,4 @@ module RedirectorSupport
   def increment_stats_bucket(*bucket_parts)
     Stats.increment(bucket_parts.join(".")) if defined?(Stats)
   end
-
 end
