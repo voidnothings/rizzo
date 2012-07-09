@@ -1543,6 +1543,7 @@ Handlebars.VM = {
       partials[name] = Handlebars.compile(partial);
       return partials[name](context, options);
     }
+
   }
 };
 

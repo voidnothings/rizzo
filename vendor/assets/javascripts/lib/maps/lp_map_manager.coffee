@@ -3,79 +3,92 @@
 #
 # Arguments
 # No need for arguments, however (and for now) it reads the latitude, longitude, title, zoom, ...
-# from the window.lp.map object. For further details on this object run console.log(lp.map) on the
+# from the lp.map object. For further details on this object run console.log(lp.map) on the
 # browser inspector
 #
 # Example:
-# It only loads the lib and instantiates the map if window.lp.map is defined
+# It only loads the lib and instantiates the map if lp.map is defined
 #
-# if(window.lp.map){
-#   self.mapWidget = new window.lp.MapManager({});
+# if(lp.map){
+#   self.mapWidget = new MapManager({});
 # }
 #
 
 _dep = [
   'jquery'
-  'vendor/handlebars-1.0.0.beta.6'
+  'maps/lp_lodging_map'
+  'maps/lp_nearby_things_to_do'
 ]
 
-define _dep, ($) ->
+define _dep, ($, LodgingMap, NearbyThingsToDo) ->
   
   class MapManager
     @version: '0.0.11'
-    @isLoaded: false
+    @lodgingMap: null
+    @nearbyThingsToDo: null
+    @currentPOI: null
 
     @loadLib: ->
-      unless @isLoaded
-        window.MapManager = MapManager
+      # pointer to google-maps callback, not possible inside the regular closure environment
+      lp.MapManager = MapManager
+      unless @lodgingMap
         script = document.createElement("script")
         script.type = "text/javascript"
-        script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=MapManager.initMap"
+        script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=lp.MapManager.initMap"
         document.body.appendChild(script)
 
     @initMap: ()->
-      @isLoaded = true
-      opts =
-        zoom: window.lp.map.zoom
-        center: new google.maps.LatLng(window.lp.map.latitude, window.lp.map.longitude)
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-
-      map = new google.maps.Map(document.getElementById("map_canvas"), opts)
-      pinkParksStyles = [
-        featureType: "all",
-        stylers: [
-          { hue: "#586c8c" },
-          { visibility: "on" },
-          { lightness: 19 },
-          { saturation: -66 },
-          { gamma: 0.79 }
-        ]
-      ]
-      map.setOptions({styles: pinkParksStyles})
-      unless window.lp.lodging.genericCoordinates
-        @setMapMarker(map)
-        @getNearbyPOIs(map)
-
-    @setMapMarker: (map)->
-      opts =
-        position: new google.maps.LatLng(window.lp.lodging.latitude, window.lp.lodging.longitude)
-        map: map
-        title: lp.lodging.title
+      @lodgingMap = new LodgingMap(
+        target: '#map_canvas'
+        lodging: lp.lodging
+        latitude: lp.map.latitude
+        longitude: lp.map.longitude
+        zoom: lp.map.zoom
         optimized: lp.map.optimized
-      marker = new google.maps.Marker(opts)
+        listener: @
+      )
+      unless lp.lodging.genericCoordinates
+        @lodgingMap.setLodgingMarker()
+        @getNearbyPOIs (data)=>
+          pois = @parsePOIData(data)
+          @lodgingMap.initMapPOIs(pois)
+          @initNearbyThingsToDo(pois)
 
-    @getNearbyPOIs: (map) ->
+    @getNearbyPOIs: (callback) ->
       if lp.lodging.nearby_api_endpoint
-        $.getJSON lp.lodging.nearby_api_endpoint, (data)=>
-          @drawNearbyPOI(map, d) for d in data
+        # $.getJSON '/top_rated_nearby_by_category.json', callback
+        $.getJSON lp.lodging.nearby_api_endpoint, callback
+    
+    @parsePOIData: (data)->
+      pois = {}
+      sight.category = 'sight' for sight in data.sights
+      activity.category = 'activity' for activity in data.activities
+      pois.sights_or_activities = _.sortBy(data.activities.concat(data.sights || []),
+                                           (poi)-> -poi.properties.rating)[0..2]
+      pois.entertainment = data['entertainment-nightlife'][0]
+      pois.entertainment.category = 'entertainment' if pois.entertainment?
+      pois.restaurant = data.restaurants[0]
+      pois.restaurant.category = 'restaurant' if pois.restaurant?
+      pois
 
-    @drawNearbyPOI:(map, poi) ->
-      opts =
-        position: new google.maps.LatLng(poi.geometry.coordinates[1], poi.geometry.coordinates[0])
-        map: map
-        title: poi.properties.title
-        optimized: lp.map.optimized
-      marker = new google.maps.Marker(opts)
+    @initNearbyThingsToDo: (pois)->
+      @nearbyThingsToDo = new NearbyThingsToDo(
+        target: '#pois-list-wrapper'
+        pois: pois
+        listener: this
+      )
+      @nearbyThingsToDo.render()
+
+    @poiSelected: (poi_id)->
+      if poi_id is @currentPOI
+        @currentPOI = null
+        @lodgingMap.resetPOIs()
+        @nearbyThingsToDo.resetPOIs()
+      else
+        @currentPOI = poi_id
+        @lodgingMap.highlightPOI(poi_id)
+        @nearbyThingsToDo.highlightPOI(poi_id)
 
     constructor: ->
       MapManager.loadLib()
+
