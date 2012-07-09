@@ -1,30 +1,66 @@
+// ----------------------------------------------------------------------------
+// A simple card system, developed for hotel list view
+//
+// <article class="card">
+//   <a href="#">
+//     <img src="hotel.jpg" class="hero"/>
+//     <section class="card-content">
+//       <h3 class="stars">4 Star Hotel</h3>
+//       <h1 class="name" href="#">Best Western Premier Hotel Cristoforo Colombo</h1>
+//       <p class="locale">Khakassia Republic & Southern Krasnoyarsk Territory</p>
+//       <div href="#" class="price-tag">from <span class="price"><span class="curr">&pound;</span>63</span></div>
+//     </section>
+//     <aside class="accolades">
+//       <span class="lp-reviewed">Lonely Planet Reviewed</span>
+//     </aside>
+//   </a>
+// </article>
+// ----------------------------------------------------------------------------
+
+$list-sprite: url('hotels-list-sprite.png')
+
 .card
   @extend %inline-block
+  vertical-align: top
   position: relative
-  margin: 0 4px 10px 0
-  max-width: 237px
+  margin-bottom: 4px
+  width: 237px
+  height: 326px
   background-color: $light-grey
-
+  &:hover
+    background-color: #DDECF8
+  > a
+    display: block
+    height: 100%
+    &:hover
+      text-decoration: none
   &.deal
     &:after
       @extend %empty-generated-content
       @extend %deal-banner-top-right
-      width: 71px
-      height: 70px
-      background: url('deal.png')
+      width: 69px
+      height: 69px
+      background: $list-sprite 0 0
+  .hero
+    display: block
 
-.card-hero,
-.card-hero img
-  display: block
-    
 
 .card-content
   position: relative
-  padding: 10px
+  padding: 13px 13px 0
+  color: $base_font_color
   
-  .h4
-    line-height: 20px
-    margin-bottom: 10px
+  .stars
+    @extend %extra-small-type
+    text-transform: uppercase
+    line-height: 1em
+    font-weight: bold
+    margin-bottom: 7px
+    
+  .name
+    @extend %extra-large-type
+    line-height: 18px
+    margin-bottom: 7px
   
   .locale
     @extend %tiny-type
@@ -34,18 +70,56 @@
     &:before
       @extend %empty-generated-content
       @extend %absolute-top-left
-      background: red
-      width: 19px
-      height: 19px
-  
-  .price
-    @extend %heading-size-type
-    @include vertically-center(28px)
+      background: $list-sprite -69px -14px
+      width: 14px
+      height: 14px
+
+  .price-tag
+    @extend %small-type
     @include background-gradient-with-stops(#F17822, #F17822 89%, #D25427 100%)
+    @include vertically-center(28px)
     position: absolute
     left: 9px
     bottom: 100%
-    padding: 0 6px 0 25px
+    padding: 0 6px 0 22px
     color: white
-    &:hover
-      text-decoration: none
+    .price
+      @extend %heading-size-type
+      vertical-align: middle
+    .curr
+      @extend sup
+      font-size: 0.6em
+    s
+      color: $previous-price
+    &:before
+      @extend %empty-generated-content
+      position: absolute
+      top: 7px
+      left: 4px
+      width: 14px
+      height: 14px
+      background: $list-sprite -69px 0
+
+
+
+.accolades
+  position: absolute
+  left: 13px
+  bottom: 11px
+
+  .lp-reviewed
+    @extend %image-replacement
+    @extend %inline-block
+    width: 87px
+    height: 25px
+    background: $list-sprite -83px 0px
+  
+  .top-choice
+    @extend %image-replacement
+    @extend %inline-block
+    position: relative
+    top: -1px
+    width: 43px
+    height: 27px
+    background: $list-sprite -69px -28px
+    
