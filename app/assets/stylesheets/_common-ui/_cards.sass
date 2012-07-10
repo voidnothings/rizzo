@@ -5,9 +5,9 @@
 //   <a href="#">
 //     <img src="hotel.jpg" class="hero"/>
 //     <section class="card-content">
-//       <h3 class="stars">4 Star Hotel</h3>
-//       <h1 class="name" href="#">Best Western Premier Hotel Cristoforo Colombo</h1>
-//       <p class="locale">Khakassia Republic & Southern Krasnoyarsk Territory</p>
+//       <h3 class="stars"></h3>
+//       <h1 class="name" href="#"></h1>
+//       <p class="locale"></p>
 //       <div href="#" class="price-tag">from <span class="price"><span class="curr">&pound;</span>63</span></div>
 //     </section>
 //     <aside class="accolades">
@@ -16,8 +16,6 @@
 //   </a>
 // </article>
 // ----------------------------------------------------------------------------
-
-$list-sprite: url('hotels-list-sprite.png')
 
 .card
   @extend %inline-block
@@ -38,9 +36,9 @@ $list-sprite: url('hotels-list-sprite.png')
     &:after
       @extend %empty-generated-content
       @extend %deal-banner-top-right
+      +deal-banner-blue()
       width: 69px
       height: 69px
-      background: $list-sprite 0 0
   .hero
     display: block
 
@@ -49,19 +47,17 @@ $list-sprite: url('hotels-list-sprite.png')
   position: relative
   padding: 13px 13px 0
   color: $base_font_color
-  
   .stars
     @extend %extra-small-type
     text-transform: uppercase
     line-height: 1em
     font-weight: bold
     margin-bottom: 7px
-    
   .name
     @extend %extra-large-type
     line-height: 18px
     margin-bottom: 7px
-  
+    font-weight: bold
   .locale
     @extend %tiny-type
     position: relative
@@ -70,14 +66,14 @@ $list-sprite: url('hotels-list-sprite.png')
     &:before
       @extend %empty-generated-content
       @extend %absolute-top-left
-      background: $list-sprite -69px -14px
+      +locale-pin-grey()
       width: 14px
       height: 14px
 
   .price-tag
     @extend %small-type
-    @include background-gradient-with-stops(#F17822, #F17822 89%, #D25427 100%)
-    @include vertically-center(28px)
+    +background-gradient-with-stops(#F17822, #F17822 89%, #D25427 100%)
+    +vertically-center(28px)
     position: absolute
     left: 9px
     bottom: 100%
@@ -93,33 +89,29 @@ $list-sprite: url('hotels-list-sprite.png')
       color: $previous-price
     &:before
       @extend %empty-generated-content
+      +price-tag-white
       position: absolute
       top: 7px
       left: 4px
       width: 14px
       height: 14px
-      background: $list-sprite -69px 0
-
-
 
 .accolades
   position: absolute
   left: 13px
   bottom: 11px
-
   .lp-reviewed
     @extend %image-replacement
     @extend %inline-block
+    +lp-reviewed-badge()
     width: 87px
     height: 25px
-    background: $list-sprite -83px 0px
-  
   .top-choice
     @extend %image-replacement
     @extend %inline-block
+    +top-choice-badge()
     position: relative
     top: -1px
     width: 43px
     height: 27px
-    background: $list-sprite -69px -28px
     
