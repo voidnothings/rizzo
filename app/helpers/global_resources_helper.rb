@@ -55,5 +55,21 @@ module GlobalResourcesHelper
     end
   end
   
+  def breadcrumb_for(breadcrumb_content=[])
+    capture_haml do
+      haml_tag(:div, id: 'breadcrumbWrap', class: 'posChange') do
+        haml_tag(:ol, id: 'breadcrumb') do
+          breadcrumb_content.each_with_index do |item, index|
+            li_class = index == current_place.breadcrumb.size-1 ? "last" : "twoCol"
+            if item[:slug].blank?
+              haml_concat item[:place]
+            else
+              haml_tag(:li, class: li_class) { haml_tag(:a, href: "http://www.lonelyplanet.com/#{item[:slug]}") { haml_concat item[:place] } }
+            end
+          end
+        end
+      end
+    end
+  end  
   
 end
