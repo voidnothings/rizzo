@@ -10,11 +10,11 @@
 //
 
 .btn, button
-  -webkit-user-select: none
+  @extend %inline-block
   @include round-all(3px)
+  -webkit-user-select: none
   color: #666
   cursor: pointer
-  display: inline-block
   &:hover
     text-decoration: none
   &.standard

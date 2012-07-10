@@ -76,7 +76,18 @@ textarea
 table
   border-collapse: collapse
   border-spacing: 0
+  
+sub,
+sup
+  line-height: 0
+  position: relative
+  vertical-align: baseline
 
+sup
+  top: -0.5em
+
+sub
+  bottom: -0.25em
 // -----------------------------------------------------------------------------
 // Slim Reset
 // -----------------------------------------------------------------------------
@@ -91,8 +102,9 @@ nav ul
 a > img 
   display: block
 
-h1,h2,h3,h4,h5, h6
+h1,h2,h3,h4,h5,h6
   text-rendering: optimizeLegibility
+  font-weight: normal
 
 fieldset
   border: none

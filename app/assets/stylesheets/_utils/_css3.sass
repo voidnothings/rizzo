@@ -58,6 +58,20 @@
   background:       $startColor -ms-linear-gradient(top, $startColor, $endColor)
   background:        $startColor -o-linear-gradient(top, $startColor, $endColor)
   background:           $startColor linear-gradient(top, $startColor, $endColor)
+  
+@mixin background-gradient-with-stops($startColor: #3C3C3C, $stop2: #999999 100%, $stop3: false, $stop4: false, $stop5: false )
+  $params: $startColor 0%, $stop2
+  @if $stop3 != false
+    $params: $startColor 0%, $stop2, $stop3
+    @if $stop4 != false
+      $params: $startColor 0%, $stop2, $stop3, $stop4
+      @if $stop5 != false
+        $params: $startColor 0%, $stop2, $stop3, $stop4, $stop5
+  background:   $startColor -webkit-linear-gradient(top, $params)
+  background:      $startColor -moz-linear-gradient(top, $params)
+  background:       $startColor -ms-linear-gradient(top, $params)
+  background:        $startColor -o-linear-gradient(top, $params)
+  background:           $startColor linear-gradient(top, $params)
 
 
 @mixin box-sizing($sizing: border-box)

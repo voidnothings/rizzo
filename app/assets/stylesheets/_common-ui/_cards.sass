@@ -1,0 +1,125 @@
+// ----------------------------------------------------------------------------
+// A simple card system, developed for hotel list view
+//
+// <article class="card">
+//   <a href="#">
+//     <img src="hotel.jpg" class="hero"/>
+//     <section class="card-content">
+//       <h3 class="stars"></h3>
+//       <h1 class="name" href="#"></h1>
+//       <p class="locale"></p>
+//       <div href="#" class="price-tag">from <span class="price"><span class="curr">&pound;</span>63</span></div>
+//     </section>
+//     <aside class="accolades">
+//       <span class="lp-reviewed">Lonely Planet Reviewed</span>
+//     </aside>
+//   </a>
+// </article>
+// ----------------------------------------------------------------------------
+
+.card
+  @extend %inline-block
+  vertical-align: top
+  position: relative
+  margin-bottom: 4px
+  width: 237px
+  height: 326px
+  background-color: $light-grey
+  &:hover
+    background-color: #DDECF8 // $$legacy Waiting for hover states from Design
+  > a
+    display: block
+    height: 100%
+    &:hover
+      text-decoration: none
+  &.deal
+    &:after
+      @extend %empty-generated-content
+      @extend %deal-banner-top-right
+      +deal-banner-blue()
+      width: 69px
+      height: 69px
+  .hero
+    width: 237px
+    height: 160px
+    overflow: hidden
+    position: relative
+    > img // $$legacy
+      display: block
+      width: 100%
+      position: absolute
+      bottom: 0
+
+
+.card-content
+  position: relative
+  padding: 13px 13px 0
+  color: $base_font_color
+  .stars
+    @extend %extra-small-type
+    text-transform: uppercase
+    line-height: 1em
+    font-weight: bold
+    margin-bottom: 7px
+  .name
+    @extend %extra-large-type
+    line-height: 18px
+    margin-bottom: 7px
+    font-weight: bold
+  .locale
+    @extend %tiny-type
+    position: relative
+    padding-left: 19px
+    text-transform: uppercase
+    &:before
+      @extend %empty-generated-content
+      @extend %absolute-top-left
+      +locale-pin-grey()
+      width: 14px
+      height: 14px
+
+  .price-tag
+    @extend %small-type
+    +background-gradient-with-stops(#F17822, #F17822 89%, #D25427 100%)
+    +vertically-center(28px)
+    position: absolute
+    left: 9px
+    bottom: 100%
+    padding: 0 6px 0 22px
+    color: white
+    .price
+      @extend %heading-size-type
+      vertical-align: middle
+    .curr
+      @extend sup
+      font-size: 0.6em
+    s
+      color: $previous-price
+    &:before
+      @extend %empty-generated-content
+      +price-tag-white
+      position: absolute
+      top: 7px
+      left: 4px
+      width: 14px
+      height: 14px
+
+.accolades
+  position: absolute
+  left: 13px
+  bottom: 11px
+  .lp-reviewed
+    @extend %image-replacement
+    @extend %inline-block
+    +lp-reviewed-badge()
+    width: 87px
+    height: 25px
+  .top-choice
+    @extend %image-replacement
+    @extend %inline-block
+    +top-choice-badge()
+    position: relative
+    top: -1px
+    width: 43px
+    height: 27px
+    
