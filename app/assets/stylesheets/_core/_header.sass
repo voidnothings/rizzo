@@ -388,7 +388,7 @@ nav.ttd, div.ttd
     min-height: 94px
 
 
-/* Breadcrumb
+// Breadcrumb 
 
 #breadcrumbWrap
   background: #d6ccc0
@@ -396,184 +396,25 @@ nav.ttd, div.ttd
   &.posChange
     position: relative
     z-index: 8011
-  #breadcrumb
-    margin: 0 auto
-    width: 965px
-    font-size: 1.35em
-    font-weight: bold
 
 #breadcrumb
   line-height: 1.4
   position: relative
-  a
-    display: block
-    overflow: hidden
-    padding: 7px 10px 6px 10px
-    color: #333
-    &.dropDown
-      padding: 0px
-  li
-    float: left
-    position: relative
-    margin-right: 3px
-    @include breadcrumb-slash
+  margin: 0 auto
+  width: 965px
+  font-size: 1.35em
+  font-weight: bold
 
-/*forward slash divider
-
-* html #breadcrumb li *
+.breadcrumb-item
+  float: left
   position: relative
+  padding-right: 15px
 
-#breadcrumb
-  clear: both
-  @extend %no-list-style
-  li
-    margin: 0
-    padding: 0
-  ul
-    margin: 0
-    padding: 0
-    &.onScreen
-      left: 0
-  li
-    li
-      float: none
-      position: static
-      width: 100%
-      background: none
-      font-weight: normal
-      margin-right: 0
-      li
-        font-size: 1.4em
-        line-height: 1.52
-      a
-        background: none
-        height: auto
-        padding: 0
-        text-indent: 0
-        width: 76%
-        margin: 5px 0 0 10px
-        &:hover, &:active
-          background: none
-          height: auto
-          padding: 0
-          text-indent: 0
-          width: 76%
-          margin: 5px 0 0 10px
-    ul
-      background: #f5eee6
-      left: -9999px
-      line-height: 1.5
-      position: absolute
-      z-index: 1000005
-      font-size: 0.7em
-      width: 150px
-      padding-bottom: 50px
-      a
-        &:hover
-          text-decoration: underline
-      strong
-        font-weight: bold
-    &.oneCol
-      ul
-        line-height: 1.3
-        width: 150px
-      .col
-        float: left
-        width: 150px
-        ul
-          border: 0
-          position: static
-          width: 100%
-          padding-bottom: 10px
-    &.twoCol
-      ul
-        line-height: 1.3
-        width: 300px
-      .col
-        float: left
-        width: 150px
-        ul
-          border: 0
-          position: static
-          width: 100%
-          padding-bottom: 10px
-    &.threeCol
-      ul
-        line-height: 1.3
-        width: 450px
-      .col
-        float: left
-        width: 150px
-        ul
-          border: 0
-          position: static
-          width: 100%
-          padding-bottom: 10px
-    .col
-      float: left
-      overflow: hidden
-    &.seeAll
-      &:hover
-        @include icon-chevron-forward
-      border-top: 1px solid #c5beb8
-      @include icon-chevron-forward
-      width: 130px
-      padding-top: 5px
-      padding-left: 5px
-      margin-left: 10px
-      margin-bottom: 15px
-      position: absolute
-      bottom: 0
-      line-height: 1.2em
-      a
-        margin-top: 0!important
-        padding-top: 0
+.twoCol  
+  @include breadcrumb-slash
 
-    &.twoCol li.seeAll
-      width: 280px
-    &.threeCol li.seeAll
-      width: 430px
-
-  strong
-    text-transform: uppercase
-    color: #645d57
-    margin-left: 10px
-  li
-    &.last
-      background: none
-    &:hover
-      background: none
-      background-color: #f5eee6
-    > a
-      padding-top: 11px
-    span
-      display: block
-      border-right: none
-      padding-bottom: 6px
-      padding-right: 12px
-      &.shadow
-        border-right: 2px solid #969696
-        padding-right: 10px
-      a
-        display: inline
-        color: #333
-        &:hover
-          color: #8E8E8E
-    img
-      display: inline
-      margin-top: 12px
-      cursor: pointer
-      width: 16px
-      height: 16px
-      &.arrow
-        @include btn-arrow-down
-    &:hover img.arrow
-      @include btn-arrow-down-tab-hover
-    img.arrow:hover
-      @include btn-arrow-down-hover
-  ul.wrapper
-    padding-top: 7px
-    border-right: 2px solid #969696
-    border-bottom: 2px solid #969696
-
-
+.breadcrumb-item-title
+  display: block
+  overflow: hidden
+  padding: 7px 10px 6px 10px
+  color: #333
