@@ -38,4 +38,22 @@ module GlobalResourcesHelper
     end
   end
 
+  def show_arrow(style)
+    if style=='destinations' ||  style=='destinations current'
+      capture_haml do
+        haml_tag(:span, class: 'arrow')
+      end
+    end
+  end
+  
+  def title_for(title_content,span_content='')
+    capture_haml do
+      haml_tag(:h1) do
+        haml_tag(:span) { haml_concat title_content }
+        haml_concat span_content
+      end
+    end
+  end
+  
+  
 end
