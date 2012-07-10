@@ -60,11 +60,11 @@ module GlobalResourcesHelper
       haml_tag(:div, id: 'breadcrumbWrap', class: 'posChange') do
         haml_tag(:ol, id: 'breadcrumb') do
           breadcrumb_content.each_with_index do |item, index|
-            li_class = index == current_place.breadcrumb.size-1 ? "last" : "twoCol"
+            li_class = index == current_place.breadcrumb.size-1 ? "breadcrumb-item last" : "breadcrumb-item twoCol"
             if item[:slug].blank?
-              haml_concat item[:place]
+              haml_tag(:li, class: li_class) { haml_tag(:span, class: 'breadcrumb-item-title') { haml_concat item[:place] } }
             else
-              haml_tag(:li, class: li_class) { haml_tag(:a, href: "http://www.lonelyplanet.com/#{item[:slug]}") { haml_concat item[:place] } }
+              haml_tag(:li, class: li_class) { haml_tag(:a, class: 'breadcrumb-item-title', href: "http://www.lonelyplanet.com/#{item[:slug]}") { haml_concat item[:place] } }
             end
           end
         end
