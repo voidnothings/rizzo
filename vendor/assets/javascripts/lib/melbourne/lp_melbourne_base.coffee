@@ -29,7 +29,7 @@ define(_dep, ($, AdManager, Footer, Breadcrumbs, AssetFetch, DestinationNav, Aut
 
     header: ->
       AdManager.init(@adConf,'ad_masthead')
-      Breadcrumbs.init("/assets/breadcrumbs.html?destId=357884")
+      # Breadcrumbs.init("/assets/breadcrumbs.html?destId=357884")
       shopCart = new ShoppingCart()
       AssetFetch.get "http://www.lonelyplanet.com/global-navigation", () ->
         dest = new DestinationNav(jsonNavItems.nav, "nav.primary ul li.destinations")
