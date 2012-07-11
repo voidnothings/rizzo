@@ -15,7 +15,7 @@
 _dep = [
   'jquery'
   'vendor/date'
-  'plugins/jquery-datePicker'
+  'plugins/jquery-date-picker'
 ]
 
 define _dep, ($) ->

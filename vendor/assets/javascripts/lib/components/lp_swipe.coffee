@@ -50,7 +50,7 @@
 
 _dep = [
   'jquery'
-  'vendor/handlebars-1.0.0.beta.6'
+  'vendor/handlebars'
 ]
 
 define _dep, ($) ->
