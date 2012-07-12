@@ -9,6 +9,7 @@
 #
 # Dependencies:
 #   Jquery
+#   Handlebars
 #   Underscore
 #
 # Example:
@@ -18,13 +19,7 @@
 #
 
 
-_dep = [
-  'jquery'
-  'vendor/handlebars'
-  'vendor/underscore'
-]
-
-define _dep, ($) ->
+define ['jquery','vendor/handlebars','vendor/underscore'], ($) ->
 
   class NearbyThingsToDo
 

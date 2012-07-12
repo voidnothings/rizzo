@@ -14,13 +14,7 @@
 # }
 #
 
-_dep = [
-  'jquery'
-  'maps/lp_lodging_map'
-  'maps/lp_nearby_things_to_do'
-]
-
-define _dep, ($, LodgingMap, NearbyThingsToDo) ->
+define ['jquery','lib/maps/lp_lodging_map','lib/maps/lp_nearby_things_to_do'], ($, LodgingMap, NearbyThingsToDo) ->
   
   class MapManager
     @version: '0.0.11'
@@ -31,6 +25,7 @@ define _dep, ($, LodgingMap, NearbyThingsToDo) ->
     @loadLib: ->
       # pointer to google-maps callback, not possible inside the regular closure environment
       lp.MapManager = MapManager
+
       unless @lodgingMap
         script = document.createElement("script")
         script.type = "text/javascript"

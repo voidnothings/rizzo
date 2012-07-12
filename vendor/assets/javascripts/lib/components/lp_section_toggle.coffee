@@ -24,11 +24,8 @@
 # Dependencies:
 #   jQuery
 
-_dep = [
-  'jquery'
-]
  
-define _dep, ($) ->
+define ['jquery'], ($) ->
  
   class SectionToggle
   

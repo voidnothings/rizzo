@@ -1,8 +1,5 @@
-_dep = [
-  'jquery'
-]
 
-define _dep, ($) ->
+define ['jquery'], ($) ->
 
   class RateDisclaimerManager
 

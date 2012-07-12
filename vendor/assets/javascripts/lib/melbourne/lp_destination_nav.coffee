@@ -1,4 +1,4 @@
-define ['jquery', 'plugins/jquery-bgiframe-2.1.3', 'plugins/jquery-tolerant-hover', 'plugins/jquery-toggle-class-on-event'], ($)->
+define ['jquery', 'vendor/jquery/plugins/jquery-bgiframe-2.1.3', 'vendor/jquery/plugins/jquery-tolerant-hover', 'vendor/jquery/plugins/jquery-toggle-class-on-event'], ($)->
 
   class DestinationNav
 

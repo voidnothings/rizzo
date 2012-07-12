@@ -1,4 +1,4 @@
-define ['jquery', 'plugins/jquery-cookies.2.2.0'], ($)->
+define ['jquery', 'vendor/jquery/plugins/jquery-cookies.2.2.0'], ($)->
 
   class ShoppingCart
 
