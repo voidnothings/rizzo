@@ -1,15 +1,4 @@
-_dep = [
-  'jquery'
-  'melbourne/ad_manager'
-  'melbourne/lp_footer'
-  'melbourne/lp_breadcrumbs'
-  'lib/utils/lp_asset_fetch'
-  'melbourne/lp_destination_nav'
-  'melbourne/lp_authentication'
-  'melbourne/lp_shopping_cart'
-]
-
-define(_dep, ($, AdManager, Footer, Breadcrumbs, AssetFetch, DestinationNav, Authentication, ShoppingCart) ->
+define( ['jquery','lib/melbourne/ad_manager','lib/melbourne/lp_footer','lib/melbourne/lp_breadcrumbs','lib/utils/lp_asset_fetch', 'lib/melbourne/lp_destination_nav', 'lib/melbourne/lp_authentication', 'lib/melbourne/lp_shopping_cart'], ($, AdManager, Footer, Breadcrumbs, AssetFetch, DestinationNav, Authentication, ShoppingCart) ->
 
   class MelbourneBase
 

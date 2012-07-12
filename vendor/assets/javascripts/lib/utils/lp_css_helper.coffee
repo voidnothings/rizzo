@@ -6,11 +6,8 @@
 #   CssHelper.extractUrl("url(http://lp.com/sprite.png)")
 #
 
-_dep = [
-  'jquery'
-]
 
-define _dep, ($) ->
+define ['jquery'], ($) ->
   
   class CssHelper
 

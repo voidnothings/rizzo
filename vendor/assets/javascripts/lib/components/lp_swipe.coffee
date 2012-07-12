@@ -48,12 +48,9 @@
 #
 # 
 
-_dep = [
-  'jquery'
-  'vendor/handlebars'
-]
 
-define _dep, ($) ->
+
+define ['jquery','vendor/handlebars'], ($) ->
 
   class Swipe
 

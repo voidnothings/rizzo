@@ -1,4 +1,4 @@
-define ['jquery', 'melbourne/lp_breadcrumb_bar', 'melbourne/lp_breadcrumb_resizer'], ($, BreadcrumbBar, BreadcrumbResizer) ->
+define ['jquery', 'lib/melbourne/lp_breadcrumb_bar', 'lib/melbourne/lp_breadcrumb_resizer'], ($, BreadcrumbBar, BreadcrumbResizer) ->
   breadcrumbs =
     get:(src) ->
       try

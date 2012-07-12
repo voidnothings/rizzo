@@ -40,12 +40,7 @@
 #
 #
 
-_dep = [
-  'jquery'
-  'components/lp_swipe'
-]
-
-define _dep, ($, Swipe) ->
+define ['jquery','lib/components/lp_swipe'], ($, Swipe) ->
 
   class Gallery
     @version: '0.0.22'

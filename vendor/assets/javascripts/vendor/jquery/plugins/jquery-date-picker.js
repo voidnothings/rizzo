@@ -1,8 +1,8 @@
 var _dep = [
-'jquery'
+
 ]
 
-define(_dep, function($){
+define(['jquery'], function($){
   /**
    * Copyright (c) 2008 Kelvin Luck (http://www.kelvinluck.com/)
    * Dual licensed under the MIT (http://www.opensource.org/licenses/mit-license.php) 

@@ -12,13 +12,7 @@
 # JQuery
 #
   
-_dep = [
-  'jquery'
-  'vendor/date'
-  'plugins/jquery-date-picker'
-]
-
-define _dep, ($) ->
+define ['jquery','vendor/date','vendor/jquery/plugins/jquery-date-picker'], ($) ->
 
   class BookingFormManager
 

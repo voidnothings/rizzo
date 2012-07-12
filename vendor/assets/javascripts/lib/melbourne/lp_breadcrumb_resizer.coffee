@@ -1,4 +1,5 @@
 define ['jquery'], ($)->
+
  class BreadcrumbResizer
 
    constructor: ->
