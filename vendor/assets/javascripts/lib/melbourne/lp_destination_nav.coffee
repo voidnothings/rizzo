@@ -1,4 +1,4 @@
-define ['jquery', 'vendor/jquery/plugins/jquery-bgiframe-2.1.3', 'vendor/jquery/plugins/jquery-tolerant-hover', 'vendor/jquery/plugins/jquery-toggle-class-on-event'], ($)->
+define ['jquery', 'vendor/jquery/plugins/jquery-bgiframe-2.1.3', 'vendor/jquery/plugins/jquery-toggle-class-on-event', 'vendor/jquery/plugins/jquery-tolerant-hover'], ($, _o, _h, _l)->
 
   class DestinationNav
 
@@ -77,7 +77,7 @@ define ['jquery', 'vendor/jquery/plugins/jquery-bgiframe-2.1.3', 'vendor/jquery/
           if windowBottomEdge <= (submenuBottomEdge + bottomPadding)
             submenuTop -= (submenuBottomEdge + bottomPadding) - windowBottomEdge
 
-          menuTopEdge = menu.offset().top
+          menuTopEdge = _menu.offset().top
           submenuTopEdge = submenuOffsetTop + submenuTop
 
           if submenuTopEdge <= (menuTopEdge + topPadding)
