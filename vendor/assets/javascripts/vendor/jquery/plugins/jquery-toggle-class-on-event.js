@@ -8,7 +8,7 @@ define(['jquery'], function($){
       var offHover = options && options.offHover ? options.offHover : function(){};
       var target = options && options.target ? $(options.target) : $(this);
       if (options.event === 'hover' || options.event === 'tolerantHover') {
-        jQuery(this)[options.event](function() {
+        $(this)[options.event](function() {
           target.addClass(options.className);
           onHover.call(this);
         }, function() {
