@@ -1,4 +1,4 @@
-define( ['jquery','lib/melbourne/ad_manager','lib/melbourne/lp_footer','lib/melbourne/lp_breadcrumbs','lib/utils/lp_asset_fetch', 'lib/melbourne/lp_destination_nav', 'lib/melbourne/lp_authentication', 'lib/melbourne/lp_shopping_cart'], ($, AdManager, Footer, Breadcrumbs, AssetFetch, DestinationNav, Authentication, ShoppingCart) ->
+define( ['jquery','lib/melbourne/ad_manager','lib/melbourne/lp_footer', 'lib/utils/lp_asset_fetch', 'lib/melbourne/lp_destination_nav', 'lib/melbourne/lp_authentication', 'lib/melbourne/lp_shopping_cart'], ($, AdManager, Footer, AssetFetch, DestinationNav, Authentication, ShoppingCart) ->
 
   class MelbourneBase
 
@@ -18,7 +18,7 @@ define( ['jquery','lib/melbourne/ad_manager','lib/melbourne/lp_footer','lib/melb
 
     header: ->
       AdManager.init(@adConf,'ad_masthead')
-      # Breadcrumbs.init("/assets/breadcrumbs.html?destId=357884")
+      
       shopCart = new ShoppingCart()
       AssetFetch.get "http://www.lonelyplanet.com/global-navigation", () ->
         dest = new DestinationNav(jsonNavItems.nav, "nav.primary ul li.destinations")
