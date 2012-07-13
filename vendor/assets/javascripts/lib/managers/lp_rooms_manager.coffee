@@ -8,6 +8,7 @@ define ['jquery', 'vendor/jquery/plugins/jquery-ujs','lib/managers/lp_nightly_ra
       button = form.find('.booking-form-submit button')
       container = $('.booking-section')
       list = $('.rooms')
+      hostelWorldAvailability = new window.lp.HostelworldAvailability()
 
       form.on 'ajax:before', ->
         list.slideUp 400, ->
@@ -20,6 +21,7 @@ define ['jquery', 'vendor/jquery/plugins/jquery-ujs','lib/managers/lp_nightly_ra
 
         NightlyRatesManager.init()
         RateDisclaimerManager.init()
+        hostelWorldAvailability.init(target: '#hostelworld-rooms')
         Popup.init()
 
         list.slideDown()
