@@ -7,6 +7,7 @@ describe RedirectorController do
 
     before do
       Rizzo::UrlEncryptor.stub(decrypt: url)
+      controller.stub(:increment_stats_bucket_for_redirected_url)
     end
     
     it "decrypts the encrypted url" do
@@ -30,6 +31,7 @@ describe RedirectorController do
     context "when there is an invalid encrypted_url" do
       before do
         Rizzo::UrlEncryptor.stub(:decrypt).and_raise(Rizzo::UrlEncryptor::BadUrl)
+        controller.stub(:increment_stats_bucket_for_bad_redirected_url)
       end
       
       it "should fail" do

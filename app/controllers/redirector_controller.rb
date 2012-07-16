@@ -1,4 +1,6 @@
 class RedirectorController < ActionController::Base
+  include RedirectorSupport
+  
   def show
     encrypted_url = params[:encrypted_url]
     url           = Rizzo::UrlEncryptor.decrypt(encrypted_url)
@@ -9,9 +11,4 @@ class RedirectorController < ActionController::Base
     increment_stats_bucket_for_bad_redirected_url(encrypted_url)
     render :status => :bad_request, :nothing => true
   end
-
-private
-
-  include RedirectorSupport
-
 end
