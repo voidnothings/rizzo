@@ -168,9 +168,6 @@
 // ----------------------------------------------------------
 
 
-// Lodging list sprite
-@mixin lodging-list-spt($x:0px,$y:0px, $R:no-repeat, $color:transparent)
-  background: url(image_path("hotels-list-sprite.png")) $R $x $y $color
 
 // Main lodging sprite for hotel generic images elements
 @mixin lodging-spt($x:0px,$y:0px, $R:no-repeat, $color:transparent)
@@ -219,23 +216,23 @@
 
 // Lp Reviewed badge
 @mixin lp-reviewed-badge
-  @include lodging-list-spt(-83px, 0px)
+  @include lodging-spt(-99px, -99px)
 
 // Top choice badge
 @mixin top-choice-badge
-  @include lodging-list-spt(-69px, -28px)
+  @include lodging-spt(-82px, -131px)
 
 // White price tag - 14px x 14px
 @mixin price-tag-white
-  @include lodging-list-spt(-69px, 0)
+  @include lodging-spt(-81px, -99px)
 
 // Locale pin - grey
 @mixin locale-pin-grey
-  @include lodging-list-spt(-69px, -14px)
+  @include lodging-spt(-82px, -115px)
 
 // Blue deal banner on card
 @mixin deal-banner-blue
-  @include lodging-list-spt(0, 0)
+  @include lodging-spt(-80px, -29px)
   
 // Lodging booking-form
 @mixin booking-nights-bck

@@ -27,19 +27,17 @@
   background-color: $light-grey
   &:hover
     background-color: #DDECF8 // $$legacy Waiting for hover states from Design
-  > a
-    display: block
-    height: 100%
-    &:hover
-      text-decoration: none
+  > .wrapper-link
+    @extend %wrapper-link
   &.deal
+    background: none
     &:after
       @extend %empty-generated-content
-      @extend %deal-banner-top-right
+      @extend %absolute-top-right
       +deal-banner-blue()
       width: 69px
       height: 69px
-  .hero
+  .card-hero
     width: 237px
     height: 160px
     overflow: hidden
@@ -53,7 +51,7 @@
 
 .card-content
   position: relative
-  padding: 13px 13px 0
+  padding: 12px
   color: $base_font_color
   .stars
     @extend %extra-small-type
@@ -61,7 +59,7 @@
     line-height: 1em
     font-weight: bold
     margin-bottom: 7px
-  .name
+  .card-name
     @extend %extra-large-type
     line-height: 18px
     margin-bottom: 7px
@@ -78,48 +76,40 @@
       width: 14px
       height: 14px
 
-  .price-tag
-    @extend %small-type
-    +background-gradient-with-stops(#F17822, #F17822 89%, #D25427 100%)
-    +vertically-center(28px)
-    position: absolute
-    left: 9px
-    bottom: 100%
-    padding: 0 6px 0 22px
-    color: white
-    .price
-      @extend %heading-size-type
-      vertical-align: middle
-    .curr
-      @extend sup
-      font-size: 0.6em
-    s
-      color: $previous-price
-    &:before
-      @extend %empty-generated-content
-      +price-tag-white
-      position: absolute
-      top: 7px
-      left: 4px
-      width: 14px
-      height: 14px
+.card-price-tag
+  @extend %larger-type
+  +vertically-center(28px)
+  background-color: $price-tag-orange
+  position: absolute
+  left: 0px
+  bottom: 100%
+  padding: 0 12px
+  color: white
+  .price
+    @extend %extra-large-type
+    vertical-align: bottom
+  .curr
+    @extend sup
+    font-size: 0.6em
 
-.accolades
+.card-accolades
   position: absolute
   left: 13px
   bottom: 11px
-  .lp-reviewed
-    @extend %image-replacement
-    @extend %inline-block
-    +lp-reviewed-badge()
-    width: 87px
-    height: 25px
-  .top-choice
-    @extend %image-replacement
-    @extend %inline-block
-    +top-choice-badge()
-    position: relative
-    top: -1px
-    width: 43px
-    height: 27px
+  
+.lp-reviewed-badge
+  @extend %image-replacement
+  @extend %inline-block
+  +lp-reviewed-badge()
+  width: 87px
+  height: 25px
+  
+.top-choice-badge
+  @extend %image-replacement
+  @extend %inline-block
+  +top-choice-badge()
+  position: relative
+  top: -1px
+  width: 43px
+  height: 27px
     
