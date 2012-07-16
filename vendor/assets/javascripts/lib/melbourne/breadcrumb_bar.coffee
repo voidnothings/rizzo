@@ -1,4 +1,4 @@
-define ['jquery','lib/melbourne/lp_breadcrumb_tab'], ($, BreadcrumbTab) ->
+define ['jquery','lib/melbourne/breadcrumb_tab'], ($, BreadcrumbTab) ->
 
   class BreadcrumbBar
 

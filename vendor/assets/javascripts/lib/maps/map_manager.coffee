@@ -14,7 +14,7 @@
 # }
 #
 
-define ['jquery','lib/maps/lp_lodging_map','lib/maps/lp_nearby_things_to_do'], ($, LodgingMap, NearbyThingsToDo) ->
+define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, LodgingMap, NearbyThingsToDo) ->
   
   class MapManager
     @version: '0.0.11'

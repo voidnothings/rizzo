@@ -40,7 +40,7 @@
 #
 #
 
-define ['jquery','lib/components/lp_swipe'], ($, Swipe) ->
+define ['jquery','lib/components/swipe'], ($, Swipe) ->
 
   class Gallery
     @version: '0.0.22'
