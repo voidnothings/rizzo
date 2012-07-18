@@ -35,7 +35,7 @@ stylesheets:
 # EXAMPLE:
 #
 helpers:
-  - 'helpers/**/*.js'
+  - 'spec/javascripts/helpers/**/*.js'
 #
 # spec_files
 #
@@ -45,7 +45,7 @@ helpers:
 # EXAMPLE:
 #
 spec_files:
-  - '**/*[sS]pec.js'
+  - 'public/assets/javascripts/spec/**/*[sS]pec.js'
  
 # - '**/*[sS]pec.js'
 
@@ -68,5 +68,5 @@ src_dir:
 #
 # spec_dir: spec/javascripts
 #
-spec_dir: public/assets/javascripts/spec
+spec_dir: '.'
 
