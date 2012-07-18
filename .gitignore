@@ -11,3 +11,5 @@ bin
 tags
 Gemfile.lock
 spec/reports
+spec/javascripts/generated/*
+public/

@@ -12,5 +12,12 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.homepage      = 'http://rubygems.org/gems/avocado'
   s.version       = Avocado::VERSION
+
+  s.add_development_dependency 'jasmine'
+  s.add_development_dependency 'rspec', '2.10.0'
+  s.add_development_dependency 'rake'
+  s.add_development_dependency 'guard'
+  s.add_development_dependency 'guard-jasmine'
+  s.add_development_dependency 'guard-coffeescript'
 end
 
