@@ -6,7 +6,6 @@ require 'guard'
 CLOBBER.include('public/assets/javascripts/lib')
 
 desc 'Compile CoffeeScript files to JavaScript'
-
 task :compile => [:clobber] do
   Guard.setup
   Guard::Dsl.evaluate_guardfile(:guardfile => 'Guardfile')
@@ -23,5 +22,5 @@ rescue LoadError
   end
 end
 
-desc 'clean compiled assets, compile coffescript, run jasmine:ci'
+desc 'clean, compile coffescript, run jasmine:ci'
 task :clean_compile_run=>[:clobber, :compile, 'jasmine:ci']
