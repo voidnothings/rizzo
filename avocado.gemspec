@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.version       = Avocado::VERSION
 
   s.add_development_dependency 'jasmine'
-  s.add_development_dependency 'rspec', '2.10.0'
+  s.add_development_dependency 'rspec', '< 2.11.0'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'guard'
   s.add_development_dependency 'guard-jasmine'
