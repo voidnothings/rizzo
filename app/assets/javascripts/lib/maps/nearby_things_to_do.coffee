@@ -19,7 +19,7 @@
 #
 
 
-define ['jquery','vendor/handlebars','vendor/underscore'], ($) ->
+define ['jquery','handlebars','underscore'], ($) ->
 
   class NearbyThingsToDo
 

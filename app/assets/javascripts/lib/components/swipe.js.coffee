@@ -50,7 +50,7 @@
 
 
 
-define ['jquery','vendor/handlebars'], ($) ->
+define ['jquery','handlebars'], ($) ->
 
   class Swipe
 
