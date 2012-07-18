@@ -51,6 +51,7 @@
 
 
 @mixin background-gradient($startColor: #3C3C3C, $endColor: #999999, $fallbackImg: false, $imgPosition: 0 0 )
+  background:   $startColor
   @if $fallbackImg != false
     background: $startColor url($fallbackImg) $imgPosition repeat-x
   background:   $startColor -webkit-linear-gradient(top, $startColor, $endColor)
