@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'jasmine'
   s.add_development_dependency 'rspec', '< 2.11.0'
   s.add_development_dependency 'rake'
+  s.add_development_dependency 'selenium-webdriver'
   s.add_development_dependency 'guard'
   s.add_development_dependency 'guard-jasmine'
   s.add_development_dependency 'guard-coffeescript'
