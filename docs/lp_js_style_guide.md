@@ -1,5 +1,3 @@
-![lp js cover book](http://github.com/lonelyplanet/avocado/edit/master/docs/images/lp_js_cover.png) 
-
 # (wip) The Lonely Planet Guide to Javascript {CoffeeScript}.
 
 
