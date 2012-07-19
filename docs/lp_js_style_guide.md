@@ -1,4 +1,4 @@
-# (wip) The Lonely Planet Guide to Javascript {CoffeeScript}.
+# (wip) Javascript {CoffeeScript} Style Guide.
 
 
 A collection of best-practices and coding conventions.
