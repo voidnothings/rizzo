@@ -1,4 +1,4 @@
-![lp js cover book](images/lp_js_cover.png) 
+![lp js cover book](/images/lp_js_cover.png) 
 
 # (wip) The Lonely Planet Guide to Javascript {CoffeeScript}.
 
