@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
   s.version       = Avocado::VERSION
 
   s.add_development_dependency 'jasmine'
+  # jasmine_ci [jasmine 1.2.0 ] requires rspec < 2.11.0 [https://github.com/pivotal/jasmine-gem/issues/94]
   s.add_development_dependency 'rspec', '< 2.11.0'
   s.add_development_dependency 'rake'
   s.add_development_dependency 'selenium-webdriver'

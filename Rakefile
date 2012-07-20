@@ -23,4 +23,5 @@ rescue LoadError
 end
 
 desc 'clean, compile coffescript, run jasmine:ci'
-task :clean_compile_run=>[:clobber, :compile, 'jasmine:ci']
+task :jasmine_ccci=>[:clobber, :compile, 'jasmine:ci']
+
