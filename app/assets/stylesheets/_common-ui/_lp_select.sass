@@ -35,11 +35,13 @@
       @include round-all(15px)
       @include box-sizing(border-box)
 
-      .no-boxsizing &
+      .no-boxsizing &,
+      .oldIE &
         padding: 0
         width: 95%
 
-      .no-generatedcontent &
+      .no-generatedcontent &,
+      .oldIE &
         @if $project == waldorf
           @include icon-selector-handler
           background-repeat: no-repeat
@@ -70,7 +72,8 @@
       width: $width
       height: 100%
 
-      .no-opacity &
+      .no-opacity &,
+      .oldIE &
         filter: alpha(opacity = 0)
 
       .no-js &
