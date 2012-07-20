@@ -6,7 +6,9 @@
 //   <label class="overlay js-select-overlay">Select&hellip;</label>
 //   <select>...</select>
 // </div>    
+// Zen coding: div.lp-select.js-lp-select>label.overlay.js-select-overlay+select>option*3
 // --------------------------------------------------------------------------------------
+
 
 
 @mixin custom_select($height: 30px, $width: 100%, $project: false)
@@ -33,11 +35,13 @@
       @include round-all(15px)
       @include box-sizing(border-box)
 
-      .no-boxsizing &
+      .no-boxsizing &,
+      .oldIE &
         padding: 0
         width: 95%
 
-      .no-generatedcontent &
+      .no-generatedcontent &,
+      .oldIE &
         @if $project == waldorf
           @include icon-selector-handler
           background-repeat: no-repeat
@@ -68,7 +72,8 @@
       width: $width
       height: 100%
 
-      .no-opacity &
+      .no-opacity &,
+      .oldIE &
         filter: alpha(opacity = 0)
 
       .no-js &
