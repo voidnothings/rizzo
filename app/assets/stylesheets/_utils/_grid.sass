@@ -36,10 +36,10 @@
 
   .col, [class^="col-"]
     @extend .lft
+    @extend %no-list-style // So we can apply columns to lists //
     margin-left: $gutter
     *margin-left: $ie7gutter
     display: block // So we can apply columns to any element //
-    list-style: none // So we can apply columns to lists //
 
   @for $i from 1 through $maxColumns
     .grid-#{$i} > .col-#{$i}

@@ -1,13 +1,24 @@
+$ie: false !default
+
 @mixin respond-to($breakpoint: 1)
 
   @if $breakpoint == 1
-    @media only screen and (min-width : 320px)
+    @if $ie == false
+      @media only screen and (min-width : 320px)
+        @content
+    @else
       @content
       
   @if $breakpoint == 2
-    @media only screen and (min-width : 480px)
+    @if $ie == false
+      @media only screen and (min-width : 480px)
+        @content
+    @else
       @content
       
   @if $breakpoint == 3
-    @media only screen and (min-width : 768px)
+    @if $ie == false
+      @media only screen and (min-width : 768px)
+        @content
+    @else
       @content
