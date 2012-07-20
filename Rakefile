@@ -2,6 +2,7 @@
 require 'find'
 require 'rake/clean'
 require 'guard'
+require 'headless'
 
 CLOBBER.include('public/assets/javascripts/lib')
 
@@ -10,6 +11,18 @@ task :compile => [:clobber] do
   Guard.setup
   Guard::Dsl.evaluate_guardfile(:guardfile => 'Guardfile')
   Guard.guards(:group => :assets).each{|g| g.run_all()}
+end
+
+namespace :jasmine do
+  namespace :ci do
+    desc "Run Jasmine CI build headlessly"
+    task :headless do
+      Headless.ly do
+        puts "Running Jasmine Headlessly"
+        Rake::Task['jasmine:ci'].invoke
+      end
+    end
+  end
 end
 
 # default jasmine init task
@@ -23,5 +36,5 @@ rescue LoadError
 end
 
 desc 'clean, compile coffescript, run jasmine:ci'
-task :jasmine_ccci=>[:clobber, :compile, 'jasmine:ci']
+task :jasmine_ccci=>[:clobber, :compile, 'jasmine:ci:headless']
 
