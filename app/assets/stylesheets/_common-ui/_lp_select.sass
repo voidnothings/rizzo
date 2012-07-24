@@ -2,42 +2,49 @@
 // These styles allow you to create a LP <select> which scales to its container's width 
 //
 // Example markup:
-// <div class="lp-select js-lp-select">
+// <div class="select-group js-select-group">
 //   <label class="overlay js-select-overlay">Select&hellip;</label>
-//   <select>...</select>
+//   <select class=".js-select">...</select>
 // </div>    
+// Zen coding: div.lp-select.js-lp-select>label.overlay.js-select-overlay+select>option*3
+// 
+// .lp-select class is included below for backwards dependancy
 // --------------------------------------------------------------------------------------
+
 
 
 @mixin custom_select($height: 30px, $width: 100%, $project: false)
 
-  $arrow_width: 35px
+  $arrow_width: 30px
 
-  .lp-select
+  .select-group, .lp-select
     position: relative
     width: $width
     height: $height
 
     .overlay
+      @include round-all(15px)
+      @include box-sizing(border-box)
       position: relative
       display: block
       width: $width
       height: $height
       line-height: $height
+      font-weight: bold
       padding-right: $arrow-width + 5px
       overflow: hidden
       text-indent: 10px
       background-color: #fff
       border: 1px solid #BEBEBE
       word-break: break-all
-      @include round-all(15px)
-      @include box-sizing(border-box)
 
-      .no-boxsizing &
+      .no-boxsizing &,
+      .oldIE &
         padding: 0
         width: 95%
 
-      .no-generatedcontent &
+      .no-generatedcontent &,
+      .oldIE &
         @if $project == waldorf
           @include icon-selector-handler
           background-repeat: no-repeat
@@ -68,7 +75,8 @@
       width: $width
       height: 100%
 
-      .no-opacity &
+      .no-opacity &,
+      .oldIE &
         filter: alpha(opacity = 0)
 
       .no-js &

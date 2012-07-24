@@ -6,6 +6,30 @@
 
 
 // -----------------------------------------------------
+// Type
+// -----------------------------------------------------
+
+%central-align
+  text-align: center
+
+%justify
+  text-align: justify
+
+%bold-text
+  font-weight: bold
+
+%terms-and-conditions
+  @extend %extra-small-type
+  color: $soft-grey
+
+%reset-line-height
+  line-height: 1
+
+%no-line-height
+  line-height: 0
+  
+
+// -----------------------------------------------------
 // Links
 // -----------------------------------------------------
 
@@ -45,6 +69,18 @@
   position: absolute
   top: 0
 
+%absolute-left
+  position: absolute
+  left: 0
+
+%absolute-right
+  position: absolute
+  right: 0
+
+%absolute-bottom
+  position: absolute
+  bottom: 0
+
 %absolute-top-left
   position: absolute
   top: 0
@@ -65,10 +101,7 @@
   top: 0
   left: 0
   right: 0
-  
-%absolute-bottom
-  position: absolute
-  bottom: 0
+
 
 %absolute-bottom-left
   position: absolute
@@ -117,6 +150,11 @@
   display: none
   visibility: hidden
 
+%disabled-state
+  background: $disabled-state-color
+  border-color: $disabled-state-color
+  color: $idle-grey
+  opacity: 0.5
 
 // -----------------------------------------------------
 // Negative classes
