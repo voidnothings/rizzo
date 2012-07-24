@@ -45,14 +45,14 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
       unless lp.lodging.genericCoordinates
         @lodgingMap.setLodgingMarker()
         lp.MapManager.getNearbyPOIs (data)=>
-          pois = @parsePOIData(data)
+          pois = lp.MapManager.parsePOIData(data)
           @lodgingMap.initMapPOIs(pois)
-          @initNearbyThingsToDo(pois)
+          lp.MapManager.initNearbyThingsToDo(pois)
 
     @getNearbyPOIs: (callback) ->
       if lp.lodging.nearby_api_endpoint
-        # $.getJSON '/top_rated_nearby_by_category.json', callback
-        $.getJSON lp.lodging.nearby_api_endpoint, callback
+        $.getJSON '/top_rated_by_categories.json', callback
+        # $.getJSON lp.lodging.nearby_api_endpoint, callback
 
     @parsePOIData: (data)->
       pois = {}
