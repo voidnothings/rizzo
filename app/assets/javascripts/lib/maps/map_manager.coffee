@@ -15,7 +15,7 @@
 #
 
 define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, LodgingMap, NearbyThingsToDo) ->
-  
+
   class MapManager
     @version: '0.0.11'
     @lodgingMap: null
@@ -44,7 +44,7 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
       )
       unless lp.lodging.genericCoordinates
         @lodgingMap.setLodgingMarker()
-        @getNearbyPOIs (data)=>
+        lp.MapManager.getNearbyPOIs (data)=>
           pois = @parsePOIData(data)
           @lodgingMap.initMapPOIs(pois)
           @initNearbyThingsToDo(pois)
@@ -53,7 +53,7 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
       if lp.lodging.nearby_api_endpoint
         # $.getJSON '/top_rated_nearby_by_category.json', callback
         $.getJSON lp.lodging.nearby_api_endpoint, callback
-    
+
     @parsePOIData: (data)->
       pois = {}
       sight.category = 'sight' for sight in data.sights
@@ -86,4 +86,3 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
 
     constructor: ->
       MapManager.loadLib()
-
