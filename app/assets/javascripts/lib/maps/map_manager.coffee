@@ -32,7 +32,8 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
         script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=lp.MapManager.initMap"
         document.body.appendChild(script)
 
-    @initMap: ()->
+
+    @initMap: ()=>
       @lodgingMap = new LodgingMap(
         target: '#map_canvas'
         lodging: lp.lodging
@@ -44,15 +45,15 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
       )
       unless lp.lodging.genericCoordinates
         @lodgingMap.setLodgingMarker()
-        lp.MapManager.getNearbyPOIs (data)=>
-          pois = lp.MapManager.parsePOIData(data)
+        @getNearbyPOIs (data)=>
+          pois = @parsePOIData(data)
           @lodgingMap.initMapPOIs(pois)
-          lp.MapManager.initNearbyThingsToDo(pois)
+          @initNearbyThingsToDo(pois)
 
     @getNearbyPOIs: (callback) ->
       if lp.lodging.nearby_api_endpoint
-        # $.getJSON '/top_rated_by_categories.json', callback
-        $.getJSON lp.lodging.nearby_api_endpoint, callback
+        $.getJSON '/top_rated_by_categories.json', callback
+        # $.getJSON lp.lodging.nearby_api_endpoint, callback
 
     @parsePOIData: (data)->
       pois = {}
