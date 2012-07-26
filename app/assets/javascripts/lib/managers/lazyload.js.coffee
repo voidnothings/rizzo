@@ -36,6 +36,7 @@ define ['jquery'], ($) ->
 
     addLazyLoadTrigger: ->
       $(window).scroll =>
+        # Add timeout function here
         currentPos = $(window).scrollTop()
         pageEnd = currentPos + @config.windowHeight
         if ((@config.pageHeight - pageEnd) <= @config.tolerancePoint)
