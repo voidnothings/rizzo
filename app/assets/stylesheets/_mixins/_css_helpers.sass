@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------------
+// CSS Helpers
+// -----------------------------------------------------------------------------
+
+@mixin font-size($sizeValue: 14)
+  font-size: #{$sizeValue + px}
+  font-size: #{($sizeValue / $base_font_size) + rem}
+
+@mixin vertically-center($x: 20px)
+  height: $x
+  line-height: $x
+
+@mixin img($url, $color: transparent, $x:0px, $y:0px, $r:no-repeat)
+  background: $color url($url) $r $x $y

@@ -1,51 +1,6 @@
-@mixin font-size($sizeValue: 14)
-  font-size: #{$sizeValue + px}
-  font-size: #{($sizeValue / $base_font_size) + rem}
-  
-@mixin img($url, $color: transparent, $x:0px, $y:0px, $r:no-repeat)
-  background: $color url($url) $r $x $y
-
-@mixin vertically-center($x: 20px)
-  height: $x
-  line-height: $x
-
-@mixin css-arrow($side: top, $width: 10px, $color: $price-tag-orange, $offset: 0)
-  @extend %empty-abs-generated-content
-  height: 0
-  width: 0
-  border: $width solid transparent
-  @if $side == top
-    bottom: 100%
-    left: $offset
-    border-bottom-color: $color
-  @if $side == right
-    left: 100%
-    top: $offset
-    border-left-color: $color
-  @if $side == bottom
-    top: 100%
-    left: $offset
-    border-top-color: $color
-  @if $side == left
-    right: 100%
-    top: $offset
-    border-right-color: $color
-
-@mixin css-arrow-central($side: top, $width: 10px, $color: $price-tag-orange, $offset: 0)
-  @include css-arrow($side, $width, $color, $offset)
-  @if $side == top
-    left: 50%
-    margin-left: -($width)
-  @if $side == bottom
-    left: 50%
-    margin-left: -($width)
-  @if $side == right
-    top: 50%
-    margin-top: -($width)
-  @if $side == left
-    top: 50%
-    margin-top: -($width)
-
+// -----------------------------------------------------------------------------
+// Prefixed CSS3 Properties
+// -----------------------------------------------------------------------------
 
 @mixin round-all($radius: 2px)
   -webkit-border-radius: $radius
@@ -136,18 +91,3 @@
 
 @mixin text-shadow($x: 0px, $y: 1px, $blur: 0px, $color: rgba(255,255,255,.8))
   text-shadow: $x $y $blur $color
-
-
-@mixin card-flip($perspective: 300)
-  -webkit-perspective: $perspective
-  -moz-perspective:    $perspective
-  -ms-perspective:     $perspective
-  perspective:         $perspective
-  -webkit-transform:       rotateY(180deg)
-  -webkit-transform-style: preserve-3d
-  -moz-transform:          rotateY(180deg)
-  -moz-transform-style:    preserve-3d
-  -ms-transform:           rotateY(180deg)
-  -ms-transform-style:     preserve-3d
-  transform:               rotateY(180deg)
-  transform-style:         preserve-3d
