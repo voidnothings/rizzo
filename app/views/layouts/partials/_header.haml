@@ -5,7 +5,7 @@
     .logo
       %a.home{ :href => host_with_subdomain('www'), :alt => 'Lonely Planet home' }
       %form.search{ :action => host_with_subdomain_and_path("www", "searchResult"), :method => "get" }
-        %p.hd
+        %p.is-hidden
           %label(for="search")
             Search Lonely Planet
         %p
