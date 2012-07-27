@@ -32,10 +32,10 @@
 
   [class^="grid-"]
     margin-left: -($gutter)
-    @extend .cf
+    @extend %clearfix
 
   .col, [class^="col-"]
-    @extend .lft
+    @extend %float-left
     @extend %no-list-style // So we can apply columns to lists //
     margin-left: $gutter
     *margin-left: $ie7gutter

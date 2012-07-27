@@ -13,7 +13,7 @@
 
 
 
-@mixin custom_select($height: 30px, $width: 100%, $project: false)
+@mixin custom_select($height: 30px, $width: 100%)
 
   $arrow_width: 30px
 
@@ -39,16 +39,22 @@
       word-break: break-all
 
       .no-boxsizing &,
-      .oldIE &
+      .oldIE &,
+      .ie7 &,
+      .ie8 &
         padding: 0
         width: 95%
 
       .no-generatedcontent &,
-      .oldIE &
-        @if $project == waldorf
+      .oldIE &,
+      .ie7 &,
+      .ie8 &
+        @if $project == 'waldorf'
           @include icon-selector-handler
           background-repeat: no-repeat
           background-position: 95% center
+        @else if $project == 'hostelworld'
+          background: #fff url("../img/checkout_sprite.png") no-repeat right bottom
         @else
           background: #fff url("../../images/common-ui/select-box-arrow-down.png") no-repeat 95% center
 
@@ -62,8 +68,10 @@
         height: 28px
         width: ($arrow-width - 6px)
         @include round-each(0, 15px, 15px, 0)
-        @if $project == waldorf
+        @if $project == 'waldorf'
           @include icon-selector-handler
+        @else if $project == 'hostelworld'
+          background: #fff url("../img/checkout_sprite.png") no-repeat -112px -71px
         @else
           background: #fff url("../../images/common-ui/select-box-arrow-down.png") no-repeat 8px 8px  
 
@@ -76,7 +84,9 @@
       height: 100%
 
       .no-opacity &,
-      .oldIE &
+      .oldIE &,
+      .ie7 &,
+      .ie8 &
         filter: alpha(opacity = 0)
 
       .no-js &

@@ -10,7 +10,7 @@
   li
     margin-bottom: 5px
     &:before
-      content: url('img/cross.png')
+      content: url('../img/cross.png')
       margin-right: 10px
       position: relative
       top: 2px
@@ -36,19 +36,20 @@
 // -----------------------------------------------------------------------------
 
 input.err
-  background: url('img/cross.png') 97% no-repeat
+  background: url('../img/cross.png') 97% no-repeat
 
 input.success
-  background: url('img/tick.png') 97% no-repeat
+  background: url('../img/tick.png') 97% no-repeat
   
 // For lp_select
 .overlay.err
-  background: url('img/cross.png') 88% no-repeat
+  background: url('../img/cross.png') 88% no-repeat
   +respond-to(3)
     background-position: 78%
 
 .overlay.success
-  background: url('img/tick.png') 88% no-repeat
+  color: #333
+  background: url('../img/tick.png') 88% no-repeat
   +respond-to(3)
     background-position: 78%
 

@@ -35,6 +35,7 @@
       margin-top: 1px
     &:hover
       background-color: #cc5c01
+      color: #fff
       @include background-gradient(#cc5c01, #a74b02)
 
   &.orange
@@ -73,6 +74,12 @@
     padding: 6px 15px
     position: relative
 
+
+.read-more-btn
+  @extend .btn
+  @extend .btn.standard
+  margin: 0 auto
+  
 .std
   -webkit-user-select: none
   @include round-all(3px)

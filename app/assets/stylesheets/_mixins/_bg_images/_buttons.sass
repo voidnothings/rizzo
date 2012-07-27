@@ -1,0 +1,37 @@
+// -----------------------------------------------------------------------------
+// Buttons
+// -----------------------------------------------------------------------------
+
+@mixin lp_buy_now_bg
+  @include img('../../images/common-ui/btn_buy_bg.png', transparent,  top, left, repeat-x)
+  
+@mixin lp_buy_now_arrow
+  @include img('../../images/common-ui/btn_buy_arrow_no_s.png', transparent,  top, left, no-repeat)
+
+@mixin lp_rgba_000_40
+  @include img('../../images/common-ui/1pxblack40opacity.png', transparent,  top, left, repeat)
+
+
+// Base actions buttons
+@mixin btn-white
+  background-position: 0 -150px
+@mixin btn-white-angle
+  background-position: 100% -120px
+@mixin btn-orange
+  background-position: 0 0
+@mixin btn-orange-angle
+  background-position: 100% -30px
+@mixin btn-orange-dark
+  background-position: 0 -60px
+@mixin btn-orange-dark-angle
+  background-position: 100% -90px
+
+// arrows & chevrons
+@mixin icn-arrow-down
+  @include arrows-spt(100%,-417px)
+@mixin icn-arrow-up
+  @include arrows-spt(100%,-438px)
+@mixin icon-chevron-back  
+  @include arrows-spt(-7px,-102px)
+@mixin icon-chevron-forward
+  @include arrows-spt(-3px,-2px)

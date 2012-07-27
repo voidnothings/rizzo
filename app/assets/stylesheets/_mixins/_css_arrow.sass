@@ -1,0 +1,40 @@
+// -----------------------------------------------------------------------------
+// CSS Arrow
+// -----------------------------------------------------------------------------
+
+@mixin css-arrow($side: top, $width: 10px, $color: $price-tag-orange, $offset: 0)
+  @extend %empty-abs-generated-content
+  height: 0
+  width: 0
+  border: $width solid transparent
+  @if $side == top
+    bottom: 100%
+    left: $offset
+    border-bottom-color: $color
+  @if $side == right
+    left: 100%
+    top: $offset
+    border-left-color: $color
+  @if $side == bottom
+    top: 100%
+    left: $offset
+    border-top-color: $color
+  @if $side == left
+    right: 100%
+    top: $offset
+    border-right-color: $color
+
+@mixin css-arrow-central($side: top, $width: 10px, $color: $price-tag-orange, $offset: 0)
+  @include css-arrow($side, $width, $color, $offset)
+  @if $side == top
+    left: 50%
+    margin-left: -($width)
+  @if $side == bottom
+    left: 50%
+    margin-left: -($width)
+  @if $side == right
+    top: 50%
+    margin-top: -($width)
+  @if $side == left
+    top: 50%
+    margin-top: -($width)
