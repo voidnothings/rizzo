@@ -25,6 +25,7 @@
   -o-box-shadow:      $x $y $blur $spread $color
   box-shadow:         $x $y $blur $spread $color
 
+
 @mixin multiple-box-shadow($shadow1, $shadow2:false, $shadow3:false, $shadow4:false, $shadow5:false)
   $params: $shadow1
   @if $shadow2 != false
@@ -51,7 +52,8 @@
   background:       $startColor -ms-linear-gradient(top, $startColor, $endColor)
   background:        $startColor -o-linear-gradient(top, $startColor, $endColor)
   background:           $startColor linear-gradient(top, $startColor, $endColor)
-  
+
+
 @mixin background-gradient-with-stops($direction: top, $startColor: #3C3C3C, $stop2: #999999 100%, $stop3: false, $stop4: false, $stop5: false)
   $params: $startColor 0%, $stop2
   @if $stop3 != false

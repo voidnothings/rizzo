@@ -10,57 +10,86 @@
 //
 
 
-
-.btn, button
+%base-button
   @extend %inline-block
-  @include round-all(3px)
+  @extend %relative
+  +box-shadow(1px, 1px, 1px, 0, #e3e3e3)
+  +round-all(3px)
+  +font-size(13)
   -webkit-user-select: none
-  color: #666
+  font-weight: bold
+  background-color: whiteSmoke
+  line-height: normal
   cursor: pointer
+  overflow: auto
+  text-align: center
   &:hover
     text-decoration: none
-  &.standard
-    @include box-shadow(1px, 1px, 1px, 0, #e3e3e3)
-    @include background-gradient(whiteSmoke, #E5E5E5)
-    border-color: #DDD #DDD #BBB
-    border-style: solid
-    border-width: 1px
-    font-size: 13px
-    font-weight: bold
-    line-height: normal
-    overflow: auto
-    padding: 6px 15px
-    position: relative
-    &:active
-      margin-top: 1px
-    &:hover
-      background-color: #cc5c01
-      color: #fff
-      @include background-gradient(#cc5c01, #a74b02)
+  &:active
+    margin-top: 1px
 
-  &.orange
-    @include background-gradient(#ff7e00, #ff7e00)
-    border-color: #f8a350
+%small-button
+  @extend %base-button
+  padding: 4px 10px
+
+%regular-button
+  @extend %base-button
+  padding: 6px 15px
+
+%tall-button
+  @extend %base-button
+  padding: 10px 15px
+
+
+.orange-button
+  @extend %regular-button
+  +background-gradient($bookable-orange, $bookable-orange)
+  border: 1px solid #f8a350
+  color: #fff
+  &:hover
+    border-color: #a74b02
+    +background-gradient(#cc5c01, #a74b02)
+
+.grey-button
+  @extend %regular-button
+  +background-gradient(whiteSmoke, #E5E5E5)
+  border-color: #DDD #DDD #BBB
+  border-style: solid
+  border-width: 1px
+  color: #666
+  &:hover
+    background-color: #cc5c01
     color: #fff
-    &:hover
-      border-color: #a74b02
-      @include background-gradient(#cc5c01, #a74b02)
+    +background-gradient(#cc5c01, #a74b02)
+
+.read-more-btn
+  @extend %tall-button
+  +text-shadow()
+  +background-gradient(#F2F2E8, #E4E4DB)
+  display: block
+  border: 1px solid #D6D6D3
+  color: $good-black
+  &.disabled
+    color: #D6D6D3
+
+.btn, button
+  @extend %regular-button
 
   &.blue
-    @include background-gradient(#0278ce, #0465aa)
+    +background-gradient(#0278ce, #0465aa)
     border-color: #0465aa
     color: #fff
     &:hover
       border-color: #0954a7
-      @include background-gradient(#0954a7, #064488)
+      +background-gradient(#0954a7, #064488)
 
   &.link
-    @include background-gradient(#ff7e00, #f48116)
+    +background-gradient(#ff7e00, #f48116)
     color: #fff
   
   &.disabled, &.disabled:hover, &.disabled:active
-    @include box-shadow( 1px,  #e3e3e3)
-    @include background-gradient(whiteSmoke, #E5E5E5)
+    +box-shadow( 1px,  #e3e3e3)
+    +background-gradient(whiteSmoke, #E5E5E5)
     color: #666
     cursor: default
     margin-top: 0
@@ -75,14 +104,11 @@
     position: relative
 
 
-.read-more-btn
-  @extend .btn
-  @extend .btn.standard
-  margin: 0 auto
+
   
 .std
   -webkit-user-select: none
-  @include round-all(3px)
+  +round-all(3px)
   cursor: pointer
   font-size: 12px
   font-weight: bold
@@ -97,16 +123,16 @@
   color: #999
   border: 1px solid #e3e3e3
   &:hover
-    @include background-gradient(#f7f7f7, #f3f3f3)
+    +background-gradient(#f7f7f7, #f3f3f3)
     border: 1px solid #dedede
     color: #333
 
 .btn-regular
-  @include background-gradient(#f3f3f3, #dedede)
+  +background-gradient(#f3f3f3, #dedede)
   border: 1px solid #e3e3e3
   color: #333
   &:hover
-    @include background-gradient(#fff, #dedede)
+    +background-gradient(#fff, #dedede)
 
 .btn-exit
   border: 1px solid transparent
@@ -115,11 +141,11 @@
     border-color: #aaa
     color: #333
 .btn-close
-  @include background-gradient(#f3f3f3, #dedede)
+  +background-gradient(#f3f3f3, #dedede)
   border: 1px solid #e3e3e3
   color: #333
   &:hover
-    @include background-gradient(#fff, #dedede)
+    +background-gradient(#fff, #dedede)
 
 // -----------------------------------------------------------
 // 
@@ -129,26 +155,26 @@
 
 .whiteAngleButton
   a.lpButton2010
-    @include btn-white-angle
+    +btn-white-angle
     color: #333
     span
-      @include btn-white
+      +btn-white
     &:hover
-      @include btn-orange-angle
+      +btn-orange-angle
       span
         color: #fff
-        @include btn-orange
+        +btn-orange
     &:active
       margin-top: 2px
-      @include btn-orange-dark-angle
+      +btn-orange-dark-angle
       span
         color: #fff
-        @include btn-orange-dark
+        +btn-orange-dark
 
 .lpButton2010
   cursor: pointer
-  @include btn-spt
-  @include btn-white-angle
+  +btn-spt
+  +btn-white-angle
   text-decoration: none
   overflow: visible
   padding: 0 17px 0 0
@@ -159,8 +185,8 @@
   position: relative
   font-size: 12px
   span
-    @include btn-spt
-    @include btn-white
+    +btn-spt
+    +btn-white
     padding: 0 0 2px 18px
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1)
     position: relative
