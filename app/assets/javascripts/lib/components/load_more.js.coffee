@@ -7,7 +7,7 @@ define ['jquery'], ($) ->
 
   class LoadMore
     
-    @version: '0.0.1'
+    version: '0.0.1'
     
     config: {
       pagination        : '.lodgings-footer'
@@ -22,6 +22,13 @@ define ['jquery'], ($) ->
       @btn.bind 'click', (e) =>
         e.preventDefault()
         @loadMoreContent()
+      $('body').on 'receivedHotels/success', (e, data) =>
+        console.log data
+        @appendContent(data)
+        @setInProgress(false)
+      $('body').on 'receivedHotels/error', (e, data) =>
+        @appendErrorMsg()
+        @setInProgress(false)
 
     getNextUrl: (parent) ->
       $(parent).find(@config.nextBtnClass).attr('href')
@@ -51,9 +58,9 @@ define ['jquery'], ($) ->
         beforeSend: (xhr) ->
           xhr.setRequestHeader("Accept", "text/html")
         success: (data) =>
-          @appendContent(data)
-          @setInProgress(false)
-        error: (data) ->
+          $('body').trigger 'receivedHotels/success', data
+        error: ->
+          $('body').trigger 'receivedHotels/error'
       })
 
     appendContent: (data) ->
