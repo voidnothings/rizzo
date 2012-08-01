@@ -3,7 +3,7 @@
 # It requires a remote_url and a callback
 # 
 
-define ['jquery'], ($) ->
+define ['jquery', 'lib/utils/error_messages'], ($, ErrorMessages) ->
 
   class LoadMore
     
@@ -16,6 +16,7 @@ define ['jquery'], ($) ->
       btnAltLabel       : 'Loading...'
       nextBtnClass      : '.js-next-page'
       inProgress        : false
+      hasError          : false
     }
 
     addHandlers: ->
@@ -23,7 +24,6 @@ define ['jquery'], ($) ->
         e.preventDefault()
         @loadMoreContent()
       $('body').on 'receivedHotels/success', (e, data) =>
-        console.log data
         @appendContent(data)
         @setInProgress(false)
       $('body').on 'receivedHotels/error', (e, data) =>
@@ -52,6 +52,7 @@ define ['jquery'], ($) ->
         @btn.removeClass('loading disabled').text(@config.btnLabel)
 
     loadMoreContent: ->
+      if @config.hasError then removeErrorMsg()
       @setInProgress(true)
       $.ajax({
         url: @config.nextUrl
@@ -67,6 +68,14 @@ define ['jquery'], ($) ->
       @container.before($(data))
       @config.nextUrl = @getNextUrl(data)
       @removePagination()
+    
+    appendErrorMsg: ->
+      msg = ErrorMessages::systemError()
+      @container.before(msg)
+      @config.hasError = true
+    
+    removeErrorMsg: ->
+      @container.prev('.system-error').remove()
 
     constructor : (args) ->
       $.extend @config, args
