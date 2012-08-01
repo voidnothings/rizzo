@@ -1,5 +1,7 @@
 require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
 
+
+
   describe 'Load More Button', ->
     
     fixture = readFixtures('load_more.html')
@@ -49,6 +51,8 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
       it 'gets the correct next page url', ->
         expect(LoadMore::config.nextUrl) == 'page3'
 
-
-
+      it 'shows a message when the ajax call fails', ->
+        $('body').trigger('receivedHotels/error')
+        expect($('.system-error')).toExist()
+        $('.test-area').remove()
     

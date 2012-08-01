@@ -76,6 +76,7 @@ define ['jquery', 'lib/utils/error_messages'], ($, ErrorMessages) ->
     
     removeErrorMsg: ->
       @container.prev('.system-error').remove()
+      @config.hasError = false
 
     constructor : (args) ->
       $.extend @config, args
