@@ -1,8 +1,3 @@
-# A class to handle the lazyloading mechanism
-# 
-# It requires a remote_url and a callback
-# 
-
 define ['jquery', 'lib/utils/error_messages'], ($, ErrorMessages) ->
 
   class LoadMore
