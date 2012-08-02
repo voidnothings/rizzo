@@ -50,13 +50,16 @@
           float: left
           color: #0a4f9c
         button
-          @include btn-search-bck
+          +btn-search-bck
+          +box-shadow(0px,0px, 0px)
+          @extend %extra-small-type
           display: table-cell
           height: 24px
           line-height: 12px
           width: 52px
           color: #3062A0
           text-align: center
+          padding: 0
           &:hover
             @include btn-search-bck-hover
 
@@ -153,11 +156,13 @@
           float: right
           color: #fff
           &.signInButton
+            @extend %extra-small-type
             height: 26px
             line-height: 22px
             width: 59px
             background-color: #0084cd
             @include round-all(3px)
+            padding: 0
             &:hover
               background-color: #07408a
         p
@@ -414,6 +419,7 @@
     font-weight: bold
 
   .breadcrumb-item
+    @extend %no-list-style
     float: left
     position: relative
     padding-right: 15px
