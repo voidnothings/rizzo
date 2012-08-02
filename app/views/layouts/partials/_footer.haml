@@ -51,11 +51,11 @@
         %fieldset
           %label(for="languageSelect")
             International
-          %select#languageSelect(name="Language")
-            - [['en','English'],['de','Deutsch'],['fr','Français'],['es','Español'],['it','Italiano'],['cn','中文简体'],['jp','日本語']].each do |opt|
-              %option(value="#{opt[0]}")
-                = opt[1]
-            %input(name="Go" type="submit" value="Go")
+            %select#languageSelect(name="Language")
+              - [['en','English'], ['de','Deutsch'], ['fr','Fran&#231;ais'], ['es','Espa&#241;ol'], ['it','Italiano'], ['cn','&#20013;&#25991;&#31616;&#20307;'], ['jp','&#26085;&#26412;&#35486;']].each do |opt|
+                %option(value="#{opt[0]}")
+                  = opt[1].html_safe
+          %input(name="Go" type="submit" value="Go")
 
       %div.footer-info
         %a(href="http://www.lonelyplanet.com")
