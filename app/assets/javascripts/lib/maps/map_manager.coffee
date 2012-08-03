@@ -55,16 +55,17 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
         # $.getJSON '/top_rated_by_categories.json', callback
         $.getJSON lp.lodging.nearby_api_endpoint, callback
 
-    @parsePOIData: (data)->
+    @parsePOIData: (data) ->
       pois = {}
       sight.category = 'sight' for sight in data.sights
       activity.category = 'activity' for activity in data.activities
       pois.sights_or_activities = _.sortBy(data.activities.concat(data.sights || []),
                                            (poi)-> -poi.properties.rating)[0..2]
-      pois.entertainment = data['entertainment-nightlife'][0]
-      pois.entertainment.category = 'entertainment' if pois.entertainment?
-      pois.restaurant = data.restaurants[0]
-      pois.restaurant.category = 'restaurant' if pois.restaurant?
+      ents = data['entertainment-nightlife']
+      pois.entertainment = (if ents.length isnt 0 then ents[0] else [])
+      pois.entertainment.category = 'entertainment' if pois.entertainment.length isnt 0
+      rests = data.restaurants[0]
+      pois.restaurant.category = 'restaurant' if pois.restaurant.length isnt 0
       pois
 
     @initNearbyThingsToDo: (pois)->
