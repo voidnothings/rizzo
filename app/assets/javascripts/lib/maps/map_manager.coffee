@@ -64,7 +64,8 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
       ents = data['entertainment-nightlife']
       pois.entertainment = (if ents.length isnt 0 then ents[0] else [])
       pois.entertainment.category = 'entertainment' if pois.entertainment.length isnt 0
-      rests = data.restaurants[0]
+      rests = data['restaurants']
+      pois.restaurant = (if rests.length isnt 0 then rests[0] else [])
       pois.restaurant.category = 'restaurant' if pois.restaurant.length isnt 0
       pois
 
