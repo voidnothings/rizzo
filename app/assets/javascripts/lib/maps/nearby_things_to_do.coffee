@@ -47,8 +47,8 @@ define ['jquery','handlebars','underscore'], ($) ->
       @container.append($("<h3>").addClass('section-title').text("Interesting places nearby"))
       list = $('<ul>').addClass('nearby-pois-list')
       list.append(@listItemTemplate(activity)) for activity in @args.pois.sights_or_activities
-      list.append(@listItemTemplate(@args.pois.entertainment)) if @args.pois.entertainment
-      list.append(@listItemTemplate(@args.pois.restaurant)) if @args.pois.restaurant
+      list.append(@listItemTemplate(@args.pois.entertainment)) if @args.pois.entertainment.length isnt 0
+      list.append(@listItemTemplate(@args.pois.restaurant)) if @args.pois.restaurant.length isnt 0
       @container.append(list)
       @bindOnPOISelection()
 
