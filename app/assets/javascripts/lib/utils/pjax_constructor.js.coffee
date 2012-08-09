@@ -20,13 +20,15 @@ define ['jquery', 'jplugs/jquery.pjax'], ($) ->
       success   : ->
       error     : ->
 
+    init = ->
+      $.pjax.defaults.scrollTo = false
+      $(config.parent).on 'pjax:success', config.success
+      $(config.parent).on 'pjax:error', config.error
+      init = ->
+
     constructor: (args) ->
       $.extend config, args
-      @addCallbacks()
+      init()
       $.pjax
         url       : config.url
         container : config.container
-
-    addCallbacks: ->
-      $(config.parent).on 'pjax:success', config.success
-      $(config.parent).on 'pjax:error', config.error
