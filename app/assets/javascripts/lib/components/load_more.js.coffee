@@ -14,6 +14,13 @@ define ['jquery', 'lib/utils/error_messages'], ($, ErrorMessages) ->
       hasError          : false
     }
 
+    constructor : (args) ->
+      $.extend @config, args
+      @config.nextUrl = @getNextUrl('body')
+      @createButton()
+      @removePagination()
+      @addHandlers()
+
     addHandlers: ->
       @btn.bind 'click', (e) =>
         e.preventDefault()
@@ -52,7 +59,7 @@ define ['jquery', 'lib/utils/error_messages'], ($, ErrorMessages) ->
       $.ajax({
         url: @config.nextUrl
         beforeSend: (xhr) ->
-          xhr.setRequestHeader("Accept", "text/html")
+          xhr.setRequestHeader('X-APPEND', 'true')
         success: (data) =>
           $('body').trigger 'receivedHotels/success', data
         error: ->
@@ -73,9 +80,4 @@ define ['jquery', 'lib/utils/error_messages'], ($, ErrorMessages) ->
       @container.prev('.system-error').remove()
       @config.hasError = false
 
-    constructor : (args) ->
-      $.extend @config, args
-      @config.nextUrl = @getNextUrl('body')
-      @createButton()
-      @removePagination()
-      @addHandlers()
+    
