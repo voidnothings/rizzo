@@ -3,10 +3,10 @@
     Skip global navigation to content
   .hwrap
     .logo
-      %a.home{ :href => host_with_subdomain('www'), :alt => 'Lonely Planet home' }
+      %a.home{:href => host_with_subdomain('www'), :title=>'lonely planet home'}
       %form.search{ :action => host_with_subdomain_and_path("www", "searchResult"), :method => "get" }
         %p.is-hidden
-          %label(for="search")
+          %label(for="q")
             Search Lonely Planet
         %p
           %input(type="text" id="search" maxlength="2048" class="searchText" name="q" value="")
