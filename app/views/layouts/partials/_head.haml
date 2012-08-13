@@ -4,7 +4,7 @@
 %meta(name="fb:app_id" content="111537044496")
 %meta(name="robots" content="noindex")
 %title 
-  = title ||= 'Lonely Planet Travel Guides and Travel Information'
+  = content_for?(:head_title) ? yield(:head_title) : 'Lonely Planet Travel Guides and Travel Information'
 - if is_client_browser_less_then_ie9?(request.user_agent)
   :javascript
     document.createElement('header');

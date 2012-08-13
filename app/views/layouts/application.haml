@@ -1,7 +1,7 @@
 !!! 5
 %html
   %head
-    = render 'layouts/partials/head', { title: current_title }
+    = render 'layouts/partials/head'
   %body{class: client_browser(request.user_agent) }
     .wrap
       = render 'layouts/partials/header'
