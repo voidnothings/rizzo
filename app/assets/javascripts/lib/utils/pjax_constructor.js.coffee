@@ -1,12 +1,7 @@
 # ------------------------------------------------------------------------------
 # Handling pjax calls
 # @constructor
-# @param {#object} args
-#   url - the remote url for the ajax call
-#   parent - The parent dom element for the events, defaults to body
-#   container - defaults to js-pjax-container
-#   success - Callback function to fire on pjax success
-#   error - Callback function to fire on pjax error
+# @param {#object} args - defined by config below
 # ------------------------------------------------------------------------------
 
 define ['jquery', 'jplugs/jquery.pjax'], ($) ->
@@ -16,7 +11,10 @@ define ['jquery', 'jplugs/jquery.pjax'], ($) ->
     config =
       container : '#js-pjax-container'
       parent    : 'body'
+      type      : 'GET'
+      timeout   : 650
       url       : ''
+      data      : ''
       success   : ->
       error     : ->
 
@@ -32,3 +30,6 @@ define ['jquery', 'jplugs/jquery.pjax'], ($) ->
       $.pjax
         url       : config.url
         container : config.container
+        data      : config.data
+        type      : config.type
+        timeout   : config.timeout
