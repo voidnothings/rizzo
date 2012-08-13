@@ -55,9 +55,9 @@ define ['jquery','lib/utils/css_helper'], ($, CssHelper) ->
 
     setLodgingMarker: ->
       opts =
-        position: new google.maps.LatLng(@args.lodging.latitude, @args.lodging.longitude)
+        position: new google.maps.LatLng(@args.latitude, @args.longitude)
         map: @map
-        title: @args.lodging.title
+        title: @args.title
         optimized: @args.optimized
         icon: @markerImageFor('hotel', 'large')
       marker = new google.maps.Marker(opts)
