@@ -38,18 +38,20 @@ module JsHelper
 
   def js_configuration
     return unless @js_config
-
-    
     js_closure(:call => true) do
       @js_config
     end
   end
 
   def js_closure(opts, &blk)
-    call = opts.values_at(:call)
-    # top
-    yield blk
-    # bottom
-    # append call if true
+    # PUZZLING: should this be a block or an argument
+    config = yield blk
+    # currently not supporting deep namespace
+    output = "#{config.root_namespace} = {};"
+    config.configurations.keys.each do |k|
+      values = config.configurations[k]
+      output << "#{k} = #{values.to_json};"
+    end
+    javascript_tag output
   end
 end
