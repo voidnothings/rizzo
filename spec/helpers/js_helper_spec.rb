@@ -34,6 +34,21 @@ describe JsHelper do
     end
   end
 
+  describe "#js_configuration" do
+
+    it 'output nil without configuration' do
+      helper.js_configuration().should be_nil
+    end
+    
+    it "output a script tag" do
+      helper.configure_js('foo', {:bar=>'bizz'})
+      helper.configure_js('bot', {:lot=>'op'})
+      helper.js_configuration.should match(/script/)
+      helper.js_configuration.should eq "<script type=\"text/javascript\">\n//<![CDATA[\nwindow.lp = {}; window.lp.foo = {\"bar\":\"bizz\"}; window.lp.bot = {\"lot\":\"op\"};\n//]]>\n</script>"
+    end
+
+  end
+
   describe ::JsHelper::Config do
     let(:configuration) { { :foo => :bar }}
 
@@ -75,5 +90,7 @@ describe JsHelper do
         subject.namespaces_to_vivify.should =~ %w(foo foo.bar foo.bar.zap foo.bar.zip foo.bar.zip.quux blap blap.bar blap.bar.quux)
       end
     end
+
   end
+
 end

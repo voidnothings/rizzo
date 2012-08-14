@@ -44,14 +44,9 @@ module JsHelper
   end
 
   def js_closure(opts, &blk)
-    # PUZZLING: should this be a block or an argument
     config = yield blk
-    # currently not supporting deep namespace
-    output = "#{config.root_namespace} = {};"
-    config.configurations.keys.each do |k|
-      values = config.configurations[k]
-      output << "#{k} = #{values.to_json};"
-    end
+    keys = config.configurations.keys
+    output = keys.reduce("#{config.root_namespace} = {};") {|out, k| "#{out} #{k} = #{config.configurations[k].to_json};"}
     javascript_tag output
   end
 end
