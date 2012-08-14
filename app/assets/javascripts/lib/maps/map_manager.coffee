@@ -48,8 +48,8 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
 
     @getNearbyPOIs: (callback) ->
       if lp.lodging.map.nearby_api_endpoint
-        $.getJSON '/top_rated_by_categories', callback
-        # $.getJSON lp.lodging.nearby_api_endpoint, callback
+        # $.getJSON '/top_rated_by_categories', callback
+        $.getJSON lp.lodging.nearby_api_endpoint, callback
 
     @parsePOIData: (data) ->
       pois = {}
