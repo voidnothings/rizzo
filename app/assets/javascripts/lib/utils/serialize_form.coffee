@@ -1,15 +1,17 @@
+# ------------------------------------------------------------------------------
 # Returns a serialized object of a set of form parameters
 # Results are defined by the name of the inputs
 # 
 # Depth of the array is defined by sq brackets eg. name="search[from]"
 # will return {search:{from: ''}}
+# ------------------------------------------------------------------------------
+
 
 define ->
 
   class SerializeForm
 
     self = this
-    formParams = {}
     push_counters = {}
     patterns =
       key: /[a-zA-Z0-9_]+|(?=\[\])/g
@@ -31,14 +33,14 @@ define ->
 
     constructor: (form)->
       if form.jquery is undefined then form = $(form)
-      return buildObject(form)
+      return buildObject(form, {})
 
 
-    buildObject = (form) ->
+    buildObject = (form, formParams) ->
       $.each form.serializeArray(), ->
         k = undefined
         keys = @name.match(patterns.key)
-        merge = @value
+        merge = (if @value is 'on' then true else @value)
         reverse_key = @name
         while (k = keys.pop()) isnt undefined
           reverse_key = reverse_key.replace(new RegExp("\\[" + k + "\\]$"), "")
