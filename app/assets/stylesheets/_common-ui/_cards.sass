@@ -18,13 +18,14 @@
 // ----------------------------------------------------------------------------
 
 .card
-  @extend %inline-block
-  vertical-align: top
-  position: relative
-  margin-bottom: 4px
-  width: 235px
-  height: 326px
   background-color: $light-grey
+  float: left
+  height: 326px
+  margin-bottom: 4px
+  margin-left: 4px
+  position: relative
+  vertical-align: top
+  width: 235px
 
   &:hover
     background-color: #DDECF8 // $$legacy Waiting for hover states from Design
@@ -33,21 +34,21 @@
   &.deal
     background: none
     &:after
-      @extend %empty-generated-content
-      @extend %absolute-top-right
       +deal-banner-blue()
-      width: 69px
+      @extend %absolute-top-right
+      @extend %empty-generated-content
       height: 69px
+      width: 69px
   .card-hero
     width: 235px
     height: 160px
     overflow: hidden
     position: relative
     > img // $$legacy
-      display: block
-      width: 100%
-      position: absolute
       bottom: 0
+      display: block
+      position: absolute
+      width: 100%
 
 
 .card-content
