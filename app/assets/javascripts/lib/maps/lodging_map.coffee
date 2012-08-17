@@ -122,9 +122,12 @@ define ['jquery','lib/utils/css_helper'], ($, CssHelper) ->
       for id, marker of @markers
         if id == poi_id
           marker.setIcon(@markerImageFor(marker.category, 'large'))
+          @map.panTo(marker.getPosition())
         else
           marker.setIcon(@markerImageFor(marker.category))
 
     resetPOIs: ->
       marker.setIcon(@markerImageFor(marker.category)) for id, marker of @markers
+      @map.panTo( new google.maps.LatLng(@args.latitude, @args.longitude))
+
 
