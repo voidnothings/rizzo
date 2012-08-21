@@ -18,19 +18,27 @@
 // ----------------------------------------------------------------------------
 
 .card
+  @extend %clearfix
   background-color: $light-grey
-  float: left
-  height: 326px
-  margin-bottom: 4px
   margin-left: 4px
   position: relative
   vertical-align: top
-  width: 235px
-
   &:hover
     background-color: #DDECF8 // $$legacy Waiting for hover states from Design
+
   > .wrapper-link
     @extend %wrapper-link
+
+  .grid-view &
+    float: left
+    height: 286px
+    width: 235px
+    margin-bottom: 4px
+
+  .list-view &
+    margin-bottom: 12px
+
+
   &.deal
     background: none
     &:after
@@ -39,33 +47,48 @@
       @extend %empty-generated-content
       height: 69px
       width: 69px
-  .card-hero
+
+.card-hero
+  height: 160px
+  overflow: hidden
+  position: relative
+  .grid-view &
     width: 100%
-    height: 160px
-    overflow: hidden
-    position: relative
-    > img // $$legacy
-      bottom: 0
-      display: block
-      position: absolute
-      width: 100%
+  .list-view &
+    width: 232px
+    float: left
+  > img // $$legacy
+    bottom: 0
+    display: block
+    position: absolute
+    width: 100%
 
 
 .card-content
   position: relative
   padding: 12px
   color: $base_font_color
+  .list-view &
+    float: left
+    width: 460px
+    height: 136px
+  .grid-view &
+    height: 102px
   .stars
     @extend %extra-small-type
+    @extend %normal-weight-text
+    color: #999
     text-transform: uppercase
     line-height: 1em
-    font-weight: bold
     margin-bottom: 7px
   .card-name
     @extend %extra-large-type
+    @extend %normal-weight-text
     line-height: 18px
     margin-bottom: 7px
-    font-weight: bold
+  .description
+    .grid-view &
+      display: none
   .locale
     @extend %tiny-type
     position: relative
@@ -95,11 +118,18 @@
     font-size: 0.6em
 
 .card-accolades
+  @extend %clearfix
   position: absolute
   left: 13px
   bottom: 11px
+  right: 13px
+  .orange-button
+    @extend %absolute-bottom-right
+    .grid-view &
+      display: none
   
 .lp-reviewed-badge
+  @extend %absolute-bottom-left
   @extend %image-replacement
   @extend %inline-block
   +lp-reviewed-badge()
