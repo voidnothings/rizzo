@@ -10,6 +10,7 @@
 #     text        : [array]  An array of strings with the text title for each state
 #     maxHeight   : [number] The default visible height size for the target selector
 #     delegate    : [object] A wrapper object for callback object [onUpdate]
+#     shadow      : [boolean] Determines whether or not the text is cut off by a shadow
 #
 # Example:
 #  args =
@@ -38,13 +39,15 @@ define ['jquery'], ($) ->
     
     addHandler: ->
       if @target.height() > @args.maxHeight
-        @template = "<div class='section-handler'><div class='std btn-soft js-handler'>#{(@args.text)[0]}</div></div>"
+        @template = "<div class='std btn-soft js-handler'>#{(@args.text)[0]}</div>"
+        if @args.shadow
+          @template = "<div class='section-handler'>" + @template + "</div>"
         @target.append(@template)
         @bindEvent()
         @close()
     
     bindEvent: ->
-      $(@target).find('div.section-handler div.js-handler').on('click', (e) =>
+      $(@target).find('div.js-handler').on('click', (e) =>
         e.preventDefault()
         if @state is 'close' then @open() else @close()
         @onUpdate()
@@ -57,13 +60,13 @@ define ['jquery'], ($) ->
       @state = 'open'
 
     close: ->
-      $(@target).children(":first").height(@args.maxHeight-(@args.maxHeight%18)-2)
+      $(@target).children(":first").css({'overflow': 'hidden', 'margin-bottom': '10px'}).height(@args.maxHeight-(@args.maxHeight%18)-2)
       $(@target).addClass('is-close').removeClass('is-open')
       @setHandlerText(@args.text[0])
       @state = 'close'
 
     setHandlerText: (_text) ->
-      $(@target).find('div.section-handler div.js-handler').text(_text)
+      $(@target).find('div.js-handler').text(_text)
 
     onUpdate: ->
       @args.delegate.onUpdate(@,@state) if @args.delegate && @args.delegate.onUpdate
