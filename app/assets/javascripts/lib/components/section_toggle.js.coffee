@@ -34,11 +34,12 @@ define ['jquery'], ($) ->
     
     constructor: (@args={}) ->
       @target = $(@args.selector)
-      @baseHeight = $(@target).height()
+      @wrapper = $(@target).find('.js-wrapper')
+      @baseHeight = @wrapper.height()
       @addHandler()
     
     addHandler: ->
-      if @target.height() > @args.maxHeight
+      if @wrapper.height() > @args.maxHeight
         @template = "<div class='std btn-soft js-handler'>#{(@args.text)[0]}</div>"
         if @args.shadow
           @template = "<div class='section-handler'>" + @template + "</div>"
@@ -54,13 +55,17 @@ define ['jquery'], ($) ->
       )
 
     open: ->
-      $(@target).children(":first").height(@baseHeight)
+      @wrapper.height(@baseHeight)
       $(@target).addClass('is-open').removeClass('is-close')
       @setHandlerText(@args.text[1])
       @state = 'open'
 
     close: ->
-      $(@target).children(":first").css({'overflow': 'hidden', 'margin-bottom': '10px'}).height(@args.maxHeight-(@args.maxHeight%18)-2)
+      @wrapper.css({'overflow': 'hidden', 'margin-bottom': '10px'})
+      if @args.shadow is true 
+        @wrapper.height(@args.maxHeight-(@args.maxHeight%18)-2) 
+      else 
+        @wrapper.height(@args.maxHeight)
       $(@target).addClass('is-close').removeClass('is-open')
       @setHandlerText(@args.text[0])
       @state = 'close'
