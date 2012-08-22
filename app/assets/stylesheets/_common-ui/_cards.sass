@@ -102,17 +102,25 @@
       height: 14px
 
 .card-price-tag
-  @extend %larger-type
-  +vertically-center(28px)
-  background-color: $price-tag-orange
-  position: absolute
-  left: 0px
-  bottom: 100%
-  padding: 0 12px
+  @extend %extra-small-type
+  @extend %central-align
+  @extend %reset-line-height
+  @extend %absolute
+  padding: 5px 8px
+  min-width: 42px
   color: white
+  background-color: $price-tag-orange
+  .grid-view &
+    left: 7px
+    bottom: 100%
+  .list-view &
+    bottom: 0
+    left: -225px
   .price
-    @extend %extra-large-type
+    @extend %heading-size-type
+    display: block
     vertical-align: bottom
+    padding-top: 2px
   .curr
     @extend sup
     font-size: 0.6em
