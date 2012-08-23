@@ -62,6 +62,7 @@ define ['jquery'], ($) ->
 
     close: ->
       @wrapper.css({'overflow': 'hidden', 'margin-bottom': '10px'})
+      # Check machinations with anselmo
       if @args.shadow is true 
         @wrapper.height(@args.maxHeight-(@args.maxHeight%18)-2) 
       else 
