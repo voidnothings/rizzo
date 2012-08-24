@@ -32,6 +32,7 @@ define ->
 
 
     constructor: (form)->
+      push_counters = {}
       if form.jquery is undefined then form = $(form)
       return buildObject(form, {})
 
