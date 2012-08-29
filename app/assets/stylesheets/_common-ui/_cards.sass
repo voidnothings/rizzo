@@ -17,25 +17,29 @@
 // </article>
 // ----------------------------------------------------------------------------
 
-.card
+%base-card-object
   @extend %clearfix
-  background-color: #fff
-  margin-left: 4px
-  position: relative
-  vertical-align: top
+  @extend %white-background
+  +box-shadow(1px, 1px, 2px, 0, rgba(0,0,0,0.1))
+  margin-bottom: 10px
   &:hover
     background-color: #DDECF8 // $$legacy Waiting for hover states from Design
+  .grid-view &
+    height: 380px
+
+
+
+.card
+  @extend %base-card-object
+  position: relative
+  vertical-align: top
+  
 
   > .wrapper-link
     @extend %wrapper-link
 
   .grid-view &
     @extend %one-grid-column
-    height: 380px
-    margin-bottom: 10px
-
-  .list-view &
-    margin-bottom: 12px
 
 
   &.deal
@@ -64,15 +68,15 @@
 
 
 .card-content
-  position: relative
-  padding: 12px
+  @extend %box-off
+  @extend %relative
   color: $base_font_color
   .list-view &
     float: left
     width: 460px
     height: 136px
-  .grid-view &
-    height: 102px
+  // .grid-view &
+  //   height: 102px
   .stars
     @extend %extra-small-type
     @extend %normal-weight-text
