@@ -1,24 +1,6 @@
-// ----------------------------------------------------------------------------
-// A simple card system, developed for hotel list view
-//
-// <article class="card">
-//   <a href="#">
-//     <img src="hotel.jpg" class="hero"/>
-//     <section class="card-content">
-//       <h3 class="stars"></h3>
-//       <h1 class="name" href="#"></h1>
-//       <p class="locale"></p>
-//       <div href="#" class="price-tag">from <span class="price"><span class="curr">&pound;</span>63</span></div>
-//     </section>
-//     <aside class="accolades">
-//       <span class="lp-reviewed">Lonely Planet Reviewed</span>
-//     </aside>
-//   </a>
-// </article>
-// ----------------------------------------------------------------------------
+
 
 %base-card-object
-  @extend %clearfix
   @extend %white-background
   +box-shadow(1px, 1px, 2px, 0, rgba(0,0,0,0.1))
   margin-bottom: 10px
@@ -29,19 +11,8 @@
 
 .card
   @extend %base-card-object
-  position: relative
-  vertical-align: top
-  
-
-  > .wrapper-link
-    @extend %wrapper-link
-
-  .grid-view &
-    @extend %one-grid-column
-
-
   &.deal
-    background: none
+    @extend %relative
     &:after
       +deal-banner-blue()
       @extend %absolute-top-right
@@ -49,8 +20,16 @@
       height: 69px
       width: 69px
 
+  .grid-view &
+    @extend %one-grid-column
+
+
+.wrapper-link
+  @extend %wrapper-link
+  @extend %clearfix
+
 .card-hero
-  height: 160px
+  height: 185px
   overflow: hidden
   position: relative
   .grid-view &
@@ -64,18 +43,31 @@
     position: absolute
     width: 100%
 
+.card-price-tag
+  @extend %extra-small-type
+  @extend %reset-line-height
+  @extend %absolute-bottom
+  background-color: $price-tag
+  color: $soft-grey
+  padding: 10px 15px
+  left: 7px
+  .price
+    @extend %heading-size-type
+    display: block
+    padding-top: 2px
+  .curr
+    @extend sup
+    @extend %regular-type-size
 
 .card-content
   @extend %box-off
   @extend %relative
-  a > &
-    color: $base_font_color
   .list-view &
     float: left
     width: 460px
     height: 136px
-  // .grid-view &
-  //   height: 102px
+  .grid-view &
+    height: 175px
   .stars
     @extend %extra-small-type
     @extend %normal-weight-text
@@ -83,49 +75,31 @@
     text-transform: uppercase
     line-height: 1em
     margin-bottom: 7px
-  .card-name
-    @extend %extra-large-type
-    @extend %normal-weight-text
-    line-height: 18px
-    margin-bottom: 7px
-  .description
-    .grid-view &
-      display: none
-  .locale
-    @extend %tiny-type
-    position: relative
-    padding-left: 19px
-    text-transform: uppercase
-    &:before
-      @extend %empty-generated-content
-      @extend %absolute-top-left
-      +locale-pin-grey()
-      width: 14px
-      height: 14px
 
-.card-price-tag
-  @extend %extra-small-type
-  @extend %central-align
-  @extend %reset-line-height
-  @extend %absolute
-  padding: 5px 8px
-  min-width: 42px
-  color: white
-  background-color: $price-tag-orange
+.card-name
+  @extend %extra-large-type
+  @extend %normal-weight-text
+  line-height: 18px
+  margin-bottom: 7px
+  height: 60px
+
+.description
   .grid-view &
-    left: 7px
-    bottom: 100%
-  .list-view &
-    bottom: 0
-    left: -225px
-  .price
-    @extend %heading-size-type
-    display: block
-    vertical-align: bottom
-    padding-top: 2px
-  .curr
-    @extend sup
-    font-size: 0.6em
+    display: none
+
+.locale
+  @extend %small-type
+  position: relative
+  padding-top: 10px
+  color: $sub-content-text
+  &:before
+    @extend %empty-generated-content
+    @extend %absolute-top-left
+    width: 15px
+    height: 0
+    border-top: 1px solid $sub-content-text
+
+
 
 .card-accolades
   @extend %clearfix
