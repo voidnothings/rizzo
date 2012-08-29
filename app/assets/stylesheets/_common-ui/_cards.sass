@@ -19,7 +19,7 @@
 
 .card
   @extend %clearfix
-  background-color: $light-grey
+  background-color: #fff
   margin-left: 4px
   position: relative
   vertical-align: top
@@ -30,10 +30,9 @@
     @extend %wrapper-link
 
   .grid-view &
-    float: left
-    height: 286px
-    width: 235px
-    margin-bottom: 4px
+    @extend %one-grid-column
+    height: 380px
+    margin-bottom: 10px
 
   .list-view &
     margin-bottom: 12px

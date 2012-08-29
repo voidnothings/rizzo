@@ -1,0 +1,36 @@
+// -----------------------------------------------------------------------------
+// 
+//  Simple Grid for the card/list main content
+// 
+// -----------------------------------------------------------------------------
+
+$width: 190px
+$gutter: 10px
+
+%grid-wrapper
+  margin-left: -$gutter
+  @extend %clearfix
+
+%grid-column
+  @extend %float-left
+  margin-left: $gutter
+
+%one-grid-column
+  @extend %grid-column
+  width: $width
+
+%two-grid-columns
+  @extend %grid-column
+  width: ($width * 2) + $gutter
+
+%three-grid-columns
+  @extend %grid-column
+  width: ($width * 3) + ($gutter * 2)
+
+%four-grid-columns
+  @extend %grid-column
+  width: ($width * 4) + ($gutter * 3)
+
+%five-grid-columns
+  @extend %grid-column
+  width: ($width * 5) + ($gutter * 4)
