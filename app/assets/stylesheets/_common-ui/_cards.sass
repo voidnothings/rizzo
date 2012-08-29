@@ -22,8 +22,6 @@
   @extend %white-background
   +box-shadow(1px, 1px, 2px, 0, rgba(0,0,0,0.1))
   margin-bottom: 10px
-  &:hover
-    background-color: #DDECF8 // $$legacy Waiting for hover states from Design
   .grid-view &
     height: 380px
 
@@ -70,7 +68,8 @@
 .card-content
   @extend %box-off
   @extend %relative
-  color: $base_font_color
+  a > &
+    color: $base_font_color
   .list-view &
     float: left
     width: 460px
