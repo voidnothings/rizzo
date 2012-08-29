@@ -2,7 +2,7 @@
 // CSS Arrow
 // -----------------------------------------------------------------------------
 
-@mixin css-arrow($side: top, $width: 10px, $color: $price-tag-orange, $offset: 0)
+@mixin css-arrow($side: top, $width: 10px, $color: $price-tag, $offset: 0)
   @extend %empty-abs-generated-content
   height: 0
   width: 0
@@ -24,7 +24,7 @@
     top: $offset
     border-right-color: $color
 
-@mixin css-arrow-central($side: top, $width: 10px, $color: $price-tag-orange, $offset: 0)
+@mixin css-arrow-central($side: top, $width: 10px, $color: $price-tag, $offset: 0)
   @include css-arrow($side, $width, $color, $offset)
   @if $side == top
     left: 50%
