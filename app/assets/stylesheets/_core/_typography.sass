@@ -14,7 +14,6 @@ html
 body
   min-height: 100%
   color: $base_font_color
-  @include font-size(14) // This is here just to revert the font-size to 100% after global-static sets it to 75% - $$legacy --
 
 
 h1, .h1,
@@ -24,7 +23,7 @@ h4, .h4,
 h5, .h5,
 h6, .h6,
 p
-  margin: 0 0 20px 0 // Our magic number
+  margin: 0 0 $vertical-rhythm 0
   padding: 0
 
 
@@ -40,6 +39,7 @@ h2, .h2
 
 h3, .h3
   @extend %extra-large-type
+  font-weight: bold
   
 h4, .h4
   @extend %large-type
