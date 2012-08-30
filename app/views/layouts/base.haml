@@ -1,0 +1,10 @@
+!!! 5
+%html
+  %head
+    = render 'layouts/sections/head'
+  %body{class: client_browser(request.user_agent) }
+    .wrap
+      = render 'layouts/sections/master_head'
+
+
+

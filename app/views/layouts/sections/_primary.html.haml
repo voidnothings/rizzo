@@ -1,0 +1,29 @@
+.primary
+  .container
+    %a.lp-logo-x1(href='http://www.lonelyplanet.com')
+    %nav.global-nav
+      - ['Destinations','Themes','Travel Guides','Travel Bookings','Thorn Tree','Propaganda'].each do |l|
+        %a(href=l)
+          = l
+
+    .search-box
+      %form.global-search-form(action='' method='' name='')
+        %label.is-hidden(for='search-q')
+          Search
+        %input.search-type(type="text" id="search-q" name="q" autocomplete="off" tabindex="1")
+        %button.search-submit(type="submit" id="search-q-submit" name="search-q-submit")
+
+    %nav.user-nav.has-basket
+      %a.user-basket.js-basket(href='basket')
+        %span.basket-items
+          5
+
+      %a.user-join.js-join(href='shop')
+        Join
+      %a.user-singin.js-sign-in(href='profile')
+        Sign-In
+      %a.user-box.js-user-box(href='basket')
+        
+        
+
+
