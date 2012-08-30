@@ -8,10 +8,12 @@ $width: 190px
 $gutter: 10px
 
 %grid-wrapper
-  margin-left: -$gutter
+  +box-sizing()
   @extend %clearfix
+  margin-left: -$gutter
 
 %grid-column
+  +box-sizing()
   @extend %float-left
   margin-left: $gutter
 
