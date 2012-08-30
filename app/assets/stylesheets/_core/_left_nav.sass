@@ -1,5 +1,6 @@
 .left-nav
   @extend %white-background
+  border-top: 1px solid #fff
   margin-top: 47px
 
   %nav-base-object
@@ -27,11 +28,13 @@
       background-color: $hovered-nav-item
 
   .nav-heading
+    @extend %larger-type
     @extend %nav-base-object
     margin-top: 25px
     padding: 0 15px
   
   .nav-standfirst
+    @extend %small-type
     @extend %serif
     @extend %italic-text
     display: block
