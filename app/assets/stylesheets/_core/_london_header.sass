@@ -1,0 +1,256 @@
+/// globals
+a
+  text-decoration: none
+  &:hover
+    text-decoration: none
+
+input, textarea, select
+  outline: none
+
+/// extends
+%primary-gradient
+  @include background-gradient($primary-nav-top, $primary-nav-bottom)
+
+%secondary-gradient
+  @include background-gradient($secondary-nav-top, $secondary-nav-bottom)
+
+%full-width
+  width: 1000px
+
+%uppercase
+  text-transform: uppercase
+
+
+// ----------------------------------------------------------------------------
+// 
+// adverts
+// 
+// ----------------------------------------------------------------------------
+
+.master-row
+  background-color: $master-row-leader
+  padding: 10px 0 
+
+.ad-leaderboard
+  @extend %horizontal-auto
+  width: 764px
+  
+  .ad
+    @extend %ad-leaderboard-box
+    @extend %float-left
+    @include round-all(2px)
+
+  .ad-label
+    @extend %float-left
+    @extend %data-leaderboard-label
+    width: 10px
+    height: 90px
+    margin: 3px 8px
+  
+
+
+.container
+  @extend %horizontal-auto
+  @extend %relative
+  @extend %clearfix
+  @extend %full-width
+
+// ----------------------------------------------------------------------------
+// 
+// primary-nav
+// 
+// ----------------------------------------------------------------------------
+
+.primary
+  @extend %primary-gradient
+  @extend %clearfix
+  padding: 8px 0
+
+%primary-nav
+
+  padding: 6px 12px 
+  
+  @extend %irregular-type
+  a
+    padding: 9px 6px
+    color: $nav-primary-type
+    line-height: 38px
+    &:hover
+      color: $nav-primary-type-hover 
+
+.global-nav
+  @extend %primary-nav
+  @extend %float-left
+
+.user-nav
+  @extend %primary-nav
+  @extend %absolute-right
+
+.user-basket
+  position: relative
+  @extend %data-user-basket
+  @extend %float-left
+  background-repeat: no-repeat
+  background-position: center center
+  width: 20px
+  height: 18px
+ 
+.has-basket
+  .user-basket
+    display: block
+
+.basket-items
+  position: absolute
+  right: -3px
+  top: 2px
+  line-height: 16px
+  font-size: 11px
+  font-weight: bold
+  text-align: center
+  color: #00275a
+  background-color: #fef007
+  @include round-all(7px)
+  @extend tiny-type
+  display: block
+  width: 14px
+  height: 14px
+
+.user-box
+  display: none
+
+.is-logged
+  .user-box
+    display: block
+
+// ----------------------------------------------------------------------------
+// 
+// secondary-nav
+// 
+// ----------------------------------------------------------------------------
+
+
+.secondary
+  @extend %secondary-gradient
+  @extend %clearfix
+  padding: 0px 0
+
+%secondary-nav
+  @extend %uppercase
+  @extend %tiny-type
+  padding: 15px 0
+  a
+    display: block
+    @extend %float-left
+    padding: 5px 8px
+    color: $nav-secondary-type
+    &:hover
+      color: $nav-secondary-type-hover 
+    &.current
+      background-color: #28c3c9
+      color: $nav-secondary-type-active
+      @include round-all(5px)
+
+.destination-nav
+  @extend %secondary-nav
+  @extend %float-right
+
+.head-title
+  @extend %huge-type
+  @extend %float-left
+  @extend %benton-regular
+  padding: 7px 0 0 5px
+  margin: 0
+  color: #fff
+  max-width: 350px
+
+
+
+// ----------------------------------------------------------------------------
+// 
+// Lonely Planet Logo
+// 
+// ----------------------------------------------------------------------------
+
+.lp-logo
+  @extend %float-left
+  width: 100px
+  height: 50px
+  margin: 0 5px
+  display: block
+
+.lp-logo-x1
+  @extend .lp-logo
+  @extend %data-lp-logo
+
+
+// ----------------------------------------------------------------------------
+//
+// Search Form
+//
+// ----------------------------------------------------------------------------
+
+.global-search-form
+  width: 100px
+  @extend %small-type
+
+.search-box
+  @extend %float-left
+  width: 198px
+  margin-top: 11px
+  position: relative
+
+.search-icon
+  position: absolute
+  top: 5px
+  right: 12px
+  display: block
+  cursor: pointer
+  z-index: 1
+
+.search-type-box
+  display: block
+  background-color: #fff
+  line-height: 1
+  border: 0
+  border-color: transparent
+  @extend %small-type
+
+.search-icon
+  @extend %data-icon-search-on
+  @extend %small-icon
+
+.search-submit
+  position: absolute
+  right: 8px
+  top: 4px
+  width: 20px
+  height: 20px
+  z-index: 3
+  opacity: 0
+  cursor: pointer
+
+%no-repeat-right
+  background-repeat: no-repeat
+
+.search-type
+  @extend %absolute-right
+  @extend %data-icon-search-off
+  @extend %irregular-type
+  @extend %no-repeat-right
+  @include box-shadow(0px, 1px, 2px, 0,rgba(0, 0, 0, 0.2), false)
+  @include round-all(13px)
+  @include transition(all, 0.2s, ease) 
+  background-color: $nav-search-bck
+  background-position: 135px center
+  border: 0
+  color: $nav-search-colour
+  height: 16px
+  padding: 6px 30px 6px 10px
+  width: 120px
+  &:focus, &:hover
+    @extend %data-icon-search-on
+    @include box-shadow(0px, 1px, 2px, 0, rgba(0, 0, 0, 0.4), true)
+    background-color: #fff
+    background-position: 165px center
+    color: $nav-search-bck-focus 
+    width: 150px
