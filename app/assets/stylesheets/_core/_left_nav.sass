@@ -1,0 +1,38 @@
+.left-nav
+  @extend %white-background
+  margin-top: 47px
+
+  %nav-base-object
+    display: block
+    color: $nav-item-text
+
+  .nav-item
+    @extend %relative
+    @extend %nav-base-object
+    @extend %regular-type-size
+    padding: 15px
+    text-decoration: none
+    &:after
+      @extend %absolute
+      font-size: 16px
+      content: '\203A'
+      top: 15px
+      right: 15px
+    
+    &.current, &.current:hover
+      color: #fff
+      background-color: $current-nav-item
+    
+    &:hover
+      background-color: $hovered-nav-item
+
+  .nav-heading
+    @extend %nav-base-object
+    margin-top: 25px
+    padding: 0 15px
+  
+  .nav-standfirst
+    @extend %serif
+    @extend %italic-text
+    display: block
+    color: $nav-standfirst
