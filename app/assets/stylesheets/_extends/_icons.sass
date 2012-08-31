@@ -1,13 +1,19 @@
+%block
+  display: block
+
 %icon-btn
   cursor: pointer
   height: 22px
   width: 22px
+  @extend %block
 
-%small-icon
-  cursor: pointer
-  height: 16px
+%small-icon  
   width: 16px
-  display: block
+  height: 16px
+  @extend %block
 
-  
+%regular-icon  
+  width: 32px
+  height: 32px
+  @extend %block
 
