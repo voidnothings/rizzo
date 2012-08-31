@@ -13,17 +13,16 @@
         %input.search-type(type="text" id="search" maxlength="2048" class="searchText" name="q" value="" autocomplete="off" tabindex="1")
         %button.search-submit(type="submit" id="search-q-submit" name="search-q-submit")
 
-    %nav.user-nav.has-basket
+    %nav.user-nav.has-basket.is-logged
       %a.user-basket.js-basket(href='basket')
         %span.basket-items
           5
-
       %a.user-join.js-join(href='shop')
         Join
       %a.user-singin.js-sign-in(href='profile')
         Sign-In
       %a.user-box.js-user-box(href='basket')
-        
+        %img(src='http://www.lonelyplanet.com/members/799193/images/92489/variants/50x50.jpg')
         
 
 
