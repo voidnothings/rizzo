@@ -1,16 +1,16 @@
 .primary
   .container
-    %a.lp-logo-x1(href='http://www.lonelyplanet.com')
+    %a.logo(href='http://www.lonelyplanet.com')
     %nav.global-nav
-      - ['Destinations','Themes','Travel Guides','Travel Bookings','Thorn Tree','Propaganda'].each do |l|
-        %a(href=l)
-          = l
+      - gloval_navigation_items.each do |n|
+        %a{ href: n[:uri] }
+          = n[:title]
 
     .search-box
-      %form.global-search-form(action='' method='' name='')
+      %form.global-search-form.search{ :action => host_with_subdomain_and_path("www", "searchResult"), :method => "get" }
         %label.is-hidden(for='search-q')
           Search
-        %input.search-type(type="text" id="search-q" name="q" autocomplete="off" tabindex="1")
+        %input.search-type(type="text" id="search" maxlength="2048" class="searchText" name="q" value="" autocomplete="off" tabindex="1")
         %button.search-submit(type="submit" id="search-q-submit" name="search-q-submit")
 
     %nav.user-nav.has-basket

@@ -16,6 +16,17 @@ module GlobalResourcesHelper
     ]
   end
 
+  def gloval_navigation_items
+    [
+      {title:'Destinations', uri: www_url("destinations")},
+      {title:'Themes', uri: www_url("thorntree")},
+      {title:'Travel Guides', uri: shop_url},
+      {title:'Travel Bookings', uri: hotels_url},
+      {title:'Thorn Tree', uri: www_url("thorntree")},
+      {title:'Propaganda', uri: www_url("propaganda")}
+    ]
+  end
+
   def cart_item_element
     capture_haml do
       haml_tag(:li, class: 'globalCartHead') do
