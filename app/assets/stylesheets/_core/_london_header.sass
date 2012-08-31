@@ -101,9 +101,10 @@ input, textarea, select
 
 .user-nav
   @extend %top-nav
-  @extend %absolute-right
   .user-basket
     @extend %no-padding
+  .user-box
+    padding: 2px
 
 %background-center    
   background-position: center center
@@ -116,7 +117,7 @@ input, textarea, select
   @extend %data-user-basket
   @extend %regular-icon
   @extend %background-center
-  margin: 3px 3px 0 0 
+  margin: 3px 10px 3px 10px
  
 .has-basket
   .user-basket
@@ -138,10 +139,22 @@ input, textarea, select
 
 .user-box
   display: none
+  height: 30px
+  width: 30px
+  @include round-all(5px)
+  @include box-shadow(0px, 1px, 3px, 1px,rgba(0, 0, 0, 0.3), true)
+  border: 1px solid #073a69
+  background: $nav-search-bck
+  margin: 0 0 0 15px
+  float: left
 
 .is-logged
   .user-box
     display: block
+  .user-singin
+    display: none
+  .user-join
+    display: none
 
 // ----------------------------------------------------------------------------
 // 
@@ -210,23 +223,11 @@ input, textarea, select
 //
 // ----------------------------------------------------------------------------
 
-.global-search-form
-  width: 100px
-  @extend %small-type
-
 .search-box
   @extend %relative
   @extend %float-left
   width: 198px
   margin-top: 10px
-
-.search-icon
-  position: absolute
-  top: 5px
-  right: 12px
-  display: block
-  cursor: pointer
-  z-index: 1
 
 .search-type-box
   display: block
@@ -236,12 +237,8 @@ input, textarea, select
   border-color: transparent
   @extend %small-type
 
-.search-icon
-  @extend %data-icon-search-on
-  @extend %small-icon
-
 .search-submit
-  position: absolute
+  @extend %absolute
   right: 8px
   top: 4px
   width: 20px
@@ -271,6 +268,7 @@ input, textarea, select
 
   width: 120px
   padding: 6px 30px 6px 10px
+
   color: $nav-search-colour
   background-color: $nav-search-bck
   background-position: 135px center
