@@ -1,15 +1,15 @@
+%stacked-nav-base-object
+  display: block
+  color: $gray1
+
 .left-nav
   @extend %white-background
   border-top: 1px solid #fff
   margin-top: 47px
 
-  %nav-base-object
-    display: block
-    color: $nav-item-text
-
   .nav-item
     @extend %relative
-    @extend %nav-base-object
+    @extend %stacked-nav-base-object
     @extend %regular-type-size
     padding: 15px
     text-decoration: none
@@ -22,15 +22,16 @@
     
     &.current, &.current:hover
       color: #fff
-      background-color: $current-nav-item
+      background-color: $heading-text
     
     &:hover
-      background-color: $hovered-nav-item
+      background-color: $heading-text
 
   .nav-heading
+    @extend %reset-line-height
     @extend %larger-type
-    @extend %nav-base-object
-    margin-top: 25px
+    @extend %stacked-nav-base-object
+    margin-top: 22px
     padding: 0 15px
   
   .nav-standfirst
@@ -38,4 +39,4 @@
     @extend %serif
     @extend %italic-text
     display: block
-    color: $nav-standfirst
+    color: $gray4
