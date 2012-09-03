@@ -15,7 +15,7 @@ define ['jquery'], ($)->
       signOutUrl: 'https://secure.lonelyplanet.com/sign-in/logout'
 
     constructor: ->
-      @widget = $('.primary .signInRegister')
+      @widget = $('nav.user-box')
       @options = Authentication.options
       @signonWidget()
 
@@ -39,6 +39,7 @@ define ['jquery'], ($)->
         false
 
     update: ->
+      console.log(window.lpLoggedInUsername)
       @setLocalData("lp-uname", window.lpLoggedInUsername)
       @signonWidget()
       @displayUnreadMessageCount()

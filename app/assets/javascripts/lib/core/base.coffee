@@ -4,7 +4,7 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
 
     constructor: ->
       @config()
-      @userBox()
+      # @userBox()
       @userBasket()
       @adLeaderboard()
 
