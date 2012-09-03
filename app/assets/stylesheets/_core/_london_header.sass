@@ -1,22 +1,3 @@
-/// globals
-a
-  text-decoration: none
-  &:hover
-    text-decoration: none
-
-input, textarea, select
-  outline: none
-
-/// extends
-%primary-gradient
-  @include background-gradient($primary-nav-top, $primary-nav-bottom)
-
-%secondary-gradient
-  @include background-gradient($secondary-nav-top, $secondary-nav-bottom)
-
-%full-width
-  width: 1000px
-
 // ----------------------------------------------------------------------------
 // 
 // Top Master Row
@@ -35,7 +16,26 @@ input, textarea, select
   @extend %horizontal-auto
   @extend %relative
   @extend %clearfix
-  @extend %full-width
+  @extend %regular-width
+
+
+// ----------------------------------------------------------------------------
+// 
+// Lonely Planet Logo
+// 
+// ----------------------------------------------------------------------------
+
+%lp-logo
+  @extend %float-left
+  @extend %block
+  width: 100px
+  height: 50px
+  margin: 0 5px
+
+.logo
+  @extend %lp-logo
+  @extend %data-lp-logo
+
 
 
 // ----------------------------------------------------------------------------
@@ -61,6 +61,7 @@ input, textarea, select
     width: 10px
     height: 90px
     margin: 3px 0 3px 8px
+
 
 // ----------------------------------------------------------------------------
 // 
@@ -95,6 +96,50 @@ input, textarea, select
 
 // ----------------------------------------------------------------------------
 // 
+// secondary-nav
+// 
+// ----------------------------------------------------------------------------
+
+
+.secondary
+  @extend %secondary-gradient
+  @extend %clearfix
+  padding: 0px 0
+
+%secondary-nav
+  @extend %uppercase
+  @extend %tiny-type
+  padding: 14px 0
+  a
+    @extend %float-left
+    @extend %block
+    padding: 6px 9px 5px
+    color: $nav-secondary-type
+    &:hover
+      color: $nav-secondary-type-hover 
+    &.current
+      @include round-all(6px)
+      background-color: #28c3c9
+      color: $nav-secondary-type-active
+
+.destination-nav
+  @extend %secondary-nav
+  @extend %float-right
+
+
+.head-title
+  @extend %benton-regular
+  @extend %float-left
+  font-size: 28px
+  @extend %no-margin
+  color: #fff
+  max-width: 350px
+  padding: 7px 0 0 5px
+
+
+
+// ----------------------------------------------------------------------------
+// 
 // user-nav
 // 
 // ----------------------------------------------------------------------------
@@ -105,11 +150,6 @@ input, textarea, select
     @extend %no-padding
   .user-box
     padding: 2px
-
-%background-center    
-  background-position: center center
-  background-repeat: no-repeat
-
 
 .user-basket
   @extend %relative
@@ -156,66 +196,6 @@ input, textarea, select
   .user-join
     display: none
 
-// ----------------------------------------------------------------------------
-// 
-// secondary-nav
-// 
-// ----------------------------------------------------------------------------
-
-
-.secondary
-  @extend %secondary-gradient
-  @extend %clearfix
-  padding: 0px 0
-
-%secondary-nav
-  @extend %uppercase
-  @extend %tiny-type
-  padding: 14px 0
-  a
-    @extend %float-left
-    @extend %block
-    padding: 6px 9px 5px
-    color: $nav-secondary-type
-    &:hover
-      color: $nav-secondary-type-hover 
-    &.current
-      @include round-all(6px)
-      background-color: #28c3c9
-      color: $nav-secondary-type-active
-
-.destination-nav
-  @extend %secondary-nav
-  @extend %float-right
-
-.head-title
-  @extend %benton-regular
-  @extend %float-left
-  font-size: 28px
-  @extend %no-margin
-  color: #fff
-  max-width: 350px
-  padding: 7px 0 0 5px
-
-
-
-// ----------------------------------------------------------------------------
-// 
-// Lonely Planet Logo
-// 
-// ----------------------------------------------------------------------------
-
-%lp-logo
-  @extend %float-left
-  @extend %block
-  width: 100px
-  height: 50px
-  margin: 0 5px
-
-.logo
-  @extend %lp-logo
-  @extend %data-lp-logo
-
 
 // ----------------------------------------------------------------------------
 //
@@ -246,15 +226,6 @@ input, textarea, select
   z-index: 3
   opacity: 0
   cursor: pointer
-
-%no-repeat
-  background-repeat: no-repeat
-
-%no-border
-  border: 0
-
-%background-white
-  background-color: #fff
 
 .search-type
   @extend %absolute-right
