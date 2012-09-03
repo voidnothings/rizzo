@@ -255,15 +255,14 @@
   @include transition(all, 0.2s, ease) 
 
   width: 120px
-  padding: 6px 30px 6px 10px
+  padding: 6px 10px 6px 30px
 
   color: $nav-search-colour
   background-color: $nav-search-bck
-  background-position: 135px center
+  background-position: 10px center
   
   &:focus, &:hover
     @extend %data-icon-search-on
     @extend %background-white
-    background-position-x: 165px
     color: $nav-search-bck-focus 
     width: 150px
