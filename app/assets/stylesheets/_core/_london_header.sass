@@ -178,15 +178,32 @@
   line-height: 16px
 
 .user-box
-  display: none
-  height: 30px
-  width: 30px
-  @include round-all(5px)
-  @include box-shadow(0px, 1px, 3px, 1px,rgba(0, 0, 0, 0.3), true)
-  border: 1px solid #073a69
-  background: $nav-search-bck
-  margin: 0 0 0 15px
-  float: left
+  @extend .is-hidden
+  @extend %block
+  @extend %float-left
+  margin-left: 15px
+  height: 36px
+  width: 60px
+
+  .user-img
+    @extend %block
+    height: 30px
+    width: 30px
+    padding: 3px
+    @include round-all(5px)
+    @include box-shadow(0px, 1px, 3px, 1px,rgba(0, 0, 0, 0.3), true)
+    border: 1px solid #073a69
+    background-color: $nav-search-bck
+    @extend %float-left
+
+  .user-handler
+    @extend %block
+    @extend %float-left
+    display: block
+    margin-left: 5px
+    padding: 0 5px
+
+  
 
 .is-logged
   .user-box
