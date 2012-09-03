@@ -22,9 +22,10 @@
 :javascript
   document.documentElement.className += ' js';
 
-= stylesheet_link_tag 'london', :media => "all"
+= stylesheet_link_tag 'application_london', :media => "all"
 
--# %link(href="//cloud.webtype.com/css/ecb406c6-4bbc-4dea-a228-f1bcf631eee1.css" rel="stylesheet" type="text/css")
+= yield :stylesheets
+
 %link(rel="icon" type="image/gif" href="http://www.lonelyplanet.com/favicon.ico")
 = csrf_meta_tags
 

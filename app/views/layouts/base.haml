@@ -5,6 +5,6 @@
   %body{class: client_browser(request.user_agent) }
     .wrap
       = render 'layouts/sections/master_head'
-
-
-
+      .content
+        = yield
+    = yield :scripts
