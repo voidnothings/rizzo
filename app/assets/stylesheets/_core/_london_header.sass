@@ -224,7 +224,7 @@
   @extend %relative
   @extend %float-left
   width: 198px
-  margin-top: 10px
+  margin: 10px 0px 0 10px
 
 .search-type-box
   display: block
@@ -235,8 +235,9 @@
   @extend %small-type
 
 .search-submit
+  @extend .is-hidden
   @extend %absolute
-  right: 8px
+  ght: 8px
   top: 4px
   width: 20px
   height: 20px
@@ -245,7 +246,6 @@
   cursor: pointer
 
 .search-type
-  @extend %absolute-right
   @extend %data-icon-search-off
   @extend %irregular-type
   @extend %no-repeat
