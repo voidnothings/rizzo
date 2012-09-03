@@ -1,7 +1,7 @@
 .secondary
   .container
     %h1.head-title
-      San Franscisco
+      = yield :title
     %nav.destination-nav
       - ['Highlights','Places in ...','Need to know','Hotels','Images & Video','Tips & Articles','Forum'].each do |n|
         %a(class="#{n=='Hotels' ? 'current' : '' }" href=n)
