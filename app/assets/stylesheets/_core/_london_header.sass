@@ -146,22 +146,24 @@
 
 .user-nav
   @extend %top-nav
+  @extend %absolute-right
   .user-basket
     @extend %no-padding
   .user-box
     padding: 2px
 
 .user-basket
+  @extend %regular-icon
+  @extend .is-hidden
   @extend %relative
   @extend %float-left
   @extend %data-user-basket
-  @extend %regular-icon
   @extend %background-center
   margin: 4px 10px
  
 .has-basket
   .user-basket
-    display: block
+    @extend %block
 
 .basket-items
   @extend %absolute-top-right
@@ -179,7 +181,6 @@
 
 .user-box
   @extend .is-hidden
-  @extend %block
   @extend %float-left
   margin-left: 15px
   height: 36px
@@ -224,7 +225,7 @@
 .search-box
   @extend %relative
   @extend %float-left
-  width: 198px
+  width: 188px
   margin: 10px 0px 0 10px
 
 .search-type-box
@@ -255,7 +256,7 @@
   @include round-all(15px)
   @include transition(all, 0.2s, ease) 
 
-  width: 120px
+  width: 110px
   padding: 6px 10px 6px 30px
 
   color: $nav-search-colour
@@ -266,4 +267,4 @@
     @extend %data-icon-search-on
     @extend %background-white
     color: $nav-search-bck-focus 
-    width: 150px
+    width: 140px
