@@ -147,6 +147,7 @@
 .user-nav
   @extend %top-nav
   @extend %absolute-right
+  width: 145px
   .user-basket
     @extend %no-padding
   .user-box
@@ -159,7 +160,7 @@
   @extend %float-left
   @extend %data-user-basket
   @extend %background-center
-  margin: 4px 10px
+  margin: 4px 0
  
 .has-basket
   .user-basket
@@ -179,6 +180,10 @@
   background-color: $basket-item
   line-height: 16px
 
+.auth-box
+  @extend %float-left
+  padding: 0 0 13px 15px
+
 .user-box
   @extend .is-hidden
   @extend %float-left
@@ -196,15 +201,17 @@
     border: 1px solid #073a69
     background-color: $nav-search-bck
     @extend %float-left
+    cursor: pointer
 
   .user-handler
     @extend %block
     @extend %float-left
-    display: block
+    @extend %block
     padding: 10px 0 10px 6px
     @extend %data-user-handler
     @extend %background-center
     @extend %small-icon
+    cursor: pointer
 
   
 .is-logged
@@ -215,6 +222,27 @@
   .user-join
     display: none
 
+.nav-user-options
+  @extend %absolute
+  @extend .is-hidden
+  background: $ad-leader
+  border: 1px solid $primary-nav
+  padding: 6px 0
+  right: 0
+  top: 58px
+  width: 105px
+  z-index: 1
+  .user-menu-option
+    @extend %small-type
+    display: block
+    line-height: 1em
+    padding: 6px 10px
+
+.auth-box
+  &:hover
+    .nav-user-options
+      display: block
+    
 
 // ----------------------------------------------------------------------------
 //
