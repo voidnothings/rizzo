@@ -1,12 +1,12 @@
-define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authentication', 'lib/core/shopping_cart'], ($, AdManager, AssetFetch, Authentication, ShoppingCart) ->
+define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authentication','lib/core/shopping_cart'], ($, AdManager, AssetFetch, Authentication, ShoppingCart) ->
 
   class Base
 
     constructor: ->
       @config()
-      # @userBox()
+      @userNav()
       @userBasket()
-      @adLeaderboard()
+      # @adLeaderboard()
 
     config: ->
       @adConf =
@@ -17,7 +17,7 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
         mtfIFPath : (lp.ads.mtfIFPath or '/')
         unit: [728,90]
       
-    userBox: ->
+    userNav: ->
       lpLoggedInUsername = null
       auth = new Authentication()
       AssetFetch.get "https://secure.lonelyplanet.com/sign-in/status", () ->
