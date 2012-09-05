@@ -103,3 +103,24 @@
   -ms-word-break: break-all
   word-break:     break-all
   word-break:     break-word
+
+@mixin columns($column-count: 2, $gutter: 20px)
+  -webkit-columns: $column-count
+  -moz-columns:    $column-count
+  -ms-columns:     $column-count
+  -o-columns:      $column-count
+  columns:         $column-count
+  -webkit-column-gap: $gutter
+  -moz-column-gap:    $gutter
+  -ms-column-gap:     $gutter
+  -o-column-gap:      $gutter
+  column-gap:         $gutter
+
+
+
+
+
+
+
+
+
