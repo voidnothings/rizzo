@@ -69,13 +69,16 @@
 // 
 // ----------------------------------------------------------------------------
 
+%helvetica-neue
+  font-family: 'Helvetica Neue', Arial, Helvetica
 
 .primary
   @extend %primary-gradient
   @extend %clearfix
   padding: 9px 0
 
-%top-nav
+%primary-nav
+  @extend %helvetica-neue
   padding: 6px 0
   @extend %irregular-type
   a
@@ -90,7 +93,7 @@
 
 .global-nav
   margin-left: 9px
-  @extend %top-nav
+  @extend %primary-nav
   @extend %float-left
    
 
@@ -104,27 +107,30 @@
 .secondary
   @extend %secondary-gradient
   @extend %clearfix
-  padding: 0px 0
+  padding: 8px 0
 
 %secondary-nav
+  @extend %helvetica-neue
   @extend %uppercase
   @extend %tiny-type
-  padding: 14px 0
   a
     @extend %float-left
     @extend %block
     padding: 6px 9px 5px
+    line-height: 18px
     color: $nav-secondary-type
     &:hover
       color: $nav-secondary-type-hover 
     &.current
       @include round-all(6px)
-      background-color: #28c3c9
+      background-color: $nav-secondary-current-item-bck
       color: $nav-secondary-type-active
 
 .destination-nav
   @extend %secondary-nav
+  @extend %absolute-bottom-right
   @extend %float-right
+  padding-bottom: 2px
 
 
 .head-title
@@ -133,9 +139,9 @@
   font-size: 28px
   @extend %no-margin
   color: #fff
-  max-width: 350px
-  padding: 7px 0 0 5px
-
+  max-width: 400px
+  padding: 0 5px
+  line-height: 32px
 
 
 // ----------------------------------------------------------------------------
@@ -145,7 +151,7 @@
 // ----------------------------------------------------------------------------
 
 .user-nav
-  @extend %top-nav
+  @extend %primary-nav
   @extend %absolute-right
   width: 145px
   .user-basket
@@ -181,15 +187,12 @@
   line-height: 16px
 
 .auth-box
-  @extend %float-left
+  @extend %float-right
   padding: 0 0 13px 15px
+
 
 .user-box
   @extend .is-hidden
-  @extend %float-left
-  margin-left: 15px
-  height: 36px
-  width: 60px
 
   .user-img
     @extend %block
@@ -222,28 +225,65 @@
   .user-join
     display: none
 
-.nav-user-options
+.user-options
   @extend %absolute
   @extend .is-hidden
-  background: $ad-leader
-  border: 1px solid $primary-nav
-  padding: 6px 0
-  right: 0
+  right: 0px
   top: 58px
-  width: 105px
+  width: 152px
+  height: 242px
   z-index: 1
+
+.user-options-arrow
+  @extend %data-user-options-arrow
+  @extend %no-repeat
+  background-position: 97px center
+  position: absolute
+  top: -10px
+  width: 100%
+  height: 10px
+
+.user-name
+  font-weight: bold
+  color: white
+  @extend %regular-type-size
+  @extend %bold-text
+  @extend %block
+  padding: 0 7px 7px
+
+.nav-user-options
+  background: $nav-secondary-current-item-bck
+  @include round-all(5px)
+  @include box-shadow(0px, 1px, 3px, 3px,rgba(0, 0, 0, 0.2))
+  padding: 14px 7px 9px
+
   .user-menu-option
-    @extend %small-type
-    display: block
-    line-height: 1em
-    padding: 6px 10px
+    @extend %helvetica-neue
+    @extend %irregular-type
+    @extend %block
+    padding: 12px 7px
+    line-height: 12px
+    color: #fff
+    font-weight: normal
+    @extend %data-chevron-right
+    @extend %no-repeat
+    background-position: 120px center
+    &:hover
+      background-color: rgba(0,0,0,0.1)
+
+  .user-signout
+    line-height: 18px
+    padding: 16px 7px
+    margin-top: 0
+    border-top: 1px solid #1eb7bc
 
 .auth-box
   &:hover
-    .nav-user-options
+    .user-options
       display: block
     
-
+// -webkit-font-smoothing: antialiased;
+// letter-spacing: -0.05em;
 // ----------------------------------------------------------------------------
 //
 // Search Form
