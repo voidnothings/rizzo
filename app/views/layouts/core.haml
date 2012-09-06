@@ -1,10 +1,10 @@
 !!! 5
 %html
   %head
-    = render 'layouts/sections/head'
+    = render 'layouts/core_partials/head'
   %body{class: client_browser(request.user_agent) }
     .wrap
-      = render 'layouts/sections/master_head'
+      = render 'layouts/core_partials/master_head'
       .content
         = yield
     = yield :scripts
