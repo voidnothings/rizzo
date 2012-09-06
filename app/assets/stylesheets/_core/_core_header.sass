@@ -78,8 +78,9 @@
 
 %primary-nav
   @extend %helvetica-neue
-  padding: 6px 0
-  @extend %irregular-type
+  padding: 5px 0
+  @extend %regular-type
+  letter-spacing: -0.05em
   a
     padding: 12px 8px
     color: $nav-primary-type
@@ -111,7 +112,7 @@
 %secondary-nav
   @extend %helvetica-neue
   @extend %uppercase
-  @extend %tiny-type
+  @extend %extra-small-type
   a
     @extend %float-left
     @extend %block
@@ -138,7 +139,7 @@
   color: #fff
   font-size: 28px
   line-height: 32px
-  max-width: 420px
+  max-width: 380px
   padding: 0 5px
 
 
@@ -152,7 +153,6 @@
 .user-nav
   @extend %primary-nav
   @extend %absolute-right
-  width: 145px
   .user-basket
     @extend %no-padding
   .user-box
@@ -217,7 +217,6 @@
 
 
 
-
 // ----------------------------------------------------------------------------
 //
 // User Nav States
@@ -233,15 +232,14 @@
   .user-join
     display: none
 
-
 .auth-box
   &:hover
     .user-options
-      display: block
+      @extend %block
 
 // ----------------------------------------------------------------------------
 //
-// User Menu
+// User Drop-Down Menu
 //
 // ----------------------------------------------------------------------------
 
@@ -250,14 +248,15 @@
   @extend .is-hidden
   right: 0px
   top: 58px
-  width: 152px
+  width: 165px
   height: 242px
   z-index: 1
+  @include transition(all, 0.15s, ease) 
 
 .user-options-arrow
   @extend %data-user-options-arrow
   @extend %no-repeat
-  background-position: 97px center
+  background-position: 112px center
   position: absolute
   top: -10px
   width: 100%
@@ -266,41 +265,60 @@
 .user-name
   font-weight: bold
   color: white
-  @extend %regular-type-size
+  @extend %large-type
   @extend %bold-text
   @extend %block
-  padding: 0 13px 7px
+  padding: 0 13px 4px
 
 .nav-user-options
   background: $nav-secondary-current-item-bck
   @include round-all(5px)
   @include box-shadow(0px, 1px, 3px, 3px,rgba(0, 0, 0, 0.2))
-  padding: 14px 1px 4px
+  padding: 14px 1px 7px
   .user-menu-option
     padding: 12px 13px
     line-height: 12px
-    color: #fff
-  .user-signout
-    line-height: 18px
-    padding: 16px 13px
     color: #fff
 
 .user-menu-option
   @extend %helvetica-neue
   @extend %irregular-type
+  @extend %data-chevron-right
+  @extend %no-repeat
   @extend %block
   padding: 12px 1px
   color: #fff
   font-weight: normal
-  @extend %data-chevron-right
-  @extend %no-repeat
-  background-position: 130px center
+  background-position: 142px center
   &:hover
     background-color:  $nav-secondary-item-hover 
 
+.user-forum
+  position: relative
+
+.user-forum:after
+  @extend %empty-abs-generated-content 
+  top: 100%
+  left: 0
+  width: 100%
+  height: 8px
+  border-bottom: 1px solid #1eb7bc
+  
 .user-signout
-  margin-top: 0
-  border-top: 1px solid #1eb7bc
+  margin-top: 18px
+
+.user-msg-unread
+  @extend %extra-small-type
+  color: $nav-secondary-current-item-bck
+  background: #fff
+  margin-left: 45px
+  padding: 2px 6px
+  @include round-all(5px)
+  opacity: 0
+  @include transition(all, 0.2s, ease) 
+
+.has-msg
+  opacity: 1
     
 // ----------------------------------------------------------------------------
 //
@@ -311,7 +329,7 @@
 .search-box
   @extend %relative
   @extend %float-left
-  width: 188px
+  width: 178px
   margin: 10px 0px 0 10px
 
 .search-type-box
@@ -331,7 +349,7 @@
   @include round-all(15px)
   @include transition(all, 0.2s, ease) 
 
-  width: 110px
+  width: 100px
   padding: 6px 10px 6px 30px
 
   color: $nav-search-colour
@@ -342,4 +360,4 @@
     @extend %data-icon-search-on
     @extend %background-white
     color: $nav-search-bck-focus 
-    width: 140px
+    width: 130px
