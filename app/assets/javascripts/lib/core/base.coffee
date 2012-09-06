@@ -1,4 +1,4 @@
-define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authentication','lib/core/shopping_cart'], ($, AdManager, AssetFetch, Authentication, ShoppingCart) ->
+define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart'], ($, AdManager, AssetFetch, Authenticator, ShoppingCart) ->
 
   class Base
 
@@ -17,7 +17,7 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
       
     userNav: ->
       lpLoggedInUsername = null
-      auth = new Authentication()
+      auth = new Authenticator()
       AssetFetch.get "https://secure.lonelyplanet.com/sign-in/status", () ->
         auth.update()
 

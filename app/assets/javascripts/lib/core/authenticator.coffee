@@ -1,23 +1,23 @@
 define ['jquery'], ($)->
 
-  class Authentication
+  class Authenticator
 
     @options =
       registerLink: 'https://secure.lonelyplanet.com/members/registration/new'
       unreadMessageRefresh: 120000
-      membersUrl: 'http://www.lonelyplanet.com/members'
-      groupsUrl: 'http://www.lonelyplanet.com/groups'
-      staticUrl: 'http://static.lonelyplanet.com/static-ui'
-      messagesUrl: 'http://www.lonelyplanet.com/members/messages'
-      favouritesUrl: 'http://www.lonelyplanet.com/favourites'
-      tripPlannerUrl: 'http://www.lonelyplanet.com/trip-planner'
-      forumPostsUrlTemplate: 'http://www.lonelyplanet.com/thorntree/profile.jspa?username=[USERNAME]'
+      membersUrl: '//www.lonelyplanet.com/members'
+      groupsUrl: '//www.lonelyplanet.com/groups'
+      staticUrl: '//static.lonelyplanet.com/static-ui'
+      messagesUrl: '//www.lonelyplanet.com/members/messages'
+      favouritesUrl: '//www.lonelyplanet.com/favourites'
+      tripPlannerUrl: '//www.lonelyplanet.com/trip-planner'
+      forumPostsUrlTemplate: '//www.lonelyplanet.com/thorntree/profile.jspa?username=[USERNAME]'
       signOutUrl: 'https://secure.lonelyplanet.com/sign-in/logout'
-
+    
     constructor: ->
       @userState = @userSignedIn()
       @widget = $('nav.user-nav')
-      @options = Authentication.options
+      @options = Authenticator.options
       @signonWidget()
       
     userSignedIn: ->
@@ -55,16 +55,19 @@ define ['jquery'], ($)->
       userOptions = [
         {title: 'My Profile', uri: "#{@options.membersUrl}", style:"user-profile" },
         {title: 'Settings', uri: "#{@options.membersUrl}/#{@lpUserName}/edit", style:"user-settings" },
-        {title: 'Messages', uri: "#{@options.messagesUrl}", style:"user-msg" },
+        {title: 'Messages', uri: "#{@options.messagesUrl}", style:"user-msg", extra:"<span class='user-msg-unread js-user-msg-unread'></span>"},
         {title: 'Forum Activity', uri: "#{@options.forumPostsUrlTemplate.replace('[USERNAME]', @lpUserName)}", style:"user-forum" },
         {title: 'Sign-Out', uri: "#{@options.signOutUrl}", style:"user-signout" }
       ]
-      optionElements =  ("<a class='user-menu-option #{u.style}' href='#{u.uri}'>#{u.title}</a>" for u in userOptions).join('')
+      optionElements =  ("<a class='user-menu-option #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
 
       userMenu = "<div class='user-options'><div class='user-options-arrow'></div><nav class='nav-user-options'><span class='user-name'>#{@lpUserName}</span>#{optionElements}</nav></div>"  
 
     signInUrl:->
       "https://secure.lonelyplanet.com/sign-in/login?service=#{escape(window.location)}"
+    
+    userAvatar: ->
+      "#{@options.membersUrl}/#{@lpUserName}/mugshot/mini"
 
     update: ->
       @setLocalData("lp-uname", window.lpLoggedInUsername)
@@ -72,37 +75,27 @@ define ['jquery'], ($)->
       @userState = @userSignedIn()
       if(@userState is not prevState)
         @signonWidget()
-      # @displayUnreadMessageCount()
+      @showMessageCount()
 
-    userAvatar: ->
-      "#{@options.membersUrl}/#{@lpUserName}/mugshot/mini"
+    showMessageCount: ->
+      @updateMessageCount()
 
-    refreshUnreadCountCallBack:(data={unread_count:0})->
+    updateMessageCount: ->
+      $.getJSON("#{@options.membersUrl}/#{@lpUserName}/messages/count?callback=?", (data)=>@messageCountCallBack(data)) if @lpUserName
+
+    messageCountCallBack:(data={unread_count:0})->
       @setLocalData('lp-unread-msg', data.unread_count)
       @setLocalData('lp-sent-msg', data.sent_count)
       @setLocalData('lp-received-msg', data.received_count)
-      unread_indicator = $(".primary .unread")
-      unread_indicator.text(data.unread_count)
-      if (data.unread_count > 0)
-        unread_indicator.addClass("newMail")
-      else
-        unread_indicator.removeClass("newMail")
-
-    updateMessageCount: ->
-      $.getJSON("#{@options.membersUrl}/#{@lpUserName}/messages/count?callback=?", (data)=>@refreshUnreadCountCallBack(data)) if @lpUserName
-
-    displayUnreadMessageCount: ->
-      @updateMessageCount()
+      data.unread_count = 7
+      if data.unread_count > 0
+        $('span.js-user-msg-unread').empty().html(data.unread_count).addClass('has-msg')
     
     bindEvents: ->
       $('#unread').click(()-> e.preventDefault(); window.location = "#{options.membersUrl}/#{@lpUserName}/messages")
 
     signOut: ->
-      opts =
-        domain: 'lonelyplanet.com'
-        path: '/'
-        secure: true
-      window.location="https://secure.lonelyplanet.com/sign-in/logout"
+      window.location= @options.signOutUrl
 
     getLocalData:(k)->
       if (@supportStorage())
