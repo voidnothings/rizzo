@@ -2,8 +2,7 @@ define ->
 
   adManager =
     init : (_config,_target) ->
-
-      console.log('boy');
+      
       _config.service?= 'http://ad.doubleclick.net/adi/2009.lonelyplanet'
       iframe = document.createElement('iframe')
       ord = Math.random()*10000000000000000
