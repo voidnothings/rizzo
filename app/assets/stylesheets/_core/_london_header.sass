@@ -107,7 +107,9 @@
 .secondary
   @extend %secondary-gradient
   @extend %clearfix
-  padding: 8px 0
+  padding: 11px 0
+  .container
+    min-height: 32px
 
 %secondary-nav
   @extend %helvetica-neue
@@ -130,18 +132,18 @@
   @extend %secondary-nav
   @extend %absolute-bottom-right
   @extend %float-right
-  padding-bottom: 2px
-
+  padding-bottom: 2px 
 
 .head-title
   @extend %benton-regular
   @extend %float-left
-  font-size: 28px
   @extend %no-margin
   color: #fff
-  max-width: 400px
-  padding: 0 5px
+  font-size: 28px
   line-height: 32px
+  max-width: 400px
+  // min-height: 38px
+  padding: 0 5px
 
 
 // ----------------------------------------------------------------------------
@@ -296,7 +298,7 @@
   @extend %no-repeat
   background-position: 130px center
   &:hover
-    background-color: rgba(0,0,0,0.1)
+    background-color:  $nav-secondary-item-hover 
 
 .user-signout
   margin-top: 0
@@ -321,17 +323,6 @@
   border: 0
   border-color: transparent
   @extend %small-type
-
-.search-submit
-  @extend .is-hidden
-  @extend %absolute
-  ght: 8px
-  top: 4px
-  width: 20px
-  height: 20px
-  z-index: 3
-  opacity: 0
-  cursor: pointer
 
 .search-type
   @extend %data-icon-search-off
