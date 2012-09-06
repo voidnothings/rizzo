@@ -29,10 +29,8 @@ define ['jquery'], ($)->
     signonWidget: ->
       if @userSignedIn() is true
         @showUserBox()
-        # @displayUserShortcutMenu()
       else
         @showLoginAndRegister()
-        # @displaySigninRegisterWidget()
         
     showUserBox: ()->
       $(@widget).addClass('is-logged')
@@ -41,7 +39,7 @@ define ['jquery'], ($)->
     showLoginAndRegister: ()->
       $(@widget).removeClass('is-logged')
       joinElement = "<a class='user-join js-user-join' href='#{@options.registerLink}'>Join</a>"
-      signinElement = "<a class='user-singin js-user-sing-in' href='#{@signInUrl()}'>Sing-In</a>"
+      signinElement = "<a class='user-singin js-user-sing-in' href='#{@signInUrl()}'>Sign-In</a>"
       $('div.js-auth-box').empty()
       $('div.js-auth-box').append(joinElement).append(signinElement)
 
@@ -52,8 +50,6 @@ define ['jquery'], ($)->
       $('div.js-auth-box').append(userBoxElement)
       $('div.js-auth-box').append(@userOptionsMenu())
 
-
-
     userOptionsMenu: ->
       userOptions = [
         {title: 'My Profile', uri: "#{@options.membersUrl}", style:"user-profile" },
@@ -62,10 +58,9 @@ define ['jquery'], ($)->
         {title: 'Forum Activity', uri: "#{@options.forumPostsUrlTemplate.replace('[USERNAME]', @lpUserName)}", style:"user-forum" },
         {title: 'Sign-Out', uri: "#{@options.signOutUrl}", style:"user-signout" }
       ]
-        
       optionElements =  ("<a class='user-menu-option #{u.style}' href='#{u.uri}'>#{u.title}</a>" for u in userOptions).join('')
-        
-      "<nav class='nav-user-options'>#{optionElements}</nav>"  
+
+      userMenu = "<div class='user-options'><div class='user-options-arrow'></div><nav class='nav-user-options'><span class='user-name'>#{@lpUserName}</span>#{optionElements}</nav></div>"  
 
     signInUrl:->
       "https://secure.lonelyplanet.com/sign-in/login?service=#{escape(window.location)}"
@@ -74,15 +69,6 @@ define ['jquery'], ($)->
       @setLocalData("lp-uname", window.lpLoggedInUsername)
       @signonWidget()
       # @displayUnreadMessageCount()
-
-    displaySigninRegisterWidget: ->
-      $(@widget).removeClass('is-logged')
-
-      # signInButton = $('<button class="signInButton submitButtonShort" value="Sign in">Sign In</button>')
-      # signInButton.click(=>@signIn())
-      # @widget.empty()
-      # @widget.append(signInButton)
-      # @widget.append("<p><a href='#{@options.registerLink}'>Register</a></p>")
 
     userAvatar: ->
       "#{@options.membersUrl}/#{@lpUserName}/mugshot/mini"
@@ -103,28 +89,7 @@ define ['jquery'], ($)->
 
     displayUnreadMessageCount: ->
       @updateMessageCount()
-
-    displayUserShortcutMenu: ->
-      @widget.addClass('is-logged')
-      $('user-img').attr('')
-      # userMenu = [
-      #   "<a class='navHead' href='#{@options.membersUrl}'>#{@avatar()}",
-      #   "<span class='loggedInUsername'>#{@getLocalData('lp-uname')}</span>",
-      #   "<span class='unread'>#{@getLocalData('lp-unread-msg') || 0}</span>",
-      #   "<span class='arrow' alt='More shortcuts'/>",
-      #   "</a>",
-      #   "<ul class='menu hidden'>",
-      #   "<li><a href='#{@options.membersUrl}'>My profile</a></li>",
-      #   "<li><a href='#{@options.membersUrl}/#{@lpUserName}/edit'> Settings </a></li>",
-      #   "<li><a href='#{@options.messagesUrl}'> Messages </a></li>",
-      #   "<li><a href='#{@options.forumPostsUrlTemplate.replace('[USERNAME]', @lpUserName)}'> Forum activity </a></li>",
-      #   "<li class='signout'><a href='#{@options.signOutUrl}'> Sign out </a></li>",
-      #   "</ul>"
-      # ].join('')
-      # @widget.empty().addClass('userLoggedIn').removeClass('signInRegister').append(userMenu)
-      # @widget.find('span.arrow').click((e)=> e.preventDefault(); @widget.find('ul.menu').toggle())
-      # @widget.find('li.signout a').click((e)=> e.preventDefault();  @signOut();)
-
+    
     bindEvents: ->
       $('#unread').click(()-> e.preventDefault(); window.location = "#{options.membersUrl}/#{@lpUserName}/messages")
 

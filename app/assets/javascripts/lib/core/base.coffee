@@ -6,7 +6,7 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
       @config()
       @userNav()
       @userBasket()
-      # @adLeaderboard()
+      @adLeaderboard()
 
     config: ->
       @adConf =
