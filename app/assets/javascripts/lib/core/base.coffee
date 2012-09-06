@@ -22,7 +22,7 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
         auth.update()
 
     adLeaderboard: ->
-      if window.lp.ads 
+      if window.lp and window.lp.ads 
         AdManager.init(@adConfig(),'ad_leaderboard')
 
     userBasket: ->
