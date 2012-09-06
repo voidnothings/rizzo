@@ -11,20 +11,9 @@
         %label.is-hidden(for='search-q')
           Search
         %input.search-type(type="text" id="search" maxlength="2048" class="searchText" name="q" value="" autocomplete="off" tabindex="1")
-        %button.search-submit(type="submit" id="search-q-submit" name="search-q-submit")
+        %button.search-submit.is-hidden(type="submit" id="search-q-submit" name="search-q-submit")
 
     %nav.user-nav.js-user-nav
       %a.user-basket(href='basket')
         %span.basket-items.js-basket-items
       .auth-box.js-auth-box
-        -# %a.user-join.js-join(href='https://secure.lonelyplanet.com/members/registration/new')
-        -#   Join
-        -# %a.user-singin.js-sign-in(href='https://secure.lonelyplanet.com/sign-in/login?service=')
-        -#   Sign-In
-        -# %a.user-box(href='')
-        -#   %img.user-img.js-user-img
-        -#   %span.user-handler.js-box-handler
-
-
-
-
