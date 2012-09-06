@@ -15,6 +15,7 @@ define ['jquery'], ($)->
       signOutUrl: 'https://secure.lonelyplanet.com/sign-in/logout'
 
     constructor: ->
+      @userState = @userSignedIn()
       @widget = $('nav.user-nav')
       @options = Authentication.options
       @signonWidget()
@@ -27,7 +28,7 @@ define ['jquery'], ($)->
         false
 
     signonWidget: ->
-      if @userSignedIn() is true
+      if @userState is true
         @showUserBox()
       else
         @showLoginAndRegister()
@@ -67,7 +68,10 @@ define ['jquery'], ($)->
 
     update: ->
       @setLocalData("lp-uname", window.lpLoggedInUsername)
-      @signonWidget()
+      prevState = @userState
+      @userState = @userSignedIn()
+      if(@userState is not prevState)
+        @signonWidget()
       # @displayUnreadMessageCount()
 
     userAvatar: ->
