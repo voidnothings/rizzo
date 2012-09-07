@@ -17,11 +17,12 @@
 %base-button
   @extend %inline-block
   @extend %relative
+  @extend %bold-text
   +box-shadow(1px, 1px, 1px, 0, #e3e3e3)
   +round-all(3px)
   +font-size(13)
+  +box-sizing()
   -webkit-user-select: none
-  font-weight: bold
   background-color: whiteSmoke
   line-height: normal
   cursor: pointer
@@ -47,14 +48,11 @@
 // Buttons
 // -----------------------------------------------------------------------------
 
-.orange-button
+.bookable-button
   @extend %regular-button
-  +background-gradient($bookable-orange, $bookable-orange)
-  border: 1px solid #f8a350
-  color: #fff
-  &:hover
-    border-color: #a74b02
-    +background-gradient(#cc5c01, #a74b02)
+  background: $bookable
+  color: $heading-text
+
 
 .grey-button
   @extend %regular-button
@@ -98,6 +96,7 @@
   &.disabled, &.disabled:hover, &.disabled:active
     +box-shadow( 1px,  #e3e3e3)
     +background-gradient(whiteSmoke, #E5E5E5)
+    @extend %bold-text
     color: #666
     cursor: default
     margin-top: 0
@@ -105,7 +104,6 @@
     border-style: solid
     border-width: 1px
     font-size: 13px
-    font-weight: bold
     line-height: normal
     overflow: auto
     padding: 6px 15px
@@ -114,9 +112,9 @@
 .std
   -webkit-user-select: none
   +round-all(3px)
+  @extend %bold-text
   cursor: pointer
   font-size: 12px
-  font-weight: bold
   line-height: normal
   text-align: center
   display: inline-block

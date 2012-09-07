@@ -15,8 +15,8 @@
       position: relative
       top: 2px
 .err
+  @extend %bold-text
   color: $error-text-color !important
-  font-weight: bold
   // The placeholder lines below are duplicated because together they break
   &::-webkit-input-placeholder
     color: $error-text-color

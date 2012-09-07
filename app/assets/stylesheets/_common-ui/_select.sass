@@ -23,19 +23,18 @@
     height: $height
 
     .overlay
-      @include round-all(15px)
-      @include box-sizing(border-box)
+      +box-sizing(border-box)
+      color: $body-copy
       position: relative
       display: block
       width: $width
       height: $height
       line-height: $height
-      font-weight: bold
       padding-right: $arrow-width + 5px
       overflow: hidden
       text-indent: 10px
       background-color: #fff
-      border: 1px solid #BEBEBE
+      border: 1px solid $form-gray
       word-break: break-all
 
       .no-boxsizing &,
@@ -47,31 +46,16 @@
 
       .no-generatedcontent &,
       .oldIE &
-        @if $project == 'waldorf'
-          @include icon-selector-handler
-          background-repeat: no-repeat
-          background-position: 95% center
-        @else if $project == 'hostelworld'
-          background: #fff url("../img/checkout_sprite.png") no-repeat right bottom
-        @else
-          background: #fff url("../../images/common-ui/select-box-arrow-down.png") no-repeat 95% center
+        @include icon-selector-handler
+        background-repeat: no-repeat
+        background-position: 95% center
 
       &:after
-        content: ''
-        position: absolute
-        display: block
+        @extend %empty-abs-generated-content
         right: 1px
         top: 0
-        border-left: 1px solid #BEBEBE
-        height: 28px
         width: ($arrow-width - 6px)
-        @include round-each(0, 15px, 15px, 0)
-        @if $project == 'waldorf'
-          @include icon-selector-handler
-        @else if $project == 'hostelworld'
-          background: #fff url("../img/checkout_sprite.png") no-repeat -112px -71px
-        @else
-          background: #fff url("../../images/common-ui/select-box-arrow-down.png") no-repeat 8px 8px  
+        @include icon-selector-handler
 
     select
       position: absolute

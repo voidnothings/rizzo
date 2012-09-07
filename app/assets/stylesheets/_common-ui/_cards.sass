@@ -7,7 +7,7 @@ $hero-image-height: 185px
 
 %base-card-object
   @extend %white-background
-  +box-shadow(1px, 1px, 2px, 0, rgba(0,0,0,0.1))
+  @extend %standard-shadow
   margin-bottom: 10px
   .grid-view &
     height: $card-grid-height
@@ -65,8 +65,8 @@ $hero-image-height: 185px
 .card-price-tag
   @extend %absolute-bottom
   @extend %extra-small-type
-  background-color: $price-tag
-  color: $gray1
+  background-color: $bookable
+  color: $header-gray
   padding: 10px 15px
   left: 4px
   .price
@@ -86,7 +86,7 @@ $hero-image-height: 185px
   @extend %box-off
   @extend %relative
   @extend %small-type
-  color: $gray2
+  color: $body-copy
 
   .list-view &
     float: left
@@ -118,7 +118,7 @@ $hero-image-height: 185px
   &:before
     @extend %empty-generated-content
     @extend %absolute-top-left
-    border-top: 1px solid $gray2
+    border-top: 1px solid $body-copy
     width: 15px
 
 .grid-view .description

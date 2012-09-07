@@ -1,11 +1,11 @@
 %stacked-nav-base-object
   display: block
-  color: $gray1
+  color: $header-gray
 
 .left-nav
   @extend %white-background
-  border-top: 1px solid #fff
-  margin-top: 47px
+  @extend %standard-shadow
+  margin-top: 46px
 
   .nav-item
     @extend %relative
@@ -19,11 +19,11 @@
       content: '\203A'
       top: 15px
       right: 15px
-    
+
     &.current, &.current:hover
-      color: #fff
-      background-color: $heading-text
-    
+      @extend %bold-text
+      @extend %active-background
+
     &:hover
       background-color: $nav-hover-background
 
@@ -39,4 +39,4 @@
     @extend %serif
     @extend %italic-text
     display: block
-    color: $gray4
+    color: $sub-copy

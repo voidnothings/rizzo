@@ -1,12 +1,15 @@
-.filters form
+.filters-form
   @extend %grid-wrapper
 
 .filter-set
-  @extend %one-grid-column
-  @extend %box-off
+  @extend %padded-grid-column
+  width: 25%
+  margin-bottom: 20px
 
 .filter-set-title
   @extend %margin-bottom
+  @extend %larger-type
+  @extend %bold-text
 
 .filter-item 
   @extend %no-list-style
@@ -15,3 +18,13 @@
     @extend %margin-bottom
     float: left
     margin-right: 5px
+
+.filter-submit
+  display: block
+  clear: both
+  border-top: 1px solid $form-gray
+  padding-top: 20px
+
+
+
+

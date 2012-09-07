@@ -1,38 +1,50 @@
-// -----------------------------------------------------------------------------
-// 
-//  Simple Grid for the card/list main content
-// 
-// -----------------------------------------------------------------------------
-
-$width: 190px
 $gutter: 10px
+
 
 %grid-wrapper
   +box-sizing()
   @extend %clearfix
   margin-left: -$gutter
 
+
 %grid-column
   +box-sizing()
   @extend %float-left
+
+%padded-grid-column
+  @extend %grid-column
+  padding-left: $gutter
+
+
+
+// -----------------------------------------------------------------------------
+// 
+//  Simple Grid for the card/list main content
+// 
+// -----------------------------------------------------------------------------
+
+$card-width: 190px
+
+%margin-grid-column
+  @extend %grid-column
   margin-left: $gutter
 
 %one-grid-column
-  @extend %grid-column
-  width: $width
+  @extend %margin-grid-column
+  width: $card-width
 
 %two-grid-columns
-  @extend %grid-column
-  width: ($width * 2) + $gutter
+  @extend %margin-grid-column
+  width: ($card-width * 2) + $gutter
 
 %three-grid-columns
-  @extend %grid-column
-  width: ($width * 3) + ($gutter * 2)
+  @extend %margin-grid-column
+  width: ($card-width * 3) + ($gutter * 2)
 
 %four-grid-columns
-  @extend %grid-column
-  width: ($width * 4) + ($gutter * 3)
+  @extend %margin-grid-column
+  width: ($card-width * 4) + ($gutter * 3)
 
 %five-grid-columns
-  @extend %grid-column
-  width: ($width * 5) + ($gutter * 4)
+  @extend %margin-grid-column
+  width: ($card-width * 5) + ($gutter * 4)
