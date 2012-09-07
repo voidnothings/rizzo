@@ -1,19 +1,77 @@
-$gutter: 10px
-
+// -----------------------------------------------------------------------------
+// 
+//  Grid Wrapper
+// 
+// -----------------------------------------------------------------------------
 
 %grid-wrapper
   +box-sizing()
   @extend %clearfix
-  margin-left: -$gutter
+
+
+%grid-wrapper-10
+  @extend %grid-wrapper
+  margin-left: -10px
+
+%grid-wrapper-15
+  @extend %grid-wrapper
+  margin-left: -15px
+
+%grid-wrapper-20
+  @extend %grid-wrapper
+  margin-left: -20px
+
+
+// -----------------------------------------------------------------------------
+// 
+//  Grid Columns
+// 
+// -----------------------------------------------------------------------------
 
 
 %grid-column
   +box-sizing()
   @extend %float-left
 
-%padded-grid-column
+%padded-grid-column-10
   @extend %grid-column
-  padding-left: $gutter
+  padding-left: 10px
+
+%padded-grid-column-15
+  @extend %grid-column
+  padding-left: 15px
+
+%padded-grid-column-20
+  @extend %grid-column
+  padding-left: 20px
+
+%margin-grid-column-10
+  @extend %grid-column
+  margin-left: 10px
+
+%margin-grid-column-20
+  @extend %grid-column
+  margin-left: 20px
+
+%margin-grid-column-30
+  @extend %grid-column
+  margin-left: 30px
+
+
+// -----------------------------------------------------------------------------
+// 
+//  2/3 Grid for use within full page card
+// 
+// -----------------------------------------------------------------------------
+
+%one-third
+  @extend %padded-grid-column-20
+  width: 33.333333333%
+
+%two-thirds
+  @extend %padded-grid-column-20
+  width: 66.666666666%
+
 
 
 
@@ -24,27 +82,24 @@ $gutter: 10px
 // -----------------------------------------------------------------------------
 
 $card-width: 190px
-
-%margin-grid-column
-  @extend %grid-column
-  margin-left: $gutter
+$gutter: 10px
 
 %one-grid-column
-  @extend %margin-grid-column
+  @extend %margin-grid-column-10
   width: $card-width
 
 %two-grid-columns
-  @extend %margin-grid-column
+  @extend %margin-grid-column-10
   width: ($card-width * 2) + $gutter
 
 %three-grid-columns
-  @extend %margin-grid-column
+  @extend %margin-grid-column-10
   width: ($card-width * 3) + ($gutter * 2)
 
 %four-grid-columns
-  @extend %margin-grid-column
+  @extend %margin-grid-column-10
   width: ($card-width * 4) + ($gutter * 3)
 
 %five-grid-columns
-  @extend %margin-grid-column
+  @extend %margin-grid-column-10
   width: ($card-width * 5) + ($gutter * 4)

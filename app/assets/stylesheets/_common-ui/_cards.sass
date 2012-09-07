@@ -8,10 +8,13 @@ $hero-image-height: 185px
 %base-card-object
   @extend %white-background
   @extend %standard-shadow
-  margin-bottom: 10px
+  .grid-view &, .list-view &
+    @extend %reset-line-height
+    margin-bottom: 10px
   .grid-view &
     height: $card-grid-height
-
+  &.full-page
+    @extend %box-off-double
 
 // -----------------------------------------------------------------------------
 // The Card
@@ -19,7 +22,6 @@ $hero-image-height: 185px
 
 .card
   @extend %base-card-object
-  @extend %reset-line-height
   &.deal
     @extend %relative
     &:after
@@ -37,6 +39,14 @@ $hero-image-height: 185px
   background-color: $card-title-text
   .card-name
     color: #fff
+
+.card-title
+  @extend %benton
+  @extend %bold-text
+  @extend %tighten-text
+  @extend %card-header-size
+  @extend %reset-line-height
+  color: $heading-text
 
 // -----------------------------------------------------------------------------
 // The Card Image
@@ -129,12 +139,12 @@ $hero-image-height: 185px
 // Card Footer
 // -----------------------------------------------------------------------------
 
-.card .orange-button
+.list-view .bookable-button
   @extend %absolute
   bottom: 10px
   right: 10px
-  .grid-view &
-    display: none
+.grid-view .bookable-button
+  display: none
 
 .lp-reviewed-badge
   @extend %absolute
