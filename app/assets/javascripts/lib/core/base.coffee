@@ -3,9 +3,10 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
   class Base
 
     constructor: ->
-      @userNav()
-      @userBasket()
-      @adLeaderboard()
+      @authenticateUser()
+      @showUserBasket()
+      @showLeaderboard()
+      @manageSearchBoxExpand() 
 
     adConfig: ->
       adZone : window.lp.ads.adZone or 'home'
@@ -15,17 +16,26 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
       mtfIFPath : (lp.ads.mtfIFPath or '/')
       unit: [728,90]
       
-    userNav: ->
-      lpLoggedInUsername = null
-      auth = new Authenticator()
-      AssetFetch.get "https://secure.lonelyplanet.com/sign-in/status", () ->
-        auth.update()
+    authenticateUser: ->
+      @auth = new Authenticator()
+      AssetFetch.get "https://secure.lonelyplanet.com/sign-in/status", () =>
+        @auth.update()
 
-    adLeaderboard: ->
+    showLeaderboard: ->
       if window.lp and window.lp.ads 
         AdManager.init(@adConfig(),'ad_leaderboard')
 
-    userBasket: ->
+    showUserBasket: ->
       shopCart = new ShoppingCart()
+
+    manageSearchBoxExpand: ->
+      $('input.js-global-search').on('focus', =>
+        if !@auth.userSignedIn()
+          $('a.user-basket').toggleClass('is-invisible')
+      )
+      $('input.js-global-search').on('blur', =>
+        if !@auth.userSignedIn()
+          $('a.user-basket').toggleClass('is-invisible')
+      )
 
 )
