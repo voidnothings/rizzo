@@ -15,8 +15,8 @@ module GlobalResourcesHelper
       {style:'insurance', title:'Insurance', uri: www_url("bookings/insurance.do")}
     ]
   end
-
-  def gloval_navigation_items
+  
+  def core_navigation_items
     [
       {title:'Destinations', uri: www_url("destinations")},
       {title:'Themes', uri: www_url("thorntree")},
@@ -24,6 +24,18 @@ module GlobalResourcesHelper
       {title:'Travel Bookings', uri: hotels_url},
       {title:'Thorn Tree', uri: www_url("thorntree")},
       {title:'Propaganda', uri: www_url("propaganda")}
+    ]
+  end
+
+  def destination_navigation_items
+    [
+      {title:'Highlights', uri: www_url("destinations")},
+      {title:'Places in ...', uri: www_url("highlights")},
+      {title:'Need to know', uri: shop_url},
+      {title:'Hotels', uri: hotels_url},
+      {title:'Images & Video', uri: www_url("thorntree")},
+      {title:'Tips & Article', uri: www_url("propaganda")},
+      {title:'Forum', uri: www_url("thorntree")}
     ]
   end
 

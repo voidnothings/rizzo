@@ -3,8 +3,8 @@
     %h1.head-title
       = yield :title
     %nav.destination-nav
-      - ['Highlights','Places in ...','Need to know','Hotels','Images & Video','Tips & Articles','Forum'].each do |n|
-        %a(class="#{n=='Hotels' ? 'current' : '' }" href=n)
-          = n
+      - destination_navigation_items.each do |n|
+        %a{:class=>(n[:title] == 'Hotels' ? 'current' : ''), :href=> n[:uri]}
+          = n[:title]
 
 
