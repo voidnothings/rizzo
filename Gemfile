@@ -13,6 +13,7 @@ gem 'avocado', path:'/Users/dasilaw6/development/lp/lp-muppets/avocado'
 gem 'beaker',  path: '/Users/dasilaw6/development/lp/lp-muppets/beaker'
 gem 'requirejs-rails'
 gem 'uglifier', '>= 1.0.3'
+gem 'rb-fsevent', '~> 0.9.1'
 
 group :development do
   gem 'guard'
