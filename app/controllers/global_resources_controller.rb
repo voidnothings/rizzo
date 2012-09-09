@@ -1,4 +1,5 @@
 class GlobalResourcesController < GlobalController
+  
   helper GlobalResourcesHelper
   layout nil
 
@@ -12,6 +13,10 @@ class GlobalResourcesController < GlobalController
 
   def footer
     render :template => 'layouts/partials/_footer'
+  end
+
+  def index
+    render '/global/index', :layout=>'core'
   end
 
 end
