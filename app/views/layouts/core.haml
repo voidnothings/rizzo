@@ -2,7 +2,7 @@
 %html
   %head
     = render 'layouts/core_partials/head'
-  %body{class: client_browser(request.user_agent) }
+  %body{class: "lp-core #{client_browser(request.user_agent)}" }
     .wrap
       = render 'layouts/core_partials/master_head'
       .content
