@@ -62,7 +62,7 @@ define ['jquery'], ($)->
       optionElements =  ("<a class='user-menu-option #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
 
       userMenu = "<div class='user-options'><div class='user-options-arrow'></div><nav class='nav-user-options'><span class='user-name'>#{@lpUserName}</span>#{optionElements}</nav></div>"  
-
+    
     signInUrl:->
       "https://secure.lonelyplanet.com/sign-in/login?service=#{escape(window.location)}"
     
@@ -87,7 +87,6 @@ define ['jquery'], ($)->
       @setLocalData('lp-unread-msg', data.unread_count)
       @setLocalData('lp-sent-msg', data.sent_count)
       @setLocalData('lp-received-msg', data.received_count)
-      data.unread_count = 7
       if data.unread_count > 0
         $('span.js-user-msg-unread').empty().html(data.unread_count).addClass('has-msg')
     
