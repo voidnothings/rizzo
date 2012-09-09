@@ -19,8 +19,9 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'haml'
   gem.add_dependency 'sass'
   
-  gem.add_development_dependency 'rspec'
-  gem.add_development_dependency 'rspec-rails'
+  gem.add_development_dependency 'rspec', '2.10.0'
+  gem.add_development_dependency 'rspec-rails', '2.10.0'
+  gem.add_development_dependency 'listen', '0.4.2'
   gem.add_development_dependency 'guard'
   gem.add_development_dependency 'guard-rspec'
   gem.add_development_dependency 'capybara'
