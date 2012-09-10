@@ -1,16 +1,13 @@
-%stacked-nav-base-object
-  display: block
-  color: $header-gray
-
 .left-nav
   @extend %white-background
   @extend %standard-shadow
+  @extend %stacked-nav
   margin-top: 46px
 
   .nav-item
     @extend %relative
-    @extend %stacked-nav-base-object
     @extend %regular-type-size
+    color: $header-gray
     padding: 15px
     text-decoration: none
     &:after

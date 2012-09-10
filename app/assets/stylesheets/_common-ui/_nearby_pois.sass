@@ -1,51 +1,18 @@
-// ----------------------------------------------------------------------------
-// Layout a list of nearby POIs
-//
-// <div id="pois-list-wrapper">
-//   <div class="lp-nearby-pois">
-//     <h3 class="section-title">Interesting places nearby</h3>
-//     <ul class="nearby-pois-list">
-//       <li class="nearby-poi-item" data-poi-id="xxx">
-//         <div class="icon-poi-small icon-poi-activity-small"></div>
-//         <div class="poi-item-description">
-//           <a href="#" class="poi-item-title">Lorem Ipsum</a>
-//           <p>Lorem ipsum dolor sit amet.</p>
-//         </div>      
-//       </li>
-//     </ul>
-//   </div>
-// </div>
-// 
-// ----------------------------------------------------------------------------
-
-#pois-list-wrapper
-  float: right
-  width: 350px
-
 .nearby-pois-list
-  list-style-type: none
+  @extend %stacked-nav
 
 .nearby-poi-item
-  padding-top: 5px
-  padding-right: 5px
-  padding-bottom: 5px
+  padding: 5px 0
   cursor: pointer
   &:hover
     background-color: $light-grey
 
-.thing-to-do-description
-  color: #404040
-
 .poi-item-title
   @extend %bold-text
-  font-size: 14px
 
 .poi-item-description
-  padding: 0 10px 0 35px
-  p
-    color: $soft-grey
+  padding-left: 35px
 
-.nearby-poi-highlighted
+.nearby-poi-highlighted, 
+.nearby-poi-highlighted:hover
   background-color: $light-blue
-  &:hover
-    background-color: $light-blue
