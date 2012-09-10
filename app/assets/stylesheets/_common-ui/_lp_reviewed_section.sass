@@ -1,0 +1,30 @@
+// -----------------------------------------------------
+// Lp-Reviewed Section
+// Author review text with a generic info lp-terms box and support for extra endorsements
+// -----------------------------------------------------
+
+.lp-review
+  +round-all(10px)
+  @extend %relative
+  @extend %box-off-double
+  color: $text-on-blue
+  background-color: $lp_reviewed
+  &.arrow-top:after
+    +css-arrow(top, 10px, $lp_reviewed, 20px)
+  &.arrow-left:after
+    +css-arrow-central(left, 10px, $lp_reviewed)
+
+.lp-review-recommended
+  @include round-all(4px)
+  padding: 15px 10px 15px 60px
+  background-color: #fff
+  color: $heading-text
+  @extend %bold-text
+  .recommended
+    color: $heading-text
+
+.top-choice-endorsement
+  @include endorsement-top-choice
+  position: absolute
+  right: 5px
+  top: -5px

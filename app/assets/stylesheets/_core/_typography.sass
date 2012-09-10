@@ -38,9 +38,9 @@ p
   padding: 0
 
 
-// --------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 // Typographic Element Definitions 
-// --------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------
 h1
   @extend %bold-text
   @extend %smooth-text
@@ -59,6 +59,9 @@ h4, .h4
   @extend %large-type
   @extend %smooth-text
 
+.section-title
+  color: $heading-text
+  +font-size(20)
 
 a,
 a.h1,
@@ -73,9 +76,7 @@ a.h6
   &:hover
     text-decoration: underline
 
-.text-list
-  li
-    margin-bottom: 0.6em
+
 
 // -----------------------------------------------------------------------------
 // Backwards compatability - revert the font size for the $$legacy header/footer

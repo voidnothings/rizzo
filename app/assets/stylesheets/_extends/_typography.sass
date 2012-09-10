@@ -46,6 +46,20 @@
 %card-header-size
   @include font-size(42)
 
+
+// -----------------------------------------------------------------------------
+// Opt-in Typography - extend %body-copy to activate
+// -----------------------------------------------------------------------------
+
+%body-copy
+  color: $body-copy // $$legacy until crazy harry refactor
+  p
+    color: $body-copy
+  h3
+    @extend %regular-type-size
+    @extend %bold-text
+    color: $header-gray
+
 // -----------------------------------------------------------------------------
 // Typographic modifiers
 // -----------------------------------------------------------------------------
