@@ -5,8 +5,6 @@ module Rizzo
 
       app.config.assets.precompile += ['rizzo.js']
 
-      Sass::Plugin.add_template_location File.join(Gem.loaded_specs['rizzo'].full_gem_path, '/app/assets/stylesheets')
-
       app.routes.prepend do
         match 'global_head'      => 'global_resources#head'
         match 'global_header'    => 'global_resources#header'
