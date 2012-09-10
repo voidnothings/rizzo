@@ -3,14 +3,9 @@ require "beaker/version"
 module Beaker
   module Rails
     class Engine < ::Rails::Engine
-
       initializer "beaker.configure_rails_initialization" do |app|
-	require "sass/plugin"
-      
-        Sass::Plugin.add_template_location File.join(Gem.loaded_specs['beaker'].full_gem_path, '/app/assets/stylesheets')
-      
+        # your init code goes here
       end
-
     end
   end
 end
