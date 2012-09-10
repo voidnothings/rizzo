@@ -31,7 +31,7 @@ define ['jquery','handlebars','underscore'], ($) ->
       $(@args.target).append(@container)
       templ = "
         {{#with properties}}
-        <li class='nearby-poi-item' data-poi-id='{{id}}'>
+        <li class='nearby-poi-item nav-item' data-poi-id='{{id}}'>
           <div class='icon-poi-small icon-poi-{{../category}}-small'></div>
           <div class='poi-item-description'>
             <a href='{{uri}}' class='poi-item-title'>{{title}}</a>
