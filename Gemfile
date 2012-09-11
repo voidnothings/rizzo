@@ -8,6 +8,7 @@ gem 'sass-rails', '~> 3.2.3'
 gem 'coffee-rails', '~> 3.2.1'
 gem 'requirejs-rails'
 gem 'uglifier', '>= 1.0.3'
+gem 'unicorn'
 
 gem 'avocado', git: 'git@github.com:lonelyplanet/avocado.git', :branch=>'ads_header_footer'
 # gem 'avocado', path:'/Users/dasilaw6/development/lp/lp-muppets/avocado'
@@ -26,6 +27,5 @@ group :development, :test do
   gem 'cucumber-rails'
   gem 'rake'
   gem 'guard-cucumber'
-  gem 'unicorn'
   gem 'rb-fsevent', '~> 0.9.1'
 end
