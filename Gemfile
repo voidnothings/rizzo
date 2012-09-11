@@ -9,14 +9,14 @@ gem 'coffee-rails', '~> 3.2.1'
 gem 'requirejs-rails'
 gem 'uglifier', '>= 1.0.3'
 gem 'unicorn'
+gem 'rake'
 
-gem 'avocado', git: 'git@github.com:lonelyplanet/avocado.git', :branch=>'ads_header_footer'
-# gem 'avocado', path:'/Users/dasilaw6/development/lp/lp-muppets/avocado'
-gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git', :branch=>'ads_header_footer'
-# gem 'beaker',  path: '/Users/dasilaw6/development/lp/lp-muppets/beaker'
+group :assets do 
+  gem 'avocado', git: 'git@github.com:lonelyplanet/avocado.git', :branch=>'ads_header_footer'
+  gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git', :branch=>'ads_header_footer'
+end
 
-
-group :development, :test do
+group :test do 
   gem 'guard'
   gem 'guard-coffeescript'
   gem 'rspec'
@@ -25,7 +25,6 @@ group :development, :test do
   gem 'capybara'
   gem 'cucumber'
   gem 'cucumber-rails'
-  gem 'rake'
   gem 'guard-cucumber'
   gem 'rb-fsevent', '~> 0.9.1'
 end
