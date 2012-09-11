@@ -13,5 +13,26 @@
 
 %stacked-nav
   @extend %no-list-style
-  .nav-item
+  .item
     display: block
+
+
+// -----------------------------------------------------------------------------
+// Ruled list e.g. Services and facilities
+// -----------------------------------------------------------------------------
+
+%ruled-list
+  @extend %stacked-nav
+  .item
+    +vertically-center(50px)
+    border-top: 1px solid $ruled-list-separator
+  .title
+    @extend %bold-text
+    color: $header-gray
+    
+  
+
+
+
+
+

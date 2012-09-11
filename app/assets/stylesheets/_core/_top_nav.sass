@@ -7,7 +7,7 @@
     @extend %float-right
     @extend %lright-align
 
-  .nav-item
+  .item
     +vertically-center(36px)
     +round-all(2px)
     @extend %standard-shadow
@@ -15,8 +15,8 @@
     @extend %relative
     @extend %white-background
     color: $body-copy
-    padding: 0 10px
-    margin: 0 10px 10px 0
+    padding: 0 6px 0 8px
+    margin: 0 8px 10px 0
     &:hover
       @extend %no-underline
     &.active
@@ -26,6 +26,20 @@
         +css-arrow-central(top, 8px, #fff, 120px)
         top: 30px
         bottom: auto
+
+  .start-date
+    @extend %inline-block
+    @extend %date-icon
+
+  .end-date
+    @extend %inline-block
+    @extend %arrow-icon
+    @extend %chevron-vertical
+
+  .open-filters
+    @extend %inline-block
+    @extend %filter-icon
+    @extend %chevron-vertical
 
   .dropdown
     @extend %clearfix

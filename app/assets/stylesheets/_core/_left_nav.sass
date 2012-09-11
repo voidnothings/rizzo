@@ -4,22 +4,24 @@
   @extend %stacked-nav
   margin-top: 46px
 
-  .nav-item
+  .item
     @extend %relative
     @extend %regular-type-size
+    @extend %chevron-horizontal
     color: $header-gray
     padding: 15px
     text-decoration: none
     &:after
-      @extend %absolute
-      font-size: 16px
-      content: '\203A'
-      top: 15px
-      right: 15px
-
+      @extend %no-line-height
+      right: 10px
+      top: 50%
+      
+    
     &.current, &.current:hover
       @extend %bold-text
       @extend %active-background
+      &:after
+        color: #fff
 
     &:hover
       background-color: $nav-hover-background
@@ -27,7 +29,7 @@
   .nav-heading
     @extend %reset-line-height
     @extend %larger-type
-    @extend %stacked-nav-base-object
+    @extend %stacked-nav
     margin-top: 22px
     padding: 0 15px
   

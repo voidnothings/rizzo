@@ -1,0 +1,77 @@
+input[type="text"], input[type="email"], input[type="date"]
+  +box-sizing()
+  @extend %no-margin
+  border: 1px solid $form-gray
+  color: $body-copy
+  padding: 8px 10px
+  font-family: 'Helvetica Neue', Arial, sans-serif 
+  width: 100%
+
+
+input[type="date"], .datepicker
+  @extend %data-datepicker
+  text-indent: 30px
+  background-repeat: no-repeat
+  background-position: 8px 50%
+
+input[type="submit"]
+  border: none
+  @extend %larger-type
+
+input[type="submit"][disabled], input[type="submit"][disabled]:hover
+  @extend %disabled-state
+
+
+// -----------------------------------------------------------------------------
+// LP Select Overlay
+// Zen: div.lp-select.js-lp-select>label.overlay.js-select-overlay+select>option*3
+// -----------------------------------------------------------------------------
+
+@mixin custom_select($height: 30px, $width: 100%)
+
+  $arrow_width: 30px
+
+  .select-group, .lp-select
+    position: relative
+    width: $width
+    height: $height
+
+    .overlay
+      +box-sizing(border-box)
+      +vertically-center($height)
+      @extend %chevron
+      color: $body-copy
+      position: relative
+      display: block
+      width: $width
+      overflow: hidden
+      text-indent: 10px
+      background-color: #fff
+      border: 1px solid $form-gray
+      word-break: break-all
+
+      &:after
+        width: ($arrow-width - 6px)
+        height: $height
+        background-color: white
+        right: 5px
+        top: -2px
+        color: $body-copy
+
+    select
+      position: absolute
+      top: 0
+      left: 0
+      opacity: 0
+      width: $width
+      height: 100%
+
+      .no-opacity &,
+      .oldIE &,
+      .ie7 &,
+      .ie8 &
+        filter: alpha(opacity = 0)
+
+      .no-js &
+        opacity: 1
+        filter: alpha(opacity = 1)
