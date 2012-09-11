@@ -15,7 +15,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = Rizzo::VERSION
 
-  gem.add_dependency 'rails'
   gem.add_dependency 'haml'
   gem.add_dependency 'sass'
   
