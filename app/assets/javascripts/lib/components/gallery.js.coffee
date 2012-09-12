@@ -72,7 +72,7 @@ define ['jquery','lib/components/swipe'], ($, Swipe) ->
       if @args.title
         title = $('<div>').addClass('lp-gallery-title').text(@args.title)
         $(toolbar).append(title)
-      @btn_close = $('<div>').addClass('std btn-soft').append($('<span>').text('Close'))
+      @btn_close = $('<div>').addClass('btn-close').text('Close')
       $(toolbar).append(@btn_close)
 
     populateStage:() ->
