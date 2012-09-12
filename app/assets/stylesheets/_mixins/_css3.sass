@@ -83,6 +83,13 @@
   -ms-transition:     $property $duration $style
   -o-transition:      $property $duration $style
   transition:         $property $duration $style
+    
+@mixin multiple-transitions($transition1, $transition2: null, $transition3: null, $transition4: null, $transition5: null)
+  -webkit-transition: $transition1, $transition2, $transition3, $transition4, $transition5
+  -moz-transition:    $transition1, $transition2, $transition3, $transition4, $transition5
+  -ms-transition:     $transition1, $transition2, $transition3, $transition4, $transition5
+  -o-transition:      $transition1, $transition2, $transition3, $transition4, $transition5
+  transition:         $transition1, $transition2, $transition3, $transition4, $transition5
 
 @mixin transform($scale: 1, $rotate: 15deg, $translateX: 0px, $translateY: 0px, $skewX: 0deg, $skewY: 0deg)
   -webkit-transform: scale($scale) rotate($rotate) translate($translateX, $translateY) skew($skewX, $skewY)
