@@ -12,12 +12,6 @@
 //
 // --------------------------------------------------------------------------------------
 
-html.lp-gallery-active
-  #lp-gallery
-    height: 380px
-    margin-bottom: 1em
-  .gallery-frame
-    display: none
 
 .gallery-section
   min-height: 310px
@@ -25,13 +19,17 @@ html.lp-gallery-active
 
 .gallery-frame
   position: relative
-  figcaption
-    position: absolute
-    top: 265px
-    a
-      font-size: 13px
-      @extend %bold-text
-      padding-left: 10px
+  .lp-gallery-active &
+    display: none
+    
+  // figcaption
+  //   position: absolute
+  //   top: 265px
+  //   a
+  //     font-size: 13px
+  //     @extend %bold-text
+  //     padding-left: 10px
+  //     
   .fig1, .fig2, .fig0
     background: #e3e3e3
     cursor: pointer
