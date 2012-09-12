@@ -39,12 +39,9 @@ define ['jquery'], ($) ->
       if @target.tagName != 'OL'
         throw "Can only make an ordered list sortable"
       else
-        @placeholder = $("<li class=\"sortable-placeholder\">")
+        @placeholder = $('<li class="sortable-placeholder">')
         @items = $(@target).find('li')
-        @prepare()
-
-    prepare: ->
-      @bindEvents()
+        @bindEvents()
 
     bindEvents: ->
       t = $(@target)
@@ -58,6 +55,7 @@ define ['jquery'], ($) ->
       @dragSrcEl = $(e.currentTarget).addClass @options.draggingStyle
       @index = @dragSrcEl.index()
 
+      # see http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html#dnd
       dt = e.originalEvent.dataTransfer
       dt.dropEffect = 'move'
       dt.setData 'Text', 'dummy' # need to set this for FF to work
