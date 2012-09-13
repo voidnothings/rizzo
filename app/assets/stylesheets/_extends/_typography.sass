@@ -50,6 +50,13 @@
 // Typographic modifiers
 // -----------------------------------------------------------------------------
 
+%tighten-text
+  letter-spacing: -0.05em
+
+%smooth-text
+  -webkit-font-smoothing: antialiased
+  font-smoothing: antialiased
+
 %central-align
   text-align: center
 
@@ -62,14 +69,14 @@
 %justify
   text-align: justify
 
+%normal-weight-text
+  font-weight: normal
+
 %bold-text
   font-weight: bold
 
 %italic-text
   font-style: italic
-
-%normal-weight-text
-  font-weight: normal
 
 %uppercase
   text-transform: uppercase
@@ -84,8 +91,3 @@
   +word-break()
   +hyphens()
 
-%tighten-text
-  letter-spacing: -0.05em
-
-%smooth-text
-  -webkit-font-smoothing: antialiased
