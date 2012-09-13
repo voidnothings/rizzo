@@ -22,14 +22,6 @@
   .lp-gallery-active &
     display: none
     
-  // figcaption
-  //   position: absolute
-  //   top: 265px
-  //   a
-  //     font-size: 13px
-  //     @extend %bold-text
-  //     padding-left: 10px
-  //     
   .fig1, .fig2, .fig0
     background: #e3e3e3
     cursor: pointer
@@ -39,11 +31,31 @@
       background-repeat: no-repeat
       background-size: 125%
       display: block
+    &:after
+      @extend %benton-regular
+      @extend %abs-generated-content
+      @extend %no-line-height
+      opacity: 0
+      width: 20px
+      height: 20px
+      +font-size(60)
+      color: #fff
+      color: rgba(255,255,255,0.6)
+      cursor: pointer
+      content: "\e027"
+      top: 50%
+      right: 50%
+      margin-top: -10px
+      margin-left: -10px
+    &:hover
+      &:after
+        opacity: 1
   .fig1, .fig2
     span
       height: 150px
       width: 210px
   .fig0
+    @extend %relative
     span
       width: 413px
       height: 310px
