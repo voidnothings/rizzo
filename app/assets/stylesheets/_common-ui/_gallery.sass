@@ -1,16 +1,26 @@
 // Lp-Gallery Widget
 //
 
+
 // LpGallery navigation bar
 
 .lp-gallery-toolbar
-  background: #eee
   position: absolute
-  right: 20px
+  right: 15px
   top: 20px
+  width: 30px
+  height: 30px
   z-index: 1000
-  .btn-close
-    display: block
+  cursor: pointer
+  &:after
+    @extend %benton-regular
+    @extend %abs-generated-content
+    @extend %no-line-height
+    +font-size(40)
+    cursor: pointer
+    content: "\e027"
+    top: 0
+    right: 0
 
 // LpGallery stage
 //
@@ -36,37 +46,69 @@
       opacity: 1
 
 .lp-gallery-stage
-  background-color: #f3f3f3
+  background-color: $gallery-background
   &:hover
     .lp-swipe-ctrl
-      opacity: 1
-  .lp-swipe-ctrl
-    +transition(opacity, 0.5s, ease-in-out)
-    color: #333
-    cursor: pointer
-    height: 56px
-    margin-top: -33px
+      opacity: 0.5
+
+.lp-swipe-ctrl
+  +transition(opacity, 0.5s, ease-in-out)
+  @extend %absolute
+  bottom: 0
+  cursor: pointer
+  width: 50px
+  top: 50px
+  z-index: 1001
+  .lp-gallery-stage &
     opacity: 0
-    position: absolute
-    top: 50%
-    width: 15px
-    z-index: 300000000
-  .lp-swipe-ctrl-lft
-    @include icon-move-left
-    left: 0
-    
-  .lp-swipe-ctrl-rgt
-    @include icon-move-right
-    right: 0
+    &:hover
+      opacity: 1
+  &:after
+    @extend %benton-regular
+    @extend %abs-generated-content
+    @extend %no-line-height
+    +text-shadow(1px, 1px, 0, rgba(0,0,0,0.2))
+    +font-size(50)
+    color: #fff
+
+
+
+.lp-swipe-ctrl-lft
+  left: 0
+  &:after
+    content: "\e031"
+    left: 15px
+    top: 40%
+  
+.lp-swipe-ctrl-rgt
+
+  right: 0
+  &:after
+    content: "\e029"
+    right: 15px
+    top: 40%
+
+
 
 // LpGallery thumbs
 //
 .lp-gallery-thumbs
-  height: 66px
-  margin-top: 5px
+  background-color: $body-copy
+  height: 50px
   overflow: hidden
   position: relative
   width: 100%
+  .lp-swipe-ctrl-ctr
+    overflow: auto
+  .lp-swipe-ctrl-rgt
+    +background-gradient($startColor: rgba(0,0,0,0.5), $endColor: rgba(0,0,0,0), $fallbackImg: false, $imgPosition: 0 0, $direction: right)
+  .lp-swipe-ctrl-lft
+    +background-gradient($startColor: rgba(0,0,0,0.5), $endColor: rgba(0,0,0,0), $fallbackImg: false, $imgPosition: 0 0, $direction: left)
+  .lp-swipe-ctrl
+    top: 0
+    &:after
+      top: 50%
+      margin-top: -5px 
 
 .lp-gallery-img-wrap
   display: table-cell
@@ -82,46 +124,32 @@
 
 .lp-gallery-thumbs-list
   @extend %clearfix
-  margin-top: 5px
   li
     display: block
     cursor: pointer
-    height: 65px
+    height: 50px
     overflow: hidden
+    @extend %relative
     &.current
-      background-color: $bookable-orange
-      border-bottom: 1px solid #333
-      height: 66px
+      &:after
+        @extend %empty-abs-generated-content
+        width: 100%
+        height: 5px
+        background-color: $active
+        bottom: 0
+        left: 0
+        
 
 .lp-gallery-thumb-wrap
-  height: 54px
+  height: 50px
   overflow: hidden
   .lp-gallery-image
     background-size: 100%
     min-width: 100%
     min-height: 100%
 
-.lp-gallery-thumbs
-  .lp-swipe-ctrl-ctr
-    margin: 0 15px 
-    overflow: auto
-  .lp-swipe-ctrl
-    color: #333
-    cursor: pointer
-    height: 54px
-    margin-top: 5px
-    position: absolute
-    top: 0
-    width: 15px
-    z-index: 300000000
-  .lp-swipe-ctrl-lft
-    @include icon-move-left
-    left: 0
-    &:hover
-      background-color: #e3e3e3
-  .lp-swipe-ctrl-rgt
-    right: 0
-    @include icon-move-right
-    &:hover
-      background-color: #e3e3e3
+
+
+
+
 

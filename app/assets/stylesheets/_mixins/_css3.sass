@@ -43,15 +43,15 @@
   box-shadow:         $params
 
 
-@mixin background-gradient($startColor: #3C3C3C, $endColor: #999999, $fallbackImg: false, $imgPosition: 0 0 )
+@mixin background-gradient($startColor: #3C3C3C, $endColor: #999999, $fallbackImg: false, $imgPosition: 0 0, $direction: top )
   background:   $startColor
   @if $fallbackImg != false
     background: $startColor url($fallbackImg) $imgPosition repeat-x
-  background:   $startColor -webkit-linear-gradient(top, $startColor, $endColor)
-  background:      $startColor -moz-linear-gradient(top, $startColor, $endColor)
-  background:       $startColor -ms-linear-gradient(top, $startColor, $endColor)
-  background:        $startColor -o-linear-gradient(top, $startColor, $endColor)
-  background:           $startColor linear-gradient(top, $startColor, $endColor)
+  background:    -webkit-linear-gradient($direction, $startColor, $endColor)
+  background:      -moz-linear-gradient($direction, $startColor, $endColor)
+  background:        -ms-linear-gradient($direction, $startColor, $endColor)
+  background:         -o-linear-gradient($direction, $startColor, $endColor)
+  background:           linear-gradient($direction, $startColor, $endColor)
 
 
 @mixin background-gradient-with-stops($direction: top, $startColor: #3C3C3C, $stop2: #999999 100%, $stop3: false, $stop4: false, $stop5: false)
@@ -62,11 +62,11 @@
       $params: $startColor 0%, $stop2, $stop3, $stop4
       @if $stop5 != false
         $params: $startColor 0%, $stop2, $stop3, $stop4, $stop5
-  background:   $startColor -webkit-linear-gradient($direction, $params)
-  background:      $startColor -moz-linear-gradient($direction, $params)
-  background:       $startColor -ms-linear-gradient($direction, $params)
-  background:        $startColor -o-linear-gradient($direction, $params)
-  background:           $startColor linear-gradient($direction, $params)
+  background:   -webkit-linear-gradient($direction, $params)
+  background:      -moz-linear-gradient($direction, $params)
+  background:       -ms-linear-gradient($direction, $params)
+  background:         -o-linear-gradient($direction, $params)
+  background:           linear-gradient($direction, $params)
 
 
 @mixin box-sizing($sizing: border-box)
