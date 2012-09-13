@@ -1,171 +1,49 @@
-// Button
-// The largest clickable button used on form submits.
-//
-// Sample:
-// %button.orange
-//   Find Rooms
-//
-// %a.btn.orange(href='javascript:;')
-//   Find Rooms
-//
-
-
 // -----------------------------------------------------------------------------
 // Button base classes
 // -----------------------------------------------------------------------------
 
 %base-button
   @extend %inline-block
-  @extend %relative
   @extend %bold-text
-  +box-shadow(1px, 1px, 1px, 0, #e3e3e3)
-  +round-all(3px)
+  @extend %smooth-text
   +box-sizing()
-  -webkit-user-select: none
-  background-color: whiteSmoke
-  line-height: normal
+  line-height: 1
   cursor: pointer
   text-align: center
   &:hover
     text-decoration: none
 
-%small-button
-  @extend %base-button
-  padding: 5px 7px
-
-%regular-button
-  @extend %base-button
-  +font-size(13)
-  padding: 6px 15px
-
-%tall-button
-  +font-size(13)
-  @extend %base-button
-  padding: 10px 15px
 
 // -----------------------------------------------------------------------------
 // Buttons
 // -----------------------------------------------------------------------------
 
 .bookable-button
-  @extend %regular-button
-  background: $bookable
-  color: $heading-text
-
-
-.grey-button
-  @extend %regular-button
-  +background-gradient(whiteSmoke, #E5E5E5)
-  border-color: #DDD #DDD #BBB
-  border-style: solid
-  border-width: 1px
-  color: #666
-  &:hover
-    background-color: #cc5c01
-    color: #fff
-    +background-gradient(#cc5c01, #a74b02)
+  @extend %base-button
+  @extend %larger-type
+  @extend %ryanair
+  +round-all(3px)
+  +box-shadow(1px, 1px, 1px, 0, #e3e3e3)
+  padding: 6px 15px
 
 .load-more-btn
-  @extend %tall-button
-  +box-shadow(1px, 1px, 1px, 0, $feature-text-rgba)
-  +font-size(18)
-  font-weight: normal
-  background-color: #fff
-  clear: both
-  display: block
+  @extend %base-button
+  @extend %extra-large-type
+  +background-gradient(#e8edf0, #e0e7ea)
+  +round-all(3px)
+  +box-shadow(0px, 1px, 1px, 0, rgba(255,255,255,0.7))
   color: $heading-text
+  padding: 10px 15px
+  width: 100%
+  border: 1px solid #c9d1d7
   &.disabled
     color: #D6D6D3
 
 .read-more-btn
-  @extend %small-button
-  background: #fff
+  @extend %base-button
+  padding: 5px 7px
   color: $body-copy
-  +round-all(0)
   border: 1px solid $soft-border
   
 
-.btn, button
-  @extend %regular-button
-
-  &.blue
-    +background-gradient(#0278ce, #0465aa)
-    border-color: #0465aa
-    color: #fff
-    &:hover
-      border-color: #0954a7
-      +background-gradient(#0954a7, #064488)
-
-  &.link
-    +background-gradient(#ff7e00, #f48116)
-    color: #fff
-  
-  &.disabled, &.disabled:hover, &.disabled:active
-    +box-shadow( 1px,  #e3e3e3)
-    +background-gradient(whiteSmoke, #E5E5E5)
-    @extend %bold-text
-    color: #666
-    cursor: default
-    margin-top: 0
-    border-color: #DDD #DDD #BBB
-    border-style: solid
-    border-width: 1px
-    font-size: 13px
-    line-height: normal
-    overflow: auto
-    padding: 6px 15px
-    position: relative
-
-.std
-  -webkit-user-select: none
-  +round-all(3px)
-  @extend %bold-text
-  cursor: pointer
-  font-size: 12px
-  line-height: normal
-  text-align: center
-  display: inline-block
-  padding: 4px 10px
-  border: 1px solid #e3e3e3
-  color: #333
-
-.btn-soft
-  color: #999
-  background: #fff
-  border: 1px solid #e3e3e3
-  &:hover
-    +background-gradient(#f7f7f7, #f3f3f3)
-    border: 1px solid #dedede
-    color: #333
-
-.btn-regular
-  +background-gradient(#f3f3f3, #dedede)
-  border: 1px solid #e3e3e3
-  color: #333
-  &:hover
-    +background-gradient(#fff, #dedede)
-
-.btn-exit
-  border: 1px solid transparent
-  color: #ccc
-  &:hover
-    border-color: #aaa
-    color: #333
-.btn-close
-  +background-gradient(#f3f3f3, #dedede)
-  border: 1px solid #e3e3e3
-  color: #333
-  &:hover
-    +background-gradient(#fff, #dedede)
-
-.btn-close-x
-  @extend %icon-btn
-  @extend %absolute
-  top: 20px
-  right: 20px
-  @include icons-spt(-7px, -325px)
-  &:active
-    background-position: -7px -301px
-  &:hover
-    background-position: -7px -301px
 
