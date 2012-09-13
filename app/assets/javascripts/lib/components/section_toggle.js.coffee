@@ -40,7 +40,7 @@ define ['jquery'], ($) ->
     
     addHandler: ->
       if @wrapper.height() > @args.maxHeight
-        @template = "<div class='std btn-soft js-handler'>#{(@args.text)[0]}</div>"
+        @template = "<div class='read-more-btn js-handler'>#{(@args.text)[0]}</div>"
         if @args.shadow
           @template = "<div class='section-handler'>" + @template + "</div>"
         @target.append(@template)
@@ -75,6 +75,6 @@ define ['jquery'], ($) ->
       $(@target).find('div.js-handler').text(_text)
 
     onUpdate: ->
-      @args.delegate.onUpdate(@,@state) if @args.delegate && @args.delegate.onUpdate
+      @args.delegate.onUpdate(@,@state, @args.selector) if @args.delegate && @args.delegate.onUpdate
 
 

@@ -279,8 +279,8 @@ define ['jquery','handlebars'], ($) ->
         @transform(@index)
 
     buildHandlers: ->
-      @ctrl_lft = $('<div>').addClass('lp-swipe-ctrl lp-swipe-ctrl-lft').append($('<div>').append($('<div>').addClass('arrow')))
-      @ctrl_rgt = $('<div>').addClass('lp-swipe-ctrl lp-swipe-ctrl-rgt').append($('<div>').append($('<div>').addClass('arrow')))
+      @ctrl_lft = $('<div>').addClass('lp-swipe-ctrl lp-swipe-ctrl-lft')
+      @ctrl_rgt = $('<div>').addClass('lp-swipe-ctrl lp-swipe-ctrl-rgt')
       @element.append(@ctrl_lft)
       @element.append(@ctrl_rgt)
 

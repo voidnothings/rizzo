@@ -28,7 +28,7 @@ define ['jquery', 'lib/utils/error_messages'], ($, ErrorMessages) ->
 
     appendButton: ->
       @container = $('<footer/>').css('text-align', 'center')
-      @btn = $('<a/>').attr('id', 'js-load-more').addClass('read-more-btn').text(@config.btnLabel)
+      @btn = $('<a/>').attr('id', 'js-load-more').addClass('load-more-btn').text(@config.btnLabel)
       @container.append(@btn)
       $(@config.pagination).after(@container)
 
