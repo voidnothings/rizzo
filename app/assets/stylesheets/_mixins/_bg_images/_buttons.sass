@@ -2,25 +2,16 @@
 // Buttons
 // -----------------------------------------------------------------------------
 
-// Base actions buttons
-@mixin btn-white
-  background-position: 0 -150px
-@mixin btn-white-angle
-  background-position: 100% -120px
-@mixin btn-orange
-  background-position: 0 0
-@mixin btn-orange-angle
-  background-position: 100% -30px
-@mixin btn-orange-dark
-  background-position: 0 -60px
-@mixin btn-orange-dark-angle
-  background-position: 100% -90px
 
+// Only used in sort controls - Can we remove??
 // arrows & chevrons
 @mixin icn-arrow-down
   @include arrows-spt(100%,-417px)
 @mixin icn-arrow-up
   @include arrows-spt(100%,-438px)
+
+
+// Only used in header - Can we refactor?
 @mixin icon-chevron-back  
   @include arrows-spt(-7px,-102px)
 @mixin icon-chevron-forward

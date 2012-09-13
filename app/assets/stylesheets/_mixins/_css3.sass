@@ -2,6 +2,10 @@
 // Prefixed CSS3 Properties
 // -----------------------------------------------------------------------------
 
+
+// Any objections to changing this to +border-radius??? $$legacy
+
+
 @mixin round-all($radius: 2px)
   -webkit-border-radius: $radius
   -moz-border-radius:    $radius
@@ -26,21 +30,12 @@
   box-shadow:         $x $y $blur $spread $color
 
 
-@mixin multiple-box-shadow($shadow1, $shadow2:false, $shadow3:false, $shadow4:false, $shadow5:false)
-  $params: $shadow1
-  @if $shadow2 != false
-    $params: $shadow1, $shadow2
-    @if $shadow3 != false
-      $params: $shadow1, $shadow2, $shadow3
-      @if $shadow4 != false
-        $params: $shadow1, $shadow2, $shadow3, $shadow4
-        @if $shadow5 != false
-          $params: $shadow1, $shadow2, $shadow3, $shadow4, $shadow5
-  -webkit-box-shadow: $params
-  -moz-box-shadow:    $params
-  -ms-box-shadow:     $params
-  -o-box-shadow:      $params
-  box-shadow:         $params
+@mixin multiple-box-shadow($shadow1, $shadow2:null, $shadow3:null, $shadow4:null, $shadow5:null)
+  -webkit-box-shadow: $shadow1, $shadow2, $shadow3, $shadow4, $shadow5
+  -moz-box-shadow:    $shadow1, $shadow2, $shadow3, $shadow4, $shadow5
+  -ms-box-shadow:     $shadow1, $shadow2, $shadow3, $shadow4, $shadow5
+  -o-box-shadow:      $shadow1, $shadow2, $shadow3, $shadow4, $shadow5
+  box-shadow:         $shadow1, $shadow2, $shadow3, $shadow4, $shadow5
 
 
 @mixin background-gradient($startColor: #3C3C3C, $endColor: #999999, $fallbackImg: false, $imgPosition: 0 0, $direction: top )
