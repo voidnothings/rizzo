@@ -13,7 +13,7 @@ gem 'rake'
 
 group :assets do 
   gem 'avocado', git: 'git@github.com:lonelyplanet/avocado.git', :branch=>'ads_header_footer'
-  gem 'beaker', path: '/Users/dasilaw6/development/lp/lp-muppets/beaker'
+  gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git', :branch=>'ads_header_footer'
 end
 
 group :test do 

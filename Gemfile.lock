@@ -5,10 +5,12 @@ GIT
   specs:
     avocado (0.0.31)
 
-PATH
-  remote: /Users/dasilaw6/development/lp/lp-muppets/beaker
+GIT
+  remote: git@github.com:lonelyplanet/beaker.git
+  revision: 3edc3ba537a2cc6819e7d95094ec37e1c49eb36f
+  branch: ads_header_footer
   specs:
-    beaker (0.0.4)
+    beaker (0.0.41)
 
 GEM
   remote: http://rubygems.org/

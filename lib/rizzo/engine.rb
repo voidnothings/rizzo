@@ -3,6 +3,12 @@ module Rizzo
 
     initializer "rizzo.configure_rails_initialization" do |app|
 
+      puts 'Loading Rizzo'
+# 
+#       ActiveSupport.on_load :action_controller do
+#         helper Rizzo::LayoutHelper
+#       end
+
       app.routes.prepend do
         match 'global'           => 'global_resources#index'
         match 'global_head'      => 'global_resources#head'
