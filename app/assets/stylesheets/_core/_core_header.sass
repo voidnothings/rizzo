@@ -106,10 +106,21 @@
   .container
     min-height: 32px
 
-%secondary-nav
+.head-title
+  @extend %benton-regular
+  @extend %float-left
+  @extend %no-margin
+  color: #fff
+  font-size: 28px
+  line-height: 32px
+  max-width: 390px
+
+.secondary-nav
+  @extend %absolute-bottom-right
   @extend %helvetica-neue
   @extend %uppercase
   @extend %extra-small-type
+  padding-bottom: 2px 
   a
     @extend %float-left
     @extend %block
@@ -122,21 +133,6 @@
       @include round-all(6px)
       background-color: $nav-secondary-current-item-bck
       color: $nav-secondary-type-active
-
-.destination-nav
-  @extend %secondary-nav
-  @extend %absolute-bottom-right
-  @extend %float-right
-  padding-bottom: 2px 
-
-.head-title
-  @extend %benton-regular
-  @extend %float-left
-  @extend %no-margin
-  color: #fff
-  font-size: 28px
-  line-height: 32px
-  max-width: 390px
 
 
 // ----------------------------------------------------------------------------
