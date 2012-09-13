@@ -9,5 +9,8 @@
       .content
         = yield
       = render 'layouts/partials/footer'
-    = js_configuration
-    = yield :scripts
+    .js-config.is-hidden   
+      = js_configuration        
+      = requirejs_include_tag 'app_common' 
+      = yield :scripts
+

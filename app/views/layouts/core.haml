@@ -7,5 +7,7 @@
       = render 'layouts/core_partials/master_head'
       .content
         = yield
-    = js_configuration        
-    = yield :scripts
+    .js-config.is-hidden   
+      = js_configuration        
+      = requirejs_include_tag 'app_core' 
+      = yield :scripts
