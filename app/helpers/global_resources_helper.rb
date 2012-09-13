@@ -23,21 +23,21 @@ module GlobalResourcesHelper
       {title:'Travel Guides', uri: shop_url},
       {title:'Travel Bookings', uri: hotels_url},
       {title:'Thorn Tree', uri: www_url("thorntree")},
-      {title:'Propaganda', uri: www_url("propaganda")}
+      {title:'Propaganda', uri: www_url("")}
     ]
   end
 
-  def destination_navigation_items
-    [
-      {title:'Highlights', uri: www_url("destinations")},
-      {title:'Places in ...', uri: www_url("highlights")},
-      {title:'Need to know', uri: shop_url},
-      {title:'Hotels', uri: hotels_url},
-      {title:'Images & Video', uri: www_url("thorntree")},
-      {title:'Tips & Article', uri: www_url("propaganda")},
-      {title:'Forum', uri: www_url("thorntree")}
-    ]
-  end
+  # def destination_navigation_items
+  #   [
+  #     {title:'Highlights', uri: www_url("destinations")},
+  #     {title:'Places in ...', uri: www_url("highlights")},
+  #     {title:'Need to know', uri: shop_url},
+  #     {title:'Hotels', uri: hotels_url},
+  #     {title:'Images & Video', uri: www_url("thorntree")},
+  #     {title:'Tips & Articles', uri: www_url("propaganda")},
+  #     {title:'Forum', uri: www_url("thorntree")}
+  #   ]
+  # end
 
   def cart_item_element
     capture_haml do

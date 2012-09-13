@@ -1,10 +1,10 @@
 .secondary
   .container
     %h1.head-title
-      = yield :title
-    %nav.destination-nav
-      - destination_navigation_items.each do |n|
-        %a{:class=>(n[:title] == 'Hotels' ? 'current' : ''), :href=> n[:uri]}
+      = title
+    %nav.secondary-nav
+      - collection.each do |n|
+        %a{:class=>(n[:title] == current ? 'current' : ''), :href=> n[:url]}
           = n[:title]
 
 

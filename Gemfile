@@ -13,7 +13,7 @@ gem 'rake'
 
 group :assets do 
   gem 'avocado', git: 'git@github.com:lonelyplanet/avocado.git', :branch=>'ads_header_footer'
-  gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git', :branch=>'ads_header_footer'
+  gem 'beaker', path: '/Users/dasilaw6/development/lp/lp-muppets/beaker'
 end
 
 group :test do 
@@ -24,7 +24,7 @@ group :test do
   gem 'guard-rspec'
   gem 'capybara'
   gem 'cucumber'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', :require => false
   gem 'guard-cucumber'
   gem 'rb-fsevent', '~> 0.9.1'
 end
