@@ -29,7 +29,7 @@
   &:hover
     text-decoration: none
   &:active
-    margin-top: 1px
+    top: 1px
 
 %small-button
   @extend %base-button
@@ -69,13 +69,14 @@
 
 .load-more-btn
   @extend %tall-button
-  +text-shadow()
-  +background-gradient(#F2F2E8, #E4E4DB)
+  +box-shadow(1px, 1px, 1px, 0, $feature-text-rgba)
+  +font-size(18)
+  font-weight: normal
+  background-color: #fff
   clear: both
   display: block
   margin-top: 10px
-  border: 1px solid #D6D6D3
-  color: $good-black
+  color: $heading-text
   &.disabled
     color: #D6D6D3
 

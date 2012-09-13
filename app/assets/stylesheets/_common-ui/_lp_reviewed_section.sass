@@ -13,6 +13,12 @@
     +css-arrow(top, 10px, $lp_reviewed, 20px)
   &.arrow-left:after
     +css-arrow-central(left, 10px, $lp_reviewed)
+  &.the-dude
+    @extend %the-dude
+    margin-left: 50px
+    &:before
+      left: -55px
+      top: 17px
 
 .lp-review-recommended
   @include round-all(4px)
@@ -22,6 +28,12 @@
   @extend %bold-text
   .recommended
     color: $heading-text
+  &.the-dude
+    min-height: 45px
+    @extend %the-dude
+    &:before
+      left: 5px
+      top: 27px
 
 .top-choice-endorsement
   @include endorsement-top-choice

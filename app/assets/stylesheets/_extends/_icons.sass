@@ -67,6 +67,15 @@
     &:before
       color: $subdued-active
 
+%the-dude
+  @extend %left-icon
+  &:before
+    +font-size(100)
+    @extend %no-line-height
+    width: 45px
+    height: 60px
+    content: "\e03b"
+
 %chevron-vertical
   @extend %right-icon
   padding-right: 21px
