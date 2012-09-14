@@ -18,26 +18,14 @@ module GlobalResourcesHelper
   
   def core_navigation_items
     [
-      {title:'Destinations', uri: www_url("destinations")},
-      {title:'Themes', uri: www_url("thorntree")},
-      {title:'Travel Guides', uri: shop_url},
-      {title:'Travel Bookings', uri: hotels_url},
-      {title:'Thorn Tree', uri: www_url("thorntree")},
-      {title:'Propaganda', uri: www_url("")}
+      {title:'Destinations', uri: "//www.lonelyplanet.com/testinations"},
+      {title:'Themes', uri: "//www.lonelyplanet.com/themes"},
+      {title:'Travel Guides', uri: "//shop.lonelyplanet.com"},
+      {title:'Travel Bookings', uri: "//www.lonelyplanet.com/hotels"},
+      {title:'Thorn Tree', uri: "//www.lonelyplanet.com/thorntree"},
+      {title:'Propaganda', uri: "//www.lonelyplanet.com/"}
     ]
   end
-
-  # def destination_navigation_items
-  #   [
-  #     {title:'Highlights', uri: www_url("destinations")},
-  #     {title:'Places in ...', uri: www_url("highlights")},
-  #     {title:'Need to know', uri: shop_url},
-  #     {title:'Hotels', uri: hotels_url},
-  #     {title:'Images & Video', uri: www_url("thorntree")},
-  #     {title:'Tips & Articles', uri: www_url("propaganda")},
-  #     {title:'Forum', uri: www_url("thorntree")}
-  #   ]
-  # end
 
   def cart_item_element
     capture_haml do

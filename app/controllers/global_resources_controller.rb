@@ -1,18 +1,19 @@
 class GlobalResourcesController < GlobalController
   
   helper GlobalResourcesHelper
+
   layout nil
 
   def head
-    render :template => 'layouts/partials/_head'
+    render :template => 'layouts/core_partials/_head'
   end
 
   def header
-    render :template => 'layouts/partials/_header', locals: { section: params[:c] }
+    render :template => 'layouts/core_partials/_master_head'
   end
 
   def footer
-    render :template => 'layouts/partials/_footer'
+    render :template => 'layouts/core_partials/_footer'
   end
 
   def index
