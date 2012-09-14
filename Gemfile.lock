@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git@github.com:lonelyplanet/beaker.git
-  revision: 3edc3ba537a2cc6819e7d95094ec37e1c49eb36f
+  revision: c1bf58ef3ba2076880881ea8dcd6dce71808be5d
   branch: ads_header_footer
   specs:
     beaker (0.0.41)
