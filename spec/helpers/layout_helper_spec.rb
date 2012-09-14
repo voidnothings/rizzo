@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'global_resources_helper'
 
-describe Rizzo::LayoutHelper do
+describe LayoutHelper do
   before do
     class << helper
       include Haml, Haml::Helpers
