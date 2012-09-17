@@ -1,7 +1,7 @@
-// -----------------------------------------------------
+// -----------------------------------------------------------------------------
 // Lp-Reviewed Section
-// Author review text with a generic info lp-terms box and support for extra endorsements
-// -----------------------------------------------------
+// Author review text with a generic info lp-terms box
+// -----------------------------------------------------------------------------
 
 .lp-review
   +round-all(10px)
@@ -9,10 +9,13 @@
   @extend %box-off-double
   color: $text-on-blue
   background-color: $lp_reviewed
+  
   &.arrow-top:after
     +css-arrow(top, 10px, $lp_reviewed, 20px)
+  
   &.arrow-left:after
     +css-arrow-central(left, 10px, $lp_reviewed)
+  
   &.the-dude
     @extend %the-dude
     margin-left: 50px

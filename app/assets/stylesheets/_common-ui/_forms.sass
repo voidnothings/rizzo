@@ -35,25 +35,24 @@ input[type="submit"][disabled], input[type="submit"][disabled]:hover
 
   $arrow_width: 30px
 
-  .select-group, .lp-select
-    position: relative
+  .select-group
+    @extend %relative
     width: $width
     height: $height
 
     .overlay
       +box-sizing(border-box)
       +vertically-center($height)
+      +word-break()
       @extend %chevron-vertical
+      @extend %relative
       color: $body-copy
-      position: relative
       display: block
       width: $width
       overflow: hidden
       text-indent: 10px
       background-color: #fff
       border: 1px solid $form-gray
-      word-break: break-all
-
       &:after
         width: ($arrow-width - 6px)
         height: $height
@@ -70,8 +69,6 @@ input[type="submit"][disabled], input[type="submit"][disabled]:hover
       width: $width
       height: 100%
 
-      .no-opacity &,
-      .oldIE &,
       .ie7 &,
       .ie8 &
         filter: alpha(opacity = 0)
