@@ -2,20 +2,20 @@
   @extend %white-background
   @extend %standard-shadow
   @extend %stacked-nav
+  @extend %smooth-text
   margin-top: 46px
 
   .item
     @extend %relative
     @extend %regular-type-size
     @extend %chevron-horizontal
-    color: $body-copy
+    color: $header-gray
     padding: 15px 25px 15px 15px
     text-decoration: none
     &:after
       @extend %no-line-height
       right: 10px
-      top: 50%
-      
+      top: 23px
     
     &.current, &.current:hover
       @extend %bold-text
@@ -28,15 +28,16 @@
 
   .nav-heading
     @extend %reset-line-height
-    @extend %regular-type-size
+    @extend %larger-type
     @extend %stacked-nav
     @extend %bold-text
-    margin-top: 22px
-    padding: 0 15px
+    color: $header-gray
+    padding: 22px 15px 0
+    border-top: 1px solid $section-separator
   
   .nav-standfirst
     @extend %small-type
     @extend %serif
     @extend %italic-text
     display: block
-    color: $sub-copy
+    color: $body-copy

@@ -2,21 +2,22 @@ input[type="text"], input[type="email"], input[type="date"]
   +box-sizing()
   @extend %no-margin
   @extend %sans-serif
-  border: 1px solid $form-gray
+  border: 1px solid $form-border
   color: $body-copy
-  padding: 8px 10px
+  padding: 7px 10px
   width: 100%
 
 
 input[type="date"], .datepicker
   @extend %data-datepicker
-  text-indent: 30px
+  text-indent: 22px
   background-repeat: no-repeat
   background-position: 8px 50%
 
 input[type="submit"]
   border: none
   @extend %larger-type
+  @extend %sans-serif
 
 input[type="submit"][disabled], input[type="submit"][disabled]:hover
   @extend %disabled-state
