@@ -1,13 +1,13 @@
 GIT
   remote: git@github.com:lonelyplanet/avocado.git
-  revision: fa1650a1f287be3d8dfbe6541c38e7ba0224c11c
+  revision: c7846f212ac9d378ae5b225ad6ac365e9d061f41
   branch: ads_header_footer
   specs:
     avocado (0.0.31)
 
 GIT
   remote: git@github.com:lonelyplanet/beaker.git
-  revision: c1bf58ef3ba2076880881ea8dcd6dce71808be5d
+  revision: 9c85864bc7b4c78452b1470c47b0f406cc1fcf97
   branch: ads_header_footer
   specs:
     beaker (0.0.41)
