@@ -1,5 +1,6 @@
 .top-nav
   @extend %clearfix
+  @extend %smooth-text
   .left-group
     @extend %float-left
     @extend %left-align
@@ -21,11 +22,7 @@
       @extend %no-underline
     &.active
       @extend %active-background
-      @extend %relative
-      &:after
-        +css-arrow-central(top, 8px, #fff, 120px)
-        top: 30px
-        bottom: auto
+      @extend %bold-text
 
   .start-date
     @extend %inline-block
@@ -43,7 +40,6 @@
 
   .dropdown
     @extend %clearfix
-    @extend %box-off-double
     @extend %standard-shadow
     clear: both
     background-color: #fff
