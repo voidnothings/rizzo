@@ -18,7 +18,7 @@ module GlobalResourcesHelper
   
   def core_navigation_items
     [
-      {title:'Destinations', uri: "//www.lonelyplanet.com/testinations"},
+      {title:'Destinations', uri: "//www.lonelyplanet.com/destinations"},
       {title:'Themes', uri: "//www.lonelyplanet.com/themes"},
       {title:'Travel Guides', uri: "//shop.lonelyplanet.com"},
       {title:'Travel Bookings', uri: "//www.lonelyplanet.com/hotels"},
