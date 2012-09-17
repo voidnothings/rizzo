@@ -18,8 +18,8 @@
       top: 23px
     
     &.current, &.current:hover
-      @extend %bold-text
       @extend %active-background
+      font-weight: bold
       &:after
         color: #fff
 
@@ -30,7 +30,7 @@
     @extend %reset-line-height
     @extend %larger-type
     @extend %stacked-nav
-    @extend %bold-text
+    font-weight: bold
     color: $header-gray
     padding: 22px 15px 0
     border-top: 1px solid $section-separator
