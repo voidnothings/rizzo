@@ -4,7 +4,7 @@ require.config({
     lib: 'public/assets/javascripts/lib',
     handlebars: 'vendor/assets/javascripts/handlebars',
     underscore: 'vendor/assets/javascripts/underscore',
-    jplugs: "jquery/plugins"
+    jplugs: "vendor/assets/javascripts/jquery/plugins"
   }
 });
 

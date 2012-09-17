@@ -2,6 +2,8 @@ define ['jquery'], ($)->
 
   class Authenticator
 
+    @version = '0.0.1'
+
     @options =
       registerLink: 'https://secure.lonelyplanet.com/members/registration/new'
       unreadMessageRefresh: 120000
