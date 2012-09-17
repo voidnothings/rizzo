@@ -34,7 +34,11 @@ define ['jquery'], ($) ->
           
           # Set the new height
           newTab = contentArea.find(tabSelected)
-          dropdown.css('height', newTab.children().innerHeight())
+          
+          # Get padding (jquery box sizing bug - http://bugs.jquery.com/ticket/10413)
+          padding = (parseInt(newTab.css('padding'), 10) * 2)
+          
+          dropdown.css('height', (newTab.children().outerHeight() + padding))
           
           setTimeout ->
             contentArea.find(tabSelected).addClass('active')
