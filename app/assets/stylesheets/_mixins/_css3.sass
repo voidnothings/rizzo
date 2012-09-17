@@ -22,12 +22,14 @@
   border-radius:         $a $b $c $d
 
 
-@mixin box-shadow($x: 1px, $y: 1px, $blur: 2px, $spread: 0, $color: rgba(0,0,0,0.1))
-  -webkit-box-shadow: $x $y $blur $spread $color
-  -moz-box-shadow:    $x $y $blur $spread $color
-  -ms-box-shadow:     $x $y $blur $spread $color
-  -o-box-shadow:      $x $y $blur $spread $color
-  box-shadow:         $x $y $blur $spread $color
+
+@mixin box-shadow($x: 1px, $y: 1px, $blur: 2px, $spread: 0, $color: rgba(0,0,0,0.1), $inset: null )
+  -webkit-box-shadow: $inset $x $y $blur $spread $color
+  -moz-box-shadow:    $inset $x $y $blur $spread $color
+  -ms-box-shadow:     $inset $x $y $blur $spread $color
+  -o-box-shadow:      $inset $x $y $blur $spread $color
+  box-shadow:         $inset $x $y $blur $spread $color
+
 
 
 @mixin multiple-box-shadow($shadow1, $shadow2:null, $shadow3:null, $shadow4:null, $shadow5:null)
@@ -105,24 +107,3 @@
   -ms-word-break: break-all
   word-break:     break-all
   word-break:     break-word
-
-@mixin columns($column-count: 2, $gutter: 20px)
-  -webkit-columns: $column-count
-  -moz-columns:    $column-count
-  -ms-columns:     $column-count
-  -o-columns:      $column-count
-  columns:         $column-count
-  -webkit-column-gap: $gutter
-  -moz-column-gap:    $gutter
-  -ms-column-gap:     $gutter
-  -o-column-gap:      $gutter
-  column-gap:         $gutter
-
-
-
-
-
-
-
-
-

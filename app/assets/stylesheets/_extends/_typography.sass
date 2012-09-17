@@ -11,6 +11,9 @@
 %small-type
   @include font-size(12)
 
+%irregular-type
+  @include font-size(13)
+
 %regular-type-size
   @include font-size(14)
 
@@ -75,11 +78,11 @@
 %normal-weight-text
   font-weight: normal
 
-%bold-text
-  font-weight: bold
-
 %italic-text
   font-style: italic
+
+%lowercase
+  text-transform: lowercase
 
 %uppercase
   text-transform: uppercase
@@ -94,3 +97,18 @@
   +word-break()
   +hyphens()
 
+
+
+
+
+
+// $$deprecated
+
+%bold-text
+  font-weight: bold
+
+%absolute
+  position: absolute
+
+%relative
+  position: relative
