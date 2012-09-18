@@ -6,6 +6,7 @@
 #     target             : [string]   The list to make sortable.
 #     draggingStyle      : [string]   The class to give the list item being dragged.
 #     callback           : [function] Function that will be called when the list is re-ordered.
+#     context            : [object]   The object which will be the context when the callback is invoked (optional)
 #
 # Dependencies:
 #   jQuery
@@ -29,6 +30,7 @@ define ['jquery'], ($) ->
     @options:
       target:         null
       callback:       null
+      context:        null
       draggingStyle:  'sortable-dragging'
 
     constructor: (@args={}) ->
@@ -87,4 +89,4 @@ define ['jquery'], ($) ->
       @placeholder.detach()
 
       if typeof @options.callback is 'function'
-        @options.callback.call(e.delegateTarget)
+        @options.callback.call(@options.context || e.delegateTarget)
