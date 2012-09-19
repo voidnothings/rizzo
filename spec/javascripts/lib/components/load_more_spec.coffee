@@ -40,7 +40,7 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
         $('#js-load-more').trigger('click')
         expect($('#js-load-more')).toHaveText('Loading...')
 
-      it 'appends the sample hotels data', ->
+      xit 'appends the sample hotels data', ->
         fixture.remove()
         $('body').append(fixture)
         
