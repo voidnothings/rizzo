@@ -53,7 +53,7 @@ define ['jquery','lib/components/swipe'], ($, Swipe) ->
       stageTemplate: "<div class='lp-gallery-img-wrap lp-item-loading' data-src='{{src}}' data-src='{{thumb}}'>{{src}}</div>"
       thumbTemplate: "<div class='lp-gallery-thumb-wrap'><div class='lp-gallery-image' style='background: url({{thumb}}) 50% 50% no-repeat #fff; background-size: 105%;'></div></div>"
       stageSlidesPerSet: -> 1
-      thumbsSlidesPerSet: -> 6
+      thumbsSlidesPerSet: -> 8
 
     constructor: (@args={})->
       @args = $.extend Gallery.options, @args
@@ -72,8 +72,7 @@ define ['jquery','lib/components/swipe'], ($, Swipe) ->
       if @args.title
         title = $('<div>').addClass('lp-gallery-title').text(@args.title)
         $(toolbar).append(title)
-      @btn_close = $('<div>').addClass('std btn-soft').append($('<span>').text('Close'))
-      $(toolbar).append(@btn_close)
+      @btn_close = $(toolbar)
 
     populateStage:() ->
       template = @args.stageTemplate
@@ -118,7 +117,7 @@ define ['jquery','lib/components/swipe'], ($, Swipe) ->
         handlers: true
         template: template
         slidesPerSet: @args.thumbsSlidesPerSet
-        width: 498
+        width: @args.width
         speed: 400
         style: 'lp-gallery-thumbs'
         msg: 'loading_thumbs'
@@ -149,7 +148,7 @@ define ['jquery','lib/components/swipe'], ($, Swipe) ->
 
     bindEvents: ()->
       $(document).on('keydown', (e)=> @keyListener(e))
-      $(@btn_close).on('click', (e)=> @close())
+      @btn_close.on('click', (e)=> @close())
 
     keyListener: (e)->
       @close() if(e.which is 27)
