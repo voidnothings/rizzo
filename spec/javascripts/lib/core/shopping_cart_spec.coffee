@@ -21,7 +21,7 @@ require ['public/assets/javascripts/lib/core/shopping_cart'], (ShoppingCart) ->
         expect($(nav)).not.toHaveClass('has-basket')
 
       it 'has an empty basket', ->
-        basketItems = $('span.js-basket-items')[0].innerText
+        basketItems = $('span.js-basket-items').text()
         expect(basketItems).toBe('')
 
     describe 'Has shopping items', ->
@@ -45,6 +45,6 @@ require ['public/assets/javascripts/lib/core/shopping_cart'], (ShoppingCart) ->
         expect($(nav)).toHaveClass('has-basket')
 
       it 'shows the number of shopping items', ->
-        basketItems = $('span.js-basket-items')[0].innerText
+        basketItems = $('span.js-basket-items').text()
         expect(basketItems).toBe('2')
 
