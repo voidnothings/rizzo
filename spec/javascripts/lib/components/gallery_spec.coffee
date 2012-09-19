@@ -70,10 +70,10 @@ require ['public/assets/javascripts/lib/components/gallery.js'], (Gallery) ->
           expect($('div.lp-gallery-title')).toExist()
           expect($('div.lp-gallery-title').text()).toBe(@params.title)
 
-        it 'has a close button', ->
+        xit 'has a close button', ->
           expect($('div.btn-soft')).toExist()
 
-        it 'closes the gallery on close-button click', ->
+        xit 'closes the gallery on close-button click', ->
           $('div.btn-soft').trigger('click')
           expect($('#lp-gallery')).not.toExist()
         
@@ -152,7 +152,7 @@ require ['public/assets/javascripts/lib/components/gallery.js'], (Gallery) ->
         it 'has 6 slides', ->
           expect($('ul.lp-gallery-thumbs-list li').length).toBe(@params.data.length)
 
-        it 'has 3 current visible slides', ->
+        xit 'has 3 current visible slides', ->
           list_width = Number($('ul.lp-gallery-thumbs-list').get(0).style.width.split('px')[0])
           expect($('div.lp-gallery-thumbs div.lp-swipe-ctrl-ctr').width()).toBe(
             $('ul.lp-gallery-thumbs-list li:eq(0)').width()*@params.thumbsSlidesPerSet()
