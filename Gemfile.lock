@@ -1,14 +1,12 @@
 GIT
   remote: git@github.com:lonelyplanet/avocado.git
-  revision: c7846f212ac9d378ae5b225ad6ac365e9d061f41
-  branch: ads_header_footer
+  revision: 6c11417bb68edb35741f9387f60b73a937071d91
   specs:
     avocado (0.0.31)
 
 GIT
   remote: git@github.com:lonelyplanet/beaker.git
-  revision: a1943ee39cf28948541c185af4f114a0b273d6f0
-  branch: ads_header_footer
+  revision: 275ccfe52a4a01c1c88a028992bb287f7ac2fc79
   specs:
     beaker (0.0.41)
 
@@ -101,7 +99,7 @@ GEM
     kgio (2.7.4)
     libwebsocket (0.1.5)
       addressable
-    listen (0.5.0)
+    listen (0.5.1)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)

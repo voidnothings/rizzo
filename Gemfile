@@ -12,8 +12,8 @@ gem 'unicorn'
 gem 'rake'
 
 group :assets do 
-  gem 'avocado', git: 'git@github.com:lonelyplanet/avocado.git', :branch=>'ads_header_footer'
-  gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git', :branch=>'ads_header_footer'
+  gem 'avocado', git: 'git@github.com:lonelyplanet/avocado.git'
+  gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git'
 end
 
 group :test do 
