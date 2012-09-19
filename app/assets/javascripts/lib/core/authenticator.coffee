@@ -2,18 +2,13 @@ define ['jquery'], ($)->
 
   class Authenticator
 
-    @version = '0.0.1'
+    @version = '0.0.11'
 
     @options =
-      registerLink: 'https://secure.lonelyplanet.com/members/registration/new'
-      unreadMessageRefresh: 120000
-      membersUrl: '//www.lonelyplanet.com/members'
-      groupsUrl: '//www.lonelyplanet.com/groups'
-      staticUrl: '//static.lonelyplanet.com/static-ui'
-      messagesUrl: '//www.lonelyplanet.com/members/messages'
-      favouritesUrl: '//www.lonelyplanet.com/favourites'
-      tripPlannerUrl: '//www.lonelyplanet.com/trip-planner'
       forumPostsUrlTemplate: '//www.lonelyplanet.com/thorntree/profile.jspa?username=[USERNAME]'
+      membersUrl: '//www.lonelyplanet.com/members'
+      messagesUrl: '//www.lonelyplanet.com/members/messages'
+      registerLink: 'https://secure.lonelyplanet.com/members/registration/new'
       signOutUrl: 'https://secure.lonelyplanet.com/sign-in/logout'
     
     constructor: ->
@@ -63,7 +58,7 @@ define ['jquery'], ($)->
       ]
       optionElements =  ("<a class='user-menu-option #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
 
-      userMenu = "<div class='user-options'><div class='user-options-arrow'></div><nav class='nav-user-options'><span class='user-name'>#{@lpUserName}</span>#{optionElements}</nav></div>"  
+      userMenu = "<div class='user-options js-user-options'><div class='user-options-arrow'></div><nav class='nav-user-options'><span class='user-name'>#{@lpUserName}</span>#{optionElements}</nav></div>"  
     
     signInUrl:->
       "https://secure.lonelyplanet.com/sign-in/login?service=#{escape(window.location)}"
@@ -85,7 +80,8 @@ define ['jquery'], ($)->
     updateMessageCount: ->
       $.getJSON("#{@options.membersUrl}/#{@lpUserName}/messages/count?callback=?", (data)=>@messageCountCallBack(data)) if @lpUserName
 
-    messageCountCallBack:(data={unread_count:0})->
+    messageCountCallBack: (data={unread_count:0})->
+      console.log(data)
       @setLocalData('lp-unread-msg', data.unread_count)
       @setLocalData('lp-sent-msg', data.sent_count)
       @setLocalData('lp-received-msg', data.received_count)
