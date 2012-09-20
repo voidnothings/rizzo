@@ -38,12 +38,17 @@ define ['jquery'], ($) ->
           # Get padding (jquery box sizing bug - http://bugs.jquery.com/ticket/10413)
           padding = (parseInt(newTab.css('padding'), 10) * 2)
           
-          dropdown.css('height', (newTab.children().outerHeight() + padding))
+          # dropdown.css('height', (newTab.children().outerHeight() + padding))
+          
+          # setTimeout ->
+          #   contentArea.find(tabSelected).addClass('active')
+          #   dropdown.css('opacity', '1')
+          # , 300
           
           setTimeout ->
             contentArea.find(tabSelected).addClass('active')
             dropdown.css('opacity', '1')
-          , 300
+          , 1
         
         # Stop the page jump
         false
