@@ -21,16 +21,16 @@
   -o-border-radius:      $a $b $c $d
   border-radius:         $a $b $c $d
 
-
-
-@mixin box-shadow($x: 1px, $y: 1px, $blur: 2px, $spread: 0, $color: rgba(0,0,0,0.1), $inset: null )
-  -webkit-box-shadow: $inset $x $y $blur $spread $color
-  -moz-box-shadow:    $inset $x $y $blur $spread $color
-  -ms-box-shadow:     $inset $x $y $blur $spread $color
-  -o-box-shadow:      $inset $x $y $blur $spread $color
-  box-shadow:         $inset $x $y $blur $spread $color
-
-
+@mixin box-shadow($x: 0px, $y: 1px, $blur: 4px, $spread: 0, $color: rgba(0,0,0,0.3), $inset: false )
+  $params: $x $y $blur $spread $color
+  @if $inset == true
+    $params: inset $x $y $blur $spread $color
+ 
+  -webkit-box-shadow: $params
+  -moz-box-shadow:    $params
+  -ms-box-shadow:     $params
+  -o-box-shadow:      $params
+  box-shadow:         $params
 
 @mixin multiple-box-shadow($shadow1, $shadow2:null, $shadow3:null, $shadow4:null, $shadow5:null)
   -webkit-box-shadow: $shadow1, $shadow2, $shadow3, $shadow4, $shadow5
