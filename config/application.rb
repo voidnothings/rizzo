@@ -19,7 +19,7 @@ module Rizzo
     config.assets.enabled = true
     config.assets.version = '1.0'
 
-    config.assets.precompile += ['application_core.css', 'app_core.js']
+    config.assets.precompile += ['application_core.css', 'common_core.css',  'app_core.js']
 
   end
 end
