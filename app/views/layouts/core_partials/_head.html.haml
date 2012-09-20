@@ -22,6 +22,7 @@
 :javascript
   document.documentElement.className += ' js';
 
+= stylesheet_link_tag 'common_core', :media => "all"
 = stylesheet_link_tag 'application_core', :media => "all"
 
 = yield :stylesheets
