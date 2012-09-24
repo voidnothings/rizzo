@@ -1,7 +1,8 @@
 # Rizzo
 
 The app that serves global common meta head definitions, global-body-header and global-body-footer for lp new style guides.
-Rizzo also acts as a global service for beacon endpoint, redirector and errors.
+
+Rizzo also acts as a global service such as beacon endpoint, redirector and error pages.
 
 
 ## Install
@@ -23,7 +24,7 @@ You can run rizzo as a server, or as an extension engine for a rails app.
 
 ### As an engine on your rails app
 
-    - add rizzo gem in the gemfile
+    - add rizzo gem into your gemfile
       gem 'rizzo', git: 'git@github.com:lonelyplanet/rizzo.git'
       
 
