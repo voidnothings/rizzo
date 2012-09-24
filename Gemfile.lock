@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git@github.com:lonelyplanet/beaker.git
-  revision: 4af7392e71485dbf1768bfab9b6c72dc693ee9a1
+  revision: f658dbbf3611c92c3f5db53d4a536c819b6bec3e
   specs:
     beaker (0.0.41)
 
@@ -99,7 +99,7 @@ GEM
     kgio (2.7.4)
     libwebsocket (0.1.5)
       addressable
-    listen (0.5.1)
+    listen (0.5.2)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -132,7 +132,7 @@ GEM
       thor (>= 0.14.6, < 2.0)
     raindrops (0.10.0)
     rake (0.9.2.2)
-    rb-fsevent (0.9.1)
+    rb-fsevent (0.9.2)
     rdoc (3.12)
       json (~> 1.4)
     requirejs-rails (0.9.0)
