@@ -24,6 +24,9 @@
       @extend %active-background
       font-weight: bold
 
+  .dates-tab
+    min-width: 230px
+
   .start-date
     @extend %inline-block
     @extend %date-icon
@@ -44,3 +47,10 @@
     clear: both
     background-color: #fff
     margin-bottom: 10px
+
+  .datepicker
+    +placeholder()
+      color: $sub-copy
+
+
+
