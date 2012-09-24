@@ -21,3 +21,8 @@
 
 %no-underline
   text-decoration: none
+
+%no-decoration
+  @extend %no-underline
+  &:hover
+    @extend %no-underline
