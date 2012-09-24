@@ -1,29 +1,29 @@
 # Rizzo
 
-TODO: Write a gem description
+The app that serves global common meta head definitions, global-body-header and global-body-footer for lp new style guides.
+Rizzo also acts as a global service for beacon endpoint, redirector and errors.
 
-## Installation
 
-Add this line to your application's Gemfile:
+## Install
 
-    gem 'rizzo'
+    $ git clone git@github.com:lonelyplanet/rizzo.git
+    $ cd rizzo
+    $ cp .rvmrc.example .rvmrc
+    $ source .rvmrc
+    $ (gem install bundle if not available)
+    $ bundle install
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install rizzo
 
 ## Usage
+You can run rizzo as a server, or as an extension engine for a rails app. 
 
-TODO: Write usage instructions here
+### As a standalone server
 
-## Contributing
+    - bundle exec unicorn
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+### As an engine on your rails app
+
+    - add rizzo gem in the gemfile
+      gem 'rizzo', git: 'git@github.com:lonelyplanet/rizzo.git'
+      
+
