@@ -85,9 +85,12 @@ $hero-image-height: 185px
   @extend %relative
   height: $hero-image-height
   overflow: hidden
+  
+  // Refactor to use landscape/portrait classes when rowlf imaging catches up
   > img
     @extend %absolute-bottom
-    width: 100%
+    max-width: none
+    height: 100% 
 
   .grid-view &
     width: 100%

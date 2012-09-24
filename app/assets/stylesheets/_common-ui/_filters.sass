@@ -5,6 +5,9 @@
   @extend %padded-grid-column-10
   width: 25%
   margin-bottom: 20px
+  &.double-col
+    width: 50%
+    
 
 .filter-set-title
   @extend %margin-bottom
@@ -14,7 +17,14 @@
 .filter-item 
   @extend %no-list-style
   @extend %clearfix
+
+  .double-col &
+    width: 50%
+    float: left
+
   input[type="checkbox"]
     @extend %margin-bottom
     float: left
     margin-right: 5px
+
+      
