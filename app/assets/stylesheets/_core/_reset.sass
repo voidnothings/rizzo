@@ -110,10 +110,28 @@ h1,h2,h3,h4,h5,h6
 fieldset
   border: none
 
-input[type="text"], input[type="email"], input[type="search"]
+
+input[type="text"], input[type="email"]
   -webkit-appearance: none
 
+input[type=text], input[type=email], input[type=search]
+  @extend %web-kit-appearance-reset
+
+input[type=search]::-webkit-search-cancel-button 
+  @extend %web-kit-appearance-reset
+
+input[type=search]::-webkit-search-decoration
+  @extend %web-kit-appearance-reset
+
+input[type=search]::-webkit-search-results-button
+  @extend %web-kit-appearance-reset
+
+input[type=search]::-webkit-search-results-decoration
+  @extend %web-kit-appearance-reset
+
+
 // Global static overrides - $$Legacy - Remove when possible
+//
 
 .clearfix
   display: block
