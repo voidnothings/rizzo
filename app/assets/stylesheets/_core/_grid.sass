@@ -12,27 +12,29 @@ $gutter: 10px
 .single
   @extend %margin-grid-column-10
   width: $default-card-width
+  .full-width &
+    width: $option-card-width
 
 .double
   @extend %margin-grid-column-10
   width: ($default-card-width * 2) + $gutter
-  &.full-width
+  .full-width &
     width: ($option-card-width * 2) + $gutter
 
 .triple
   @extend %margin-grid-column-10
   width: ($default-card-width * 3) + ($gutter * 2)
-  &.full-width
+  .full-width &
     width: ($option-card-width * 3) + $gutter
-    
+
 .quad
   @extend %margin-grid-column-10
   width: ($default-card-width * 4) + ($gutter * 3)
-  &.full-width
+  .full-width &
     width: ($option-card-width * 4) + $gutter
 
 .quint
   @extend %margin-grid-column-10
   width: ($default-card-width * 5) + ($gutter * 4)
-  &.full-width
+  .full-width &
     width: ($option-card-width * 5) + $gutter
