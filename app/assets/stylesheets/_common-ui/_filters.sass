@@ -27,4 +27,22 @@
     float: left
     margin-right: 5px
 
-      
+.facet-count
+  @include round-all(4px)
+  @extend %extra-small-type
+  @extend %central-align
+  padding: 2px 4px
+  position: absolute
+  right: 15px
+  top: 17px
+  display: block
+  background-color: $facet-count
+  color: $facet-count-text
+  font-weight: bold
+  min-width: 12px
+  .current &
+    color: $active
+    background-color: #fff
+
+
+  
