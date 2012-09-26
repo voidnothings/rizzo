@@ -8,9 +8,9 @@
   .item
     @extend %relative
     @extend %regular-type-size
-    @extend %chevron-horizontal
+    // @extend %chevron-horizontal
     color: $header-gray
-    padding: 15px 25px 15px 15px
+    padding: 15px 50px 15px 15px
     text-decoration: none
     &:after
       @extend %no-line-height
@@ -25,6 +25,8 @@
 
     &:hover
       background-color: $nav-hover-background
+      .facet-count
+        background-color: #fff
 
   .nav-heading
     @extend %reset-line-height
