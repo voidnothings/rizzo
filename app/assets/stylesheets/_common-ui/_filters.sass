@@ -24,6 +24,9 @@
 
   input[type="checkbox"]
     @extend %visually-hide
+    // Show the checkbox for ie7 where we don't have pseudo elements
+    .ie7 &
+      @extend %legacy-show
 
 .filter-label
   @extend %relative
