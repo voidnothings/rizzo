@@ -4,7 +4,6 @@
 .filter-set
   @extend %padded-grid-column-10
   width: 25%
-  margin-bottom: 20px
   &.double-col
     width: 50%
     
@@ -13,6 +12,7 @@
   @extend %margin-bottom
   @extend %larger-type
   font-weight: bold
+  color: $header-gray
 
 .filter-item 
   @extend %no-list-style
@@ -23,9 +23,32 @@
     float: left
 
   input[type="checkbox"]
-    @extend %margin-bottom
-    float: left
-    margin-right: 5px
+    @extend %visually-hide
+
+.filter-label
+  @extend %relative
+  @extend %irregular-type
+  display: block
+  margin-bottom: 10px
+  padding-left: 25px
+  cursor: pointer
+  color: $body-copy
+  &:before
+    +round-all(16px)
+    @extend %empty-generated-content
+    @extend %absolute-left
+    top: 1px
+    width: 12px
+    height: 12px
+    border: 2px solid $form-gray
+  &.active
+    font-weight: bold
+    color: $header-gray
+    &:before
+      top: 1px
+      width: 10px
+      height: 10px
+      border: 3px solid $active
 
 .facet-count
   @include round-all(4px)
