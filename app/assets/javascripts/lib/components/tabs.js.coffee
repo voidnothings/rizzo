@@ -18,20 +18,21 @@ define ['jquery'], ($) ->
 
 
     openNewTab = (tabLabel, tab) ->
-      config.tabLabels.removeClass('active')
-      tabLabel.addClass('active')
+      unless tab.hasClass('active')
+        config.tabLabels.removeClass('active')
+        tabLabel.addClass('active')
 
-      config.tabsContainer.css('opacity', '0').find('.js-tab').removeClass('active')
-      if tabsAreHidden() then config.tabsContainer.removeClass('is-hidden')
+        config.tabsContainer.css('opacity', '0').find('.js-tab').removeClass('active')
+        if tabsAreHidden() then config.tabsContainer.removeClass('is-hidden')
       
-      # Get padding (jquery box sizing bug - http://bugs.jquery.com/ticket/10413)
-      padding = (parseInt(tab.css('padding'), 10) * 2)
-      config.tabsContainer.css('height', (tab.children().outerHeight() + padding))
+        # Get padding (jquery box sizing bug - http://bugs.jquery.com/ticket/10413)
+        padding = (parseInt(tab.css('padding'), 10) * 2)
+        config.tabsContainer.css('height', (tab.children().outerHeight() + padding))
 
-      setTimeout ->
-        config.tabsContainer.find(tab).addClass('active')
-        config.tabsContainer.css('opacity', '1')
-      , 300
+        setTimeout ->
+          config.tabsContainer.find(tab).addClass('active')
+          config.tabsContainer.css('opacity', '1')
+        , 300
 
 
     closeTabs = ->
