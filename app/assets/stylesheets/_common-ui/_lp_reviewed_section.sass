@@ -39,3 +39,16 @@
       left: 5px
       top: 37px
 
+
+.lp-review, .lp-review-recommended
+  &.top-choice-banner
+    padding-right: 100px
+    &:after
+      @extend %empty-generated-content
+      @extend %absolute
+      +top-choice-banner()
+      top: -1px
+      right: 0
+      width: 77px
+      height: 67px
+  
