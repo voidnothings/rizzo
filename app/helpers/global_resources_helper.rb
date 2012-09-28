@@ -20,11 +20,26 @@ module GlobalResourcesHelper
     [
       {title:'Destinations', uri: "//www.lonelyplanet.com/destinations"},
       {title:'Themes', uri: "//www.lonelyplanet.com/themes"},
-      {title:'Travel Guides', uri: "//shop.lonelyplanet.com"},
-      {title:'Travel Bookings', uri: "//www.lonelyplanet.com/hotels"},
-      {title:'Thorn Tree', uri: "//www.lonelyplanet.com/thorntree"},
-      {title:'Propaganda', uri: "//www.lonelyplanet.com/"}
+      {title:'Shop', uri: "//shop.lonelyplanet.com"},
+      {title:'Thorn Tree Forum', uri: "//www.lonelyplanet.com/thorntree"},
+      {title:'Bookings', uri: "//http://hotels.lonelyplanet.com/"},
+      {title:'Insurance', uri: "//www.lonelyplanet.com/travel-insurance"}
     ]
+  end
+
+  def default_secondary_nav
+
+    [
+      {:title=>'Need to know', :url=>'#'},
+      {:title=>'In pictures', :url=>'#'},
+      {:title=>'Things to do', :url=>'#'},
+      {:title=>'Tips', :url=>'#'},
+      {:title=>'Discussion', :url=>'#'},
+      {:title=>'Guidebooks', :url=>'#'},
+      {:title=>'Hotels', :url=>'#'},
+      {:title=>'Flights', :url=>'#'}
+    ]
+
   end
 
   def cart_item_element
