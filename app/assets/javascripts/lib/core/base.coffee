@@ -6,15 +6,24 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
       @authenticateUser()
       @showUserBasket()
       @showLeaderboard()
-      @manageSearchBoxExpand() 
+      # @manageSearchBoxExpand() 
 
     adConfig: ->
-      adZone : window.lp.ads.adZone or 'home'
-      adKeywords : window.lp.ads.adKeywords or ' '
-      tile : lp.ads.tile or ' '
-      segQS : lp.ads.segQS or ' '
-      mtfIFPath : (lp.ads.mtfIFPath or '/')
-      unit: [728,90]
+      # defaults to window.lp (needs code refactoring)
+      if window.lp and window.lp.ads
+        adZone : window.lp.ads.adZone or 'home'
+        adKeywords : window.lp.ads.adKeywords or ' '
+        tile : lp.ads.tile or ' '
+        segQS : lp.ads.segQS or ' '
+        mtfIFPath : (lp.ads.mtfIFPath or '/')
+        unit: [728,90]
+      else   
+        adZone : window.adZone or 'home'
+        adKeywords : window.adKeywords  or ' '
+        tile : window.tile or ' '
+        segQS : window.segQS or ' '
+        mtfIFPath : '/'
+        unit: [728,90]
       
     authenticateUser: ->
       @auth = new Authenticator()
@@ -22,8 +31,7 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
         @auth.update()
 
     showLeaderboard: ->
-      if window.lp and window.lp.ads 
-        AdManager.init(@adConfig(),'ad_leaderboard')
+      AdManager.init(@adConfig(), 'ad_leaderboard')
 
     showUserBasket: ->
       shopCart = new ShoppingCart()
