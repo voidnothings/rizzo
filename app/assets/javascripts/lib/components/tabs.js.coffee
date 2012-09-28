@@ -8,14 +8,10 @@ define ['jquery'], ($) ->
  
   class Tabs
 
-    config =
-      tabs: ''
-      tabsContainer: ''
-      tabLabels: ''
+    config = {}
 
     tabsAreHidden = ->
       if config.tabsContainer.is(':hidden') then true else false
-
 
     openNewTab = (tabLabel, tab) ->
       unless tab.hasClass('active')
