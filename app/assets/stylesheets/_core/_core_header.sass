@@ -90,22 +90,21 @@
 
 %primary-nav
   @extend %helvetica-neue
-  padding: 5px 0
   @extend %regular-type
-  letter-spacing: -0.05em
+  padding: 5px 0
   a
-    padding: 12px 8px
+    @extend %no-decoration
     color: $nav-primary-type
     line-height: 38px
-    @extend %no-decoration
+    padding: 12px 8px
     text-decoration: none
     &:hover
       color: $nav-primary-type-hover 
 
 .global-nav
-  margin-left: 9px
-  @extend %primary-nav
   @extend %float-left
+  @extend %primary-nav
+  margin-left: 9px
    
 
 
@@ -118,8 +117,8 @@
 .secondary
   @extend %secondary-gradient
   @extend %clearfix
-  padding: 11px 0
   @include box-shadow(0px, 2px, 1px, 1px,rgba(0, 0, 0, 0.1), true)
+  padding: 11px 0
   .container
     min-height: 32px
 
@@ -217,9 +216,9 @@
     background-color: $nav-search-bck
     border: 1px solid #073a69
     height: 30px
+    margin-right: 20px
     padding: 3px
     width: 30px
-    margin-right: 20px
   &:after
     @extend %empty-abs-generated-content 
     @extend %benton-regular
