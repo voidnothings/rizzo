@@ -81,7 +81,6 @@ define ['jquery'], ($)->
       $.getJSON("#{@options.membersUrl}/#{@lpUserName}/messages/count?callback=?", (data)=>@messageCountCallBack(data)) if @lpUserName
 
     messageCountCallBack: (data={unread_count:0})->
-      console.log(data)
       @setLocalData('lp-unread-msg', data.unread_count)
       @setLocalData('lp-sent-msg', data.sent_count)
       @setLocalData('lp-received-msg', data.received_count)
