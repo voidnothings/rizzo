@@ -168,15 +168,15 @@
     padding: 2px 0 0 12px
 
 .user-basket
-  @extend %regular-icon
-  @extend .is-hidden
-  @extend %relative
-  @extend %float-right
-  // @extend %data-user-basket
   // @extend %background-center
-  margin: 4px 5px 4px 0 
-  @include transition(all, 0.1s, ease) 
+  // @extend %data-user-basket
+  @extend %float-right
   @extend %opaque
+  @extend %regular-icon
+  @extend %relative
+  @include transition(all, 0.1s, ease) 
+  display: none
+  margin: 4px 5px 4px 0 
   &:after
     @extend %empty-abs-generated-content 
     @extend %benton-regular
@@ -207,7 +207,7 @@
   padding: 0 0 13px 0
 
 .user-box
-  @extend .is-hidden
+  display: none
   cursor: pointer
   .user-img
     @extend %block
@@ -272,8 +272,8 @@
 
 .user-options
   @extend %absolute
-  @extend .is-hidden
   @include transition(all, 0.15s, ease) 
+  display: none
   height: 242px
   right: 0px
   top: 58px
@@ -384,7 +384,6 @@
     left: 9px
     line-height: 0
     top: 14px
-
 
 .search-box
   .global-search-type
