@@ -10,6 +10,7 @@
 
 $card-grid-height: 380px
 $hero-image-height: 185px
+$single-card-width: 190px
 
 %base-card-object
   @extend %white-background
@@ -29,8 +30,8 @@ $hero-image-height: 185px
 .card
   @extend %base-card-object
   @extend %relative
-  &.non-bookable
-    border-bottom: 2px solid $hotels-poi
+
+
 
 // -----------------------------------------------------------------------------
 // The Stack
@@ -64,6 +65,10 @@ $hero-image-height: 185px
 //
 // -----------------------------------------------------------------------------
 
+.list-view .card
+  @extend %media
+
+
 // -----------------------------------------------------------------------------
 // The Card Image
 // -----------------------------------------------------------------------------
@@ -83,8 +88,7 @@ $hero-image-height: 185px
     width: 100%
 
   .list-view &
-    @extend %float-left
-    width: 232px
+    width: $single-card-width
 
 
 // -----------------------------------------------------------------------------
@@ -104,6 +108,8 @@ $hero-image-height: 185px
     top: 0
     left: -4px
     border-width: 0 0 4px 4px
+  .list-view &
+    right: 13px
 
 .price-tag-inner
   background-color: $bookable
@@ -146,14 +152,12 @@ $card-padding: 13px
   color: $header-gray
 
   .list-view &
-    float: left
-    width: 528px
     height: ($hero-image-height - $card-padding-top - $card-padding)
 
   .grid-view &
     height: ($card-grid-height - $hero-image-height - $card-padding-top - $card-padding)
 
-  .non-bookable &
+  .grid-view .non-bookable &
     padding-top: 60px
     height: ($card-grid-height - 60px - $card-padding)
 
@@ -171,12 +175,8 @@ $card-padding: 13px
   @extend %reset-line-height
   font-weight: bold
   line-height: 17px
-  margin-bottom: 12px
-
-.description
-  @extend %irregular-type
-  @extend %smooth-text
-  color: $body-copy
+  .grid-view &
+    margin-bottom: 12px
 
 .locale
   @extend %serif
@@ -186,6 +186,13 @@ $card-padding: 13px
   line-height: 14px
   margin-bottom: 12px
 
+.description
+  @extend %irregular-type
+  @extend %smooth-text
+  color: $body-copy
+  .list-view &
+    padding-right: 65px
+
 .poi-icon
   @extend %benton-regular
   @extend %no-line-height
@@ -194,7 +201,9 @@ $card-padding: 13px
   left: 14px
   font-size: 65px
   color: $hotels-poi
-
+  .list-view &
+    top: 29px
+    left: 10px
 
 
 // -----------------------------------------------------------------------------
@@ -204,7 +213,9 @@ $card-padding: 13px
 .list-view .bookable-button
   @extend %absolute
   bottom: 13px
-  right: 12px
+  right: 13px
+  display: none
+
 
 .lp-reviewed-badge
   @extend %absolute
@@ -215,6 +226,29 @@ $card-padding: 13px
   @extend %absolute
   bottom: 13px
   left: 105px
+
+
+
+// -----------------------------------------------------------------------------
+// Non bookable styles
+// -----------------------------------------------------------------------------
+
+.grid-view .card.non-bookable
+  border-bottom: 2px solid $hotels-poi
+
+.list-view .card.non-bookable
+  border-left: 2px solid $hotels-poi
+
+.list-view .non-bookable .card-name,
+.list-view .non-bookable .locale
+  padding-left: 38px
+
+.list-view .non-bookable .card-name
+  margin-bottom: 3px
+  &.no-locale
+    margin-top: 5px
+    margin-bottom: 20px
+
 
 
 
