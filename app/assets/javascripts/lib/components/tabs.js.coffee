@@ -35,7 +35,7 @@ define ['jquery'], ($) ->
       tabs.on 'click', '.js-tab-item', (e) ->
         tabLabel = $(@)
         tab = $(tabLabel.attr('href'))
-        if tabLabel.hasClass('active') then @closeTabs() else openNewTab(tabLabel, tab)
+        if tabLabel.hasClass('active') then Tabs::closeTabs() else openNewTab(tabLabel, tab)
         false
 
 
