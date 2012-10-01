@@ -98,6 +98,9 @@
 @mixin text-shadow($x: 0px, $y: 1px, $blur: 0px, $color: rgba(255,255,255,.8))
   text-shadow: $x $y $blur $color
 
+@mixin multiple-text-shadow($shadow1, $shadow2:null)
+  text-shadow: $shadow1, $shadow2
+
 @mixin hyphens($type:auto)
   -webkit-hyphens: $type
   -moz-hyphens:    $type

@@ -83,33 +83,3 @@
 
 
 
-
-
-// -----------------------------------------------------------------------------
-// 
-//  Simple Grid for the card/list main content
-// 
-// -----------------------------------------------------------------------------
-
-$card-width: 190px
-$gutter: 10px
-
-%one-grid-column
-  @extend %margin-grid-column-10
-  width: $card-width
-
-%two-grid-columns
-  @extend %margin-grid-column-10
-  width: ($card-width * 2) + $gutter
-
-%three-grid-columns
-  @extend %margin-grid-column-10
-  width: ($card-width * 3) + ($gutter * 2)
-
-%four-grid-columns
-  @extend %margin-grid-column-10
-  width: ($card-width * 4) + ($gutter * 3)
-
-%five-grid-columns
-  @extend %margin-grid-column-10
-  width: ($card-width * 5) + ($gutter * 4)

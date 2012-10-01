@@ -28,15 +28,7 @@ $hero-image-height: 185px
 
 .card
   @extend %base-card-object
-  &.deal
-    @extend %relative
-    &:after
-      +deal-banner-blue()
-      @extend %absolute-top-right
-      @extend %empty-generated-content
-      height: 69px
-      width: 69px
-
+  @extend %relative
 
 
 // -----------------------------------------------------------------------------
@@ -102,13 +94,30 @@ $hero-image-height: 185px
 // -----------------------------------------------------------------------------
 
 .card-price-tag
-  @extend %absolute-bottom
-  @extend %extra-small-type
-  @extend %benton-regular
+  @extend %absolute
+  top: -4px
+  right: 5px
+  min-width: 60px
+  text-align: center
+  &:after
+    @extend %empty-abs-generated-content
+    border-style: solid
+    border-color: transparent transparent $bookable-back transparent
+    top: 0
+    left: -4px
+    border-width: 0 0 4px 4px
+
+.price-tag-inner
   background-color: $bookable
   color: $header-gray
   padding: 8px 10px
-  left: 5px
+  @extend %extra-small-type
+  @extend %benton-regular
+  &.non-bookable
+    +multiple-text-shadow(-1px -1px 1px rgba(0, 0, 0, 0.25), 1px 1px 1px rgba(255,255,255,0.8))
+    padding: 4px 10px
+    font-size: 44px
+    color: #dad01a
   .price
     @extend %heading-size-type
     display: block
@@ -116,6 +125,14 @@ $hero-image-height: 185px
   .curr
     @extend sup
     @extend %regular-type-size
+
+.price-tag-deal
+  @extend %larger-type
+  @extend %smooth-text
+  background-color: $deal-background
+  font-weight: bold
+  color: #fff
+  padding: 4px 0
 
 
 // -----------------------------------------------------------------------------
@@ -153,14 +170,6 @@ $hero-image-height: 185px
   margin-bottom: 7px
   min-height: 60px
 
-.locale
-  @extend %relative
-  padding-top: 10px
-  &:before
-    @extend %empty-generated-content
-    @extend %absolute-top-left
-    border-top: 1px solid $body-copy
-    width: 15px
 
 .grid-view .description
   display: none
