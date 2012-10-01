@@ -31,17 +31,17 @@ define ['jquery'], ($) ->
         , 300
 
 
-    closeTabs = ->
-      config.tabLabels.removeClass('active')
-      config.tabsContainer.addClass('is-hidden').children('.js-tab').removeClass('active')
-
-
     bindEvents = (tabs, tabsContainer) =>
       tabs.on 'click', '.js-tab-item', (e) ->
         tabLabel = $(@)
         tab = $(tabLabel.attr('href'))
-        if tabLabel.hasClass('active') then closeTabs() else openNewTab(tabLabel, tab)
+        if tabLabel.hasClass('active') then @closeTabs() else openNewTab(tabLabel, tab)
         false
+
+
+    closeTabs : ->
+      config.tabLabels.removeClass('active')
+      config.tabsContainer.addClass('is-hidden').children('.js-tab').removeClass('active')
 
 
     switch: (tab) ->
