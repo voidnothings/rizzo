@@ -20,6 +20,8 @@ require ['public/assets/javascripts/lib/components/tabs.js'], (Tabs) ->
         runs ->
           expect($('#myTestTabs').find('#label1')).toHaveClass('active')
           expect($('#myTestTabs').find('#test1')).toHaveClass('active')
+          expect($('#myTestTabs').find('#label2')).not.toHaveClass('active')
+          expect($('#myTestTabs').find('#test2')).not.toHaveClass('active')
 
       it 'closes tab 1', ->
         $('#myTestTabs').find('#test1').addClass('active')
@@ -30,6 +32,8 @@ require ['public/assets/javascripts/lib/components/tabs.js'], (Tabs) ->
         runs ->
           expect($('#myTestTabs').find('#label1')).not.toHaveClass('active')
           expect($('#myTestTabs').find('#test1')).not.toHaveClass('active')
+          expect($('#myTestTabs').find('#label2')).not.toHaveClass('active')
+          expect($('#myTestTabs').find('#test2')).not.toHaveClass('active')
 
       it 'switches to a tab with id of #test2', ->
         runs ->
@@ -39,6 +43,8 @@ require ['public/assets/javascripts/lib/components/tabs.js'], (Tabs) ->
         runs ->
           expect($('#myTestTabs').find('#label2')).toHaveClass('active')
           expect($('#myTestTabs').find('#test2')).toHaveClass('active')
+          expect($('#myTestTabs').find('#label1')).not.toHaveClass('active')
+          expect($('#myTestTabs').find('#test1')).not.toHaveClass('active')
         , 500
  
       it 'switches to tab 1 when it is already active', ->
@@ -51,5 +57,7 @@ require ['public/assets/javascripts/lib/components/tabs.js'], (Tabs) ->
         runs ->
           expect($('#myTestTabs').find('#label1')).toHaveClass('active')
           expect($('#myTestTabs').find('#test1')).toHaveClass('active')
+          expect($('#myTestTabs').find('#label2')).not.toHaveClass('active')
+          expect($('#myTestTabs').find('#test2')).not.toHaveClass('active')
         , 500
 
