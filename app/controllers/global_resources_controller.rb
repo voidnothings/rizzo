@@ -5,7 +5,7 @@ class GlobalResourcesController < GlobalController
   layout nil
 
   def head
-    render :template => 'layouts/core_partials/_head'
+    render :template => 'layouts/core_partials/_head_snippet'
   end
 
   def header
@@ -13,7 +13,7 @@ class GlobalResourcesController < GlobalController
   end
 
   def footer
-    render :template => 'layouts/core_partials/_footer'
+    render :template => 'layouts/core_partials/_footer-snippet'
   end
 
   def index
