@@ -100,6 +100,10 @@
     text-decoration: none
     &:hover
       color: $nav-primary-type-hover 
+    &:active
+      //need to force this here cos of legacy integration on destionations ui
+      text-decoration: none!important
+      color: $nav-primary-type!important
 
 .global-nav
   @extend %float-left
@@ -140,12 +144,15 @@
     @extend %float-left
     @extend %block
     @extend %no-decoration
-    font-size: 14px
     padding: 6px 9px 5px
     line-height: 18px
     color: $nav-secondary-type
     &:hover
       color: $nav-secondary-type-hover 
+    &:active
+      //need to force this here cos of legacy integration on destionations ui
+      text-decoration: none!important
+      color: $nav-secondary-type!important
     &.current
       @include round-all(6px)
       background-color: $nav-secondary-current-item-bck
@@ -165,6 +172,11 @@
     @extend %no-padding
   .user-box
     padding: 2px 0 0 12px
+  a
+    &:active
+      //need to force this here cos of legacy integration on destionations ui
+      text-decoration: none!important
+      color: #fff!important
 
 .user-basket
   // @extend %background-center
@@ -192,7 +204,6 @@
   @extend %small-icon
   @extend %extra-small-type
   @include round-all(8px)
-  @include box-shadow()
   @include box-shadow(0px, 1px, 3px, 1px,rgba(0, 0, 0, 0.5))
   z-index: 1
   margin: 0
@@ -204,6 +215,10 @@
 .auth-box
   @extend %float-right
   padding: 0 0 13px 0
+  a
+    &:hover
+      color: $nav-secondary-type-hover 
+
 
 .user-box
   display: none
@@ -230,6 +245,7 @@
   &:hover
     &:after
       color: $nav-secondary-type
+      
 
 
 // ----------------------------------------------------------------------------
@@ -307,14 +323,14 @@
 
 .user-menu-option
   @extend %helvetica-neue
-  @extend %irregular-type
   @extend %no-repeat
   @extend %block
   @extend %relative
-  padding: 12px 1px
-  color: #fff
-  font-weight: normal
   background-position: 142px center
+  color: #fff
+  font-size: 14px
+  font-weight: normal
+  padding: 12px 1px
   &:hover
     background-color:  $nav-secondary-item-hover 
   &:before
