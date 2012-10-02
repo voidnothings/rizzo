@@ -44,6 +44,7 @@ $single-card-width: 190px
     color: #fff
 
 
+
 // -----------------------------------------------------------------------------
 //
 // Full Page Card
@@ -57,6 +58,17 @@ $single-card-width: 190px
   @extend %reset-line-height
   color: $heading-text
   font-weight: bold
+
+
+// -----------------------------------------------------------------------------
+// Lodging card
+// -----------------------------------------------------------------------------
+
+.lodging-card:hover
+  +box-shadow(2px, 2px, 8px, 0, rgba(3, 46, 92, 0.2))
+  img
+    +filter(brightness(-15%))
+
 
 
 // -----------------------------------------------------------------------------
@@ -104,7 +116,7 @@ $single-card-width: 190px
   &:after
     @extend %empty-abs-generated-content
     border-style: solid
-    border-color: transparent transparent $bookable-back transparent
+    border-color: transparent transparent $bookable-ribbon transparent
     top: 0
     left: -4px
     border-width: 0 0 4px 4px
@@ -157,7 +169,7 @@ $card-padding: 13px
   .grid-view &
     height: ($card-grid-height - $hero-image-height - $card-padding-top - $card-padding)
 
-  .grid-view .non-bookable &
+  .grid-view .no-image &
     padding-top: 60px
     height: ($card-grid-height - 60px - $card-padding)
 
@@ -233,17 +245,17 @@ $card-padding: 13px
 // Non bookable styles
 // -----------------------------------------------------------------------------
 
-.grid-view .card.non-bookable
+.grid-view .no-image
   border-bottom: 2px solid $hotels-poi
 
-.list-view .card.non-bookable
+.list-view .no-image
   border-left: 2px solid $hotels-poi
 
-.list-view .non-bookable .card-name,
-.list-view .non-bookable .locale
+.list-view .no-image .card-name,
+.list-view .no-image .locale
   padding-left: 38px
 
-.list-view .non-bookable .card-name
+.list-view .no-image .card-name
   margin-bottom: 3px
   &.no-locale
     margin-top: 5px

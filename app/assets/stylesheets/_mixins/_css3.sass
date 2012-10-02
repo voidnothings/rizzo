@@ -95,6 +95,13 @@
   -o-transform:      scale($scale) rotate($rotate) translate($translateX, $translateY) skew($skewX, $skewY)
   transform:         scale($scale) rotate($rotate) translate($translateX, $translateY) skew($skewX, $skewY)
 
+@mixin filter($filter1, $filter2: null, $filter3: null, $filter4: null, $filter5: null)
+  -webkit-filter: ($filter1 $filter2 $filter3 $filter4 $filter5)
+  // -moz-filter:    $property($value)
+  // -ms-filter:     $property($value)
+  // -o-filter:      $property($value)
+  // filter:         $property($value)
+
 @mixin text-shadow($x: 0px, $y: 1px, $blur: 0px, $color: rgba(255,255,255,.8))
   text-shadow: $x $y $blur $color
 
