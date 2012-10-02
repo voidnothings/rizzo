@@ -45,13 +45,8 @@ define ['jquery'], ($) ->
 
 
     switch: (tab) ->
-      if typeof(tab) is "number"
-        tabLabel = $(config.tabLabels[tab-1])
-        tab = $(config.tabsContainer.find('.js-tab')[tab-1])
-      else
-        tabLabel = config.tabLabels.filter("[href=#{tab}]")
-        tab = $(tab)
-      
+      tabLabel = config.tabLabels.filter("[href=#{tab}]")
+      tab = $(tab)
       openNewTab(tabLabel, tab)
 
 

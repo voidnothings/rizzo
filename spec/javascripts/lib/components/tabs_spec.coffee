@@ -30,17 +30,7 @@ require ['public/assets/javascripts/lib/components/tabs.js'], (Tabs) ->
         runs ->
           expect($('#myTestTabs').find('#label1')).not.toHaveClass('active')
           expect($('#myTestTabs').find('#test1')).not.toHaveClass('active')
- 
-      it 'switches to tab 2', ->
-        runs ->
-          myTabs = new Tabs('#myTestTabs')
-          myTabs.switch(2)
-        waits(500)
-        runs ->
-          expect($('#myTestTabs').find('#label2')).toHaveClass('active')
-          expect($('#myTestTabs').find('#test2')).toHaveClass('active')
-        , 500
-      
+
       it 'switches to a tab with id of #test2', ->
         runs ->
           myTabs = new Tabs('#myTestTabs')
@@ -56,7 +46,7 @@ require ['public/assets/javascripts/lib/components/tabs.js'], (Tabs) ->
           myTabs = new Tabs('#myTestTabs')
           $('#myTestTabs').find('#test1').addClass('active')
           $('#myTestTabs').find('#label1').addClass('active')
-          myTabs.switch(1)
+          myTabs.switch('#test1')
         waits(500)
         runs ->
           expect($('#myTestTabs').find('#label1')).toHaveClass('active')
