@@ -9,12 +9,12 @@
     
 
 .filter-set-title
-  @extend %margin-bottom
   @extend %larger-type
-  font-weight: bold
   color: $header-gray
+  font-weight: bold
+  margin-bottom: 10px
 
-.filter-item 
+.filter-item
   @extend %no-list-style
   @extend %clearfix
 
@@ -41,9 +41,9 @@
     @extend %empty-generated-content
     @extend %absolute-left
     top: 1px
-    width: 12px
-    height: 12px
-    border: 2px solid $form-gray
+    width: 14px
+    height: 14px
+    border: 1px solid $form-gray
   &.active
     font-weight: bold
     color: $header-gray
