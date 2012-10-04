@@ -93,7 +93,7 @@
   padding: 5px 0
   a
     @extend %no-decoration
-    font-size: 14px
+    font-size: 14px!important
     color: $nav-primary-type
     line-height: 38px
     padding: 12px 8px
@@ -144,13 +144,15 @@
     @extend %float-left
     @extend %block
     @extend %no-decoration
+    //force font-size needed when using legacy styles and new header 
+    font-size: 14px!important
     padding: 6px 9px 5px
     line-height: 18px
     color: $nav-secondary-type
     &:hover
       color: $nav-secondary-type-hover 
+    //force  when using legacy styles and new header 
     &:active
-      //need to force this here cos of legacy integration on destionations ui
       text-decoration: none!important
       color: $nav-secondary-type!important
     &.current
@@ -173,10 +175,13 @@
   .user-box
     padding: 2px 0 0 12px
   a
+    //force font-size needed when using legacy styles and new header 
+    font-size: 14px!important
     &:active
       //need to force this here cos of legacy integration on destionations ui
       text-decoration: none!important
       color: #fff!important
+      
 
 .user-basket
   // @extend %background-center
@@ -211,6 +216,8 @@
   background-color: $basket-item
   line-height: 16px
   font-weight: bold
+  //force font-sizee needed cessary when using legacy styles and new header 
+  font-size: 10px!important
 
 .auth-box
   @extend %float-right
@@ -239,7 +246,8 @@
     @extend %benton-regular
     color: #658fc3
     content: '\E030'
-    font-size: 22px
+    //force font-size needed when using legacy style and new header
+    font-size: 22px!important
     padding-left: 43px
     line-height: 36px
   &:hover
@@ -253,7 +261,6 @@
 // User Nav States
 //
 // ----------------------------------------------------------------------------
-
   
 .is-logged
   .user-box
@@ -278,6 +285,7 @@
 .has-basket
   .user-basket
     @extend %block
+
 
 // ----------------------------------------------------------------------------
 //
@@ -328,7 +336,8 @@
   @extend %relative
   background-position: 142px center
   color: #fff
-  font-size: 14px
+  //force font-size needed when using legacy style and new header
+  font-size: 14px!important
   font-weight: normal
   padding: 12px 1px
   &:hover
