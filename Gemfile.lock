@@ -1,12 +1,12 @@
 GIT
   remote: git@github.com:lonelyplanet/avocado.git
-  revision: d9ad402c2a062ef403c4102bd806a01033fdb174
+  revision: 4892130975378cd2ab9226f7e1a0861e1809aa53
   specs:
     avocado (0.0.31)
 
 GIT
   remote: git@github.com:lonelyplanet/beaker.git
-  revision: 5cb7385b9f7fb06b3831346d2d82bfe245c90e2e
+  revision: 3228b8d673eb62e910786335cf62b776930b1ce3
   specs:
     beaker (0.0.41)
 
@@ -84,8 +84,9 @@ GEM
     guard-cucumber (1.2.0)
       cucumber (>= 1.2.0)
       guard (>= 1.1.0)
-    guard-rspec (1.2.1)
+    guard-rspec (2.0.0)
       guard (>= 1.1)
+      rspec (~> 2.11)
     haml (3.1.7)
     haml-rails (0.3.5)
       actionpack (>= 3.1, < 4.1)
