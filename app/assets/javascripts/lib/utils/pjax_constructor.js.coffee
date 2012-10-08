@@ -14,7 +14,7 @@ define ['jquery', 'jplugs/jquery.pjax'], ($) ->
       type        : 'GET'
       timeout     : 650
       animate     : true
-      animateType : 'all'
+      animateType : 'each'
       url         : ''
       data        : ''
       success     : ->
@@ -26,12 +26,12 @@ define ['jquery', 'jplugs/jquery.pjax'], ($) ->
         $(config.parent).off('pjax:success')
         $(config.parent).off('pjax:error')
 
-    customAnimation = ->
+    setupCardsAnimation = ->
       $(config.parent).on 'pjax:animate', (e, data) ->
         cardsContainer = data.contents.filter('.results')
         cards = data.contents.find('.card').css('opacity', '0')
         data.container.html(data.contents)
-        if (config.animateType == 'single')
+        if (config.animateType == 'each')
           i = 0
           insertCards = setInterval(->
             if i isnt cards.length
@@ -52,7 +52,7 @@ define ['jquery', 'jplugs/jquery.pjax'], ($) ->
       $.extend config, args
       init()
       bindEvents()
-      if config.animate == true then customAnimation()
+      if config.animate == true then setupCardsAnimation()
       $.pjax
         url       : config.url
         container : config.container
