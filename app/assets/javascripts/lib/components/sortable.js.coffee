@@ -48,7 +48,7 @@ define ['jquery'], ($) ->
     bindEvents: ->
       t = $(@target)
       t.on('dragstart', 'li', (e) => @dragStart(e))
-      t.on('dragenter', 'li', (e) => @dragEnter(e))
+      t.on('dragenter', 'li[draggable]', (e) => @dragEnter(e))
       t.on('dragover', 'li', (e) => @dragOver(e))
       t.on('drop', 'li', (e) => @drop(e))
       t.on('dragend', 'li', (e) => @dragEnd(e))
