@@ -5,7 +5,7 @@
 %base-button
   @extend %inline-block
   @extend %smooth-text
-  +round-all(3px)
+  +round-all(4px)
   +box-sizing()
   line-height: 1
   cursor: pointer
@@ -21,8 +21,9 @@
 .bookable-button
   @extend %base-button
   @extend %larger-type
-  @extend %ryanair
   +box-shadow(1px, 1px, 1px, 0, rgba(0,0,0,0.1))
+  background-color: $bookable
+  color: $header-gray
   padding: 6px 15px
   font-weight: bold
 

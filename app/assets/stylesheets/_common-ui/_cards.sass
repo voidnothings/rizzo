@@ -10,6 +10,7 @@
 
 $card-grid-height: 380px
 $hero-image-height: 185px
+$single-card-width: 190px
 
 %base-card-object
   @extend %white-background
@@ -28,14 +29,7 @@ $hero-image-height: 185px
 
 .card
   @extend %base-card-object
-  &.deal
-    @extend %relative
-    &:after
-      +deal-banner-blue()
-      @extend %absolute-top-right
-      @extend %empty-generated-content
-      height: 69px
-      width: 69px
+  @extend %relative
 
 
 
@@ -48,6 +42,7 @@ $hero-image-height: 185px
   background-color: $card-title-text
   .card-name
     color: #fff
+
 
 
 // -----------------------------------------------------------------------------
@@ -65,6 +60,14 @@ $hero-image-height: 185px
   font-weight: bold
 
 
+// -----------------------------------------------------------------------------
+// Lodging card
+// -----------------------------------------------------------------------------
+
+.lodging-card:hover
+  +box-shadow(2px, 2px, 8px, 0, rgba(3, 46, 92, 0.15))
+  img
+    +filter(brightness(-15%))
 
 
 
@@ -73,6 +76,10 @@ $hero-image-height: 185px
 // Grid and List view cards
 //
 // -----------------------------------------------------------------------------
+
+.list-view .card
+  @extend %media
+
 
 // -----------------------------------------------------------------------------
 // The Card Image
@@ -93,8 +100,7 @@ $hero-image-height: 185px
     width: 100%
 
   .list-view &
-    @extend %float-left
-    width: 232px
+    width: $single-card-width
 
 
 // -----------------------------------------------------------------------------
@@ -102,13 +108,32 @@ $hero-image-height: 185px
 // -----------------------------------------------------------------------------
 
 .card-price-tag
-  @extend %absolute-bottom
-  @extend %extra-small-type
-  @extend %benton-regular
+  @extend %absolute
+  top: -4px
+  right: 5px
+  min-width: 60px
+  text-align: center
+  &:after
+    @extend %empty-abs-generated-content
+    border-style: solid
+    border-color: transparent transparent $bookable-ribbon transparent
+    top: 0
+    left: -4px
+    border-width: 0 0 4px 4px
+  .list-view &
+    right: 13px
+
+.price-tag-inner
   background-color: $bookable
   color: $header-gray
   padding: 8px 10px
-  left: 5px
+  @extend %extra-small-type
+  @extend %benton-regular
+  &.non-bookable
+    +multiple-text-shadow(-1px -1px 1px rgba(0, 0, 0, 0.25), 1px 1px 1px rgba(255,255,255,0.8))
+    padding: 4px 10px
+    font-size: 44px
+    color: #dad01a
   .price
     @extend %heading-size-type
     display: block
@@ -117,66 +142,85 @@ $hero-image-height: 185px
     @extend sup
     @extend %regular-type-size
 
+.price-tag-deal
+  @extend %larger-type
+  @extend %smooth-text
+  background-color: $deal-background
+  font-weight: bold
+  color: #fff
+  padding: 4px 0
+
 
 // -----------------------------------------------------------------------------
 // Inner 'content' section
 // -----------------------------------------------------------------------------
 
+$card-padding-top: 15px
+$card-padding: 13px
+
 .card-content
   @extend %relative
-  @extend %small-type
-  padding: 12px
-  color: $body-copy
+  padding: $card-padding-top $card-padding $card-padding
+  color: $header-gray
 
   .list-view &
-    float: left
-    width: 528px
-    height: ($hero-image-height - 20px)
+    height: ($hero-image-height - $card-padding-top - $card-padding)
 
   .grid-view &
-    height: ($card-grid-height - $hero-image-height - 20px)
+    height: ($card-grid-height - $hero-image-height - $card-padding-top - $card-padding)
 
+  .grid-view .no-image &
+    padding-top: 60px
+    height: ($card-grid-height - 60px - $card-padding)
 
 // -----------------------------------------------------------------------------
 // Card details
 // -----------------------------------------------------------------------------
 
 .star-rating
-  @extend %uppercase
-  margin-bottom: 7px
+  @extend %small-type
+  margin-bottom: 5px
   display: block
 
 .card-name
-  @extend %extra-large-type
-  @extend %normal-weight-text
-  color: $header-gray
-  margin-bottom: 7px
-  min-height: 60px
+  @extend %large-type
+  @extend %reset-line-height
+  font-weight: bold
+  line-height: 17px
+  .grid-view &
+    margin-bottom: 12px
 
 .locale
-  @extend %relative
-  padding-top: 10px
-  &:before
-    @extend %empty-generated-content
-    @extend %absolute-top-left
-    border-top: 1px solid $body-copy
-    width: 15px
+  @extend %serif
+  @extend %small-type
+  color: $body-copy
+  font-style: italic
+  line-height: 14px
+  margin-bottom: 12px
 
-.grid-view .description
-  display: none
+.description
+  @extend %irregular-type
+  @extend %smooth-text
+  color: $body-copy
+  .list-view &
+    padding-right: 65px
+
+.poi-icon
+  @extend %benton-regular
+  @extend %no-line-height
+  @extend %absolute
+  top: 26px
+  left: 14px
+  font-size: 65px
+  color: $hotels-poi
+  .list-view &
+    top: 29px
+    left: 10px
 
 
 // -----------------------------------------------------------------------------
 // Card Footer
 // -----------------------------------------------------------------------------
-
-.list-view .bookable-button
-  @extend %absolute
-  bottom: 13px
-  right: 12px
-
-.grid-view .bookable-button
-  display: none
 
 .lp-reviewed-badge
   @extend %absolute
@@ -187,6 +231,29 @@ $hero-image-height: 185px
   @extend %absolute
   bottom: 13px
   left: 105px
+
+
+
+// -----------------------------------------------------------------------------
+// Cards without images
+// -----------------------------------------------------------------------------
+
+.grid-view .no-image
+  border-bottom: 2px solid $hotels-poi
+
+.list-view .no-image
+  border-left: 2px solid $hotels-poi
+
+.list-view .no-image .card-name,
+.list-view .no-image .locale
+  padding-left: 38px
+
+.list-view .no-image .card-name
+  margin-bottom: 3px
+  &.no-locale
+    margin-top: 5px
+    margin-bottom: 20px
+
 
 
 
