@@ -23,7 +23,7 @@ define ['jquery', 'jplugs/jquery.pjax'], ($) ->
     init = ->
       $.pjax.defaults.scrollTo = false
       init = ->
-        $(config.parent).off('pjax:success')
+        $(config.parent).off('pjax:end')
         $(config.parent).off('pjax:error')
 
     setupCardsAnimation = ->
