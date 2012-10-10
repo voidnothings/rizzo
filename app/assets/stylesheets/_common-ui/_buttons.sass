@@ -5,7 +5,7 @@
 %base-button
   @extend %inline-block
   @extend %smooth-text
-  +round-all(4px)
+  +border-radius(4)
   +box-sizing()
   line-height: 1
   cursor: pointer
@@ -21,7 +21,7 @@
 .bookable-button
   @extend %base-button
   @extend %larger-type
-  +box-shadow(1px, 1px, 1px, 0, rgba(0,0,0,0.1))
+  +box-shadow(1, 1, 1, 0, rgba(0,0,0,0.1))
   background-color: $bookable
   color: $header-gray
   padding: 6px 15px
@@ -31,7 +31,7 @@
   @extend %base-button
   @extend %extra-large-type
   +background-gradient(#e8edf0, #e0e7ea)
-  +box-shadow(0px, 1px, 1px, 0, rgba(255,255,255,0.7))
+  +box-shadow(0, 1, 1, 0, rgba(255,255,255,0.7))
   color: $heading-text
   padding: 10px 15px
   width: 100%
@@ -50,7 +50,7 @@
 .functional-btn
   @extend %base-button
   @extend %extra-large-type
-  +box-shadow(1px, 1px, 1px, 0, rgba(3, 46, 92, 0.1))
+  +box-shadow(1, 1, 1, 0, rgba(3, 46, 92, 0.1))
   padding: 10px 15px
   background-color: #fff
   color: $heading-text

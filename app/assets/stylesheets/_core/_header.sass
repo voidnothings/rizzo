@@ -51,7 +51,7 @@
           color: #0a4f9c
         button
           +btn-search-bck
-          +box-shadow(0px,0px, 0px)
+          +box-shadow(0, 0, 0)
           @extend %extra-small-type
           display: table-cell
           height: 24px
@@ -84,7 +84,7 @@
         float: left
         background-color: #EAE1D8
         margin-right: 3px
-        @include round-each(2px, 2px, 0, 0)
+        +border-radius-each(2, 2, 0, 0)
         &.current
           background-color: #D6CDC0
           border-bottom: 1px solid #D6CDC0
@@ -161,7 +161,7 @@
             line-height: 22px
             width: 59px
             background-color: #0084cd
-            @include round-all(3px)
+            @include border-radius(3)
             padding: 0
             &:hover
               background-color: #07408a
@@ -351,7 +351,7 @@
       padding: 7px 10px 7px 38px
       font-size: 0.9em
       @include vertically-center(28px)
-      @include round-all(20px)
+      @include border-radius(20)
       span
         color: #666
         display: block

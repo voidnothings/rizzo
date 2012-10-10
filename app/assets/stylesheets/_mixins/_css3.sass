@@ -1,42 +1,32 @@
 // -----------------------------------------------------------------------------
 // Prefixed CSS3 Properties
+//
+// Vendor prefixes are determined by caniuse.com
 // -----------------------------------------------------------------------------
 
 
 // Any objections to changing this to +border-radius??? $$legacy
 
 
-@mixin round-all($radius: 2px)
-  -webkit-border-radius: $radius
-  -moz-border-radius:    $radius
-  -ms-border-radius:     $radius
-  -o-border-radius:      $radius
-  border-radius:         $radius
+@mixin border-radius($radius: 2)
+  -webkit-border-radius: $radius + px
+  border-radius:         $radius + px
 
 
-@mixin round-each($a: 2px, $b: 2px, $c: 2px, $d: 2px)
-  -webkit-border-radius: $a $b $c $d
-  -moz-border-radius:    $a $b $c $d
-  -ms-border-radius:     $a $b $c $d
-  -o-border-radius:      $a $b $c $d
-  border-radius:         $a $b $c $d
+@mixin border-radius-each($a: 2, $b: 2, $c: 2, $d: 2)
+  -webkit-border-radius: #{$a + px} #{$b + px} #{$c + px} #{$d + px}
+  border-radius:         #{$a + px} #{$b + px} #{$c + px} #{$d + px}
 
-@mixin box-shadow($x: 0px, $y: 1px, $blur: 4px, $spread: 0, $color: rgba(0,0,0,0.3), $inset: false )
-  $params: $x $y $blur $spread $color
+
+@mixin box-shadow($x: 0, $y: 1, $blur: 4, $spread: 0, $color: rgba(0,0,0,0.3), $inset: false )
+  $params: #{$x + px} #{$y + px} #{$blur + px} #{$spread + px} $color
   @if $inset == true
-    $params: inset $x $y $blur $spread $color
- 
+    $params: inset #{$x + px} #{$y + px} #{$blur + px} #{$spread + px} $color
   -webkit-box-shadow: $params
-  -moz-box-shadow:    $params
-  -ms-box-shadow:     $params
-  -o-box-shadow:      $params
   box-shadow:         $params
 
 @mixin multiple-box-shadow($shadow1, $shadow2:null, $shadow3:null, $shadow4:null, $shadow5:null)
   -webkit-box-shadow: $shadow1, $shadow2, $shadow3, $shadow4, $shadow5
-  -moz-box-shadow:    $shadow1, $shadow2, $shadow3, $shadow4, $shadow5
-  -ms-box-shadow:     $shadow1, $shadow2, $shadow3, $shadow4, $shadow5
-  -o-box-shadow:      $shadow1, $shadow2, $shadow3, $shadow4, $shadow5
   box-shadow:         $shadow1, $shadow2, $shadow3, $shadow4, $shadow5
 
 
@@ -74,13 +64,14 @@
   box-sizing:         $sizing
 
 
-@mixin transition($property: all, $duration: 0.5s, $style: ease)  
-  -webkit-transition: $property $duration $style
-  -moz-transition:    $property $duration $style
-  -ms-transition:     $property $duration $style
-  -o-transition:      $property $duration $style
-  transition:         $property $duration $style
-    
+@mixin transition($property: all, $duration: 0.5, $style: ease)  
+  -webkit-transition: $property #{$duration + s} $style
+  -moz-transition:    $property #{$duration + s} $style
+  -ms-transition:     $property #{$duration + s} $style
+  -o-transition:      $property #{$duration + s} $style
+  transition:         $property #{$duration + s} $style
+
+
 @mixin multiple-transitions($transition1, $transition2: null, $transition3: null, $transition4: null, $transition5: null)
   -webkit-transition: $transition1, $transition2, $transition3, $transition4, $transition5
   -moz-transition:    $transition1, $transition2, $transition3, $transition4, $transition5
@@ -88,21 +79,15 @@
   -o-transition:      $transition1, $transition2, $transition3, $transition4, $transition5
   transition:         $transition1, $transition2, $transition3, $transition4, $transition5
 
-@mixin transform($scale: 1, $rotate: 15deg, $translateX: 0px, $translateY: 0px, $skewX: 0deg, $skewY: 0deg)
-  -webkit-transform: scale($scale) rotate($rotate) translate($translateX, $translateY) skew($skewX, $skewY)
-  -moz-transform:    scale($scale) rotate($rotate) translate($translateX, $translateY) skew($skewX, $skewY)
-  -ms-transform:     scale($scale) rotate($rotate) translate($translateX, $translateY) skew($skewX, $skewY)
-  -o-transform:      scale($scale) rotate($rotate) translate($translateX, $translateY) skew($skewX, $skewY)
-  transform:         scale($scale) rotate($rotate) translate($translateX, $translateY) skew($skewX, $skewY)
 
 @mixin filter($filter1, $filter2: null, $filter3: null, $filter4: null, $filter5: null)
   -webkit-filter: ($filter1 $filter2 $filter3 $filter4 $filter5)
-  // -moz-filter:    $property($value)
-  // -ms-filter:     $property($value)
-  // -o-filter:      $property($value)
-  // filter:         $property($value)
+  -moz-filter:    ($filter1 $filter2 $filter3 $filter4 $filter5)
+  -ms-filter:     ($filter1 $filter2 $filter3 $filter4 $filter5)
+  -o-filter:      ($filter1 $filter2 $filter3 $filter4 $filter5)
+  filter:         ($filter1 $filter2 $filter3 $filter4 $filter5)
 
-@mixin text-shadow($x: 0px, $y: 1px, $blur: 0px, $color: rgba(255,255,255,.8))
+@mixin text-shadow($x: 0, $y: 1, $blur: 0, $color: rgba(255,255,255,.8))
   text-shadow: $x $y $blur $color
 
 @mixin multiple-text-shadow($shadow1, $shadow2:null)
