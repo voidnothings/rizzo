@@ -38,3 +38,57 @@ $gutter: 10px
   width: ($default-card-width * 5) + ($gutter * 4)
   .full-width &
     width: ($option-card-width * 5) + $gutter
+
+
+
+// -----------------------------------------------------------------------------
+// 
+//  Proportional grid
+// 
+// -----------------------------------------------------------------------------
+
+.grid-wrapper-10
+  @extend %grid-wrapper-10
+  > [class^="col-"]
+    @extend %padded-grid-column-10
+
+.grid-wrapper-15
+  @extend %grid-wrapper-15
+  > [class^="col-"]
+    @extend %padded-grid-column-15
+
+.grid-wrapper-20
+  @extend %grid-wrapper-20
+  > [class^="col-"]
+    @extend %padded-grid-column-20
+
+.grid-wrapper-30
+  @extend %grid-wrapper-30
+  > [class^="col-"]
+    @extend %padded-grid-column-30
+
+
+.col-one-half
+  width: 50%
+
+.col-one-third
+  width: 33.333333333%
+.col-two-thirds
+  width: 66.666666666%
+
+.col-one-quarter
+  width: 25%
+.col-two-quarters
+  width: 50%
+.col-three-quarters
+  width: 75%
+
+.one-fifth
+  width: 20%
+.two-fifths
+  width: 40%
+.three-fifths
+  width: 60%
+.four-fifths
+  width: 80%
+
