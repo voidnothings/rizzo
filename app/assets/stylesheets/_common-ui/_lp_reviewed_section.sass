@@ -3,10 +3,10 @@
 // Author review text with a generic info lp-terms box
 // -----------------------------------------------------------------------------
 
-.lp-review
+.lp-review-banner
   +border-radius(10)
   @extend %relative
-  @extend %box-off-double
+  @extend %box-off
   color: $text-on-blue
   background-color: $lp_reviewed
   
@@ -23,24 +23,6 @@
       left: -55px
       top: 17px
 
-
-.lp-review-recommended
-  +border-radius(4)
-  padding: 15px 15px 15px 60px
-  background-color: #fff
-  color: $heading-text
-  font-weight: bold
-  .recommended
-    color: $heading-text
-  &.the-dude
-    min-height: 45px
-    @extend %the-dude
-    &:before
-      left: 5px
-      top: 37px
-
-
-.lp-review, .lp-review-recommended
   &.top-choice-banner
     padding-right: 100px
     &:after

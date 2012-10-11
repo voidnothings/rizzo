@@ -15,50 +15,22 @@ body
   min-height: 100%
   color: $base_font_color
 
-
-h1, .h1,
-h2, .h2,
-h3, .h3,
-h4, .h4,
-h5, .h5,
-h6, .h6,
-p
-  margin: 0 0 10px 0
-  padding: 0
-
-
 // -----------------------------------------------------------------------------
 // Typographic Element Definitions 
 // -----------------------------------------------------------------------------
-h1
-  @extend %smooth-text
-  font-weight: bold
 
-h2, .h2
-  @extend %heading-size-type
+h1, h2, h3
   @extend %smooth-text
-  font-weight: bold
 
-h3, .h3
-  @extend %extra-large-type
-  @extend %smooth-text
-  font-weight: bold
-  
-h4, .h4
-  @extend %large-type
-  @extend %smooth-text
+p
+  margin-bottom: 10px
 
 .section-title
-  color: $heading-text
   +font-size(20)
+  color: $heading-text
+  margin-bottom: 10px
 
-a,
-a.h1,
-a.h2,
-a.h3,
-a.h4,
-a.h5,
-a.h6
+a
   color: $link_color
   cursor: pointer
   text-decoration: none
