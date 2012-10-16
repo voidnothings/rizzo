@@ -17,27 +17,13 @@
 .filter-label
   @extend %relative
   @extend %irregular-type
+  @extend %styled-checkbox
   display: block
   margin-bottom: 10px
   padding-left: 25px
   cursor: pointer
   color: $body-copy
-  &:before
-    +border-radius(16)
-    @extend %empty-generated-content
-    @extend %absolute-left
-    top: 1px
-    width: 14px
-    height: 14px
-    border: 1px solid $form-gray
-  &.active
-    font-weight: bold
-    color: $header-gray
-    &:before
-      top: 1px
-      width: 10px
-      height: 10px
-      border: 3px solid $active
+  
 
 .facet-count
   +border-radius(4)
