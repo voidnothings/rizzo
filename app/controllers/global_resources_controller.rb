@@ -5,19 +5,19 @@ class GlobalResourcesController < GlobalController
   layout nil
 
   def head
-    render :template => 'layouts/core_partials/_head_snippet'
+    render :template => "layouts/#{ params[:bare]? 'bare' : 'core' }/_head_snippet"
   end
 
   def header
-    render :template => 'layouts/core_partials/_master_head'
+    render :template => "layouts/#{ params[:bare]? 'bare' : 'core' }/_master_head"
   end
 
   def footer
-    render :template => 'layouts/core_partials/_footer-snippet'
+    render :template => "layouts/#{ params[:bare]? 'bare' : 'core' }/_footer_snippet"
   end
 
   def index
-    render '/global/index', :layout=>'core'
+    render '/global/index', :layout=>"#{params[:bare]? 'bare' : 'core'}"
   end
 
 end
