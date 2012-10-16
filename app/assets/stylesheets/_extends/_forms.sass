@@ -1,17 +1,41 @@
+%lp-circle
+  +border-radius(16)
+  @extend %empty-generated-content
+  width: 14px
+  height: 14px
+  border: 1px solid $form-gray
+
+%lp-circle-active
+  +border-radius(16)
+  width: 10px
+  height: 10px
+  border: 3px solid $active
+
 %styled-checkbox
+  cursor: pointer
   &:before
-    +border-radius(16)
-    @extend %empty-generated-content
+    @extend %lp-circle
     @extend %absolute-left
     top: 1px
-    width: 14px
-    height: 14px
-    border: 1px solid $form-gray
   &.active
     font-weight: bold
     color: $header-gray
     &:before
+      @extend %lp-circle-active
       top: 1px
-      width: 10px
-      height: 10px
-      border: 3px solid $active
+
+
+%styled-radio-button
+  @extend %image-replacement
+  cursor: pointer
+  &:after
+    @extend %lp-circle
+    position: absolute
+    top: 0
+    left: 0
+  &.active:after, input:checked ~ &:after
+    @extend %lp-circle-active
+    
+
+
+
