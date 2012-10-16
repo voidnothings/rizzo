@@ -1,2 +1,3 @@
 = render 'layouts/bare/primary'
-= secondary_nav_bar({:title=>"#{params[:_t] || 'Place' }", :current=>'', :collection=>[]})
+
+= yield :secondary
