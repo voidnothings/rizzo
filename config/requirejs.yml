@@ -4,3 +4,4 @@ paths:
 
 modules:
   - name: 'app_core'
+  - name: 'app_core_legacy'
