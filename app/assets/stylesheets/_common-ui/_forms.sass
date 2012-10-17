@@ -23,6 +23,9 @@ input[type="submit"]
 input[type="submit"][disabled], input[type="submit"][disabled]:hover
   @extend %disabled-state
 
+.datepicker
+  +placeholder()
+    color: $sub-copy
 
 // -----------------------------------------------------------------------------
 // LP Select Overlay
@@ -42,8 +45,9 @@ input[type="submit"][disabled], input[type="submit"][disabled]:hover
       +box-sizing(border-box)
       +vertically-center($height)
       +word-break()
-      @extend %chevron-vertical
-      @extend %relative
+      @extend %chevron-down-after
+      @extend %right-icon
+      padding-right: 21px
       color: $body-copy
       display: block
       width: $width
@@ -58,6 +62,7 @@ input[type="submit"][disabled], input[type="submit"][disabled]:hover
         right: 5px
         top: -2px
         color: $body-copy
+        font-size: 20px
 
     select
       position: absolute

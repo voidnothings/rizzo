@@ -1,3 +1,16 @@
+%top-nav-chevron
+  @extend %chevron-down-after
+  @extend %right-icon
+  padding-right: 21px
+  &:after
+    font-size: 20px
+    top: -1px
+    color: $active
+  .active &, &.active
+    @extend %chevron-up-after
+    &:after
+      color: $subdued-active
+
 .top-nav
   @extend %clearfix
   @extend %smooth-text
@@ -8,49 +21,68 @@
     @extend %float-right
     @extend %right-align
 
-  .item
-    +vertically-center(36px)
-    +border-radius(4)
-    @extend %standard-shadow
-    @extend %inline-block
-    @extend %relative
-    @extend %white-background
-    color: $body-copy
-    padding: 0 6px 0 8px
-    margin: 0 8px 10px 0
-    &:hover
-      @extend %no-underline
-    &.active
-      @extend %active-background
-      font-weight: bold
-
-  .dates-tab
+.tab
+  +vertically-center(36px)
+  +border-radius(4)
+  @extend %standard-shadow
+  @extend %inline-block
+  @extend %relative
+  @extend %white-background
+  color: $body-copy
+  padding: 0 6px 0 8px
+  margin: 0 8px 10px 0
+  &:hover
+    @extend %no-underline
+  &.active
+    @extend %active-background
+    font-weight: bold
+  &.dates-tab
     min-width: 230px
 
-  .start-date
-    @extend %inline-block
-    @extend %date-icon
+.tabs-container
+  @extend %clearfix
+  @extend %standard-shadow
+  clear: both
+  background-color: #fff
+  margin-bottom: 10px
 
-  .end-date
-    @extend %inline-block
-    @extend %arrow-icon
-    @extend %chevron-vertical
+.filter-start-date
+  @extend %inline-block
+  @extend %left-icon
+  @extend %date-icon-before
+  padding-left: 25px
+  &:before
+    font-size: 34px
+    top: -2px
+    color: $active
+  .active &, &.active
+    &:before
+      color: white
 
-  .open-filters
-    @extend %inline-block
-    @extend %filter-icon
-    @extend %chevron-vertical
+.filter-end-date
+  @extend %inline-block
+  @extend %top-nav-chevron
+  @extend %arrow-icon-before
+  @extend %left-icon
+  padding-left: 20px
+  &:before
+    font-size: 28px
+    top: -2px
+    color: #ccc
+  .active &, &.active
+    &:before
+      color: $subdued-active
 
-  .dropdown
-    @extend %clearfix
-    @extend %standard-shadow
-    clear: both
-    background-color: #fff
-    margin-bottom: 10px
-
-  .datepicker
-    +placeholder()
-      color: $sub-copy
-
-
-
+.open-filters
+  @extend %inline-block
+  @extend %top-nav-chevron
+  @extend %filter-icon-before
+  @extend %left-icon
+  padding-left: 21px
+  &:before
+    font-size: 34px
+    top: -2px
+    color: $active
+  .active &, &.active
+    &:before
+      color: white

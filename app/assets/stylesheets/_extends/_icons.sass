@@ -1,11 +1,11 @@
-%block
-  display: block
+// -----------------------------------------------------------------------------
+//  Icon sizes
+// -----------------------------------------------------------------------------
 
 %icon-btn
   cursor: pointer
   height: 22px
   width: 22px
-  @extend %block
 
 %small-icon  
   width: 16px
@@ -14,6 +14,12 @@
 %regular-icon
   width: 32px
   height: 32px
+
+
+// -----------------------------------------------------------------------------
+// Helper extends for positioning icons at the horizontal extremes of an 
+// element
+// -----------------------------------------------------------------------------
 
 %left-icon
   @extend %relative
@@ -31,72 +37,57 @@
     @extend %absolute-right
     @extend %small-icon
 
-%date-icon
-  @extend %left-icon
-  padding-left: 25px
-  &:before
-    content: "\e033"
-    font-size: 34px
-    top: -2px
-    color: $active
-  .active &, &.active
-    &:before
-      color: white
 
-%filter-icon
-  @extend %left-icon
-  padding-left: 21px
-  &:before
-    content: "\e034"
-    font-size: 34px
-    top: -2px
-    color: $active
-  .active &, &.active
-    &:before
-      color: white
+// -----------------------------------------------------------------------------
+// Unicode references for our icon set
+// -----------------------------------------------------------------------------
 
-%arrow-icon
-  @extend %left-icon
-  padding-left: 20px
-  &:before
-    content: "\e024"
-    font-size: 28px
-    top: -2px
-    color: #ccc
-  .active &, &.active
-    &:before
-      color: $subdued-active
+%date-icon-before:before
+  content: "\e033"
+%date-icon-after:after
+  content: "\e033"
 
-%the-dude
-  @extend %left-icon
-  &:before
-    +font-size(100)
-    @extend %no-line-height
-    width: 45px
-    height: 60px
-    content: "\e03b"
 
-%chevron-vertical
-  @extend %right-icon
-  padding-right: 21px
-  &:after
-    content: "\e030"
-    font-size: 20px
-    top: -1px
-    color: $active
-  .active &, &.active
-    &:after
-      content: "\e032"
-      color: $subdued-active
+%filter-icon-before:before
+  content: "\e034"
+%filter-icon-after:after
+  content: "\e034"
 
-%chevron-horizontal
-  @extend %right-icon
-  padding-right: 21px
-  &:after
-    content: "\e029"
-    font-size: 20px
-    color: $active
 
+%arrow-icon-before:before
+  content: "\e024"
+%arrow-icon-after:after
+  content: "\e024"
+
+
+%the-dude-before:before
+  content: "\e03b"
+%the-dude-after:after
+  content: "\e03b"
+
+
+%chevron-up-before:before
+  content: "\e032"
+%chevron-up-after:after
+  content: "\e032"
+
+
+%chevron-down-before:before
+  content: "\e030"
+%chevron-down-after:after
+  content: "\e030"
+
+
+%chevron-horizontal-before:before
+  content: "\e029"
+%chevron-horizontal-after:after
+  content: "\e029"
+
+
+%tick-icon-before:before
+  content: "\e039"
+%tick-icon-after:after
+  content: "\e039"
 
 
 

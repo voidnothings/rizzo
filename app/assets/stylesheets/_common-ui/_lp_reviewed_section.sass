@@ -17,11 +17,16 @@
     +css-arrow-central(left, 10px, $secondary-content-bg)
   
   &.the-dude
-    @extend %the-dude
+    @extend %left-icon
+    @extend %the-dude-before
     margin-left: 50px
     &:before
+      +font-size(100)
+      @extend %no-line-height
       left: -55px
       top: 17px
+      width: 45px
+      height: 60px
 
   &.top-choice-banner
     padding-right: 100px
