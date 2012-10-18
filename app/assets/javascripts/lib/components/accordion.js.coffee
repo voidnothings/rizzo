@@ -31,7 +31,12 @@ define ['jquery'], ($) ->
 
     closeAllPanels : (panels) ->
       @panels.addClass('is-hidden')
-      @parent.find(config.activeClass.elem).removeClass(config.activeClass.className)
+      if config.hasOwnProperty('activeClass')
+        @parent.find(config.activeClass.elem).removeClass(config.activeClass.className)
+
+    refresh : () ->
+      @panels = @parent.find('.js-accordion-panel')
+      @closeAllPanels(@panels)
 
     constructor : (args) ->
       config = $.extend config, args
