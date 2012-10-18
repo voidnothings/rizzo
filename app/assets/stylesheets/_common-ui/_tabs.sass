@@ -1,4 +1,19 @@
-%top-nav-chevron
+// -----------------------------------------------------------------------------
+// Tabs Component
+// 
+// Sample haml:
+// 
+// .tabs-header
+//   .tab-header.js-tab-trigger
+//   .tab-header.js-tab-trigger
+//   .tab-header.js-tab-trigger
+// .tabs-content
+//   .tab-panel.js-tab-panel
+//   .tab-panel.js-tab-panel
+//   .tab-panel.js-tab-panel
+// -----------------------------------------------------------------------------
+
+%tabs-chevron-icon
   @extend %chevron-down-after
   @extend %right-icon
   padding-right: 21px
@@ -11,17 +26,7 @@
     &:after
       color: $subdued-active
 
-.top-nav
-  @extend %clearfix
-  @extend %smooth-text
-  .left-group
-    @extend %float-left
-    @extend %left-align
-  .right-group
-    @extend %float-right
-    @extend %right-align
-
-.tab
+.tab-header
   +vertically-center(36px)
   +border-radius(4)
   @extend %standard-shadow
@@ -36,17 +41,21 @@
   &.active
     @extend %active-background
     font-weight: bold
-  &.dates-tab
-    min-width: 230px
 
-.tabs-container
+.tabs-content
   @extend %clearfix
   @extend %standard-shadow
   clear: both
   background-color: #fff
   margin-bottom: 10px
 
-.filter-start-date
+
+// -----------------------------------------------------------------------------
+// Dates and Filters tabs
+// -----------------------------------------------------------------------------
+
+
+.tab-start-date
   @extend %inline-block
   @extend %left-icon
   @extend %date-icon-before
@@ -59,9 +68,9 @@
     &:before
       color: white
 
-.filter-end-date
+.tab-end-date
   @extend %inline-block
-  @extend %top-nav-chevron
+  @extend %tabs-chevron-icon
   @extend %arrow-icon-before
   @extend %left-icon
   padding-left: 20px
@@ -73,9 +82,9 @@
     &:before
       color: $subdued-active
 
-.open-filters
+.tab-filters
   @extend %inline-block
-  @extend %top-nav-chevron
+  @extend %tabs-chevron-icon
   @extend %filter-icon-before
   @extend %left-icon
   padding-left: 21px
