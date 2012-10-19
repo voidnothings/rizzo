@@ -1,4 +1,10 @@
 %meta(name="viewport" content="width=1024")
+= stylesheet_link_tag 'common_core', :media => "all"
+%link(rel="stylesheet" href="http://static.lonelyplanet.com/static-ui/style/app-core-legacy.css" type="text/css" media="screen,projection")
+%script(type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
+%script(type="text/javascript" src="http://static.lonelyplanet.com/static-ui/js/lp-js-library-legacy.js")
+%link(rel="icon" type="image/gif" href="http://www.lonelyplanet.com/favicon.ico")
+
 - if is_client_browser_less_then_ie9?(request.user_agent)
   :javascript
     document.createElement('header');
@@ -10,14 +16,4 @@
     document.createElement('figure');
     document.createElement('figurecap');
     document.createElement('hgroup');
-
-= stylesheet_link_tag 'common_core', :media => "all"
-
-%link(rel="stylesheet" href="http://static.local.lpo/static-ui/style/app-core-legacy.css" type="text/css" media="screen,projection")
-%script(type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
-%script(type="text/javascript" src="http://static.local.lpo/static-ui/js/lp-js-library-legacy.js")
-%link(rel="icon" type="image/gif" href="http://www.lonelyplanet.com/favicon.ico")
-
-
-
 
