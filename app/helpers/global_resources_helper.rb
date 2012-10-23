@@ -97,5 +97,9 @@ module GlobalResourcesHelper
       end
     end
   end  
+
+  def snippet_for(section, secure, params)
+
+  end
   
 end
