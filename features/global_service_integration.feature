@@ -5,8 +5,7 @@ Feature: Global service integration
   
   Scenario: it should serve the global header on the correct endpoint with the right contents
     Given I go to "/global-head"
-    Then the global header should have the correct structure
-    And the global header should have the correct content
+    Then the global header should have the correct content
 
   Scenario: it should serve the correct global header for a site-section 
     Given I go to "/global-body-header"

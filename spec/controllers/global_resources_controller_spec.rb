@@ -1,20 +1,20 @@
-# require 'spec_helper'
-# 
-# describe GlobalResourcesController do
-# 
-#   describe "GET new global head snippet" do
-#    
-#     context "default" do
-#       get :head
-#       response.should render_template("layouts/core/_head_snippet") 
-#     end
-#     
-#     context "secure" do
-# 
-#     end
-# 
-#   end
-# end
+require 'spec_helper'
+
+describe GlobalResourcesController do
+
+  describe "GET new global head snippet" do
+   
+    context "default" do
+      get :head
+      response.should render_template("layouts/core/_head_snippet") 
+    end
+    
+    context "secure" do
+
+    end
+
+  end
+end
 # 
 # 
 # __END__
