@@ -9,7 +9,7 @@ module SnippetSupport
   end
 
   def user_nav?(args)
-    if args[:displaySignonWidget] == false || args[:user_nav] == false
+    if args[:displaySignonWidget] == 'false' || args[:user_nav] == 'false'
       false
     else 
       true

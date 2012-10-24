@@ -23,11 +23,11 @@ describe SnippetSupport do
     end
 
     it 'flags it true the displaySignonWidget param' do
-      subject.user_nav?({ :displaySignonWidget => false }).should be false
+      subject.user_nav?({ :displaySignonWidget => "false" }).should be false
     end
 
     it 'flags it false with the user_nav param' do
-      subject.user_nav?({ :user_nav => false }).should be false
+      subject.user_nav?({ :user_nav => "false" }).should be false
     end
 
   end

@@ -2,6 +2,7 @@ Rizzo::Application.routes.draw do
 
   match 'head'                         => 'head#index'  
   match 'global'                       => 'global_resources#index'
+  match 'secure/global'                => 'global_resources#index', :defaults => { :secure => "true" }
   match 'breadcrumb'                   => 'global_resources#breadcrumb'
   match "r/:encrypted_url"             => 'redirector#show', :as => :redirector
 
