@@ -40,7 +40,6 @@ define ['jquery'], ($) ->
 
     constructor : (args) ->
       config = $.extend config, args
-      window.x = config
       @parent = $(config.parent)
       @panels = @parent.find('.js-accordion-panel')
 
