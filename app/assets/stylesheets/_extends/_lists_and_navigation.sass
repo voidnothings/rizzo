@@ -11,7 +11,7 @@
 
 %stacked-nav
   @extend %no-list-style
-  .item
+  .item, > li
     display: block
 
 
@@ -21,7 +21,7 @@
 
 %ruled-list
   @extend %stacked-nav
-  > .item
+  > .item, > li
     border-top: 1px solid $ruled-list-separator
   .title
     font-weight: bold
