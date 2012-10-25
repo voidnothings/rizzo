@@ -31,7 +31,8 @@ define ['jquery'], ($) ->
 
     closeAllPanels : (panels) ->
       @panels.addClass('is-hidden')
-      @parent.find(config.activeClass.elem).removeClass(config.activeClass.className)
+      if config.hasOwnProperty('activeClass')
+        @parent.find(config.activeClass.elem).removeClass(config.activeClass.className)
 
     constructor : (args) ->
       config = $.extend config, args
