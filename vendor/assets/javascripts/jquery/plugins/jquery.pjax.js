@@ -437,17 +437,18 @@ function fallbackPjax(options) {
       form.append($('<input>', {type: 'hidden', name: pair[0], value: pair[1]}))
     })
   } else if (typeof data === 'object') {
-    for (key in data)
+    for (key in data) {
       if (typeof(data[key]) === 'object') {
         for (subkey in data[key]) {
-          form.append($('<input>', {type: 'hidden', name: subkey, value: data[key][subkey]}))
+          form.append($('<input>', {type: 'hidden', name: key + '[' + subkey + ']', value: data[key][subkey]}))
         }
       } else {
         form.append($('<input>', {type: 'hidden', name: key, value: data[key]}))
       }
+    }
   }
-  $(document.body).append(form)
-  form.submit()
+  $(document.body).append(form);
+  form.submit();
 }
 
 // Internal: Generate unique id for state object.
