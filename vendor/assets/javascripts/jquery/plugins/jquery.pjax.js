@@ -438,9 +438,14 @@ function fallbackPjax(options) {
     })
   } else if (typeof data === 'object') {
     for (key in data)
-      form.append($('<input>', {type: 'hidden', name: key, value: data[key]}))
+      if (typeof(data[key]) === 'object') {
+        for (subkey in data[key]) {
+          form.append($('<input>', {type: 'hidden', name: subkey, value: data[key][subkey]}))
+        }
+      } else {
+        form.append($('<input>', {type: 'hidden', name: key, value: data[key]}))
+      }
   }
-
   $(document.body).append(form)
   form.submit()
 }
