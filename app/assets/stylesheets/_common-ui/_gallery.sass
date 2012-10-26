@@ -14,7 +14,7 @@
     @extend %no-line-height
     +font-size(40)
     color: #fff
-    +text-shadow(1px, 1px, 0, rgba(0,0,0,0.2))
+    +text-shadow(1, 1, 0, rgba(0,0,0,0.2))
     cursor: pointer
     content: "\e038"
     top: 0
@@ -35,7 +35,7 @@
 
 .lp-gallery-stage
   li
-    +transition(opacity, 0.5s, ease-in-out)
+    +transition(opacity, 0.5, ease-in-out)
     opacity: 0
     filter: alpha(opacity=0)
     &.lp-swipe-hidden
@@ -50,7 +50,7 @@
       opacity: 0.5
 
 .lp-swipe-ctrl
-  +transition(opacity, 0.5s, ease-in-out)
+  +transition(opacity, 0.5, ease-in-out)
   @extend %absolute
   bottom: 0
   cursor: pointer

@@ -23,7 +23,7 @@
   cursor: pointer
   color: $body-copy
   &:before
-    +round-all(16px)
+    +border-radius(16)
     @extend %empty-generated-content
     @extend %absolute-left
     top: 1px
@@ -40,7 +40,7 @@
       border: 3px solid $active
 
 .facet-count
-  @include round-all(4px)
+  +border-radius(4)
   @extend %extra-small-type
   @extend %central-align
   padding: 2px 4px

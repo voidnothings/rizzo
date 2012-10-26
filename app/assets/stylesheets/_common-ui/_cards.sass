@@ -57,7 +57,6 @@ $single-card-width: 190px
   @extend %card-header-size
   @extend %reset-line-height
   color: $heading-text
-  font-weight: bold
 
 
 // -----------------------------------------------------------------------------
@@ -65,7 +64,7 @@ $single-card-width: 190px
 // -----------------------------------------------------------------------------
 
 .lodging-card:hover
-  +box-shadow(2px, 2px, 8px, 0, rgba(3, 46, 92, 0.15))
+  +box-shadow(2, 2, 8, 0, rgba(3, 46, 92, 0.15))
   img
     +filter(brightness(-15%))
 
@@ -184,6 +183,7 @@ $card-padding: 13px
 
 .card-name
   @extend %large-type
+  @extend %prevent-text-breakouts
   @extend %reset-line-height
   font-weight: bold
   line-height: 17px
