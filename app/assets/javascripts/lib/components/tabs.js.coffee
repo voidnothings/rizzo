@@ -7,54 +7,52 @@
 define ['jquery'], ($) ->
  
   class Tabs
-    
-    
-    
-    bindEvents = (tabs, dropdown) =>
+
+    config = {}
+
+    tabsAreHidden = ->
+      if config.tabsContainer.is(':hidden') then true else false
+
+    openNewTab = (tabLabel, tab) ->
+      unless tab.hasClass('active')
+        config.tabLabels.removeClass('active')
+        tabLabel.addClass('active')
+
+        config.tabsContainer.css('opacity', '0').find('.js-tab').removeClass('active')
+        if tabsAreHidden() then config.tabsContainer.removeClass('is-hidden')
       
-      tabsHidden = ->
-        if dropdown.is(':hidden') then true else false
-      
+        # Get padding (jquery box sizing bug - http://bugs.jquery.com/ticket/10413)
+        padding = (parseInt(tab.css('padding'), 10) * 2)
+        config.tabsContainer.css('height', (tab.children().outerHeight() + padding))
+
+        setTimeout ->
+          config.tabsContainer.find(tab).addClass('active')
+          config.tabsContainer.css('opacity', '1')
+        , 300
+
+
+    bindEvents = (tabs, tabsContainer) =>
       tabs.on 'click', '.js-tab-item', (e) ->
-        tabLink = $(@)
-        tabSelected = tabLink.attr('href')
-        contentArea = tabs.find('.js-tabs-container')
-
-        # Closing the tabs completely
-        if tabLink.hasClass('active')
-          tabLink.removeClass('active')
-          dropdown.addClass('is-hidden')
-          contentArea.find(tabSelected).removeClass('active')
-
-        else
-          if tabsHidden() then dropdown.removeClass('is-hidden')
-
-          tabs.find('.js-tab-item').removeClass('active')
-          tabLink.addClass('active')
-
-          # Remove the active tabs
-          dropdown.css('opacity', '0')
-          contentArea.find('.js-tab').removeClass('active')
-          
-          # Set the new height
-          newTab = contentArea.find(tabSelected)
-          
-          # Get padding (jquery box sizing bug - http://bugs.jquery.com/ticket/10413)
-          padding = (parseInt(newTab.css('padding'), 10) * 2)
-          
-          dropdown.css('height', (newTab.children().outerHeight() + padding))
-                    
-          setTimeout ->
-            contentArea.find(tabSelected).addClass('active')
-            dropdown.css('opacity', '1')
-          , 300
-          
-        # Stop the page jump
+        tabLabel = $(@)
+        tab = $(tabLabel.attr('href'))
+        if tabLabel.hasClass('active') then Tabs::closeTabs() else openNewTab(tabLabel, tab)
         false
 
+
+    closeTabs : ->
+      config.tabLabels.removeClass('active')
+      config.tabsContainer.addClass('is-hidden').children('.js-tab').removeClass('active')
+
+
+    switch: (tab) ->
+      tabLabel = config.tabLabels.filter("[href=#{tab}]")
+      tab = $(tab)
+      openNewTab(tabLabel, tab)
+
+
     constructor: (selector) ->
-      @parent = $(selector)
-      @dropdown = @parent.find('.js-tabs-container')
-      bindEvents(@parent, @dropdown)
-    
-    
+      config.tabs = $(selector)
+      config.tabsContainer = config.tabs.find('.js-tabs-container')
+      config.tabLabels = config.tabs.find('.js-tab-item')
+      bindEvents(config.tabs, config.tabsContainer)
+
