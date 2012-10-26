@@ -30,18 +30,6 @@
 // 
 // ----------------------------------------------------------------------------
 
-// .logo
-//   @extend %benton-regular
-//   @extend %no-decoration
-//   font-size: 95px
-//   line-height: 40px
-//   @extend %float-left
-//   width: 105px
-//   height: 50px
-//   color: #fff
-//   &:before
-//     content: '\\E028'
-
 .logo
   @extend %data-lp-logo
   @extend %float-left
@@ -144,7 +132,6 @@
     @extend %float-left
     @extend %block
     @extend %no-decoration
-    //force font-size needed when using legacy styles and new header 
     padding: 6px 9px 5px
     line-height: 18px
     color: $nav-secondary-type
@@ -280,7 +267,7 @@
     @extend %invisible
 
 .has-msg
-  @extend %opaque
+  display: inline!important
 
 .has-basket
   .user-basket
@@ -368,13 +355,14 @@
 
 .user-msg-unread
   @extend %extra-small-type
-  @extend %invisible
   @include round-all(5px)
-  @include transition(all, 0.2s, ease) 
   background: #fff
   color: $nav-secondary-current-item-bck
-  margin-left: 45px
+  margin-right: 10px
+  float: right
   padding: 2px 6px
+  display: none
+
 
 
 
@@ -392,7 +380,7 @@
   @extend %irregular-type //13
   border-color: transparent
   border: 0
-  line-height: 0
+  line-height: 16px
   margin: 0
 
 .search-box
@@ -406,7 +394,7 @@
     content: '\E027'
     font-size: 28px
     left: 9px
-    line-height: 28px
+    line-height: 26px
     top: 1px
 
 .search-box
