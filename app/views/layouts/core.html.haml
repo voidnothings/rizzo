@@ -4,7 +4,7 @@
     = render 'layouts/core_partials/head'
   %body{class: "lp-core #{client_browser(request.user_agent)}" }
     .wrap
-      = render 'layouts/core_partials/master_head', :user_nav => user_nav 
+      = render 'layouts/core_partials/master_head', :user_nav => defined?(user_nav) ? user_nav : true
       .content
         = yield
     .js-config.is-hidden   
