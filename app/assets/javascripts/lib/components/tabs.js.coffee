@@ -18,7 +18,7 @@ define ['jquery'], ($) ->
         config.tabLabels.removeClass('active')
         tabLabel.addClass('active')
 
-        config.tabsContainer.css('opacity', '0').find('.js-tab').removeClass('active')
+        config.tabsContainer.css('opacity', '0').find('.js-tab-panel').removeClass('active')
         if tabsAreHidden() then config.tabsContainer.removeClass('is-hidden')
       
         # Get padding (jquery box sizing bug - http://bugs.jquery.com/ticket/10413)
@@ -32,7 +32,7 @@ define ['jquery'], ($) ->
 
 
     bindEvents = (tabs, tabsContainer) =>
-      tabs.on 'click', '.js-tab-item', (e) ->
+      tabs.on 'click', '.js-tab-trigger', (e) ->
         tabLabel = $(@)
         tab = $(tabLabel.attr('href'))
         if tabLabel.hasClass('active') then Tabs::closeTabs() else openNewTab(tabLabel, tab)
@@ -41,7 +41,7 @@ define ['jquery'], ($) ->
 
     closeTabs : ->
       config.tabLabels.removeClass('active')
-      config.tabsContainer.addClass('is-hidden').children('.js-tab').removeClass('active')
+      config.tabsContainer.addClass('is-hidden').children('.js-tab-panel').removeClass('active')
 
 
     switch: (tab) ->
@@ -52,7 +52,7 @@ define ['jquery'], ($) ->
 
     constructor: (selector) ->
       config.tabs = $(selector)
-      config.tabsContainer = config.tabs.find('.js-tabs-container')
-      config.tabLabels = config.tabs.find('.js-tab-item')
+      config.tabsContainer = config.tabs.find('.js-tabs-content')
+      config.tabLabels = config.tabs.find('.js-tab-trigger')
       bindEvents(config.tabs, config.tabsContainer)
 
