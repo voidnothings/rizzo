@@ -3,23 +3,67 @@
 // Author review text with a generic info lp-terms box
 // -----------------------------------------------------------------------------
 
+.lp-review-banner
+  +border-radius(10)
+  @extend %relative
+  @extend %box-off
+  color: $text-on-blue
+  background-color: $secondary-content-bg
+  
+  &.arrow-top:after
+    +css-arrow(top, 10px, $secondary-content-bg, 20px)
+  
+  &.arrow-left:after
+    +css-arrow-central(left, 10px, $secondary-content-bg)
+  
+  &.the-dude
+    @extend %left-icon
+    @extend %the-dude-before
+    margin-left: 50px
+    &:before
+      +font-size(100)
+      @extend %no-line-height
+      left: -55px
+      top: 17px
+      width: 45px
+      height: 60px
+
+  &.top-choice-banner
+    padding-right: 100px
+    &:after 
+      @extend %empty-generated-content
+      @extend %absolute
+      +top-choice-banner()
+      top: -1px
+      right: 0
+      width: 77px
+      height: 67px
+
+
+
+
+// $$legacy until booking process branch goes live
+
 .lp-review
   +border-radius(10)
   @extend %relative
   @extend %box-off-double
   color: $text-on-blue
-  background-color: $lp_reviewed
+  background-color: $secondary-content-bg
   
   &.arrow-top:after
-    +css-arrow(top, 10px, $lp_reviewed, 20px)
+    +css-arrow(top, 10px, $secondary-content-bg, 20px)
   
   &.arrow-left:after
-    +css-arrow-central(left, 10px, $lp_reviewed)
+    +css-arrow-central(left, 10px, $secondary-content-bg)
   
   &.the-dude
-    @extend %the-dude
+    @extend %left-icon
+    @extend %the-dude-before
     margin-left: 50px
     &:before
+      @extend %no-line-height
+      font-size: 100px
       left: -55px
       top: 17px
 
@@ -34,8 +78,11 @@
     color: $heading-text
   &.the-dude
     min-height: 45px
-    @extend %the-dude
+    @extend %left-icon
+    @extend %the-dude-before
     &:before
+      @extend %no-line-height
+      font-size: 100px
       left: 5px
       top: 37px
 
@@ -51,4 +98,3 @@
       right: 0
       width: 77px
       height: 67px
-  

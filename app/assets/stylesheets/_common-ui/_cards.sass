@@ -106,7 +106,7 @@ $single-card-width: 190px
 // A Price tag
 // -----------------------------------------------------------------------------
 
-.card-price-tag
+.price-tag
   @extend %absolute
   top: -4px
   right: 5px
@@ -137,9 +137,10 @@ $single-card-width: 190px
     @extend %heading-size-type
     display: block
     padding-top: 2px
-  .curr
-    @extend sup
-    @extend %regular-type-size
+
+.curr
+  @extend sup
+  font-size: 0.65em
 
 .price-tag-deal
   @extend %larger-type

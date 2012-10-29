@@ -1,0 +1,97 @@
+// -----------------------------------------------------------------------------
+// Tabs Component
+// 
+// Sample haml:
+// 
+// .tabs-header
+//   .tab-header.js-tab-trigger
+//   .tab-header.js-tab-trigger
+//   .tab-header.js-tab-trigger
+// .tabs-content
+//   .tab-panel.js-tab-panel
+//   .tab-panel.js-tab-panel
+//   .tab-panel.js-tab-panel
+// -----------------------------------------------------------------------------
+
+%tabs-chevron-icon
+  @extend %chevron-down-after
+  @extend %right-icon
+  padding-right: 21px
+  &:after
+    font-size: 20px
+    top: -1px
+    color: $active
+  .active &, &.active
+    @extend %chevron-up-after
+    &:after
+      color: $subdued-active
+
+.tab-header
+  +vertically-center(36px)
+  +border-radius(4)
+  @extend %standard-shadow
+  @extend %inline-block
+  @extend %relative
+  @extend %white-background
+  color: $body-copy
+  padding: 0 6px 0 8px
+  margin: 0 8px 10px 0
+  &:hover
+    @extend %no-underline
+  &.active
+    @extend %active-background
+    font-weight: bold
+
+.tabs-content
+  @extend %clearfix
+  @extend %standard-shadow
+  clear: both
+  background-color: #fff
+  margin-bottom: 10px
+
+
+// -----------------------------------------------------------------------------
+// Dates and Filters tabs
+// -----------------------------------------------------------------------------
+
+
+.tab-start-date
+  @extend %inline-block
+  @extend %left-icon
+  @extend %date-icon-before
+  padding-left: 25px
+  &:before
+    font-size: 34px
+    top: -2px
+    color: $active
+  .active &, &.active
+    &:before
+      color: white
+
+.tab-end-date
+  @extend %inline-block
+  @extend %tabs-chevron-icon
+  @extend %arrow-icon-before
+  @extend %left-icon
+  padding-left: 20px
+  &:before
+    font-size: 28px
+    top: -2px
+    color: #ccc
+  .active &, &.active
+    &:before
+      color: $subdued-active
+
+.tab-filters
+  @extend %inline-block
+  @extend %tabs-chevron-icon
+  @extend %filter-icon-before
+  @extend %left-icon
+  padding-left: 21px
+  &:before
+    font-size: 34px
+    top: -2px
+    color: $active
+  .active &, &.active
+    &:before
+      color: white
