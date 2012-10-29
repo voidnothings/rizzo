@@ -58,9 +58,12 @@
     +css-arrow-central(left, 10px, $secondary-content-bg)
   
   &.the-dude
-    @extend %the-dude
+    @extend %left-icon
+    @extend %the-dude-before
     margin-left: 50px
     &:before
+      @extend %no-line-height
+      font-size: 100px
       left: -55px
       top: 17px
 
@@ -75,8 +78,11 @@
     color: $heading-text
   &.the-dude
     min-height: 45px
-    @extend %the-dude
+    @extend %left-icon
+    @extend %the-dude-before
     &:before
+      @extend %no-line-height
+      font-size: 100px
       left: 5px
       top: 37px
 
