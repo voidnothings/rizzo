@@ -94,7 +94,9 @@ define ['jquery'], ($)->
         unread_indicator.removeClass("newMail")
 
     updateMessageCount: ->
-      $.getJSON("#{@options.membersUrl}/#{@lpUserName}/messages/count?callback=?", (data)=>@refreshUnreadCountCallBack(data)) if @lpUserName
+      if (@lpUserName and (@lpUserName isnt '') and (@lpUserName isnt 'undefined'))
+        url = "#{@options.membersUrl}/#{@lpUserName}/messages/count?callback=?"
+        $.getJSON(url, (data)=>@refreshUnreadCountCallBack(data))
 
     displayUnreadMessageCount: ->
       @updateMessageCount()

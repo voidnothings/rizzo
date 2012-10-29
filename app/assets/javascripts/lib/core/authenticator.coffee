@@ -2,7 +2,7 @@ define ['jquery'], ($)->
 
   class Authenticator
 
-    @version = '0.0.11'
+    @version = '0.0.12'
 
     @options =
       forumPostsUrlTemplate: '//www.lonelyplanet.com/thorntree/profile.jspa?username=[USERNAME]'
@@ -44,8 +44,7 @@ define ['jquery'], ($)->
     showUserBox: ->
       $(@widget).addClass('is-logged')
       userBoxElement = "<div class='user-box'><img class='user-img' src='#{@userAvatar()}'/><span class='user-handler js-box-handler'></div>"
-      $('div.js-auth-box').empty()
-      $('div.js-auth-box').append(userBoxElement)
+      $('div.js-auth-box').html(userBoxElement)
       $('div.js-auth-box').append(@userOptionsMenu())
 
     userOptionsMenu: ->
@@ -78,7 +77,9 @@ define ['jquery'], ($)->
       @updateMessageCount()
 
     updateMessageCount: ->
-      $.getJSON("#{@options.membersUrl}/#{@lpUserName}/messages/count?callback=?", (data)=>@messageCountCallBack(data)) if @lpUserName
+      if (@lpUserName and (@lpUserName isnt '') and (@lpUserName isnt 'undefined'))
+        url = "#{@options.membersUrl}/#{@lpUserName}/messages/count?callback=?"
+        $.getJSON(url, (data)=>@messageCountCallBack(data))
 
     messageCountCallBack: (data={unread_count:0})->
       @setLocalData('lp-unread-msg', data.unread_count)
