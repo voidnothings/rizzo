@@ -38,4 +38,57 @@
       right: 0
       width: 77px
       height: 67px
+
+
+
+
+// $$legacy until booking process branch goes live
+
+.lp-review
+  +border-radius(10)
+  @extend %relative
+  @extend %box-off-double
+  color: $text-on-blue
+  background-color: $lp_reviewed
   
+  &.arrow-top:after
+    +css-arrow(top, 10px, $lp_reviewed, 20px)
+  
+  &.arrow-left:after
+    +css-arrow-central(left, 10px, $lp_reviewed)
+  
+  &.the-dude
+    @extend %the-dude
+    margin-left: 50px
+    &:before
+      left: -55px
+      top: 17px
+
+
+.lp-review-recommended
+  +border-radius(4)
+  padding: 15px 15px 15px 60px
+  background-color: #fff
+  color: $heading-text
+  font-weight: bold
+  .recommended
+    color: $heading-text
+  &.the-dude
+    min-height: 45px
+    @extend %the-dude
+    &:before
+      left: 5px
+      top: 37px
+
+
+.lp-review, .lp-review-recommended
+  &.top-choice-banner
+    padding-right: 100px
+    &:after
+      @extend %empty-generated-content
+      @extend %absolute
+      +top-choice-banner()
+      top: -1px
+      right: 0
+      width: 77px
+      height: 67px
