@@ -17,7 +17,7 @@ $single-card-width: 190px
   @extend %standard-shadow
   .grid-view &, .list-view &
     @extend %reset-line-height
-    margin-bottom: 10px
+    @extend %margin-bottom-10
   .grid-view &
     height: $card-grid-height
   &.full-page
@@ -252,8 +252,8 @@ $card-padding: 13px
 .list-view .no-image .card-name
   margin-bottom: 3px
   &.no-locale
+    @extend %margin-bottom-20
     margin-top: 5px
-    margin-bottom: 20px
 
 
 
