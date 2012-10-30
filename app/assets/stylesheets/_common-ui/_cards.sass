@@ -230,10 +230,30 @@ $card-padding: 13px
 
 .lp-top-choice
   @extend %absolute
-  bottom: 13px
-  left: 105px
+  bottom: 11px
+  left: 40px
 
+%bookable
+  @extend %absolute
+  bottom: 11px
+  right: 13px
 
+.bookable-text
+  @extend %bookable
+  @extend %chevron-right-after
+  position: absolute
+  color: $link_color
+  line-height: 25px
+  &:after
+    @extend %benton-regular
+    padding-left: 3px
+    font-size: 19px
+  
+  
+
+.card .bookable-button
+  @extend %bookable
+  padding: 6px 8px
 
 // -----------------------------------------------------------------------------
 // Cards without images

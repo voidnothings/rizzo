@@ -1,20 +1,22 @@
 // $$legacy - should be updated to use icon font
 
-.lp-reviewed-badge
-  @extend %inline-block
-  @extend %lp-review-bubble-before
+%card-badge
   @extend %left-icon
   @extend %hide-left-icon-text
+  @extend %inline-block
   position: absolute
   &:before
     @extend %no-line-height
-    font-size: 44px
     color: $badge
-  
-.lp-top-choice
-  @extend %image-replacement
-  @extend %inline-block
-  +top-choice-badge()
-  width: 43px
-  height: 27px
 
+.lp-reviewed-badge
+  @extend %card-badge
+  @extend %lp-review-bubble-before
+  &:before
+    font-size: 44px
+
+.lp-top-choice
+  @extend %card-badge
+  @extend %top-choice-before
+  &:before
+    font-size: 55px
