@@ -64,7 +64,7 @@ define(['jquery'], function($){
           var weekday = i%7;
           var day = Date.dayNames[weekday];
           headRow.append(
-              jQuery(dc('th')).attr({'scope':'col', 'abbr':day, 'title':day, 'class':(weekday == 0 || weekday == 6 ? 'weekend' : 'weekday')}).html(s.showHeader == $.dpConst.SHOW_HEADER_SHORT ? day.substr(0, 1) : day)
+              jQuery(dc('th')).attr({'scope':'col', 'abbr':day, 'title':day, 'class':(weekday == 0 || weekday == 6 ? 'weekend' : 'weekday')}).html(s.showHeader == $.dpConst.SHOW_HEADER_SHORT ? day.substr(0, 3) : day)
               );
         }
       };
@@ -855,15 +855,7 @@ define(['jquery'], function($){
               $('<h2></h2>'),
               $('<div class="dp-nav-prev"></div>')
               .append(
-                $('<a class="dp-nav-prev-year" href="#" title="' + $.dpText.TEXT_PREV_YEAR + '">&lt;&lt;</a>')
-                .bind(
-                  'click',
-                  function()
-                  {
-                    return c._displayNewMonth.call(c, this, 0, -1);
-                  }
-                  ),
-                $('<a class="dp-nav-prev-month" href="#" title="' + $.dpText.TEXT_PREV_MONTH + '">&lt;</a>')
+                $('<a class="dp-nav dp-nav-prev-month" href="#" title="' + $.dpText.TEXT_PREV_MONTH + '"></a>')
                 .bind(
                   'click',
                   function()
@@ -874,15 +866,7 @@ define(['jquery'], function($){
                 ),
         $('<div class="dp-nav-next"></div>')
           .append(
-              $('<a class="dp-nav-next-year" href="#" title="' + $.dpText.TEXT_NEXT_YEAR + '">&gt;&gt;</a>')
-              .bind(
-                'click',
-                function()
-                {
-                  return c._displayNewMonth.call(c, this, 0, 1);
-                }
-                ),
-              $('<a class="dp-nav-next-month" href="#" title="' + $.dpText.TEXT_NEXT_MONTH + '">&gt;</a>')
+              $('<a class="dp-nav dp-nav-next-month" href="#" title="' + $.dpText.TEXT_NEXT_MONTH + '"></a>')
               .bind(
                 'click',
                 function()

@@ -21,7 +21,9 @@ define ['jquery', 'jplugs/jquery.pjax'], ($) ->
       error       : ->
 
     init = ->
-      $.pjax.defaults.scrollTo = false
+      if $.pjax.defaults isnt undefined
+        $.pjax.defaults.scrollTo = false
+      
       init = ->
         $(config.parent).off('pjax:end')
         $(config.parent).off('pjax:error')
@@ -53,6 +55,7 @@ define ['jquery', 'jplugs/jquery.pjax'], ($) ->
       init()
       bindEvents()
       if config.animate == true then setupCardsAnimation()
+
       $.pjax
         url       : config.url
         container : config.container
