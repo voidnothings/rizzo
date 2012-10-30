@@ -25,17 +25,27 @@
   @extend %relative
   &:before
     @extend %benton-regular
-    @extend %block
     @extend %absolute-left
     @extend %small-icon
+    display: block
 
 %right-icon
   @extend %relative
   &:after
     @extend %benton-regular
-    @extend %block
     @extend %absolute-right
     @extend %small-icon
+    display: block
+
+%hide-left-icon-text
+  text-indent: -999em
+  &:before
+    text-indent: 0
+
+%hide-right-icon-text
+  text-indent: -999em
+  &:after
+    text-indent: 0
 
 
 // -----------------------------------------------------------------------------
@@ -94,6 +104,12 @@
   content: "\e039"
 %tick-icon-after:after
   content: "\e039"
+
+
+%lp-review-bubble-before:before
+  content: "\e044"
+%lp-review-bubble-after:after
+  content: "\e044"
 
 
 
