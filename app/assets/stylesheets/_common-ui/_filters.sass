@@ -13,6 +13,11 @@
     // Show the checkbox for ie7 where we don't have pseudo elements
     .ie7 &
       @extend %legacy-show
+    &[disabled] + .filter-label
+      opacity: 0.4
+      cursor: default
+      &:before
+        border: none
 
 .filter-label
   @extend %relative
