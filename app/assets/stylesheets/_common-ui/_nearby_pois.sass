@@ -2,17 +2,23 @@
   @extend %stacked-nav
 
 .nearby-poi-item
-  @extend %media
-  @extend %no-margin
+  @extend %margin-bottom-0
+
   cursor: pointer
-  color: $body-copy
   &:hover
     background-color: $nav-hover-background
 
 .poi-item-title
+  @extend %no-line-height
   font-weight: bold
   color: $header-gray
-  line-height: 30px
+  &:hover
+    text-decoration: none
+  &:before
+    line-height: inherit
+
+.poi-item-description
+  margin-left: 30px
 
 .nearby-poi-highlighted, 
 .nearby-poi-highlighted:hover

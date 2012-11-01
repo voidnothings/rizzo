@@ -26,6 +26,9 @@
 %extra-large-type
   @include font-size(18)
 
+%section-heading-size-type
+  @include font-size(20)
+
 %heading-size-type
   @include font-size(22)
 
@@ -40,17 +43,43 @@
 
 
 // -----------------------------------------------------------------------------
-// Opt-in Typography - extend %body-copy to activate
+// Opt-in Typography - extend to activate
 // -----------------------------------------------------------------------------
 
 %body-copy
-  color: $body-copy // $$legacy until crazy harry refactor
+  line-height: 1.4
+  color: $body-copy
   p
-    color: $body-copy
-  h3, .title, span.partner
-    @extend %regular-type-size
+    @extend %margin-bottom-10
+  .title, span.partner
+    @extend %larger-type
+    @extend %margin-bottom-10
     font-weight: bold
     color: $header-gray
+    display: block
+
+%themed-body-copy
+  color: $text-on-blue
+
+%feature-copy
+  .title
+    @extend .card-title
+    margin-bottom: 18px
+  p
+    @extend %large-type
+    @extend %serif
+    @extend %smooth-text
+    color: $header-gray
+    line-height: 1.3
+
+%error-copy
+  .title
+    @extend %error-heading-size-type
+    font-weight: bold
+    margin-bottom: 5px
+  p
+    @extend %regular-type-size
+    @extend %margin-bottom-30
 
 
 // -----------------------------------------------------------------------------
@@ -91,8 +120,10 @@
 %reset-line-height
   line-height: 1
 
+
+// This hack is 0.1 rather than 0 to benefit opera
 %no-line-height
-  line-height: 0
+  line-height: 0.1
 
 %prevent-text-breakouts
   +word-break()
