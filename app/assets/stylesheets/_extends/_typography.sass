@@ -44,13 +44,19 @@
 // -----------------------------------------------------------------------------
 
 %body-copy
-  color: $body-copy // $$legacy until crazy harry refactor
+  line-height: 1.4
+  color: $body-copy
   p
-    color: $body-copy
-  h3, .title, span.partner
-    @extend %regular-type-size
+    @extend %margin-bottom-10
+  .title, span.partner
+    @extend %larger-type
+    @extend %margin-bottom-10
     font-weight: bold
     color: $header-gray
+    display: block
+
+%themed-body-copy
+  color: $text-on-blue
 
 
 // -----------------------------------------------------------------------------
@@ -91,8 +97,10 @@
 %reset-line-height
   line-height: 1
 
+
+// This hack is 0.1 rather than 0 to benefit opera
 %no-line-height
-  line-height: 0
+  line-height: 0.1
 
 %prevent-text-breakouts
   +word-break()

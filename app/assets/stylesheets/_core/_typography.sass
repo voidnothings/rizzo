@@ -9,7 +9,7 @@
 // --------------------------------------------------------------------------------------
 
 html
-  font: 0.875em/1.4 'Helvetica Neue', Arial, sans-serif 
+  font: 0.875em/1 'Helvetica Neue', Arial, sans-serif 
 
 body
   min-height: 100%
@@ -50,6 +50,9 @@ a
 // -----------------------------------------------------------------------------
 // Backwards compatability - revert the font size for the $$legacy header/footer
 // -----------------------------------------------------------------------------
+
+body > .wrap > footer
+  line-height: 1.4
 
 #headerWrap, #pageTitleWrap, #infoSourcesWrap, #footerWrap, .hwrap, 
 nav.primary, #breadcrumbWrap, footer > .info, footer > .foot
