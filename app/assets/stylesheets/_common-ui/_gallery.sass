@@ -10,8 +10,9 @@
   cursor: pointer
   &:after
     @extend %benton-regular
-    @extend %abs-generated-content
     @extend %no-line-height
+    position: absolute
+    display: block
     +font-size(40)
     color: #fff
     +text-shadow(1, 1, 0, rgba(0,0,0,0.2))
@@ -63,8 +64,9 @@
       opacity: 1
   &:after
     @extend %benton-regular
-    @extend %abs-generated-content
     @extend %no-line-height
+    position: absolute
+    display: block
     +text-shadow(1px, 1px, 0, rgba(0,0,0,0.2))
     +font-size(50)
     color: #fff

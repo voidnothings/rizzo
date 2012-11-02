@@ -5,16 +5,6 @@
 %block-center
   margin: 0 auto
 
-
-// ***
-%full-auto 
-  margin: auto 0
-
-%horizontal-auto 
-  margin: 0 auto
-// *****
-
-
 %float-left
   float: left
 
@@ -24,8 +14,9 @@
 %no-float
   float: none
 
+
 // -----------------------------------------------------------------------------
-// Margins and Padding
+// No Margins and Padding
 // -----------------------------------------------------------------------------
 
 %no-margin
@@ -43,13 +34,15 @@
 // Non-static positioning
 // -----------------------------------------------------------------------------
 
+%absolute
+  position: absolute
+  
+%relative
+  position: relative
+
 %absolute-top
   position: absolute
   top: 0
-
-%absolute-left
-  position: absolute
-  left: 0
 
 %absolute-right
   position: absolute
@@ -59,41 +52,7 @@
   position: absolute
   bottom: 0
 
-%absolute-top-left
+%absolute-left
   position: absolute
-  top: 0
   left: 0
 
-%absolute-top-right
-  position: absolute
-  top: 0
-  right: 0
-
-%absolute-top-full-width
-  position: absolute
-  top: 0
-  left: 0
-  right: 0
-
-%absolute-bottom-left
-  position: absolute
-  bottom: 0
-  left: 0
-
-%absolute-bottom-right
-  position: absolute
-  bottom: 0
-  right: 0
-
-%absolute-bottom-full-width
-  position: absolute
-  bottom: 0
-  left: 0
-  right: 0
-
-%absolute-full-width-height
-  position: absolute
-  bottom: 0
-  left: 0
-  right: 0
-  top: 0
