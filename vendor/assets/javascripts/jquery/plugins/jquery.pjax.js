@@ -316,7 +316,6 @@ function pjax(options) {
 
       window.history.pushState(null, "", stripPjaxParam(options.requestUrl))
     }
-
     fire('pjax:start', [xhr, options])
     fire('pjax:send', [xhr, options])
   }
@@ -434,8 +433,7 @@ function fallbackPjax(options) {
   var scrapeObject = function(obj, name) {
     for (key in obj) {
       if (typeof(obj[key]) == 'object') {
-        name = name + '[' + key + ']';
-        scrapeObject(obj[key], name);
+        scrapeObject(obj[key], name + '[' + key + ']');
       } else {
         form.append($('<input>', {type: 'hidden', name: name + '[' + key + ']', value: obj[key]}))
       }
