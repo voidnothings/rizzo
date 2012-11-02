@@ -1,12 +1,27 @@
+// -----------------------------------------------------------------------------
+// Custom LP Styles and decorations
+// -----------------------------------------------------------------------------
+
+
+// -----------------------------------------------------------------------------
+// The standard shadow used on cards, tabs, dropdowns etc.
+
 %standard-shadow
   +box-shadow(1, 1, 2, 0, rgba(0,0,0,0.1))
 
-%white-background
-  background: #fff
+
+// -----------------------------------------------------------------------------
+// The standard rounded corner used on tabs, buttons etc.
+
+%four-pixel-rounded
+  +border-radius(4)
+
+
+// -----------------------------------------------------------------------------
+// The active/selected state for facets, nav etc.
 
 %active-background
   background-color: $active
   color: #fff
 
-%four-pixel-rounded
-  +border-radius(4)
+

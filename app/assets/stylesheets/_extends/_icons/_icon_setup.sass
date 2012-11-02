@@ -1,0 +1,57 @@
+// -----------------------------------------------------------------------------
+//  These classes set up the architecture for our unicode icons
+// -----------------------------------------------------------------------------
+
+
+// -----------------------------------------------------------------------------
+//  Icon sizes
+
+%small-icon  
+  width: 16px
+  height: 16px
+
+%regular-icon
+  width: 32px
+  height: 32px
+
+
+// -----------------------------------------------------------------------------
+// Helper extends for positioning icons at the horizontal extremes of an 
+// element
+// -----------------------------------------------------------------------------
+
+%left-icon
+  @extend %relative
+  &:before
+    @extend %benton-regular
+    @extend %absolute-left
+    @extend %small-icon
+    display: block
+
+%right-icon
+  @extend %relative
+  &:after
+    @extend %benton-regular
+    @extend %absolute-right
+    @extend %small-icon
+    display: block
+
+// -----------------------------------------------------------------------------
+// Hidden text with Icon
+//
+// When you want to have the element text for accessibility reasons, but want 
+// it hidden: use either %left-icon or %right-icon and extend with one of the 
+// below classes
+
+
+%hide-left-icon-text
+  text-indent: -999em
+  &:before
+    text-indent: 0
+
+%hide-right-icon-text
+  text-indent: -999em
+  &:after
+    text-indent: 0
+
+

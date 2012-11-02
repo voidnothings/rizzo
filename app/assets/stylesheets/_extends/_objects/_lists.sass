@@ -1,0 +1,38 @@
+// -----------------------------------------------------------------------------
+// These objects are typically used on lists but can be extend by any elements
+// via the .item class
+// -----------------------------------------------------------------------------
+
+
+%no-list-style
+  list-style: none
+
+
+// -----------------------------------------------------------------------------
+// Stacked navigation
+//
+// This object throws any list or list of links into a stack of elements
+// -----------------------------------------------------------------------------
+
+%stacked-nav
+  @extend %no-list-style
+  .item, > li
+    display: block
+
+
+// -----------------------------------------------------------------------------
+// Ruled list 
+// 
+// Extend the stacked list to have the typical LP ruled list
+// e.g. Services and facilities
+// -----------------------------------------------------------------------------
+
+%ruled-list
+  @extend %stacked-nav
+  > .item, > li
+    border-top: 1px solid $ruled-list-separator
+  .title
+    font-weight: bold
+    color: $header-gray
+
+

@@ -1,28 +1,19 @@
-// -----------------------------------------------------
+// -----------------------------------------------------------------------------
 // Links
-// -----------------------------------------------------
+// -----------------------------------------------------------------------------
 
-%blue-link-reverse
-  background-color: $link_color
+%link-without-underline
   text-decoration: none
-  color: #fff
-
-%grey-link-reverse
-  background: #666
-  color: #fff
-
-// For use when nesting elements within links
-%wrapper-link
-  display: block
-  height: 100%
-  color: $base_font_color
   &:hover
     text-decoration: none
 
-%no-underline
-  text-decoration: none
 
-%no-decoration
-  @extend %no-underline
-  &:hover
-    @extend %no-underline
+// -----------------------------------------------------------------------------
+// Wrapper links are used when a link contains multiple elements eg. cards
+
+%wrapper-link
+  @extend %link-without-underline
+  display: block
+  height: 100%
+  color: $base_font_color
+
