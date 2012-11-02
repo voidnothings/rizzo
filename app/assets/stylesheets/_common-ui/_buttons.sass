@@ -13,7 +13,6 @@
   &:hover
     text-decoration: none
 
-
 // -----------------------------------------------------------------------------
 // Buttons
 // -----------------------------------------------------------------------------
@@ -27,19 +26,6 @@
   padding: 6px 15px
   font-weight: bold
 
-.load-more-btn
-  @extend %base-button
-  @extend %extra-large-type
-  +background-gradient(#e8edf0, #e0e7ea)
-  +box-shadow(0, 1, 1, 0, rgba(255,255,255,0.7))
-  color: $heading-text
-  padding: 10px 15px
-  width: 100%
-  border: 1px solid #c9d1d7
-  font-weight: bold
-  &.disabled
-    color: #D6D6D3
-
 .read-more-btn, .select-room-btn
   @extend %base-button
   padding: 5px 7px
@@ -50,12 +36,15 @@
 .functional-btn
   @extend %base-button
   @extend %extra-large-type
-  +box-shadow(1, 1, 1, 0, rgba(3, 46, 92, 0.1))
+  +box-shadow(0, 1, 1, 0, rgba(255, 255, 255, 0.8))
   padding: 10px 15px
   background-color: #fff
+  border: 1px solid #c9d1d7
+  +background-gradient(#ecf0f2, #dbe2e6)
   color: $heading-text
 
-
-
-
-
+.load-more-btn
+  @extend .functional-btn
+  width: 100%
+  &.disabled
+    color: $body-copy

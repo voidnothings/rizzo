@@ -51,11 +51,11 @@
 // Error copy - Used for styling hotel error messages eg. No availability
 
 %error-copy
-  color: $header-gray
+  color: $body-copy
   .title
     @extend %error-heading-size-type
-    font-weight: bold
-    margin-bottom: 5px
+    @extend %smooth-text
+    @extend %margin-bottom-10
   p
     @extend %regular-type-size
     @extend %margin-bottom-30
