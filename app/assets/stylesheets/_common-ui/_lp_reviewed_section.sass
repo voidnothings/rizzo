@@ -48,15 +48,14 @@
   +border-radius(10)
   @extend %relative
   background-color: $secondary-content-bg
-  
-  &.arrow-top:after
+  &:after
     +css-arrow(top, 10px, $secondary-content-bg, 20px)
   p:last-of-type
     margin-bottom: 0
   .lp-review-content
     @extend %box-off-double
     @extend %feature-copy
-  footer
+  .lp-review-footer
     @extend %box-off-double
     border-top: 1px solid $section-separator
 
