@@ -50,6 +50,18 @@ $single-card-width: 190px
 //
 // -----------------------------------------------------------------------------
 
+.lodging.top-choice
+  &:after
+    @extend %empty-abs-generated-content
+    background: url(image_path("lodgings-spt.png"))
+    top: -5px
+    left: 17px
+    width: 63px
+    height: 95px
+    +retinafy()
+      background: url(image_path("lodgings-spt-2x.png"))
+      background-size: 112px 117px
+
 .card-title
   @extend %benton-regular
   @extend %tighten-text
