@@ -32,11 +32,8 @@ define ['jquery','handlebars','underscore'], ($) ->
       templ = "
         {{#with properties}}
         <li class='nearby-poi-item item' data-poi-id='{{id}}'>
-          <div class='img icon-poi-small icon-poi-{{../category}}-small'></div>
-          <div class='bd poi-item-description'>
-            <a href='{{uri}}' class='poi-item-title'>{{title}}</a>
-            {{{description}}}
-          </div>
+          <a href='{{uri}}' class='poi-item-title icon-poi-{{../category}}'>{{title}}</a>
+          <div class='poi-item-description'>{{{description}}}</div>
         </li>
         {{/with}}
       "

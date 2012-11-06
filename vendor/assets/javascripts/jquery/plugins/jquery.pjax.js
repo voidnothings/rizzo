@@ -316,7 +316,6 @@ function pjax(options) {
 
       window.history.pushState(null, "", stripPjaxParam(options.requestUrl))
     }
-
     fire('pjax:start', [xhr, options])
     fire('pjax:send', [xhr, options])
   }
@@ -430,22 +429,23 @@ function fallbackPjax(options) {
     }))
   }
 
-  var data = options.data
+  var data = options.data;
+  var scrapeObject = function(obj, name) {
+    for (key in obj) {
+      if (typeof(obj[key]) == 'object') {
+        scrapeObject(obj[key], name + '[' + key + ']');
+      } else {
+        form.append($('<input>', {type: 'hidden', name: name + '[' + key + ']', value: obj[key]}))
+      }
+    }
+  }
   if (typeof data === 'string') {
     $.each(data.split('&'), function(index, value) {
       var pair = value.split('=')
       form.append($('<input>', {type: 'hidden', name: pair[0], value: pair[1]}))
     })
   } else if (typeof data === 'object') {
-    for (key in data) {
-      if (typeof(data[key]) === 'object') {
-        for (subkey in data[key]) {
-          form.append($('<input>', {type: 'hidden', name: key + '[' + subkey + ']', value: data[key][subkey]}))
-        }
-      } else {
-        form.append($('<input>', {type: 'hidden', name: key, value: data[key]}))
-      }
-    }
+    scrapeObject(data, '');
   }
   $(document.body).append(form);
   form.submit();

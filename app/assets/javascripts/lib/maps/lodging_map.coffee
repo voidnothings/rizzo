@@ -79,6 +79,8 @@ define ['jquery','lib/utils/css_helper'], ($, CssHelper) ->
         "icon-poi-#{category}-#{size} icon-poi-#{size}",
         [
           'background-position',
+          'background-position-x',
+          'background-position-y',
           'background-image',
           'height',
           'width'
@@ -88,9 +90,15 @@ define ['jquery','lib/utils/css_helper'], ($, CssHelper) ->
       stripPx = CssHelper.stripPx
       width = stripPx(cssInfo['width'])
       height = stripPx(cssInfo['height'])
-      pos = cssInfo['background-position'].split(' ')
-      x = stripPx(pos[0])
-      y = stripPx(pos[1])
+
+      # IE does not understand background-position
+      if cssInfo['background-position'] is undefined
+        x = stripPx(cssInfo['background-position-x'])
+        y = stripPx(cssInfo['background-position-y'])
+      else
+        x = stripPx(cssInfo['background-position'].split(' ')[0])
+        y = stripPx(cssInfo['background-position'].split(' ')[1])
+
       new google.maps.MarkerImage(
         url,
         new google.maps.Size(width, height),
