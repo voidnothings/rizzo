@@ -1,11 +1,10 @@
 input[type="text"], input[type="email"], input[type="date"]
   +box-sizing()
-  @extend %four-pixel-rounded
   @extend %no-margin
   @extend %sans-serif
   @extend %box-off
-  background-color: $form-bg
-  border: none
+  background-color: #fff
+  border: 1px solid $subdued-tab-icon
   color: $body-copy
   width: 100%
 
@@ -53,20 +52,20 @@ input[type="submit"][disabled], input[type="submit"][disabled]:hover
       +word-break()
       @extend %chevron-down-after
       @extend %right-icon
-      @extend %four-pixel-rounded
       padding-right: 21px
       color: $body-copy
       display: block
       width: $width
       overflow: hidden
       text-indent: 10px
-      background-color: $form-bg
+      background-color: #fff
+      border: 1px solid $subdued-tab-icon
       &:after
         width: ($arrow-width - 6px)
         height: $height
-        background-color: inherit
+        background-color: white
         right: 5px
-        top: 0
+        top: -2px
         color: $body-copy
         font-size: 20px
 
