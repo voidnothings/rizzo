@@ -64,12 +64,21 @@
   box-sizing:         $sizing
 
 
-@mixin transition($property: all, $duration: 0.5, $style: ease)  
+@mixin hardware-acceleration()
+  -webkit-transform:  translateZ(0)
+  -moz-transform:     translateZ(0)
+  -ms-transform:      translateZ(0)
+  -o-transform:       translateZ(0)
+  transform:          translateZ(0)
+
+@mixin transition($property: all, $duration: 0.5, $style: ease)
+  +hardware-acceleration()
   -webkit-transition: $property #{$duration + s} $style
   -moz-transition:    $property #{$duration + s} $style
   -ms-transition:     $property #{$duration + s} $style
   -o-transition:      $property #{$duration + s} $style
   transition:         $property #{$duration + s} $style
+
 
 
 @mixin multiple-transitions($transition1, $transition2: null, $transition3: null, $transition4: null, $transition5: null)
