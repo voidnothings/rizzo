@@ -47,54 +47,24 @@
 .lp-review
   +border-radius(10)
   @extend %relative
-  @extend %box-off-double
-  @extend %themed-body-copy
   background-color: $secondary-content-bg
-  
-  &.arrow-top:after
+  &:after
     +css-arrow(top, 10px, $secondary-content-bg, 20px)
-  
-  &.arrow-left:after
-    +css-arrow-central(left, 10px, $secondary-content-bg)
-  
-  &.the-dude
-    @extend %left-icon
-    @extend %the-dude-before
-    margin-left: 50px
-    &:before
-      @extend %no-line-height
-      font-size: 100px
-      left: -55px
-      top: 17px
-
+  p:last-of-type
+    margin-bottom: 0
+  .lp-review-content
+    @extend %box-off-double
+    @extend %feature-copy
+  .lp-review-footer
+    @extend %box-off-double
+    border-top: 1px solid $section-separator
 
 .lp-review-recommended
-  +border-radius(4)
-  padding: 15px 15px 15px 60px
-  background-color: #fff
+  @extend %left-icon
+  @extend %lp-review-bubble-before
   color: $heading-text
-  font-weight: bold
-  .recommended
-    color: $heading-text
-  &.the-dude
-    min-height: 45px
-    @extend %left-icon
-    @extend %the-dude-before
-    &:before
-      @extend %no-line-height
-      font-size: 100px
-      left: 5px
-      top: 37px
-
-
-.lp-review, .lp-review-recommended
-  &.top-choice-banner
-    padding-right: 100px
-    &:after
-      @extend %empty-generated-content
-      @extend %absolute
-      +top-choice-banner()
-      top: -1px
-      right: 0
-      width: 77px
-      height: 67px
+  padding-left: 50px
+  &:before
+    @extend %no-line-height
+    top: 15px
+    font-size: 70px

@@ -2,17 +2,22 @@ input[type="text"], input[type="email"], input[type="date"]
   +box-sizing()
   @extend %no-margin
   @extend %sans-serif
-  border: 1px solid $form-border
+  @extend %box-off
+  background-color: #fff
+  border: 1px solid $subdued-tab-icon
   color: $body-copy
-  padding: 7px 10px
   width: 100%
 
 
 input[type="date"], input.datepicker
-  @extend %data-datepicker
+  background-image: url(image_path("lodgings-spt.png"))
   padding-left: 32px
   background-repeat: no-repeat
-  background-position: 8px 50%
+  background-position: 3px -98px
+  +retinafy()
+    background-image: url(image_path("lodgings-spt-2x.png"))
+    background-size: 112px 117px
+    background-position: 4px -87px
 
 input[type="submit"]
   border: none
@@ -54,7 +59,7 @@ input[type="submit"][disabled], input[type="submit"][disabled]:hover
       overflow: hidden
       text-indent: 10px
       background-color: #fff
-      border: 1px solid $form-border
+      border: 1px solid $subdued-tab-icon
       &:after
         width: ($arrow-width - 6px)
         height: $height
