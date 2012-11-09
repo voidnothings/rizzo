@@ -34,9 +34,12 @@ define ['jquery'], ($) ->
       if config.hasOwnProperty('activeClass')
         @parent.find(config.activeClass.elem).removeClass(config.activeClass.className)
 
+    refresh : () ->
+      @panels = @parent.find('.js-accordion-panel')
+      @closeAllPanels(@panels)
+
     constructor : (args) ->
       config = $.extend config, args
-      window.x = config
       @parent = $(config.parent)
       @panels = @parent.find('.js-accordion-panel')
 
