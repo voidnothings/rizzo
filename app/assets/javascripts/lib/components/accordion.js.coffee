@@ -17,11 +17,19 @@ define ['jquery'], ($) ->
       multiplePanels: false
 
     openPanel : (panel) ->
-      if config.multiplePanels is false then @closeAllPanels()
       panel = @sanitisePanel(panel)
-      panel.removeClass('is-hidden')
       if config.hasOwnProperty('activeClass')
-        panel.closest(config.activeClass.elem).addClass(config.activeClass.className)
+        panelContainer = panel.closest(config.activeClass.elem)
+        if panelContainer.hasClass(config.activeClass.className)
+          @closePanel(panel)
+        else
+          if config.multiplePanels is false then @closeAllPanels()
+          panel.removeClass('is-hidden')
+          panel.closest(config.activeClass.elem).addClass(config.activeClass.className)
+      else
+        if config.multiplePanels is false then @closeAllPanels()
+        panel.removeClass('is-hidden')
+      
 
     closePanel : (panel) ->
       panel = @sanitisePanel(panel)
@@ -46,6 +54,8 @@ define ['jquery'], ($) ->
       @sanitisePanel = (panel) =>
         if typeof(panel) == 'number'
           $(@panels[panel])
+        else if panel.jquery isnt undefined
+          panel
         else
           $(panel)
 
