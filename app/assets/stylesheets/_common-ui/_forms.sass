@@ -18,6 +18,8 @@ input[type="date"], input.datepicker
     background-image: url(image_path("lodgings-spt-2x.png"))
     background-size: 112px 117px
     background-position: 6px -87px
+  +placeholder()
+    color: $sub-copy
 
 input[type="submit"]
   border: none
@@ -28,9 +30,6 @@ input[type="submit"]
 input[type="submit"][disabled], input[type="submit"][disabled]:hover
   @extend %disabled-state
 
-.datepicker
-  +placeholder()
-    color: $sub-copy
 
 // -----------------------------------------------------------------------------
 // LP Select Overlay
