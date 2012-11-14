@@ -5,35 +5,29 @@
 //
 // <div class="expanded-pagination">
 //   <ul>
-//     <li class="prev">
+//     <li class="item prev">
 //       <span>‹ Prev</span>
 //     </li>
-//     <li class="current">
+//     <li class="item current">
 //       <span>1</span>
 //     </li>
-//     <li>
+//     <li class="item">
 //       <a href="/vietnam/ho-chi-minh-city/hotels?page=2">2</a>
 //     </li>
-//     <li>
+//     <li class="item">
 //       <a href="/vietnam/ho-chi-minh-city/hotels?page=3">3</a>
 //     </li>
 //   </ul>
 // </div>
 // --------------------------------------------------------------------------------------
 
+
+// --------------------------------------------------------------------------------------
+// Extends the nav object
+// Simplified styling due to being replaced by load more button with JS
+// --------------------------------------------------------------------------------------
 .expanded-pagination
-  margin-top: 20px
-  ul
-    text-align: center
-  li
-    &.next, &.prev
-      color: $disabled-state-text
-    display: inline
-    margin-right: 1px
-    span, a
-      +border-radius(3)
-      line-height: 3em
-      padding: 3px 6px 2px 8px
-    &.current
-      span, a
-        @extend %active-background
+  @extend %nav
+  text-align: center
+  .current
+    color: $active
