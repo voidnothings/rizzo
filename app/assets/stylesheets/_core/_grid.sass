@@ -51,6 +51,7 @@ $gutter: 10px
   @extend %grid-wrapper-10
   > [class*="col-"]
     @extend %padded-grid-column-10
+    
 
 .grid-wrapper-15
   @extend %grid-wrapper-15
@@ -66,6 +67,17 @@ $gutter: 10px
   @extend %grid-wrapper-30
   > [class*="col-"]
     @extend %padded-grid-column-30
+
+[class*="grid-"]
+  +respond-to(max500)
+    margin-left: 0 !important
+    padding-left: 0
+  > [class*="col-"]
+    +respond-to(max500)
+      float: none
+      width: 100%
+      padding-left: 0 !important
+      margin-left: 0
 
 
 .col-one-half
@@ -83,12 +95,12 @@ $gutter: 10px
 .col-three-quarters
   width: 75%
 
-.one-fifth
+.col-one-fifth
   width: 20%
-.two-fifths
+.col-two-fifths
   width: 40%
-.three-fifths
+.col-three-fifths
   width: 60%
-.four-fifths
+.col-four-fifths
   width: 80%
 

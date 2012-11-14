@@ -1,5 +1,6 @@
 input[type="text"], input[type="email"], input[type="date"]
   +box-sizing()
+  @extend %four-pixel-rounded
   @extend %no-margin
   @extend %sans-serif
   @extend %box-off
@@ -11,9 +12,9 @@ input[type="text"], input[type="email"], input[type="date"]
 
 input[type="date"], input.datepicker
   background-image: url(image_path("lodgings-spt.png"))
-  padding-left: 35px
+  padding-right: 35px
   background-repeat: no-repeat
-  background-position: 6px -93px
+  background-position: 99% -112px
   +retinafy()
     background-image: url(image_path("lodgings-spt-2x.png"))
     background-size: 112px 117px
@@ -50,6 +51,7 @@ input[type="submit"][disabled], input[type="submit"][disabled]:hover
       +box-sizing(border-box)
       +vertically-center($height)
       +word-break()
+      @extend %four-pixel-rounded
       @extend %chevron-down-after
       @extend %right-icon
       padding-right: 21px

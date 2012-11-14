@@ -11,6 +11,7 @@
 $card-grid-height: 380px
 $hero-image-height: 185px
 $single-card-width: 190px
+$stack-image-height: 275px
 
 %base-card-object
   @extend %standard-shadow
@@ -38,9 +39,7 @@ $single-card-width: 190px
 
 .stack
   @extend .card
-  background-color: $card-title-text
-  .card-name
-    color: #fff
+  height: 380px
 
 
 
@@ -104,6 +103,9 @@ $single-card-width: 190px
   @extend %relative
   height: $hero-image-height
   overflow: hidden
+  .stack &
+    height: $stack-image-height
+
   
   // Refactor to use landscape/portrait classes when rowlf imaging catches up
   > img
@@ -193,7 +195,7 @@ $card-padding: 13px
 // Card details
 // -----------------------------------------------------------------------------
 
-.star-rating
+.star-rating, .card-context
   @extend %small-type
   margin-bottom: 2px
   display: block
