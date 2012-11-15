@@ -8,8 +8,11 @@
 %meta(name="fb:app_id" content="111537044496")
 %meta(name="viewport" content="width=1024")
 
-- if is_client_browser_less_then_ie9?(request.user_agent)
-  :javascript
+
+:javascript
+
+  // Using feature detection to work around page caching
+  if (!window.navigator.geolocation) {
     document.createElement('header');
     document.createElement('nav');
     document.createElement('section');
@@ -19,9 +22,8 @@
     document.createElement('figure');
     document.createElement('figurecap');
     document.createElement('hgroup');
-
-:javascript
-  document.documentElement.className += ' js';
+  }
+  (function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);
 
 = stylesheet_link_tag 'application', :media => "all"
 
