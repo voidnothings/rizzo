@@ -82,6 +82,7 @@
 
 
 @mixin multiple-transitions($transition1, $transition2: null, $transition3: null, $transition4: null, $transition5: null)
+  +hardware-acceleration()
   -webkit-transition: $transition1, $transition2, $transition3, $transition4, $transition5
   -moz-transition:    $transition1, $transition2, $transition3, $transition4, $transition5
   -ms-transition:     $transition1, $transition2, $transition3, $transition4, $transition5
