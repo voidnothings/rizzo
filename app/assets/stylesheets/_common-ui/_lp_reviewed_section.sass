@@ -4,27 +4,21 @@
 // -----------------------------------------------------------------------------
 
 .lp-review
-  +border-radius(10)
-  @extend %relative
-  background-color: $secondary-content-bg
-  &:after
-    +css-arrow(top, 10px, $secondary-content-bg, 20px)
-  p:last-of-type
-    margin-bottom: 0
-  .lp-review-content
-    @extend %box-off-double
-    @extend %feature-copy
-  .lp-review-footer
-    @extend %box-off-double
-    border-top: 1px solid $section-separator
-    line-height: 1.3
+  .section-title
+    @extend %inline-block
+    @extend %right-icon
+    @extend %lp-review-bubble-after
+    padding-right: 20px
+    &:after
+      @extend %no-line-height
+      color: $lp-reviewed-badge
+      top: 8px
+      font-size: 60px
 
-.lp-review-recommended
-  @extend %left-icon
-  @extend %lp-review-bubble-before
-  color: $heading-text
-  padding-left: 50px
-  &:before
-    @extend %no-line-height
-    top: 15px
-    font-size: 70px
+.lp-review-content
+  @extend %feature-copy
+  @extend %margin-bottom-10
+
+.lp-review-footer
+  @extend %body-copy
+
