@@ -1,5 +1,5 @@
 input[type="text"], input[type="email"], input[type="date"]
-  +box-sizing()
+  @extend %border-box
   @extend %four-pixel-rounded
   @extend %no-margin
   @extend %sans-serif
@@ -47,9 +47,9 @@ input[type="submit"][disabled], input[type="submit"][disabled]:hover
     height: $height
 
     .overlay
-      +box-sizing(border-box)
       +vertically-center($height)
       +word-break()
+      @extend %border-box
       @extend %four-pixel-rounded
       @extend %chevron-down-after
       @extend %right-icon
