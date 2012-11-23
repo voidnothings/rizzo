@@ -29,7 +29,7 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
       unless @lodgingMap
         script = document.createElement("script")
         script.type = "text/javascript"
-        script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=lp.MapManager.initMap"
+        script.src = "http://maps.googleapis.com/maps/api/js?v=2&sensor=false&callback=lp.MapManager.initMap"
         document.body.appendChild(script)
 
 
