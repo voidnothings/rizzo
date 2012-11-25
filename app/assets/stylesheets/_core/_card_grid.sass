@@ -7,7 +7,7 @@
 // -----------------------------------------------------------------------------
 
 %grid-wrapper
-  @extend %border-box
+  +box-sizing()
   @extend %clearfix
 
 %grid-wrapper-10
@@ -35,11 +35,8 @@
 
 
 %grid-column
-  @extend %border-box
+  +box-sizing()
   @extend %float-left
-  .ie7 &
-    padding-left: 0
-  
 
 %padded-grid-column-10
   @extend %grid-column
@@ -69,6 +66,20 @@
   @extend %grid-column
   margin-left: 30px
 
+
+// -----------------------------------------------------------------------------
+// 
+//  2/3 Grid for use within full page card
+// 
+// -----------------------------------------------------------------------------
+
+%one-third
+  @extend %padded-grid-column-20
+  width: 33.333333333%
+
+%two-thirds
+  @extend %padded-grid-column-20
+  width: 66.666666666%
 
 
 
