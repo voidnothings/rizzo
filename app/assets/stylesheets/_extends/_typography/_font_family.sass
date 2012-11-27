@@ -14,10 +14,20 @@
   font-weight: normal
   font-style: normal
 
+@font-face
+  font-family: 'bentonsansregularIE';
+  src: url('lonelyplanet-webfont.eot?#iefix') format('embedded-opentype'), 
+       url('lonelyplanet-webfont.woff') format('woff'), 
+       url('lonelyplanet-webfont.ttf')  format('truetype'),
+       url('lonelyplanet-webfont.svg#bentonsansregularIE') format('svg');
+
 %benton-regular
   @extend %smooth-text
   @extend %tighten-text
-  font-family: 'bentonsansregular'
+  @if $ie == false
+    font-family: 'bentonsansregular'
+  @if $ie == true
+    font-family: 'bentonsansregularIE'
   font-style: normal
   font-weight: 400
 
