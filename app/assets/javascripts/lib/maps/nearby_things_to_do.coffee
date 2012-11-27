@@ -41,7 +41,6 @@ define ['jquery','handlebars','underscore'], ($) ->
 
     render: ->
       @container.empty()
-      @container.append($("<h3>").addClass('section-title').text("Interesting places nearby"))
       list = $('<ul>').addClass('nearby-pois-list')
       list.append(@listItemTemplate(activity)) for activity in @args.pois.sights_or_activities
       list.append(@listItemTemplate(@args.pois.entertainment)) if @args.pois.entertainment.length isnt 0
