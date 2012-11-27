@@ -43,6 +43,8 @@
 %grid-column
   +box-sizing()
   @extend %float-left
+  .ie7 &, .no-boxsizing &
+    padding-left: 0
 
 %padded-grid-column-10
   @extend %grid-column
