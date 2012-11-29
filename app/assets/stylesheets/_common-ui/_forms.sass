@@ -5,7 +5,7 @@ input[type="text"], input[type="email"], input[type="date"]
   @extend %sans-serif
   @extend %box-off
   background-color: #fff
-  border: 1px solid $subdued-tab-icon
+  border: 1px solid $soft-gray
   color: $body-copy
   width: 100%
 
@@ -20,7 +20,7 @@ input[type="date"], input.datepicker
     background-size: $sprite-size
     background-position: 95% -111px
   +placeholder()
-    color: $sub-copy
+    color: $placeholder-copy
 
 input[type="submit"]
   border: none
@@ -60,7 +60,7 @@ input[type="submit"][disabled], input[type="submit"][disabled]:hover
       overflow: hidden
       text-indent: 10px
       background-color: #fff
-      border: 1px solid $subdued-tab-icon
+      border: 1px solid $soft-gray
       &:after
         width: ($arrow-width - 6px)
         height: $height
