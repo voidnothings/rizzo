@@ -1,4 +1,81 @@
 // -----------------------------------------------------------------------------
+// Grid Extends
+// -----------------------------------------------------------------------------
+
+
+
+// -----------------------------------------------------------------------------
+// 
+// Grid Wrapper
+// 
+// Case for making this a set of mixins?
+// 
+// -----------------------------------------------------------------------------
+
+%grid-wrapper
+  +box-sizing()
+  @extend %clearfix
+
+%grid-wrapper-10
+  @extend %grid-wrapper
+  margin-left: -10px
+
+%grid-wrapper-15
+  @extend %grid-wrapper
+  margin-left: -15px
+
+%grid-wrapper-20
+  @extend %grid-wrapper
+  margin-left: -20px
+
+%grid-wrapper-30
+  @extend %grid-wrapper
+  margin-left: -30px
+
+
+// -----------------------------------------------------------------------------
+// 
+//  Grid Columns
+// 
+// -----------------------------------------------------------------------------
+
+
+%grid-column
+  +box-sizing()
+  @extend %float-left
+  .ie7 &, .no-boxsizing &
+    padding-left: 0
+
+%padded-grid-column-10
+  @extend %grid-column
+  padding-left: 10px
+
+%padded-grid-column-15
+  @extend %grid-column
+  padding-left: 15px
+
+%padded-grid-column-20
+  @extend %grid-column
+  padding-left: 20px
+
+%padded-grid-column-30
+  @extend %grid-column
+  padding-left: 30px
+
+%margin-grid-column-10
+  @extend %grid-column
+  margin-left: 10px
+
+%margin-grid-column-20
+  @extend %grid-column
+  margin-left: 20px
+
+%margin-grid-column-30
+  @extend %grid-column
+  margin-left: 30px
+
+
+// -----------------------------------------------------------------------------
 // 
 //  Simple Grid for the card main content
 // 

@@ -35,7 +35,6 @@ p
 
 .disclaimer
   @extend %disclaimer-copy
-  
 
 a
   color: $link_color
@@ -44,7 +43,8 @@ a
   &:hover
     text-decoration: underline
 
-
+::selection
+  @extend %active-background
 
 // -----------------------------------------------------------------------------
 // Backwards compatability - revert the font size for the $$legacy header/footer
