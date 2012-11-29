@@ -1,0 +1,29 @@
+%block-list-title
+  @extend %regular-type-size
+  color: $footer-blue
+  font-weight: bold
+
+.footer
+  background: #e8edef
+  padding: 20px 0
+
+
+.nav-group
+  width: 165px
+  float: left
+
+a.nav-item
+  @extend %regular-type-size
+  color: $footer-gray
+  line-height: 22px
+  display: block
+  &:hover
+    text-decoration: underline
+  &:first-child
+    @extend %footer-title
+
+.block-list-title
+  @extend %block-list-title
+  line-height: 22px
+  color: $footer-blue
+  
