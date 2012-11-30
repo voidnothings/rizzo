@@ -120,7 +120,36 @@ $gutter: 10px
 
 // -----------------------------------------------------------------------------
 // 
-//  Proportional grid
+//  Proportional grid (Bem Style)
+// 
+// -----------------------------------------------------------------------------
+
+.grid-wrapper--10
+  @extend %grid-wrapper-10
+  > [class*="col-"]
+    @extend %padded-grid-column-10
+    
+
+.grid-wrapper--15
+  @extend %grid-wrapper-15
+  > [class*="col-"]
+    @extend %padded-grid-column-15
+
+.grid-wrapper--20
+  @extend %grid-wrapper-20
+  > [class*="col-"]
+    @extend %padded-grid-column-20
+
+.grid-wrapper--30
+  @extend %grid-wrapper-30
+  > [class*="col-"]
+    @extend %padded-grid-column-30
+
+
+
+// -----------------------------------------------------------------------------
+// 
+//  Proportional grid 
 // 
 // -----------------------------------------------------------------------------
 

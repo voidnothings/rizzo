@@ -1,29 +1,152 @@
-%block-list-title
-  @extend %regular-type-size
+// ----------------------------------------------------------------------------
+// 
+// Extensions (to be extracted from here)
+// 
+// ----------------------------------------------------------------------------
+
+%list-title--footer
+  @extend %small-type
   color: $footer-blue
   font-weight: bold
+
+%nav__item--vertical
+  display: block
+  line-height: 18px
+  &:hover
+    text-decoration: underline
 
 .footer
   background: #e8edef
   padding: 20px 0
 
+.nav-item--footer
 
-.nav-group
-  width: 165px
+.column--footer
+  @extend %padded-grid-column-10
   float: left
 
-a.nav-item
-  @extend %regular-type-size
-  color: $footer-gray
-  line-height: 22px
-  display: block
-  &:hover
-    text-decoration: underline
-  &:first-child
-    @extend %footer-title
+// ----------------------------------------------------------------------------
+// 
+// Grid dimensions
+// 
+// ----------------------------------------------------------------------------
 
-.block-list-title
-  @extend %block-list-title
-  line-height: 22px
-  color: $footer-blue
+.grid--6
+  width: 16.666%
+
+.grid--12
+  width: 12.499%
+
+.grid--5--ext
+  width: 20.8325%
+
+
   
+
+// ----------------------------------------------------------------------------
+// 
+// Nav Object
+// 
+// ----------------------------------------------------------------------------
+//
+.nav__item
+  float: left
+  margin-right: 2px
+  
+
+.nav__item--title    
+  @extend %nav--footer--title
+
+.nav__item--vertical--footer
+  @extend %nav__item--vertical
+  @extend %small-type
+  @extend .vertical-link-list__item
+  color: $footer-gray
+  &:first-child
+    @extend %list-title--footer
+    color: $footer-blue
+
+.column--footer--expanded 
+  @extend .column--footer
+
+.box-description--footer
+  @extend %small-type
+  line-height: 18px
+  margin-bottom: 12px
+
+.box-description__title--footer
+  @extend %list-title--footer
+  color: $footer-blue
+
+.box-description__lead--footer
+  color: $footer-gray
+
+.box-description__container
+  margin: 6px 0
+
+%input--regular
+  padding: 6px 8px
+  margin: 0
+  border: 0
+  outline: 0
+  @include border-radius(4)
+
+.input--regular--footer
+  @extend %input--regular
+  @extend %small-type
+  color: $footer-gray
+  margin-right: 5px
+  width: 125px
+
+.btn-subimt--regular
+  padding: 6px 10px
+  @extend %input--regular
+  cursor: pointer
+
+.btn-submit--regular--newsletter
+  @extend .btn-subimt--regular
+  background-color: $nav-secondary-current-item-bck
+  color: #fff
+  &:hover
+    background-color: #fff
+    color: $nav-secondary-current-item-bck
+
+
+// ----------------------------------------------------------------------------
+// 
+// Sprites
+// 
+// ----------------------------------------------------------------------------
+
+.sprite--social
+  @extend %data-social-icons
+
+// ----------------------------------------------------------------------------
+// 
+// Icons
+// 
+// ----------------------------------------------------------------------------
+
+%icon
+  display: block
+
+.icon--regular
+  @extend %icon
+  width: 30px
+  height: 30px
+
+.icon--regular--twitter
+  background-position: 0 1px
+
+.icon--regular--facebook
+  background-position: -31px 1px
+
+.icon--regular--google-plus
+  background-position: -62px 1px
+
+.icon--regular--flicr
+  background-position: -93px 1px
+
+.icon--regular--rss
+  background-position: -124px 1px
+
