@@ -86,31 +86,31 @@ $option-card-width: 192px
 
 $gutter: 10px
 
-.single
+.card--single
   @extend %margin-grid-column-10
   width: $default-card-width
   .full-width &
     width: $option-card-width
 
-.double
+.card--double
   @extend %margin-grid-column-10
   width: ($default-card-width * 2) + $gutter
   .full-width &
     width: ($option-card-width * 2) + $gutter
 
-.triple
+.card--triple
   @extend %margin-grid-column-10
   width: ($default-card-width * 3) + ($gutter * 2)
   .full-width &
     width: ($option-card-width * 3) + $gutter
 
-.quad
+.card--quad
   @extend %margin-grid-column-10
   width: ($default-card-width * 4) + ($gutter * 3)
   .full-width &
     width: ($option-card-width * 4) + $gutter
 
-.quint
+.card--quint
   @extend %margin-grid-column-10
   width: ($default-card-width * 5) + ($gutter * 4)
   .full-width &
@@ -124,25 +124,25 @@ $gutter: 10px
 // 
 // -----------------------------------------------------------------------------
 
-.grid-wrapper-10
+.grid-wrapper--10
   @extend %grid-wrapper-10
-  > [class*="col-"]
+  > [class*="col--"]
     @extend %padded-grid-column-10
     
 
-.grid-wrapper-15
+.grid-wrapper--15
   @extend %grid-wrapper-15
-  > [class*="col-"]
+  > [class*="col--"]
     @extend %padded-grid-column-15
 
-.grid-wrapper-20
+.grid-wrapper--20
   @extend %grid-wrapper-20
-  > [class*="col-"]
+  > [class*="col--"]
     @extend %padded-grid-column-20
 
-.grid-wrapper-30
+.grid-wrapper--30
   @extend %grid-wrapper-30
-  > [class*="col-"]
+  > [class*="col--"]
     @extend %padded-grid-column-30
 
 
@@ -151,7 +151,7 @@ $gutter: 10px
   +respond-to(max500)
     margin-left: 0 !important
     padding-left: 0
-  > [class*="col-"]
+  > [class*="col--"]
     +respond-to(max500)
       float: none
       width: 100%
@@ -159,27 +159,27 @@ $gutter: 10px
       margin-left: 0
 
 
-.col-one-half
+.col--one-half
   width: 50%
 
-.col-one-third
+.col--one-third
   width: 33.333333333%
-.col-two-thirds
+.col--two-thirds
   width: 66.666666666%
 
-.col-one-quarter
+.col--one-quarter
   width: 25%
-.col-two-quarters
+.col--two-quarters
   width: 50%
-.col-three-quarters
+.col--three-quarters
   width: 75%
 
-.col-one-fifth
+.col--one-fifth
   width: 20%
-.col-two-fifths
+.col--two-fifths
   width: 40%
-.col-three-fifths
+.col--three-fifths
   width: 60%
-.col-four-fifths
+.col--four-fifths
   width: 80%
 

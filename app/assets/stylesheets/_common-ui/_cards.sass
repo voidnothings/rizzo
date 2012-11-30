@@ -20,8 +20,7 @@ $stack-image-height: 275px
     @extend %margin-bottom-10
   .grid-view &
     height: $card-grid-height
-  &.full-page
-    @extend %box-off-double
+    
 
 // -----------------------------------------------------------------------------
 // The Card
@@ -37,10 +36,11 @@ $stack-image-height: 275px
 // The Stack
 // -----------------------------------------------------------------------------
 
-.stack
+.card--stack
   @extend .card
   height: 380px
-
+  .card__hero
+    height: $stack-image-height
 
 
 // -----------------------------------------------------------------------------
@@ -48,8 +48,11 @@ $stack-image-height: 275px
 // Full Page Card
 //
 // -----------------------------------------------------------------------------
+.card--full-page
+  @extend .card
+  @extend %box-off-double
 
-.lodging.top-choice
+.lodging--top-choice
   &:after
     @extend %empty-abs-generated-content
     background: url(image_path("lodgings-spt.png"))
@@ -61,24 +64,39 @@ $stack-image-height: 275px
       background: url(image_path("lodgings-spt-2x.png"))
       background-size: $sprite-size
 
-.card-title
+  .card--full-page__header
+    padding-left: 73px
+    min-height: 60px
+
+.card--full-page__header
+  @extend %margin-bottom-20
+  border-bottom: 1px solid $ruled-separator
+  padding-bottom: 20px
+
+.card--full-page__title
   @extend %benton-regular
   @extend %tighten-text
   @extend %card-header-size
   color: $header-blue
 
 
-.card-subtitle
-  +font-size(17)
-  margin: 3px 0 //$$legacy
-  color: $body-copy
+.card--full-page__subtitle
+  @extend %larger-type
+  @extend %inline-block
+  @extend %body-copy
+  @extend %smooth-text
+  @extend %vertically-centered-dot-after
+  @extend %reset-line-height
+  &:last:after
+    content: ''
+
 
 
 // -----------------------------------------------------------------------------
 // Lodging card
 // -----------------------------------------------------------------------------
 
-.lodging-card:hover
+.card--lodging:hover
   +box-shadow(2, 2, 8, 0, rgba(3, 46, 92, 0.15))
   img
     +filter(brightness(-15%))
@@ -99,16 +117,15 @@ $stack-image-height: 275px
 // The Card Image
 // -----------------------------------------------------------------------------
 
-.card-hero
+.card__hero
   @extend %relative
   height: $hero-image-height
   overflow: hidden
-  .stack &
-    height: $stack-image-height
+
 
   
   // Refactor to use landscape/portrait classes when rowlf imaging catches up
-  > img
+  > .card__image
     @extend %absolute-bottom
     max-width: none
     height: 100% 
@@ -120,46 +137,6 @@ $stack-image-height: 275px
     width: $single-card-width
 
 
-// -----------------------------------------------------------------------------
-// A Price tag
-// -----------------------------------------------------------------------------
-
-.price-tag
-  @extend %absolute
-  top: -4px
-  right: 5px
-  min-width: 60px
-  text-align: center
-  &:after
-    @extend %empty-abs-generated-content
-    border-style: solid
-    border-color: transparent transparent $bookable-ribbon transparent
-    top: 0
-    left: -4px
-    border-width: 0 0 4px 4px
-  .list-view &
-    right: 13px
-
-.price-tag-inner
-  background-color: $bookable
-  color: $header-gray
-  padding: 8px 10px
-  @extend %extra-small-type
-  @extend %benton-regular
-  &.non-bookable
-    +multiple-text-shadow(-1px -1px 1px rgba(0, 0, 0, 0.25), 1px 1px 1px rgba(255,255,255,0.8))
-    padding: 4px 10px
-    font-size: 44px
-    color: #dad01a
-  .price
-    @extend %heading-size-type
-    display: block
-    padding-top: 2px
-
-.curr
-  @extend sup
-  font-size: 0.65em
-
 
 // -----------------------------------------------------------------------------
 // Inner 'content' section
@@ -168,7 +145,7 @@ $stack-image-height: 275px
 $card-padding-top: 15px
 $card-padding: 13px
 
-.card-content
+.card__content
   @extend %relative
   padding: $card-padding-top $card-padding $card-padding
   color: $header-gray
@@ -187,12 +164,12 @@ $card-padding: 13px
 // Card details
 // -----------------------------------------------------------------------------
 
-.star-rating, .card-context
+.card__property-type, .card__context
   @extend %small-type
   margin-bottom: 2px
   display: block
 
-.card-name
+.card__name
   @extend %large-type
   @extend %prevent-text-breakouts
   font-weight: bold
@@ -200,7 +177,7 @@ $card-padding: 13px
   .grid-view &
     margin-bottom: 12px
 
-.locale
+.card__locale
   @extend %serif
   @extend %small-type
   color: $body-copy
@@ -208,7 +185,7 @@ $card-padding: 13px
   line-height: 14px
   margin-bottom: 12px
 
-.description
+.card__description
   @extend %irregular-type
   @extend %smooth-text
   color: $body-copy
@@ -216,7 +193,7 @@ $card-padding: 13px
   .list-view &
     padding-right: 65px
 
-.poi-icon
+.card__poi-icon
   @extend %benton-regular
   @extend %no-line-height
   @extend %absolute
@@ -236,55 +213,41 @@ $card-padding: 13px
 // Card Footer
 // -----------------------------------------------------------------------------
 
-.lp-reviewed-badge
+.badge--lp-reviewed
   @extend %absolute
   bottom: 9px
   left: 10px
 
-.lp-top-choice
+.badge--top-choice
   @extend %absolute
   bottom: 11px
   left: 40px
 
-%bookable
+.card--lodging .btn--bookable
   @extend %absolute
   bottom: 11px
   right: 13px
-
-.bookable-text
-  @extend %bookable
-  @extend %chevron-right-after
-  position: absolute
-  color: $link-color
-  line-height: 25px
-  &:after
-    @extend %benton-regular
-    padding-left: 3px
-    font-size: 19px
-
-.lodging-card .bookable-button
-  @extend %bookable
   padding: 6px 8px
 
 // -----------------------------------------------------------------------------
 // Cards without images
 // -----------------------------------------------------------------------------
 
-.grid-view .no-image
+.grid-view .has-no-image
   border-bottom: 2px solid $hotels-poi
 
-.list-view .no-image
+.list-view .has-no-image
   border-left: 2px solid $hotels-poi
 
-.list-view .no-image .card-name,
-.list-view .no-image .locale
+.list-view .has-no-image .card__name,
+.list-view .has-no-image .card__locale
   padding-left: 38px
 
-.list-view .no-image .card-name
+.list-view .has-no-image .card__name
   margin-bottom: 3px
-  &.no-locale
-    @extend %margin-bottom-20
-    margin-top: 5px
+.list-view .has-no-image .has-no-locale
+  @extend %margin-bottom-20
+  margin-top: 5px
 
 
 

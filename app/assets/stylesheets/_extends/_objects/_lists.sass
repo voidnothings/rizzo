@@ -16,7 +16,7 @@
 
 %stacked-nav
   @extend %no-list-style
-  .item, > li
+  .obj-list__item, .obj-nav__item, > li
     display: block
 
 
@@ -29,9 +29,28 @@
 
 %ruled-list
   @extend %stacked-nav
-  > .item, > li
+  > .obj-list__item, > li
     border-top: 1px solid $ruled-separator
-  .title
-    font-weight: bold
-    color: $header-gray
 
+
+// -----------------------------------------------------------------------------
+// Split list
+// 
+// For placing a title on the left and a list on the right
+// 
+// |  Heading     | Item1 |
+// |              | Item2 |
+// |              | Item3 |
+// |              | Item4 |
+// 
+// e.g. Services and facilities
+// -----------------------------------------------------------------------------
+
+%split-list
+  .obj-list__item
+    @extend %clearfix
+  .obj-list__title
+    display: block
+    float: left
+  .obj-list__sub-list
+    @extend %inline-block

@@ -18,7 +18,8 @@
   color: $body-copy
   p
     @extend %margin-bottom-10
-  .title, span.partner
+  .title, 
+  .lodging__section--partner span.partner
     @extend %larger-type
     @extend %margin-bottom-10
     font-weight: bold
@@ -53,11 +54,11 @@
 
 %error-copy
   color: $body-copy
-  .title
+  .error__title
     @extend %error-heading-size-type
     @extend %smooth-text
     @extend %margin-bottom-10
-  p
+  .error__copy
     @extend %regular-type-size
     @extend %margin-bottom-30
 
