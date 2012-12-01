@@ -15,12 +15,6 @@
   &:hover
     text-decoration: underline
 
-.footer
-  background: #e8edef
-  padding: 20px 0
-
-.nav-item--footer
-
 .column--footer
   @extend %padded-grid-column-10
   float: left
@@ -51,8 +45,20 @@
 //
 .nav__item
   float: left
-  margin-right: 2px
-  
+
+.nav__item--footer
+  @extend .nav__item
+  @extend %small-type
+  color: #515a65
+  &:hover
+    text-decoration: underline
+
+.nav__item--footer--darker
+  margin-right: 25px
+  padding: 0.5em 0
+  color: #cfd0d1
+  &:hover
+    color: #fff
 
 .nav__item--title    
   @extend %nav--footer--title
@@ -69,6 +75,35 @@
 .column--footer--expanded 
   @extend .column--footer
 
+.nav__item--breadcrumbs--current
+  @extend .nav__item--breadcrumbs
+  font-weight: bold
+
+.nav__item--breadcrumbs
+  @extend .sprite-core--standard
+  padding: 12px 5px 0 25px
+  background-position: 3px -222px
+
+.icon--home
+  @extend .sprite-core--standard
+  background-position: -3px -370px
+  
+.nav__item--breadcrumbs--home 
+  width: 26px
+  height: 32px
+  @extend .icon--home
+
+.nav--breadcrumbs--footer
+  padding: 0
+
+// ----------------------------------------------------------------------------
+// 
+// Box description:
+// Abstraction for a block containing a title, a description and a container element 
+// 
+// ----------------------------------------------------------------------------
+§
+
 .box-description--footer
   @extend %small-type
   line-height: 18px
@@ -84,8 +119,15 @@
 .box-description__container
   margin: 6px 0
 
+
+// ----------------------------------------------------------------------------
+// 
+// Input--Regular
+// 
+// ----------------------------------------------------------------------------
+
 %input--regular
-  padding: 6px 8px
+  padding: 7px 8px
   margin: 0
   border: 0
   outline: 0
@@ -97,6 +139,12 @@
   color: $footer-gray
   margin-right: 5px
   width: 125px
+
+// ----------------------------------------------------------------------------
+// 
+// Button--Regular
+// 
+// ----------------------------------------------------------------------------
 
 .btn-subimt--regular
   padding: 6px 10px
@@ -114,12 +162,9 @@
 
 // ----------------------------------------------------------------------------
 // 
-// Sprites
+// Sprite (to be extracted to font)
 // 
 // ----------------------------------------------------------------------------
-
-.sprite--social
-  @extend %data-social-icons
 
 // ----------------------------------------------------------------------------
 // 
@@ -127,26 +172,92 @@
 // 
 // ----------------------------------------------------------------------------
 
-%icon
-  display: block
+.sprite-core--standard
+  @extend %data-sprite-core--standard
+  background-repeat: no-repeat
 
-.icon--regular
-  @extend %icon
-  width: 30px
-  height: 30px
+.icon--twitter
+  background-position: 1px -48px
+  &:hover
+    background-position-y: -79px
 
-.icon--regular--twitter
-  background-position: 0 1px
+.icon--facebook
+  background-position: -29px -48px
+  &:hover
+    background-position-y: -79px
 
-.icon--regular--facebook
-  background-position: -31px 1px
+.icon--google-plus
+  background-position: -61px -48px
+  &:hover
+    background-position-y: -79px
 
-.icon--regular--google-plus
-  background-position: -62px 1px
+.icon--flicr
+  background-position: 1px -111px
+  &:hover
+    background-position-y: -143px
 
-.icon--regular--flicr
-  background-position: -93px 1px
+.icon--rss
+  background-position: -30px -111px
+  &:hover
+    background-position-y: -143px
 
-.icon--regular--rss
-  background-position: -124px 1px
+
+// ----------------------------------------------------------------------------
+// 
+// Footer - Base (#272f39)
+// 
+// ----------------------------------------------------------------------------
+
+$footer-base-color: #272f39
+
+.footer
+  background-color: #e8edef
+
+.row--footer
+  margin-bottom: 6px
+
+.row__container--footer
+  padding: 12px 0 11px 0
+
+.row__container--footer--separator
+  @extend .row__container--footer
+  border-bottom: 1px solid #d6dedf
+
+.row--footer--darker
+  background-color: $footer-base-color
+  @extend %small-type
+  color: #cfd0d1
+
+
+.label--footer
+  margin-right: 10px
+
+.dropdown--regular--footer
+  @extend .sprite-core--standard
+  background-position: 64px -329px 
+  cursor: pointer
+  width: 86px
+
+.submit--footer
+  position: absolute
+  top: -1000px
+  left: -1000px
+
+.split--footer
+  overflow: hidden
+  text-align: right
+  border-bottom: 1px solid #465158
+  padding: 12px 0
+  .split__left
+    text-align: left
+    float: left
+
+.media--ext--lp-legal
+  margin: 21px 0
+  padding: 6px 0 6px 105px
+  line-height: 1.5em
+  width: 600px
+  @extend .sprite-core--standard
+  background-repeat: no-repeat
+  background-position: 0 -178px
 
