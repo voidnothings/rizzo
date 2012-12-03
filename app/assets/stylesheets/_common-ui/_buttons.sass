@@ -42,6 +42,12 @@
   border: 1px solid #c9d1d7
   color: $header-blue
 
+.btn--load-more
+  @extend .btn--functional
+  width: 100%
+  &.disabled
+    color: $body-copy
+
 .btn--edit-dates
   +box-shadow(1, 1, 1, 0, rgba(0,0,0,0.1))
   @extend %base-button
