@@ -25,6 +25,21 @@ h1, h2, h3
 p
   @extend %margin-bottom-10
 
+a
+  color: $link-color
+  cursor: pointer
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+
+::selection
+  @extend %active-background
+
+
+// -----------------------------------------------------------------------------
+// Reusable Typographic Classes
+// -----------------------------------------------------------------------------
+
 .section-title
   @extend %section-heading-size-type
   color: $header-blue
@@ -42,16 +57,6 @@ p
 
 .disclaimer
   @extend %disclaimer-copy
-
-a
-  color: $link-color
-  cursor: pointer
-  text-decoration: none
-  &:hover
-    text-decoration: underline
-
-::selection
-  @extend %active-background
 
 // -----------------------------------------------------------------------------
 // Backwards compatability - revert the font size for the $$legacy header/footer
