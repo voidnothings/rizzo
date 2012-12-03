@@ -27,13 +27,13 @@ define ['jquery','handlebars','underscore'], ($) ->
       @prepare()
 
     prepare: ->
-      @container = $('<div>').addClass('lp-nearby-pois')
+      @container = $('<div>').addClass('nearby-pois')
       $(@args.target).append(@container)
       templ = "
         {{#with properties}}
-        <li class='nearby-poi-item item' data-poi-id='{{id}}'>
-          <a href='{{uri}}' class='poi-item-title icon-poi-{{../category}}'>{{title}}</a>
-          <div class='poi-item-description'>{{{description}}}</div>
+        <li class='nearby-pois__poi item icon-poi-{{../category}}' data-poi-id='{{id}}'>
+          <a href='{{uri}}' class='label'>{{title}}</a>
+          <div class='nearby-pois__poi__description'>{{{description}}}</div>
         </li>
         {{/with}}
       "
@@ -41,7 +41,7 @@ define ['jquery','handlebars','underscore'], ($) ->
 
     render: ->
       @container.empty()
-      list = $('<ul>').addClass('nearby-pois-list')
+      list = $('<ul>').addClass('nearby-pois__list')
       list.append(@listItemTemplate(activity)) for activity in @args.pois.sights_or_activities
       list.append(@listItemTemplate(@args.pois.entertainment)) if @args.pois.entertainment.length isnt 0
       list.append(@listItemTemplate(@args.pois.restaurant)) if @args.pois.restaurant.length isnt 0
@@ -54,10 +54,10 @@ define ['jquery','handlebars','underscore'], ($) ->
         @args.listener.poiSelected(poi_id) if (@args.listener? and poi_id?)
 
     highlightPOI: (poi_id)->
-      @container.find('li[data-poi-id]').removeClass('nearby-poi-highlighted')
-      @container.find("li[data-poi-id=#{poi_id}]").addClass('nearby-poi-highlighted')
+      @container.find('li[data-poi-id]').removeClass('nearby-poi__poi--highlighted')
+      @container.find("li[data-poi-id=#{poi_id}]").addClass('nearby-poi__poi--highlighted')
 
     resetPOIs: ->
-      @container.find('li[data-poi-id]').removeClass('nearby-poi-highlighted')
+      @container.find('li[data-poi-id]').removeClass('nearby-poi__poi--highlighted')
 
 

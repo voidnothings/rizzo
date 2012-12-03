@@ -36,7 +36,7 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
     @initMap: ()=>
       args = lp.lodging.map
       args.listener = @
-      args.target = '#map_canvas'
+      args.target = '#js-map-canvas'
       @lodgingMap = new LodgingMap(args)
 
       unless lp.lodging.map.genericCoordinates
@@ -49,6 +49,7 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
     @getNearbyPOIs: (callback) ->
       if lp.lodging.map.nearby_api_endpoint
         $.getJSON lp.lodging.map.nearby_api_endpoint, callback
+      
 
     @parsePOIData: (data) ->
       pois = {}
@@ -66,7 +67,7 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
 
     @initNearbyThingsToDo: (pois)->
       @nearbyThingsToDo = new NearbyThingsToDo(
-        target: '#pois-list-wrapper'
+        target: '#js-nearby-pois'
         pois: pois
         listener: this
       )
