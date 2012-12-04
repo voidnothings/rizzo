@@ -18,6 +18,7 @@ $stack-image-height: 275px
   background: #fff
   .grid-view &, .list-view &
     @extend %margin-bottom-10
+    +transition(opacity, 0.5, ease)
   .grid-view &
     height: $card-grid-height
     
@@ -29,7 +30,8 @@ $stack-image-height: 275px
 .card
   @extend %base-card-object
   @extend %relative
-
+  .is-loading &
+    opacity: 0.3
 
 
 // -----------------------------------------------------------------------------
