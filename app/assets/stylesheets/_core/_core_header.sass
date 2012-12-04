@@ -1,28 +1,57 @@
 // ----------------------------------------------------------------------------
 // 
-// Core Overrides
+// Sprite (to be extracted to font)
 // 
 // ----------------------------------------------------------------------------
+.sprite-core--standard
+  @extend %data-sprite-core--standard
+  background-repeat: no-repeat
 
 // ----------------------------------------------------------------------------
 // 
-// Master Row
+// Icons
+// 
+// ----------------------------------------------------------------------------
+
+
+.icon--twitter
+  background-position: 1px -48px
+  &:hover
+    background-position-y: -79px
+
+.icon--facebook
+  background-position: -29px -48px
+  &:hover
+    background-position-y: -79px
+
+.icon--google-plus
+  background-position: -61px -48px
+  &:hover
+    background-position-y: -79px
+
+.icon--flicr
+  background-position: 1px -111px
+  &:hover
+    background-position-y: -143px
+
+.icon--rss
+  background-position: -30px -111px
+  &:hover
+    background-position-y: -143px
+
+// ----------------------------------------------------------------------------
+// 
+// Row
 // 
 // ----------------------------------------------------------------------------
 
 .row
   @extend %clearfix
 
-.master-row
+.row--leader
   @extend %clearfix
   background-color: $master-row-leader
   padding: 16px 0 
-
-.container
-  @extend %block-center
-  @extend %relative
-  @extend %clearfix
-  @extend %regular-width
 
 .row__container
   @extend %block-center
@@ -30,16 +59,44 @@
   @extend %clearfix
   @extend %regular-width
 
+.row--primary
+  @extend %primary-gradient
+  @extend %clearfix
+  padding: 9px 0
+
+.row--secondary
+  @extend %secondary-gradient
+  @extend %clearfix
+  @include box-shadow(0, 2, 1, 1, rgba(0, 0, 0, 0.1), true)
+  padding: 11px 0
+  
+.row__container--secondary
+  min-height: 32px
+
+.container
+  @extend %block-center
+  @extend %relative
+  @extend %clearfix
+  @extend %regular-width
+
+.wrap--footer
+  background-color: #e8edef
+  position: absolute
+  bottom: 0
+  left: 0
+  right: 0
+
 // ----------------------------------------------------------------------------
 // 
 // Lonely Planet Logo
 // 
 // ----------------------------------------------------------------------------
 
-.logo
-  @extend %data-lp-logo
-  @extend %float-left
-  @extend %block
+.logo--lp--head
+  @extend .sprite-core--standard
+  background-position: 0 1px
+  float: left
+  display: block
   width: 100px
   height: 50px
   margin: 0
@@ -76,34 +133,51 @@
 // primary-nav
 // 
 // ----------------------------------------------------------------------------
+// 
+// %primary-nav
+//   padding: 5px 0
+//   a
 
-.primary
-  @extend %primary-gradient
-  @extend %clearfix
-  padding: 9px 0
 
-%primary-nav
+.nav
   @extend %helvetica-neue
-  padding: 5px 0
-  a
-    @extend %link-without-underline
-    font-size: 14px!important
-    color: $nav-primary-type
-    line-height: 38px
-    padding: 12px 8px
-    text-decoration: none
-    &:hover
-      color: $nav-primary-type-hover 
-    &:active
-      //need to force this here cos of legacy integration on destionations ui
-      text-decoration: none!important
-      color: $nav-primary-type!important
 
-.global-nav
-  @extend %float-left
-  @extend %primary-nav
+.nav__item
+  float: left
+
+.nav__item--vertical
+  display: block
+
+.nav--primary
+  @extend %helvetica-neue
+  float: left
   margin-left: 9px
-   
+  margin-top: 18px
+
+.nav__item--primary  
+  color: $nav-primary-type
+  padding: 10px 8px
+  font-size: 14px
+  &:hover
+    color: $nav-primary-type-hover 
+  &:active
+    color: $nav-primary-type
+//
+//
+// ----------------------------------------------------------------------------
+// 
+// secondary-nav
+// 
+// ----------------------------------------------------------------------------
+
+.h1--title
+  @extend %benton-regular
+  @extend %no-margin
+  color: #fff
+  float: left
+  font-size: 28px
+  line-height: 32px
+  max-width: 390px
 
 
 // ----------------------------------------------------------------------------
@@ -112,47 +186,29 @@
 // 
 // ----------------------------------------------------------------------------
 
-.secondary
-  @extend %secondary-gradient
-  @extend %clearfix
-  @include box-shadow(0, 2, 1, 1, rgba(0, 0, 0, 0.1), true)
-  padding: 11px 0
-  .container
-    min-height: 32px
 
-.head-title
-  @extend %benton-regular
-  @extend %float-left
-  @extend %no-margin
-  color: #fff
-  font-size: 28px
-  line-height: 32px
-  max-width: 390px
-
-.secondary-nav
+.nav--secondary
   @extend %absolute-bottom
   @extend %helvetica-neue
   @extend %uppercase
   padding-bottom: 2px
   right: 0
-  a
-    @extend %float-left
-    @extend %block
-    @extend %link-without-underline
-    padding: 6px 9px 5px
-    line-height: 18px
+
+.nav__item--secondary  
+  float: left
+  display: block
+  padding: 6px 9px 5px
+  line-height: 18px
+  color: $nav-secondary-type
+  font-size: 12px
+  &:hover
+    color: $nav-secondary-type-hover
+  &:active
     color: $nav-secondary-type
-    font-size: 12px!important
-    &:hover
-      color: $nav-secondary-type-hover 
-    //force  when using legacy styles and new header 
-    &:active
-      text-decoration: none!important
-      color: $nav-secondary-type!important
-    &.current
-      @include border-radius(6)
-      background-color: $nav-secondary-current-item-bck
-      color: $nav-secondary-type-active
+  &.current
+    @include border-radius(4)
+    background-color: $nav-secondary-current-item-bck
+    color: $nav-secondary-type-active
 
 
 // ----------------------------------------------------------------------------
@@ -161,126 +217,91 @@
 // 
 // ----------------------------------------------------------------------------
 
-.user-nav
-  @extend %primary-nav
+.nav-primary--user
   @extend %absolute-right
-  .user-basket
-    @extend %no-padding
-  .user-box
-    padding: 2px 0 0 12px
-  a
-    //force font-size needed when using legacy styles and new header 
-    font-size: 14px!important
-    &:active
-      //need to force this here cos of legacy integration on destionations ui
-      text-decoration: none!important
-      color: #fff!important
-      
+  margin: 8px 0 0
 
-.user-basket
-  // @extend %background-center
-  // @extend %data-user-basket
-  @extend %float-right
-  @extend %opaque
-  @extend %regular-icon
-  @extend %relative
-  @include transition(all, 0.1, ease) 
+.nav__item--primary--user
+  @extend .nav__item--primary
+  float: right
+
+.nav-user__item--primary--basket
+  @extend .icon--regular
+  @extend .sprite-core--standard
   display: none
-  margin: 4px 5px 4px 0 
-  &:after
-    @extend %empty-abs-generated-content 
-    @extend %benton-regular
-    @include text-shadow(0,-1,0,rgba(0,0,0,0.6))
-    color: #073364
-    content: '\E017'
-    font-size: 42px
-    line-height: 0
-    top: 15px
- 
-.basket-items
+  background-position: -61px -110px
+  float: right
+  position: relative
+  margin-top: 3px
+  margin-right: 18px
+  
+.basket__items 
   @extend %absolute-top
   @extend %central-align
-  @extend %small-icon
-  @extend %extra-small-type
+  @extend .icon--small
   @include border-radius(8)
   @include box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.5))
-  right: 0
+  right: -5px
+  line-height: 16px
   z-index: 1
   margin: 0
   color: $basket-item-type
   background-color: $basket-item
-  line-height: 16px
   font-weight: bold
-  //force font-sizee needed cessary when using legacy styles and new header 
-  font-size: 10px!important
-
-.auth-box
-  @extend %float-right
-  padding: 0 0 13px 0
-  a
-    &:hover
-      color: $nav-secondary-type-hover 
-
+  font-size: 10px
 
 .user-box
-  display: none
   cursor: pointer
-  .user-img
-    @extend %block
-    @extend %float-left
-    @include box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.3), true)
-    @include border-radius(5)
-    background-color: $nav-search-bck
-    border: 1px solid #073a69
-    height: 30px
-    margin-right: 20px
-    padding: 3px
-    width: 30px
+  float: right
+  padding-bottom: 12px
+  margin: 0 0 0 10px
+  padding-right: 25px
+  position: relative
   &:after
     @extend %empty-abs-generated-content 
-    @extend %benton-regular
-    color: #658fc3
-    content: '\E030'
-    //force font-size needed when using legacy style and new header
-    font-size: 22px!important
-    padding-left: 43px
-    line-height: 36px
+    @extend .sprite-core--standard
+    background-position: 0px -332px
+    top: 8px
+    right: 0
+    width: 20px
+    height: 20px
+    z-index: 10
+
   &:hover
+    .nav-user-options
+      display: block
     &:after
-      color: $nav-secondary-type
-      
+      background-position: 0px -312px
+
+.user-box__img
+  @include box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.3), true)
+  @include border-radius(4)
+  background-color: $nav-search-bck
+  border: 1px solid #073a69
+  height: 30px
+  padding: 3px
+  width: 30px
+
+    
 
 
 // ----------------------------------------------------------------------------
 //
-// User Nav States
+// User States
 //
 // ----------------------------------------------------------------------------
-  
-.is-logged
-  .user-box
+.has-basket
+  .nav-user__item--primary--basket
     display: block
-  .user-singin
-    display: none
-  .user-join
-    display: none
 
-.auth-box
-  &:hover
-    .user-options
-      @extend %block
-
-.has-basket
-  .is-invisible
-    @extend %invisible
-
-.has-msg
-  display: inline!important
-
-.has-basket
-  .user-basket
-    @extend %block
-
+.nav-user-options__item__float
+  @extend %tiny-type
+  @include border-radius()
+  background: white
+  color: $nav-secondary-current-item-bck
+  float: right
+  margin: 1px 14px 0 0
+  padding: 2px 2px
 
 // ----------------------------------------------------------------------------
 //
@@ -288,80 +309,62 @@
 //
 // ----------------------------------------------------------------------------
 
-.user-options
+%user-box--position
   @extend %absolute
   @include transition(all, 0.15, ease) 
-  display: none
-  height: 242px
   right: 0px
-  top: 58px
+  top: 53px
   width: 165px
   z-index: 1
 
-.user-options-arrow
-  @extend %data-user-options-arrow
-  @extend %no-repeat
-  background-position: 112px center
-  position: absolute
-  top: -10px
-  width: 100%
-  height: 10px
-
-.user-name
-  @extend %block
+.nav-user-options__title
   @extend %large-type
-  color: #fff
   font-weight: bold
-  padding: 0 13px 4px
+  color: #fff
+  padding: 12px 12px
 
 .nav-user-options
+  @extend %user-box--position
   @include box-shadow(0, 1, 3, 3, rgba(0, 0, 0, 0.2))
   @include border-radius(5)
   background: $nav-secondary-current-item-bck
-  padding: 14px 1px 7px
-  .user-menu-option
-    padding: 12px 13px
-    line-height: 12px
-    color: #fff
-
-.user-menu-option
-  @extend %helvetica-neue
-  @extend %no-repeat
-  @extend %block
-  @extend %relative
-  background-position: 142px center
-  color: #fff
-  //force font-size needed when using legacy style and new header
-  font-size: 14px!important
-  font-weight: normal
-  padding: 12px 1px
-  &:hover
-    background-color:  $nav-secondary-item-hover 
+  padding-bottom: 4px
+  display: none
   &:before
     @extend %empty-abs-generated-content 
-    @extend %benton-regular
-    color: #fff
-    content: '\E029'
-    font-size: 22px
-    right: 8px
-    line-height: 36px
-    top: 0
+    @extend .sprite-core--standard
+    background-position: -2px -358px
+    display: block
+    top: -9px
+    right: 35px
+    width: 20px
+    height: 10px
 
-.user-forum
+.nav-user-options__item
+  @extend .nav__item--vertical
+  @extend .sprite-core--standard
+  @extend %helvetica-neue
+  background-position: 144px -246px
+  color: #fff
+  font-size: 14px
+  padding: 12px 12px
+  &:hover
+    background-color:  $nav-secondary-item-hover 
+
+.nav-user-options__item--forum
   position: relative
-
-.user-forum:after
-  @extend %empty-abs-generated-content 
-  top: 100%
-  left: 0
-  width: 100%
-  height: 8px
-  border-bottom: 1px solid #1eb7bc
+  &:after
+    @extend %empty-abs-generated-content 
+    top: 100%
+    left: 0
+    width: 100%
+    height: 4px
+    border-bottom: 1px solid #1eb7bc
   
-.user-signout
-  margin-top: 18px
+.nav-user-options__item--signout
+  margin-top: 8px
 
-.user-msg-unread
+.nav-user-options__item--unread
   @extend %extra-small-type
   @include border-radius(5)
   background: #fff
@@ -371,52 +374,35 @@
   padding: 2px 6px
   display: none
 
-
-
-
 // ----------------------------------------------------------------------------
 //
 // Search Form
 //
 // ----------------------------------------------------------------------------
 
-//search input reset
-%search-type
-  @extend %block
-  @extend %helvetica-neue
-  @extend %no-border
-  @extend %irregular-type //13
-  border-color: transparent
-  border: 0
-  line-height: 16px
-  margin: 0
-
-.search-box
+.search--primary
   @extend %relative
   @extend %float-left
-  margin: 9px 0 0 10px
-  &:after
-    @extend %empty-abs-generated-content 
-    @extend %benton-regular
-    color: #bccee3
-    content: '\E027'
-    font-size: 28px
-    left: 9px
-    line-height: 26px
-    top: 1px
+  margin: 8px 0 0 10px
 
-.search-box
-  .global-search-type
-    @extend %search-type
-    @include box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.2), true)
-    @include border-radius(16)
-    @include transition(all, 0.2, ease)
-    background-color: $nav-search-bck
-    color: $nav-search-colour
-    padding: 7px 10px 7px 30px
-    width: 140px
-    &:focus
-      @extend %background-white
-      color: $nav-search-bck-focus 
-      width: 180px
+.search__input
+  display: block
+  @extend %no-border
+  @extend .sprite-core--standard
+  background-position: -60px -141px
+  padding: 8px 10px 8px 30px
 
+
+.search__input--primary
+  line-height: 16px
+  @extend %helvetica-neue
+  @include box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.2), true)
+  @include border-radius(16)
+  @include transition(all, 0.2, ease)
+  background-color: $nav-search-bck
+  color: $nav-search-colour
+  width: 140px
+  &:focus
+    @extend %background-white
+    color: $nav-search-bck-focus 
+    width: 200px
