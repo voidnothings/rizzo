@@ -6,7 +6,6 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
       @authenticateUser()
       @showUserBasket()
       @showLeaderboard()
-      # @manageSearchBoxExpand() 
 
     adConfig: ->
       # defaults to window.lp (needs code refactoring)

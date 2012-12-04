@@ -2,7 +2,7 @@ define ['jquery', 'jplugs/jquery-cookies.2.2.0'], ($)->
 
   class ShoppingCart
 
-    @version = '0.0.1'
+    @version = '0.0.11'
 
     constructor: ->
       @itemCount = null

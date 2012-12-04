@@ -30,34 +30,34 @@ define ['jquery'], ($)->
       else
         @showLoginAndRegister()
         
-    showUserBox: ()->
-      $(@widget).addClass('is-logged')
-      $(@widget).find('img.js-user-img').attr({src: @userAvatar()})
-
     showLoginAndRegister: ()->
-      $(@widget).removeClass('is-logged')
-      joinElement = "<a class='user-join js-user-join' href='#{@options.registerLink}'>Join</a>"
-      signinElement = "<a class='user-singin js-user-sing-in' href='#{@signInUrl()}'>Sign-In</a>"
-      $('div.js-auth-box').empty()
-      $('div.js-auth-box').append(joinElement).append(signinElement)
+      @emptyUserNav()
+      joinElement = "<a class='nav__item--primary--user js-user-join' href='#{@options.registerLink}'>Join</a>"
+      signinElement = "<a class='nav__item--primary--user js-user-signin' href='#{@signInUrl()}'>Sign-In</a>"
+      $('nav.js-user-nav').prepend(signinElement + joinElement)
 
     showUserBox: ->
-      $(@widget).addClass('is-logged')
-      userBoxElement = "<div class='user-box'><img class='user-img' src='#{@userAvatar()}'/><span class='user-handler js-box-handler'></div>"
-      $('div.js-auth-box').html(userBoxElement)
-      $('div.js-auth-box').append(@userOptionsMenu())
+      @emptyUserNav()
+      $('nav.js-user-nav').addClass('is-signed-in')
+      userBoxElement = "<div class='user-box js-user-box'><img class='user-box__img js-box-handler' src='#{@userAvatar()}'/></div>"
+      $('nav.js-user-nav').prepend(userBoxElement)
+      $('div.js-user-box').append(@userOptionsMenu())
+
+    emptyUserNav: -> 
+      $('nav.js-user-nav').removeClass('is-signed-in')
+      $('a.js-user-join, a.js-user-signin, div.js-user-box').remove()
 
     userOptionsMenu: ->
       userOptions = [
-        {title: 'My Profile', uri: "#{@options.membersUrl}", style:"user-profile" },
-        {title: 'Settings', uri: "#{@options.membersUrl}/#{@lpUserName}/edit", style:"user-settings" },
-        {title: 'Messages', uri: "#{@options.messagesUrl}", style:"user-msg", extra:"<span class='user-msg-unread js-user-msg-unread'></span>"},
-        {title: 'Forum Activity', uri: "#{@options.forumPostsUrlTemplate.replace('[USERNAME]', @lpUserName)}", style:"user-forum" },
-        {title: 'Sign-Out', uri: "#{@options.signOutUrl}", style:"user-signout" }
+        {title: 'My Profile', uri: "#{@options.membersUrl}"},
+        {title: 'Settings', uri: "#{@options.membersUrl}/#{@lpUserName}/edit"},
+        {title: 'Messages', uri: "#{@options.messagesUrl}", style:"js-user-msg"},
+        {title: 'Forum Activity', uri: "#{@options.forumPostsUrlTemplate.replace('[USERNAME]', @lpUserName)}", style:"nav-user-options__item--forum" },
+        {title: 'Sign-Out', uri: "#{@options.signOutUrl}", style:"nav-user-options__item--signout" }
       ]
-      optionElements =  ("<a class='user-menu-option #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
+      optionElements =  ("<a class='nav-user-options__item #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
 
-      userMenu = "<div class='user-options js-user-options'><div class='user-options-arrow'></div><nav class='nav-user-options'><span class='user-name'>#{@lpUserName}</span>#{optionElements}</nav></div>"  
+      userMenu = "<nav class='nav-user-options'><div class='nav-user-options__title'>#{@lpUserName}</div>#{optionElements}</nav>"  
     
     signInUrl:->
       "https://secure.lonelyplanet.com/sign-in/login?service=#{escape(window.location)}"
@@ -86,7 +86,8 @@ define ['jquery'], ($)->
       @setLocalData('lp-sent-msg', data.sent_count)
       @setLocalData('lp-received-msg', data.received_count)
       if data.unread_count > 0
-        $('span.js-user-msg-unread').empty().html(data.unread_count).addClass('has-msg')
+        user_msg_el = "<span class='nav-user-options__item__float js-user-msg-unread'>3#{data.unread_count}</span>"
+        $('a.js-user-msg').append(user_msg_el)
     
     bindEvents: ->
       $('#unread').click(()-> e.preventDefault(); window.location = "#{options.membersUrl}/#{@lpUserName}/messages")
