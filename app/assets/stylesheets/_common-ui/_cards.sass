@@ -213,20 +213,29 @@ $card-padding: 13px
 // Card Footer
 // -----------------------------------------------------------------------------
 
-.badge--lp-reviewed
+.card__footer
   @extend %absolute
   bottom: 9px
   left: 10px
+  right: 13px
+  // To contain the negative text-indent of the badges and preserve outline
+  height: 35px
+  overflow: hidden
+
+.badge--lp-reviewed
+  @extend %absolute
+  bottom: 0
+  left: 0
 
 .badge--top-choice
   @extend %absolute
-  bottom: 11px
-  left: 40px
+  bottom: 3px
+  left: 27px
 
 .card--lodging .btn--bookable
   @extend %absolute
-  bottom: 11px
-  right: 13px
+  bottom: 2px
+  right: 0
   padding: 6px 8px
 
 // -----------------------------------------------------------------------------
