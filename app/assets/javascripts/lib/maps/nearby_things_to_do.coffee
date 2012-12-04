@@ -31,7 +31,7 @@ define ['jquery','handlebars','underscore'], ($) ->
       $(@args.target).append(@container)
       templ = "
         {{#with properties}}
-        <li class='nearby-pois__poi item icon-poi--{{../category}}' data-poi-id='{{id}}'>
+        <li class='nearby-pois__poi icon-poi--{{../category}}' data-poi-id='{{id}}'>
           <a href='{{uri}}' class='label'>{{title}}</a>
           <div class='nearby-pois__poi__description'>{{{description}}}</div>
         </li>
@@ -54,10 +54,10 @@ define ['jquery','handlebars','underscore'], ($) ->
         @args.listener.poiSelected(poi_id) if (@args.listener? and poi_id?)
 
     highlightPOI: (poi_id)->
-      @container.find('li[data-poi-id]').removeClass('nearby-poi__poi--highlighted')
-      @container.find("li[data-poi-id=#{poi_id}]").addClass('nearby-poi__poi--highlighted')
+      @container.find('li[data-poi-id]').removeClass('nearby-pois__poi--highlighted')
+      @container.find("li[data-poi-id=#{poi_id}]").addClass('nearby-pois__poi--highlighted')
 
     resetPOIs: ->
-      @container.find('li[data-poi-id]').removeClass('nearby-poi__poi--highlighted')
+      @container.find('li[data-poi-id]').removeClass('nearby-pois__poi--highlighted')
 
 
