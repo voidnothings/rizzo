@@ -5,8 +5,9 @@
   %body{class: "lp-core #{client_browser(request.user_agent)}" }
     .wrap
       = render 'layouts/core_partials/master_head', :user_nav => defined?(user_nav) ? user_nav : true
-      .content
+      .row.row--content
         = yield
+    .wrap--footer  
       = render 'layouts/core_partials/footer'
     .js-config.is-hidden   
       = js_configuration        

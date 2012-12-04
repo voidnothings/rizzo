@@ -1,10 +1,10 @@
-.secondary
-  .container
-    %h1.head-title
+.row.row--secondary
+  .row__container.row__container--secondary
+    %h1.h1--title
       = title
-    %nav.secondary-nav
+    %nav.nav--secondary
       - collection.each do |n|
-        %a{:class=>(n[:title] == current ? 'current' : ''), :href=> n[:url]}
+        %a.nav__item--secondary{:class=>(n[:title] == current ? 'current' : ''), :href=> n[:url]}
           = n[:title]
 
 
