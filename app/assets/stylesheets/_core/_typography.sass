@@ -32,8 +32,10 @@ a
   &:hover
     text-decoration: underline
 
+// Declaring directly here, rather than extending, to circumvent bug in FF
 ::selection
-  @extend %active-background
+  background-color: #28c3c9
+  color: white
 
 
 // -----------------------------------------------------------------------------
