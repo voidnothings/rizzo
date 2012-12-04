@@ -4,15 +4,11 @@
 // -----------------------------------------------------------------------------
 
 
-@mixin custom_select($height: 30px, $width: 100%)
+@mixin custom-select($height: 30px, $width: 100%)
 
   $arrow_width: 30px
-  
-  @extend %relative
-  width: $width
-  height: $height
 
-  .custom_select__overlay
+  .custom-select__overlay
     +vertically-center($height)
     +word-break()
     @extend %border-box

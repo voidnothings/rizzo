@@ -31,5 +31,11 @@ input[type="submit"]
 input[type="submit"][disabled], input[type="submit"][disabled]:hover
   @extend %disabled-state
 
+$custom-select-width: 100%
+$custom-select-height: 36px
+
 .custom-select
-  +custom_select(36px)
+  position: relative
+  width: $custom-select-width
+  height: $custom-select-height
+  +custom-select($custom-select-height, $custom-select-width)
