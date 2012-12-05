@@ -1,5 +1,5 @@
 .row.row--footer
-  .row__container.row__container--footer--separator
+  .row__inner.row__inner--footer--separator
     %nav.nav--breadcrumbs--footer
       %a.nav__item--footer.nav__item--breadcrumbs--home(href='/')
       %a.nav__item--footer.nav__item--breadcrumbs(href='/')
@@ -13,7 +13,7 @@
 
   
 .row.row--footer
-  .row__container.row__container--footer
+  .row__inner.row__inner--footer
     .grid-wrapper--10
       %nav.column--footer.grid--6
         - ['Destinations', 'Africa','Antarctica','Asia','Caribbean Islands','Central America','Europe','Middle East','North America','Pacific','South America'].each do |d|
@@ -46,21 +46,21 @@
             Join our mailling list
           %p.box-description__lead--footer
             Sign up here to receive all your travel inspiration, trips and exclusive offers
-          %form.box-description__container
-            %input.input--regular--footer(type='text' id='newsletter-email' autocomplete='off' name='newsletter[email]' placeholder='your@email.com')
+          %form.box-description__inner
+            %input.input--small--footer(type='text' id='newsletter-email' autocomplete='off' name='newsletter[email]' placeholder='your@email.com')
             %input.btn-submit--regular--newsletter(type='submit' name='newsletter[email]' title='Subscribe Newsletter' value='Sign up')
 
         .box-description--footer
           .box-description__title--footer
             Follow us
-          .box-description__container
+          .box-description__inner
             - ['twitter','facebook','google-plus','flicr','rss'].each do |d|
               %nav
                 %a.nav__item(href='' class="icon--regular sprite-core--standard icon--#{d}")
 
 
 .row.row--footer--darker
-  .row__container 
+  .row__inner
     .split--footer
       %nav.nav--footer--base
         - ['About us','Work for us', 'Contact Us', 'Press centre, trade & advertising'].each do |d|
@@ -68,16 +68,16 @@
             = d
         %a.nav__item.nav__item--footer--darker
           = "Terms & Conditions"
-      %form(action="http://www.lonelyplanet.com/international" id="language")
+      %form.form--language(action="http://www.lonelyplanet.com/international" id="language")
         %fieldset
           %label.label--footer(for="select-language")
             International:
-          %input.input--regular--footer.dropdown--regular--footer(type='text' id='select-language' autocomplete='off' name='language[select]' placeholder='English' readonly)
-          %select(id="js-language-select" name="select-language" style='display:none')
+          %input.dropdown--small--footer.js-select-language(type='text' id='select-language' autocomplete='off' name='language[select]' placeholder='English' readonly)
+          %select.form__select--language.js-select-language(name="select-language")
             - [['en','English'],['de','Deutsch'],['fr','Français'],['es','Español'],['it','Italiano'],['co','中文简体'],['jp','日本語']].each do |d|
               %option(value="#{d[0]}")
                 = d[1]
-          %input.submit--footer(name="Go" type="submit" value="Go")
+          %input.form__submit--language(name="Go" type="submit" value="Go")
 
     %p.media--ext--lp-legal
       © 2012 Lonely Planet. All rights reserved. No part of this site may be reproduced without our written permission.

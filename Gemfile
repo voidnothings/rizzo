@@ -12,8 +12,8 @@ gem 'unicorn'
 gem 'rake'
 
 group :assets do 
-  gem 'avocado', git: 'git@github.com:lonelyplanet/avocado.git'
-  gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git'
+  gem 'avocado', path: '/Users/dasilaw6/development/lp/muppets/avocado'
+  gem 'beaker', path: '/Users/dasilaw6/development/lp/muppets/beaker'
 end
 
 group :test do 
