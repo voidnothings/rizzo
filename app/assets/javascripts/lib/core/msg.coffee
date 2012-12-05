@@ -11,7 +11,7 @@ define ['jquery'], ($)->
       @add(@build(@args.content))
 
     build: () ->
-      @msg = "<div class='row #{@args.style}'><div class='row__container'><div class='row__container__msg'>#{@closeElement(@args.btnText)}#{@args.content}</div></div></div>"
+      @msg = "<div class='row #{@args.style}'><div class='row__inner'><div class='row__inner__msg'>#{@closeElement(@args.btnText)}#{@args.content}</div></div></div>"
       
     closeElement: (text = 'Close Message')->
       "<a class='btn--regular btn--gray btn--right js-close-message'>#{text}</a>"
