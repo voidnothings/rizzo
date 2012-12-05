@@ -1,0 +1,120 @@
+// ----------------------------------------------------------------------------
+// 
+// Input--Regular
+// 
+// ----------------------------------------------------------------------------
+
+%input--regular
+  padding: 8px 8px
+  margin: 0
+  border: 0
+  outline: 0
+  @include border-radius(4)
+
+%input--small
+  padding: 8px 8px
+  margin: 0
+  border: 0
+  outline: 0
+  @include border-radius(4)  
+  @extend %small-type
+
+.input--small--footer
+  @extend %input--small
+  color: $footer-gray
+  margin-right: 5px
+  width: 125px
+
+// ----------------------------------------------------------------------------
+// 
+// Button--Regular
+// 
+// ----------------------------------------------------------------------------
+
+.btn-subimt--regular
+  padding: 8px 10px
+  @extend %input--regular
+  cursor: pointer
+
+.btn-submit--regular--newsletter
+  @extend .btn-subimt--regular
+  background-color: $nav-secondary-current-item-bck
+  color: #fff
+  &:hover
+    background-color: #fff
+    color: $nav-secondary-current-item-bck
+
+// ----------------------------------------------------------------------------
+//
+// Search Form
+//
+// ----------------------------------------------------------------------------
+
+.search--primary
+  @extend %relative
+  @extend %float-left
+  margin: 8px 0 0 10px
+
+.search__input
+  display: block
+  @extend %no-border
+  @extend .sprite-core--standard
+  background-position: -60px -141px
+  padding: 8px 10px 8px 30px
+
+
+.search__input--primary
+  line-height: 16px
+  @extend %helvetica-neue
+  @include box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.2), true)
+  @include border-radius(16)
+  @include transition(all, 0.2, ease)
+  background-color: $nav-search-bck
+  color: $nav-search-colour
+  width: 140px
+  &:focus
+    @extend %background-white
+    color: $nav-search-bck-focus 
+    width: 200px
+
+// ----------------------------------------------------------------------------
+//
+// Drop-Down
+//
+// ----------------------------------------------------------------------------
+
+.label--footer
+  margin-right: 10px
+
+.dropdown--small--footer
+  @extend %input--small
+  @extend .sprite-core--standard
+  background-position: 64px -329px 
+  color: $footer-gray
+  cursor: pointer
+  width: 86px
+
+
+// ----------------------------------------------------------------------------
+//
+// Drop-Down
+//
+// ----------------------------------------------------------------------------
+
+.form--language
+  @extend %relative
+
+.form__select--language  
+  position: absolute
+  right: 0
+  top: 0
+  height: 30px
+  width: 86px
+  opacity: 0
+  cursor: pointer
+
+.form__submit--language
+  position: absolute
+  top: -1000px
+  left: -1000px  
+

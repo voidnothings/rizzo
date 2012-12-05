@@ -1,0 +1,58 @@
+// ----------------------------------------------------------------------------
+// 
+// core sprite
+// 
+// ----------------------------------------------------------------------------
+
+.sprite-core--standard
+  @extend %data-sprite-core--standard
+  background-repeat: no-repeat
+
+
+// ----------------------------------------------------------------------------
+// 
+// lonely planet mark
+// 
+// ----------------------------------------------------------------------------
+
+.logo--lp--head
+  @extend .sprite-core--standard
+  background-position: 0 1px
+  float: left
+  display: block
+  width: 100px
+  height: 50px
+  margin: 0    
+
+
+// ----------------------------------------------------------------------------
+// 
+// social-icons
+// 
+// ----------------------------------------------------------------------------
+
+.icon--twitter
+  background-position: 1px -48px
+  &:hover
+    background-position-y: -79px
+
+.icon--facebook
+  background-position: -29px -48px
+  &:hover
+    background-position-y: -79px
+
+.icon--google-plus
+  background-position: -61px -48px
+  &:hover
+    background-position-y: -79px
+
+.icon--flicr
+  background-position: 1px -111px
+  &:hover
+    background-position-y: -143px
+
+.icon--rss
+  background-position: -30px -111px
+  &:hover
+    background-position-y: -143px
+

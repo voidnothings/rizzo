@@ -1,197 +1,8 @@
-// ----------------------------------------------------------------------------
-// 
-// Extensions (to be extracted from here)
-// 
-// ----------------------------------------------------------------------------
 
-%list-title--footer
+.list-title--footer
   @extend %small-type
   color: $footer-blue
   font-weight: bold
-
-.column--footer
-  @extend %padded-grid-column-10
-  float: left
-
-.column--footer--expanded 
-  @extend .column--footer
-
-// ----------------------------------------------------------------------------
-// 
-// Grid dimensions
-// 
-// ----------------------------------------------------------------------------
-
-.grid--6
-  width: 16.666%
-
-.grid--12
-  width: 12.499%
-
-.grid--5--ext
-  width: 20.8325%
-
-// ----------------------------------------------------------------------------
-// 
-// Nav Object
-// 
-// ----------------------------------------------------------------------------
-
-.nav__item--footer
-  @extend .nav__item
-  @extend %small-type
-  color: #515a65
-  &:hover
-    text-decoration: underline
-
-.nav__item--footer--darker
-  margin-right: 25px
-  padding: 0.5em 0
-  color: #cfd0d1
-  &:hover
-    color: #fff
-
-.nav__item--title    
-  @extend %nav--footer--title
-
-.nav__item--vertical--footer
-  @extend .nav__item--vertical
-  @extend %small-type
-  @extend .vertical-link-list__item
-  color: $footer-gray
-  line-height: 18px
-  &:hover
-    text-decoration: underline
-  &:first-child
-    @extend %list-title--footer
-    color: $footer-blue
-
-.nav__item--breadcrumbs--current
-  @extend .nav__item--breadcrumbs
-  font-weight: bold
-  &:hover
-    text-decoration: none
-
-.nav__item--breadcrumbs
-  @extend .sprite-core--standard
-  padding: 12px 5px 0 25px
-  background-position: 3px -222px
-
-.icon--home
-  @extend .sprite-core--standard
-  background-position: -3px -370px
-  
-.nav__item--breadcrumbs--home 
-  width: 26px
-  height: 32px
-  @extend .icon--home
-
-.nav--breadcrumbs--footer
-  padding: 0
-
-// ----------------------------------------------------------------------------
-// 
-// Box description:
-// Abstraction for a block containing a title, a description and a container element 
-// 
-// ----------------------------------------------------------------------------
-
-.box-description--footer
-  @extend %small-type
-  line-height: 18px
-  margin-bottom: 12px
-
-.box-description__title--footer
-  @extend %list-title--footer
-  color: $footer-blue
-
-.box-description__lead--footer
-  color: $footer-gray
-
-.box-description__container
-  margin: 6px 0
-
-// ----------------------------------------------------------------------------
-// 
-// Input--Regular
-// 
-// ----------------------------------------------------------------------------
-
-%input--regular
-  padding: 8px 8px
-  margin: 0
-  border: 0
-  outline: 0
-  @include border-radius(4)
-
-.input--regular--footer
-  @extend %input--regular
-  @extend %small-type
-  color: $footer-gray
-  margin-right: 5px
-  width: 125px
-
-// ----------------------------------------------------------------------------
-// 
-// Button--Regular
-// 
-// ----------------------------------------------------------------------------
-
-.btn-subimt--regular
-  padding: 8px 10px
-  @extend %input--regular
-  cursor: pointer
-
-.btn-submit--regular--newsletter
-  @extend .btn-subimt--regular
-  background-color: $nav-secondary-current-item-bck
-  color: #fff
-  &:hover
-    background-color: #fff
-    color: $nav-secondary-current-item-bck
-
-// ----------------------------------------------------------------------------
-// 
-// Sprite (to be extracted to font)
-// 
-// ----------------------------------------------------------------------------
-//
-.sprite-core--standard
-  @extend %data-sprite-core--standard
-  background-repeat: no-repeat
-
-// ----------------------------------------------------------------------------
-// 
-// Icons
-// 
-// ----------------------------------------------------------------------------
-
-
-.icon--twitter
-  background-position: 1px -48px
-  &:hover
-    background-position-y: -79px
-
-.icon--facebook
-  background-position: -29px -48px
-  &:hover
-    background-position-y: -79px
-
-.icon--google-plus
-  background-position: -61px -48px
-  &:hover
-    background-position-y: -79px
-
-.icon--flicr
-  background-position: 1px -111px
-  &:hover
-    background-position-y: -143px
-
-.icon--rss
-  background-position: -30px -111px
-  &:hover
-    background-position-y: -143px
-
 
 // ----------------------------------------------------------------------------
 // 
@@ -199,41 +10,11 @@
 // 
 // ----------------------------------------------------------------------------
 
-$footer-base-color: #272f39
-
 .footer
   background-color: #e8edef
-  .row__container--footer
-
-.row--footer
-  margin-bottom: 6px
-
-.row__container--footer
-  padding: 12px 0 11px 0
-
-.row__container--footer--separator
-  @extend .row__container--footer
-  border-bottom: 1px solid #d6dedf
-
-.row--footer--darker
-  background-color: $footer-base-color
-  @extend %small-type
-  color: #cfd0d1
+  .row__inner--footer
 
 
-.label--footer
-  margin-right: 10px
-
-.dropdown--regular--footer
-  @extend .sprite-core--standard
-  background-position: 64px -329px 
-  cursor: pointer
-  width: 86px
-
-.submit--footer
-  position: absolute
-  top: -1000px
-  left: -1000px
 
 .split--footer
   overflow: hidden
@@ -252,7 +33,6 @@ $footer-base-color: #272f39
   @extend .sprite-core--standard
   background-repeat: no-repeat
   background-position: 0 -178px
-
 
 .btn--gray
   color: #fff
@@ -278,5 +58,4 @@ $footer-base-color: #272f39
     height: 18px
     left: 6px
     top: 6px
-
 

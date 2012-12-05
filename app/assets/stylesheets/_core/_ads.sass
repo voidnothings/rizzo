@@ -1,0 +1,23 @@
+// ----------------------------------------------------------------------------
+// 
+// Adverts Leaderboard
+// *leaderboard shifts slightly right to be centered
+// 
+// ----------------------------------------------------------------------------
+
+.ad-leaderboard
+  width: 782px
+  @extend %block-center
+
+.ad-leaderboard__inner
+  @extend %ad-leaderboard-box
+  @extend %float-left
+  @include border-radius(2)
+  margin-left: 18px 
+  &:after
+    @extend %empty-abs-generated-content
+    @extend %data-leaderboard-label
+    width: 10px
+    height: 90px
+    right: 122px
+    top: 2px

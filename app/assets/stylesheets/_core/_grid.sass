@@ -212,3 +212,25 @@ $gutter: 10px
 .col-four-fifths
   width: 80%
 
+// ----------------------------------------------------------------------------
+// 
+// Proportional grid for 6/12 colums base
+// (footer nav)
+//
+// ----------------------------------------------------------------------------
+
+.column--footer
+  @extend %padded-grid-column-10
+  float: left
+
+.column--footer--expanded 
+  @extend .column--footer
+
+.grid--6
+  width: 16.666%
+
+.grid--12
+  width: 12.499%
+
+.grid--5--ext
+  width: 20.8325%

@@ -1,0 +1,224 @@
+
+// ----------------------------------------------------------------------------
+// 
+// nav 
+// 
+// ----------------------------------------------------------------------------
+
+.nav
+  @extend %helvetica-neue
+
+.nav__item
+  float: left
+
+.nav__item--vertical
+  display: block
+
+.nav__item--footer
+  @extend .nav__item
+  @extend %small-type
+  color: #515a65
+  &:hover
+    text-decoration: underline
+
+.nav__item--footer--darker
+  margin-right: 25px
+  padding: 0.5em 0
+  color: #cfd0d1
+  &:hover
+    color: #fff
+
+.nav__item--title    
+  @extend %nav--footer--title
+
+.nav__item--vertical--footer
+  @extend .nav__item--vertical
+  @extend %small-type
+  @extend .vertical-link-list__item
+  color: $footer-gray
+  line-height: 18px
+  &:hover
+    text-decoration: underline
+  &:first-child
+    @extend %list-title--footer
+    color: $footer-blue
+
+.nav__item--breadcrumbs--current
+  @extend .nav__item--breadcrumbs
+  font-weight: bold
+  &:hover
+    text-decoration: none
+
+.nav__item--breadcrumbs
+  @extend .sprite-core--standard
+  padding: 12px 5px 0 25px
+  background-position: 3px -222px
+
+.icon--home
+  @extend .sprite-core--standard
+  background-position: -3px -370px
+  
+.nav__item--breadcrumbs--home 
+  width: 26px
+  height: 32px
+  @extend .icon--home
+
+.nav--breadcrumbs--footer
+  padding: 0
+
+// ----------------------------------------------------------------------------
+// 
+// primary-nav
+// 
+// ----------------------------------------------------------------------------
+
+.nav--primary
+  @extend %helvetica-neue
+  float: left
+  margin-left: 9px
+  margin-top: 18px
+
+.nav__item--primary  
+  color: $nav-primary-type
+  padding: 10px 8px
+  font-size: 14px
+  &:hover
+    color: $nav-primary-type-hover 
+  &:active
+    color: $nav-primary-type
+
+// ----------------------------------------------------------------------------
+// 
+// secondary-nav
+// 
+// ----------------------------------------------------------------------------
+
+
+.nav--secondary
+  @extend %absolute-bottom
+  @extend %helvetica-neue
+  @extend %uppercase
+  padding-bottom: 2px
+  right: 0
+
+.nav__item--secondary  
+  float: left
+  display: block
+  padding: 6px 9px 5px
+  line-height: 18px
+  color: $nav-secondary-type
+  font-size: 12px
+  &:hover
+    color: $nav-secondary-type-hover
+  &:active
+    color: $nav-secondary-type
+  &.current
+    @include border-radius(4)
+    background-color: $nav-secondary-current-item-bck
+    color: $nav-secondary-type-active
+
+
+// ----------------------------------------------------------------------------
+// 
+// user-nav
+// 
+// ----------------------------------------------------------------------------
+
+.nav-primary--user
+  @extend %absolute-right
+  margin: 8px 0 0
+
+.nav__item--primary--user
+  @extend .nav__item--primary
+  float: right
+
+.nav-user__item--primary--basket
+  @extend .icon--regular
+  @extend .sprite-core--standard
+  display: none
+  background-position: -61px -110px
+  float: right
+  position: relative
+  margin-top: 3px
+  margin-right: 18px
+
+.nav-user-options__item__float
+  @extend %extra-small-type
+  @include border-radius(3)
+  background: #fff
+  color: $nav-secondary-current-item-bck
+  margin-right: 14px
+  float: right
+  padding: 2px 3px
+
+
+// ----------------------------------------------------------------------------
+//
+// User Drop-Down Menu
+//
+// ----------------------------------------------------------------------------
+
+%user-box--position
+  @extend %absolute
+  @include transition(all, 0.15, ease) 
+  right: 0px
+  top: 53px
+  width: 165px
+  z-index: 1
+
+.nav-user-options__title
+  @extend %large-type
+  font-weight: bold
+  color: #fff
+  padding: 12px 12px
+
+.nav-user-options
+  @extend %user-box--position
+  @include box-shadow(0, 1, 3, 3, rgba(0, 0, 0, 0.2))
+  @include border-radius(5)
+  background: $nav-secondary-current-item-bck
+  padding-bottom: 4px
+  display: none
+  &:before
+    @extend %empty-abs-generated-content 
+    @extend .sprite-core--standard
+    background-position: -2px -358px
+    display: block
+    top: -9px
+    right: 35px
+    width: 20px
+    height: 10px
+
+.nav-user-options__item
+  @extend .nav__item--vertical
+  @extend .sprite-core--standard
+  @extend %helvetica-neue
+  background-position: 144px -246px
+  color: #fff
+  font-size: 14px
+  padding: 12px 12px
+  &:hover
+    background-color:  $nav-secondary-item-hover 
+
+.nav-user-options__item--forum
+  position: relative
+  &:after
+    @extend %empty-abs-generated-content 
+    top: 100%
+    left: 0
+    width: 100%
+    height: 4px
+    border-bottom: 1px solid #1eb7bc
+  
+.nav-user-options__item--signout
+  margin-top: 8px
+
+.nav-user-options__item--unread
+  @extend %extra-small-type
+  @include border-radius(5)
+  background: #fff
+  color: $nav-secondary-current-item-bck
+  margin-right: 10px
+  float: right
+  padding: 2px 6px
+  display: none
