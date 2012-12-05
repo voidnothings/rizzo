@@ -48,14 +48,16 @@
   +multiple-transitions(height 0.3s ease-in-out, opacity 0.3s ease)
   @extend %clearfix
   @extend %standard-shadow
-  @extend %margin-bottom-10
+  margin-bottom: 10px
   opacity: 1
   clear: both
   background-color: #fff
 
+
 .tab__panel
   @extend %box-off-double
   display: none
+  position: relative
   .no-js &:target, &.is-active
     display: block
 
