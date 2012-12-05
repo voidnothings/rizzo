@@ -1,4 +1,4 @@
-define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart'], ($, AdManager, AssetFetch, Authenticator, ShoppingCart) ->
+define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg'], ($, AdManager, AssetFetch, Authenticator, ShoppingCart, Msg) ->
 
   class Base
 
@@ -6,6 +6,7 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
       @authenticateUser()
       @showUserBasket()
       @showLeaderboard()
+      @showCookieComplianceMsg()
 
     adConfig: ->
       # defaults to window.lp (needs code refactoring)
@@ -35,14 +36,16 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
     showUserBasket: ->
       shopCart = new ShoppingCart()
 
-    manageSearchBoxExpand: ->
-      $('input.js-global-search').on('focus', =>
-        if !@auth.userSignedIn()
-          $('a.user-basket').toggleClass('is-invisible')
-      )
-      $('input.js-global-search').on('blur', =>
-        if !@auth.userSignedIn()
-          $('a.user-basket').toggleClass('is-invisible')
-      )
+    showCookieComplianceMsg: ->
+      args = 
+        content: "<p><strong>Hi there. We use cookies to improve your experience on our website. </strong><strong><a href='/legal/cookies'>Find out more about how we use cookies.</a></strong></p><p>You can update your settings by clicking the <strong><a href='/legal/cookies'>Cookie Policy</a></strong> link which can be found anytime at the bottom of the page.</p>"
+        style: "row--cookie-compliance js-cookie-compliance"
+        delegate: 
+          onRemove : -> 
+            $('div.js-cookie-compliance').removeClass('row--cookie-compliance--open')
+            $('div.js-cookie-compliance').addClass('row--cookie-compliance--close')
+          onAdd : -> 
+            window.setTimeout( ( => $('div.js-cookie-compliance').addClass('row--cookie-compliance--open')), 1)
+      msg = new Msg(args)
 
 )
