@@ -11,10 +11,10 @@ define ['jquery'], ($)->
       @add(@build(@args.content))
 
     build: () ->
-      @msg = "<div class='row #{@args.style}'><div class='row__container'><div class='row__container__msg'>#{@closeElement()}#{@args.content}</div></div></div>"
+      @msg = "<div class='row #{@args.style}'><div class='row__container'><div class='row__container__msg'>#{@closeElement(@args.btnText)}#{@args.content}</div></div></div>"
       
     closeElement: (text = 'Close Message')->
-      "<a href='#' class='btn--regular btn--gray btn--right js-close-message'>#{text}</a>"
+      "<a class='btn--regular btn--gray btn--right js-close-message'>#{text}</a>"
 
     add: (el) ->
       $(@options.target).prepend(el)
@@ -26,8 +26,5 @@ define ['jquery'], ($)->
       $("div.#{@args.style}").remove()
       if @args.delegate and @args.delegate.onRemove()
         @args.delegate.onRemove()
-
-
-
 
 

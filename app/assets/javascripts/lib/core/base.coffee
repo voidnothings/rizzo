@@ -1,4 +1,4 @@
-define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg'], ($, AdManager, AssetFetch, Authenticator, ShoppingCart, Msg) ->
+define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store'], ($, AdManager, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore) ->
 
   class Base
 
@@ -37,15 +37,16 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
       shopCart = new ShoppingCart()
 
     showCookieComplianceMsg: ->
-      args = 
-        content: "<p><strong>Hi there. We use cookies to improve your experience on our website. </strong><strong><a href='/legal/cookies'>Find out more about how we use cookies.</a></strong></p><p>You can update your settings by clicking the <strong><a href='/legal/cookies'>Cookie Policy</a></strong> link which can be found anytime at the bottom of the page.</p>"
-        style: "row--cookie-compliance js-cookie-compliance"
-        delegate: 
-          onRemove : -> 
-            $('div.js-cookie-compliance').removeClass('row--cookie-compliance--open')
-            $('div.js-cookie-compliance').addClass('row--cookie-compliance--close')
-          onAdd : -> 
-            window.setTimeout( ( => $('div.js-cookie-compliance').addClass('row--cookie-compliance--open')), 1)
-      msg = new Msg(args)
-
+      if LocalStore.get('cookie-compliance') is undefined or LocalStore.get('cookie-compliance') is null
+        args = 
+          content: "<p><strong>Hi there. We use cookies to improve your experience on our website. </strong><strong><a href='/legal/cookies'>Find out more about how we use cookies.</a></strong></p><p>You can update your settings by clic)king the <strong><a href='/legal/cookies'>Cookie Policy</a></strong> link which can be found anytime at the bottom of the page.</p>"
+          style: "row--cookie-compliance js-cookie-compliance"
+          delegate: 
+            onRemove : -> 
+              $('div.js-cookie-compliance').removeClass('row--cookie-compliance--open')
+              $('div.js-cookie-compliance').addClass('row--cookie-compliance--close')
+            onAdd : -> 
+              window.setTimeout( ( => $('div.js-cookie-compliance').addClass('row--cookie-compliance--open')), 1)
+        msg = new Msg(args)
+        LocalStore.set('cookie-compliance', true)
 )
