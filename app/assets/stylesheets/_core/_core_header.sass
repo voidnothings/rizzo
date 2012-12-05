@@ -50,7 +50,7 @@
 
 .row--leader
   @extend %clearfix
-  background-color: $master-row-leader
+  background-color: $row-leader
   padding: 16px 0 
 
 .row__container
@@ -73,6 +73,24 @@
 .row__container--secondary
   min-height: 32px
 
+.row--cookie-compliance
+  background-color: #EFEEEE
+  -webkit-transition: all .3s ease
+  transition: all .2s ease
+  height: 0
+  padding: 0
+  overflow: hidden
+  .btn--close
+    margin-top: 4px
+
+.row--cookie-compliance--close   
+  height: 0
+
+
+.row--cookie-compliance--open    
+  height: 56px
+  padding: 15px 0
+
 .container
   @extend %block-center
   @extend %relative
@@ -85,6 +103,18 @@
   bottom: 0
   left: 0
   right: 0
+
+.row__container__msg
+  @extend .sprite-core--standard
+  background-position: -96px -52px
+  @extend %small-type
+  @extend %helvetica-neue
+  line-height: 1.5em
+  padding: 10px 0 10px 50px
+  strong
+    font-weight: bold
+
+
 
 // ----------------------------------------------------------------------------
 // 
@@ -133,11 +163,6 @@
 // primary-nav
 // 
 // ----------------------------------------------------------------------------
-// 
-// %primary-nav
-//   padding: 5px 0
-//   a
-
 
 .nav
   @extend %helvetica-neue
@@ -295,13 +320,13 @@
     display: block
 
 .nav-user-options__item__float
-  @extend %tiny-type
-  @include border-radius()
-  background: white
+  @extend %extra-small-type
+  @include border-radius(3)
+  background: #fff
   color: $nav-secondary-current-item-bck
+  margin-right: 14px
   float: right
-  margin: 1px 14px 0 0
-  padding: 2px 2px
+  padding: 2px 3px
 
 // ----------------------------------------------------------------------------
 //
