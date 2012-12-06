@@ -42,7 +42,7 @@
   min-height: 32px
 
 .row--cookie-compliance
-  @extend %transition--base
+  +transition(all, 2, ease-in-out)
   background-color: #EFEEEE
   height: 0
   overflow: hidden
@@ -83,9 +83,8 @@
   color: #cfd0d1
 
 .wrap--footer
-  background-color: #e8edef
+  background-color: $body-background
   position: absolute
   bottom: 0
   left: 0
   right: 0
-

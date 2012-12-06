@@ -1,0 +1,72 @@
+// --------------------------------------------------------------------------------------
+// Typographic Base
+//
+// We set the base font-size equal to 14px with a line-height of  20px.
+//
+// 20px is our magic number
+// All vertical margins and line-heights should be multiples of our magic number,
+// This maintains our vertical rhythm
+// --------------------------------------------------------------------------------------
+
+html
+  font: 0.875em/1 'Helvetica Neue', Arial, sans-serif 
+
+body
+  min-height: 100%
+  color: $base_font_color
+
+// -----------------------------------------------------------------------------
+// Typographic Element Definitions 
+// -----------------------------------------------------------------------------
+
+h1, h2, h3
+  @extend %smooth-text
+
+p
+  @extend %margin-bottom-10
+
+.section-title
+  @extend %section-heading-size-type
+  color: $heading-text
+  margin-bottom: 15px
+
+.section-subtitle
+  @extend %irregular-type
+
+.disclaimer
+  @extend %disclaimer-copy
+
+a
+  color: $link_color
+  cursor: pointer
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+
+::selection
+  @extend %active-background
+
+// -----------------------------------------------------------------------------
+// Backwards compatability - revert the font size for the $$legacy header/footer
+// -----------------------------------------------------------------------------
+
+body > .wrap > footer
+  line-height: 1.4
+
+#headerWrap, #pageTitleWrap, #infoSourcesWrap, #footerWrap, .hwrap, 
+nav.primary, #breadcrumbWrap, footer > .info, footer > .foot
+  @extend %small-type
+
+#mainNavWrap p
+  margin-bottom: 0
+
+#footerWrap, .footer-info
+  p
+    @extend %extra-small-type
+    margin-bottom: 0
+
+#infoSourcesWrap
+  p
+    margin-bottom: 0
+
+

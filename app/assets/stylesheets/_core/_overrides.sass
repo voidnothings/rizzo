@@ -4,7 +4,16 @@
 // 
 // ----------------------------------------------------------------------------
 
+html
+  font: 0.875em/1 'Helvetica Neue', Arial, sans-serif 
+
+body
+  min-height: 100%
+  background-color: $body-background
+  color: $base_font_color
+
 a
+  cursor: pointer
   text-decoration: none
   &:hover
     text-decoration: none
@@ -12,5 +21,23 @@ a
 input, textarea, select
   outline: none
   @include box-sizing()
+
+h1, h2, h3
+  @extend %smooth-text
+
+::selection
+  @extend %active-background
+
+// ----------------------------------------------------------------------------
+// 
+// Helpers
+// 
+// ----------------------------------------------------------------------------
+
+.is-hidden
+  display: none !important
+
+.accessibility
+  @extend %visually-hide
 
 
