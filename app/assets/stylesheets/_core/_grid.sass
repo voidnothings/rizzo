@@ -220,11 +220,13 @@ $gutter: 10px
 // ----------------------------------------------------------------------------
 
 .column--footer
-  @extend %padded-grid-column-10
+  // @extend %padded-grid-column-10
   float: left
+  margin-right: 50px
 
-.column--footer--expanded 
-  @extend .column--footer
+.column--footer--last
+  float: left
+  width: 230px
 
 .grid--6
   width: 16.666%
