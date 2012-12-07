@@ -1,0 +1,8 @@
+= render 'layouts/core/snippets/_footer_breadcrumbs'
+= render 'layouts/core/snippets/_footer_sitemap'
+= render 'layouts/core/snippets/_footer_about'
+
+- if user_nav
+  .js-config.is-hidden   
+    = requirejs_include_tag 'app_legacy' 
+
