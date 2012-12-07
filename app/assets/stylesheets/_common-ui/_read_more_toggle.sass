@@ -1,28 +1,30 @@
 // ---------------------------------------------------------------------------- 
 // Read More Toggle
 // 
-// <div class="section-handler">
-//   <div class="std btn-soft js-handler">Read More</div>
+// <div class="read-more js-read-more-wrapper">
+//   <div class="read-more__handler">
+//     <div class="js-handler">Read More</div>
+//   </div>
 // </div>
 // 
-// Zencoding: div.section-handler>div.std.btn-soft.js-handler
 // ----------------------------------------------------------------------------
 
+.read-more
+  padding-bottom: 32px
 
-.section-handler
+.read-more__handler
   position: absolute
   bottom: 0
   height: 70px
   width: 100%
   overflow: auto
-  .read-more-btn
+  
+  .btn--read-more
     position: absolute
     bottom: 0
 
-// $$legacy - refactor to use mixin
-
-.is-close
-  .section-handler
+  .is-closed &
+    // $$legacy - refactor to use mixin
     background: #fff
     +lp-section-toggle-background()
     background: linear-gradient(bottom, rgb(255,255,255) 50%, transparent 100%)
@@ -32,9 +34,6 @@
     background: -ms-linear-gradient(bottom, rgb(255,255,255) 50%, transparent 100%)
     background: -webkit-gradient(linear, 0% 100%, 0% 0%, color-stop(0.5, rgb(255, 255, 255)), color-stop(1, rgba(255, 255, 255,0)))
 
-.is-open
-  .details-wrapper
-    padding-bottom: 32px
-  .section-handler
+  .is-open &
     background: transparent
 

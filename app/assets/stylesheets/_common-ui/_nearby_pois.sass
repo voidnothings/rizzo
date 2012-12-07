@@ -1,25 +1,24 @@
-.nearby-pois-list
+.nearby-pois__list
   @extend %stacked-nav
+  @extend %body-copy
 
-.nearby-poi-item
+.nearby-pois__poi
   @extend %margin-bottom-0
-
   cursor: pointer
+  position: relative
+  padding-left: 30px
+  margin-bottom: 10px
+  &:before
+    top: 0
+    left: 0
+    line-height: 20px
   &:hover
     background-color: $nav-bg--hover
 
-.poi-item-title
-  @extend %no-line-height
-  font-weight: bold
-  color: $header-gray
-  &:hover
-    text-decoration: none
-  &:before
-    line-height: inherit
+.nearby-pois__poi__description
+  p:last-child
+    margin-bottom: 0
 
-.poi-item-description
-  margin-left: 30px
-
-.nearby-poi-highlighted, 
-.nearby-poi-highlighted:hover
+.nearby-pois__poi--highlighted, 
+.nearby-pois__poi--highlighted:hover
   background-color: $nav-bg--hover

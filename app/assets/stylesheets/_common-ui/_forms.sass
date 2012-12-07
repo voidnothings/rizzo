@@ -31,57 +31,11 @@ input[type="submit"]
 input[type="submit"][disabled], input[type="submit"][disabled]:hover
   @extend %disabled-state
 
+$custom-select-width: 100%
+$custom-select-height: 36px
 
-// -----------------------------------------------------------------------------
-// LP Select Overlay
-// Zen: div.lp-select.js-lp-select>label.overlay.js-select-overlay+select>option*3
-// -----------------------------------------------------------------------------
-
-@mixin custom_select($height: 30px, $width: 100%)
-
-  $arrow_width: 30px
-
-  .select-group
-    @extend %relative
-    width: $width
-    height: $height
-
-    .overlay
-      +vertically-center($height)
-      +word-break()
-      @extend %border-box
-      @extend %four-pixel-rounded
-      @extend %chevron-down-after
-      @extend %right-icon
-      padding-right: 21px
-      color: $body-copy
-      display: block
-      width: $width
-      overflow: hidden
-      text-indent: 10px
-      background-color: #fff
-      border: 1px solid $soft-gray
-      &:after
-        width: ($arrow-width - 6px)
-        height: $height
-        background-color: white
-        right: 5px
-        top: -2px
-        color: $body-copy
-        font-size: 20px
-
-    select
-      position: absolute
-      top: 0
-      left: 0
-      opacity: 0
-      width: $width
-      height: 100%
-
-      .ie7 &,
-      .ie8 &
-        filter: alpha(opacity = 0)
-
-      .no-js &
-        opacity: 1
-        filter: alpha(opacity = 1)
+.custom-select
+  position: relative
+  width: $custom-select-width
+  height: $custom-select-height
+  +custom-select($custom-select-height, $custom-select-width)

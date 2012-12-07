@@ -7,35 +7,37 @@
   margin-top: 46px
   padding: 10px 0
   background: #fff
-  .item
-    @extend %relative
-    @extend %irregular-type
-    color: $body-copy
-    padding: 15px 50px 15px 15px
-    text-decoration: none
-    &:after
-      @extend %no-line-height
-      right: 10px
-      top: 25px
-    
-    &.current, &.current:hover
-      @extend %active-background
-      font-weight: bold
-      &:after
-        color: #fff
 
-    &:hover
-      background-color: $nav-bg--hover
-      .facet-count
-        background-color: #fff
-
-  .nav-heading
-    @extend %reset-line-height
-    @extend %larger-type
-    @extend %stacked-nav
+.left-nav__item
+  @extend %relative
+  @extend %irregular-type
+  @extend %link-without-underline
+  color: $body-copy
+  padding: 15px 50px 15px 15px
+  text-decoration: none
+  &:after
+    @extend %no-line-height
+    right: 10px
+    top: 25px
+  
+  &.current, &.current:hover
+    @extend %active-background
     font-weight: bold
-    color: $header-gray
-    padding: 22px 15px 0
-    border-top: 1px solid $ruled-separator--light
-    margin: 10px 0
+    &:after
+      color: #fff
+
+  &:hover
+    background-color: $nav-bg--hover
+    .facet-count
+      background-color: #fff
+
+.left-nav__heading
+  @extend %reset-line-height
+  @extend %larger-type
+  @extend %stacked-nav
+  font-weight: bold
+  color: $header-gray
+  padding: 22px 15px 0
+  border-top: 1px solid $ruled-separator--light
+  margin: 10px 0
 
