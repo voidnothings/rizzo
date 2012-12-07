@@ -27,7 +27,8 @@
 // Simplified styling due to being replaced by load more button with JS
 // --------------------------------------------------------------------------------------
 .expanded-pagination
-  @extend %nav
   text-align: center
+  ul
+    @extend %nav
   .current
     color: $active

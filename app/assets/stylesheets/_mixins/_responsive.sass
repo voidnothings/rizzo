@@ -23,10 +23,14 @@ $ie: false !default
     @else
       @content
       
-  @if $breakpoint == max500
+  @if $breakpoint == max800
     @media only screen and (max-width : 800px)
       @content
       
   @if $breakpoint == max435
     @media only screen and (max-width : 435px)
+      @content
+      
+  @if $breakpoint == max990
+    @media only screen and (max-width : 990px)
       @content

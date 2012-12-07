@@ -13,60 +13,66 @@
 // --------------------------------------------------------------------------------------
 
 
-.gallery-section
+.gallery
   min-height: 310px
   position: relative
 
-.gallery-frame
+.gallery__frame
   position: relative
   .lp-gallery-active &
     display: none
-    
-  .fig1, .fig2, .fig0
-    background: #e3e3e3
-    cursor: pointer
+
+.gallery__fig0,
+.gallery__fig1,
+.gallery__fig2  
+  background: #e3e3e3
+  cursor: pointer
+  position: absolute
+  span
+    background-position: 50% 50%
+    background-repeat: no-repeat
+    background-size: 125%
+    display: block
+  &:after
+    @extend %benton-regular
+    @extend %no-line-height
+    opacity: 0
     position: absolute
-    span
-      background-position: 50% 50%
-      background-repeat: no-repeat
-      background-size: 125%
-      display: block
+    display: block
+    width: 20px
+    height: 20px
+    +font-size(60)
+    color: #fff
+    color: rgba(255,255,255,0.6)
+    cursor: pointer
+    content: "\e027"
+    top: 50%
+    right: 50%
+    margin-top: -10px
+    margin-left: -10px
+  &:hover
     &:after
-      @extend %benton-regular
-      @extend %no-line-height
-      opacity: 0
-      position: absolute
-      display: block
-      width: 20px
-      height: 20px
-      +font-size(60)
-      color: #fff
-      color: rgba(255,255,255,0.6)
-      cursor: pointer
-      content: "\e027"
-      top: 50%
-      right: 50%
-      margin-top: -10px
-      margin-left: -10px
-    &:hover
-      &:after
-        opacity: 1
-  .fig1, .fig2
-    span
-      height: 150px
-      width: 210px
-  .fig0
-    @extend %relative
-    span
-      width: 413px
-      height: 310px
-    right: 0
-    top: 0
-  .fig1
-    left: 0
-    top: 0
-  .fig2
-    left: 0
-    top: 160px
+      opacity: 1
+
+.gallery__fig1,
+.gallery__fig2
+  left: 0
+  span
+    height: 150px
+    width: 210px
+
+.gallery__fig0
+  @extend %relative
+  span
+    width: 413px
+    height: 310px
+  right: 0
+  top: 0
+
+.gallery__fig1
+  top: 0
+
+.gallery__fig2
+  top: 160px
 
 

@@ -10,23 +10,23 @@
   display: block
   background-repeat: no-repeat
 
-// %small-icon  
-//   @extend %icon
-//   width: 16px
-//   height: 16px
-// 
-// %regular-icon
-//   @extend %icon
-//   width: 32px
-//   height: 32px
-
-.icon--small
+%small-icon  
   @extend %icon
   width: 16px
   height: 16px
 
-.icon--regular
+%regular-icon
   @extend %icon
+  width: 32px
+  height: 32px
+
+.icon--small
+  @extend %small-icon  
+  width: 16px
+  height: 16px
+
+.icon--regular
+  @extend %small-icon  
   width: 32px
   height: 32px
 
@@ -65,7 +65,7 @@
     text-indent: 0
 
 %right-icon--hidden-text
-  text-indent: -999em
+  @extend %visually-hide
   &:after
     text-indent: 0
 

@@ -5,16 +5,26 @@
   position: absolute
   &:before
     @extend %no-line-height
-    color: $badge
+    color: $lp-reviewed-badge
 
-.lp-reviewed-badge
+.badge--lp-reviewed
   @extend %card-badge
   @extend %lp-review-bubble-before
   &:before
     font-size: 44px
 
-.lp-top-choice
+.badge--top-choice
   @extend %card-badge
   @extend %top-choice-before
   &:before
     font-size: 55px
+
+.badge--included
+  @extend %four-pixel-rounded
+  @extend %inline-block
+  @extend %tiny-type
+  font-weight: bold
+  color: #fff
+  padding: 1px 6px
+  text-transform: uppercase
+  background-color: $validation-true

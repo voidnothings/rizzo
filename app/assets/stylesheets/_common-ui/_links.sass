@@ -1,4 +1,4 @@
-.link__back
+.link--back
   @extend %left-icon
   @extend %chevron-left-before
   @extend %larger-type
@@ -7,7 +7,9 @@
   &:before
     +font-size(20)
     line-height: 15px
-    color: $link_color
+    color: $link-color
 
-
+.link--wrapper
+  @extend %wrapper-link
+  @extend %clearfix
 
