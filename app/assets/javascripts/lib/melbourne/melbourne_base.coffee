@@ -8,13 +8,23 @@ define( ['jquery','lib/melbourne/ad_manager','lib/melbourne/footer', 'lib/utils/
       @footer()
 
     config: ->
+      # Needs strong refactoring
       @adConf =
-        adZone : window.lp.ads.adZone or 'home'
-        adKeywords : window.lp.ads.adKeywords or ' '
-        tile : lp.ads.tile or ' '
-        segQS : lp.ads.segQS or ' '
-        mtfIFPath : (lp.ads.mtfIFPath or '/')
-        unit: [728,90]
+        if window.lp and window.lp.ads
+          adZone : window.lp.ads.adZone or 'home'
+          adKeywords : window.lp.ads.adKeywords or ' '
+          tile : lp.ads.tile or ' '
+          segQS : lp.ads.segQS or ' '
+          mtfIFPath : (lp.ads.mtfIFPath or '/')
+          unit: [728,90]
+        else
+          adZone : 'home'
+          adKeywords : 'europe'
+          tile : ' '
+          segQS : ' '
+          mtfIFPath : '/'
+          unit: [728,90]
+
 
     header: ->
       AdManager.init(@adConf,'ad_masthead')
