@@ -6,7 +6,8 @@
     .wrap
       = render 'layouts/core/master_head', :user_nav => defined?(user_nav) ? user_nav : true
       .row.row--content
-        = yield
+        .row__inner.row__inner--content
+          = yield
     .wrap--footer  
       = render 'layouts/core/footer'
     .js-config.is-hidden   

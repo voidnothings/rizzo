@@ -4,7 +4,7 @@ module SnippetSupport
     if secure
       "layouts/#{scope}/snippets/_secure_#{snippet}"
     else
-      "layouts/#{scope}snippets/_#{snippet}"
+      "layouts/#{scope}/snippets/_#{snippet}"
     end  
   end
 
