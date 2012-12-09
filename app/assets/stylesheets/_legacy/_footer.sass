@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------------
 // 
-// Only waldorf uses the new footer styles at the moment.
+// Legacy Footer
 // 
 // ----------------------------------------------------------------------------
 
@@ -106,4 +106,29 @@ footer
           height: 41px
         p
           padding: 4px 0 0 21px
+
+§
+// -----------------------------------------------------------------------------
+// Backwards compatability - revert the font size for the $$legacy header/footer
+// -----------------------------------------------------------------------------
+
+body > .wrap > footer
+  line-height: 1.4
+
+#headerWrap, #pageTitleWrap, #infoSourcesWrap, #footerWrap, .hwrap, 
+nav.primary, #breadcrumbWrap, footer > .info, footer > .foot
+  @extend %small-type
+
+#mainNavWrap p
+  margin-bottom: 0
+
+#footerWrap, .footer-info
+  p
+    @extend %extra-small-type
+    margin-bottom: 0
+
+#infoSourcesWrap
+  p
+    margin-bottom: 0
+
 

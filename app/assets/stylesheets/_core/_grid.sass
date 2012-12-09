@@ -1,81 +1,4 @@
 // -----------------------------------------------------------------------------
-// Grid Extends
-// -----------------------------------------------------------------------------
-
-
-
-// -----------------------------------------------------------------------------
-// 
-// Grid Wrapper
-// 
-// Case for making this a set of mixins?
-// 
-// -----------------------------------------------------------------------------
-
-%grid-wrapper
-  +box-sizing()
-  @extend %clearfix
-
-%grid-wrapper-10
-  @extend %grid-wrapper
-  margin-left: -10px
-
-%grid-wrapper-15
-  @extend %grid-wrapper
-  margin-left: -15px
-
-%grid-wrapper-20
-  @extend %grid-wrapper
-  margin-left: -20px
-
-%grid-wrapper-30
-  @extend %grid-wrapper
-  margin-left: -30px
-
-
-// -----------------------------------------------------------------------------
-// 
-//  Grid Columns
-// 
-// -----------------------------------------------------------------------------
-
-
-%grid-column
-  +box-sizing()
-  @extend %float-left
-  .ie7 &, .no-boxsizing &
-    padding-left: 0
-
-%padded-grid-column-10
-  @extend %grid-column
-  padding-left: 10px
-
-%padded-grid-column-15
-  @extend %grid-column
-  padding-left: 15px
-
-%padded-grid-column-20
-  @extend %grid-column
-  padding-left: 20px
-
-%padded-grid-column-30
-  @extend %grid-column
-  padding-left: 30px
-
-%margin-grid-column-10
-  @extend %grid-column
-  margin-left: 10px
-
-%margin-grid-column-20
-  @extend %grid-column
-  margin-left: 20px
-
-%margin-grid-column-30
-  @extend %grid-column
-  margin-left: 30px
-
-
-// -----------------------------------------------------------------------------
 // 
 //  Simple Grid for the card main content
 // 
@@ -115,8 +38,6 @@ $gutter: 10px
   width: ($default-card-width * 5) + ($gutter * 4)
   .full-width &
     width: ($option-card-width * 5) + $gutter
-
-
 
 // -----------------------------------------------------------------------------
 // 
@@ -175,7 +96,6 @@ $gutter: 10px
     @extend %padded-grid-column-30
 
 
-
 [class*="grid-"]
   +respond-to(max800)
     margin-left: 0 !important
@@ -186,7 +106,6 @@ $gutter: 10px
       width: 100%
       padding-left: 0 !important
       margin-left: 0
-
 
 .col--one-half
   width: 50%
@@ -214,13 +133,11 @@ $gutter: 10px
 
 // ----------------------------------------------------------------------------
 // 
-// Proportional grid for 6/12 colums base
 // (footer nav)
 //
 // ----------------------------------------------------------------------------
 
 .column--footer
-  // @extend %padded-grid-column-10
   float: left
   margin-right: 50px
 
@@ -228,11 +145,3 @@ $gutter: 10px
   float: left
   width: 230px
 
-.grid--6
-  width: 16.666%
-
-.grid--12
-  width: 12.499%
-
-.grid--5--ext
-  width: 20.8325%
