@@ -34,15 +34,15 @@ define ['jquery'], ($) ->
     
     constructor: (@args={}) ->
       @target = $(@args.selector)
-      @wrapper = $(@target).find('.js-wrapper')
+      @wrapper = $(@target).find('.js-read-more-wrapper')
       @baseHeight = @wrapper.height()
       @addHandler()
     
     addHandler: ->
       if @wrapper.height() > @args.maxHeight
-        @template = "<div class='read-more-btn js-handler'>#{(@args.text)[0]}</div>"
+        @template = "<div class='btn--read-more js-handler'>#{(@args.text)[0]}</div>"
         if @args.shadow
-          @template = "<div class='section-handler'>" + @template + "</div>"
+          @template = "<div class='read-more__handler'>" + @template + "</div>"
         @target.append(@template)
         @bindEvent()
         @close()
@@ -56,18 +56,20 @@ define ['jquery'], ($) ->
 
     open: ->
       @wrapper.height(@baseHeight)
-      $(@target).addClass('is-open').removeClass('is-close')
+      # Wait for the transition to finish before taking away the gradient mask
+      setTimeout(=>
+        $(@target).addClass('is-open').removeClass('is-closed')
+      , 500)
       @setHandlerText(@args.text[1])
       @state = 'open'
 
     close: ->
       @wrapper.css({'overflow': 'hidden', 'margin-bottom': '10px'})
-      # Check machinations with anselmo
       if @args.shadow is true 
         @wrapper.height(@args.maxHeight-(@args.maxHeight%18)-2) 
       else 
         @wrapper.height(@args.maxHeight)
-      $(@target).addClass('is-close').removeClass('is-open')
+      $(@target).addClass('is-closed').removeClass('is-open')
       @setHandlerText(@args.text[0])
       @state = 'close'
 
