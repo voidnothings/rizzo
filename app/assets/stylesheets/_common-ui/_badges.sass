@@ -1,10 +1,19 @@
+// Below hacks are a consequence of mixing negative text indent 
+// (from %left-icon--hidden-text) with the :hover box-shadow effect on the cards
+// and the resulting change in the element outline.
+
 %card-badge
   @extend %left-icon
   @extend %left-icon--hidden-text
   @extend %inline-block
   position: absolute
+  // *1* To prevent :hover rendering bug in Safari
+  overflow: hidden
+  height: 30px
+  // *2* To prevent not rendering in FF (consequence of *1*)
+  width: 27px
   &:before
-    @extend %no-line-height
+    line-height: 30px
     color: $lp-reviewed-badge
 
 .badge--lp-reviewed

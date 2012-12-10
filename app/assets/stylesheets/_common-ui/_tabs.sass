@@ -46,17 +46,22 @@
 
 .tabs__content
   +multiple-transitions(height 0.3s ease-in-out, opacity 0.3s ease)
+  +hardware-acceleration()
   @extend %clearfix
   @extend %standard-shadow
-  @extend %margin-bottom-10
+  margin-bottom: 10px
   opacity: 1
   clear: both
   background-color: #fff
 
+
 .tab__panel
   @extend %box-off-double
   display: none
-  .no-js &:target, &.is-active
+  position: relative
+  &.is-active
+    display: block
+  .no-js &:target
     display: block
 
 // -----------------------------------------------------------------------------
