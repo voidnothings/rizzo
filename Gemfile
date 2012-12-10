@@ -12,9 +12,10 @@ gem 'unicorn'
 gem 'rake'
 
 group :assets do 
-  gem 'avocado', path: '/Users/dasilaw6/development/lp/muppets/avocado'
-  gem 'beaker', path: '/Users/dasilaw6/development/lp/muppets/beaker'
+  gem 'avocado', git: 'git@github.com:lonelyplanet/avocado.git', :branch=>'ads_legacy_split'
+  gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git', :branch=>'ads_legacy_split'
 end
+
 
 group :test do 
   gem 'guard'
