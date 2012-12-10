@@ -23,4 +23,18 @@
     left: 6px
     top: 6px
 
+.btn-subimt--regular
+  padding: 10px
+  @extend %input--regular
+  cursor: pointer
 
+.btn-submit--regular--newsletter
+  @extend .btn-subimt--regular
+  background-color: $nav-secondary-current-item-bck
+  color: #fff
+  //overrides needs refactoring
+  padding: 8px 10px
+  font-size: 12px !important
+  &:hover
+    background-color: #fff
+    color: $nav-secondary-current-item-bck
