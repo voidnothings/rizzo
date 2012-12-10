@@ -1,10 +1,14 @@
-PATH
-  remote: /Users/dasilaw6/development/lp/muppets/avocado
+GIT
+  remote: git@github.com:lonelyplanet/avocado.git
+  revision: 80617c1ad582bf35fd40ea8a5ff102537ae47c4e
+  branch: ads_legacy_split
   specs:
     avocado (0.0.31)
 
-PATH
-  remote: /Users/dasilaw6/development/lp/muppets/beaker
+GIT
+  remote: git@github.com:lonelyplanet/beaker.git
+  revision: 6ac584e144fa075de9e692eea1e19e8f05bde9e8
+  branch: ads_legacy_split
   specs:
     beaker (0.1.0)
 
