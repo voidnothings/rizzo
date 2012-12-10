@@ -2,10 +2,10 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
 
   class Base
 
-    constructor: ->
+    constructor: (args={})->
       @authenticateUser()
       @showUserBasket()
-      @showLeaderboard()
+      @showLeaderboard() if !args.secure
       @showCookieComplianceMsg()
 
     adConfig: ->
