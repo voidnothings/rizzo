@@ -3,7 +3,11 @@
 // ----------------------------------------------------------------------------
 
 .sprite-core--standard
-  @extend %data-sprite-core--standard
+  @if is-retina == true
+    @extend %data-sprite-core--retina
+    background-size: 157px 400px
+  @else
+    @extend %data-sprite-core--standard
   background-repeat: no-repeat
 
 
