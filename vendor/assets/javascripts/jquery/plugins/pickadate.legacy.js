@@ -88,7 +88,7 @@
                                     }
                                 }
                             }
-                        }).after($HOLDER.css('top', 200))
+                        }).after($HOLDER)
 
 
                         // If the element has autofocus open the calendar
