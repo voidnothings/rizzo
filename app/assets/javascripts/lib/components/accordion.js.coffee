@@ -3,9 +3,7 @@
 #   parent: parent element
 #   multiplePanels: can you have multiple panels open
 #   callback: optional function
-#   activeClass: optional args
-#     elem: element to add/remove the class
-#     className: classname to add/remove
+#   animateHeights: boolean
 # }
 # 
 
@@ -15,49 +13,60 @@ define ['jquery'], ($) ->
 
     config =
       multiplePanels: false
+      animateHeights: false
+
+    prepare : (panels) ->
+      panels.each ->
+        openHeight = $(@).outerHeight()
+        closedHeight = $(@).find('.js-accordion-trigger').outerHeight()
+        $(@).attr('data-open', openHeight).attr('data-closed', closedHeight)
+
+    bindEvents : (parent) ->
+      that = @
+      parent.on 'click', '.js-accordion-trigger', ->
+        panel = $(@).closest('.js-accordion-item').index()
+        that.openPanel(panel)
+        false
 
     openPanel : (panel) ->
       panel = @sanitisePanel(panel)
-      if config.hasOwnProperty('activeClass')
-        panelContainer = panel.closest(config.activeClass.elem)
-        if panelContainer.hasClass(config.activeClass.className)
+      if panel.hasClass('is-open')
           @closePanel(panel)
-        else
-          if config.multiplePanels is false then @closeAllPanels()
-          panel.removeClass('is-hidden')
-          panel.closest(config.activeClass.elem).addClass(config.activeClass.className)
       else
         if config.multiplePanels is false then @closeAllPanels()
-        panel.removeClass('is-hidden')
-      
+        panel.removeClass('is-closed').addClass('is-open')
+        if config.animateHeights then panel.height(panel.attr('data-open'))
 
     closePanel : (panel) ->
       panel = @sanitisePanel(panel)
-      panel.addClass('is-hidden')
-      if config.hasOwnProperty('activeClass')
-        panel.closest(config.activeClass.elem).removeClass(config.activeClass.className)
+      panel.removeClass('is-open').addClass('is-closed')
+      if config.animateHeights then panel.height(panel.attr('data-closed'))
 
     closeAllPanels : (panels) ->
-      @panels.addClass('is-hidden')
-      if config.hasOwnProperty('activeClass')
-        @parent.find(config.activeClass.elem).removeClass(config.activeClass.className)
+      @panels.removeClass('is-open').addClass('is-closed')
+      if config.animateHeights
+        @panels.each ->
+          $(@).height($(@).attr('data-closed'))
 
     refresh : () ->
-      @panels = @parent.find('.js-accordion-panel')
+      @panels = @parent.find('.js-accordion-item')
+      if config.animateHeights then @prepare(@panels)
       @closeAllPanels(@panels)
+
+    sanitisePanel : (panel) =>
+      if typeof(panel) == 'number'
+        $(@panels[panel])
+      else if panel.jquery isnt undefined
+        panel
+      else
+        $(panel)
+
 
     constructor : (args) ->
       config = $.extend config, args
       @parent = $(config.parent)
-      @panels = @parent.find('.js-accordion-panel')
-
-      @sanitisePanel = (panel) =>
-        if typeof(panel) == 'number'
-          $(@panels[panel])
-        else if panel.jquery isnt undefined
-          panel
-        else
-          $(panel)
-
+      @panels = @parent.find('.js-accordion-item')
+      if config.animateHeights then @prepare(@panels)
+      @bindEvents(@parent)
       @closeAllPanels(@panels)
       config.callback && config.callback(@parent)

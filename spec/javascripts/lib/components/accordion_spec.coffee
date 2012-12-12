@@ -12,24 +12,27 @@ require ['public/assets/javascripts/lib/components/accordion.js'], (Accordion) -
         window.myAccordion = new Accordion({parent: '.my-accordion'})
       
       it 'hides all panels', ->
-        expect($('#panel1')).toHaveClass('is-hidden')
-        expect($('#panel2')).toHaveClass('is-hidden')
-        expect($('#panel3')).toHaveClass('is-hidden')
-        expect($('#panel4')).toHaveClass('is-hidden')
+        expect($('#item1')).toHaveClass('is-closed')
+        expect($('#item2')).toHaveClass('is-closed')
+        expect($('#item3')).toHaveClass('is-closed')
+        expect($('#item4')).toHaveClass('is-closed')
       
       it 'opens panel 1', ->
         myAccordion.openPanel(0)
-        expect($('#panel1')).not.toHaveClass('is-hidden')
+        expect($('#item1')).not.toHaveClass('is-closed')
+        expect($('#item1')).toHaveClass('is-open')
 
-      it 'closes panel 1', ->
+      it 'closes panel 1', -> 
         myAccordion.closePanel(0)
-        expect($('#panel1')).toHaveClass('is-hidden')
+        expect($('#item1')).not.toHaveClass('is-open')
+        expect($('#item1')).toHaveClass('is-closed')
 
       it 'closes panel 1 and opens panel 2', ->
         myAccordion.openPanel(0)
         myAccordion.openPanel(1)
-        expect($('#panel1')).toHaveClass('is-hidden')
-        expect($('#panel2')).not.toHaveClass('is-hidden')
+        expect($('#item1')).toHaveClass('is-closed')
+        expect($('#item2')).toHaveClass('is-open')
+
     
     describe 'When only one panel is allowed to be open and we pass a selector', ->
       beforeEach ->
@@ -37,11 +40,12 @@ require ['public/assets/javascripts/lib/components/accordion.js'], (Accordion) -
         window.myAccordion = new Accordion({parent: '.my-accordion'})
 
       it 'closes panel 1 and opens panel 2', ->
-        myAccordion.openPanel('#panel1')
-        expect($('#panel1')).not.toHaveClass('is-hidden')
-        myAccordion.openPanel('#panel2')
-        expect($('#panel1')).toHaveClass('is-hidden')
-        expect($('#panel2')).not.toHaveClass('is-hidden')
+        myAccordion.openPanel('#item1')
+        expect($('#item1')).toHaveClass('is-open')
+        myAccordion.openPanel('#item2')
+        expect($('#item1')).toHaveClass('is-closed')
+        expect($('#item2')).toHaveClass('is-open')
+
 
     describe 'When multiple panels can be opened', ->
       beforeEach ->
@@ -50,57 +54,17 @@ require ['public/assets/javascripts/lib/components/accordion.js'], (Accordion) -
 
       it 'opens panel 1', ->
         myAccordion.openPanel(0)
-        expect($('#panel1')).not.toHaveClass('is-hidden')
+        expect($('#item1')).not.toHaveClass('is-closed')
+        expect($('#item1')).toHaveClass('is-open')
 
       it 'opens panel 2 and panel 1 remains open', ->
         myAccordion.openPanel(0)
-        expect($('#panel1')).not.toHaveClass('is-hidden')
+        expect($('#item1')).toHaveClass('is-open')
         myAccordion.openPanel(1)
-        expect($('#panel1')).not.toHaveClass('is-hidden')
-        expect($('#panel2')).not.toHaveClass('is-hidden')
-
-    describe 'It adds the active class to the correct element', ->
-      beforeEach ->
-        loadFixtures('accordion.html')
-        args = 
-          parent: '.my-accordion'
-          multiplePanels: false
-          activeClass: 
-            elem: '.js-accordion-item'
-            className: 'banana'
-        window.myAccordion = new Accordion(args)
-
-      it 'adds the active class to item with id', ->
-        myAccordion.openPanel('#panel1')
-        expect($('#item1')).toHaveClass('banana')
-      
-      it 'adds the active class to item 1', ->
-        myAccordion.openPanel(2)
-        expect($('#item3')).toHaveClass('banana')
-        
-    describe 'It adds the active class to each open element', ->
-      beforeEach ->
-        loadFixtures('accordion.html')
-        args = 
-          parent: '.my-accordion'
-          multiplePanels: true
-          activeClass: 
-            elem: '.js-accordion-item'
-            className: 'banana'
-        window.myAccordion = new Accordion(args)
-
-      it 'adds the active class to item with id', ->
-        myAccordion.openPanel('#panel1')
-        myAccordion.openPanel(1)
-        myAccordion.openPanel(2)
-        expect($('#item1')).toHaveClass('banana')
-        expect($('#item2')).toHaveClass('banana')
-        expect($('#item3')).toHaveClass('banana')
-
-
-
-
-
+        expect($('#item1')).not.toHaveClass('is-closed')
+        expect($('#item1')).toHaveClass('is-open')
+        expect($('#item2')).not.toHaveClass('is-closed')
+        expect($('#item2')).toHaveClass('is-open')
 
 
 
