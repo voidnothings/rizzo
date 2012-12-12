@@ -64,12 +64,14 @@
   box-sizing:         $sizing
 
 
+// Z-index added below to ensure that child elements have their z-index honoured
 @mixin hardware-acceleration()
   -webkit-transform:  translateZ(0)
   -moz-transform:     translateZ(0)
   -ms-transform:      translateZ(0)
   -o-transform:       translateZ(0)
   transform:          translateZ(0)
+  z-index:            1
 
 @mixin transition($property: all, $duration: 0.5, $style: ease)
   -webkit-transition: $property #{$duration + s} $style
