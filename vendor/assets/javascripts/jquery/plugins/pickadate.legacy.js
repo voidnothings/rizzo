@@ -1492,15 +1492,15 @@ define(['jquery'], function($){
         weekdaysFull: [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ],
         weekdaysShort: [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ],
 
-        monthPrev: '&#9664;',
-        monthNext: '&#9654;',
+        monthPrev: '',
+        monthNext: '',
 
         // Display strings
-        showMonthsFull: false,
+        showMonthsFull: true,
         showWeekdaysShort: true,
 
         // Date format to show on the input element
-        format: 'd mmmm, yyyy',
+        format: 'd mmm yyyy',
 
         // Date format to send to the server
         formatSubmit: false,
