@@ -21,7 +21,7 @@
 
 
 
-;(function( $, window, document, undefined ) {
+define(['jquery'], function($){
 
     'use strict';
 
@@ -1707,7 +1707,7 @@
 
 
 
-})( jQuery, window, document );
+})
 
 
 
