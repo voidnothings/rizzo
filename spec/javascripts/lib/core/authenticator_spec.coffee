@@ -73,7 +73,7 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
         expect(@auth.userState).toBe(true)
         expect($('nav.js-user-nav')).toHaveClass('is-logged')
 
-      it 'does not has sign-in link', ->
+      it 'does not has a sign-in link', ->
         expect($('a.js-user-sing-in')).not.toExist()
 
       it 'does not has a register link', ->

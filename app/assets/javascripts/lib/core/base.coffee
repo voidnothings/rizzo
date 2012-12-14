@@ -31,7 +31,7 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
         @auth.update()
 
     showLeaderboard: ->
-      AdManager.init(@adConfig(), 'ad_leaderboard')
+      AdManager.init(@adConfig(), 'ad-leaderboard')
 
     showUserBasket: ->
       shopCart = new ShoppingCart()

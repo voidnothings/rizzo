@@ -14,11 +14,11 @@ define ['jquery'], ($)->
       @msg = "<div class='row #{@args.style}'><div class='row__inner'><div class='row__inner__msg'>#{@closeElement(@args.btnText)}#{@args.content}</div></div></div>"
       
     closeElement: (text = 'Close Message')->
-      "<a class='btn--regular btn--gray btn--right js-close-message'>#{text}</a>"
+      "<a class='btn--regular btn--gray btn--right js-close-msg'>#{text}</a>"
 
     add: (el) ->
       $(@options.target).prepend(el)
-      $('a.js-close-message').on('click', (e)=> @removeMsg(e))
+      $('a.js-close-msg').on('click', (e)=> @removeMsg(e))
       if @args.delegate and @args.delegate.onAdd()
         @args.delegate.onAdd()
 
