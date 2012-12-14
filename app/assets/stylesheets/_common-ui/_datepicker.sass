@@ -21,10 +21,17 @@
 
 .pickadate__calendar
   padding: 10px
+  text-align: center
 
 .pickadate__month--wrap,
 .pickadate__year--wrap
-  text-align: center
+  @extend %inline-block
+
+.pickadate__month--nav
+  position: relative
+
+.pickadate__month
+  margin-right: 4px
 
 .pickadate__month,
 .pickadate__year
@@ -32,26 +39,31 @@
   color: $header-gray
   font-weight: bold
 
+.pickadate__month--prev,
+.pickadate__month--next
+  position: absolute
+  color: $body-copy
+  cursor: pointer
+  width: 20px
+  height: 20px
+
 .pickadate__month--prev
   @extend %chevron-left-before
   @extend %left-icon
-  color: $body-copy
   left: 15px
   &:before
     +font-size(20)
-    line-height: 24px
+    line-height: 20px
     text-align: left
 
 .pickadate__month--next
   @extend %chevron-right-after
   @extend %right-icon
-  color: $body-copy
   right: 15px
   &:after
     +font-size(20)
     line-height: 24px
     text-align: right
-
 
 .pickadate__calendar--table
   border-collapse: separate
