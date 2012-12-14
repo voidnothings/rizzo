@@ -49,12 +49,12 @@
     text-decoration: none
 
 .nav__item--breadcrumbs
-  @extend .sprite-core--standard
+  @extend %sprite-core--standard
   padding: 12px 5px 0 25px
   background-position: 3px -222px
 
 .icon--home
-  @extend .sprite-core--standard
+  @extend %sprite-core--standard
   background-position: -3px -370px
   
 .nav__item--breadcrumbs--home 
@@ -104,10 +104,10 @@
 .nav__item--secondary  
   float: left
   display: block
-  padding: 6px 9px 5px
+  padding: 8px 10px
   line-height: 18px
   color: $nav-secondary-type
-  font-size: 12px
+  @extend %small-type
   &:hover
     color: $nav-secondary-type-hover
   &:active
@@ -178,7 +178,7 @@
   z-index: 1 
   &:before
     @extend %empty-abs-generated-content 
-    @extend .sprite-core--standard
+    @extend %sprite-core--standard
     background-position: -2px -358px
     display: block
     top: -9px
@@ -188,7 +188,7 @@
 
 .nav-user-options__item
   @extend .nav__item--vertical
-  @extend .sprite-core--standard
+  @extend %sprite-core--standard
   @extend %helvetica-neue
   background-position: 144px -246px
   color: #fff
@@ -251,8 +251,8 @@
   position: relative
   &:after
     @extend %empty-abs-generated-content 
-    @extend .sprite-core--standard
-    background-position: 0px -332px
+    @extend %sprite-core--standard
+    background-position: -2px -332px
     top: 8px
     right: 0
     width: 20px
@@ -262,8 +262,6 @@
   &:hover
     .nav-user-options
       display: block
-    &:after
-      background-position: 0px -312px
 
 .user-box__img
   @include box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.3), true)

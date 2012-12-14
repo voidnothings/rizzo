@@ -4,28 +4,13 @@
 // 
 // ----------------------------------------------------------------------------
 
-%input--regular
-  margin: 0
-  border: 0
-  outline: 0
-  @include border-radius(4)
-
-%input--small
-  margin: 0
-  border: 0
-  outline: 0
-  @include border-radius(4)  
-  @extend %small-type
-
 .input--small--footer
   @extend %input--small
+  border: none 
   color: $body-copy
   margin-right: 5px
-  //overrides
-  border: none !important
-  padding: 8px 10px !important
-  margin-right: 5px !important
-  width: 158px !important
+  padding: 8px 10px 
+  width: 170px
 
 
 // ----------------------------------------------------------------------------
@@ -42,7 +27,7 @@
 .search__input
   display: block
   @extend %no-border
-  @extend .sprite-core--standard
+  @extend %sprite-core--standard
   background-position: -59px -141px
   padding: 8px 10px 8px 30px
 
@@ -71,16 +56,12 @@
   margin-right: 10px
 
 .dropdown--small--footer
-  @extend .sprite-core--standard
+  @extend %sprite-core--standard
   background-position: 64px -326px 
   color: $body-copy
   cursor: pointer
   padding: 8px 10px 
   @extend %input--small
-  //overrides needs refactoring
-  width: 86px!important
-  border: 0!important
-
 
 // ----------------------------------------------------------------------------
 //

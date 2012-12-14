@@ -2,7 +2,7 @@
 // 
 // ----------------------------------------------------------------------------
 
-.sprite-core--standard
+%sprite-core--standard
   @if is-retina == true
     @extend %data-sprite-core--retina
     background-size: 157px 400px
@@ -18,7 +18,7 @@
 // ----------------------------------------------------------------------------
 
 .media--lp-logo--head
-  @extend .sprite-core--standard
+  @extend %sprite-core--standard
   background-position: 0 1px
   float: left
   display: block
@@ -27,7 +27,7 @@
   margin: 0    
 
 .media--lp-logo--footer
-  @extend .sprite-core--standard
+  @extend %sprite-core--standard
   background-repeat: no-repeat
   background-position: 0 -178px
 
@@ -55,26 +55,31 @@
 // ----------------------------------------------------------------------------
 
 .icon--twitter
+  @extend %sprite-core--standard
   background-position: 1px -48px
   &:hover
     background-position-y: -79px
 
 .icon--facebook
+  @extend %sprite-core--standard
   background-position: -29px -48px
   &:hover
     background-position-y: -79px
 
 .icon--google-plus
+  @extend %sprite-core--standard
   background-position: -61px -48px
   &:hover
     background-position-y: -79px
 
 .icon--flicr
+  @extend %sprite-core--standard
   background-position: 1px -111px
   &:hover
     background-position-y: -143px
 
 .icon--rss
+  @extend %sprite-core--standard
   background-position: -30px -111px
   &:hover
     background-position-y: -143px

@@ -17,11 +17,10 @@ a
 
 input, textarea, select
   outline: none
-  @include box-sizing()
+  +box-sizing()
 
 .wrap--footer
   .column--footer
-    margin-right: 48px!important
   a
     cursor: pointer
     font-size: 12px!important
@@ -33,7 +32,7 @@ input, textarea, select
     &:hover
       color: #fff!important
       text-decoration: none!important
-  .nav__item--breadcrumbs, .nav__item--breadcrumbs--current, .label--footer
+  .nav__item--breadcrumbs, .nav__item--breadcrumbs--current
     line-height: 1em!important
 
 .nav--primary, .nav-primary--user, .nav--secondary
@@ -45,4 +44,21 @@ input, textarea, select
 
 .row--content
   margin-bottom: 18px
+
+.btn-submit--regular--newsletter
+  padding: 8px 10px
+  font-size: 12px !important
+  &:hover
+    background-color: #fff
+    color: $nav-secondary-current-item-bck
+
+.dropdown--small--footer  
+  width: 86px!important
+  border: 0!important
+
+.input--small--footer
+  border: none !important
+  padding: 8px 10px !important
+  margin-right: 5px !important
+  width: 170px !important  
 

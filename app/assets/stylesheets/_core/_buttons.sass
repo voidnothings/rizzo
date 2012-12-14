@@ -1,40 +1,44 @@
+// ---------------------------------------------------
+//
+// Button Defaults
+//
+// ---------------------------------------------------
+
+.btn--regular
+  @extend %base-button
+  padding: 10px
+
+.btn-submit--regular
+  @extend %input--regular
+  @extend %base-button
+  padding: 10px
+  cursor: pointer
+
+// ---------------------------------------------------
+//
+// Button Positioning
+//
+// ---------------------------------------------------
+
+.btn--right
+  float: right
+
+// ---------------------------------------------------
+//
+// Button Themes
+//
+// ---------------------------------------------------
+
 .btn--gray
   color: #fff
   background-color: #4e5763
   &:hover
     background-color: #a5acb5
 
-.btn--right
-  float: right
-
-.btn--regular
-  @extend %regular-type
-  display: block
-  padding: 7px 10px 7px 10px
-  @include border-radius(4)
-
-.btn--close
-  position: relative
-  padding-left: 30px
-  &:before
-    @extend %empty-abs-generated-content
-    width: 18px
-    height: 18px
-    left: 6px
-    top: 6px
-
-.btn-subimt--regular
-  padding: 10px
-  @extend %input--regular
-  cursor: pointer
-
-.btn-submit--regular--newsletter
-  @extend .btn-subimt--regular
+.btn--cyan
   background-color: $nav-secondary-current-item-bck
   color: #fff
-  //overrides needs refactoring
-  padding: 8px 10px
-  font-size: 12px !important
   &:hover
     background-color: #fff
     color: $nav-secondary-current-item-bck
+
