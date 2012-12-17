@@ -21,7 +21,7 @@
 
 
 
-;(function( $, window, document, undefined ) {
+define(['jquery'], function($){
 
     'use strict';
 
@@ -88,8 +88,7 @@
                                     }
                                 }
                             }
-                        })
-                        $('body').append($HOLDER.css('top', 200))
+                        }).after($HOLDER)
 
 
                         // If the element has autofocus open the calendar
@@ -1342,9 +1341,13 @@
                     // Prevent the default action if a "super" key
                     // is not held and the tab key isn't pressed,
                     // prevent the default action
-                    if ( !event.metaKey && keycode != 9 ) {
-                        event.preventDefault()
-                    }
+                    
+                    // The below is commented out to stop interference with
+                    // cucumber tests.
+                    // This is enforced by the readonly attr instead
+                    // if ( !event.metaKey && keycode != 9 ) {
+                        // event.preventDefault()
+                    // }
 
 
                     // On enter, set the element value as the highlighted date
@@ -1493,15 +1496,15 @@
         weekdaysFull: [ 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' ],
         weekdaysShort: [ 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat' ],
 
-        monthPrev: '&#9664;',
-        monthNext: '&#9654;',
+        monthPrev: '',
+        monthNext: '',
 
         // Display strings
-        showMonthsFull: false,
+        showMonthsFull: true,
         showWeekdaysShort: true,
 
         // Date format to show on the input element
-        format: 'd mmmm, yyyy',
+        format: 'd mmm yyyy',
 
         // Date format to send to the server
         formatSubmit: false,
@@ -1708,7 +1711,7 @@
 
 
 
-})( jQuery, window, document );
+})
 
 
 
