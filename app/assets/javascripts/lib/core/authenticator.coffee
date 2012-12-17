@@ -86,7 +86,7 @@ define ['jquery'], ($)->
       @setLocalData('lp-sent-msg', data.sent_count)
       @setLocalData('lp-received-msg', data.received_count)
       if data.unread_count > 0
-        user_msg_el = "<span class='nav-user-options__item__float js-user-msg-unread'>3#{data.unread_count}</span>"
+        user_msg_el = "<span class='nav-user-options__item__float js-user-msg-unread'>#{data.unread_count}</span>"
         $('a.js-user-msg').append(user_msg_el)
     
     bindEvents: ->
