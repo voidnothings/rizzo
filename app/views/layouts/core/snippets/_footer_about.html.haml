@@ -9,15 +9,15 @@
           = "Terms & Conditions"
       %form.form--language.js-language-form(action="http://www.lonelyplanet.com/international")
         %fieldset
-          %label.label--footer(for="select-language")
-            International:
-          .relative  
-            %input.dropdown--small--footer.js-select-language(type='text' id='select-language' autocomplete='off' name='language[select]' placeholder='English' readonly)
+          .dropdown
+            %input.dropdown__input.dropdown__input--small.js-select-language(type='text' id='select-language' autocomplete='off' name='language[select]' placeholder='English' readonly)
             %select.form__select--language.js-select-language(name="select-language")
               - [['en','English'],['de','Deutsch'],['fr','Français'],['es','Español'],['it','Italiano'],['co','中文简体'],['jp','日本語']].each do |d|
                 %option(value="#{d[0]}")
                   = d[1]
-            %input.form__submit--language(name="Go" type="submit" value="Go")
+          %label.label--footer(for="select-language")
+            International:
+          %input.form__submit--language(name="Go" type="submit" value="Go")
 
     %p.text--legal.media--lp-logo--footer
       &copy; 2012 Lonely Planet. All rights reserved. No part of this site may be reproduced without our written permission.
