@@ -26,6 +26,7 @@
   color: #cfd0d1
   &:hover
     color: #fff
+    text-decoration: none
 
 .nav__item--title    
   @extend %nav--footer--title
@@ -91,8 +92,10 @@
   font-size: 14px
   &:hover
     color: $nav-primary-type-hover 
+    text-decoration: none
   &:active
     color: $nav-primary-type
+    text-decoration: none
 
 
 // ----------------------------------------------------------------------------
@@ -117,6 +120,7 @@
   @extend %small-type
   &:hover
     color: $nav-secondary-type-hover
+    text-decoration: none
   &:active
     color: $nav-secondary-type
   &.current
@@ -203,7 +207,8 @@
   font-size: 14px
   padding: 12px 12px
   &:hover
-    background-color:  $nav-secondary-item-hover 
+    background-color:  $nav-secondary-item-hover
+    text-decoration: none
   &:after
     @extend %empty-abs-generated-content 
     @extend %sprite-core--standard
