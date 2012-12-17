@@ -1341,9 +1341,13 @@ define(['jquery'], function($){
                     // Prevent the default action if a "super" key
                     // is not held and the tab key isn't pressed,
                     // prevent the default action
-                    if ( !event.metaKey && keycode != 9 ) {
+                    
+                    // The below is commented out to stop interference with
+                    // cucumber tests.
+                    // This is enforced by the readonly attr instead
+                    // if ( !event.metaKey && keycode != 9 ) {
                         // event.preventDefault()
-                    }
+                    // }
 
 
                     // On enter, set the element value as the highlighted date
