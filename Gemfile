@@ -12,10 +12,8 @@ gem 'unicorn'
 gem 'rake'
 
 group :assets do 
-  # gem 'avocado', git: 'git@github.com:lonelyplanet/avocado.git', :branch=>'ads_legacy_split'
-  gem 'avocado', path: '/Users/dasilaw6/development/lp/muppets/avocado'
-  gem 'beaker', path: '/Users/dasilaw6/development/lp/muppets/beaker'
-  # gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git', :branch=>'ads_legacy_split'
+  gem 'avocado', git: 'git@github.com:lonelyplanet/avocado.git'
+  gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git'
 end
 
 
@@ -25,9 +23,12 @@ group :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'guard-rspec'
-  gem 'capybara'
+
+  gem 'selenium-webdriver', '2.26.0'
+  gem 'capybara', '< 2.0.0'
   gem 'cucumber'
   gem 'cucumber-rails', :require => false
+
   gem 'guard-cucumber'
   gem 'rb-fsevent', '~> 0.9.1'
 end

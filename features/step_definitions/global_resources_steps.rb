@@ -1,6 +1,6 @@
 Then /^the global\-head should have the correct content$/ do
   page.should have_xpath("//meta", :content=>'width=1024', :name=>'viewport')
-  page.should have_xpath("//link", :href=>'/assets/common_core.css?body=1')
+  page.should have_xpath("//link", :href=>'/assets/common_core_overrides.css?body=1"')
   page.should have_xpath("//link", :href=>'http://static.lonelyplanet.com/static-ui/style/app-core-legacy.css')
   page.should have_xpath("//script", :href=>'https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
   page.should have_xpath("//script", :href=>'http://static.lonelyplanet.com/static-ui/js/lp-js-library-legacy.js')
