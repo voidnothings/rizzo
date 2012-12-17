@@ -1342,7 +1342,7 @@ define(['jquery'], function($){
                     // is not held and the tab key isn't pressed,
                     // prevent the default action
                     if ( !event.metaKey && keycode != 9 ) {
-                        event.preventDefault()
+                        // event.preventDefault()
                     }
 
 
