@@ -1,0 +1,90 @@
+// core sprite
+// 
+// ----------------------------------------------------------------------------
+
+%sprite-core--standard
+  @extend %data-sprite-core--retina
+  background-size: 174px 191px
+  background-repeat: no-repeat
+
+
+// ----------------------------------------------------------------------------
+// 
+// lonely planet mark
+// 
+// ----------------------------------------------------------------------------
+
+.media--lp-logo--head
+  @extend %sprite-core--standard
+  background-position: 0 1px
+  float: left
+  display: block
+  width: 100px
+  height: 50px
+  margin: 0    
+
+.media--lp-logo--footer
+  position: relative
+  &:before
+    width: 84px
+    height: 44px
+    @extend %empty-abs-generated-content
+    @extend %sprite-core--standard
+    top: 0
+    left: 0
+    background-position: 0 2px
+    background-size: 140px
+
+// ----------------------------------------------------------------------------
+// 
+// icons
+// 
+// ----------------------------------------------------------------------------
+
+.icon--small
+  @extend %small-icon  
+  width: 16px
+  height: 16px
+
+.icon--regular
+  @extend %small-icon  
+  width: 32px
+  height: 32px
+
+
+// ----------------------------------------------------------------------------
+// 
+// social-icons
+// 
+// ----------------------------------------------------------------------------
+
+.icon--twitter
+  @extend %sprite-core--standard
+  background-position: 1px -63px
+  &:hover
+    background-position-y: -95px
+
+.icon--facebook
+  @extend %sprite-core--standard
+  background-position: -30px -63px
+  &:hover
+    background-position-y: -95px
+
+.icon--google-plus
+  @extend %sprite-core--standard
+  background-position: -61px -63px
+  &:hover
+    background-position-y: -95px
+
+.icon--flicr
+  @extend %sprite-core--standard
+  background-position: 1px -127px
+  &:hover
+    background-position-y: -159px
+
+.icon--rss
+  @extend %sprite-core--standard
+  background-position: -30px -127px
+  &:hover
+    background-position-y: -159px
+

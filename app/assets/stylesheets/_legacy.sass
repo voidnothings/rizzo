@@ -3,9 +3,9 @@
 // Get all the utility classes - no impact on css output
 // 
 // ----------------------------------------------------------------------------
-
+$is-ie: false
 @import "_base_helpers"
-
+@import "_mixins/_legacy"
 
 // ----------------------------------------------------------------------------
 // 
@@ -13,11 +13,11 @@
 // 
 // ----------------------------------------------------------------------------
 
-@import "_core/_reset.sass"
-@import "_core/_typography.sass"
-@import "_core/_helper_classes"
-@import "_core/_default_layout"
-@import "_core/_header"
-@import "_core/_footer"
-@import "_core/_left_nav"
+@import "_core/_reset"
+@import "_core/_helpers"
 @import "_core/_grid"
+@import "_legacy/_typography"
+@import "_legacy/_header"
+@import "_legacy/_footer"
+@import '_common-ui/_default_layout'
+
