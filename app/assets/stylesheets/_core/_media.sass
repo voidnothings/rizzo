@@ -3,11 +3,8 @@
 // ----------------------------------------------------------------------------
 
 %sprite-core--standard
-  @if is-retina == true
-    @extend %data-sprite-core--retina
-    background-size: 157px 400px
-  @else
-    @extend %data-sprite-core--standard
+  @extend %data-sprite-core--retina
+  background-size: 174px 191px
   background-repeat: no-repeat
 
 
@@ -27,9 +24,16 @@
   margin: 0    
 
 .media--lp-logo--footer
-  @extend %sprite-core--standard
-  background-repeat: no-repeat
-  background-position: 0 -178px
+  position: relative
+  &:before
+    width: 84px
+    height: 44px
+    @extend %empty-abs-generated-content
+    @extend %sprite-core--standard
+    top: 0
+    left: 0
+    background-position: 0 2px
+    background-size: 140px
 
 // ----------------------------------------------------------------------------
 // 
@@ -56,33 +60,31 @@
 
 .icon--twitter
   @extend %sprite-core--standard
-  background-position: 1px -48px
+  background-position: 1px -63px
   &:hover
-    background-position-y: -79px
+    background-position-y: -95px
 
 .icon--facebook
   @extend %sprite-core--standard
-  background-position: -29px -48px
+  background-position: -30px -63px
   &:hover
-    background-position-y: -79px
+    background-position-y: -95px
 
 .icon--google-plus
   @extend %sprite-core--standard
-  background-position: -61px -48px
+  background-position: -61px -63px
   &:hover
-    background-position-y: -79px
+    background-position-y: -95px
 
 .icon--flicr
   @extend %sprite-core--standard
-  background-position: 1px -111px
+  background-position: 1px -127px
   &:hover
-    background-position-y: -143px
+    background-position-y: -159px
 
 .icon--rss
   @extend %sprite-core--standard
-  background-position: -30px -111px
+  background-position: -30px -127px
   &:hover
-    background-position-y: -143px
-
-
+    background-position-y: -159px
 

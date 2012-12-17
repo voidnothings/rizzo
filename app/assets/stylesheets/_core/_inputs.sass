@@ -12,6 +12,8 @@
   padding: 8px 10px 
   width: 170px
 
+.input__small
+  width: 86px
 
 // ----------------------------------------------------------------------------
 //
@@ -23,45 +25,65 @@
   @extend %relative
   @extend %float-left
   margin: 8px 0 0 10px
+  &:before
+    @extend %empty-abs-generated-content
+    @extend %sprite-core--standard
+    background-position: -60px -157px
+    width: 32px
+    height: 32px
 
 .search__input
-  display: block
   @extend %no-border
-  @extend %sprite-core--standard
-  background-position: -59px -141px
   padding: 8px 10px 8px 30px
 
 
 .search__input--primary
   line-height: 16px
+  @extend %regular-type-size
   @extend %helvetica-neue
   @include box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.2), true)
   @include border-radius(16)
   @include transition(all, 0.2, ease)
+
   background-color: $nav-search-bck
   color: $nav-search-colour
   width: 140px
   &:focus
     @extend %background-white
     color: $nav-search-bck-focus 
-    width: 200px
+    width: 230px
 
 // ----------------------------------------------------------------------------
 //
 // Drop-Down
 //
 // ----------------------------------------------------------------------------
+.dropdown
+  position: relative
+  float: right
+  cursor: pointer
+  &:after
+    @extend %empty-abs-generated-content
+    @extend %sprite-core--standard
+    background-position: -102px -98px
+    width: 16px
+    height: 30px
+    top: 0
+    right: 3px
 
 .label--footer
   margin-right: 10px
+  line-height: 32px
 
-.dropdown--small--footer
-  @extend %sprite-core--standard
-  background-position: 64px -326px 
+.dropdown__input
   color: $body-copy
   cursor: pointer
-  padding: 8px 10px 
+  padding: 8px 10px
   @extend %input--small
+  @extend %small-type
+
+.dropdown__input--small  
+  width: 86px
 
 // ----------------------------------------------------------------------------
 //
@@ -80,10 +102,12 @@
   height: 30px
   width: 86px
   opacity: 0
+  z-index: 1
   cursor: pointer
 
 .form__submit--language
   position: absolute
   top: -1000px
   left: -1000px  
+  @extend %small-type
 
