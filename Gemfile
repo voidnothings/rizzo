@@ -16,7 +16,6 @@ group :assets do
   gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git'
 end
 
-
 group :test do 
   gem 'guard'
   gem 'guard-coffeescript'
