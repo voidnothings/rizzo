@@ -1,6 +1,5 @@
-
 // ----------------------------------------
-// _default-layout.sass  (legacy layout)
+// _default-layout.sass  (legacy layout only)
 // ----------------------------------------
 
 body
@@ -22,3 +21,26 @@ body
   .left-nav + &
     @extend %right-content-pane-width
 
+input[type="text"], input[type="email"], input[type="date"]
+  @extend %border-box
+  @extend %four-pixel-rounded
+  @extend %no-margin
+  @extend %sans-serif
+  @extend %box-off
+  background-color: #fff
+  border: 1px solid $soft-gray
+  color: $body-copy
+  width: 100%
+
+input[type="submit"]
+  border: none
+  @extend %larger-type
+  @extend %sans-serif
+  -webkit-appearance: none
+
+input, textarea, select
+  outline: none
+  +box-sizing()
+
+.clearfix
+  display: block
