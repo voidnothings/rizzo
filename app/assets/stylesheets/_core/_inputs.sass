@@ -1,5 +1,31 @@
 // ----------------------------------------------------------------------------
 // 
+//  Input defaults
+// 
+// ----------------------------------------------------------------------------
+input[type="text"], input[type="email"], input[type="date"]
+  @extend %border-box
+  @extend %four-pixel-rounded
+  @extend %no-margin
+  @extend %sans-serif
+  @extend %box-off
+  background-color: #fff
+  border: 1px solid $soft-gray
+  color: $body-copy
+  width: 100%
+
+input[type="submit"]
+  border: none
+  @extend %larger-type
+  @extend %sans-serif
+  -webkit-appearance: none
+
+input, textarea, select
+  outline: none
+  +box-sizing()
+
+// ----------------------------------------------------------------------------
+// 
 // Input--Regular
 // 
 // ----------------------------------------------------------------------------
@@ -9,8 +35,8 @@
   border: none!important
   color: $body-copy
   margin-right: 5px
-  padding: 8px 10px 
-  width: 170px!important
+  padding: 9px 10px!important
+  width: 173px!important
 
 // ----------------------------------------------------------------------------
 //
@@ -62,7 +88,7 @@
   &:after
     @extend %empty-abs-generated-content
     @extend %sprite-core--standard
-    background-position: -102px -98px
+    background-position: -102px -97px
     width: 16px
     height: 30px
     top: 0
@@ -79,26 +105,29 @@
   @extend %input--small
   @extend %small-type
 
-.dropdown__input--small  
-  width: 86px!important
+input[class*=dropdown\_\_input\-\-small]
+  width: 86px
+  padding: 8px 10px
 
 // ----------------------------------------------------------------------------
 //
 // Drop-Down
 //
-// ----------------------------------------------------------------------------
+// ------------1----------------------------------------------------------------
 
 .relative
   @extend %relative
   display: inline
 
 .form__select--language  
+  +appearance(menulist-button)
   position: absolute
+  height: 100%
   right: 0
   top: 0
-  height: 30px
   width: 86px
   opacity: 0
+  filter: alpha(opacity = 0)
   z-index: 1
   cursor: pointer
 
