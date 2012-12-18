@@ -50,7 +50,7 @@
   float: left
   font-size: 28px
   line-height: 32px
-  max-width: 390px
+  max-width: 360px
   
 .row__inner--secondary
   min-height: 32px
@@ -84,9 +84,18 @@
   @extend %small-type
   @extend %helvetica-neue
   line-height: 1.5em
-  padding: 10px 0 10px 50px
+  padding: 12px 0 12px 60px
+  position: relative
   strong
     font-weight: bold
+  &:before
+    @extend %empty-abs-generated-content
+    @extend %sprite-core--standard
+    left: 0px 
+    top: 0px
+    width: 40px
+    height: 60px
+    background-position: -110px -1px
 
 
 // ----------------------------------------------------------------------------

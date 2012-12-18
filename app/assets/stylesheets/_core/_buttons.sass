@@ -8,11 +8,13 @@
   @extend %base-button
   padding: 10px
 
-.btn-submit--regular
-  font-size: 12px !important
+
+.btn-submit--small
   @extend %base-button
-  padding: 10px
   cursor: pointer
+  font-size: 12px!important
+  padding: 8px 8px
+  line-height: 16px
 
 // ---------------------------------------------------
 //
@@ -20,7 +22,7 @@
 //
 // ---------------------------------------------------
 
-.btn--right
+[class*=\-\-right]
   float: right
 
 // ---------------------------------------------------
