@@ -1,16 +1,17 @@
 // ----------------------------------------------------------------------------
 // 
-// Core overrides for defaults
+// Input--Regular
 // 
 // ----------------------------------------------------------------------------
 
-a
-  text-decoration: none
-  &:hover
-    text-decoration: none
+%input--regular
+  margin: 0
+  border: 0
+  outline: 0
 
-input, textarea, select
-  outline: none
-  @include box-sizing()
+%input--small
+  @extend %input--regular
+  @extend %four-pixel-rounded 
+  @extend %small-type
 
 

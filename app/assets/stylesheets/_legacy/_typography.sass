@@ -13,7 +13,7 @@ html
 
 body
   min-height: 100%
-  color: $base-font-color
+  color: $base_font_color
 
 // -----------------------------------------------------------------------------
 // Typographic Element Definitions 
@@ -24,27 +24,6 @@ h1, h2, h3
 
 p
   @extend %margin-bottom-10
-
-a
-  color: $link-color
-  cursor: pointer
-  text-decoration: none
-  &:hover
-    text-decoration: underline
-
-// Needs to be declared twice to work properly cross browser, not to be combined
-::-moz-selection
-  background-color: #28c3c9
-  color: white
-  
-::selection
-  background-color: #28c3c9
-  color: white
-
-
-// -----------------------------------------------------------------------------
-// Reusable Typographic Classes
-// -----------------------------------------------------------------------------
 
 .section-title
   @extend %section-heading-size-type
@@ -64,6 +43,13 @@ a
 .disclaimer
   @extend %disclaimer-copy
 
+a
+  color: $link_color
+  cursor: pointer
+  text-decoration: none
+  &:hover
+    text-decoration: underline
 
-
+::selection
+  @extend %active-background
 

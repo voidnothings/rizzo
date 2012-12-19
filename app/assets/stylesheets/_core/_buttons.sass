@@ -1,0 +1,46 @@
+// ---------------------------------------------------
+//
+// Button Defaults
+//
+// ---------------------------------------------------
+
+.btn--regular
+  @extend %base-button
+  padding: 10px
+
+
+.btn-submit--small
+  @extend %base-button
+  cursor: pointer
+  font-size: 12px!important
+  padding: 8px 8px
+  line-height: 16px
+
+// ---------------------------------------------------
+//
+// Button Positioning
+//
+// ---------------------------------------------------
+
+[class*=\-\-right]
+  float: right
+
+// ---------------------------------------------------
+//
+// Button Themes
+//
+// ---------------------------------------------------
+
+.btn--gray
+  color: #fff
+  background-color: #4e5763
+  &:hover
+    background-color: #a5acb5
+
+.btn--cyan
+  background-color: $nav-secondary-current-item-bck
+  color: #fff
+  &:hover
+    background-color: #fff
+    color: $nav-secondary-current-item-bck
+
