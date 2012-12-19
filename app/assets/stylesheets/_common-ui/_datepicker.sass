@@ -16,8 +16,8 @@
   max-height: 0
   overflow-y: hidden
   .pickadate__holder--opened &
-    +box-shadow(1, 3, 10, 3, rgba(0, 0, 0, 0.1))
     max-height: 25em
+    +box-shadow(1, 3, 10, 3, rgba(0, 0, 0, 0.1))
 
 .pickadate__calendar
   padding: 10px
@@ -36,33 +36,38 @@
   color: $header-gray
   font-weight: bold
 
+.pickadate__month--nav
+  position: relative
+
 .pickadate__month--prev,
 .pickadate__month--next
   color: $body-copy
   position: absolute
-  top: 10px
+  top: 0
   width: 25px
   height: 25px
   cursor: pointer
   &:before, &:after
     +font-size(20)
     line-height: 20px
-    text-align: center
 
 .pickadate__month--prev
   @extend %chevron-left-before
   @extend %left-icon
   left: 10px
+  &:before
+    text-align: left
 
 .pickadate__month--next
   @extend %chevron-right-after
   @extend %right-icon
   right: 10px
+  &:after
+    text-align: right
 
 .pickadate__calendar--table
   border-collapse: separate
   border-spacing: 4px
-  table-layout: fixed
   width: 100%
 
 .pickadate__weekday
@@ -90,12 +95,11 @@
   background-color: $active
   color: #fff
 
-.pickadate__day--outfocus
+.pickadate__day--outfocus,
+.pickadate__day--disabled
   border: none
 
-.pickadate__day--disabled,
-.pickadate__day--disabled:hover
-  border: none
+.pickadate__day--disabled
   opacity: 0.5
   color: #ddd
   cursor: default
