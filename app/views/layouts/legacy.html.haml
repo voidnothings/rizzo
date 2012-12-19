@@ -1,17 +1,20 @@
 !!! 5
-%html.no-js
-  %head
-    = render 'layouts/legacy/head'
-  %body{class: client_browser(request.user_agent) }
-    .wrap
-      = render 'layouts/legacy/header'
-      = render 'layouts/legacy/title_bar', { style: 'green' }
-      .content
-        = yield :secondary
-        = yield
-      = render 'layouts/legacy/footer'
-    .js-config.is-hidden   
-      = js_configuration        
-      = requirejs_include_tag 'app_legacy' 
-      = yield :scripts
+<!--[if IE 7]><html class="no-js ie7" lang="en"><![endif]-->
+<!--[if IE 8]><html class="no-js ie8" lang="en"><![endif]-->
+<!--[if IE 9]><html class="no-js ie9" lang="en"><![endif]-->
+<!--[if gt IE 9]><!--><html class='no-js' lang="en"><!--<![endif]-->
+%head
+  = render 'layouts/legacy/head'
+%body
+  .wrap
+    = render 'layouts/legacy/header'
+    = render 'layouts/legacy/title_bar', { style: 'green' }
+    .content
+      = yield :secondary
+      = yield
+    = render 'layouts/legacy/footer'
+  .js-config.is-hidden   
+    = js_configuration        
+    = requirejs_include_tag 'app_legacy' 
+    = yield :scripts
 
