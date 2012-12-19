@@ -49,15 +49,15 @@ define ['jquery'], ($)->
 
     userOptionsMenu: ->
       userOptions = [
-        {title: 'My Profile', uri: "#{@options.membersUrl}"},
-        {title: 'Settings', uri: "#{@options.membersUrl}/#{@lpUserName}/edit"},
+        {title: 'My Profile', uri: "#{@options.membersUrl}", style:"js-user-profile"},
+        {title: 'Settings', uri: "#{@options.membersUrl}/#{@lpUserName}/edit",  style:"js-user-settings"},
         {title: 'Messages', uri: "#{@options.messagesUrl}", style:"js-user-msg"},
-        {title: 'Forum Activity', uri: "#{@options.forumPostsUrlTemplate.replace('[USERNAME]', @lpUserName)}", style:"nav-user-options__item--forum" },
-        {title: 'Sign-Out', uri: "#{@options.signOutUrl}", style:"nav-user-options__item--signout" }
+        {title: 'Forum Activity', uri: "#{@options.forumPostsUrlTemplate.replace('[USERNAME]', @lpUserName)}", style:"nav-user-options__item--forum js-user-forum" },
+        {title: 'Sign-Out', uri: "#{@options.signOutUrl}", style:"nav-user-options__item--signout js-user-signout" }
       ]
       optionElements =  ("<a class='nav-user-options__item #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
 
-      userMenu = "<nav class='nav-user-options'><div class='nav-user-options__title'>#{@lpUserName}</div>#{optionElements}</nav>"  
+      userMenu = "<nav class='nav-user-options js-user-options'><div class='nav-user-options__title'>#{@lpUserName}</div>#{optionElements}</nav>"  
     
     signInUrl:->
       "https://secure.lonelyplanet.com/sign-in/login?service=#{escape(window.location)}"

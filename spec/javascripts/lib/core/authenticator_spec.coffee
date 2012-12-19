@@ -31,35 +31,66 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
       it 'has a sign-out url', ->
         expect(@auth.options.signOutUrl).toBeDefined()
 
-
-    describe 'user logged-out', ->
+    describe 'logged-out', ->
 
       beforeEach ->
         loadFixtures('userBox.html')
         @auth = new Authenticator()
 
-      it 'is signed out', ->
-        expect(@auth.userState).toBe(false)
-        expect($('nav.js-user-nav')).not.toHaveClass('is-logged')
+      describe 'user', ->
 
-      it 'sees a sign-in link', ->
-        expect($('a.js-user-sing-in')).toExist()
+        it 'is signed out', ->
+          expect(@auth.userState).toBe(false)
+          expect($('nav.js-user-nav')).not.toHaveClass('is-logged')
 
-      it 'sees a register link', ->
-        expect($('a.js-user-join')).toExist()
+        it 'sees a sign-in link', ->
+          expect($('a.js-user-signin')).toExist()
+
+        it 'sees a register link', ->
+          expect($('a.js-user-join')).toExist()
+
+        it 'has a user join url', ->
+          expect($('a.js-user-join').attr('href')).toBe(@auth.options.registerLink)
+
+        it 'has a sign-in url', ->
+          expect($('a.js-user-signin').attr('href')).toBe(@auth.signInUrl())
+
+        it 'has a sign-in url with the current service uri', ->  
+          expect(@auth.signInUrl()).toMatch(/\?service/)
+          expect(@auth.signInUrl()).toMatch(/localhost/)
+
+    # 
+    describe 'logged-in', ->
+
+      describe 'user', ->
+
+        beforeEach ->
+          loadFixtures('userBox.html')
+          window.localStorage.setItem('lp-uname', 'KellyJones')
+          @auth = new Authenticator()
+
+        afterEach ->
+          localStorage.removeItem('lp-uname')
+
+        it 'is signed in', ->
+          expect(@auth.userState).toBe(true)
+          expect($('nav.js-user-nav')).toHaveClass('is-signed-in')
+
+        it 'does not has a sign-in link', ->
+          expect($('a.js-user-singin')).not.toExist()
+
+        it 'does not has a register link', ->
+          expect($('a.js-user-join')).not.toExist()
+
+        it 'has user box', ->  
+          expect($('div.user-box')).toExist()
+        
+        it 'has an avatar thumbnail', ->
+          expect($('img.user-box__img')).toExist()
+          expect(@auth.userAvatar()).toBe("#{@auth.options.membersUrl}/#{@auth.lpUserName}/mugshot/mini")
+
     
-      it 'has a user join url', ->
-        expect($('a.js-user-join').attr('href')).toBe(@auth.options.registerLink)
- 
-      it 'has a sign-in url', ->
-        expect($('a.js-user-sing-in').attr('href')).toBe(@auth.signInUrl())
-
-      it 'has a sign-in url with the current service uri', ->  
-        expect(@auth.signInUrl()).toMatch(/\?service/)
-        expect(@auth.signInUrl()).toMatch(/localhost/)
-
-    
-    describe 'user logged-in', ->
+    describe 'options menu', ->
 
       beforeEach ->
         loadFixtures('userBox.html')
@@ -69,80 +100,55 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
       afterEach ->
         localStorage.removeItem('lp-uname')
 
-      it 'is signed in', ->
-        expect(@auth.userState).toBe(true)
-        expect($('nav.js-user-nav')).toHaveClass('is-logged')
+      describe 'user', ->
 
-      it 'does not has a sign-in link', ->
-        expect($('a.js-user-sing-in')).not.toExist()
+        it 'has a user dropdown menu', ->
+          expect($('nav.js-user-options')).toExist()
 
-      it 'does not has a register link', ->
-        expect($('a.js-user-join')).not.toExist()
+        it 'shows the user name', ->
+           expect($('div.nav-user-options__title')).toExist()
+           expect($('div.nav-user-options__title').text()).toBe('KellyJones')
 
-      it 'has user box', ->  
-        expect($('div.user-box')).toExist()
-      
-      it 'has an avatar thumbnail', ->
-        expect($('img.user-img')).toExist()
-        expect(@auth.userAvatar()).toBe("#{@auth.options.membersUrl}/#{@auth.lpUserName}/mugshot/mini")
+        it 'has a user-profile link', ->
+           expect($('a.js-user-profile')).toExist()
+           expect($('a.js-user-profile').text()).toBe('My Profile')
 
-    
-    describe 'user options menu', ->
+        it 'has a user-settings link', ->
+           expect($('a.js-user-settings')).toExist()
+           expect($('a.js-user-settings').text()).toBe('Settings')
 
-      beforeEach ->
-        loadFixtures('userBox.html')
-        window.localStorage.setItem('lp-uname', 'KellyJones')
-        @auth = new Authenticator()
+        it 'has a user-messages link', ->
+           expect($('a.js-user-msg')).toExist()
+           expect($('a.js-user-msg').text()).toBe('Messages')
 
-      afterEach ->
-        localStorage.removeItem('lp-uname')
+        it 'has a user-forum-activity link', ->
+           expect($('a.js-user-forum')).toExist()
+           expect($('a.js-user-forum').text()).toBe('Forum Activity')
 
-      it 'has a user dropdown menu', ->
-        expect($('div.js-user-options')).toExist()
-
-      it 'shows the user name', ->
-         expect($('span.user-name')).toExist()
-         expect($('span.user-name').text()).toBe('KellyJones')
-
-      it 'has a user-profile link', ->
-         expect($('a.user-profile')).toExist()
-         expect($('a.user-profile').text()).toBe('My Profile')
-
-      it 'has a user-settings link', ->
-         expect($('a.user-settings')).toExist()
-         expect($('a.user-settings').text()).toBe('Settings')
-
-      it 'has a user-messages link', ->
-         expect($('a.user-msg')).toExist()
-         expect($('a.user-msg').text()).toBe('Messages')
-
-      it 'has a user-forum-activity link', ->
-         expect($('a.user-forum')).toExist()
-         expect($('a.user-forum').text()).toBe('Forum Activity')
-
-      it 'has a sign-out link', ->
-         expect($('a.user-signout')).toExist()
-         expect($('a.user-signout').text()).toBe('Sign-Out')
-         expect($('a.user-signout').attr('href')).toBe(@auth.options.signOutUrl)
+        it 'has a sign-out link', ->
+           expect($('a.js-user-signout')).toExist()
+           expect($('a.js-user-signout').text()).toBe('Sign-Out')
+           expect($('a.js-user-signout').attr('href')).toBe(@auth.options.signOutUrl)
 
 
-    describe 'user messages count', ->
+    describe 'messages count', ->
 
-      beforeEach ->
-        loadFixtures('userBox.html')
-        window.localStorage.setItem('lp-uname', 'KellyJones')
-        Authenticator.prototype.showMessageCount = ()-> console.log('me')
-        @auth = new Authenticator()
+      describe 'user', ->
+        
+        beforeEach ->
+          loadFixtures('userBox.html')
+          window.localStorage.setItem('lp-uname', 'KellyJones')
+          Authenticator.prototype.showMessageCount = ()-> console.log('me')
+          @auth = new Authenticator()
 
-      it 'has no messages to read', ->
-        expect($('span.js-user-msg-unread')).toExist()
-        expect($('span.js-user-msg-unread').text()).toBe('')
+        it 'has no messages to read', ->
+          expect($('span.js-user-msg-unread')).not.toExist()
 
-      it 'has 7 messages to read', ->
-        data = 
-          received_count: 0
-          sent_count: 0
-          unread_count: 7
-        @auth.messageCountCallBack(data)
-        expect($('span.js-user-msg-unread').text()).toBe('7')
+        it 'has 7 messages to read', ->
+          data = 
+            received_count: 0
+            sent_count: 0
+            unread_count: 7
+          @auth.messageCountCallBack(data)
+          expect($('span.js-user-msg-unread').text()).toBe('7')
 
