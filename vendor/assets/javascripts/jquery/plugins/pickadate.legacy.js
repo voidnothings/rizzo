@@ -39,7 +39,7 @@ define(['jquery'], function($){
 
         $document = $( document ),
 
-        isLegacyIE = window.navigator.userAgent.match( /MSIE (7|8).0/ ),
+        isLegacyIE = window.navigator.userAgent.match( /MSIE (7|8|9|10).0/ ),
 
 
         /**
