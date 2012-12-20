@@ -6,14 +6,29 @@
 // -----------------------------------------------------------------------------
 //  Icon sizes
 
+%icon
+  display: block
+  background-repeat: no-repeat
+
 %small-icon  
+  @extend %icon
   width: 16px
   height: 16px
 
 %regular-icon
+  @extend %icon
   width: 32px
   height: 32px
 
+.icon--small
+  @extend %small-icon  
+  width: 16px
+  height: 16px
+
+.icon--regular
+  @extend %small-icon  
+  width: 32px
+  height: 32px
 
 // -----------------------------------------------------------------------------
 // Helper extends for positioning icons at the horizontal extremes of an 

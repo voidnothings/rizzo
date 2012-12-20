@@ -1,0 +1,68 @@
+// ----------------------------------------------------------------------------
+// 
+// Overrides
+// Essentially solves issues when mixing old legacy styles with new core layout
+// 
+// ----------------------------------------------------------------------------
+
+body
+  min-height: 100%
+  color: $base_font_color
+  background-color: #fff!important
+a
+  cursor: pointer
+  text-decoration: none
+  &:hover
+    text-decoration: none
+
+input, textarea, select
+  outline: none
+  +box-sizing()
+
+.wrap--footer
+  .column--footer
+  a
+    cursor: pointer
+    +font-size(12)
+    &:hover
+      color: #7F9394!important
+  .column--footer, .column--footer--last, .text--legal, input, .box-description__title--footer, .box-description__lead--footer, .nav__item--breadcrumbs--current, .label--footer, .form__select--language 
+    +font-size(12)
+  .nav__item--footer--darker
+    &:hover
+      color: #fff!important
+      text-decoration: none!important
+  .nav__item--breadcrumbs, .nav__item--breadcrumbs--current
+    line-height: 1em!important
+
+.nav--primary, .nav-primary--user, .nav--secondary
+  a
+    cursor: pointer
+    line-height: 1em
+    &:hover
+      text-decoration: none
+
+.row--content
+  margin-bottom: 18px
+  background-color:  #fff!important
+
+.row__inner--content
+  padding: 0px!important
+  
+.btn-submit--regular--newsletter
+  padding: 8px 10px
+  +font-size(12)
+  &:hover
+    background-color: #fff
+    color: $nav-secondary-current-item-bck
+
+.dropdown--small--footer  
+  width: 86px!important
+  border: 0!important
+
+.input--small--footer
+  border: none !important
+  padding: 8px 10px !important
+  margin-right: 5px !important
+  width: 170px !important  
+

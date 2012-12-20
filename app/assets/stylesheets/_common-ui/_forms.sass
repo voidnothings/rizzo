@@ -1,20 +1,9 @@
-input[type="text"], input[type="email"], input[type="date"]
-  @extend %border-box
-  @extend %four-pixel-rounded
-  @extend %no-margin
-  @extend %sans-serif
-  @extend %box-off
-  background-color: #fff
-  border: 1px solid $soft-gray
-  color: $body-copy
-  width: 100%
-
-
 input[type="date"], input.datepicker
   background-image: url(image_path("lodgings-spt.png"))
   padding-right: 35px
   background-repeat: no-repeat
   background-position: 99% -112px
+  @extend %regular-type-size
   +retinafy()
     background-image: url(image_path("lodgings-spt-2x.png"))
     background-size: $sprite-size
@@ -22,11 +11,6 @@ input[type="date"], input.datepicker
   +placeholder()
     color: $placeholder-copy
 
-input[type="submit"]
-  border: none
-  @extend %larger-type
-  @extend %sans-serif
-  -webkit-appearance: none
 
 input[type="submit"][disabled], input[type="submit"][disabled]:hover
   @extend %disabled-state
@@ -39,3 +23,5 @@ $custom-select-height: 36px
   width: $custom-select-width
   height: $custom-select-height
   +custom-select($custom-select-height, $custom-select-width)
+
+
