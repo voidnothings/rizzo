@@ -51,7 +51,7 @@ module GlobalResourcesHelper
   end
 
   def secondary_nav_bar(args)
-    render :partial=>'layouts/core_partials/secondary_navigation_bar', :locals=>{:title=>args[:title], :collection=>args[:collection] || [], :current=> args[:current] || nil}
+    render :partial=>'layouts/core/snippets/secondary_navigation_bar', :locals=>{:title=>args[:title], :collection=>args[:collection] || [], :current=> args[:current] || nil}
   end
 
   def membership_item_element
@@ -90,7 +90,7 @@ module GlobalResourcesHelper
       haml_tag(:div, id: 'breadcrumbWrap', class: 'posChange') do
         haml_tag(:ol, id: 'breadcrumb') do
           breadcrumb_content.each_with_index do |item, index|
-            li_class = index == current_place.breadcrumb.size-1 ? "breadcrumb-item last" : "breadcrumb-item twoCol"
+            li_class = index == breadcrumb_content.size-1 ? "breadcrumb-item last" : "breadcrumb-item twoCol"
             if item[:slug].blank?
               haml_tag(:li, class: li_class) { haml_tag(:span, class: 'breadcrumb-item-title') { haml_concat item[:place] } }
             else

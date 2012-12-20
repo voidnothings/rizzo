@@ -22,9 +22,12 @@ group :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'guard-rspec'
-  gem 'capybara'
+
+  gem 'selenium-webdriver', '2.26.0'
+  gem 'capybara', '< 2.0.0'
   gem 'cucumber'
   gem 'cucumber-rails', :require => false
+
   gem 'guard-cucumber'
   gem 'rb-fsevent', '~> 0.9.1'
 end
