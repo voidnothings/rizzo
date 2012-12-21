@@ -53,6 +53,6 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
 
       it 'shows a message when the ajax call fails', ->
         $('body').trigger('receivedHotels/error')
-        expect($('.system-error')).toExist()
+        expect($('.error--system')).toExist()
         $('.test-area').remove()
     
