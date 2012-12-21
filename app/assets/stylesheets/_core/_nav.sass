@@ -28,7 +28,7 @@
     color: #fff
     text-decoration: none
 
-.nav__item--title    
+.nav__item--title 
   @extend %nav--footer--title
 
 .nav__item--vertical--footer
@@ -41,7 +41,6 @@
     text-decoration: underline
   &:first-child
     @extend .title--list--footer
-    color: $body-copy
 
 .nav__item--breadcrumbs--current
   @extend .nav__item--breadcrumbs
@@ -59,7 +58,18 @@
     @extend %sprite-core--standard
     left: 0px 
     top: 9px
-    background-position: -128px -163px
+    background-position: -128px -162px
+
+.ie8
+  .nav__item--breadcrumbs
+    &:before
+      background-position: -128px -163px
+
+.ie7
+  .nav__item--breadcrumbs
+    background-image: image_url("core/core-arrow--gray.png")
+    background-position: 2px 10px
+    background-repeat: no-repeat
 
 .icon--home
   @extend %sprite-core--standard
@@ -136,7 +146,11 @@
 
 .nav-primary--user
   @extend %absolute-right
-  margin: 8px 0 0
+  margin-top: 8px
+
+.ie7
+  .nav-primary--user
+    width: 135px
 
 .nav__item--primary--user
   @extend .nav__item--primary
