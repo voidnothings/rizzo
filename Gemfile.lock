@@ -1,12 +1,12 @@
 GIT
   remote: git@github.com:lonelyplanet/avocado.git
-  revision: ae6622f43a4262938cef927ec54ee135ca2b0e50
+  revision: 113c5cd69a6703b6e5f6ff3aeb4dfeb71b2cbb4a
   specs:
     avocado (0.0.31)
 
 GIT
   remote: git@github.com:lonelyplanet/beaker.git
-  revision: 335d2bfdbff49e71cfb79e387527ab60fddbec38
+  revision: ed45c3f3725e4055d404905bb62c798ab847491a
   specs:
     beaker (0.1.0)
 
@@ -87,7 +87,7 @@ GEM
     guard-cucumber (1.2.2)
       cucumber (>= 1.2.0)
       guard (>= 1.1.0)
-    guard-rspec (2.3.1)
+    guard-rspec (2.3.3)
       guard (>= 1.1)
       rspec (~> 2.11)
     haml (3.1.7)
@@ -113,7 +113,7 @@ GEM
     method_source (0.8.1)
     mime-types (1.19)
     multi_json (1.5.0)
-    nokogiri (1.5.5)
+    nokogiri (1.5.6)
     polyglot (0.3.3)
     pry (0.9.10)
       coderay (~> 1.0.5)
@@ -193,7 +193,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    websocket (1.0.4)
+    websocket (1.0.6)
     xpath (0.1.4)
       nokogiri (~> 1.3)
 
