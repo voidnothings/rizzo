@@ -16,19 +16,6 @@
   @extend %clearfix
   @extend %smooth-text
 
-%tabs-chevron-icon
-  @extend %chevron-down-after
-  @extend %right-icon
-  padding-right: 21px
-  &:after
-    font-size: 20px
-    top: -1px
-    color: $soft-gray
-  .is-active &, &.is-active
-    @extend %chevron-up-after
-    &:after
-      color: $active--subdued
-
 .tab__header
   +vertically-center(36px)
   +border-radius(4)
@@ -69,43 +56,49 @@
 // Dates and Filters tabs
 // -----------------------------------------------------------------------------
 
-
-.tab__header__start-date
+%tab__header__icon
   @extend %inline-block
   @extend %left-icon
+  &:before
+    color: $soft-gray
+    line-height: 32px
+  .is-active &, &.is-active
+    &:before
+      color: $active--subdued
+
+%tabs-chevron-icon
+  @extend %chevron-down-after
+  @extend %right-icon
+  padding-right: 21px
+  &:after
+    line-height: 1
+    top: 5px
+    font-size: 20px
+    color: $soft-gray
+  .is-active &, &.is-active
+    @extend %chevron-up-after
+    &:after
+      color: $active--subdued
+
+.tab__header__start-date
+  @extend %tab__header__icon
   @extend %date-icon-before
   padding-left: 25px
   &:before
-    top: -2px
-    color: $soft-gray
-  .is-active &, &.is-active
-    &:before
-      color: $active--subdued
+    font-size: 32px
 
 .tab__header__end-date
-  @extend %inline-block
+  @extend %tab__header__icon
   @extend %tabs-chevron-icon
   @extend %arrow-icon-before
-  @extend %left-icon
   padding-left: 20px
   &:before
     font-size: 28px
-    top: -2px
-    color: $soft-gray
-  .is-active &, &.is-active
-    &:before
-      color: $active--subdued
 
 .tab__header__filters
-  @extend %inline-block
+  @extend %tab__header__icon
   @extend %tabs-chevron-icon
   @extend %filter-icon-before
-  @extend %left-icon
   padding-left: 21px
   &:before
-    font-size: 34px
-    top: -2px
-    color: $soft-gray
-  .is-active &, &.is-active
-    &:before
-      color: $active--subdued
+    font-size: 22px
