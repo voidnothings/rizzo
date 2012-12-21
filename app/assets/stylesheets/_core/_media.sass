@@ -2,18 +2,22 @@
 // 
 // ----------------------------------------------------------------------------
 
+
 %sprite-core--standard
-  @extend %data-sprite-core--retina
-  background-size: 174px 191px
+  background-image: image_url("core/core-sprite-standard.png")
   background-repeat: no-repeat
 
+%sprite-core--retina
+  background-image: image_url("core/core-sprite-retina.png")
+  background-size: 174px 191px
+  background-repeat: no-repeat
 
 // ----------------------------------------------------------------------------
 // 
 // lonely planet mark
 // 
 // ----------------------------------------------------------------------------
-
+//
 .media--lp-logo--head
   @extend %sprite-core--standard
   background-position: 0 1px
@@ -34,6 +38,17 @@
     left: 0
     background-position: 0 2px
     background-size: 140px
+
+.ie7, .ie8
+  .media--lp-logo--footer
+    background-image: image_url("core/lp-logo--small.png")
+    background-position: 0 2px
+    background-repeat: no-repeat
+
+.ie8
+  .media--lp-logo--footer
+    &:before
+      display: none
 
 // ----------------------------------------------------------------------------
 // 

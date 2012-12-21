@@ -35,8 +35,17 @@ input, textarea, select
   border: none!important
   color: $body-copy
   margin-right: 5px
-  padding: 9px 10px!important
+  padding: 8px 8px
   width: 173px!important
+
+.ie7
+  .input--small--footer
+    width: 151px!important
+
+.ie8
+  .input--small--footer
+    width: 161px!important    
+
 
 // ----------------------------------------------------------------------------
 //
@@ -52,8 +61,10 @@ input, textarea, select
     @extend %empty-abs-generated-content
     @extend %sprite-core--standard
     background-position: -60px -155px
+    display: block
     width: 32px
     height: 32px
+
 
 .search__input
   @extend %no-border
@@ -67,14 +78,61 @@ input, textarea, select
   @include box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.2), true)
   @include border-radius(16)
   @include transition(all, 0.2, ease)
-
   background-color: $nav-search-bck
   color: $nav-search-colour
-  width: 140px
+  width: 150px
   &:focus
     @extend %background-white
     color: $nav-search-bck-focus 
-    width: 230px
+    width: 225px
+
+    
+// ----------------------------------------------------------------------------
+//
+// Search - IE 7,8 & 9
+//
+// ----------------------------------------------------------------------------
+
+.ie9
+  .search--primary
+    margin-top: 10px
+    &:before
+      background-position: -60px -157px
+
+.ie7, .ie8 
+  .search--primary
+    border: 1px #20374F solid
+    background-color: $nav-search-bck
+
+.ie8 
+  .search--primary
+    &:before 
+      background-position: -62px -157px
+
+.ie7
+  .search--primary
+    background-image: image_url("core/core-sprite-standard.png")
+    background-repeat: no-repeat
+    background-position: -62px -157px
+
+.ie7
+  .search__input--primary
+    margin-left: 33px
+    width: 170px!important
+    padding: 8px
+    border: none
+    @extend %background-white
+
+.ie8
+  .search__input--primary
+    margin-left: 33px
+    width: 185px
+    padding: 8px 8px 8px 0
+    &:focus
+      @extend %background-white
+      color: $nav-search-bck-focus 
+      padding-left: 8px
+
 
 // ----------------------------------------------------------------------------
 //
