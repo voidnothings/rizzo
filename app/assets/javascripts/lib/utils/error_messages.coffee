@@ -3,9 +3,9 @@ define ->
   class errorMessages  
 
     systemError : ->
-      error = '<div class="system-error js-error">' +
-                '<div class="error-inner">' +
-                  '<h3 class="error-title">Whoopsie&hellip; an error has occurred</h3>' +
-                  '<p class="error-copy">We have our best guys working on it. In the meantime, please try again</p>' +
+      error = '<div class="error--system js-error">' +
+                '<span class="error__image hazard-sign" role="img">&#57414;</span>' +
+                '<div class="error__inner">' +
+                  '<h3 class="error__title error--system__title">Oops&hellip; something broke. Please try again.</h3>' +
                 '</div>' +
               '</div>'
