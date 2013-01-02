@@ -137,3 +137,21 @@
   background-color: $footer-blue
   @extend %small-type
   color: #cfd0d1
+
+// ----------------------------------------------------------------------------
+// 
+// Sticky footer
+// 
+// ----------------------------------------------------------------------------
+
+.wrap
+  background-color: $body-background
+  min-height: 100%
+  height: auto !important
+  height: 100%
+  margin: 0
+  margin-bottom: -440px
+  
+.row--footer-push
+  height: 440px
+
