@@ -11,7 +11,8 @@
     .row.row--content
       .row__inner.row__inner--content
         = yield
-  .wrap--footer  
+      .row--footer-push  
+  .wrap--footer
     = render 'layouts/core/footer'
   .js-config.is-hidden   
     = js_configuration        
