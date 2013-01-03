@@ -3,26 +3,25 @@
 //  Input defaults
 // 
 // ----------------------------------------------------------------------------
-input[type="text"], input[type="email"], input[type="date"]
+
+input, textarea
   @extend %border-box
-  @extend %four-pixel-rounded
   @extend %no-margin
   @extend %helvetica-neue
-  @extend %box-off
-  background-color: #fff
   border: 1px solid $soft-gray
   color: $body-copy
+  outline: none
 
+input[type="text"], input[type="email"], input[type="date"]
+  @extend %four-pixel-rounded
+  @extend %box-off
+  background-color: #fff
 
 input[type="submit"]
   border: none
   @extend %larger-type
-  @extend %helvetica-neue
   -webkit-appearance: none
 
-input, textarea, select
-  outline: none
-  +box-sizing()
 
 // ----------------------------------------------------------------------------
 // 
@@ -30,8 +29,7 @@ input, textarea, select
 // 
 // ----------------------------------------------------------------------------
 
-input[class*=input\-\-small]
-  +box-sizing()
+.input--small--footer
   border: none
   color: $body-copy
   padding: 9px
@@ -61,18 +59,18 @@ input[class*=input\-\-small]
     height: 32px
 
 .search__input
-  @extend %no-border
   padding: 8px 10px 8px 30px
 
 .search__input--primary
-  line-height: 16px
   @extend %regular-type-size
   @extend %helvetica-neue
+  @extend %no-border
   @include box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.2), true)
   @include border-radius(16)
   @include transition(all, 0.2, ease)
   background-color: $nav-search-bck
   color: $nav-search-colour
+  line-height: 16px
   width: 150px
   &:focus
     @extend %background-white
