@@ -1,6 +1,6 @@
 // ---------------------------------------------------
 //
-// Button Defaults
+// Defaults
 //
 // ---------------------------------------------------
 
@@ -10,15 +10,19 @@
 
 
 .btn-submit--small
+  +box-sizing()
   @extend %base-button
   cursor: pointer
-  font-size: 12px!important
-  padding: 8px 8px
+  padding: 8px 0
   line-height: 16px
+  width: 60px
+
+[class*=btn\-submit]  
+  font-size: 12px!important
 
 // ---------------------------------------------------
 //
-// Button Positioning
+// Positioning
 //
 // ---------------------------------------------------
 
@@ -27,7 +31,7 @@
 
 // ---------------------------------------------------
 //
-// Button Themes
+// Themes
 //
 // ---------------------------------------------------
 
