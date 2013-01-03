@@ -1,3 +1,7 @@
+// -----------------------------------------------------------------------------
+// Datepicker uses an image because input cannot naturally contain pseudos
+// -----------------------------------------------------------------------------
+
 input[type="date"], input.datepicker
   background-image: url(image_path("lodgings-spt.png"))
   padding-right: 35px
@@ -12,8 +16,14 @@ input[type="date"], input.datepicker
     color: $placeholder-copy
 
 
+
 input[type="submit"][disabled], input[type="submit"][disabled]:hover
   @extend %disabled-state
+
+
+// -----------------------------------------------------------------------------
+// Custom Select for masking native element - requires select_group.js
+// -----------------------------------------------------------------------------
 
 $custom-select-width: 100%
 $custom-select-height: 36px
