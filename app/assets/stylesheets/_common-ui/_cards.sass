@@ -39,7 +39,8 @@ $stack-image-height: 275px
 // -----------------------------------------------------------------------------
 
 .card--stack
-  @extend .card
+  @extend %base-card-object
+  @extend %relative
   height: 380px
   .card__hero
     height: $stack-image-height
@@ -51,7 +52,8 @@ $stack-image-height: 275px
 //
 // -----------------------------------------------------------------------------
 .card--full-page
-  @extend .card
+  @extend %base-card-object
+  @extend %relative
   @extend %box-off-double
 
 .lodging--top-choice
