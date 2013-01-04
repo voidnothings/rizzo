@@ -1,0 +1,40 @@
+// ----------------------------------------------------------------------------
+// 
+//  Input defaults
+// 
+// ----------------------------------------------------------------------------
+
+input, textarea
+  @extend %border-box
+  @extend %helvetica-neue
+  @extend %no-border
+  outline: 0
+
+
+// ----------------------------------------------------------------------------
+// 
+// Input--Regular
+// 
+// ----------------------------------------------------------------------------
+
+// Input--regular is used for any standard text based inputs: text,email,date
+.input--regular
+  @extend %input--regular
+
+.input--submit
+  @extend %larger-type
+  &[disabled], &[disabled]:hover
+    @extend %disabled-state
+
+.input--datepicker
+  @extend %input--regular
+  background-image: url(image_path("lodgings-spt.png"))
+  padding-right: 35px
+  background-repeat: no-repeat
+  background-position: 99% -112px
+  +retinafy()
+    background-image: url(image_path("lodgings-spt-2x.png"))
+    background-size: $sprite-size
+    background-position: 95% -111px
+  +placeholder()
+    color: $placeholder-copy

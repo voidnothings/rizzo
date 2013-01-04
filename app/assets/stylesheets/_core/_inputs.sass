@@ -6,39 +6,47 @@
 
 input, textarea
   @extend %border-box
-  @extend %no-margin
   @extend %helvetica-neue
-  border: 1px solid $soft-gray
-  color: $body-copy
-  outline: none
+  @extend %no-border
+  outline: 0
 
-input[type="text"], input[type="email"], input[type="date"]
-  @extend %four-pixel-rounded
-  @extend %box-off
-  background-color: #fff
 
-input[type="submit"]
-  border: none
+// ----------------------------------------------------------------------------
+// 
+// Inputs
+// 
+// Input--regular is used for any standard text based inputs: text,email,date
+// ----------------------------------------------------------------------------
+
+.input--regular
+  @extend %input--regular
+
+.input--submit
   @extend %larger-type
-  -webkit-appearance: none
+  &[disabled], &[disabled]:hover
+    @extend %disabled-state
 
-
-// ----------------------------------------------------------------------------
-// 
-// Input--Regular
-// 
-// ----------------------------------------------------------------------------
+.input--datepicker
+  @extend %input--regular
+  background-image: url(image_path("lodgings-spt.png"))
+  padding-right: 35px
+  background-repeat: no-repeat
+  background-position: 99% -112px
+  +retinafy()
+    background-image: url(image_path("lodgings-spt-2x.png"))
+    background-size: $sprite-size
+    background-position: 95% -111px
+  +placeholder()
+    color: $placeholder-copy
 
 .input--small--footer
-  border: none
-  color: $body-copy
+  @extend %input--small
   padding: 9px
   width: 175px
   .ie7 &
     width: 151px!important
   .ie8 &
     width: 161px!important
-
 
 // ----------------------------------------------------------------------------
 //
@@ -63,8 +71,6 @@ input[type="submit"]
 
 .search__input--primary
   @extend %regular-type-size
-  @extend %helvetica-neue
-  @extend %no-border
   @include box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.2), true)
   @include border-radius(16)
   @include transition(all, 0.2, ease)
@@ -74,7 +80,7 @@ input[type="submit"]
   width: 150px
   &:focus
     @extend %background-white
-    color: $nav-search-bck-focus 
+    color: $nav-search-bck-focus
     width: 225px
 
     
@@ -128,12 +134,9 @@ input[type="submit"]
 //
 // ----------------------------------------------------------------------------
 
-
 .dropdown__value
-  +box-sizing()
+  @extend %border-box
   @extend %input--small
-  background: #fff
-  color: $body-copy
   display: block
   float: left
   position: relative
@@ -203,6 +206,5 @@ input[type="submit"]
     cursor: pointer
     font-size: 12px
     position: inherit
-    
 
 

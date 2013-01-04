@@ -440,9 +440,9 @@ nav.ttd, div.ttd
     font-weight: bold
   @include icon-chevron-back  
   padding-left: 10px
-  color: $link_color
+  color: $link-color
   &:hover
-    color: $link_color
+    color: $link-color
 
 button
   font-weight: bold
@@ -458,3 +458,8 @@ input[type='text'].searchText
 .signInRegister p
   margin-bottom: 0
 
+// Global static overrides - $$Legacy - Remove when possible
+//
+
+.clearfix
+  display: block
