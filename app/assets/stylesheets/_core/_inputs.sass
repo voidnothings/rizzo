@@ -7,17 +7,17 @@ input[type="text"], input[type="email"], input[type="date"]
   @extend %border-box
   @extend %four-pixel-rounded
   @extend %no-margin
-  @extend %sans-serif
+  @extend %helvetica-neue
   @extend %box-off
   background-color: #fff
   border: 1px solid $soft-gray
   color: $body-copy
-  width: 100%
+
 
 input[type="submit"]
   border: none
   @extend %larger-type
-  @extend %sans-serif
+  @extend %helvetica-neue
   -webkit-appearance: none
 
 input, textarea, select
@@ -39,7 +39,7 @@ input[class*=input\-\-small]
   .ie7 &
     width: 151px!important
   .ie8 &
-    width: 161px!important    
+    width: 161px!important
 
 
 // ----------------------------------------------------------------------------
@@ -50,7 +50,7 @@ input[class*=input\-\-small]
 
 .search--primary
   @extend %relative
-  @extend %float-left
+  float: left
   margin: 8px 0 0 10px
   &:before
     @extend %empty-abs-generated-content
@@ -194,10 +194,6 @@ input[class*=input\-\-small]
   margin-top: 4px
   width: 86px
   padding: 9px 32px 8px 10px
-
-input[class*=dropdown\_\_value\-\-language]
-  width: 86px
-  padding: 8px 10px
 
 .submit--language
   position: absolute

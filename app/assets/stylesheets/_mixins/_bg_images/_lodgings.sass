@@ -24,6 +24,7 @@
 
 @mixin lp-section-toggle-background
   background: url(image_path("components/lp-section-toggle-overlay.png")) repeat-x 50% bottom
+  +background-gradient-with-stops(bottom, #fff, #fff 50%, rgba(255,255,255, 0) 100%)
 
 @mixin lodging-map-thumb
   @include lodging-spt(-1px,-29px)

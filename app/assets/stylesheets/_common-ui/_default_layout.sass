@@ -11,12 +11,12 @@ body
   margin: 20px auto 0
   
 .left-nav
-  @extend %float-left
   @extend %left-nav-width
   margin-right: 10px
+  float: left
 
 .main-content
-  @extend %float-left
+  float: left
   width: 100%
   .left-nav + &
     @extend %right-content-pane-width
@@ -25,17 +25,16 @@ input[type="text"], input[type="email"], input[type="date"]
   @extend %border-box
   @extend %four-pixel-rounded
   @extend %no-margin
-  @extend %sans-serif
+  @extend %helvetica-neue
   @extend %box-off
   background-color: #fff
   border: 1px solid $soft-gray
   color: $body-copy
-  width: 100%
 
 input[type="submit"]
   border: none
   @extend %larger-type
-  @extend %sans-serif
+  @extend %helvetica-neue
   -webkit-appearance: none
 
 input, textarea, select

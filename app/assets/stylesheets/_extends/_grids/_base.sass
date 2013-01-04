@@ -9,6 +9,9 @@
 %grid-wrapper
   +box-sizing()
   @extend %clearfix
+  +respond-to(max800)
+    margin-left: 0 !important
+    padding-left: 0
 
 %grid-wrapper-10
   @extend %grid-wrapper
@@ -36,9 +39,14 @@
 
 %grid-column
   +box-sizing()
-  @extend %float-left
+  float: left
   .ie7 &, .no-boxsizing &
     padding-left: 0
+  +respond-to(max800)
+    float: none
+    width: 100%
+    padding-left: 0 !important
+    margin-left: 0
 
 %padded-grid-column-10
   @extend %grid-column

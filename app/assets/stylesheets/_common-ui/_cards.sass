@@ -17,8 +17,8 @@ $stack-image-height: 275px
   @extend %standard-shadow
   background: #fff
   .grid-view &, .list-view &
-    @extend %margin-bottom-10
     +transition(opacity, 0.5, ease)
+    margin-bottom: 10px
   .grid-view &
     height: $card-grid-height
     
@@ -39,7 +39,8 @@ $stack-image-height: 275px
 // -----------------------------------------------------------------------------
 
 .card--stack
-  @extend .card
+  @extend %base-card-object
+  @extend %relative
   height: 380px
   .card__hero
     height: $stack-image-height
@@ -51,7 +52,8 @@ $stack-image-height: 275px
 //
 // -----------------------------------------------------------------------------
 .card--full-page
-  @extend .card
+  @extend %base-card-object
+  @extend %relative
   @extend %box-off-double
 
 .lodging--top-choice
@@ -71,7 +73,7 @@ $stack-image-height: 275px
     min-height: 60px
 
 .card--full-page__header
-  @extend %margin-bottom-20
+  margin-bottom: 20px
   border-bottom: 1px solid $ruled-separator
   padding-bottom: 20px
 
@@ -259,7 +261,7 @@ $card-padding: 13px
   margin-bottom: 3px
 
 .list-view .has-no-image .has-no-locale
-  @extend %margin-bottom-20
+  margin-bottom: 20px
   margin-top: 5px
 
 
