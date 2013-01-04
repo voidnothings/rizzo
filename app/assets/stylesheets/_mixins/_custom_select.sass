@@ -6,43 +6,6 @@
 
 @mixin custom-select($height: 30px, $width: 100%)
 
-  $arrow_width: 30px
 
-  .custom-select__overlay
-    +vertically-center($height)
-    +word-break()
-    @extend %border-box
-    @extend %input--regular
-    @extend %chevron-down-after
-    @extend %right-icon
-    padding: 0 21px 0 0
-    display: block
-    width: $width
-    overflow: hidden
-    text-indent: 10px
-    border: 1px solid $soft-gray
-    &:after
-      width: ($arrow-width - 6px)
-      height: $height
-      background-color: white
-      right: 5px
-      top: -2px
-      color: $body-copy
-      font-size: 20px
 
-  select
-    +appearance(menulist-button) 
-    position: absolute
-    top: 0
-    left: 0
-    opacity: 0
-    width: $width
-    height: 100%
 
-    .ie7 &,
-    .ie8 &
-      filter: alpha(opacity = 0)
-
-    .no-js &
-      opacity: 1
-      filter: alpha(opacity = 1)
