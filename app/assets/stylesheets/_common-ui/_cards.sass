@@ -175,7 +175,7 @@ $card-padding: 13px
 
 .card__name
   @extend %large-type
-  @extend %prevent-text-breakouts
+  +word-break()
   font-weight: bold
   line-height: 17px
   .grid-view &
