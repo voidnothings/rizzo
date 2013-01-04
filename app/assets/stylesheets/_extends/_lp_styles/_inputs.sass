@@ -5,13 +5,12 @@
 // ----------------------------------------------------------------------------
 
 %input--regular
-  margin: 0
-  border: 0
-  outline: 0
+  @extend %four-pixel-rounded
+  background-color: #fff
+  color: $body-copy
 
 %input--small
   @extend %input--regular
-  @extend %four-pixel-rounded 
   @extend %small-type
 
 
