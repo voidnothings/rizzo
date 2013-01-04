@@ -9,13 +9,14 @@
     %form.form--language(action="http://www.lonelyplanet.com/international")
       %label.label--footer(for="select-language")
         International:
-      %label.dropdown__value.dropdown__value--language.js-language-value(href='#select-language')
-        English
-      %select.dropdown__select.js-language-select(name="select-language")
-        - [['en','English'],['de','Deutsch'],['fr','Français'],['es','Español'],['it','Italiano'],['co','中文简体'],['jp','日本語']].each do |d|
-          %option(value="#{d[0]}")
-            = d[1]
-      %input.submit--language(name="Go" type="submit" value="Go")
+      .dropdown.dropdown--language
+        %label.dropdown__value.dropdown__value--language.js-language-value(href='#select-language')
+          English
+        %select.dropdown__select.js-language-select(name="select-language")
+          - [['en','English'],['de','Deutsch'],['fr','Français'],['es','Español'],['it','Italiano'],['co','中文简体'],['jp','日本語']].each do |d|
+            %option(value="#{d[0]}")
+              = d[1]
+      %input.input--submit.submit--language(name="Go" type="submit" value="Go")
   .row__inner
     %p.text--legal.media--lp-logo--footer
       &copy; 2013 Lonely Planet. All rights reserved. No part of this site may be reproduced without our written permission.
