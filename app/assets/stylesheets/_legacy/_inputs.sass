@@ -1,0 +1,90 @@
+// ----------------------------------------------------------------------------
+// 
+//  Input defaults
+// 
+// ----------------------------------------------------------------------------
+
+input, textarea
+  @extend %border-box
+  @extend %helvetica-neue
+  @extend %no-border
+  outline: 0
+
+
+// ----------------------------------------------------------------------------
+// 
+// Input--Regular
+// 
+// ----------------------------------------------------------------------------
+
+// Input--regular is used for any standard text based inputs: text,email,date
+.input--regular
+  @extend %input--regular
+
+.input--submit
+  @extend %larger-type
+  &[disabled], &[disabled]:hover
+    @extend %disabled-state
+
+.input--datepicker
+  @extend %input--regular
+  background-image: url(image_path("lodgings-spt.png"))
+  padding-right: 35px
+  background-repeat: no-repeat
+  background-position: 99% -112px
+  +retinafy()
+    background-image: url(image_path("lodgings-spt-2x.png"))
+    background-size: $sprite-size
+    background-position: 95% -111px
+  +placeholder()
+    color: $placeholder-copy
+
+
+// ----------------------------------------------------------------------------
+// Custom Select Dropdown
+// 
+// Pseudo element has height, background-color and left padding in order to mask
+// the content of dropdown__value if it extends beyond its container
+// ----------------------------------------------------------------------------
+
+.dropdown
+  position: relative
+
+.dropdown__value
+  +word-break()
+  @extend %border-box
+  @extend %input--regular
+  @extend %chevron-down-after
+  @extend %right-icon
+  overflow: hidden
+  white-space: nowrap
+  display: block
+  border: 1px solid $soft-gray
+  padding: 10px 20px 10px 10px
+  &:after
+    @extend %four-pixel-rounded
+    pointer-events: none
+    background-color: inherit
+    color: inherit
+    top: 0
+    right: 0
+    width: 20px
+    height: 100%
+    font-size: 20px
+    line-height: 28px
+    padding-left: 5px
+
+.dropdown__select
+  +appearance(menulist-button)
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  opacity: 0
+  .ie7 &, .ie8 &
+    filter: alpha(opacity = 0)
+  .no-js &
+    opacity: 1
+    filter: alpha(opacity = 1)
+
