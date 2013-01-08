@@ -23,7 +23,8 @@ input, textarea
 
 .input--submit
   @extend %larger-type
-  &[disabled]
+  cursor: pointer
+  &[disabled], &.input--submit--disabled
     @extend %disabled-state
 
 .input--datepicker

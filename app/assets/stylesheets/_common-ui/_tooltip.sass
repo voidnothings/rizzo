@@ -1,0 +1,23 @@
+.tooltip
+  @extend %box-off
+  @extend %four-pixel-rounded
+  @extend %standard-shadow
+  @extend %transition--base
+  position: relative
+  display: block
+  top: 5px
+  text-align: center
+  background-color: $header-gray
+  color: white
+  &:after
+    +css-arrow-central(top, $width: 10px, $color: $header-gray)
+
+.tooltip--error
+  background-color: $validation-false
+  &:after
+    +css-arrow-central(top, $width: 10px, $color: $validation-false)
+  
+
+
+
+
