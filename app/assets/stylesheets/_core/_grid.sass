@@ -27,46 +27,6 @@ $gutter: 10px
   .full-width &
     width: ($option-card-width * 3) + $gutter
 
-.card--quad
-  @extend %margin-grid-column-10
-  width: ($default-card-width * 4) + ($gutter * 3)
-  .full-width &
-    width: ($option-card-width * 4) + $gutter
-
-.card--quint
-  @extend %margin-grid-column-10
-  width: ($default-card-width * 5) + ($gutter * 4)
-  .full-width &
-    width: ($option-card-width * 5) + $gutter
-
-// -----------------------------------------------------------------------------
-// 
-//  Proportional grid (Bem Style)
-// 
-// -----------------------------------------------------------------------------
-
-.grid-wrapper--10
-  @extend %grid-wrapper-10
-  > [class*="col-"]
-    @extend %padded-grid-column-10
-    
-
-.grid-wrapper--15
-  @extend %grid-wrapper-15
-  > [class*="col-"]
-    @extend %padded-grid-column-15
-
-.grid-wrapper--20
-  @extend %grid-wrapper-20
-  > [class*="col-"]
-    @extend %padded-grid-column-20
-
-.grid-wrapper--30
-  @extend %grid-wrapper-30
-  > [class*="col-"]
-    @extend %padded-grid-column-30
-
-
 
 // -----------------------------------------------------------------------------
 // 
@@ -78,7 +38,6 @@ $gutter: 10px
   @extend %grid-wrapper-10
   > [class*="col--"]
     @extend %padded-grid-column-10
-    
 
 .grid-wrapper--15
   @extend %grid-wrapper-15
@@ -95,17 +54,6 @@ $gutter: 10px
   > [class*="col--"]
     @extend %padded-grid-column-30
 
-
-[class*="grid-"]
-  +respond-to(max800)
-    margin-left: 0 !important
-    padding-left: 0
-  > [class*="col--"]
-    +respond-to(max800)
-      float: none
-      width: 100%
-      padding-left: 0 !important
-      margin-left: 0
 
 .col--one-half
   width: 50%
@@ -144,4 +92,9 @@ $gutter: 10px
 .col--footer--last
   float: left
   width: 240px
+
+.ie7, .ie8
+  .col--footer--last
+    float: left
+    width: 232px
 

@@ -1,6 +1,6 @@
 .filters__title
   @extend %larger-type
-  @extend %margin-bottom-10
+  margin-bottom: 10px
   color: $header-gray
   font-weight: bold
 
@@ -12,7 +12,7 @@
     @extend %visually-hide
     // Show the checkbox for ie7 where we don't have pseudo elements
     .ie7 &
-      @extend %legacy-show
+      @extend %visually-show
     &[disabled] + .filter-label
       opacity: 0.4
       cursor: default
@@ -23,7 +23,7 @@
   @extend %relative
   @extend %irregular-type
   @extend %styled-checkbox
-  @extend %margin-bottom-10
+  margin-bottom: 10px
   display: block
   padding-left: 25px
   cursor: pointer
@@ -33,18 +33,19 @@
   +border-radius(4)
   @extend %extra-small-type
   @extend %central-align
-  padding: 2px 4px
+  padding: 1px 4px
   position: absolute
   right: 15px
-  top: 16px
+  top: 14px
   display: block
-  background-color: $facet-count
+  border: 1px solid $soft-gray
   color: $facet-count-text
   font-weight: bold
   min-width: 12px
-  .current &,
+  .current &
     color: $active
     background-color: #fff
+    border: none
 
 
   

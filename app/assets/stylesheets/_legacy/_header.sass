@@ -16,10 +16,6 @@
   z-index: 999999
   left: -9999px
 
-body.browserIE
-  header, nav, section, article, aside, footer, hgroup, figure, figurecap
-    display: block
-
 .wrap > header
   background-color: #0a4f9c
   .hwrap
@@ -354,8 +350,8 @@ nav.ttd, div.ttd
     font-weight: bold
     padding: 7px 10px 7px 38px
     font-size: 0.9em
-    @include vertically-center(28px)
-    @include border-radius(20)
+    +vertically-center(28)
+    +border-radius(20)
     span
       color: #666
       display: block
@@ -379,13 +375,13 @@ nav.ttd, div.ttd
       @include icn-ttd-hotels
     &:hover
       background-color: #eee
-      text-shadow: 1px 1px 1px #fff
+      +text-shadow(1, 1, 1, #fff)
       text-decoration: none
     &:active
       background-color: #dedede 
     &.current
       background-color: #e5e5e5
-      text-shadow: 1px 1px 1px #fff
+      +text-shadow(1, 1, 1, #fff)
     &.last
       margin-right: 0
 
@@ -444,9 +440,9 @@ nav.ttd, div.ttd
     font-weight: bold
   @include icon-chevron-back  
   padding-left: 10px
-  color: $link_color
+  color: $link-color
   &:hover
-    color: $link_color
+    color: $link-color
 
 button
   font-weight: bold
@@ -462,3 +458,8 @@ input[type='text'].searchText
 .signInRegister p
   margin-bottom: 0
 
+// Global static overrides - $$Legacy - Remove when possible
+//
+
+.clearfix
+  display: block

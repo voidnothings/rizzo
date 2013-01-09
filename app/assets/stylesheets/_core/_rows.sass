@@ -124,11 +124,34 @@
 .row__inner--footer
   padding: 12px 0 11px 0
 
-.row__inner--footer--separator
-  @extend .row__inner--footer
+.row__inner--break--dark
   border-bottom: 1px solid #d6dedf
 
+.row__inner--break--light
+  border-bottom: 1px solid #444e56
+
+.row__inner--footer
+  padding: 12px 0
+  
 .row--footer--darker
   background-color: $footer-blue
   @extend %small-type
   color: #cfd0d1
+
+// ----------------------------------------------------------------------------
+// 
+// Sticky footer
+// 
+// ----------------------------------------------------------------------------
+
+.wrap
+  background-color: $body-background
+  min-height: 100%
+  height: auto !important
+  height: 100%
+  margin: 0
+  margin-bottom: -440px
+  
+.row--footer-push
+  height: 440px
+

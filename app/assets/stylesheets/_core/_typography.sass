@@ -23,7 +23,7 @@ h1, h2, h3
   @extend %smooth-text
 
 p
-  @extend %margin-bottom-10
+  margin-bottom: 10px
 
 a
   color: $link-color
@@ -34,11 +34,11 @@ a
 
 // Needs to be declared twice to work properly cross browser, not to be combined
 ::-moz-selection
-  background-color: #28c3c9
+  background-color: $active
   color: white
-  
+
 ::selection
-  background-color: #28c3c9
+  background-color: $active
   color: white
 
 
@@ -63,7 +63,4 @@ a
 
 .disclaimer
   @extend %disclaimer-copy
-
-
-
 

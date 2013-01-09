@@ -6,9 +6,9 @@
   font-size: #{$sizeValue + px}
   font-size: #{($sizeValue / $base-font-size) + rem}
 
-@mixin vertically-center($x: 20px)
-  height: $x
-  line-height: $x
+@mixin vertically-center($x: 20)
+  height: #{$x + px}
+  line-height: #{$x + px}
 
 @mixin img($url, $color: transparent, $x:0px, $y:0px, $r:no-repeat)
   background: $color url($url) $r $x $y

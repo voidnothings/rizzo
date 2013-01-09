@@ -17,8 +17,8 @@ $stack-image-height: 275px
   @extend %standard-shadow
   background: #fff
   .grid-view &, .list-view &
-    @extend %margin-bottom-10
     +transition(opacity, 0.5, ease)
+    margin-bottom: 10px
   .grid-view &
     height: $card-grid-height
     
@@ -39,7 +39,8 @@ $stack-image-height: 275px
 // -----------------------------------------------------------------------------
 
 .card--stack
-  @extend .card
+  @extend %base-card-object
+  @extend %relative
   height: 380px
   .card__hero
     height: $stack-image-height
@@ -51,7 +52,8 @@ $stack-image-height: 275px
 //
 // -----------------------------------------------------------------------------
 .card--full-page
-  @extend .card
+  @extend %base-card-object
+  @extend %relative
   @extend %box-off-double
 
 .lodging--top-choice
@@ -71,7 +73,7 @@ $stack-image-height: 275px
     min-height: 60px
 
 .card--full-page__header
-  @extend %margin-bottom-20
+  margin-bottom: 20px
   border-bottom: 1px solid $ruled-separator
   padding-bottom: 20px
 
@@ -80,6 +82,7 @@ $stack-image-height: 275px
   @extend %tighten-text
   @extend %card-header-size
   color: $header-blue
+  margin-bottom: 5px
 
 
 .card--full-page__subtitle
@@ -173,7 +176,7 @@ $card-padding: 13px
 
 .card__name
   @extend %large-type
-  @extend %prevent-text-breakouts
+  +word-break()
   font-weight: bold
   line-height: 17px
   .grid-view &
@@ -199,7 +202,7 @@ $card-padding: 13px
   @extend %benton-regular
   @extend %no-line-height
   @extend %absolute
-  top: 26px
+  top: 22px
   left: 14px
   font-size: 65px
   color: $hotels-poi
@@ -226,19 +229,20 @@ $card-padding: 13px
 
 .badge--lp-reviewed
   @extend %absolute
-  bottom: 0
+  bottom: 6px
   left: 0
 
 .badge--top-choice
   @extend %absolute
-  bottom: 3px
-  left: 27px
+  bottom: 8px
+  left: 25px
 
 .card--lodging .btn--bookable
+  @extend %irregular-type
   @extend %absolute
   bottom: 2px
   right: 0
-  padding: 6px 8px
+  padding: 10px 12px
 
 // -----------------------------------------------------------------------------
 // Cards without images
@@ -258,7 +262,7 @@ $card-padding: 13px
   margin-bottom: 3px
 
 .list-view .has-no-image .has-no-locale
-  @extend %margin-bottom-20
+  margin-bottom: 20px
   margin-top: 5px
 
 
