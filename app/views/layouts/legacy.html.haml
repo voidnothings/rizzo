@@ -15,6 +15,6 @@
     = render 'layouts/legacy/footer'
   .js-config.is-hidden   
     = js_configuration        
-    = requirejs_include_tag 'app_legacy' 
+    = requirejs_include_tag('app_legacy'){|controller|{'main' => 'app_legacy'}}
     = yield :scripts
 
