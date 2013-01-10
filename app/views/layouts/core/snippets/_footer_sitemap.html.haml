@@ -49,7 +49,7 @@
         .box-description__title--footer
           Follow us
         .box-description__inner
-          - [['twitter', 'https://twitter.com/lonelyplanet'], ['facebook', 'https://www.facebook.com/lonelyplanet'], ['google-plus', 'https://plus.google.com/+LonelyPlanet/'], ['flickr', 'http://www.flickr.com/groups/lonelyplanetpublications/'], ['rss', '/blog/feed/atom/']].each do |d|
-            %nav
+          %nav
+            - [['twitter', 'https://twitter.com/lonelyplanet'], ['facebook', 'https://www.facebook.com/lonelyplanet'], ['google-plus', 'https://plus.google.com/+LonelyPlanet/'], ['flickr', 'http://www.flickr.com/groups/lonelyplanetpublications/'], ['rss', '/blog/feed/atom/']].each do |d|
               %a.nav__item{href: "#{d[1]}", class: "icon--regular sprite-core--standard icon--#{d[0]}"}
 
