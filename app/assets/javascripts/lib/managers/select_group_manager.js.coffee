@@ -2,14 +2,15 @@ define ['jquery'], ($) ->
 
   class SelectGroup
 
-    constructor: (@parent = null) ->
+    constructor: (@parent = null, @callback = false) ->
       @selectParent = (if @parent != null then $(@parent) else $('.js-select-group'))
       @addHandlers()
 
     addHandlers: ->
-      @selectParent.on 'change', '.js-select', (e) ->
+      @selectParent.on 'change', '.js-select', (e) =>
         e.preventDefault()
-        t = $(this).find("option:selected")
+        t = $(e.target).find("option:selected")
         val = t.text()
-        t.closest('.js-select-group').find('.js-select-overlay').text(val)
+        t.closest(@parent).find('.js-select-overlay').text(val)
+        if @callback then @callback(e.target)
 

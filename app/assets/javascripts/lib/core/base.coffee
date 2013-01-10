@@ -1,4 +1,4 @@
-define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store'], ($, AdManager, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore) ->
+define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager'], ($, AdManager, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroup) ->
 
   class Base
 
@@ -7,6 +7,7 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
       @showUserBasket()
       @showLeaderboard() if !args.secure
       @showCookieComplianceMsg()
+      @initialiseLanguageSelect()
 
     adConfig: ->
       # defaults to window.lp (needs code refactoring)
@@ -35,6 +36,10 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
 
     showUserBasket: ->
       shopCart = new ShoppingCart()
+
+    initialiseLanguageSelect: ->
+      languageSelect = new SelectGroup '.js-select-language', ->
+        $('#js-language').submit()
 
     showCookieComplianceMsg: ->
       if LocalStore.get('cookie-compliance') is undefined or LocalStore.get('cookie-compliance') is null
