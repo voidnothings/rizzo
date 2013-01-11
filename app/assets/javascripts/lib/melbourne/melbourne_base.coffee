@@ -1,4 +1,4 @@
-define( ['jquery','lib/melbourne/ad_manager','lib/melbourne/footer', 'lib/utils/asset_fetch', 'lib/melbourne/destination_nav', 'lib/melbourne/authentication', 'lib/melbourne/shopping_cart'], ($, AdManager, Footer, AssetFetch, DestinationNav, Authentication, ShoppingCart) ->
+define( ['jquery','lib/melbourne/ad_manager','lib/melbourne/footer', 'lib/utils/asset_fetch', 'lib/melbourne/destination_nav', 'lib/melbourne/authentication', 'lib/melbourne/shopping_cart', 'lib/managers/select_group_manager'], ($, AdManager, Footer, AssetFetch, DestinationNav, Authentication, ShoppingCart, SelectGroup) ->
 
   class MelbourneBase
 
