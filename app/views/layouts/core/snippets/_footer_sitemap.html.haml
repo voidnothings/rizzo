@@ -3,35 +3,35 @@
     %nav.col--footer
       %a.title--list--footer.nav__item--vertical--footer(href='/destinations')
         Destinations
-      - destination_nav_items.each do |destination|
+      - footer_nav_destination_items.each do |destination|
         %a.nav__item--vertical--footer{href: "/#{destination[:url]}"}
           = destination[:title]
     
     %nav.col--footer
       %a.title--list--footer.nav__item--vertical--footer(href='/shop')
         Shop
-      - shop_nav_items.each do |shop|
+      - footer_nav_shop_items.each do |shop|
         %a.nav__item--vertical--footer{href: "/shop/#{shop[:url]}"}
           = shop[:title]
   
     %nav.col--footer
       %a.title--list--footer.nav__item--vertical--footer(href='/thorntree')
         Thorn Tree Forum
-      - thorntree_nav_items.each do |thorntree|
+      - footer_nav_thorntree_items.each do |thorntree|
         %a.nav__item--vertical--footer{href: "/thorntree/#{thorntree[:url]}"}
           = thorntree[:title]
 
     %nav.col--footer
       %a.title--list--footer.nav__item--vertical--footer(href='/themes')
         Themes
-      - themes_nav_items.each do |theme|
+      - footer_nav_themes_items.each do |theme|
         %a.nav__item--vertical--footer{href: "/themes/#{theme[:url]}"}
           = theme[:title]
 
     %nav.col--footer
       %a.title--list--footer.nav__item--vertical--footer(href='/bookings')
         Travel Booking
-      - travel_bookings_nav_items.each do |booking|
+      - footer_nav_travel_bookings_items.each do |booking|
         %a.nav__item--vertical--footer{href: "/#{booking[:url]}"}
           = booking[:title]
 

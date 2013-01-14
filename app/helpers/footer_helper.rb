@@ -1,6 +1,5 @@
-
 module FooterHelper
-  def destination_nav_items
+  def footer_nav_destination_items
     [
       {:title=>'Africa', :url=>'africa'},
       {:title=>'Antarctica', :url=>'antarctica'},
@@ -15,7 +14,7 @@ module FooterHelper
     ]
   end
 
-  def shop_nav_items
+  def footer_nav_shop_items
     [
       {:title=>'Destination Guides', :url=>'destination-guides'},
       {:title=>'eBooks', :url=>'ebooks'},
@@ -26,17 +25,19 @@ module FooterHelper
     ]
   end
 
-  def thorntree_nav_items
+  def footer_nav_thorntree_items
     [
       {:title=>'Departure Lounge', :url=>'category.jspa?categoryID=2'},
       {:title=>'Check in with Lonely Planet', :url=>'category.jspa?categoryID=11'}
     ]
   end
 
-  def themes_nav_items
+  def footer_nav_themes_items
     [
       {:title=>'Adventure travel', :url=>'adventure-travel'},
-      {:title=>'Big Trips', :url=>'big-trips'},
+      {:title=>'Beaches', :url=>'beaches'},
+      {:title=>'Best in Travel', :url=>'best-in-travel'},
+      {:title=>'Family travel', :url=>'family-travel'},
       {:title=>'Honeymoons', :url=>'honeymoons'},
       {:title=>'Photography', :url=>'photography'},
       {:title=>'Road Trips', :url=>'road-trips'},
@@ -46,7 +47,7 @@ module FooterHelper
     ]
   end
 
-  def travel_bookings_nav_items
+  def footer_nav_travel_bookings_items
     [
       {:title=>'Hotels', :url=>'hotels'},
       {:title=>'Flights', :url=>'flights'},
