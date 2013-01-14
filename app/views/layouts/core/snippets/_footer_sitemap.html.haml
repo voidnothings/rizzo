@@ -17,7 +17,7 @@
     %nav.col--footer
       %a.title--list--footer.nav__item--vertical--footer(href='/thorntree')
         Thorn Tree Forum
-      - [['Departure Lounge', 'category.jspa?categoryID=2'], ['The Lobby', ''], ['Check in with Lonely Planet', ''], ['Tree House', ''], ['Sell, Swap & Meet Up', '']].each do |d|
+      - [['Departure Lounge', 'category.jspa?categoryID=2'], ['Check in with Lonely Planet', 'http://www.lonelyplanet.com/thorntree/category.jspa?categoryID=11']].each do |d|
         %a.nav__item--vertical--footer{href: "/thorntree/#{d[1]}"}
           = d[0]
 
