@@ -13,8 +13,6 @@ Rizzo::Application.configure do
   config.i18n.fallbacks = true
   config.active_support.deprecation = :notify
   config.action_controller.asset_host = "//rizzo.lonelyplanet.com"
-  config.requirejs.run_config['baseUrl'] = '//rizzo.lonelyplanet.com/assets'
-  config.requirejs.run_config['paths'] = {'jquery' => '//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min', 'jplugs' => 'jquery/plugins'}
 
 end if defined?(Rizzo::Application)
 
