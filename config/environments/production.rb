@@ -12,8 +12,9 @@ Rizzo::Application.configure do
   config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
   config.i18n.fallbacks = true
   config.active_support.deprecation = :notify
-  config.requirejs.run_config['baseUrl'] = '//rizzo.lonelyplanet.com/assets'
   config.action_controller.asset_host = "//rizzo.lonelyplanet.com"
+  config.requirejs.run_config['baseUrl'] = '//rizzo.lonelyplanet.com/assets'
+  config.requirejs.run_config['paths'] = {'jquery' => '//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min', 'jplugs' => 'jquery/plugins'}
 
 end if defined?(Rizzo::Application)
 
