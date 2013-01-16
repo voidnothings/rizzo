@@ -73,7 +73,7 @@
 
 .lp-review__content .title, .badge--lp-reviewed:before, .badge--top-choice:before, .pickadate__month--prev:before, .link--back:before, .tab__header__start-date:before, .tab__header__end-date:before, .tab__header__filters:before, .dropdown__value:after, .pickadate__month--next:after, .lp-review .section-title:after, .tab__header__end-date:after, .tab__header__filters:after, .row__title--secondary, .card--full-page__title, .card__poi-icon, .lp-gallery-toolbar:after, .lp-swipe-ctrl:after, .price-tag__inner, .gallery__fig0:after,
 .gallery__fig1:after,
-.gallery__fig2:after {
+.gallery__fig2:after, .icon--poi--sight:before, .icon--poi--activity:before, .icon--poi--entertainment:before, .icon--poi--hotel:before, .icon--poi--bar:before, .icon--poi--restaurant:before, .icon--poi--shopping:before, .icon--poi--festival:before, .icon--poi--transport:before {
   font-family: "bentonsansregular";
   font-style: normal;
   font-weight: 400; }
@@ -86,12 +86,12 @@
 
 .lp-review__content .title, .badge--lp-reviewed:before, .badge--top-choice:before, .pickadate__month--prev:before, .link--back:before, .tab__header__start-date:before, .tab__header__end-date:before, .tab__header__filters:before, .dropdown__value:after, .pickadate__month--next:after, .lp-review .section-title:after, .tab__header__end-date:after, .tab__header__filters:after, .row__title--secondary, .card--full-page__title, .card__poi-icon, .lp-gallery-toolbar:after, .lp-swipe-ctrl:after, .price-tag__inner, .gallery__fig0:after,
 .gallery__fig1:after,
-.gallery__fig2:after {
+.gallery__fig2:after, .icon--poi--sight:before, .icon--poi--activity:before, .icon--poi--entertainment:before, .icon--poi--hotel:before, .icon--poi--bar:before, .icon--poi--restaurant:before, .icon--poi--shopping:before, .icon--poi--festival:before, .icon--poi--transport:before {
   letter-spacing: -0.05em; }
 
 .lp-review__content .title, .badge--lp-reviewed:before, .badge--top-choice:before, .pickadate__month--prev:before, .link--back:before, .tab__header__start-date:before, .tab__header__end-date:before, .tab__header__filters:before, .dropdown__value:after, .pickadate__month--next:after, .lp-review .section-title:after, .tab__header__end-date:after, .tab__header__filters:after, .row__title--secondary, .card--full-page__title, .card__poi-icon, .lp-gallery-toolbar:after, .lp-swipe-ctrl:after, .price-tag__inner, .gallery__fig0:after,
 .gallery__fig1:after,
-.gallery__fig2:after, .card--full-page__subtitle, .pickadate__calendar--wrap, .left-nav, .lp-review__footer, .nearby-pois__list, .lp-review__content p, .btn--regular, .btn--submit--small, .btn--bookable, .btn--read-more, .btn--functional, .btn--load-more, .btn--edit-dates, h1, h2, h3, .label, .card__description, .pickadate__weekday, .pickadate__day, .tabs {
+.gallery__fig2:after, .icon--poi--sight:before, .icon--poi--activity:before, .icon--poi--entertainment:before, .icon--poi--hotel:before, .icon--poi--bar:before, .icon--poi--restaurant:before, .icon--poi--shopping:before, .icon--poi--festival:before, .icon--poi--transport:before, .card--full-page__subtitle, .pickadate__calendar--wrap, .left-nav, .lp-review__footer, .nearby-pois__list, .lp-review__content p, .btn--regular, .btn--submit--small, .btn--bookable, .btn--read-more, .btn--functional, .btn--load-more, .btn--edit-dates, h1, h2, h3, .label, .card__description, .pickadate__weekday, .pickadate__day, .tabs {
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased; }
 
@@ -368,6 +368,33 @@
 
 .badge--top-choice:before {
   content: "\e043"; }
+
+.icon--poi--sight:before {
+  content: "\e02a"; }
+
+.icon--poi--activity:before {
+  content: "\e02b"; }
+
+.icon--poi--entertainment:before {
+  content: "\e02c"; }
+
+.icon--poi--hotel:before {
+  content: "\e02d"; }
+
+.icon--poi--bar:before {
+  content: "\e02e"; }
+
+.icon--poi--restaurant:before {
+  content: "\e02f"; }
+
+.icon--poi--shopping:before {
+  content: "\e035"; }
+
+.icon--poi--festival:before {
+  content: "\e036"; }
+
+.icon--poi--transport:before {
+  content: "\e037"; }
 
 .grid-wrapper--10, .grid-wrapper--15, .grid-wrapper--20, .grid-wrapper--30, .list-view .card, .expanded-pagination ul, .nav--breadcrumbs--footer, .row, .row__inner, .row--leaderboard, .row--primary, .row--secondary, .filters__item, .lp-gallery-thumbs-list, .link--wrapper, .tabs, .tabs__content {
   zoom: 1; }
@@ -2086,3 +2113,141 @@ input.success {
   @media only screen and (min-width: 768px) {
     .overlay.success {
       background-position: 78%; } }
+
+.icon--poi--sight:before, .icon--poi--activity:before, .icon--poi--entertainment:before, .icon--poi--hotel:before, .icon--poi--bar:before, .icon--poi--restaurant:before, .icon--poi--shopping:before, .icon--poi--festival:before, .icon--poi--transport:before {
+  font-size: 48px;
+  position: absolute; }
+
+.icon--poi--sight:before {
+  color: #dc232e; }
+
+.icon--poi--activity:before {
+  color: #e88a06; }
+
+.icon--poi--entertainment:before {
+  color: #0b3a90; }
+
+.icon--poi--hotel:before {
+  color: #5506a0; }
+
+.icon--poi--bar:before {
+  color: #009586; }
+
+.icon--poi--restaurant:before {
+  color: #009586; }
+
+.icon--poi--shopping:before {
+  color: #ec316c; }
+
+.icon--poi--festival:before {
+  color: #ef5a22; }
+
+.icon--poi--transport:before {
+  color: #333333; }
+
+.block-float, .icon-poi-tiny, .icon-poi-small, .icon-poi-large {
+  display: block;
+  float: left;
+  background-color: gray; }
+
+.icon-poi-tiny {
+  width: 30px;
+  height: 30px; }
+
+.icon-poi-small {
+  width: 30px;
+  height: 30px; }
+
+.icon-poi-large {
+  width: 30px;
+  height: 60px; }
+
+.icon-poi-entertainment-tiny {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -97px -63px transparent; }
+
+.icon-poi-restaurant-tiny {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -229px -63px transparent; }
+
+.icon-poi-bar-tiny {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -187px -64px transparent; }
+
+.icon-poi-activity-tiny {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -52px -64px transparent; }
+
+.icon-poi-sight-tiny {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -7px -64px transparent; }
+
+.icon-poi-shoping-tiny {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -275px -64px transparent; }
+
+.icon-poi-festival-tiny {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -320px -64px transparent; }
+
+.icon-poi-hotel-tiny {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -142px -64px transparent; }
+
+.icon-poi-transport-tiny {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -364px -64px transparent; }
+
+.icon-poi-mark-tiny {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -410px -64px transparent; }
+
+.icon-poi-entertainment-small {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -97px -63px transparent; }
+
+.icon-poi-restaurant-small {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -229px -63px transparent; }
+
+.icon-poi-bar-small {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -187px -64px transparent; }
+
+.icon-poi-activity-small {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -52px -64px transparent; }
+
+.icon-poi-sight-small {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -7px -64px transparent; }
+
+.icon-poi-shoping-small {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -275px -64px transparent; }
+
+.icon-poi-festival-small {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -320px -64px transparent; }
+
+.icon-poi-hotel-small {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -142px -64px transparent; }
+
+.icon-poi-transport-small {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -364px -64px transparent; }
+
+.icon-poi-mark-small {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -410px -64px transparent; }
+
+.icon-poi-entertainment-large {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -97px -1px transparent; }
+
+.icon-poi-restaurant-large {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -229px -1px transparent; }
+
+.icon-poi-bar-large {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -187px -1px transparent; }
+
+.icon-poi-activity-large {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -52px -1px transparent; }
+
+.icon-poi-sight-large {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -7px -1px transparent; }
+
+.icon-poi-shoping-large {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -275px -1px transparent; }
+
+.icon-poi-festival-large {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -320px -1px transparent; }
+
+.icon-poi-hotel-large {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -141px -1px transparent; }
+
+.icon-poi-transport-large {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -364px -1px transparent; }
+
+.icon-poi-mark-large {
+  background: url(image_path("lp-map-pins-spt.png")) no-repeat -410px -1px transparent; }

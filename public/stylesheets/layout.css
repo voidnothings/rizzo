@@ -15,6 +15,7 @@ select option{ padding:0 5px; }
 a{ outline:none; }
 a img{ border:none; }
 
+.styleguide-modifier:after,
 .clearfix:after {
     content: ".";
     display: block;
@@ -23,8 +24,8 @@ a img{ border:none; }
     visibility: hidden;
 }
 * html .clearfix {height: 1%;}
-.clearfix {display:inline-block;}
-.clearfix {display: block;}
+.clearfix,.styleguide-modifier {display:inline-block;}
+.clearfix,.styleguide-modifier {display: block;}
 
 /* @end */
 
@@ -103,11 +104,13 @@ h1.styleguide {
       margin-bottom: 0; }
   .styleguide-example .styleguide-element {
     position: relative;
-    padding: 20px; }
+    padding: 20px; 
+    background: #E5EBEE;}
   .styleguide-example .styleguide-element + .styleguide-element {
     margin-top: -5px;
     padding-top: 15px;
     border-top: 1px solid #eee; }
+  
   .styleguide-example .styleguide-element .styleguide-modifier-name {
     display: block;
     position: absolute;
@@ -139,5 +142,15 @@ h1.styleguide {
   .styleguide-example > .styleguide-code {
     font-family: Monaco, monospace;
   }
+
+.code-wrap {
+  width: 100%;
+  white-space: nowrap;
+  overflow-x: auto;
+  font-size: 11px;
+  line-height: 1.2;
+  color: #666;
+}
+
 
 /* @end */
