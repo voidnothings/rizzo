@@ -85,7 +85,7 @@ module GlobalResourcesHelper
     end
   end
   
-  def breadcrumbs_nav(breadcrumb_content=[])
+  def breadcrumbs_nav(breadcrumb_content)
     render :partial=>'layouts/core/snippets/footer_breadcrumbs', locals: {breadcrumbs: breadcrumb_content || []}
   end
   
