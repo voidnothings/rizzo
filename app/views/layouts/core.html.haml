@@ -14,7 +14,7 @@
       .row--footer-push
   .wrap--footer
     = render 'layouts/core/footer'
-  .js-config.is-hidden
-    = js_configuration
-    = requirejs_include_tag 'app_core'
+  .js-config.is-hidden   
+    = js_configuration    
+    = requirejs_include_tag('app_core'){|c|{'main' => 'app_core'}}
     = yield :scripts
