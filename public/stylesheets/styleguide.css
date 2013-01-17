@@ -261,6 +261,10 @@
   background-color: white;
   color: #7f9394; }
 
+.tooltip {
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease; }
+
 .nav-user-options, .card__poi-icon, .card__footer, .badge--lp-reviewed, .badge--top-choice, .card--lodging .btn--bookable, .lp-swipe-ctrl, .price-tag {
   position: absolute; }
 
@@ -1035,7 +1039,6 @@ a {
   padding: 15px 0; }
 
 .row__inner__msg {
-  background-position: -112px -52px;
   line-height: 1.5em;
   padding: 12px 0 12px 60px;
   position: relative; }
