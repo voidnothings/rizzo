@@ -3,7 +3,6 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
   class Base
 
     constructor: (args={})->
-      console.log 'wtf'
       @authenticateUser()
       @showUserBasket()
       @showLeaderboard() if !args.secure
