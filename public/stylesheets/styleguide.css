@@ -273,7 +273,7 @@
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease; }
 
-.nav-user-options, .card__poi-icon, .card__footer, .badge--lp-reviewed, .badge--top-choice, .card--lodging .btn--bookable, .lp-swipe-ctrl, .price-tag {
+.nav-user-options, .card__poi-icon, .card__footer, .card .badge--lp-reviewed, .card .badge--top-choice, .card--lodging .btn--bookable, .lp-swipe-ctrl, .price-tag {
   position: absolute; }
 
 .list-view .card .obj-media__body, .badge--lp-reviewed, .badge--top-choice, .pickadate__month--prev, .link--back, .tab__header__start-date, .tab__header__end-date, .tab__header__filters, .dropdown__value, .pickadate__month--next, .lp-review .section-title, .row__inner, .search--primary, .card, .card--stack, .card--full-page, .card__hero, .card__content, .filters__label, .lp-gallery-thumbs-list li, .left-nav__item, .is-loading, .tab__header, .gallery__fig0 {
@@ -1455,11 +1455,11 @@ input, textarea {
   height: 35px;
   overflow: hidden; }
 
-.badge--lp-reviewed {
+.card .badge--lp-reviewed {
   bottom: 6px;
   left: 0; }
 
-.badge--top-choice {
+.card .badge--top-choice {
   bottom: 8px;
   left: 25px; }
 
@@ -2316,7 +2316,9 @@ input.success {
   border: 1px solid #d0d7d8; }
 
 .styleguide__element__inner {
-  width: 70%; }
+  width: 70%;
+  min-height: 30px;
+  position: relative; }
 
 .styleguide__html {
   padding: 5px 10px;
