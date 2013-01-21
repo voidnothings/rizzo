@@ -15,7 +15,7 @@
     <div class="styleguide__element">
       <span class="styleguide__element--name"><%= modifier.name %></span>
       <div class="styleguide__element__inner">
-        <%= @example_html.sub('$modifier_class', " #{modifier.class_name}") %>
+        <%= @example_html.gsub('$modifier_class', " #{modifier.class_name}") %>
       </div>
     </div>
   <% end %>
