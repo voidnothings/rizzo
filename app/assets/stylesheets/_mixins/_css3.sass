@@ -4,15 +4,19 @@
 // Vendor prefixes are determined by caniuse.com
 // -----------------------------------------------------------------------------
 
-
-// Any objections to changing this to +border-radius??? $$legacy
-
-
+// Styleguide - 4.1 - Mixin - Border Radius
+//
+// $radius - The corner radius
 @mixin border-radius($radius: 2)
   -webkit-border-radius: $radius + px
   border-radius:         $radius + px
 
-
+// Styleguide - 4.2 - Mixin - Border Radius (Each)
+//
+// $a - Top left corner radius
+// $b - Top right corner radius
+// $c - Bottom right corner radius
+// $d - Bottom left corner radius
 @mixin border-radius-each($a: 2, $b: 2, $c: 2, $d: 2)
   -webkit-border-radius: #{$a + px} #{$b + px} #{$c + px} #{$d + px}
   border-radius:         #{$a + px} #{$b + px} #{$c + px} #{$d + px}

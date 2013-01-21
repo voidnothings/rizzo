@@ -2,8 +2,17 @@ require 'sinatra'
 require 'kss'
 
 get '/' do
-  @styleguide = Kss::Parser.new('app/assets/stylesheets')
   erb :index
+end
+
+get '/components' do
+  @styleguide = Kss::Parser.new('app/assets/stylesheets')
+  erb :components
+end
+
+get '/mixins' do
+  @styleguide = Kss::Parser.new('app/assets/stylesheets')
+  erb :mixins
 end
 
 helpers do
