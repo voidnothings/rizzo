@@ -91,7 +91,7 @@
 
 .lp-review__content .title, .badge--lp-reviewed:before, .badge--top-choice:before, .pickadate__month--prev:before, .link--back:before, .tab__header__start-date:before, .tab__header__end-date:before, .tab__header__filters:before, .dropdown__value:after, .pickadate__month--next:after, .lp-review .section-title:after, .tab__header__end-date:after, .tab__header__filters:after, .row__title--secondary, .card--full-page__title, .card__poi-icon, .lp-gallery-toolbar:after, .lp-swipe-ctrl:after, .price-tag__inner, .gallery__fig0:after,
 .gallery__fig1:after,
-.gallery__fig2:after, .icon--poi--sight:before, .icon--poi--activity:before, .icon--poi--entertainment:before, .icon--poi--hotel:before, .icon--poi--bar:before, .icon--poi--restaurant:before, .icon--poi--shopping:before, .icon--poi--festival:before, .icon--poi--transport:before, .card--full-page__subtitle, .pickadate__calendar--wrap, .left-nav, .lp-review__footer, .nearby-pois__list, .lp-review__content p, .btn--regular, .btn--submit--small, .btn--bookable, .btn--read-more, .btn--functional, .btn--load-more, .btn--edit-dates, h1, h2, h3, .label, .card__description, .pickadate__weekday, .pickadate__day, .tabs {
+.gallery__fig2:after, .icon--poi--sight:before, .icon--poi--activity:before, .icon--poi--entertainment:before, .icon--poi--hotel:before, .icon--poi--bar:before, .icon--poi--restaurant:before, .icon--poi--shopping:before, .icon--poi--festival:before, .icon--poi--transport:before, .card--full-page__subtitle, .pickadate__calendar--wrap, .left-nav, .lp-review__footer, .nearby-pois__list, .styleguide, .lp-review__content p, .btn--regular, .btn--submit--small, .btn--bookable, .btn--read-more, .btn--functional, .btn--load-more, .btn--edit-dates, h1, h2, h3, .label, .card__description, .pickadate__weekday, .pickadate__day, .tabs {
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased; }
 
@@ -125,12 +125,13 @@
   font-size: 13px;
   font-size: 0.92857rem; }
 
-.card--full-page__subtitle .title, .pickadate__calendar--wrap .title, .left-nav .title, .lp-review__footer .title, .nearby-pois__list .title,
+.card--full-page__subtitle .title, .pickadate__calendar--wrap .title, .left-nav .title, .lp-review__footer .title, .nearby-pois__list .title, .styleguide .title,
 .card--full-page__subtitle .lodging__section--partner span.partner,
 .pickadate__calendar--wrap .lodging__section--partner span.partner,
 .left-nav .lodging__section--partner span.partner,
 .lp-review__footer .lodging__section--partner span.partner,
-.nearby-pois__list .lodging__section--partner span.partner, .label, .input--submit, .btn--bookable, .card--full-page__subtitle, .filters__title, .left-nav__heading, .link--back {
+.nearby-pois__list .lodging__section--partner span.partner,
+.styleguide .lodging__section--partner span.partner, .label, .input--submit, .btn--bookable, .card--full-page__subtitle, .filters__title, .left-nav__heading, .link--back {
   font-size: 15px;
   font-size: 1.07143rem; }
 
@@ -155,17 +156,18 @@
   font-size: 42px;
   font-size: 3rem; }
 
-.card--full-page__subtitle, .pickadate__calendar--wrap, .left-nav, .lp-review__footer, .nearby-pois__list {
+.card--full-page__subtitle, .pickadate__calendar--wrap, .left-nav, .lp-review__footer, .nearby-pois__list, .styleguide {
   line-height: 1.4;
   color: #7f9394; }
-  .card--full-page__subtitle p, .pickadate__calendar--wrap p, .left-nav p, .lp-review__footer p, .nearby-pois__list p {
+  .card--full-page__subtitle p, .pickadate__calendar--wrap p, .left-nav p, .lp-review__footer p, .nearby-pois__list p, .styleguide p {
     margin-bottom: 10px; }
-  .card--full-page__subtitle .title, .pickadate__calendar--wrap .title, .left-nav .title, .lp-review__footer .title, .nearby-pois__list .title,
+  .card--full-page__subtitle .title, .pickadate__calendar--wrap .title, .left-nav .title, .lp-review__footer .title, .nearby-pois__list .title, .styleguide .title,
   .card--full-page__subtitle .lodging__section--partner span.partner,
   .pickadate__calendar--wrap .lodging__section--partner span.partner,
   .left-nav .lodging__section--partner span.partner,
   .lp-review__footer .lodging__section--partner span.partner,
-  .nearby-pois__list .lodging__section--partner span.partner {
+  .nearby-pois__list .lodging__section--partner span.partner,
+  .styleguide .lodging__section--partner span.partner {
     margin-bottom: 10px;
     font-weight: bold;
     color: #515a65;
@@ -189,11 +191,11 @@
   height: 100%;
   color: #333333; }
 
-.card, .card--stack, .card--full-page, .left-nav, .tab__header, .tabs__content, .tooltip {
+.card, .card--stack, .card--full-page, .left-nav, .tab__header, .tabs__content, .tooltip, .styleguide {
   -webkit-box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.1); }
 
-.btn--regular, .btn--submit--small, .btn--bookable, .btn--read-more, .btn--functional, .btn--load-more, .btn--edit-dates, .input--small--footer, .dropdown__value--language, .input--regular, .input--datepicker, .dropdown__value, .dropdown__value:after, .no-js .submit--language, .badge--included, .pickadate__calendar--wrap, .left-nav, .tooltip {
+.btn--regular, .btn--submit--small, .btn--bookable, .btn--read-more, .btn--functional, .btn--load-more, .btn--edit-dates, .input--small--footer, .dropdown__value--language, .input--regular, .input--datepicker, .dropdown__value, .dropdown__value:after, .no-js .submit--language, .badge--included, .pickadate__calendar--wrap, .left-nav, .tooltip, .styleguide, .styleguide__element--name {
   -webkit-border-radius: 4px;
   border-radius: 4px; }
 
@@ -223,8 +225,14 @@
   background: -o-linear-gradient(top, #20374f, #1b3149);
   background: linear-gradient(top, #20374f, #1b3149); }
 
-.row__inner {
+.row__inner, .content {
   width: 1000px; }
+
+.left-nav {
+  width: 200px; }
+
+.left-nav + .main-content {
+  width: 790px; }
 
 .filters__label:before {
   -webkit-border-radius: 16px;
@@ -294,10 +302,10 @@
 .ad-leaderboard__inner:after, .media--lp-logo--footer:before, .nav__item--breadcrumbs:before, .nav__item--breadcrumbs--current:before, .nav-user-options:before, .nav-user-options__item:after, .nav-user-options__item--forum:before, .user-box:after, .row__inner__msg:before, .search--primary:before, .lodging--top-choice:after, .lp-gallery-thumbs-list li.current:after, .is-loading:after, .price-tag:after, .tooltip:after, .tooltip--error:after {
   position: absolute; }
 
-.tooltip {
+.tooltip, .styleguide, .styleguide__title, .styleguide__elements {
   padding: 10px; }
 
-.card--full-page, .tab__panel {
+.card--full-page, .tab__panel, .styleguide__element {
   padding: 20px; }
 
 .btn--regular, .btn--submit--small, .btn--bookable, .btn--read-more, .btn--functional, .btn--load-more, .btn--edit-dates, input, textarea, .dropdown__value {
@@ -400,12 +408,12 @@
 .icon--poi--transport:before {
   content: "\e037"; }
 
-.grid-wrapper--10, .grid-wrapper--15, .grid-wrapper--20, .grid-wrapper--30, .list-view .card, .expanded-pagination ul, .nav--breadcrumbs--footer, .row, .row__inner, .row--leaderboard, .row--primary, .row--secondary, .filters__item, .lp-gallery-thumbs-list, .link--wrapper, .tabs, .tabs__content {
+.grid-wrapper--10, .grid-wrapper--15, .grid-wrapper--20, .grid-wrapper--30, .list-view .card, .expanded-pagination ul, .nav--breadcrumbs--footer, .row, .row__inner, .row--leaderboard, .row--primary, .row--secondary, .filters__item, .lp-gallery-thumbs-list, .content, .link--wrapper, .tabs, .tabs__content, .styleguide__element, .clearfix {
   zoom: 1; }
-  .grid-wrapper--10:before, .grid-wrapper--15:before, .grid-wrapper--20:before, .grid-wrapper--30:before, .list-view .card:before, .expanded-pagination ul:before, .nav--breadcrumbs--footer:before, .row:before, .row__inner:before, .row--leaderboard:before, .row--primary:before, .row--secondary:before, .filters__item:before, .lp-gallery-thumbs-list:before, .link--wrapper:before, .tabs:before, .tabs__content:before, .grid-wrapper--10:after, .grid-wrapper--15:after, .grid-wrapper--20:after, .grid-wrapper--30:after, .list-view .card:after, .expanded-pagination ul:after, .nav--breadcrumbs--footer:after, .row:after, .row__inner:after, .row--leaderboard:after, .row--primary:after, .row--secondary:after, .filters__item:after, .lp-gallery-thumbs-list:after, .link--wrapper:after, .tabs:after, .tabs__content:after {
+  .grid-wrapper--10:before, .grid-wrapper--15:before, .grid-wrapper--20:before, .grid-wrapper--30:before, .list-view .card:before, .expanded-pagination ul:before, .nav--breadcrumbs--footer:before, .row:before, .row__inner:before, .row--leaderboard:before, .row--primary:before, .row--secondary:before, .filters__item:before, .lp-gallery-thumbs-list:before, .content:before, .link--wrapper:before, .tabs:before, .tabs__content:before, .styleguide__element:before, .clearfix:before, .grid-wrapper--10:after, .grid-wrapper--15:after, .grid-wrapper--20:after, .grid-wrapper--30:after, .list-view .card:after, .expanded-pagination ul:after, .nav--breadcrumbs--footer:after, .row:after, .row__inner:after, .row--leaderboard:after, .row--primary:after, .row--secondary:after, .filters__item:after, .lp-gallery-thumbs-list:after, .content:after, .link--wrapper:after, .tabs:after, .tabs__content:after, .styleguide__element:after, .clearfix:after {
     content: "";
     display: table; }
-  .grid-wrapper--10:after, .grid-wrapper--15:after, .grid-wrapper--20:after, .grid-wrapper--30:after, .list-view .card:after, .expanded-pagination ul:after, .nav--breadcrumbs--footer:after, .row:after, .row__inner:after, .row--leaderboard:after, .row--primary:after, .row--secondary:after, .filters__item:after, .lp-gallery-thumbs-list:after, .link--wrapper:after, .tabs:after, .tabs__content:after {
+  .grid-wrapper--10:after, .grid-wrapper--15:after, .grid-wrapper--20:after, .grid-wrapper--30:after, .list-view .card:after, .expanded-pagination ul:after, .nav--breadcrumbs--footer:after, .row:after, .row__inner:after, .row--leaderboard:after, .row--primary:after, .row--secondary:after, .filters__item:after, .lp-gallery-thumbs-list:after, .content:after, .link--wrapper:after, .tabs:after, .tabs__content:after, .styleguide__element:after, .clearfix:after {
     clear: both; }
 
 .input--submit[disabled], .input--submit.input--submit--disabled {
@@ -509,19 +517,18 @@ table {
   border-spacing: 0; }
 
 sub,
-sup,
-.price-tag__curr {
+sup {
   line-height: 0;
   position: relative;
   vertical-align: baseline; }
 
-sup, .price-tag__curr {
+sup {
   top: -0.45em; }
 
 sub {
   bottom: -0.25em; }
 
-html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, em, img, q, strong, sub, sup, .price-tag__curr, dl, dt, dd, ol, ul, li, fieldset, form, label, table, tbody, tfoot, thead, tr, th, td, article, aside, canvas, figure, figcaption, footer, header, hgroup, nav, section, time, mark, audio, video, input, textarea {
+html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, em, img, q, strong, sub, sup, dl, dt, dd, ol, ul, li, fieldset, form, label, table, tbody, tfoot, thead, tr, th, td, article, aside, canvas, figure, figcaption, footer, header, hgroup, nav, section, time, mark, audio, video, input, textarea {
   margin: 0;
   padding: 0; }
 
@@ -1785,6 +1792,20 @@ input, textarea {
   color: #515a65;
   padding: 15px; }
 
+body {
+  background-color: #e5ebee; }
+
+.content {
+  margin: 20px auto 0; }
+
+.left-nav {
+  margin-right: 10px;
+  float: left; }
+
+.main-content {
+  float: left;
+  width: 100%; }
+
 .link--back {
   padding-left: 15px; }
   .link--back:before {
@@ -2254,3 +2275,66 @@ input.success {
 
 .icon-poi-mark-large {
   background: url(image_path("lp-map-pins-spt.png")) no-repeat -410px -1px transparent; }
+
+.styleguide {
+  margin-bottom: 30px;
+  background: white; }
+
+.styleguide__title em {
+  float: right;
+  text-transform: none;
+  font-style: normal;
+  font-weight: normal;
+  color: #999999; }
+
+.styleguide__description {
+  padding: 10px 5px; }
+
+.styleguide__modifier {
+  list-style-type: none;
+  margin-left: 10px;
+  margin-bottom: 5px; }
+  .styleguide__modifier strong {
+    font-family: Monaco, monospace;
+    font-size: 12px;
+    font-weight: normal;
+    color: #222222; }
+
+.styleguide__element {
+  position: relative;
+  background: #e5ebee;
+  margin-bottom: 10px; }
+
+.styleguide__element--name {
+  display: block;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 5px 8px;
+  background: white;
+  color: #47678c;
+  border: 1px solid #d0d7d8; }
+
+.styleguide__element__inner {
+  width: 70%; }
+
+.styleguide__html {
+  padding: 5px 10px;
+  background: #edf6f8;
+  border-top: 1px solid #dde7ea;
+  overflow: auto; }
+
+.highlight {
+  background: none; }
+
+.styleguide__code {
+  font-family: Monaco, monospace;
+  width: 100%;
+  white-space: nowrap;
+  overflow-x: auto;
+  font-size: 11px;
+  line-height: 1.2;
+  color: #666666; }
+
+.clearfix {
+  display: block; }

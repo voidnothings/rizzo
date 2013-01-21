@@ -1,0 +1,34 @@
+PATH
+  remote: .
+  specs:
+    beaker (0.1.0)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    kgio (2.8.0)
+    kss (0.4.0)
+    rack (1.4.4)
+    rack-protection (1.3.2)
+      rack
+    raindrops (0.10.0)
+    sass (3.2.5)
+    sinatra (1.3.3)
+      rack (~> 1.3, >= 1.3.6)
+      rack-protection (~> 1.2)
+      tilt (~> 1.3, >= 1.3.3)
+    tilt (1.3.3)
+    unicorn (4.5.0)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  beaker!
+  kss
+  sass
+  sinatra
+  unicorn

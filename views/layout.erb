@@ -4,25 +4,25 @@
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>Styleguide Example</title>
   <link rel="stylesheet" href="/stylesheets/styleguide.css" type="text/css" />
-  <link rel="stylesheet" href="/stylesheets/layout.css" type="text/css" />
 
 </head>
 <body>
 
-  <header>
-    Styleguide Example
+  <header class="row row--secondary">
+    <div class="row__inner">
+      <h1 class="row__title--secondary">Lonely Planet Styleguide</h1>
+    </div>
   </header>
 
-  <div id="wrapper">
+  <div class="content">
 
-    <nav role="main">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/styleguide">Styleguide</a></li>
-      </ul>
+    <nav class="left-nav">
+      <a class="current left-nav__item obj-list__item" href="/">Home</a>
+      <a class="left-nav__item obj-list__item" href="#1">Styleguide</a>
     </nav>
-
-    <%= yield %>
+    <div class="main-content">
+      <%= yield %>
+    </div>
 
   </div><!-- /#wrapper -->
 
