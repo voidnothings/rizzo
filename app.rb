@@ -14,6 +14,11 @@ class StyleGuideApp < Sinatra::Base
     erb :components
   end
 
+  get '/grid' do
+    @styleguide = Kss::Parser.new('app/assets/stylesheets/_core')
+    erb :grid
+  end
+
   get '/mixins' do
     @styleguide = Kss::Parser.new('app/assets/stylesheets')
     erb :mixins

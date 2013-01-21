@@ -2340,3 +2340,9 @@ input.success {
 
 .clearfix {
   display: block; }
+
+[class*="grid-"] {
+  margin-bottom: 30px; }
+
+[class*="col--"] {
+  min-height: 30px; }
