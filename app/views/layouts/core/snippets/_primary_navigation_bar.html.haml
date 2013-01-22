@@ -3,8 +3,15 @@
     %a.media--lp-logo--head(href='http://www.lonelyplanet.com')
     %nav.nav--primary
       - core_navigation_items.each do |n|
-        %a.nav__item--primary{ href: n[:uri] }
-          = n[:title]
+        - if n[:submenu]
+          .submenu.nav__item--primary
+            = n[:title]
+            - n[:submenu].each do |sub|
+              %a{ href: sub[:uri], class: "nav-user-options__item js-user-profile #{sub[:style]}"}
+                = sub[:title]
+        - else
+          %a.nav__item--primary{ href: n[:uri] }
+            = n[:title]
 
     .search--primary
       %form.search__form{:action => host_with_subdomain_and_path("www", "searchResult"), :method => "get" }
