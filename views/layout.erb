@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Styleguide Example</title>
+  <link rel="stylesheet" href="/stylesheets/styleguide.css" type="text/css" />
+
+</head>
+<body>
+
+  <header class="row row--secondary">
+    <div class="row__inner">
+      <h1 class="row__title--secondary">Lonely Planet Styleguide</h1>
+    </div>
+  </header>
+
+  <div class="content">
+    <nav class="left-nav">
+      <a class="current left-nav__item obj-list__item" href="/">Home</a>
+      <a class="left-nav__item obj-list__item" href="/components">Components</a>
+      <a class="left-nav__item obj-list__item" href="/inputs">Form elements</a>
+      <a class="left-nav__item obj-list__item" href="/grid">Grid</a>
+      <a class="left-nav__item obj-list__item" href="/mixins">Mixins</a>
+    </nav>
+    <div class="main-content">
+      <%= yield %>
+    </div>
+
+  </div>
+
+  <script src="/javascripts/kss.js"></script>
+
+</body>
+</html>
