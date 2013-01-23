@@ -24,6 +24,11 @@ class StyleGuideApp < Sinatra::Base
     erb :mixins
   end
 
+  get '/inputs' do
+    @styleguide = Kss::Parser.new('app/assets/stylesheets')
+    erb :inputs
+  end
+
   helpers do
     # Generates a styleguide block. A little bit evil with @_out_buf, but
     # if you're using something like Rails, you can write a much cleaner helper

@@ -423,7 +423,7 @@
   opacity: 0.5; }
 
 .expanded-pagination ul > .obj-list__item, .expanded-pagination ul > .obj-list__item > a, .expanded-pagination ul > .obj-list__item > span, .btn--regular, .btn--submit--small, .btn--bookable, .btn--read-more, .btn--functional, .btn--load-more, .btn--edit-dates, .label--footer, .dropdown--language, .badge--lp-reviewed, .badge--top-choice, .badge--included, .card--full-page__subtitle, .pickadate__month--wrap,
-.pickadate__year--wrap, .pickadate__day, .link--back, .lp-review .section-title, .tab__header, .tab__header__start-date, .tab__header__end-date, .tab__header__filters {
+.pickadate__year--wrap, .pickadate__day, .link--back, .lp-review .section-title, .tab__header, .tab__header__start-date, .tab__header__end-date, .tab__header__filters, .coloured-box {
   display: inline-block;
   zoom: 1;
   *display: inline; }
@@ -2346,3 +2346,11 @@ input.success {
 
 [class*="col--"] {
   min-height: 30px; }
+
+input[type="text"] {
+  padding: 4px 8px; }
+
+.coloured-box {
+  width: 100px;
+  height: 100px;
+  margin: 0 10px 10px 0; }
