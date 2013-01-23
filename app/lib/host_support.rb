@@ -7,10 +7,6 @@ module HostSupport
     host_with_subdomain_and_path("www", path)
   end
 
-  def hotels_url(path = nil)
-    host_with_subdomain_and_path("hotels", path)
-  end
-
   def host_with_subdomain_and_path(subdomain, path = nil)
     path.gsub!(/^(?<first_char>[^\/])/, '/\k<first_char>') if path
     "#{host_with_subdomain(subdomain)}#{path}"
