@@ -4,11 +4,12 @@
     %nav.nav--primary
       - core_navigation_items.each do |n|
         - if n[:submenu]
-          .submenu.nav__item--primary
+          .nav__item--submenu.nav__submenu__trigger
             = n[:title]
-            - n[:submenu].each do |sub|
-              %a{ href: sub[:uri], class: "nav-user-options__item js-user-profile #{sub[:style]}"}
-                = sub[:title]
+            %nav.nav__submenu.nav__submenu--bookings.js-submenu
+              - n[:submenu].each do |sub|
+                %a{ href: sub[:uri], class: "nav__submenu__item nav__submenu__item--#{sub[:style]}"}
+                  = sub[:title]
         - else
           %a.nav__item--primary{ href: n[:uri] }
             = n[:title]
@@ -24,4 +25,3 @@
       %nav.nav-primary--user.js-user-nav
         %a.nav-user__item--primary--basket.js-user-basket(href='//shop.lonelyplanet.com/cart/view')
           %span.basket__items.js-basket-items
-
