@@ -107,6 +107,16 @@
     color: $nav-primary-type
     text-decoration: none
 
+// refactor this and hover state
+.nav__item--submenu
+  @extend .nav__item--primary
+  cursor: pointer
+  display: inline
+  position: relative
+
+  &:hover
+    .nav-submenu-options
+      display: block
 
 // ----------------------------------------------------------------------------
 // 
@@ -136,18 +146,6 @@
     @include border-radius(4)
     background-color: $nav-secondary-current-item-bck
     color: $nav-secondary-type-active
-
-
-// ----------------------------------------------------------------------------
-//
-// submenu-nav
-//
-// ----------------------------------------------------------------------------
-
-.nav__item--submenu
-  @extend .nav__item--primary
-  cursor: pointer
-  display: inline
 
 
 // ----------------------------------------------------------------------------
@@ -186,85 +184,6 @@
   margin-right: 14px
   float: right
   padding: 2px 3px 0
-
-
-// ----------------------------------------------------------------------------
-//
-// User Drop-Down Menu
-//
-// ----------------------------------------------------------------------------
-
-.nav-user-options__title
-  @extend %large-type
-  font-weight: bold
-  color: #fff
-  padding: 12px 12px
-
-.nav-user-options
-  @extend %absolute
-  @include border-radius(5)
-  @include box-shadow(0, 1, 3, 3, rgba(0, 0, 0, 0.2))
-  @include transition(all, 0.15, ease) 
-  background: $nav-secondary-current-item-bck
-  display: none
-  padding-bottom: 4px
-  right: 0px
-  top: 53px
-  width: 165px
-  z-index: 1 
-  &:before
-    @extend %empty-abs-generated-content 
-    @extend %sprite-core--standard
-    background-position: -128px -139px
-    display: block
-    top: -9px
-    right: 35px
-    width: 20px
-    height: 10px
-
-.nav-user-options__item
-  @extend .nav__item--vertical
-  @extend %sprite-core--standard
-  @extend %helvetica-neue
-  position: relative
-  background-position: 144px -246px
-  color: #fff
-  font-size: 14px
-  padding: 12px 12px
-  &:hover
-    background-color:  $nav-secondary-item-hover
-    text-decoration: none
-  &:after
-    @extend %empty-abs-generated-content 
-    @extend %sprite-core--standard
-    background-position: -98px -153px
-    right: 4px
-    top: 0
-    width: 22px
-    height: 36px
-
-.nav-user-options__item--forum
-  position: relative
-  &:before
-    @extend %empty-abs-generated-content 
-    top: 100%
-    left: 0
-    width: 100%
-    height: 4px
-    border-bottom: 1px solid #1eb7bc
-  
-.nav-user-options__item--signout
-  margin-top: 8px
-
-.nav-user-options__item--unread
-  @extend %extra-small-type
-  @include border-radius(4)
-  background: #fff
-  color: $nav-secondary-current-item-bck
-  margin-right: 10px
-  float: right
-  padding: 2px 6px 1px
-  display: none
 
 
 // ----------------------------------------------------------------------------
@@ -327,4 +246,171 @@
   padding: 12px 0
 
 
+// ----------------------------------------------------------------------------
+//
+// Drop-Down Menu Abstraction
+//
+// ----------------------------------------------------------------------------
 
+
+%submenu-padding
+  padding: 10px
+
+//%submenu-container
+
+%submenu-title
+  @extend %large-type
+  font-weight: bold
+  color: #fff
+  padding: 12px 12px
+
+%submenu-options
+  @extend %absolute
+  @include border-radius(5)
+  @include box-shadow(0, 1, 3, 3, rgba(0, 0, 0, 0.2))
+  @include transition(all, 0.15, ease)
+  display: none
+  padding-bottom: 4px
+  right: 0px
+  z-index: 1
+  &:before
+    @extend %empty-abs-generated-content
+    //@extend %sprite-core--standard
+    //background-position: -128px -139px
+    display: block
+    //top: -9px
+    //right: 35px
+    //width: 20px
+    //height: 10px
+
+%submenu-options-item
+  @extend .nav__item--vertical
+  @extend %sprite-core--standard
+  @extend %helvetica-neue
+  position: relative
+  background-position: 144px -246px
+  color: #fff
+  font-size: 14px
+  padding: 12px 12px
+  &:hover
+    text-decoration: none
+  &:after
+    @extend %empty-abs-generated-content
+    @extend %sprite-core--standard
+    background-position: -98px -153px
+    right: 4px
+    top: 0
+    width: 22px
+    height: 36px
+
+
+// ----------------------------------------------------------------------------
+//
+// submenu-nav
+//
+// ----------------------------------------------------------------------------
+
+.nav-submenu-options
+  @extend %submenu-options
+  background-color: $validation-true
+  padding-top: 4px
+  top: 43px
+  width: 191px
+  &:before
+    +css-arrow(top, $width: 10px, $color: $validation-true, $offset: 136px)
+
+.nav-submenu-options__item
+  @extend %submenu-options-item
+  border-color: $validation-true
+  border-style: solid
+  border-width: 1px 0
+  padding-left: 39px
+  &:hover
+    background-color: #22ac5a
+    border-color: #1f9a51 #000 #51ca82 #000
+
+.flights
+  &:before
+    @extend %empty-abs-generated-content
+    @extend %sprite-core--standard
+    background-position: -4px -190px
+    height: 18px
+    left: 11px
+    top: 10px
+    width: 20px
+
+.hotels
+  &:before
+    @extend %empty-abs-generated-content
+    @extend %sprite-core--standard
+    background-position: -99px -190px
+    height: 15px
+    left: 11px
+    top: 10px
+    width: 19px
+
+.adventure-tours
+  &:before
+    @extend %empty-abs-generated-content
+    @extend %sprite-core--standard
+    background-position: -34px -190px
+    height: 20px
+    left: 11px
+    top: 10px
+    width: 21px
+
+.sightseeing-tours
+  &:before
+    @extend %empty-abs-generated-content
+    @extend %sprite-core--standard
+    background-position: -68px -190px
+    height: 21px
+    left: 12px
+    top: 10px
+    width: 18px
+
+
+// ----------------------------------------------------------------------------
+//
+// User Drop-Down Menu
+//
+// ----------------------------------------------------------------------------
+
+.nav-user-options__title
+  @extend %submenu-title
+
+.nav-user-options
+  @extend %submenu-options
+  background: $nav-secondary-current-item-bck
+  top: 53px
+  width: 165px
+  &:before
+    +css-arrow(top, $width: 10px, $color: $nav-secondary-current-item-bck, $offset: 110px)
+
+.nav-user-options__item
+  @extend %submenu-options-item
+  &:hover
+    background-color:  $nav-secondary-item-hover
+
+.nav-user-options__item--forum
+  position: relative
+  &:before
+    @extend %empty-abs-generated-content
+    top: 100%
+    left: 0
+    width: 100%
+    height: 4px
+    border-bottom: 1px solid #1eb7bc
+
+.nav-user-options__item--signout
+  margin-top: 8px
+
+.nav-user-options__item--unread
+  @extend %extra-small-type
+  @include border-radius(4)
+  background: #fff
+  color: $nav-secondary-current-item-bck
+  margin-right: 10px
+  float: right
+  padding: 2px 6px 1px
+  display: none
