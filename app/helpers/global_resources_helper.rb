@@ -10,7 +10,7 @@ module GlobalResourcesHelper
       {style:'destinations', title:'Destinations', uri: www_url("destinations")},
       {style:'forum', title:'Thorn Tree forum', uri: www_url("thorntree")},
       {style:'shop', title:'Shop', uri: shop_url},
-      {style:'hotels', title:'Hotels', uri: hotels_url},
+      {style:'hotels', title:'Hotels', uri: www_url("hotels")},
       {style:'flights', title:'Flights', uri: www_url("bookings/flights.do")},
       {style:'insurance', title:'Insurance', uri: www_url("bookings/insurance.do")}
     ]
@@ -22,13 +22,12 @@ module GlobalResourcesHelper
       {title:'Themes', uri: "//www.lonelyplanet.com/themes"},
       {title:'Shop', uri: "//shop.lonelyplanet.com"},
       {title:'Thorn Tree Forum', uri: "//www.lonelyplanet.com/thorntree"},
-      {title:'Bookings', uri: "//http://hotels.lonelyplanet.com/"},
+      {title:'Bookings', uri: "//http://www.lonelyplanet.com/hotels"},
       {title:'Insurance', uri: "//www.lonelyplanet.com/travel-insurance"}
     ]
   end
 
   def default_secondary_nav
-
     [
       {:title=>'Need to know', :url=>'#'},
       {:title=>'In pictures', :url=>'#'},
@@ -39,7 +38,6 @@ module GlobalResourcesHelper
       {:title=>'Hotels', :url=>'#'},
       {:title=>'Flights', :url=>'#'}
     ]
-
   end
 
   def cart_item_element
