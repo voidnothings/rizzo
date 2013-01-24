@@ -57,7 +57,7 @@ define ['jquery'], ($)->
       ]
       optionElements =  ("<a class='nav__submenu__item nav-user-options__item #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
 
-      userMenu = "<nav class='nav__submenu nav__submenu--user nav-user-options js-user-options'><div class='nav-user-options__title'>#{@lpUserName}</div>#{optionElements}</nav>"
+      userMenu = "<div class='nav__submenu'><nav class='nav__submenu__content nav__submenu__content--user nav-user-options js-user-options'><div class='nav-user-options__title'>#{@lpUserName}</div>#{optionElements}</nav></div>"
     
     signInUrl:->
       "https://secure.lonelyplanet.com/sign-in/login?service=#{escape(window.location)}"
