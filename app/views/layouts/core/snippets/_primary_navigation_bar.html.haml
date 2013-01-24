@@ -6,10 +6,11 @@
         - if n[:submenu]
           .nav__item--submenu.nav__submenu__trigger
             = n[:title]
-            %nav.nav__submenu.nav__submenu--bookings.js-submenu
-              - n[:submenu].each do |sub|
-                %a{ href: sub[:uri], class: "nav__submenu__item nav__submenu__item--#{sub[:style]}"}
-                  = sub[:title]
+            .nav__submenu
+              %nav.nav__submenu__content.nav__submenu__content--bookings.js-submenu
+                - n[:submenu].each do |sub|
+                  %a{ href: sub[:uri], class: "nav__submenu__item nav__submenu__item--#{sub[:style]}"}
+                    = sub[:title]
         - else
           %a.nav__item--primary{ href: n[:uri] }
             = n[:title]
