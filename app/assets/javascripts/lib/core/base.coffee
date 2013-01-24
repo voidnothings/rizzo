@@ -7,7 +7,7 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
       @showUserBasket()
       @showLeaderboard() if !args.secure
       @showCookieComplianceMsg()
-      @initialiseLanguageSelect()
+      @initialiseFooterSelects()
 
     adConfig: ->
       # defaults to window.lp (needs code refactoring)
@@ -37,7 +37,8 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
     showUserBasket: ->
       shopCart = new ShoppingCart()
 
-    initialiseLanguageSelect: ->
+    initialiseFooterSelects: ->
+      countrySelect = new SelectGroup '.js-select-country'
       languageSelect = new SelectGroup '.js-select-language', ->
         $('#js-language').submit()
 
