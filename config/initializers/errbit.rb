@@ -3,5 +3,4 @@ Airbrake.configure do |config|
   config.host    = 'errbit.lonelyplanet.com'
   config.port    = 3000
   config.secure  = config.port == 443
-  # config.js_namespace = "rizzo"
 end
