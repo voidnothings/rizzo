@@ -10,7 +10,7 @@ module GlobalResourcesHelper
       {style:'destinations', title:'Destinations', uri: www_url("destinations")},
       {style:'forum', title:'Thorn Tree forum', uri: www_url("thorntree")},
       {style:'shop', title:'Shop', uri: shop_url},
-      {style:'hotels', title:'Hotels', uri: hotels_url},
+      {style:'hotels', title:'Hotels', uri: www_url("hotels")},
       {style:'flights', title:'Flights', uri: www_url("bookings/flights.do")},
       {style:'insurance', title:'Insurance', uri: www_url("bookings/insurance.do")}
     ]
@@ -35,7 +35,6 @@ module GlobalResourcesHelper
   end
 
   def default_secondary_nav
-
     [
       {:title=>'Need to know', :url=>'#'},
       {:title=>'In pictures', :url=>'#'},
@@ -46,7 +45,6 @@ module GlobalResourcesHelper
       {:title=>'Hotels', :url=>'#'},
       {:title=>'Flights', :url=>'#'}
     ]
-
   end
 
   def cart_item_element
