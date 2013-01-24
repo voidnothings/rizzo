@@ -22,8 +22,8 @@ end
 group :test do 
   gem 'guard'
   gem 'guard-coffeescript'
-  gem 'rspec', '< 2.11.0'
-  gem 'rspec-rails', '< 2.11.0'
+  gem 'rspec', '~> 2.10.0'
+  gem 'rspec-rails'
   gem 'guard-rspec'
 
   gem 'selenium-webdriver', '2.26.0'
