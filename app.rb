@@ -35,12 +35,26 @@ class StyleGuideApp < Sinatra::Base
 
     styleguide.sections.keys.each do |key|
 
-      results.push({
-        'description' => styleguide.section(key).description,
-        'section' => styleguide.section(key).section,
-        'filename' => styleguide.section(key).filename
-      })
+      element = {
+          'description' => styleguide.section(key).description,
+          'section' => styleguide.section(key).section,
+          'filename' => styleguide.section(key).filename
+      }
 
+      modifiers = []
+
+      styleguide.section(key).modifiers.each do |value|
+        modifier = {
+            'name' => value.name,
+            'description' => value.description,
+            'class_name' => value.class_name
+        }
+        modifiers.push(modifier)
+      end
+
+      element['modifiers'] = modifiers
+
+      results.push(element)
     end
 
     results.to_json

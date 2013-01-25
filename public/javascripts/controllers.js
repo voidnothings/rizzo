@@ -1,8 +1,9 @@
 
-function StyleSheetCtrl($scope) {
+function StyleSheetCtrl($scope, Thingy) {
+    $scope.sections = Thingy.query();
 
     $scope.thing = 'Hello';
 
 }
 
-StyleSheetCtrl.$inject = ['$scope'];
+//StyleSheetCtrl.$inject = ['$scope', 'Components'];
