@@ -22,9 +22,9 @@ end
 group :test do 
   gem 'guard'
   gem 'guard-coffeescript'
-  gem 'rspec'
+  gem 'rspec', '~> 2.10.0'
   gem 'rspec-rails'
-  gem 'guard-rspec', '2.3.3'
+  gem 'guard-rspec'
 
   gem 'selenium-webdriver', '2.26.0'
   gem 'capybara', '< 2.0.0'
