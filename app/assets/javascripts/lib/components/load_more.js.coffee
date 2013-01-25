@@ -16,6 +16,7 @@ define ['jquery', 'lib/utils/error_messages'], ($, ErrorMessages) ->
       btnAltLabel       : 'Loading...'
       inProgress        : false
       hasError          : false
+      callback         : {}
 
     constructor : (args) ->
       $.extend @config, args
@@ -51,13 +52,18 @@ define ['jquery', 'lib/utils/error_messages'], ($, ErrorMessages) ->
         @config.nextUrl = @getNextUrl(data)
         @removePagination()
         @setInProgress(false)
-      
+        if @config.callback && @config.callback.onsucess
+          @config.callback.onsucess()
+
       # Ajax error
       $('body').on 'receivedHotels/error', (e, data) =>
         msg = ErrorMessages::systemError()
         @container.before(msg)
         @config.hasError = true
         @setInProgress(false)
+
+        if @config.callback && @config.callback.onerror
+          @config.callback.onerror()
 
 
     loadMoreContent: ->
