@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:lonelyplanet/avocado.git
-  revision: 7d06ad685d6f1b60c5d7afd3b008b48712a0dc2c
+  revision: 8b98b951edc8269a32f9bc270c1eb6c01e53cd30
   specs:
     avocado (0.0.31)
 
