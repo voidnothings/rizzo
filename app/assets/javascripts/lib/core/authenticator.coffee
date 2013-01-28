@@ -34,7 +34,7 @@ define ['jquery'], ($)->
       @emptyUserNav()
       joinElement = "<a class='nav__item--primary--user js-user-join' href='#{@options.registerLink}'>Join</a>"
       signinElement = "<a class='nav__item--primary--user js-user-signin' href='#{@signInUrl()}'>Sign-In</a>"
-      $('nav.js-user-nav').prepend(signinElement + joinElement)
+      $('nav.js-user-nav').prepend(joinElement + signinElement)
 
     showUserBox: ->
       @emptyUserNav()
