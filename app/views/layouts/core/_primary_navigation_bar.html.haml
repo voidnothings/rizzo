@@ -1,11 +1,13 @@
 .row.row--primary
-  .row__inner
+
+  .row__left
     %a.logo--lp--head(href='http://www.lonelyplanet.com')
     %nav.nav--primary
       - core_navigation_items.each do |n|
         %a.nav__item--primary{ href: n[:uri] }
           = n[:title]
 
+  .row__right
     .search--primary
       %form.search__form{:action => host_with_subdomain_and_path("www", "searchResult"), :method => "get" }
         %label.accessibility(for='search-q')
