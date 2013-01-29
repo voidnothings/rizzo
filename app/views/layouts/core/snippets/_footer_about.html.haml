@@ -1,11 +1,10 @@
 .row.row--footer--darker
   .row__inner.row__inner--footer.row__inner--break--light
     %nav.nav--footer--base
-      - ['About us','Work for us', 'Contact Us', 'Press centre, trade & advertising'].each do |d|
-        %a.nav__item.nav__item--footer--darker(href="d")
-          = d
-      %a.nav__item.nav__item--footer--darker
-        = "Terms & Conditions"
+      - footer_nav_about_items.each do |item|
+        %a.nav__item.nav__item--footer--darker{href: item[:url]}
+          = item[:title].html_safe
+
     %form#js-language.form--language(action="http://www.lonelyplanet.com/international")
       %label.label--footer(for="select-language")
         International:
