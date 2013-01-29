@@ -52,8 +52,8 @@ define ['jquery', 'lib/utils/error_messages'], ($, ErrorMessages) ->
         @config.nextUrl = @getNextUrl(data)
         @removePagination()
         @setInProgress(false)
-        if @config.callback && @config.callback.onsucess
-          @config.callback.onsucess()
+        if @config.callback && @config.callback.onsuccess
+          @config.callback.onsuccess()
 
       # Ajax error
       $('body').on 'receivedHotels/error', (e, data) =>
