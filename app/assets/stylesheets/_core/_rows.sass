@@ -19,7 +19,6 @@
 .row__right
   float: right
   text-align: right
-  margin-right: 20px
 
 .row__right__nav
   @extend %inline-block
@@ -50,6 +49,8 @@
   height: 41px
   min-width: 1000px
   margin-bottom: 40px
+  .row__right
+    margin-right: 20px
 
 .row__title--secondary
   @extend %benton-regular
@@ -130,23 +131,13 @@
 
 .row__inner--footer
   padding: 12px 0 11px 0
-
-.row__inner--breadcrumbs
   border-top: 1px solid #d6dedf
-
-.row__inner--break--dark
-  border-bottom: 1px solid #d6dedf
-
-.row__inner--break--light
-  border-bottom: 1px solid #444e56
 
 .row__inner--footer
   padding: 12px 0
   
-.row--footer--darker
-  background-color: $footer-blue
+.row--footer--about
   @extend %small-type
-  color: #cfd0d1
 
 // ----------------------------------------------------------------------------
 // 

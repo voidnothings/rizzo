@@ -21,6 +21,10 @@
 .nav__item--vertical
   display: block
 
+.nav--footer--base
+  @extend %inline-block
+  vertical-align: top
+
 .nav__item--footer
   @extend .nav__item
   @extend %small-type
@@ -28,13 +32,14 @@
   &:hover
     text-decoration: underline
 
-.nav__item--footer--darker
-  margin-right: 25px
-  padding: 12px 0
-  color: #cfd0d1
-  &:hover
-    color: #fff
-    text-decoration: none
+.nav--social
+  float: right
+
+.nav--footer--base__item
+  @extend %inline-block
+  margin-left: 20px
+  padding: 15px 0
+  color: $header-gray
 
 .nav__item--vertical--footer
   @extend .nav__item--vertical
@@ -87,6 +92,16 @@
   @extend %clearfix
   padding: 0
 
+.nav--social__title
+  @extend %inline-block
+  @extend %regular-type-size
+  font-weight: bold
+  vertical-align: top
+  padding: 15px 0
+  margin-right: 20px
+
+.nav--social__inner
+  @extend %inline-block
 
 // ----------------------------------------------------------------------------
 // 
@@ -201,6 +216,7 @@
   cursor: pointer
   float: right
   margin: 0 0 0 10px
+  padding-right: 25px
   position: relative
   &:after
     @extend %empty-abs-generated-content 
@@ -381,3 +397,8 @@
 //  float: right
 //  margin-right: 10px
 //  padding: 2px 6px 1px
+
+
+
+
+

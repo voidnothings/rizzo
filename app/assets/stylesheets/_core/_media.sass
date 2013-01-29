@@ -18,6 +18,7 @@
 // 
 // ----------------------------------------------------------------------------
 //
+
 .media--lp-logo--head
   @extend %sprite-core--standard
   @extend %inline-block
@@ -27,16 +28,11 @@
   margin: 0 20px
 
 .media--lp-logo--footer
-  position: relative
-  &:before
-    width: 84px
-    height: 44px
-    @extend %empty-abs-generated-content
-    @extend %sprite-core--standard
-    top: 0
-    left: 0
-    background-position: 0 2px
-    background-size: 140px
+  @extend %sprite-core--standard
+  @extend %inline-block
+  background-position: 0 0
+  width: 85px
+  height: 40px
 
 .ie7, .ie8
   .media--lp-logo--footer
