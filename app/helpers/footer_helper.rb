@@ -54,6 +54,26 @@ module FooterHelper
       {:title=>'Insurance', :url=>'insurance'}
     ]
   end
+  
+  def social_media_nav
+    [
+      {:title=>'twitter', :url=>'https://twitter.com/lonelyplanet'},
+      {:title=>'facebook', :url=>'https://www.facebook.com/lonelyplanet'},
+      {:title=>'google-plus', :url=>'https://plus.google.com/+LonelyPlanet/'},
+      {:title=>'flickr', :url=>'http://www.flickr.com/groups/lonelyplanetpublications/'},
+      {:title=>'rss', :url=>'/blog/feed/atom/'}
+    ]
+  end
+  
+  def footer_nav_about_items
+    [
+      {:title=> 'About us', :url => '/about/'},
+      {:title=> 'Work for us', :url => '/jobs/'},
+      {:title=> 'Contact us', :url => '/contact/'},
+      {:title=> 'Press centre, trade &amp; advertising', :url => '/press-trade-advertising/'},
+      {:title=> 'Terms &amp; conditions', :url => '/legal/website-terms/'}
+    ]
+  end
 
   def footer_newsletter_country_items
     [

@@ -41,7 +41,7 @@
           Join our mailing list
         %p.box-description__lead--footer
           Add your email here to receive all your travel inspiration, trips and exclusive offers
-        %form.box-description__inner(action='http://www.lonelyplanet.com/newsletter/subscribe_footer.php' method='post')
+        %form.box-description__inner.newsletter--footer(action='http://www.lonelyplanet.com/newsletter/subscribe_footer.php' method='post')
           %input.input--small--newsletter(type='text' id='newsletter-email' autocomplete='off' name='newsletter-email' placeholder='your@email.com')
           .dropdown.dropdown--country.js-select-country
             %label.dropdown__value.dropdown__value--country.js-select-overlay(href='#select-country')
@@ -51,12 +51,3 @@
                 %option(value="#{country[:title]}")
                   = country[:title]
           %input.btn--submit--small.btn--green(type='submit' title='Subscribe Newsletter' value='Sign up')
-
-      .box-description--footer
-        .box-description__title--footer
-          Follow us
-        .box-description__inner
-          %nav
-            - [['twitter', 'https://twitter.com/lonelyplanet'], ['facebook', 'https://www.facebook.com/lonelyplanet'], ['google-plus', 'https://plus.google.com/+LonelyPlanet/'], ['flickr', 'http://www.flickr.com/groups/lonelyplanetpublications/'], ['rss', '/blog/feed/atom/']].each do |d|
-              %a.nav__item{href: "#{d[1]}", class: "icon--regular sprite-core--standard icon--#{d[0]}"}
-
