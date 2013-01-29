@@ -18,6 +18,13 @@
 
 .row__right
   float: right
+  text-align: right
+  margin-right: 20px
+
+.row__right__nav
+  @extend %inline-block
+  text-align: left
+  vertical-align: top
 
 // ----------------------------------------------------------------------------
 // 
@@ -38,25 +45,20 @@
 // ----------------------------------------------------------------------------
 
 .row--primary
-  @extend %primary-gradient
-  @extend %clearfix
+  background-color: $primary-nav
   padding: 7px 0
   height: 41px
-
-.row--secondary
-  @extend %secondary-gradient
-  @extend %clearfix
-  @include box-shadow(0, 2, 1, 1, rgba(0, 0, 0, 0.1), true)
-  padding: 11px 0
+  min-width: 1000px
+  margin-bottom: 40px
 
 .row__title--secondary
   @extend %benton-regular
-  @extend %no-margin
-  color: #fff
+  @extend %extra-large-type
+  @extend %truncate-text
   float: left
-  font-size: 28px
-  line-height: 32px
-  max-width: 360px
+  color: $dark-blue-gray
+  line-height: 28px
+  max-width: 340px
   
 .row__inner--secondary
   min-height: 32px

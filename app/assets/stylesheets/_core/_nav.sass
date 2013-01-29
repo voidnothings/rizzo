@@ -95,17 +95,17 @@
 // ----------------------------------------------------------------------------
 
 .nav--primary
-  +vertically-center(40)
   @extend %helvetica-neue
   @extend %inline-block
   vertical-align: top
 
-.nav__item--primary  
+.nav__item--primary
+  @extend %inline-block
   color: $nav-primary-type
-  padding: 20px 8px
+  padding: 13px 8px
   font-size: 14px
   &:hover
-    color: $nav-primary-type-hover 
+    color: $nav-primary-type-hover
     text-decoration: none
   &:active
     color: $nav-primary-type
@@ -121,13 +121,12 @@
 // ----------------------------------------------------------------------------
 
 .nav--secondary
-  @extend %absolute-bottom
   @extend %helvetica-neue
-  @extend %uppercase
-  right: 0
+  @extend %smooth-text
+  float: right
 
 .nav__item--secondary
-  @extend %small-type
+  @extend %irregular-type
   float: left
   display: block
   padding: 7px 8px 7px
@@ -150,17 +149,12 @@
 // 
 // ----------------------------------------------------------------------------
 
-.nav-primary--user
-  @extend %absolute-right
-  margin-top: 8px
-
 .ie7
   .nav-primary--user
     width: 135px
 
 .nav__item--primary--user
   @extend .nav__item--primary
-  float: right
 
 .nav-user__item--primary--basket
   @extend .icon--regular
@@ -206,9 +200,7 @@
 .user-box
   cursor: pointer
   float: right
-  padding-bottom: 12px
   margin: 0 0 0 10px
-  padding-right: 25px
   position: relative
   &:after
     @extend %empty-abs-generated-content 
