@@ -156,6 +156,7 @@
     @include border-radius(4)
     background-color: $nav-secondary-current-item-bck
     color: $nav-secondary-type-active
+    font-weight: bold
 
 
 // ----------------------------------------------------------------------------
@@ -170,16 +171,6 @@
 
 .nav__item--primary--user
   @extend .nav__item--primary
-
-.nav-user__item--primary--basket
-  @extend .icon--regular
-  @extend %sprite-core--standard
-  background-position: -61px -126px
-  display: none
-  float: right
-  margin-right: 18px
-  margin-top: 3px
-  position: relative
 
 .nav-user-options__item__float
   @extend %extra-small-type
@@ -203,7 +194,7 @@
   @extend .icon--small
   @include border-radius(8)
   @include box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.5))
-  right: -5px
+  right: 0
   line-height: 16px
   z-index: 1
   margin: 0

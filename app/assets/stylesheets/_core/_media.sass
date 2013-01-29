@@ -23,16 +23,16 @@
   @extend %sprite-core--standard
   @extend %inline-block
   background-position: 0 0
-  width: 85px
-  height: 40px
+  width: 83px
+  height: 41px
   margin: 0 20px
 
 .media--lp-logo--footer
   @extend %sprite-core--standard
   @extend %inline-block
-  background-position: 0 0
-  width: 85px
-  height: 40px
+  background-position: 0 -42px
+  width: 83px
+  height: 41px
 
 .ie7, .ie8
   .media--lp-logo--footer
@@ -60,6 +60,22 @@
   @extend %small-icon  
   width: 32px
   height: 32px
+
+// ----------------------------------------------------------------------------
+// 
+// Critical Icons - Served from sprite rather than font (indicated by s in class)
+// 
+// ----------------------------------------------------------------------------
+
+.icon--s--basket
+  @extend .icon--regular
+  @extend %sprite-core--standard
+  background-position: 0px -90px
+  display: none
+  float: right
+  margin-right: 10px
+  margin-top: 8px
+  position: relative
 
 
 // ----------------------------------------------------------------------------
