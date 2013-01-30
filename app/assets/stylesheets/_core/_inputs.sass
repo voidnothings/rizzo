@@ -37,13 +37,11 @@ input, textarea
 
 .input--datepicker
   @extend %input--regular
-  background-image: url(image_path("lodgings-spt.png"))
+  @extend %lodgings-sprite-standard
   padding-right: 35px
-  background-repeat: no-repeat
   background-position: 99% -112px
   +retinafy()
-    background-image: url(image_path("lodgings-spt-2x.png"))
-    background-size: $sprite-size
+    @extend %lodgings-sprite-retina
     background-position: 95% -111px
   +placeholder()
     color: $placeholder-copy
@@ -137,6 +135,8 @@ input, textarea
   color: $nav-search-colour
   line-height: 16px
   width: 150px
+  +retinafy()
+    @extend %sprite-core--retina
   &:focus
     @extend %background-white
     color: $nav-search-bck-focus

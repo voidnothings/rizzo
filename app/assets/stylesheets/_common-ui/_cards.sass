@@ -68,14 +68,13 @@ $stack-image-height: 275px
 .lodging--top-choice
   &:after
     @extend %empty-abs-generated-content
-    background: url(image_path("lodgings-spt.png"))
+    @extend %lodgings-sprite-standard
     top: -5px
     left: 17px
     width: 63px
     height: 95px
     +retinafy()
-      background: url(image_path("lodgings-spt-2x.png"))
-      background-size: $sprite-size
+      @extend %lodgings-sprite-retina
 
   .card--full-page__header
     padding-left: 73px

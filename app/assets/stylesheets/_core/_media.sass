@@ -1,17 +1,3 @@
-// core sprite
-// 
-// ----------------------------------------------------------------------------
-
-
-%sprite-core--standard
-  background-image: image_url("core/core-sprite-standard.png")
-  background-repeat: no-repeat
-
-%sprite-core--retina
-  background-image: image_url("core/core-sprite-retina.png")
-  background-size: 174px 191px
-  background-repeat: no-repeat
-
 // ----------------------------------------------------------------------------
 // 
 // lonely planet mark
@@ -26,6 +12,8 @@
   width: 83px
   height: 41px
   margin: 0 10px 0 20px
+  +retinafy()
+    @extend %sprite-core--retina
 
 .media--lp-logo--footer
   @extend %sprite-core--standard
@@ -33,6 +21,8 @@
   background-position: 0 -42px
   width: 83px
   height: 41px
+  +retinafy()
+    @extend %sprite-core--retina
 
 .ie7, .ie8
   .media--lp-logo--footer
@@ -52,12 +42,12 @@
 // ----------------------------------------------------------------------------
 
 .icon--small
-  @extend %small-icon  
+  @extend %small-icon
   width: 16px
   height: 16px
 
 .icon--regular
-  @extend %small-icon  
+  @extend %small-icon
   width: 32px
   height: 32px
 
@@ -76,6 +66,8 @@
   width: 19px
   display: inline-block
   vertical-align: middle
+  .retina &
+    @extend %sprite-core--retina
 
 
 // ----------------------------------------------------------------------------
