@@ -39,8 +39,8 @@ define ['jquery'], ($)->
     showUserBox: ->
       @emptyUserNav()
       $('nav.js-user-nav').addClass('is-signed-in')
-      userBoxElement = "<div class='user-box js-user-box nav__submenu__trigger'><img class='user-box__img js-box-handler' src='#{@userAvatar()}'/></div>"
-      $('nav.js-user-nav').prepend(userBoxElement)
+      userBoxElement = "<div class='nav__item user-box js-user-box nav__submenu__trigger'><img class='user-box__img js-box-handler' src='#{@userAvatar()}'/></div>"
+      $('nav.js-user-nav').append(userBoxElement)
       $('div.js-user-box').append(@userOptionsMenu())
 
     emptyUserNav: -> 
@@ -57,7 +57,7 @@ define ['jquery'], ($)->
       ]
       optionElements =  ("<a class='nav__submenu__item nav-user-options__item #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
 
-      userMenu = "<div class='nav__submenu'><nav class='nav__submenu__content nav__submenu__content--user nav-user-options js-user-options'><div class='nav-user-options__title'>#{@lpUserName}</div>#{optionElements}</nav></div>"
+      userMenu = "<div class='nav__submenu'><nav class='nav__submenu__content nav__submenu__content--user nav-user-options js-user-options'><h3 class='nav-user-options__title'>#{@lpUserName}</h3>#{optionElements}</nav></div>"
     
     signInUrl:->
       "https://secure.lonelyplanet.com/sign-in/login?service=#{escape(window.location)}"
