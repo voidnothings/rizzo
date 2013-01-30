@@ -2,7 +2,7 @@
   .row__inner.row__inner--secondary
     %h1.row__title--secondary
       = title
-    %nav.nav--secondary
+    %nav.nav--secondary.row__inner--right
       - collection.each do |n|
-        %a.nav__item--secondary{:class=>(n[:title] == current ? 'current' : ''), :href=> n[:url]}
+        %a.row__inner--right__nav.nav__item--secondary{:class=>(n[:title] == current ? 'current' : ''), :href=> n[:url]}<
           = n[:title]
