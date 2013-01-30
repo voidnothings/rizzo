@@ -93,10 +93,10 @@ module GlobalResourcesHelper
   def place_heading(title, parent, slug)
     capture_haml do
       haml_tag(:h1, class: 'place-title') do
-        haml_concat(title + ", ")
+        haml_concat(title)
         unless parent == nil
           haml_tag(:a, class: 'place-title__parent', href: "http://www.lonelyplanet.com/#{slug}") do
-            haml_concat(parent)
+            haml_concat(", " + parent)
           end
         end
       end

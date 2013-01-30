@@ -17,9 +17,22 @@
 
   
   .row__inner.row__inner--footer
-    %p.text--legal
-      &copy; 
-      = Time.now.year 
-      Lonely Planet. All rights reserved. No part of this site may be reproduced without our written permission.
-      This website is owned by BBC Worldwide, which is a commercial company owned by the BBC.
+    .row__inner--left.row__inner--legal
+      %p.text--legal
+        &copy; 
+        = Time.now.year 
+        Lonely Planet. All rights reserved. No part of this site may be reproduced without our written permission.<br />
+        This website is owned by BBC Worldwide, which is a commercial company owned by the BBC.
+
+    .row__inner--right
+      %form.row__inner--right__nav#js-language.form--language(action="http://www.lonelyplanet.com/international")
+        %label.label--footer.title--list--footer(for="select-language") International:
+        .dropdown.dropdown--language.js-select-language
+          %label.dropdown__value.dropdown__value--language.js-select-overlay(href='#select-language')
+            English
+          %select.dropdown__select.js-select{name: "language", id: 'languageSelect'}
+            - [['en','English'],['de','Deutsch'],['fr','Français'],['es','Español'],['it','Italiano'],['cn','中文简体'],['jp','日本語']].each do |d|
+              %option(value="#{d[0]}")
+                = d[1]
+        %input.input--submit.submit--language(name="Go" type="submit" value="Go")
 
