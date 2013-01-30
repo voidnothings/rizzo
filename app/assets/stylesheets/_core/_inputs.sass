@@ -123,15 +123,6 @@ input, textarea
 .search--primary
   @extend %relative
   margin: 4px 10px 0 0
-  &:before
-    @extend %empty-abs-generated-content
-    @extend %sprite-core--standard
-    background-position: -38px -98px
-    display: block
-    width: 13px
-    height: 13px
-    top: 10px
-    left: 10px
 
 .search__input
   padding: 8px 10px 8px 30px
@@ -141,6 +132,8 @@ input, textarea
   @include border-radius(16)
   @include transition(all, 0.2, ease)
   background-color: $nav-search-bck
+  @extend %sprite-core--standard
+  background-position: 8px -90px
   color: $nav-search-colour
   line-height: 16px
   width: 150px

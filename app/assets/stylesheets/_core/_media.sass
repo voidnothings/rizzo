@@ -25,7 +25,7 @@
   background-position: 0 0
   width: 83px
   height: 41px
-  margin: 0 20px
+  margin: 0 10px 0 20px
 
 .media--lp-logo--footer
   @extend %sprite-core--standard
@@ -63,19 +63,19 @@
 
 // ----------------------------------------------------------------------------
 // 
-// Critical Icons - Served from sprite rather than font (indicated by s in class)
+// Critical Icons - Served from sprite rather than font
 // 
 // ----------------------------------------------------------------------------
 
-.icon--s--basket
-  @extend .icon--regular
+.user-basket__icon
+  @extend %icon
   @extend %sprite-core--standard
-  background-position: 0px -90px
-  display: none
-  float: right
-  margin-right: 10px
-  margin-top: 8px
-  position: relative
+  background-position: 0px -122px
+  margin-right: 5px
+  height: 22px
+  width: 19px
+  display: inline-block
+  vertical-align: middle
 
 
 // ----------------------------------------------------------------------------

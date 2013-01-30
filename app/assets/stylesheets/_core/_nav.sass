@@ -16,27 +16,16 @@
   @extend %helvetica-neue
 
 .nav__item
-  float: left
-
-.nav__item--vertical
-  display: block
-
-.nav--footer--base
   @extend %inline-block
   vertical-align: top
 
-.nav__item--footer
-  @extend .nav__item
-  @extend %small-type
-  color: #515a65
-  &:hover
-    text-decoration: underline
+.nav__item--vertical
+  display: block
 
 .nav--social
   float: right
 
 .nav--footer--base__item
-  @extend %inline-block
   margin-left: 20px
   padding: 15px 0
   color: $header-gray
@@ -93,15 +82,11 @@
   padding: 0
 
 .nav--social__title
-  @extend %inline-block
   @extend %regular-type-size
   font-weight: bold
-  vertical-align: top
   padding: 15px 0
   margin-right: 20px
 
-.nav--social__inner
-  @extend %inline-block
 
 // ----------------------------------------------------------------------------
 // 
@@ -111,23 +96,16 @@
 
 .nav--primary
   @extend %helvetica-neue
-  @extend %inline-block
-  vertical-align: top
 
 .nav__item--primary
-  @extend %inline-block
   color: $nav-primary-type
   padding: 13px 8px
-  font-size: 14px
   &:hover
     color: $nav-primary-type-hover
     text-decoration: none
   &:active
     color: $nav-primary-type
     text-decoration: none
-  &:first-of-type
-    padding-left: 0
-
 
 // ----------------------------------------------------------------------------
 // 
@@ -138,13 +116,10 @@
 .nav--secondary
   @extend %helvetica-neue
   @extend %smooth-text
-  float: right
 
 .nav__item--secondary
   @extend %irregular-type
-  float: left
-  display: block
-  padding: 7px 8px 7px
+  padding: 4px 8px
   line-height: 18px
   color: $nav-secondary-type
   &:hover
@@ -166,7 +141,7 @@
 // ----------------------------------------------------------------------------
 
 .ie7
-  .nav-primary--user
+  .nav--primary--user
     width: 135px
 
 .nav__item--primary--user
@@ -188,13 +163,21 @@
 //
 // ----------------------------------------------------------------------------
 
-.basket__items 
+.user-basket
+  display: none
+  position: relative
+  vertical-align: top
+  padding: 10px 4px
+  &:hover
+    text-decoration: none
+
+.user-basket__items 
   @extend %absolute-top
   @extend %central-align
   @extend .icon--small
   @include border-radius(8)
   @include box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.5))
-  right: 0
+  left: 12px
   line-height: 16px
   z-index: 1
   margin: 0
@@ -203,24 +186,23 @@
   font-weight: bold
   font-size: 10px
 
+
 .user-box
+  @extend %right-icon
+  @extend %chevron-down-after
   cursor: pointer
-  float: right
   margin: 0 0 0 10px
   padding-right: 25px
   position: relative
   &:after
-    @extend %empty-abs-generated-content 
-    @extend %sprite-core--standard
-    background-position: -102px -137px
-    top: 8px
+    color: $nav-primary-type
+    font-size: 20px
+    line-height: 34px
     right: 0
-    width: 20px
-    height: 20px
-    z-index: 10
+    top: 0
   &:hover
     &:after
-      background-position: -102px -72px
+      color: white
 
 .user-box__img
   @include box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.3), true)
@@ -247,7 +229,6 @@
 .nav__item--submenu
   @extend .nav__item--primary
   cursor: pointer
-  display: inline
   position: relative
 
 .nav__submenu__trigger
@@ -265,8 +246,8 @@
   z-index: 1
 
 .nav__submenu__content
-  @include border-radius(5)
-  @include box-shadow(0, 1, 3, 3, rgba(0, 0, 0, 0.2))
+  @extend %fly-out-shadow
+  @extend %four-pixel-rounded
   @include transition(all, 0.15, ease)
   background-color: $nav-submenu-bck
   padding: 4px 0
@@ -280,7 +261,6 @@
 .nav__submenu__item
   @extend .nav__item--vertical
   @extend %sprite-core--standard
-  @extend %helvetica-neue
   background-position: 144px -246px
   border-color: $nav-submenu-bck
   border-style: solid
