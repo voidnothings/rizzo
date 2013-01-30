@@ -260,13 +260,12 @@
 
 .nav__submenu__item
   @extend .nav__item--vertical
-  @extend %sprite-core--standard
-  background-position: 144px -246px
+  @extend %right-icon
+  @extend %chevron-right-after
   border-color: $nav-submenu-bck
   border-style: solid
   border-width: 1px 0
   color: #fff
-  font-size: 14px
   padding: 12px
   position: relative
   &:hover
@@ -274,13 +273,10 @@
     border-color: $nav-submenu-hover-border
     text-decoration: none
   &:after
-    @extend %empty-abs-generated-content
-    @extend %sprite-core--standard
-    background-position: -98px -153px
-    height: 36px
-    right: 4px
     top: 0
-    width: 22px
+    right: 6px
+    line-height: 34px
+    font-size: 24px
 
 
 // ----------------------------------------------------------------------------
