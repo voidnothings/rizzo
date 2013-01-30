@@ -9,8 +9,8 @@
 
 .row__inner
   @extend %block-center
-  @extend %relative
   @extend %clearfix
+  @extend %relative
   @extend %regular-width
 
 .row__inner--left
@@ -32,7 +32,6 @@
 // ----------------------------------------------------------------------------
 
 .row--leaderboard
-  @extend %clearfix
   background-color: $row-leader
   padding: 16px 0 
 
@@ -51,6 +50,14 @@
   margin-bottom: 40px
   .row__right
     margin-right: 20px
+
+
+// ----------------------------------------------------------------------------
+// 
+// Row secondary
+// 
+// ----------------------------------------------------------------------------
+
 
 .row--secondary
   margin-bottom: 10px
@@ -122,18 +129,17 @@
 .wrap--footer
   background-color: $body-background
 
-.row--footer
-  margin-bottom: 6px
-
-.row__inner--footer
-  padding: 12px 0 11px 0
-  border-top: 1px solid #d6dedf
-
 .row__inner--footer
   padding: 12px 0
-  
+  border-top: 1px solid #d6dedf
+  &:last-of-type
+    padding: 15px 0
+
 .row--footer--about
   @extend %small-type
+
+.row__inner--legal
+  width: 70%
 
 // ----------------------------------------------------------------------------
 // 
@@ -147,8 +153,8 @@
   height: auto !important
   height: 100%
   margin: 0
-  margin-bottom: -377px
+  margin-bottom: -360px
   
 .row--footer-push
-  height: 377px
+  height: 360px
 

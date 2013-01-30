@@ -47,16 +47,15 @@
     text-decoration: none
 
 .nav__item--breadcrumbs
-  padding: 12px 5px 0 25px
+  @extend %left-icon
+  @extend %chevron-right-before
+  @extend %small-type
+  padding: 12px 8px 0 20px
   position: relative
+  color: $header-gray
   &:before
-    width: 16px
-    height: 18px
-    @extend %empty-abs-generated-content
-    @extend %sprite-core--standard
-    left: 0px 
-    top: 9px
-    background-position: -128px -162px
+    font-size: 16px
+    line-height: 12px
 
   .ie8 &
     &:before
@@ -82,7 +81,6 @@
   padding: 0
 
 .nav--social__title
-  @extend %regular-type-size
   font-weight: bold
   padding: 15px 0
   margin-right: 20px
