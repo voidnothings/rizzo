@@ -1,7 +1,8 @@
 .row.row--secondary
   .row__inner.row__inner--secondary
-    %h1.row__title--secondary
-      = title
+    .row__title--secondary
+      = place_heading(title, parent, slug)
+
     %nav.nav--secondary.row__inner--right
       - collection.each do |n|
         %a.row__inner--right__nav.nav__item--secondary{:class=>(n[:title] == current ? 'current' : ''), :href=> n[:url]}<

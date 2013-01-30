@@ -56,7 +56,7 @@ module GlobalResourcesHelper
   end
 
   def secondary_nav_bar(args)
-    render :partial=>'layouts/core/snippets/secondary_navigation_bar', :locals=>{:title=>args[:title], :collection=>args[:collection] || [], :current=> args[:current] || nil}
+    render :partial=>'layouts/core/snippets/secondary_navigation_bar', :locals=>{:title=>args[:title], :parent=>args[:parent], :slug=>args[:parent_slug], :collection=>args[:collection] || [], :current=> args[:current] || nil}
   end
 
   def membership_item_element
@@ -89,7 +89,20 @@ module GlobalResourcesHelper
       end
     end
   end
-  
+
+  def place_heading(title, parent, slug)
+    capture_haml do
+      haml_tag(:h1, class: 'place-title') do
+        haml_concat(title + ", ")
+        unless parent == nil
+          haml_tag(:a, class: 'place-title__parent', href: "http://www.lonelyplanet.com/#{slug}") do
+            haml_concat(parent)
+          end
+        end
+      end
+    end
+  end
+
   def breadcrumbs_nav(breadcrumb_content)
     render :partial=>'layouts/core/snippets/footer_breadcrumbs', locals: {breadcrumbs: breadcrumb_content || []}
   end
