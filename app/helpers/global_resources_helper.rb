@@ -24,7 +24,7 @@ module GlobalResourcesHelper
       {title:'Thorn Tree Forum', uri: "//www.lonelyplanet.com/thorntree"},
       {title:'Bookings',
         submenu: [
-            {title:'Hotels', uri:'//hotels.lonelyplanet.com/', style:'hotels'},
+            {title:'Hotels', uri:'//www.lonelyplanet.com/hotels', style:'hotels'},
             {title:'Flights', uri:'//www.lonelyplanet.com/flights/', style:'flights'},
             {title:'Adventure tours', uri:'//www.lonelyplanet.com/adventure-tours/', style:'adventure-tours'},
             {title:'Sightseeing tours', uri:'//www.lonelyplanet.com/sightseeing-tours/', style:'sightseeing-tours'}
