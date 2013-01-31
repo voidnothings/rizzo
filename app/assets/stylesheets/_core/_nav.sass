@@ -95,14 +95,14 @@
 // ----------------------------------------------------------------------------
 
 .nav--primary
-  +vertically-center(40)
   @extend %helvetica-neue
-  @extend %inline-block
-  vertical-align: top
+  float: left
+  margin-left: 9px
+  margin-top: 18px
 
 .nav__item--primary  
   color: $nav-primary-type
-  padding: 20px 8px
+  padding: 10px 8px
   font-size: 14px
   &:hover
     color: $nav-primary-type-hover 
@@ -110,8 +110,6 @@
   &:active
     color: $nav-primary-type
     text-decoration: none
-  &:first-of-type
-    padding-left: 0
 
 
 // ----------------------------------------------------------------------------
