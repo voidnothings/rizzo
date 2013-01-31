@@ -15,7 +15,7 @@ gem 'airbrake'
 group :assets do 
 
   gem 'avocado', git: 'git@github.com:lonelyplanet/avocado.git'
-  gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git', ref: 'f6b4568ea81882e43b7df45a2fc59bc4819819a9'
+  gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git', ref: '84ede695ea73ac09192bc06d6c437031ba2143bd'
 
 end
 
