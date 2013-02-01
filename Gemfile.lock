@@ -106,6 +106,8 @@ GEM
     journey (1.0.4)
     json (1.7.6)
     kgio (2.8.0)
+    launchy (2.1.2)
+      addressable (~> 2.3)
     libwebsocket (0.1.7.1)
       addressable
       websocket
@@ -218,6 +220,7 @@ DEPENDENCIES
   guard-rspec
   haml
   haml-rails
+  launchy
   rails
   rake
   rb-fsevent (~> 0.9.1)

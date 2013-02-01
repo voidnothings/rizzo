@@ -34,3 +34,20 @@ end
 Then /^the global\-body\-header response should not have the user nav box$/ do
   page.should_not have_selector 'nav.nav-primary--user'
 end
+
+Given /^an external app$/ do
+  @external_app = 'destinations'
+end
+
+When /^it requests the "(.*?)" snippet$/ do |url|
+  visit "/#{url}"
+end
+
+Then /^the response should contain the "(.*?)" script$/ do |arg1|
+  page.should have_content "errbit.lonelyplanet.com" 
+end
+
+Then /^the response should not contain the "(.*?)" script$/ do |arg1|
+  page.should_not have_content "errbit.lonelyplanet.com" 
+end
+
