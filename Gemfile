@@ -13,10 +13,8 @@ gem 'rake'
 gem 'airbrake'
 
 group :assets do 
-
   gem 'avocado', path: '/Users/Ian/development/lp/online/avocado'
   gem 'beaker', path: '/Users/Ian/development/lp/online/beaker'
-
 end
 
 group :test do 
