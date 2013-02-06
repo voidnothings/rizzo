@@ -25,7 +25,6 @@ $stack-card-padding: 15px
 $stack-card-image-height: 275px
 $stack-card-hero-image-height: 185px
 
-
 %base-stack-card-object
   @extend %standard-shadow
   background: #fff
@@ -59,15 +58,26 @@ $stack-card-hero-image-height: 185px
     height: $stack-card-image-height
 
 
+
+
+
+
+.card--poi
+  &:hover
+    .stack__card__content
+      height: (335px - ( 2 * $stack-card-padding ))
+
+
 // -----------------------------------------------------------------------------
 // Lodging card
 // -----------------------------------------------------------------------------
 
-.card--lodging:hover
+.stack__card:hover
   +box-shadow(2, 2, 8, 0, rgba(3, 46, 92, 0.15))
   img
     +filter(brightness(-15%))
-
+  .btn--bookable
+    background: #fff004
 
 // -----------------------------------------------------------------------------
 //
@@ -106,7 +116,9 @@ $stack-card-hero-image-height: 185px
 // -----------------------------------------------------------------------------
 
 .stack__card__content
+  @extend %transition--base
   @extend %absolute
+  background: #fff
   bottom: $stack-card-padding
   color: $header-gray
   overflow: hidden
@@ -163,11 +175,10 @@ $stack-card-hero-image-height: 185px
 
 .stack__card__footer
   @extend %absolute
-  bottom: 9px
-  left: 10px
-  right: 13px
+  bottom: 8px
+  left: 8px
+  right: 8px
   // To contain the negative text-indent of the badges and preserve outline
-  height: 35px
   overflow: hidden
 
 
