@@ -1,0 +1,52 @@
+// Badges
+//
+//
+// .badge--lp-reviewed     - Lonely Planet Reviewed Badge
+// .badge--top-choice      - Lonely Planet Top Choice Badge
+// .badge--included        - Badge to show other included items
+//
+// Styleguide 1.1
+
+
+// -----------------------------------------------------------------------------
+// Badges
+// -----------------------------------------------------------------------------
+
+// Below hacks are a consequence of mixing negative text indent
+// (from %left-icon--hidden-text) with the :hover box-shadow effect on the cards
+// and the resulting change in the element outline.
+
+%badge--card
+  @extend %left-icon
+  @extend %left-icon--hidden-text
+  @extend %inline-block
+  &:before
+    color: #fff
+
+.card__badge--lp-reviewed
+  @extend %badge--card
+  @extend %lp-review-bubble-before
+  height: 25px
+  width: 28px
+  &:before
+    font-size: 44px
+    line-height: 20px
+
+.card__badge--top-choice
+  @extend %badge--card
+  @extend %top-choice-before
+  height: 30px
+  width: 38px
+  &:before
+    font-size: 60px
+    line-height: 22px
+
+.badge--included
+  @extend %four-pixel-rounded
+  @extend %inline-block
+  @extend %tiny-type
+  font-weight: bold
+  color: #fff
+  padding: 2px 5px
+  text-transform: uppercase
+  background-color: $validation-true

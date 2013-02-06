@@ -1,0 +1,157 @@
+// Cards
+// 
+//
+// .tag--price - Usually found hanging off cards or booking forms
+// .tag--badge - A tag containing a badge for the POI
+// 
+// Styleguide 1.9
+
+
+// -----------------------------------------------------------------------------
+// Container for top hanging tags
+// -----------------------------------------------------------------------------
+
+.card__tags
+  @extend %absolute
+  right: 8px
+  z-index: 1
+  top: -4px
+
+// -----------------------------------------------------------------------------
+// Base classes for hanging tags used on cards
+// -----------------------------------------------------------------------------
+
+%card__tag
+  @extend %benton-regular
+  &:before,
+  &:after
+    @extend %empty-abs-generated-content
+
+@mixin card-tag-curl-top($background: blue, $curl: red)
+  &:before
+    background-color: $background
+    height: 4px
+    left: -4px
+    top: 0
+    width: 4px
+  &:after
+    background-color: $curl
+    border-top-left-radius: 4px
+    border-top-right-radius: 4px
+    height: 4px
+    left: -6px
+    top: 0
+    width: 6px
+
+@mixin card-tag-curl-left($background: blue, $curl: red)
+  &:before
+    background: $background
+    bottom: -4px
+    height: 4px
+    left: 0
+    width: 4px
+  &:after
+    background: $curl
+    border-bottom-left-radius: 4px
+    border-top-left-radius: 4px
+    bottom: -6px
+    height: 6px
+    left: 0
+    width: 4px
+
+%card__tag__container--top
+  border-bottom-left-radius: 4px
+  border-bottom-right-radius: 4px
+  border-top-right-radius: 4px
+
+%card__tag__container--left
+  border-top-left-radius: 4px
+  border-top-right-radius: 4px
+  border-bottom-right-radius: 4px
+
+
+// -----------------------------------------------------------------------------
+// Top-hanging card tag (default is top hanging)
+// -----------------------------------------------------------------------------
+
+.card__tag
+  @extend %card__tag
+  @extend %extra-small-type
+  @extend %relative
+  float: right
+  margin-left: 4px
+  text-align: center
+
+
+// -----------------------------------------------------------------------------
+// Side-hanging card tag
+// -----------------------------------------------------------------------------
+
+.card__tag--horizontal
+  @extend %absolute
+  @extend %card__tag
+  @extend %small-type
+  @extend %card__tag__container--left
+  +card-tag-curl-left($side-tag, $side-tag-curl)
+  background: $side-tag
+  color: #fff
+  font-weight: bold
+  left: -4px
+  letter-spacing: -1px
+  padding: 10px
+  text-transform: uppercase
+  top: 12px
+  z-index: 1
+
+// -----------------------------------------------------------------------------
+// Price tag
+// -----------------------------------------------------------------------------
+
+.card__tag--price
+  +card-tag-curl-top(#fff556, $bookable-ribbon)
+
+.card__tag__inner--price
+  @extend %card__tag__container--top
+  background-color: #fff556
+  color: #2f4662
+  overflow: hidden
+  padding-top: 6px
+
+.card__tag__price--non-bookable
+  +multiple-text-shadow(-1px -1px 1px rgba(0, 0, 0, 0.25), 1px 1px 1px rgba(255,255,255,0.8))
+  color: #dad01a
+  font-size: 50px
+  padding: 4px 10px
+
+.card__tag__price--price
+  @extend %section-heading-size-type
+  display: block
+  padding: 0 8px 6px 8px
+
+.card__tag__price--curr
+  @extend %extra-small-type
+  line-height: 0
+  position: relative
+  top: -0.45em
+  word-spacing: -2px
+
+.card__tag__price--discount
+  @extend %extra-small-type
+  background: #2f4662
+  color: #fff
+  display: block
+  font-weight: bold
+  padding: 4px 0
+  text-decoration: line-through
+
+
+// -----------------------------------------------------------------------------
+// Badge tag
+// -----------------------------------------------------------------------------
+
+.card__tag--badge
+  @extend %card__tag__container--top
+  +card-tag-curl-top(#1a65c0, #032e5c)
+  background-color: #1a65c0
+  color: #fff
+  padding: 4px 1px
