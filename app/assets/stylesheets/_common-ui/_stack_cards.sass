@@ -57,11 +57,6 @@ $stack-card-hero-image-height: 185px
   .card__hero
     height: $stack-card-image-height
 
-
-
-
-
-
 .card--poi
   &:hover
     .stack__card__content
@@ -134,6 +129,15 @@ $stack-card-hero-image-height: 185px
     padding-top: 60px
     height: ($stack-card-grid-height - 60px - $stack-card-padding)
 
+  // fade to white at the bottom of the description
+  &:after
+    @extend %empty-abs-generated-content
+    height:  20px
+    +background-gradient($startColor: rgba(255,255,255,0), $endColor: rgba(255,255,255,1.0))
+    bottom: 0
+    left: 0
+    right: 0
+
 
 // -----------------------------------------------------------------------------
 // Card details
@@ -175,23 +179,33 @@ $stack-card-hero-image-height: 185px
 
 .stack__card__footer
   @extend %absolute
-  bottom: 8px
-  left: 8px
-  right: 8px
-  // To contain the negative text-indent of the badges and preserve outline
-  overflow: hidden
+  background: #fff
+  bottom: 0
+  left: 0
+  right: 0
+  padding: 8px
 
+  .btn--bookable
+    background: #fff556
+    padding: 10px
+    width: 100%
 
-//.card--lodging .btn--bookable
-//  @extend %irregular-type
-//  @extend %absolute
-//  bottom: 2px
-//  right: 0
-//  padding: 10px 12px
+  // fade to white at the bottom of the description
+  &:after
+    @extend %empty-abs-generated-content
+    height:  20px
+    +background-gradient($startColor: rgba(255,255,255,0), $endColor: rgba(255,255,255,1.0))
+    top: -20px
+    left: 0
+    right: 0
+
 
 // -----------------------------------------------------------------------------
 // Cards without images
 // -----------------------------------------------------------------------------
+
+.grid-view .has-no-image
+  border: 0 !important
 
 .list-view .has-no-image
   border-left: 2px solid $hotels-poi
@@ -217,6 +231,7 @@ $stack-card-hero-image-height: 185px
   @extend %no-line-height
   @extend %left-icon
   @extend %left-icon--hidden-text
+  text-shadow: 0 0 5px rgba(0,0,0,1.0)
   color: #fff
   display: block
   font-size: 65px
@@ -231,10 +246,13 @@ $stack-card-hero-image-height: 185px
     line-height: 1
     top: -10px
 
+  .has-no-image &
+    text-shadow: none
+
 .card--lodging,
 .card--poi-lodging
   .stack__card__poi-icon
-    @extend %icon-poi-sight-before
+    @extend %icon-poi-hotel-before
   &.has-no-image
     .stack__card__poi-icon
       @extend %icon-poi-hotel-before
