@@ -18,12 +18,13 @@
 // -----------------------------------------------------------------------------
 
 $stack-card-grid-height: 380px
-$stack-card-hero-image-height: 185px
 $stack-single-card-width: 192px
 
-$stack-card-image-height: 275px
-
 $stack-card-padding: 15px
+
+$stack-card-image-height: 275px
+$stack-card-hero-image-height: 185px
+
 
 %base-stack-card-object
   @extend %standard-shadow
@@ -156,62 +157,6 @@ $stack-card-padding: 15px
   .list-view &
     padding-right: 65px
 
-
-
-
-
-
-.stack__card__poi-icon
-  @extend %benton-regular
-  @extend %no-line-height
-  @extend %left-icon
-  @extend %left-icon--hidden-text
-  display: block
-  font-size: 65px
-  height: 0
-  left: 14px
-  top: 22px
-  .list-view &
-    left: 10px
-    top: 29px
-  .ie7 &
-    line-height: 1
-    top: -10px
-
-  .card--lodging &,
-  .card--poi-lodging &
-    @extend %icon-poi-hotel-before
-    color: $hotels-poi
-
-  .card--poi-sight &
-    @extend %icon-poi-sight-before
-    color: $sight-poi
-
-  .card--poi-activity &
-    @extend %icon-poi-activity-before
-    color: $activity-poi
-
-  .card--poi-tour &
-    @extend %icon-poi-tour-before
-    color: $tour-poi
-
-  .card--poi-shopping &
-    @extend %icon-poi-shopping-before
-    color: $shopping-poi
-
-  .card--poi-entertainment &
-    @extend %icon-poi-entertainment-before
-    color: $entertainment-poi
-
-  .card--poi-restaurant &
-    @extend %icon-poi-restaurant-before
-    color: $restaurant-poi
-
-  .card--poi-article &
-    @extend %icon-poi-article-before
-    color: $article-poi
-
-
 // -----------------------------------------------------------------------------
 // Card Footer
 // -----------------------------------------------------------------------------
@@ -252,5 +197,90 @@ $stack-card-padding: 15px
   margin-top: 5px
 
 
+// -----------------------------------------------------------------------------
+// Card POI icons
+// -----------------------------------------------------------------------------
 
+.stack__card__poi-icon
+  @extend %benton-regular
+  @extend %no-line-height
+  @extend %left-icon
+  @extend %left-icon--hidden-text
+  color: #fff
+  display: block
+  font-size: 65px
+  height: 0
+  left: 14px
+  top: 22px
+  z-index: 1
+  .list-view &
+    left: 10px
+    top: 29px
+  .ie7 &
+    line-height: 1
+    top: -10px
 
+.card--lodging,
+.card--poi-lodging
+  .stack__card__poi-icon
+    @extend %icon-poi-sight-before
+  &.has-no-image
+    .stack__card__poi-icon
+      @extend %icon-poi-hotel-before
+      color: $hotels-poi
+
+.card--poi-sight
+  .stack__card__poi-icon
+    @extend %icon-poi-sight-before
+  &.has-no-image
+    .stack__card__poi-icon
+      @extend %icon-poi-sight-before
+      color: $sight-poi
+
+.card--poi-activity
+  .stack__card__poi-icon
+    @extend %icon-poi-activity-before
+  &.has-no-image
+    .stack__card__poi-icon
+      @extend %icon-poi-activity-before
+      color: $activity-poi
+
+.card--poi-tour
+  .stack__card__poi-icon
+    @extend %icon-poi-tour-before
+  &.has-no-image
+    .stack__card__poi-icon
+      @extend %icon-poi-tour-before
+      color: $tour-poi
+
+.card--poi-shopping
+  .stack__card__poi-icon
+    @extend %icon-poi-shopping-before
+  &.has-no-image
+    .stack__card__poi-icon
+      @extend %icon-poi-shopping-before
+      color: $shopping-poi
+
+.card--poi-entertainment
+  .stack__card__poi-icon
+    @extend %icon-poi-entertainment-before
+  &.has-no-image
+    .stack__card__poi-icon
+      @extend %icon-poi-entertainment-before
+      color: $entertainment-poi
+
+.card--poi-restaurant
+  .stack__card__poi-icon
+    @extend %icon-poi-restaurant-before
+  &.has-no-image
+    .stack__card__poi-icon
+      @extend %icon-poi-restaurant-before
+      color: $restaurant-poi
+
+.card--poi-article
+  .stack__card__poi-icon
+    @extend %icon-poi-article-before
+  &.has-no-image
+    .stack__card__poi-icon
+      @extend %icon-poi-article-before
+      color: $restaurant-poi
