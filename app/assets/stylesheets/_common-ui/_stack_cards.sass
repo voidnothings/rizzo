@@ -72,7 +72,7 @@ $stack-card-padding: 15px
     height: $stack-card-hero-image-height
 
   // single stack cards have taller images
-  .stack__card--stack.stack__card--single &
+  .stack__card--stack &
     height: $stack-hero-image-height
 
   // double stack cards have full height images
@@ -119,7 +119,7 @@ $stack-card-padding: 15px
     height: ($stack-card-grid-height - 60px - $stack-card-padding)
 
   // single-width stack cards have shorther content areas
-  .stack__card--stack.stack__card--single &
+  .stack__card--stack &
     height: ($stack-card-grid-height - $stack-hero-image-height - (2 * $stack-card-padding) )
 
   // double-width stack cards have black/transparent gradient background and content area height dependent on content
@@ -196,7 +196,7 @@ $stack-card-padding: 15px
 // Card POI icons
 // -----------------------------------------------------------------------------
 
-.stack__card__poi-icon
+.stack__card--icon
   @extend %benton-regular
   @extend %no-line-height
   @extend %left-icon
@@ -213,70 +213,70 @@ $stack-card-padding: 15px
     line-height: 1
     top: -10px
 
-  .has-no-image &
+  .stack__card--has-no-image &
     text-shadow: none
 
-.card--lodging,
-.card--poi-lodging
-  .stack__card__poi-icon
+.stack__card--lodging,
+.stack__card--lodging
+  .stack__card--icon
     @extend %icon-poi-hotel-before
-  &.has-no-image
-    .stack__card__poi-icon
+  &.stack__card--has-no-image
+    .stack__card--icon
       @extend %icon-poi-hotel-before
       color: $hotels-poi
 
-.card--poi-sight
-  .stack__card__poi-icon
+.stack__card--sight
+  .stack__card--icon
     @extend %icon-poi-sight-before
-  &.has-no-image
-    .stack__card__poi-icon
+  &.stack__card--has-no-image
+    .stack__card--icon
       @extend %icon-poi-sight-before
       color: $sight-poi
 
-.card--poi-activity
-  .stack__card__poi-icon
+.stack__card--activity
+  .stack__card--icon
     @extend %icon-poi-activity-before
-  &.has-no-image
-    .stack__card__poi-icon
+  &.stack__card--has-no-image
+    .stack__card--icon
       @extend %icon-poi-activity-before
       color: $activity-poi
 
-.card--poi-tour
-  .stack__card__poi-icon
+.stack__card--tour
+  .stack__card--icon
     @extend %icon-poi-tour-before
-  &.has-no-image
-    .stack__card__poi-icon
+  &.stack__card--has-no-image
+    .stack__card--icon
       @extend %icon-poi-tour-before
       color: $tour-poi
 
-.card--poi-shopping
-  .stack__card__poi-icon
+.stack__card--shopping
+  .stack__card--icon
     @extend %icon-poi-shopping-before
-  &.has-no-image
-    .stack__card__poi-icon
+  &.stack__card--has-no-image
+    .stack__card--icon
       @extend %icon-poi-shopping-before
       color: $shopping-poi
 
-.card--poi-entertainment
-  .stack__card__poi-icon
+.stack__card--entertainment
+  .stack__card--icon
     @extend %icon-poi-entertainment-before
-  &.has-no-image
-    .stack__card__poi-icon
+  &.stack__card--has-no-image
+    .stack__card--icon
       @extend %icon-poi-entertainment-before
       color: $entertainment-poi
 
-.card--poi-restaurant
-  .stack__card__poi-icon
+.stack__card--restaurant
+  .stack__card--icon
     @extend %icon-poi-restaurant-before
-  &.has-no-image
-    .stack__card__poi-icon
+  &.stack__card--has-no-image
+    .stack__card--icon
       @extend %icon-poi-restaurant-before
       color: $restaurant-poi
 
-.card--poi-article
-  .stack__card__poi-icon
+.stack__card--article
+  .stack__card--icon
     @extend %icon-poi-article-before
-  &.has-no-image
-    .stack__card__poi-icon
+  &.stack__card--has-no-image
+    .stack__card--icon
       @extend %icon-poi-article-before
       color: $restaurant-poi
