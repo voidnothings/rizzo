@@ -1,20 +1,14 @@
 // Cards
 //
 //
-// .grid-view .card.card--single - A Card used to display a poi in grid form
+// .stack__card.card--single - A Card used to display a poi in grid form
 //
 // Styleguide 1.3
 
-
-
 // -----------------------------------------------------------------------------
-// So far we have three types of card:
+// Base card object and sizing variables
 //
-// Grid, List and Full page (detail page)
-// -----------------------------------------------------------------------------
-
-// -----------------------------------------------------------------------------
-// Our base card object and sizing variables
+// - Width of a Card defaults to single - override when necessary
 // -----------------------------------------------------------------------------
 
 $stack-card-grid-height: 380px
@@ -22,10 +16,10 @@ $stack-card-grid-height: 380px
 $stack-single-card-width: 192px
 $stack-double-card-width: 394px
 
-$stack-card-padding: 15px
-
 $stack-hero-image-height: 275px
 $stack-card-hero-image-height: 185px
+
+$stack-card-padding: 15px
 
 %base-stack-card-object
   @extend %standard-shadow
@@ -34,9 +28,6 @@ $stack-card-hero-image-height: 185px
   background: #fff
   height: $stack-card-grid-height
   margin-bottom: 10px
-
-// widths
-.stack__card--single
   width: $stack-single-card-width
 
 .stack__card--double
@@ -44,56 +35,41 @@ $stack-card-hero-image-height: 185px
 
 
 // -----------------------------------------------------------------------------
-// The Card
+// Card
 // -----------------------------------------------------------------------------
 
 .stack__card
   @extend %base-stack-card-object
   @extend %relative
-  .is-loading &
-    opacity: 0.3
+  //.is-loading &
+  //  opacity: 0.3
+
+.stack__card
+  &:hover
+    +box-shadow(2, 2, 8, 0, rgba(3, 46, 92, 0.15))
+
+    img
+      +filter(brightness(-15%))
+
+// extra hover behaviour for POI cards
+.stack__card--poi
+  &:hover
+    .stack__card__content
+      height: $stack-card-grid-height - 60px - $stack-card-padding
 
 
 // -----------------------------------------------------------------------------
-// The Stack
+// Card Image
 // -----------------------------------------------------------------------------
 
-//.stack__card--stack
-//  @extend %base-stack-card-object
-//  .stack__card__hero
-//    height: $stack-card-image-height
-//
-//.card--poi
-//  &:hover
-//    .stack__card__content
-//      height: (335px - ( 2 * $stack-card-padding ))
-
-
-// -----------------------------------------------------------------------------
-// Lodging card
-// -----------------------------------------------------------------------------
-
-.stack__card:hover
-  +box-shadow(2, 2, 8, 0, rgba(3, 46, 92, 0.15))
-  img
-    +filter(brightness(-15%))
-
-// -----------------------------------------------------------------------------
-//
-// Grid view cards
-//
-// -----------------------------------------------------------------------------
-
-// -----------------------------------------------------------------------------
-// The Card Image
-// -----------------------------------------------------------------------------
-
-// default height is the POI size
 .stack__card__hero
   @extend %relative
-  height: $stack-card-hero-image-height
   overflow: hidden
   width: 100%
+
+  // POI cards are the smaller size
+  .stack__card--poi &
+    height: $stack-card-hero-image-height
 
   // single stack cards have taller images
   .stack__card--stack.stack__card--single &
@@ -111,31 +87,46 @@ $stack-card-hero-image-height: 185px
 
 
 // -----------------------------------------------------------------------------
-// Inner 'content' section
+// Card 'content' section
 // -----------------------------------------------------------------------------
 
 .stack__card__content
   @extend %transition--base
   @extend %absolute
   background: #fff
-  bottom: $stack-card-padding
+  bottom: 0
   color: $header-gray
   overflow: hidden
-  padding: $stack-card-padding $stack-card-padding 0 $stack-card-padding
-  height: 1px
-  //.grid-view &
-  //  height: ($stack-card-grid-height - $stack-card-hero-image-height - (2 * $stack-card-padding) )
-  //
-  //.grid-view .has-no-image &
-  //  padding-top: 60px
-  //  height: ($stack-card-grid-height - 60px - $stack-card-padding)
+  padding: $stack-card-padding
 
-  // fade to white at the bottom of the description
-  &:after
-    @extend %empty-abs-generated-content
-    height:  20px
-    +background-gradient($startColor: rgba(255,255,255,0), $endColor: rgba(255,255,255,1.0))
-    bottom: 0
+  // POI content height is a bit of a hack
+  .stack__card--poi &
+    bottom: $stack-card-padding
+    height: ($stack-card-grid-height - $stack-card-hero-image-height - (2 * $stack-card-padding) )
+    padding: $stack-card-padding $stack-card-padding 0 $stack-card-padding
+
+    // fade to white at the bottom of the description for POI cards only
+    &:after
+      @extend %empty-abs-generated-content
+      height:  20px
+      +background-gradient($startColor: rgba(255,255,255,0), $endColor: rgba(255,255,255,1.0))
+      bottom: 0
+      left: 0
+      right: 0
+
+  // with no image height is taller
+  .stack__card--has-no-image &
+    height: ($stack-card-grid-height - 60px - $stack-card-padding)
+
+  // single-width stack cards have shorther content areas
+  .stack__card--stack.stack__card--single &
+    height: ($stack-card-grid-height - $stack-hero-image-height - (2 * $stack-card-padding) )
+
+  // double-width stack cards have black/transparent gradient background and content area height dependent on content
+  .stack__card--stack.stack__card--double &
+    +background-gradient($startColor: rgba(0,0,0,0), $endColor: rgba(0,0,0,1.0))
+    color: #fff
+    height: auto
     left: 0
     right: 0
 
@@ -147,16 +138,18 @@ $stack-card-hero-image-height: 185px
 .stack__card__property-type,
 .stack__card__context
   @extend %small-type
-  margin-bottom: 2px
   display: block
+  margin-bottom: 2px
 
 .stack__card__name
   @extend %large-type
   +word-break()
   font-weight: bold
   line-height: 17px
-  .grid-view &
-    margin-bottom: 12px
+  margin-bottom: 12px
+
+  .stack__card--stack.stack__card--double &
+    margin-bottom: 0
 
 .stack__card__locale
   @extend %serif
@@ -171,8 +164,6 @@ $stack-card-hero-image-height: 185px
   @extend %smooth-text
   color: $body-copy
   line-height: 14px
-  .list-view &
-    padding-right: 65px
 
 // -----------------------------------------------------------------------------
 // Card Footer
@@ -183,30 +174,22 @@ $stack-card-hero-image-height: 185px
   background: #fff
   bottom: 0
   left: 0
-  right: 0
   padding: 8px
+  right: 0
 
   .btn--bookable
     background: #fff556
     padding: 10px
     width: 100%
 
-  // fade to white at the bottom of the description
+  // fade to white at the top of the footer - needed when footer obscures content fadeout
   &:after
     @extend %empty-abs-generated-content
-    height:  20px
     +background-gradient($startColor: rgba(255,255,255,0), $endColor: rgba(255,255,255,1.0))
-    top: -20px
+    height:  20px
     left: 0
     right: 0
-
-
-// -----------------------------------------------------------------------------
-// Cards without images
-// -----------------------------------------------------------------------------
-
-.stack__card .has-no-image
-  border: 0 !important
+    top: -20px
 
 
 // -----------------------------------------------------------------------------
@@ -218,12 +201,12 @@ $stack-card-hero-image-height: 185px
   @extend %no-line-height
   @extend %left-icon
   @extend %left-icon--hidden-text
-  text-shadow: 0 0 5px rgba(0,0,0,1.0)
   color: #fff
   display: block
   font-size: 65px
   height: 0
   left: 14px
+  text-shadow: 0 0 5px rgba(0,0,0,1.0)
   top: 22px
   z-index: 1
   .ie7 &
