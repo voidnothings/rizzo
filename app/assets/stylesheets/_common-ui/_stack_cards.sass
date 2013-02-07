@@ -18,21 +18,29 @@
 // -----------------------------------------------------------------------------
 
 $stack-card-grid-height: 380px
+
 $stack-single-card-width: 192px
+$stack-double-card-width: 394px
 
 $stack-card-padding: 15px
 
-$stack-card-image-height: 275px
+$stack-hero-image-height: 275px
 $stack-card-hero-image-height: 185px
 
 %base-stack-card-object
   @extend %standard-shadow
+  @extend %margin-grid-column-10
+  +transition(opacity, 0.5, ease)
   background: #fff
-  .grid-view &, .list-view &
-    +transition(opacity, 0.5, ease)
-    margin-bottom: 10px
-  .grid-view &
-    height: $stack-card-grid-height
+  height: $stack-card-grid-height
+  margin-bottom: 10px
+
+// widths
+.stack__card--single
+  width: $stack-single-card-width
+
+.stack__card--double
+  width: $stack-double-card-width
 
 
 // -----------------------------------------------------------------------------
@@ -50,17 +58,15 @@ $stack-card-hero-image-height: 185px
 // The Stack
 // -----------------------------------------------------------------------------
 
-.card--stack
-  @extend %base-stack-card-object
-  @extend %relative
-  height: 380px
-  .card__hero
-    height: $stack-card-image-height
-
-.card--poi
-  &:hover
-    .stack__card__content
-      height: (335px - ( 2 * $stack-card-padding ))
+//.stack__card--stack
+//  @extend %base-stack-card-object
+//  .stack__card__hero
+//    height: $stack-card-image-height
+//
+//.card--poi
+//  &:hover
+//    .stack__card__content
+//      height: (335px - ( 2 * $stack-card-padding ))
 
 
 // -----------------------------------------------------------------------------
@@ -71,39 +77,37 @@ $stack-card-hero-image-height: 185px
   +box-shadow(2, 2, 8, 0, rgba(3, 46, 92, 0.15))
   img
     +filter(brightness(-15%))
-  .btn--bookable
-    background: #fff004
 
 // -----------------------------------------------------------------------------
 //
-// Grid and List view cards
+// Grid view cards
 //
 // -----------------------------------------------------------------------------
-
-.list-view .stack__card
-  @extend %media
-
 
 // -----------------------------------------------------------------------------
 // The Card Image
 // -----------------------------------------------------------------------------
 
+// default height is the POI size
 .stack__card__hero
   @extend %relative
   height: $stack-card-hero-image-height
   overflow: hidden
+  width: 100%
+
+  // single stack cards have taller images
+  .stack__card--stack.stack__card--single &
+    height: $stack-hero-image-height
+
+  // double stack cards have full height images
+  .stack__card--stack.stack__card--double &
+    height: $stack-card-grid-height
 
   // Refactor to use landscape/portrait classes when rowlf imaging catches up
   > .card__image
     @extend %absolute-bottom
     max-width: none
     height: 100%
-
-  .grid-view &
-    width: 100%
-
-  .list-view &
-    width: $stack-single-card-width
 
 
 // -----------------------------------------------------------------------------
@@ -118,16 +122,13 @@ $stack-card-hero-image-height: 185px
   color: $header-gray
   overflow: hidden
   padding: $stack-card-padding $stack-card-padding 0 $stack-card-padding
-
-  //.list-view &
-  //  height: ($stack-card-hero-image-height - (2 * $stack-card-padding) )
+  height: 1px
+  //.grid-view &
+  //  height: ($stack-card-grid-height - $stack-card-hero-image-height - (2 * $stack-card-padding) )
   //
-  .grid-view &
-    height: ($stack-card-grid-height - $stack-card-hero-image-height - (2 * $stack-card-padding) )
-
-  .grid-view .has-no-image &
-    padding-top: 60px
-    height: ($stack-card-grid-height - 60px - $stack-card-padding)
+  //.grid-view .has-no-image &
+  //  padding-top: 60px
+  //  height: ($stack-card-grid-height - 60px - $stack-card-padding)
 
   // fade to white at the bottom of the description
   &:after
@@ -204,22 +205,8 @@ $stack-card-hero-image-height: 185px
 // Cards without images
 // -----------------------------------------------------------------------------
 
-.grid-view .has-no-image
+.stack__card .has-no-image
   border: 0 !important
-
-.list-view .has-no-image
-  border-left: 2px solid $hotels-poi
-
-.list-view .has-no-image .card__name,
-.list-view .has-no-image .card__locale
-  padding-left: 38px
-
-.list-view .has-no-image .card__name
-  margin-bottom: 3px
-
-.list-view .has-no-image .has-no-locale
-  margin-bottom: 20px
-  margin-top: 5px
 
 
 // -----------------------------------------------------------------------------
@@ -239,9 +226,6 @@ $stack-card-hero-image-height: 185px
   left: 14px
   top: 22px
   z-index: 1
-  .list-view &
-    left: 10px
-    top: 29px
   .ie7 &
     line-height: 1
     top: -10px
