@@ -130,7 +130,6 @@ $stack-card-padding: 15px
     left: 0
     right: 0
 
-
   // single-width info cards have taller content
   .stack__card--info &
     height: ($stack-card-grid-height - 55px - $stack-card-padding)
@@ -152,6 +151,10 @@ $stack-card-padding: 15px
   font-weight: bold
   line-height: 17px
   margin-bottom: 12px
+
+  .stack__card--info &
+    @include font-size(19)
+    line-height: 20px
 
   .stack__card--stack.stack__card--double &
     margin-bottom: 0
@@ -191,7 +194,7 @@ $stack-card-padding: 15px
   &:after
     @extend %empty-abs-generated-content
     +background-gradient($startColor: rgba(255,255,255,0), $endColor: rgba(255,255,255,1.0))
-    height:  20px
+    height: 20px
     left: 0
     right: 0
     top: -20px
@@ -290,3 +293,45 @@ $stack-card-padding: 15px
   .stack__card--icon
     @extend %icon-poi-article-before
     color: #d9d9d9
+
+
+// -----------------------------------------------------------------------------
+// Top Context Card
+// -----------------------------------------------------------------------------
+
+.stack__context
+  @extend %four-pixel-rounded
+  @extend %margin-grid-column-10
+  @extend %standard-shadow
+  +transition(opacity, 0.5, ease)
+  background: #fff
+  margin-bottom: 10px
+  padding: 15px
+  width: 798px
+
+.stack__context__heading
+  @extend %benton-regular
+  @include font-size(32)
+  color: $header-blue
+  margin-bottom: 10px
+
+.stack__context__content
+  @extend %relative
+  @extend %serif
+  @extend %smooth-text
+  @include font-size(17)
+  color: $dark-blue-gray
+  line-height: 20px
+  width: 570px
+
+  &.stack__context__content--closed
+    height: 60px
+    margin-bottom: 20px
+
+    &:after
+      @extend %empty-abs-generated-content
+      +background-gradient($startColor: rgba(255,255,255,0), $endColor: rgba(255,255,255,1.0))
+      bottom: 0
+      height: 20px
+      left: 0
+      right: 0

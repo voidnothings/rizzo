@@ -15,8 +15,18 @@ body
   margin-right: 10px
   float: left
 
+// TODO: remove this when it becomes the default value
+.left-nav--stack
+  width: 192px
+  margin-right: 10px
+  float: left
+
 .main-content
   float: left
   width: 100%
   .left-nav + &
     @extend %right-content-pane-width
+
+  // TODO: remove this when it becomes the default value
+  .left-nav--stack + &
+    width: 798px
