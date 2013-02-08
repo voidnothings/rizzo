@@ -131,6 +131,11 @@ $stack-card-padding: 15px
     right: 0
 
 
+  // single-width info cards have taller content
+  .stack__card--info &
+    height: ($stack-card-grid-height - 55px - $stack-card-padding)
+
+
 // -----------------------------------------------------------------------------
 // Card details
 // -----------------------------------------------------------------------------
@@ -280,3 +285,8 @@ $stack-card-padding: 15px
     .stack__card--icon
       @extend %icon-poi-article-before
       color: $restaurant-poi
+
+.stack__card--info
+  .stack__card--icon
+    @extend %icon-poi-article-before
+    color: #d9d9d9
