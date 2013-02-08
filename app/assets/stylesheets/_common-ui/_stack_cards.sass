@@ -335,3 +335,54 @@ $stack-card-padding: 15px
       height: 20px
       left: 0
       right: 0
+
+
+// -----------------------------------------------------------------------------
+// Article Card
+// -----------------------------------------------------------------------------
+
+.stack__article
+  @extend %four-pixel-rounded
+  @extend %margin-grid-column-10
+  @extend %standard-shadow
+  @extend %body-copy
+  @extend %regular-type-size
+  +transition(opacity, 0.5, ease)
+  background: #fff
+  margin-bottom: 10px
+  padding: 15px
+  width: 798px
+
+.stack__article__header
+  border-bottom: 1px solid $ruled-separator
+  margin-bottom: 20px
+
+
+.stack__article__heading
+  @extend %benton-regular
+  @include font-size(32)
+  color: $header-blue
+  margin-bottom: 10px
+
+.stack__article__content__leadin
+  @extend %relative
+  @extend %serif
+  @extend %smooth-text
+  @include font-size(17)
+  color: $dark-blue-gray
+  line-height: 20px
+
+
+.stack__article_content_subheading
+  @include font-size(18)
+  @extend %smooth-text
+  color: #023f87
+  font-weight: bold
+  margin-bottom: 10px
+
+
+
+
+
+
+
