@@ -384,5 +384,46 @@ $stack-card-padding: 15px
 
 
 
+.stack__article__table
+  tr
+    border-bottom: 1px solid #e6edf5
+
+  th
+    color: $header-gray
+    padding-bottom: 14px
+
+  td
+    padding: 13px 13px 13px 0
+
+  th,
+  td
+    text-align: center
+
+  .stack__article__table-align-left
+    text-align: left
+
+.stack__article__table--small-text
+  @extend %tiny-type
+  display: block
 
 
+.stack__article__table--yes,
+.stack__article__table--no
+  &:before
+    font-size: 20px
+
+
+
+.stack__article__table--yes
+  @extend %left-icon
+  @extend %left-icon--hidden-text
+  @extend %tick-icon-before
+  color: #1ac571
+  display: inline-block
+
+.stack__article__table--no
+  @extend %left-icon
+  @extend %left-icon--hidden-text
+  @extend %cross-icon-before
+  color: #ff514e
+  display: inline-block
