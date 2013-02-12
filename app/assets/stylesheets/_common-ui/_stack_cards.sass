@@ -11,73 +11,74 @@
 // - Width of a Card defaults to single - override when necessary
 // -----------------------------------------------------------------------------
 
-$stack-card-grid-height: 380px
+$card-grid-height: 380px
 
-$stack-single-card-width: 192px
-$stack-double-card-width: 394px
+$single-card-width: 192px
+$double-card-width: 394px
 
-$stack-hero-image-height: 275px
-$stack-card-hero-image-height: 185px
+$hero-image-height: 275px
+$card-hero-image-height: 185px
 
-$stack-card-padding: 15px
-
-%base-stack-card-object
-  @extend %standard-shadow
-  @extend %margin-grid-column-10
-  +transition(opacity, 0.5, ease)
-  background: #fff
-  height: $stack-card-grid-height
-  margin-bottom: 10px
-  width: $stack-single-card-width
-
-.stack__card--double
-  width: $stack-double-card-width
+$card-content-padding: 15px
 
 
 // -----------------------------------------------------------------------------
 // Card
 // -----------------------------------------------------------------------------
 
-.stack__card
-  @extend %base-stack-card-object
-  @extend %relative
-  //.is-loading &
-  //  opacity: 0.3
+.card
+  @extend %margin-grid-column-10
+  @extend %standard-shadow
+  background: #fff
+  margin-bottom: 10px
 
-.stack__card
   &:hover
     +box-shadow(2, 2, 8, 0, rgba(3, 46, 92, 0.15))
-
     img
       +filter(brightness(-15%))
 
-// extra hover behaviour for POI cards
-.stack__card--poi
-  &:hover
-    .stack__card__content
-      height: $stack-card-grid-height - 60px - $stack-card-padding
 
+.card--list.has-image
+  &:after
+    @extend %empty-abs-generated-content
+    height:  20px
+    +background-gradient($startColor: rgba(255,255,255,0), $endColor: rgba(255,255,255,1.0))
+    bottom: $card-content-padding
+    left: 0
+    right: 0
+  &:hover
+    .card__content
+      height: $card-grid-height - 60px - $card-content-padding
+
+// cards that are the result of a search have a definite height and default width
+.results
+  .card
+    @extend %relative
+    height: $card-grid-height
+    width: $single-card-width
+
+  .card--double
+    width: $double-card-width
 
 // -----------------------------------------------------------------------------
 // Card Image
 // -----------------------------------------------------------------------------
 
-.stack__card__hero
+.card__hero
   @extend %relative
   overflow: hidden
   width: 100%
 
-  // POI cards are the smaller size
-  .stack__card--poi &
-    height: $stack-card-hero-image-height
+  .card--list.has-image &
+    height: $card-hero-image-height
 
   // single stack cards have taller images
-  .stack__card--stack &
-    height: $stack-hero-image-height
+  .card--stack &
+    height: $hero-image-height
 
   // double stack cards have full height images
-  .stack__card--stack.stack__card--double &
-    height: $stack-card-grid-height
+  .card--stack.card--double &
+    height: $card-grid-height
 
   // Refactor to use landscape/portrait classes when rowlf imaging catches up
   > .card__image
@@ -90,76 +91,57 @@ $stack-card-padding: 15px
 // Card 'content' section
 // -----------------------------------------------------------------------------
 
-.stack__card__content
-  @extend %transition--base
+.card__content
   @extend %absolute
+  @extend %transition--base
   background: #fff
   bottom: 0
   color: $header-gray
+  height: ($card-grid-height - 60px - $card-content-padding)
+  left: 0
   overflow: hidden
-  padding: $stack-card-padding
+  padding: $card-content-padding
+  right: 0
 
-  // POI content height is a bit of a hack
-  .stack__card--poi &
-    bottom: $stack-card-padding
-    height: ($stack-card-grid-height - $stack-card-hero-image-height - (2 * $stack-card-padding) )
-    padding: $stack-card-padding $stack-card-padding 0 $stack-card-padding
+  .card--stack &
+    height: ($card-grid-height - $hero-image-height - (2 * $card-content-padding) )
 
-    // fade to white at the bottom of the description for POI cards only
-    &:after
-      @extend %empty-abs-generated-content
-      height:  20px
-      +background-gradient($startColor: rgba(255,255,255,0), $endColor: rgba(255,255,255,1.0))
-      bottom: 0
-      left: 0
-      right: 0
-
-  // with no image height is taller
-  .stack__card--has-no-image &
-    height: ($stack-card-grid-height - 60px - $stack-card-padding)
-
-  // single-width stack cards have shorther content areas
-  .stack__card--stack &
-    height: ($stack-card-grid-height - $stack-hero-image-height - (2 * $stack-card-padding) )
-
-  // double-width stack cards have black/transparent gradient background and content area height dependent on content
-  .stack__card--stack.stack__card--double &
+  .card--stack.card--double &
     +background-gradient($startColor: rgba(0,0,0,0), $endColor: rgba(0,0,0,1.0))
     color: #fff
     height: auto
-    left: 0
-    right: 0
 
-  // single-width info cards have taller content
-  .stack__card--info &
-    height: ($stack-card-grid-height - 55px - $stack-card-padding)
+  .card--list.has-image &
+    bottom: $card-content-padding
+    height: ($card-grid-height - $card-hero-image-height - (2 * $card-content-padding) )
+    padding: $card-content-padding $card-content-padding 0 $card-content-padding
 
 
 // -----------------------------------------------------------------------------
 // Card details
 // -----------------------------------------------------------------------------
 
-.stack__card__property-type,
-.stack__card__context
+.card__property-type,
+.card__context
   @extend %small-type
   display: block
   margin-bottom: 2px
 
-.stack__card__name
+.card__name
   @extend %large-type
   +word-break()
   font-weight: bold
   line-height: 17px
   margin-bottom: 12px
 
-  .stack__card--info &
+  .card--info &
     @include font-size(19)
     line-height: 20px
 
-  .stack__card--stack.stack__card--double &
+  .card--stack &
     margin-bottom: 0
 
-.stack__card__locale
+.card__locale
   @extend %serif
   @extend %small-type
   color: $body-copy
@@ -167,7 +149,7 @@ $stack-card-padding: 15px
   line-height: 14px
   margin-bottom: 12px
 
-.stack__card__description
+.card__description
   @extend %irregular-type
   @extend %smooth-text
   color: $body-copy
@@ -177,13 +159,14 @@ $stack-card-padding: 15px
 // Card Footer
 // -----------------------------------------------------------------------------
 
-.stack__card__footer
+.card__footer
   @extend %absolute
   background: #fff
   bottom: 0
   left: 0
   padding: 8px
   right: 0
+  z-index: 1
 
   .btn--bookable
     background: #fff556
@@ -350,12 +333,27 @@ $stack-card-padding: 15px
   +transition(opacity, 0.5, ease)
   background: #fff
   margin-bottom: 10px
-  padding: 15px
   width: 798px
+  overflow: hidden
 
 .stack__article__header
   border-bottom: 1px solid $ruled-separator
   margin-bottom: 20px
+
+.stack__article__ad
+  @extend %tiny-type
+  color: #b6b6b6
+  text-align: center
+  text-transform: uppercase
+
+.stack__article__content__column
+  width: 436px
+  float: left
+  margin: 0 20px
+
+.stack__article__ads__column
+  width: 302px
+  float: left
 
 
 .stack__article__heading
@@ -363,6 +361,7 @@ $stack-card-padding: 15px
   @include font-size(32)
   color: $header-blue
   margin-bottom: 10px
+  line-height: 1
 
 .stack__article__content__leadin
   @extend %relative
@@ -372,7 +371,6 @@ $stack-card-padding: 15px
   color: $dark-blue-gray
   line-height: 20px
 
-
 .stack__article_content_subheading
   @include font-size(18)
   @extend %smooth-text
@@ -380,25 +378,46 @@ $stack-card-padding: 15px
   font-weight: bold
   margin-bottom: 10px
 
+.stack__article__content
+  overflow: hidden
 
+.stack__article__breadcrumbs
+  padding: 0 20px
+
+.stack__context__breadcrumb
+  @extend %benton-regular
+  @include font-size(32)
+  color: #d2ddeb
+  display: block
+  position: relative
+  top: 15px
+  &:hover
+    @extend %transition--base
+    color: $header-blue
+    text-decoration: none
+    top: 5px
+
+.stack__context__breadcrumb-title
+  @extend %benton-regular
+  @include font-size(32)
+  color: #d2ddeb
+  display: block
+  position: relative
+  top: 15px
 
 
 
 .stack__article__table
   tr
     border-bottom: 1px solid #e6edf5
-
+  th,
+  td
+    padding: 13px 13px 13px 0
+    text-align: center
   th
     color: $header-gray
     padding-bottom: 14px
-
   td
-    padding: 13px 13px 13px 0
-
-  th,
-  td
-    text-align: center
-
   .stack__article__table-align-left
     text-align: left
 
@@ -406,13 +425,11 @@ $stack-card-padding: 15px
   @extend %tiny-type
   display: block
 
-
 .stack__article__table--yes,
 .stack__article__table--no
   &:before
-    font-size: 20px
-
-
+    font-size: 22px
+    line-height: 15px
 
 .stack__article__table--yes
   @extend %left-icon
@@ -420,6 +437,8 @@ $stack-card-padding: 15px
   @extend %tick-icon-before
   color: #1ac571
   display: inline-block
+  &:before
+    width: 24px
 
 .stack__article__table--no
   @extend %left-icon
