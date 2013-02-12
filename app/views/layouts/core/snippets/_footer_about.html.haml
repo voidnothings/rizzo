@@ -2,7 +2,7 @@
   .row__inner.row__inner--footer.row__inner--break--light
     %nav.nav--footer--base
       - footer_nav_about_items.each do |item|
-        %a.nav__item.nav__item--footer--darker{href: item[:url]}
+        %a.nav__item.nav__item--footer--darker{href: "http://www.lonelyplanet.com#{item[:url]}"}
           = item[:title].html_safe
 
     %form#js-language.form--language(action="http://www.lonelyplanet.com/international")
