@@ -3,12 +3,13 @@
   .row__inner--left
     %a.media--lp-logo--head(href='http://www.lonelyplanet.com')
     %nav.nav--primary.nav__item
+      %h6.accessibility Global navigation
       - core_navigation_items.each do |n|
         - if n[:submenu]
           .nav__item.nav__item--submenu.nav__submenu__trigger
             = n[:title]
             .nav__submenu
-              %nav.nav__submenu__content.nav__submenu__content--bookings.js-submenu
+              .nav__submenu__content.nav__submenu__content--bookings.js-submenu
                 - n[:submenu].each do |sub|
                   %a{ href: sub[:uri], class: "nav__submenu__item nav__submenu__item--#{sub[:style]}"}<
                     = sub[:title]
@@ -27,6 +28,7 @@
 
     - if user_nav
       %nav.nav--primary--user.js-user-nav.row__inner--right__nav
+        %h6.accessibility User Navigation
         %a.nav__item--primary.nav__item.user-basket.js-user-basket(href='//shop.lonelyplanet.com/cart/view')
           %span.user-basket__icon
           %span.user-basket__text Your bag

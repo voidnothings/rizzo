@@ -4,6 +4,7 @@
       = place_heading(title, parent, slug)
 
     %nav.nav--secondary.row__inner--right
+      %h6.accessibility Section navigation
       - collection.each do |n|
         %a.row__inner--right__nav.nav__item--secondary{:class=>(n[:title] == current ? 'current' : ''), :href=> n[:url]}<
           = n[:title]
