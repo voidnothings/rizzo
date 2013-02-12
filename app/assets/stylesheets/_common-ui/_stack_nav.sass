@@ -5,31 +5,24 @@
 //
 // Styleguide 1.5
 
-.left-nav--stack
-  @extend %four-pixel-rounded
-  @extend %standard-shadow
-  @extend %stacked-nav
-  @extend %smooth-text
-  @extend %body-copy
-  padding: 10px 0
-  background: #fff
 
-  .left-nav--stack__item
-    @extend %relative
-    @extend %irregular-type
-    @extend %link-without-underline
-    @extend %chevron-right-after
-    @extend %right-icon
-    color: $body-copy
-    padding: 15px 50px 15px 15px
-    text-decoration: none
-    &:after
-      @extend %no-line-height
-      top: 15px
-      right: 5px
-      line-height: 15px
-      font-size: 18px
-      color: #c5d6d9
 
-    &:hover
-      background-color: $nav-bg--hover
+.left-nav__item
+  @extend %relative
+  @extend %irregular-type
+  @extend %link-without-underline
+  @extend %chevron-right-after
+  @extend %right-icon
+  color: $body-copy
+  padding: 15px 50px 15px 15px
+  text-decoration: none
+  &:after
+    @extend %no-line-height
+    top: 15px
+    right: 5px
+    line-height: 15px
+    font-size: 18px
+    color: #c5d6d9
+
+  &:hover
+    background-color: $nav-bg--hover
