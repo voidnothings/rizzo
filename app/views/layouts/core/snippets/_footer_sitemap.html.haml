@@ -1,7 +1,7 @@
 .row.row--footer
   .row__inner.row__inner--footer
     %nav.col--footer
-      %h1
+      %h6
         %a.title--list--footer.nav__item--vertical--footer(href='/destinations')
           Destinations
       - footer_nav_destination_items.each do |destination|
@@ -9,7 +9,7 @@
           = destination[:title]
     
     %nav.col--footer
-      %h1
+      %h6
         %a.title--list--footer.nav__item--vertical--footer(href='/shop')
           Shop
       - footer_nav_shop_items.each do |shop|
@@ -17,7 +17,7 @@
           = shop[:title]
   
     %nav.col--footer
-      %h1
+      %h6
         %a.title--list--footer.nav__item--vertical--footer(href='/thorntree')
           Thorn Tree Forum
       - footer_nav_thorntree_items.each do |thorntree|
@@ -25,7 +25,7 @@
           = thorntree[:title]
 
     %nav.col--footer
-      %h1
+      %h6
         %a.title--list--footer.nav__item--vertical--footer(href='/themes')
           Themes
       - footer_nav_themes_items.each do |theme|
@@ -33,7 +33,7 @@
           = theme[:title]
 
     %nav.col--footer
-      %h1
+      %h6
         %a.title--list--footer.nav__item--vertical--footer(href='/bookings')
           Travel Booking
       - footer_nav_travel_bookings_items.each do |booking|
