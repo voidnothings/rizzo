@@ -27,7 +27,6 @@ $card-content-padding: 15px
 // -----------------------------------------------------------------------------
 
 .card
-  @extend %margin-grid-column-10
   @extend %standard-shadow
   background: #fff
   margin-bottom: 10px
@@ -54,6 +53,7 @@ $card-content-padding: 15px
 .results
   .card
     @extend %relative
+    @extend %margin-grid-column-10
     height: $card-grid-height
     width: $single-card-width
 
@@ -189,74 +189,66 @@ $card-content-padding: 15px
 
 //.card__hero
 //  @extend %benton-regular
-//  @extend %no-line-height
 //  @extend %left-icon
 //  @extend %left-icon--hidden-text
 //  color: #fff
 //  display: block
-//  font-size: 65px
 //  height: 0
 //  left: 14px
-//  text-shadow: 0 0 5px rgba(0,0,0,1.0)
 //  top: 22px
 //  z-index: 1
 //  .ie7 &
 //    line-height: 1
 //    top: -10px
-//
-//  .stack__card--has-no-image &
-//    text-shadow: none
+
+.card--list
+  &:before
+    @extend %benton-regular
+    @extend %no-line-height
+    position: absolute
+    font-size: 65px
+    top: 20px
+    left: 10px
+    z-index: 5
+
+.card--list.has-image
+  &:before
+    color: #fff
+    text-shadow: 0 0 5px rgba(0,0,0,1.0)
 
 .card--list--lodging
-  @extend %benton-regular
   @extend %icon-poi-hotel-before
-  &.stack__card--has-no-image
-    @extend %icon-poi-hotel-before
-    color: $hotels-poi
+  color: $hotels-poi
 
-.card--sight
+.card--list--sight
   @extend %icon-poi-sight-before
-  &.stack__card--has-no-image
-    @extend %icon-poi-sight-before
-    color: $sight-poi
+  color: $sight-poi
 
-.card--activity
+.card--list--activity
   @extend %icon-poi-activity-before
-  &.stack__card--has-no-image
-    @extend %icon-poi-activity-before
-    color: $activity-poi
+  color: $activity-poi
 
-.card--tour
+.card--list--tour
   @extend %icon-poi-tour-before
-  &.stack__card--has-no-image
-    @extend %icon-poi-tour-before
-    color: $tour-poi
+  color: $tour-poi
 
-.card--shopping
+.card--list--shopping
   @extend %icon-poi-shopping-before
-  &.stack__card--has-no-image
-    @extend %icon-poi-shopping-before
-    color: $shopping-poi
+  color: $shopping-poi
 
-.card--entertainment
+.card--list--entertainment
   @extend %icon-poi-entertainment-before
-  &.stack__card--has-no-image
-    @extend %icon-poi-entertainment-before
-    color: $entertainment-poi
+  color: $entertainment-poi
 
-.card--restaurant
+.card--list--restaurant
   @extend %icon-poi-restaurant-before
-  &.stack__card--has-no-image
-    @extend %icon-poi-restaurant-before
-    color: $restaurant-poi
+  color: $restaurant-poi
 
-.card--article
+.card--list--article
   @extend %icon-poi-article-before
-  &.stack__card--has-no-image
-    @extend %icon-poi-article-before
-    color: $restaurant-poi
+  color: $restaurant-poi
 
-.card--info
+.card--list--info
   @extend %icon-poi-article-before
   color: #d9d9d9
 
