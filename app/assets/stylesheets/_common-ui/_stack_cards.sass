@@ -27,15 +27,9 @@ $card-content-padding: 15px
 // -----------------------------------------------------------------------------
 
 .card
-  @extend %margin-grid-column-10
   @extend %standard-shadow
   background: #fff
   margin-bottom: 10px
-
-  &:hover
-    +box-shadow(2, 2, 8, 0, rgba(3, 46, 92, 0.15))
-    img
-      +filter(brightness(-15%))
 
 
 .card--list.has-image
@@ -53,9 +47,14 @@ $card-content-padding: 15px
 // cards that are the result of a search have a definite height and default width
 .results
   .card
+    @extend %margin-grid-column-10
     @extend %relative
     height: $card-grid-height
     width: $single-card-width
+    &:hover
+      +box-shadow(2, 2, 8, 0, rgba(3, 46, 92, 0.15))
+      img
+        +filter(brightness(-15%))
 
   .card--double
     width: $double-card-width
@@ -271,7 +270,7 @@ $card-content-padding: 15px
   +transition(opacity, 0.5, ease)
   background: #fff
   margin-bottom: 10px
-  padding: 15px
+  padding: 20px 15px
 
 .stack__context__heading
   @extend %benton-regular
