@@ -141,6 +141,9 @@ $card-content-padding: 15px
   .card--stack &
     margin-bottom: 0
 
+  .card--list--tour &
+    margin-bottom: 5px
+
 .card__locale
   @extend %serif
   @extend %small-type
@@ -448,3 +451,48 @@ $card-content-padding: 15px
   @extend %cross-icon-before
   color: #ff514e
   display: inline-block
+
+
+%thingy
+  @extend %extra-small-type
+  color: #b2bebf
+  line-height: 8px
+  margin-bottom: 14px
+  &:before
+    @extend %benton-regular
+    color: #9fd815
+    font-size: 30px
+    line-height: 15px
+    vertical-align: bottom
+
+.card__tour-duration
+  @extend %tour-duration-before
+  @extend %thingy
+  color: #b2bebf
+  line-height: 8px
+  margin-bottom: 14px
+  &:before
+    color: #9fd815
+    font-size: 30px
+    line-height: 15px
+    vertical-align: bottom
+
+
+
+.card__feedback__approval,
+.card__feedback__comments
+  @extend %thingy
+  color: #bbc6c7
+  line-height: 8px
+  &:before
+    color: #e5ebee
+    font-size: 30px
+    line-height: 20px
+    vertical-align: bottom
+
+.card__feedback__approval
+  @extend %approval-before
+
+.card__feedback__comments
+  @extend %comments-before
+
