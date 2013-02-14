@@ -377,14 +377,18 @@ $card-content-padding: 15px
 .stack__article__content
   overflow: hidden
 
+.stack__breadcrumbs
+  @extend %standard-shadow
 
 .stack__breadcrumbs + .stack__article
   position: relative
-  top: -35px
+  //box-shadow: 0 -20px 20px rgba(0,0,0,0.3)
+  top: -40px
 
 .stack__breadcrumb
-  background: red
-  //+background-gradient($startColor: rgb(255,255,255), $endColor: rgb(200,200,200))
+  @extend %four-pixel-rounded
+  //background: #fcfcfc
+  +background-gradient($startColor: rgb(255,255,255), $endColor: rgb(244,244,244))
   padding: 10px 20px 5px 20px
   @extend %benton-regular
   @include font-size(32)
@@ -392,13 +396,14 @@ $card-content-padding: 15px
   display: block
   position: relative
   top: -20px
+  //box-shadow: 0 -20px 20px rgba(0,0,0,0.3)
 
   &:hover
     .stack__breadcrumb-title
       @extend %transition--base
       color: $header-blue
       text-decoration: none
-      top: -5px
+      top: -9px
 
 .stack__breadcrumb-title
   @extend %benton-regular
@@ -410,7 +415,7 @@ $card-content-padding: 15px
 
 .stack__breadcrumb:first-child
   top: 0
-
+  box-shadow: none
 
 .stack__article__table
   tr
@@ -453,46 +458,33 @@ $card-content-padding: 15px
   display: inline-block
 
 
-%thingy
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
+
+%left-icon-text
   @extend %extra-small-type
-  color: #b2bebf
-  line-height: 8px
-  margin-bottom: 14px
-  &:before
-    @extend %benton-regular
-    color: #9fd815
-    font-size: 30px
-    line-height: 15px
-    vertical-align: bottom
-
-.card__tour-duration
-  @extend %tour-duration-before
-  @extend %thingy
-  color: #b2bebf
-  line-height: 8px
-  margin-bottom: 14px
-  &:before
-    color: #9fd815
-    font-size: 30px
-    line-height: 15px
-    vertical-align: bottom
-
-
-
-.card__feedback__approval,
-.card__feedback__comments
-  @extend %thingy
   color: #bbc6c7
   line-height: 8px
   &:before
+    @extend %benton-regular
     color: #e5ebee
     font-size: 30px
     line-height: 20px
     vertical-align: bottom
 
+.card__tour-duration
+  @extend %left-icon-text
+  @extend %tour-duration-before
+  margin-bottom: 14px
+  &:before
+    color: #9fd815
+    line-height: 15px
+
 .card__feedback__approval
+  @extend %left-icon-text
   @extend %approval-before
 
 .card__feedback__comments
+  @extend %left-icon-text
   @extend %comments-before
-
