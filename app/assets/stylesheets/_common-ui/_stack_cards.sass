@@ -214,43 +214,62 @@ $card-content-padding: 15px
 .card--list.has-image
   &:before
     color: #fff
-    text-shadow: 0 0 5px rgba(0,0,0,1.0)
+    font-size: 40px
+    text-shadow: 0 0 5px rgba(0,0,0,0.75)
 
 .card--list--lodging
   @extend %icon-poi-hotel-before
   color: $hotels-poi
+  &.has-image
+    @extend %icon-image-poi-hotel-before
 
 .card--list--sight
   @extend %icon-poi-sight-before
   color: $sight-poi
+  &.has-image
+    @extend %icon-image-poi-sight-before
 
 .card--list--activity
   @extend %icon-poi-activity-before
   color: $activity-poi
+  &.has-image
+    @extend %icon-image-poi-activity-before
 
 .card--list--tour
   @extend %icon-poi-tour-before
   color: $tour-poi
+  &.has-image
+    @extend %icon-image-poi-tour-before
 
 .card--list--shopping
   @extend %icon-poi-shopping-before
   color: $shopping-poi
+  &.has-image
+    @extend %icon-image-poi-shopping-before
 
 .card--list--entertainment
   @extend %icon-poi-entertainment-before
   color: $entertainment-poi
+  &.has-image
+    @extend %icon-image-poi-entertainment-before
 
 .card--list--restaurant
   @extend %icon-poi-restaurant-before
   color: $restaurant-poi
+  &.has-image
+    @extend %icon-image-poi-restaurant-before
 
 .card--list--article
   @extend %icon-poi-article-before
   color: $restaurant-poi
+  &.has-image
+    @extend %icon-image-poi-article-before
 
 .card--list--info
-  @extend %icon-poi-article-before
+  @extend %icon-poi-info-before
   color: #d9d9d9
+  &.has-image
+    @extend %icon-image-poi-info-before
 
 
 // -----------------------------------------------------------------------------
@@ -355,30 +374,39 @@ $card-content-padding: 15px
 .stack__article__content
   overflow: hidden
 
-.stack__article__breadcrumbs
-  padding: 0 20px
 
-.stack__context__breadcrumb
+.stack__breadcrumbs + .stack__article
+  position: relative
+  top: -35px
+
+.stack__breadcrumb
+  background: red
+  //+background-gradient($startColor: rgb(255,255,255), $endColor: rgb(200,200,200))
+  padding: 10px 20px 5px 20px
   @extend %benton-regular
   @include font-size(32)
   color: #d2ddeb
   display: block
   position: relative
-  top: 15px
+  top: -20px
+
   &:hover
-    @extend %transition--base
-    color: $header-blue
-    text-decoration: none
-    top: 5px
+    .stack__breadcrumb-title
+      @extend %transition--base
+      color: $header-blue
+      text-decoration: none
+      top: -5px
 
-.stack__context__breadcrumb-title
+.stack__breadcrumb-title
   @extend %benton-regular
   @include font-size(32)
   color: #d2ddeb
   display: block
   position: relative
-  top: 15px
+  top: 5px
 
+.stack__breadcrumb:first-child
+  top: 0
 
 
 .stack__article__table
