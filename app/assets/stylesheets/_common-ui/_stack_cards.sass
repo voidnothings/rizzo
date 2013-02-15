@@ -164,12 +164,17 @@ $card-content-padding: 15px
 
 .card__footer
   @extend %absolute
+  @extend %small-type
   background: #fff
   bottom: 0
+  color: #b2bebf
   left: 0
-  padding: 8px
+  padding: $card-content-padding
   right: 0
   z-index: 1
+
+  .card--list--lodging &
+    padding: 8px
 
   .btn--bookable
     background: #fff556
@@ -351,7 +356,6 @@ $card-content-padding: 15px
   width: 302px
   float: left
 
-
 .stack__article__heading
   @extend %benton-regular
   @include font-size(32)
@@ -377,45 +381,37 @@ $card-content-padding: 15px
 .stack__article__content
   overflow: hidden
 
-.stack__breadcrumbs
-  @extend %standard-shadow
+
+
+// breadcrumbs
 
 .stack__breadcrumbs + .stack__article
   position: relative
-  //box-shadow: 0 -20px 20px rgba(0,0,0,0.3)
   top: -40px
 
 .stack__breadcrumb
-  @extend %four-pixel-rounded
-  //background: #fcfcfc
-  +background-gradient($startColor: rgb(255,255,255), $endColor: rgb(244,244,244))
-  padding: 10px 20px 5px 20px
   @extend %benton-regular
+  @extend %four-pixel-rounded
   @include font-size(32)
+  +background-gradient($startColor: rgb(255,255,255), $endColor: rgb(244,244,244))
+  +transition(all, 0.2, ease)
   color: #d2ddeb
   display: block
+  padding: 20px 15px 10px
   position: relative
+  text-decoration: none
   top: -20px
-  //box-shadow: 0 -20px 20px rgba(0,0,0,0.3)
 
   &:hover
-    .stack__breadcrumb-title
-      @extend %transition--base
-      color: $header-blue
-      text-decoration: none
-      top: -9px
-
-.stack__breadcrumb-title
-  @extend %benton-regular
-  @include font-size(32)
-  color: #d2ddeb
-  display: block
-  position: relative
-  top: 5px
+    color: $header-blue
+    text-decoration: none
+    -webkit-transform: translate(0,-10px)
+    transform: translate(0,-10px)
 
 .stack__breadcrumb:first-child
   top: 0
-  box-shadow: none
+
+
 
 .stack__article__table
   tr
@@ -459,7 +455,7 @@ $card-content-padding: 15px
 
 
 // -----------------------------------------------------------------------------
-//
+// Text sections with left hand icons
 // -----------------------------------------------------------------------------
 
 %left-icon-text
