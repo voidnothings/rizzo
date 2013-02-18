@@ -23,18 +23,19 @@
   position: absolute
   // *1* To prevent :hover rendering bug in Safari
   overflow: hidden
-  height: 30px
+  //height: 30px
   // *2* To prevent not rendering in FF (consequence of *1*)
-  width: 27px
+  //width: 27px
   &:before
-    line-height: 30px
+    //line-height: 30px
     color: $lp-reviewed-badge
 
 .badge--lp-reviewed
   @extend %card-badge
   @extend %lp-review-bubble-before
   &:before
-    font-size: 44px
+    font-size: 46px
+    line-height: 12px
 
 .badge--top-choice
   @extend %card-badge
@@ -42,7 +43,7 @@
   width: 33px
   &:before
     font-size: 55px
-    line-height: 32px
+    line-height: 10px
 
 .badge--included
   @extend %four-pixel-rounded

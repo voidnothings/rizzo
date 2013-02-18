@@ -17,42 +17,42 @@
 // Our base card object and sizing variables
 // -----------------------------------------------------------------------------
 
-$card-grid-height: 380px
-$hero-image-height: 185px
-$single-card-width: 190px
-$stack-image-height: 275px
-
-%base-card-object
-  @extend %standard-shadow
-  background: #fff
-  .grid-view &, .list-view &
-    +transition(opacity, 0.5, ease)
-    margin-bottom: 10px
-  .grid-view &
-    height: $card-grid-height
+//$card-grid-height: 380px
+//$hero-image-height: 185px
+//$single-card-width: 190px
+//$stack-image-height: 275px
+//
+//%base-card-object
+//  @extend %standard-shadow
+//  background: #fff
+//  .grid-view &, .list-view &
+//    +transition(opacity, 0.5, ease)
+//    margin-bottom: 10px
+//  .grid-view &
+//    height: $card-grid-height
     
 
 // -----------------------------------------------------------------------------
 // The Card
 // -----------------------------------------------------------------------------
 
-.card
-  @extend %base-card-object
-  @extend %relative
-  .is-loading &
-    opacity: 0.3
+//.card
+//  @extend %base-card-object
+//  @extend %relative
+//  .is-loading &
+//    opacity: 0.3
 
 
 // -----------------------------------------------------------------------------
 // The Stack
 // -----------------------------------------------------------------------------
 
-.card--stack
-  @extend %base-card-object
-  @extend %relative
-  height: 380px
-  .card__hero
-    height: $stack-image-height
+//.card--stack
+//  @extend %base-card-object
+//  @extend %relative
+//  height: 380px
+//  .card__hero
+//    height: $stack-image-height
 
 
 // -----------------------------------------------------------------------------
@@ -61,7 +61,7 @@ $stack-image-height: 275px
 //
 // -----------------------------------------------------------------------------
 .card--full-page
-  @extend %base-card-object
+  @extend .card // TODO
   @extend %relative
   @extend %box-off-double
 
@@ -110,10 +110,10 @@ $stack-image-height: 275px
 // Lodging card
 // -----------------------------------------------------------------------------
 
-.card--lodging:hover
-  +box-shadow(2, 2, 8, 0, rgba(3, 46, 92, 0.15))
-  img
-    +filter(brightness(-15%))
+//.card--lodging:hover
+//  +box-shadow(2, 2, 8, 0, rgba(3, 46, 92, 0.15))
+//  img
+//    +filter(brightness(-15%))
 
 
 
@@ -123,32 +123,32 @@ $stack-image-height: 275px
 //
 // -----------------------------------------------------------------------------
 
-.list-view .card
-  @extend %media
+//.list-view .card
+//  @extend %media
 
 
 // -----------------------------------------------------------------------------
 // The Card Image
 // -----------------------------------------------------------------------------
 
-.card__hero
-  @extend %relative
-  height: $hero-image-height
-  overflow: hidden
-
-
-  
-  // Refactor to use landscape/portrait classes when rowlf imaging catches up
-  > .card__image
-    @extend %absolute-bottom
-    max-width: none
-    height: 100% 
-
-  .grid-view &
-    width: 100%
-
-  .list-view &
-    width: $single-card-width
+//.card__hero
+//  @extend %relative
+//  height: $hero-image-height
+//  overflow: hidden
+//
+//
+//
+//  // Refactor to use landscape/portrait classes when rowlf imaging catches up
+//  > .card__image
+//    @extend %absolute-bottom
+//    max-width: none
+//    height: 100%
+//
+//  .grid-view &
+//    width: 100%
+//
+//  .list-view &
+//    width: $single-card-width
 
 
 
@@ -156,64 +156,65 @@ $stack-image-height: 275px
 // Inner 'content' section
 // -----------------------------------------------------------------------------
 
-$card-padding-top: 15px
-$card-padding: 13px
-
-.card__content
-  @extend %relative
-  padding: $card-padding-top $card-padding $card-padding
-  color: $header-gray
-
-  .list-view &
-    height: ($hero-image-height - $card-padding-top - $card-padding)
-
-  .grid-view &
-    height: ($card-grid-height - $hero-image-height - $card-padding-top - $card-padding)
-
-  .grid-view .has-no-image &
-    padding-top: 60px
-    height: ($card-grid-height - 60px - $card-padding)
+//$card-padding-top: 15px
+//$card-padding: 13px
+//
+//.card__content
+//  @extend %relative
+//  padding: $card-padding-top $card-padding $card-padding
+//  color: $header-gray
+//
+//  .list-view &
+//    height: ($hero-image-height - $card-padding-top - $card-padding)
+//
+//  .grid-view &
+//    height: ($card-grid-height - $hero-image-height - $card-padding-top - $card-padding)
+//
+//  .grid-view .has-no-image &
+//    padding-top: 60px
+//    height: ($card-grid-height - 60px - $card-padding)
 
 // -----------------------------------------------------------------------------
 // Card details
 // -----------------------------------------------------------------------------
 
-.card__property-type, .card__context
-  @extend %small-type
-  margin-bottom: 2px
-  display: block
-
-.card__name
-  @extend %large-type
-  +word-break()
-  font-weight: bold
-  line-height: 17px
-  .grid-view &
-    margin-bottom: 12px
-
-.card__locale
-  @extend %serif
-  @extend %small-type
-  color: $body-copy
-  font-style: italic
-  line-height: 14px
-  margin-bottom: 12px
-
-.card__description
-  @extend %irregular-type
-  @extend %smooth-text
-  color: $body-copy
-  line-height: 14px
-  .list-view &
-    padding-right: 65px
+//.card__property-type, .card__context
+//  @extend %small-type
+//  margin-bottom: 2px
+//  display: block
+//
+//.card__name
+//  @extend %large-type
+//  +word-break()
+//  font-weight: bold
+//  line-height: 17px
+//  .grid-view &
+//    margin-bottom: 12px
+//
+//.card__locale
+//  @extend %serif
+//  @extend %small-type
+//  color: $body-copy
+//  font-style: italic
+//  line-height: 14px
+//  margin-bottom: 12px
+//
+//.card__description
+//  @extend %irregular-type
+//  @extend %smooth-text
+//  color: $body-copy
+//  line-height: 14px
+//  .list-view &
+//    padding-right: 65px
+//
 
 .card__poi-icon
   @extend %benton-regular
   @extend %no-line-height
   @extend %absolute
-  top: 22px
-  left: 14px
-  font-size: 65px
+  top: 20px
+  left: 10px
+  font-size: 69px
   color: $hotels-poi
   .list-view &
     top: 29px
@@ -227,31 +228,31 @@ $card-padding: 13px
 // Card Footer
 // -----------------------------------------------------------------------------
 
-.card__footer
-  @extend %absolute
-  bottom: 9px
-  left: 10px
-  right: 13px
-  // To contain the negative text-indent of the badges and preserve outline
-  height: 35px
-  overflow: hidden
+//.card__footer
+//  @extend %absolute
+//  bottom: 9px
+//  left: 10px
+//  right: 13px
+//  // To contain the negative text-indent of the badges and preserve outline
+//  height: 35px
+//  overflow: hidden
 
 .card .badge--lp-reviewed
-  @extend %absolute
-  bottom: 6px
   left: 0
+  bottom: 0
+  height: 23px
 
 .card .badge--top-choice
-  @extend %absolute
-  bottom: 8px
-  left: 25px
+  height: 22px
+  left: 30px
+  bottom: 0
 
-.card--lodging .btn--bookable
+.card--hotel .btn--bookable
   @extend %irregular-type
   @extend %absolute
-  bottom: 2px
-  right: 0
+  bottom: 0
   padding: 10px 12px
+  right: 0
 
 // -----------------------------------------------------------------------------
 // Cards without images
@@ -260,20 +261,20 @@ $card-padding: 13px
 .grid-view .has-no-image
   border-bottom: 2px solid $hotels-poi
 
-.list-view .has-no-image
-  border-left: 2px solid $hotels-poi
-
-.list-view .has-no-image .card__name,
-.list-view .has-no-image .card__locale
-  padding-left: 38px
-
-.list-view .has-no-image .card__name
-  margin-bottom: 3px
-
-.list-view .has-no-image .has-no-locale
-  margin-bottom: 20px
-  margin-top: 5px
-
-
-
-
+//.list-view .has-no-image
+//  border-left: 2px solid $hotels-poi
+//
+//.list-view .has-no-image .card__name,
+//.list-view .has-no-image .card__locale
+//  padding-left: 38px
+//
+//.list-view .has-no-image .card__name
+//  margin-bottom: 3px
+//
+//.list-view .has-no-image .has-no-locale
+//  margin-bottom: 20px
+//  margin-top: 5px
+//
+//
+//
+//

@@ -20,7 +20,7 @@ $hero-image-height: 275px
 $card-hero-image-height: 185px
 
 $card-content-padding: 15px
-
+$card-hotel-content-padding: 13px
 
 // -----------------------------------------------------------------------------
 // Card
@@ -72,6 +72,10 @@ $card-content-padding: 15px
   .card--list.has-image &
     height: $card-hero-image-height
 
+  // hotel card
+  .card--hotel.has-image &
+    height: $card-hero-image-height
+
   // single stack cards have taller images
   .card--stack &
     height: $hero-image-height
@@ -94,7 +98,6 @@ $card-content-padding: 15px
 .card__content
   @extend %absolute
   @extend %transition--base
-  background: #fff
   bottom: 0
   color: $header-gray
   height: ($card-grid-height - 60px - $card-content-padding)
@@ -112,9 +115,16 @@ $card-content-padding: 15px
     height: auto
 
   .card--list.has-image &
+    background: #fff
     bottom: $card-content-padding
     height: ($card-grid-height - $card-hero-image-height - (2 * $card-content-padding) )
     padding: $card-content-padding $card-content-padding 0 $card-content-padding
+
+  .card--hotel &
+    padding: $card-hotel-content-padding
+
+  .card--hotel.has-image &
+    height: ($card-grid-height - $card-hero-image-height - (2 * $card-hotel-content-padding) )
 
 
 // -----------------------------------------------------------------------------
@@ -177,9 +187,9 @@ $card-content-padding: 15px
     padding: 8px
 
   .btn--bookable
-    background: #fff556
-    padding: 10px
-    width: 100%
+    //background: #fff556
+    //padding: 10px
+    //width: 100%
 
   // fade to white at the top of the footer - needed when footer obscures content fadeout
   &:after
@@ -190,24 +200,18 @@ $card-content-padding: 15px
     right: 0
     top: -20px
 
+  .card--hotel &
+    bottom: $card-hotel-content-padding
+    left: 10px
+    right: $card-hotel-content-padding
+
+.card--hotel
+  .card__footer:after
+    content: none
 
 // -----------------------------------------------------------------------------
 // Card POI icons
 // -----------------------------------------------------------------------------
-
-//.card__hero
-//  @extend %benton-regular
-//  @extend %left-icon
-//  @extend %left-icon--hidden-text
-//  color: #fff
-//  display: block
-//  height: 0
-//  left: 14px
-//  top: 22px
-//  z-index: 1
-//  .ie7 &
-//    line-height: 1
-//    top: -10px
 
 .card--list
   &:before
@@ -281,6 +285,38 @@ $card-content-padding: 15px
 
 
 // -----------------------------------------------------------------------------
+// Text sections with left hand icons
+// -----------------------------------------------------------------------------
+
+%left-icon-text
+  @extend %extra-small-type
+  color: #bbc6c7
+  line-height: 8px
+  &:before
+    @extend %benton-regular
+    color: #e5ebee
+    font-size: 30px
+    line-height: 20px
+    vertical-align: bottom
+
+.card__tour-duration
+  @extend %left-icon-text
+  @extend %tour-duration-before
+  margin-bottom: 14px
+  &:before
+    color: #9fd815
+    line-height: 15px
+
+.card__feedback__approval
+  @extend %left-icon-text
+  @extend %approval-before
+
+.card__feedback__comments
+  @extend %left-icon-text
+  @extend %comments-before
+
+
+// -----------------------------------------------------------------------------
 // Top Context Card
 // -----------------------------------------------------------------------------
 
@@ -293,7 +329,7 @@ $card-content-padding: 15px
   padding: 20px 15px
 
 .stack__context__heading
-  @extend %benton-regular
+  @extend %benton-book
   @include font-size(32)
   color: $header-blue
   margin-bottom: 10px
@@ -326,16 +362,16 @@ $card-content-padding: 15px
 // -----------------------------------------------------------------------------
 
 .stack__article
+  @extend %body-copy
   @extend %four-pixel-rounded
   @extend %margin-grid-column-10
-  @extend %standard-shadow
-  @extend %body-copy
   @extend %regular-type-size
-  +transition(opacity, 0.5, ease)
+  @extend %standard-shadow
   background: #fff
   margin-bottom: 10px
-  width: 798px
   overflow: hidden
+  padding: 20px 15px
+  width: 798px
 
 .stack__article__header
   border-bottom: 1px solid $ruled-separator
@@ -347,21 +383,12 @@ $card-content-padding: 15px
   text-align: center
   text-transform: uppercase
 
-.stack__article__content__column
-  width: 436px
-  float: left
-  margin: 0 20px
-
-.stack__article__ads__column
-  width: 302px
-  float: left
-
 .stack__article__heading
-  @extend %benton-regular
+  @extend %benton-book
   @include font-size(32)
   color: $header-blue
-  margin-bottom: 10px
   line-height: 1
+  margin-bottom: 10px
 
 .stack__article__content__leadin
   @extend %relative
@@ -378,9 +405,6 @@ $card-content-padding: 15px
   font-weight: bold
   margin-bottom: 10px
 
-.stack__article__content
-  overflow: hidden
-
 
 
 // breadcrumbs
@@ -390,10 +414,10 @@ $card-content-padding: 15px
   top: -40px
 
 .stack__breadcrumb
-  @extend %benton-regular
+  @extend %benton-book
   @extend %four-pixel-rounded
   @include font-size(32)
-  +background-gradient($startColor: rgb(255,255,255), $endColor: rgb(244,244,244))
+  +background-gradient($startColor: rgb(255,255,255), $endColor: rgb(239,239,239))
   +transition(all, 0.2, ease)
   color: #d2ddeb
   display: block
@@ -452,35 +476,3 @@ $card-content-padding: 15px
   @extend %cross-icon-before
   color: #ff514e
   display: inline-block
-
-
-// -----------------------------------------------------------------------------
-// Text sections with left hand icons
-// -----------------------------------------------------------------------------
-
-%left-icon-text
-  @extend %extra-small-type
-  color: #bbc6c7
-  line-height: 8px
-  &:before
-    @extend %benton-regular
-    color: #e5ebee
-    font-size: 30px
-    line-height: 20px
-    vertical-align: bottom
-
-.card__tour-duration
-  @extend %left-icon-text
-  @extend %tour-duration-before
-  margin-bottom: 14px
-  &:before
-    color: #9fd815
-    line-height: 15px
-
-.card__feedback__approval
-  @extend %left-icon-text
-  @extend %approval-before
-
-.card__feedback__comments
-  @extend %left-icon-text
-  @extend %comments-before

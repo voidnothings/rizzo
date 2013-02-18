@@ -26,13 +26,14 @@
     right: 13px
 
 .price-tag__inner
+  @extend %extra-small-type
+  @extend %benton-book
   background-color: $bookable
   color: $feature-text
   padding: 8px 10px
-  @extend %extra-small-type
-  @extend %benton-regular
 
 .price-tag__inner--non-bookable
+  @extend %benton-regular
   +multiple-text-shadow(-1px -1px 1px rgba(0, 0, 0, 0.25), 1px 1px 1px rgba(255,255,255,0.8))
   padding: 4px 10px
   font-size: 50px
