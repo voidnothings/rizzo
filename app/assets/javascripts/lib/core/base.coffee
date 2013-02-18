@@ -45,7 +45,7 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
     showCookieComplianceMsg: ->
       if LocalStore.get('cookie-compliance') is undefined or LocalStore.get('cookie-compliance') is null
         args = 
-          content: "<p><strong>Hi there. We use cookies to improve your experience on our website. </strong><strong><a href='/legal/cookies'>Find out more about how we use cookies.</a></strong></p><p>You can update your settings by clic)king the <strong><a href='/legal/cookies'>Cookie Policy</a></strong> link which can be found anytime at the bottom of the page.</p>"
+          content: "<p><strong>Hi there. We use cookies to improve your experience on our website. </strong><strong><a href='/legal/cookies'>Find out more about how we use cookies.</a></strong></p><p>You can update your settings by clicking the <strong><a href='/legal/cookies'>Cookie Policy</a></strong> link which can be found anytime at the bottom of the page.</p>"
           style: "row--cookie-compliance js-cookie-compliance"
           delegate: 
             onRemove : -> 
