@@ -35,6 +35,12 @@ input, textarea, select
   .nav__item--breadcrumbs, .nav__item--breadcrumbs--current
     line-height: 1em!important
 
+.nav__item--breadcrumbs--current
+  @extend .nav__item--breadcrumbs
+  font-weight: bold
+  &:hover
+    text-decoration: none
+
 .nav--primary, .nav-primary--user, .nav--secondary
   a
     cursor: pointer
