@@ -21,13 +21,7 @@
   @extend %left-icon--hidden-text
   @extend %inline-block
   position: absolute
-  // *1* To prevent :hover rendering bug in Safari
-  overflow: hidden
-  //height: 30px
-  // *2* To prevent not rendering in FF (consequence of *1*)
-  //width: 27px
   &:before
-    //line-height: 30px
     color: $lp-reviewed-badge
 
 .badge--lp-reviewed
@@ -49,8 +43,8 @@
   @extend %four-pixel-rounded
   @extend %inline-block
   @extend %tiny-type
-  font-weight: bold
+  background-color: $validation-true
   color: #fff
+  font-weight: bold
   padding: 2px 5px
   text-transform: uppercase
-  background-color: $validation-true
