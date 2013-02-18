@@ -1,35 +1,35 @@
-.row.row--primary
+.row.row--primary.row--core
 
-  .row__inner--left
+  .split--left.nav--inline
     %a.media--lp-logo--head(href='http://www.lonelyplanet.com')
-    %nav.nav--primary.nav__item
+    %nav.nav--inline.nav__item.nav--primary
       %h6.accessibility Global navigation
       - core_navigation_items.each do |n|
         - if n[:submenu]
-          .nav__item.nav__item--submenu.nav__submenu__trigger
+          .nav__item.nav__item--primary.nav__item--submenu.nav__submenu__trigger
             = n[:title]
             .nav__submenu
-              .nav__submenu__content.nav__submenu__content--bookings.js-submenu
+              .nav--stacked.nav__submenu__content.nav__submenu__content--bookings.js-submenu
                 - n[:submenu].each do |sub|
-                  %a{ href: sub[:uri], class: "nav__submenu__item nav__submenu__item--#{sub[:style]}"}<
+                  %a{ href: sub[:uri], class: "nav__item nav__submenu__item nav__submenu__item--#{sub[:style]}"}<
                     = sub[:title]
         - else
           %a.nav__item.nav__item--primary{ href: n[:uri] }<
             = n[:title]
 
-  .row__inner--right
+  .split--right
 
-    .search--primary.row__inner--right__nav
-      %form.search__form{:action => host_with_subdomain_and_path("www", "searchResult"), :method => "get" }
-        %label.accessibility(for='search-q')
-          Search
+    .split--right__inner.nav--inline
+    
+      %form.nav__item.search--primary{:action => host_with_subdomain_and_path("www", "searchResult"), :method => "get" }
+        %label.accessibility(for='search-q') Search
         %input.search__input.search__input--primary.js-primary-search(type="search" id="search" maxlength="2048" name="q" value="" autocomplete="off" tabindex="1")
         %button.accessibility(type="submit" id="search-q-submit" name="search-q-submit")
 
-    - if user_nav
-      %nav.nav--primary--user.js-user-nav.row__inner--right__nav
-        %h6.accessibility User Navigation
-        %a.nav__item--primary.nav__item.user-basket.js-user-basket(href='//shop.lonelyplanet.com/cart/view')
-          %span.user-basket__icon
-          %span.user-basket__text Your bag
-          %span.user-basket__items.js-basket-items
+      - if user_nav
+        %nav.nav__item.nav--inline.nav--primary--user.js-user-nav.split--right__inner
+          %h6.accessibility User Navigation
+          %a.nav__item.nav__item--user.user-basket.js-user-basket(href='//shop.lonelyplanet.com/cart/view')
+            %span.user-basket__icon
+            %span.user-basket__text Your bag
+            %span.user-basket__items.js-basket-items

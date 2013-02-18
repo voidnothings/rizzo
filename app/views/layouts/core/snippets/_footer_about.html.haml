@@ -1,38 +1,40 @@
 .row.row--footer--about
   .row__inner.row__inner--footer
-    .row__inner--left
-      %a.media--lp-logo--footer(href='http://www.lonelyplanet.com')
-      %nav.nav--footer--base.nav__item
+
+    .split--left.nav--inline
+      %a.nav__item.media--lp-logo--footer(href='http://www.lonelyplanet.com')
+      %nav.nav__item.nav--inline
         %h1.accessibility About Lonely Planet Navigation
         - footer_nav_about_items.each do |item|
-          %a.nav--footer--base__item.nav__item{href: item[:url]}<
+          %a.nav__item.nav__item--about{href: item[:url]}<
             = item[:title].html_safe
-    .row__inner--right
-      .nav--social.row__inner--right__nav
-        .nav--social__title.nav__item Follow us
+
+    .split--right
+      .nav--inline.nav--social.split--right__inner
+        .title--footer.nav__item.nav__item--about Follow us
         .nav--social__inner.nav__item
-          %nav
+          %nav.nav--inline
             - social_media_nav.each do |item|
               %a.nav__item{href: "#{item[:url]}", class: "icon--regular sprite-core--standard icon--#{item[:title]}"}
 
 
-  
-  .row__inner.row__inner--footer
-    .row__inner--left.row__inner--legal
-      %p.text--legal
+.row.row--smallprint
+  .row__inner.row__inner--footer.row--smallprint__inner
+    .split--left.text--legal
+      %p
         &copy; 
         = Time.now.year 
         Lonely Planet. All rights reserved. No part of this site may be reproduced without our written permission.<br />
         This website is owned by BBC Worldwide, which is a commercial company owned by the BBC.
 
-    .row__inner--right
-      %form.row__inner--right__nav#js-language.form--language(action="http://www.lonelyplanet.com/international")
-        %label.label--footer(for="select-language") International:
+    .split--right
+      %form.split--right__inner#js-language.form--language(action="http://www.lonelyplanet.com/international")
+        %label.label--footer.title--footer(for="select-language") International
         .dropdown.dropdown--language.js-select-language
           %label.dropdown__value.dropdown__value--language.js-select-overlay(href='#select-language')
             English
           %select.dropdown__select.js-select{name: "language", id: 'languageSelect'}
-            - [['en','English'],['de','Deutsch'],['fr','Français'],['es','Español'],['it','Italiano'],['cn','中文简体'],['jp','日本語']].each do |d|
+            - language_options.each do |d|
               %option(value="#{d[0]}")
-                = d[1]
+                = d[1].html_safe
         %input.input--submit.submit--language(name="Go" type="submit" value="Go")

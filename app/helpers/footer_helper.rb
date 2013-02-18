@@ -75,6 +75,20 @@ module FooterHelper
     ]
   end
 
+  def language_options
+    [
+      ['en','English'],
+      ['de','Deutsch'],
+      ['fr','Fran&#231;ais'],
+      ['es','Espa&#241;ol'],
+      ['it','Italiano'],
+      ['cn','&#20013;&#25991;&#31616;&#20307;'],
+      ['jp','&#26085;&#26412;&#35486;'], 
+      ['ru', '&#x420;&#x443;&#x441;&#x441;&#x43A;&#x438;&#x439;'],
+      ['br','Portugu&ecirc;s']
+    ]
+  end
+
   def footer_newsletter_country_items
     [
       {:title=>"Australia"},
