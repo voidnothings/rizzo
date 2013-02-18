@@ -38,9 +38,14 @@ input, textarea, select
 .nav--primary, .nav-primary--user, .nav--secondary
   a
     cursor: pointer
-    line-height: 1em
     &:hover
       text-decoration: none
+
+.nav--primary
+  line-height: 14px
+
+.nav--secondary
+  line-height: 18px
 
 .nav__item--secondary
   font-size: 12px !important
@@ -85,3 +90,12 @@ input, textarea, select
 
 .nav__submenu__item:hover
   color: white !important
+
+/* Pages with Wallpapers */
+html
+  overflow-x: hidden !important
+
+.ad-wallpaper 
+  overflow-x: visible !important
+  .row--content
+    background-color: transparent !important
