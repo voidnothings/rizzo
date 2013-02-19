@@ -213,6 +213,21 @@ $card-hotel-content-padding: 13px
 // Card POI icons
 // -----------------------------------------------------------------------------
 
+.card__poi-icon
+  @extend %benton-regular
+  @extend %no-line-height
+  @extend %absolute
+  top: 20px
+  left: 10px
+  font-size: 69px
+  color: $hotels-poi
+  .list-view &
+    top: 29px
+    left: 10px
+  .ie7 &
+    line-height: 1
+    top: -10px
+
 .card--list
   &:before
     @extend %benton-regular
@@ -356,6 +371,54 @@ $card-hotel-content-padding: 13px
       right: 0
       pointer-events: none
 
+// -----------------------------------------------------------------------------
+//
+// Full Page Card
+//
+// -----------------------------------------------------------------------------
+.card--full-page
+  @extend %relative
+  @extend %box-off-double
+
+.lodging--top-choice
+  &:after
+    @extend %empty-abs-generated-content
+    background: url(image_path("lodgings-spt.png"))
+    top: -5px
+    left: 17px
+    width: 63px
+    height: 95px
+    +retinafy()
+      background: url(image_path("lodgings-spt-2x.png"))
+      background-size: $sprite-size
+
+  .card--full-page__header
+    padding-left: 73px
+    min-height: 60px
+
+.card--full-page__header
+  margin-bottom: 20px
+  border-bottom: 1px solid $ruled-separator
+  padding-bottom: 20px
+
+.card--full-page__title
+  @extend %benton-book
+  @extend %tighten-text
+  @extend %card-header-size
+  color: $header-blue
+  margin-bottom: 5px
+
+
+.card--full-page__subtitle
+  @extend %larger-type
+  @extend %inline-block
+  @extend %body-copy
+  @extend %smooth-text
+  @extend %vertically-centered-dot-after
+  @extend %reset-line-height
+  &:last:after
+    content: ''
+
 
 // -----------------------------------------------------------------------------
 // Article Card
@@ -476,3 +539,33 @@ $card-hotel-content-padding: 13px
   @extend %cross-icon-before
   color: #ff514e
   display: inline-block
+
+
+
+// -----------------------------------------------------------------------------
+// Card Footer
+// -----------------------------------------------------------------------------
+
+.card .badge--lp-reviewed
+  left: 0
+  bottom: 0
+  height: 23px
+
+.card .badge--top-choice
+  height: 24px
+  left: 30px
+  bottom: 0
+
+.card--hotel .btn--bookable
+  @extend %irregular-type
+  @extend %absolute
+  bottom: 0
+  padding: 10px 12px
+  right: 0
+
+// -----------------------------------------------------------------------------
+// Cards without images
+// -----------------------------------------------------------------------------
+
+.grid-view .has-no-image
+  border-bottom: 2px solid $hotels-poi
