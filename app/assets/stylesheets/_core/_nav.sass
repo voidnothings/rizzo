@@ -156,9 +156,20 @@
   //   background-repeat: no-repeat
 
 .nav__item--breadcrumbs--home
-  @extend %image-replacement
-  width: 26px
-
+  @extend %left-icon
+  @extend %left-icon--hidden-text
+  @extend %icon--home-before
+  width: 32px
+  &:before
+    top: 0
+    line-height: 42px
+    font-size: 32px
+    width: inherit
+    text-align: center
+    color: $header-gray
+  .ie7 &
+    text-indent: none
+    width: auto
 
 // ----------------------------------------------------------------------------
 // 
