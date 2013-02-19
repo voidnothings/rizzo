@@ -28,7 +28,7 @@ $submenu__arrow--width:  10px
   margin-left: -(($submenu--width/2) + $submenu__arrow--width)
 
 .nav__submenu__content
-  +transition(all, 0.15, ease)
+  @extend %transition--base
   @extend %fly-out-shadow
   @extend %four-pixel-rounded
   background-color: $nav-submenu-bck
