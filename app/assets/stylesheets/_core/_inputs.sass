@@ -46,14 +46,6 @@ input, textarea
   +placeholder()
     color: $placeholder-copy
 
-.input--small--footer
-  @extend %input--small
-  padding: 9px
-  width: 175px
-  .ie7 &
-    width: 151px
-  .ie8 &
-    width: 161px
 
 // ----------------------------------------------------------------------------
 //
@@ -86,41 +78,6 @@ input, textarea
 
 // -----------------------------------------------------------------------------
 //
-// Header: Search Form - IE 7,8 & 9
-//
-// -----------------------------------------------------------------------------
-
-.search--primary
-
-  .ie9 &
-    margin-top: 10px
-
-  .ie7 &, .ie8 &
-    border: 1px #20374F solid
-    background-color: $nav-search-bck
-
-
-.search__input--primary
-  .ie7 &
-    margin-left: 33px
-    width: 170px
-    padding: 8px
-    border: none
-    @extend %background-white
-
-  .ie8 &
-    margin-left: 33px
-    width: 185px
-    padding: 8px 8px 8px 0
-    &:focus
-      @extend %background-white
-      color: $nav-search-bck-focus
-      padding-left: 8px
-
-
-
-// -----------------------------------------------------------------------------
-//
 // Footer: Language Selection
 //
 // -----------------------------------------------------------------------------
@@ -131,6 +88,8 @@ input, textarea
 
 .dropdown--language
   width: 86px
+  .ie7 &
+    overflow: hidden
 
 // Footer select is slightly smaller so reduce padding and re-align chevron
 .dropdown__value--language
@@ -161,6 +120,11 @@ input, textarea
 .newsletter--footer
   @extend %regular-type-size
 
+.newsletter--placeholder
+  position: static
+  display: block
+  margin-bottom: 5px
+
 .input--small--newsletter
   @extend %input--regular
   padding: 10px
@@ -168,6 +132,8 @@ input, textarea
   color: $header-gray
   +placeholder()
     color: $body-copy
+  .ie7 &
+    width: auto
 
 .dropdown--country
   margin: 7px 0

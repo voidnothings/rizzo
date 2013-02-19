@@ -47,3 +47,14 @@
 .transition
   +transition(all, 0.5, ease-in-out)
 
+
+// ----------------------------------------------------------------------------
+// 
+// Helper classes for use with legacy browsers
+//
+// ----------------------------------------------------------------------------
+
+.polyfill--placeholder
+  @extend %visually-hide
+  .ie7 &, .ie8 &, .ie9 &
+    @extend %visually-show
