@@ -4,6 +4,10 @@
 //
 // ----------------------------------------------------------------------------
 
+// Variables - to make the below calculations more obvious
+$submenu--width:         190px
+$submenu__arrow--width:  10px
+
 .nav__submenu__trigger
   cursor: pointer
   position: relative
@@ -15,10 +19,13 @@
 .nav__submenu
   @extend %absolute
   display: none
-  padding: 20px 10px 10px
-  right: 0px
-  top: 25px
+  width: $submenu--width
   z-index: 10
+  padding: 20px 10px 10px
+  // Centralise the submenu relative to its parent
+  left: 50%
+  top: 50%
+  margin-left: -(($submenu--width/2) + $submenu__arrow--width)
 
 .nav__submenu__content
   +transition(all, 0.15, ease)
@@ -27,15 +34,20 @@
   background-color: $nav-submenu-bck
   padding: 4px 0
   position: relative
-  width: 190px
   &:before
-    +css-arrow(top, $width: 10px, $color: $nav-submenu-bck, $offset: 146px)
+    +css-arrow-central(top, $width: $submenu__arrow--width, $color: $nav-submenu-bck, $offset: 0)
     @extend %empty-abs-generated-content
     display: block
+
 
 .nav__submenu__item
   color: #fff
   padding: 12px
+
+.nav__submenu__title
+  @extend %large-type
+  font-weight: bold
+  cursor: default
 
 .nav__submenu__link
   @extend %right-icon
@@ -52,6 +64,3 @@
     line-height: 34px
     font-size: 24px
 
-.nav__submenu__title
-  @extend %large-type
-  font-weight: bold
