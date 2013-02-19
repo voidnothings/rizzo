@@ -2,12 +2,18 @@
   @extend %benton-regular
   @extend %extra-large-type
   @extend %truncate-text
+  @extend %left-icon
+  @extend %icon--location-flag-before
   letter-spacing: -0.1em
   color: $dark-blue-gray
   line-height: 26px
   margin-right: 20px
   // Fix the text-overflow bug in firefox to avoid the final letter being clipped
   padding-right: 2px
+  padding-left: 22px
+  &:before
+    font-size: 28px
+    line-height: 20px
 
 .place-title__parent
   @extend %benton-book
