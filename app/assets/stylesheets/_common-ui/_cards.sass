@@ -244,9 +244,6 @@ $card-hotel-content-padding: 13px
   font-size: 69px
   left: 10px
   top: 20px
-  .list-view &
-    left: 10px
-    top: 29px
   .ie7 &
     line-height: 1
     top: -10px
@@ -261,11 +258,22 @@ $card-hotel-content-padding: 13px
     top: 20px
     z-index: 5
 
-.card--list.has-image
-  &:before
-    color: #fff
-    font-size: 40px
-    text-shadow: 0 0 5px rgba(0,0,0,0.75)
+  &.has-no-image
+    &:after
+      background: #b2b1b1
+      border-radius: 10px/5px
+      content: ''
+      height: 4px
+      left: 26px
+      position: absolute
+      top: 46px
+      width: 9px
+
+  &.has-image
+    &:before
+      color: #fff
+      font-size: 40px
+      text-shadow: 0 0 5px rgba(0,0,0,0.75)
 
 .card--list--lodging
   @extend %icon-poi-hotel-before
@@ -389,6 +397,7 @@ $card-hotel-content-padding: 13px
 // Full Page Card
 //
 // -----------------------------------------------------------------------------
+
 .card--full-page
   @extend %relative
   @extend %box-off-double
@@ -399,15 +408,15 @@ $card-hotel-content-padding: 13px
     background: url(image_path("lodgings-spt.png"))
     top: -5px
     left: 17px
-    width: 63px
     height: 95px
+    width: 63px
     +retinafy()
       background: url(image_path("lodgings-spt-2x.png"))
       background-size: $sprite-size
 
   .card--full-page__header
-    padding-left: 73px
     min-height: 60px
+    padding-left: 73px
 
 .card--full-page__header
   margin-bottom: 20px
@@ -436,6 +445,7 @@ $card-hotel-content-padding: 13px
 // -----------------------------------------------------------------------------
 // Article Card
 // -----------------------------------------------------------------------------
+
 
 .stack__article
   @extend %body-copy
