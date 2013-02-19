@@ -39,7 +39,7 @@ define ['jquery'], ($)->
     showUserBox: ->
       @emptyUserNav()
       $('nav.js-user-nav').addClass('is-signed-in')
-      userBoxElement = "<div class='nav__item user-box js-user-box nav__submenu__trigger'><img class='user-box__img js-box-handler' src='#{@userAvatar()}'/></div>"
+      userBoxElement = "<div class='nav__item nav__item--user user-box js-user-box nav__submenu__trigger'><img class='user-box__img js-box-handler' src='#{@userAvatar()}'/></div>"
       $('nav.js-user-nav').append(userBoxElement)
       $('div.js-user-box').append(@userOptionsMenu())
 
@@ -55,9 +55,9 @@ define ['jquery'], ($)->
         {title: 'Forum Activity', uri: "#{@options.forumPostsUrlTemplate.replace('[USERNAME]', @lpUserName)}", style:"nav-user-options__item--forum js-user-forum" },
         {title: 'Sign-Out', uri: "#{@options.signOutUrl}", style:"nav-user-options__item--signout js-user-signout" }
       ]
-      optionElements =  ("<a class='nav__item nav__submenu__item nav-user-options__item #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
+      optionElements =  ("<a class='nav__item nav__submenu__item nav__submenu__link nav-user-options__item #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
 
-      userMenu = "<div class='nav__submenu'><nav class='nav--stacked nav__submenu__content nav__submenu__content--user nav-user-options js-user-options'><h3 class='nav-user-options__title'>#{@lpUserName}</h3>#{optionElements}</nav></div>"
+      userMenu = "<div class='nav__submenu'><nav class='nav--stacked nav__submenu__content nav__submenu__content--user nav-user-options js-user-options'><h3 class='nav__submenu__item nav__submenu__title'>#{@lpUserName}</h3>#{optionElements}</nav></div>"
     
     signInUrl:->
       "https://secure.lonelyplanet.com/sign-in/login?service=#{escape(window.location)}"
