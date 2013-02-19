@@ -3,14 +3,15 @@
   @extend %extra-large-type
   @extend %truncate-text
   letter-spacing: -0.1em
-  font-weight: bold
   color: $dark-blue-gray
   line-height: 26px
   margin-right: 20px
 
 .place-title__parent
-  font-weight: normal
+  @extend %benton-book
   color: $dark-blue-gray
+  &:hover
+    text-decoration: none
 
 .title--list--footer
   @extend %small-type
