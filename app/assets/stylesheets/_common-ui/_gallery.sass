@@ -1,6 +1,7 @@
 // LpGallery navigation bar
 
 .lp-gallery-toolbar
+  @extend %cross-icon-after
   position: absolute
   right: 15px
   top: 20px
@@ -17,7 +18,6 @@
     color: #fff
     +text-shadow(1, 1, 0, rgba(0,0,0,0.2))
     cursor: pointer
-    content: "\e038"
     top: 0
     right: 0
 
@@ -72,19 +72,17 @@
     color: #fff
 
 
-
 .lp-swipe-ctrl-lft
+  @extend %chevron-left-after
   left: 0
   &:after
-    content: "\e031"
     left: 15px
     top: 40%
   
 .lp-swipe-ctrl-rgt
-
+  @extend %chevron-right-after
   right: 0
   &:after
-    content: "\e029"
     right: 15px
     top: 40%
 
