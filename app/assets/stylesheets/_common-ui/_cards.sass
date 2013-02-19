@@ -1,7 +1,7 @@
 // Cards
 //
 //
-// .stack__card.card--single - A Card used to display a poi in grid form
+// .card
 //
 // Styleguide 1.3
 
@@ -30,7 +30,6 @@ $card-hotel-content-padding: 13px
   @extend %standard-shadow
   background: #fff
   margin-bottom: 10px
-
 
 .card--list.has-image
   &:after
@@ -149,6 +148,8 @@ $card-hotel-content-padding: 13px
     line-height: 20px
 
   .card--stack &
+    @include font-size(19)
+    line-height: 20px
     margin-bottom: 0
 
   .card--list--tour &
@@ -192,7 +193,6 @@ $card-hotel-content-padding: 13px
     padding: 8px
 
   .btn--bookable
-    //background: #fff556
     //padding: 10px
     //width: 100%
 
@@ -204,7 +204,6 @@ $card-hotel-content-padding: 13px
       left: 0
       right: 0
       top: -20px
-
 
 .card--hotel
   .card__footer:after
