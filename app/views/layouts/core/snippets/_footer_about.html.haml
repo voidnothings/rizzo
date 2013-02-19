@@ -10,11 +10,12 @@
 
     .split--right
       .nav--inline.nav--social.split--right__inner
-        .title--footer.nav__item.nav__item--about Follow us
+        .title--footer.title--social.nav__item Follow us
         .nav--social__inner.nav__item
           %nav.nav--inline
             - social_media_nav.each do |item|
-              %a.nav__item{href: "#{item[:url]}", class: "icon--regular sprite-core--standard icon--#{item[:title]}"}
+              %a.nav__item.nav__item--social{href: "#{item[:url]}", class: "icon--regular icon--#{item[:title]}"}
+                = item[:title]
 
 
 .row.row--smallprint
