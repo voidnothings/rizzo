@@ -1,0 +1,65 @@
+// ----------------------------------------------------------------------------
+//
+// Drop-Down Sub-Menus
+//
+// ----------------------------------------------------------------------------
+
+// Variables - to make the below calculations more obvious
+$submenu--width:         190px
+$submenu__arrow--width:  10px
+
+.nav__submenu__trigger
+  cursor: pointer
+  position: relative
+  &:hover
+    .nav__submenu
+      display: block
+
+// padding around the submenu gives the submenu dropdown more area to hover over
+.nav__submenu
+  @extend %absolute
+  display: none
+  width: $submenu--width
+  z-index: 10
+  padding: 20px 10px 10px
+  // Centralise the submenu relative to its parent
+  left: 50%
+  top: 50%
+  margin-left: -(($submenu--width/2) + $submenu__arrow--width)
+
+.nav__submenu__content
+  +transition(all, 0.15, ease)
+  @extend %fly-out-shadow
+  @extend %four-pixel-rounded
+  background-color: $nav-submenu-bck
+  padding: 4px 0
+  position: relative
+  &:before
+    +css-arrow-central(top, $width: $submenu__arrow--width, $color: $nav-submenu-bck, $offset: 0)
+    @extend %empty-abs-generated-content
+    display: block
+
+.nav__submenu__item
+  color: #fff
+  padding: 12px
+
+.nav__submenu__title
+  @extend %large-type
+  font-weight: bold
+  cursor: default
+
+.nav__submenu__link
+  @extend %right-icon
+  @extend %chevron-right-after
+  border-color: $nav-submenu-bck
+  border-style: solid
+  border-width: 1px 0
+  &:hover
+    background-color: $nav-submenu-hover
+    border-color: $nav-submenu-hover-border
+  &:after
+    top: 0
+    right: 6px
+    line-height: 34px
+    font-size: 24px
+

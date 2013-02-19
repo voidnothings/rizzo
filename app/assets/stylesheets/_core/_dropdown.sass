@@ -1,66 +1,53 @@
+// Dropdown
+// 
+// .dropdown - Lonely Planet masked select elements
+// 
+// Styleguide 3.2
+
 // ----------------------------------------------------------------------------
-//
-// Drop-Down Sub-Menus
-//
+// Custom Select Dropdown
+// 
+// Pseudo element has height, background-color and left padding in order to mask
+// the content of dropdown__value if it extends beyond its container
 // ----------------------------------------------------------------------------
 
-// Variables - to make the below calculations more obvious
-$submenu--width:         190px
-$submenu__arrow--width:  10px
-
-.nav__submenu__trigger
-  cursor: pointer
+.dropdown
   position: relative
-  &:hover
-    .nav__submenu
-      display: block
 
-// padding around the submenu gives the submenu dropdown more area to hover over
-.nav__submenu
-  @extend %absolute
-  display: none
-  width: $submenu--width
-  z-index: 10
-  padding: 20px 10px 10px
-  // Centralise the submenu relative to its parent
-  left: 50%
-  top: 50%
-  margin-left: -(($submenu--width/2) + $submenu__arrow--width)
-
-.nav__submenu__content
-  +transition(all, 0.15, ease)
-  @extend %fly-out-shadow
-  @extend %four-pixel-rounded
-  background-color: $nav-submenu-bck
-  padding: 4px 0
-  position: relative
-  &:before
-    +css-arrow-central(top, $width: $submenu__arrow--width, $color: $nav-submenu-bck, $offset: 0)
-    @extend %empty-abs-generated-content
-    display: block
-
-
-.nav__submenu__item
-  color: #fff
-  padding: 12px
-
-.nav__submenu__title
-  @extend %large-type
-  font-weight: bold
-  cursor: default
-
-.nav__submenu__link
+.dropdown__value
+  +word-break()
+  @extend %border-box
+  @extend %input--regular
+  @extend %chevron-down-after
   @extend %right-icon
-  @extend %chevron-right-after
-  border-color: $nav-submenu-bck
-  border-style: solid
-  border-width: 1px 0
-  &:hover
-    background-color: $nav-submenu-hover
-    border-color: $nav-submenu-hover-border
+  overflow: hidden
+  white-space: nowrap
+  display: block
+  border: 1px solid $soft-gray
+  padding: 10px 20px 10px 10px
   &:after
+    @extend %four-pixel-rounded
+    pointer-events: none
+    background-color: inherit
+    color: inherit
     top: 0
-    right: 6px
-    line-height: 34px
-    font-size: 24px
+    right: 0
+    width: 20px
+    height: 100%
+    font-size: 20px
+    line-height: 28px
+    padding-left: 5px
 
+.dropdown__select
+  +appearance(menulist-button)
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  opacity: 0
+  .ie7 &, .ie8 &
+    filter: alpha(opacity = 0)
+  .no-js &
+    opacity: 1
+    filter: alpha(opacity = 1)
