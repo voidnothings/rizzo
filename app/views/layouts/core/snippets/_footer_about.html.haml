@@ -28,9 +28,9 @@
         This website is owned by BBC Worldwide, which is a commercial company owned by the BBC.
 
     .split--right
-      %form.split--right__inner#js-language.form--language(action="http://www.lonelyplanet.com/international")
-        %label.label--footer.title--footer(for="select-language") International
-        .dropdown.dropdown--language.js-select-language
+      %form.split--right__inner.nav--inline#js-language.form--language(action="http://www.lonelyplanet.com/international")
+        %label.nav__item.form--language__label.title--footer(for="select-language") International
+        .nav__item.dropdown.dropdown--language.js-select-language
           %label.dropdown__value.dropdown__value--language.js-select-overlay(href='#select-language')
             English
           %select.dropdown__select.js-select{name: "language", id: 'languageSelect'}
