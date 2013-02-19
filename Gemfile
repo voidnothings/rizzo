@@ -28,6 +28,7 @@ group :test do
   gem 'capybara', '< 2.0.0'
   gem 'cucumber'
   gem 'cucumber-rails', :require => false
+  gem 'launchy'
 
   gem 'guard-cucumber'
   gem 'rb-fsevent', '~> 0.9.1'
