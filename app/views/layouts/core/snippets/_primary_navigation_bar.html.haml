@@ -6,12 +6,12 @@
       %h6.accessibility Global navigation
       - core_navigation_items.each do |n|
         - if n[:submenu]
-          .nav__item.nav__item--primary.nav__item--submenu.nav__submenu__trigger
+          .nav__item.nav__item--primary.nav__submenu__trigger
             = n[:title]
             .nav__submenu
               .nav--stacked.nav__submenu__content.nav__submenu__content--bookings.js-submenu
                 - n[:submenu].each do |sub|
-                  %a{ href: sub[:uri], class: "nav__item nav__submenu__item nav__submenu__item--#{sub[:style]}"}<
+                  %a{ href: sub[:uri], class: "nav__item nav__submenu__item nav__submenu__link nav__submenu__item--#{sub[:style]}"}<
                     = sub[:title]
         - else
           %a.nav__item.nav__item--primary{ href: n[:uri] }<
