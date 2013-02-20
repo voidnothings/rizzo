@@ -2,7 +2,15 @@
 = stylesheet_link_tag 'common_core_overrides', :media => "all"
 %link(rel="stylesheet" href="http://static.lonelyplanet.com/static-ui/style/app-core-legacy.css" type="text/css" media="screen,projection")
 
-= airbrake_javascript_notifier unless params[:errbit] == 'false'
+- unless params[:errbit] == 'false'
+  = javascript_include_tag "errbit_notifier.js"
+  %script
+    window.Airbrake = (typeof(Airbrake) == 'undefined' && typeof(Hoptoad) != 'undefined') ? Hoptoad : Airbrake
+    Airbrake.setKey("#{Airbrake.configuration.js_api_key}");
+    Airbrake.setHost("#{Airbrake.configuration.host.dup}:#{Airbrake.configuration.port}");
+    Airbrake.setEnvironment("#{Airbrake.configuration.environment_name}");
+    Airbrake.setErrorDefaults({ url: "#{request.url}", component: "#{controller_name}", action: "#{action_name}" });
+
 
 %script(type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
 %script(type="text/javascript" src="http://static.lonelyplanet.com/static-ui/js/lp-js-library-legacy.js")
