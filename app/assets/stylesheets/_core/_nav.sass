@@ -188,6 +188,8 @@
   @extend %regular-type-size
   padding: 25px 0
   margin-right: 10px
+  .ie7 &
+    display: none
 
 .nav__item--social
   +border-radius(16)
@@ -205,6 +207,9 @@
     background-color: white
   .ie7 &
     text-indent: 0
+    height: auto !important
+    width: auto !important
+    margin: 26px 5px 0 0
 
 .icon--twitter
   @extend %icon--twitter-before
