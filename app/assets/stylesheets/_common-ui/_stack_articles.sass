@@ -1,0 +1,171 @@
+
+// -----------------------------------------------------------------------------
+//
+// Full Page Card
+//
+// -----------------------------------------------------------------------------
+
+.card--full-page
+  @extend %relative
+  @extend %box-off-double
+
+.lodging--top-choice
+  &:after
+    @extend %empty-abs-generated-content
+    background: url(image_path("lodgings-spt.png"))
+    top: -5px
+    left: 17px
+    height: 95px
+    width: 63px
+    +retinafy()
+      background: url(image_path("lodgings-spt-2x.png"))
+      background-size: $sprite-size
+
+  .card--full-page__header
+    min-height: 60px
+    padding-left: 73px
+
+.card--full-page__header
+  margin-bottom: 20px
+  border-bottom: 1px solid $ruled-separator
+  padding-bottom: 20px
+
+.card--full-page__title
+  @extend %benton-book
+  @extend %tighten-text
+  @extend %card-header-size
+  color: $header-blue
+  margin-bottom: 5px
+
+
+.card--full-page__subtitle
+  @extend %larger-type
+  @extend %inline-block
+  @extend %body-copy
+  @extend %smooth-text
+  @extend %vertically-centered-dot-after
+  @extend %reset-line-height
+  &:last:after
+    content: ''
+
+
+// -----------------------------------------------------------------------------
+// Article Card
+// -----------------------------------------------------------------------------
+
+
+.stack__article
+  @extend %body-copy
+  @extend %four-pixel-rounded
+  @extend %margin-grid-column-10
+  @extend %regular-type-size
+  @extend %standard-shadow
+  background: #fff
+  margin-bottom: 10px
+  overflow: hidden
+  padding: 20px 15px
+  width: 798px
+
+.stack__article__header
+  border-bottom: 1px solid $ruled-separator
+  margin-bottom: 20px
+
+.stack__article__ad
+  @extend %tiny-type
+  color: #b6b6b6
+  text-align: center
+  text-transform: uppercase
+
+.stack__article__heading
+  @extend %benton-book
+  @include font-size(32)
+  color: $header-blue
+  line-height: 1
+  margin-bottom: 10px
+
+.stack__article__content__leadin
+  @extend %relative
+  @extend %serif
+  @extend %smooth-text
+  @include font-size(17)
+  color: $dark-blue-gray
+  line-height: 20px
+
+.stack__article_content_subheading
+  @include font-size(18)
+  @extend %smooth-text
+  color: #023f87
+  font-weight: bold
+  margin-bottom: 10px
+
+
+
+// breadcrumbs
+
+.stack__breadcrumbs + .stack__article
+  position: relative
+  top: -40px
+
+.stack__breadcrumb
+  @extend %benton-book
+  @extend %four-pixel-rounded
+  @include font-size(32)
+  +background-gradient($startColor: rgb(255,255,255), $endColor: rgb(239,239,239))
+  +transition(all, 0.2, ease)
+  color: #d2ddeb
+  display: block
+  padding: 20px 15px 10px
+  position: relative
+  text-decoration: none
+  top: -20px
+
+  &:hover
+    color: $header-blue
+    text-decoration: none
+    -webkit-transform: translate(0,-10px)
+    transform: translate(0,-10px)
+
+.stack__breadcrumb:first-child
+  top: 0
+
+
+
+.stack__article__table
+  tr
+    border-bottom: 1px solid #e6edf5
+  th,
+  td
+    padding: 13px 13px 13px 0
+    text-align: center
+  th
+    color: $header-gray
+    padding-bottom: 14px
+  td
+    .stack__article__table-align-left
+      text-align: left
+
+.stack__article__table--small-text
+  @extend %tiny-type
+  display: block
+
+.stack__article__table--yes,
+.stack__article__table--no
+  &:before
+    font-size: 22px
+    line-height: 15px
+
+.stack__article__table--yes
+  @extend %left-icon
+  @extend %left-icon--hidden-text
+  @extend %tick-icon-before
+  color: #1ac571
+  display: inline-block
+  &:before
+    width: 24px
+
+.stack__article__table--no
+  @extend %left-icon
+  @extend %left-icon--hidden-text
+  @extend %cross-icon-before
+  color: #ff514e
+  display: inline-block
