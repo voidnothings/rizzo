@@ -13,11 +13,10 @@
 
 $card-grid-height: 380px
 
-$single-card-width: 192px
 $double-card-width: 394px
 
-$hero-image-height: 275px
-$card-hero-image-height: 185px
+$card-image-height: 185px
+$stack-card-image-height: 275px
 
 $card-content-padding: 15px
 $card-hotel-content-padding: 13px
@@ -30,6 +29,17 @@ $card-hotel-content-padding: 13px
   @extend %standard-shadow
   background: #fff
   margin-bottom: 10px
+
+  .btn--bookable
+    height: 32px
+    line-height: 32px
+    padding: 0
+    width: 100%
+
+  &:hover
+    .btn--bookable
+      background: $bookable-hover
+
 
 .card--list.has-image
   &:after
@@ -44,22 +54,20 @@ $card-hotel-content-padding: 13px
       height: $card-grid-height - 60px - $card-content-padding
 
 // cards that are the result of a search have a definite height and default width
+
+
 .results
   .card
-    @extend %margin-grid-column-10
     @extend %relative
     +transition(opacity, 0.5, ease)
     height: $card-grid-height
-    width: $single-card-width
+
     &:hover
       +box-shadow(2, 2, 8, 0, rgba(3, 46, 92, 0.15))
+
       img
         +filter(brightness(-15%))
-      .btn--bookable
-        background: $bookable-hover
 
-  .card--double
-    width: $double-card-width
 
 // -----------------------------------------------------------------------------
 // Card Image
@@ -71,15 +79,15 @@ $card-hotel-content-padding: 13px
   width: 100%
 
   .card--list.has-image &
-    height: $card-hero-image-height
+    height: $card-image-height
 
   // hotel card
   .card--hotel.has-image &
-    height: $card-hero-image-height
+    height: $card-image-height
 
   // single stack cards have taller images
   .card--stack &
-    height: $hero-image-height
+    height: $stack-card-image-height
 
   // double stack cards have full height images
   .card--stack.card--double &
@@ -108,7 +116,7 @@ $card-hotel-content-padding: 13px
   right: 0
 
   .card--stack &
-    height: ($card-grid-height - $hero-image-height - (2 * $card-content-padding) )
+    height: ($card-grid-height - $stack-card-image-height - (2 * $card-content-padding) )
 
   .card--stack.card--double &
     +background-gradient($startColor: rgba(0,0,0,0), $endColor: rgba(0,0,0,1.0))
@@ -118,14 +126,14 @@ $card-hotel-content-padding: 13px
   .card--list.has-image &
     background: #fff
     bottom: $card-content-padding
-    height: ($card-grid-height - $card-hero-image-height - (2 * $card-content-padding) )
+    height: ($card-grid-height - $card-image-height - (2 * $card-content-padding) )
     padding: $card-content-padding $card-content-padding 0 $card-content-padding
 
   .card--hotel &
     padding: $card-hotel-content-padding
 
   .card--hotel.has-image &
-    height: ($card-grid-height - $card-hero-image-height - (2 * $card-hotel-content-padding) )
+    height: ($card-grid-height - $card-image-height - (2 * $card-hotel-content-padding) )
 
 
 // -----------------------------------------------------------------------------
@@ -160,7 +168,7 @@ $card-hotel-content-padding: 13px
 .card__locale
   @extend %serif
   @extend %small-type
-  color: #67747c
+  color: $body-copy
   font-style: italic
   line-height: 14px
   margin-bottom: 12px
@@ -168,7 +176,7 @@ $card-hotel-content-padding: 13px
 .card__description
   @extend %irregular-type
   @extend %smooth-text
-  color: #67747c
+  color: $body-copy
   line-height: 14px
 
 // -----------------------------------------------------------------------------
@@ -180,7 +188,7 @@ $card-hotel-content-padding: 13px
   @extend %small-type
   background: #fff
   bottom: 0
-  color: #b2bebf
+  color: $body-copy
   left: 0
   padding: 8px
   right: 0
@@ -220,8 +228,10 @@ $card-hotel-content-padding: 13px
     @extend %irregular-type
     @extend %absolute
     bottom: 0
+    line-height: inherit
     padding: 10px 12px
     right: 0
+    width: auto
 
   .badge--lp-reviewed
     left: 0
@@ -277,55 +287,55 @@ $card-hotel-content-padding: 13px
       font-size: 40px
       text-shadow: 0 0 5px rgba(0,0,0,0.75)
 
-.card--list--lodging
+.card--lodging
   @extend %icon-poi-hotel-before
   color: $hotels-poi
   &.has-image
     @extend %icon-image-poi-hotel-before
 
-.card--list--sight
+.card--sight
   @extend %icon-poi-sight-before
   color: $sight-poi
   &.has-image
     @extend %icon-image-poi-sight-before
 
-.card--list--activity
+.card--activity
   @extend %icon-poi-activity-before
   color: $activity-poi
   &.has-image
     @extend %icon-image-poi-activity-before
 
-.card--list--tour
+.card--tour
   @extend %icon-poi-tour-before
   color: $tour-poi
   &.has-image
     @extend %icon-image-poi-tour-before
 
-.card--list--shopping
+.card--shopping
   @extend %icon-poi-shopping-before
   color: $shopping-poi
   &.has-image
     @extend %icon-image-poi-shopping-before
 
-.card--list--entertainment
+.card--entertainment
   @extend %icon-poi-entertainment-before
   color: $entertainment-poi
   &.has-image
     @extend %icon-image-poi-entertainment-before
 
-.card--list--restaurant
+.card--restaurant
   @extend %icon-poi-restaurant-before
   color: $restaurant-poi
   &.has-image
     @extend %icon-image-poi-restaurant-before
 
-.card--list--article
+.card--article
   @extend %icon-poi-article-before
   color: $restaurant-poi
   &.has-image
     @extend %icon-image-poi-article-before
 
-.card--list--info
+.card--info
   @extend %icon-poi-info-before
   color: #d9d9d9
   &.has-image
@@ -338,11 +348,11 @@ $card-hotel-content-padding: 13px
 
 %left-icon-text
   @extend %extra-small-type
-  color: #bbc6c7
+  color: $body-copy
   line-height: 8px
   &:before
     @extend %benton-regular
-    color: #e5ebee
+    color: $body-background
     font-size: 30px
     line-height: 20px
     vertical-align: bottom

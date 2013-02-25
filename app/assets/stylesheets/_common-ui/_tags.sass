@@ -27,38 +27,6 @@
   &:after
     @extend %empty-abs-generated-content
 
-@mixin card-tag-curl-top($background: blue, $curl: red)
-  &:before
-    background-color: $background
-    height: 3px
-    left: -2px
-    top: 0
-    width: 2px
-  &:after
-    background-color: $curl
-    border-top-left-radius: 4px
-    border-top-right-radius: 4px
-    height: 3px
-    left: -4px
-    top: 0
-    width: 4px
-
-@mixin card-tag-curl-left($background: blue, $curl: red)
-  &:before
-    background: $background
-    bottom: -4px
-    height: 4px
-    left: 0
-    width: 4px
-  &:after
-    background: $curl
-    border-bottom-left-radius: 4px
-    border-top-left-radius: 4px
-    bottom: -6px
-    height: 6px
-    left: 0
-    width: 4px
-
 %card__tag__container--top
   border-bottom-left-radius: 4px
   border-bottom-right-radius: 4px
@@ -108,7 +76,7 @@
 // -----------------------------------------------------------------------------
 
 .card__tag--price
-  +card-tag-curl-top(#fff556, $bookable-ribbon)
+  +card-tag-curl-top($bookable, $bookable-ribbon)
 
 .card__tag__inner--price
   @extend %card__tag__container--top
@@ -158,7 +126,7 @@
 
 
 // -----------------------------------------------------------------------------
-// A Price tag, commonly used on cards
+// Old-skool Price tag
 // -----------------------------------------------------------------------------
 
 .price-tag
@@ -197,8 +165,5 @@
   padding-top: 2px
 
 .price-tag__curr
+  @extend .card__tag__price--curr
   font-size: 0.65em
-  line-height: 0
-  position: relative
-  top: -0.45em
-
