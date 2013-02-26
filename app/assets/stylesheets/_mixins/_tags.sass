@@ -1,0 +1,35 @@
+// -----------------------------------------------------------------------------
+// CSS Tag Curls
+// -----------------------------------------------------------------------------
+
+@mixin card-tag-curl-top($background: blue, $curl: red)
+  &:before
+    background-color: $background
+    height: 3px
+    left: -2px
+    top: 0
+    width: 2px
+  &:after
+    background-color: $curl
+    border-top-left-radius: 4px
+    border-top-right-radius: 4px
+    height: 3px
+    left: -4px
+    top: 0
+    width: 4px
+
+@mixin card-tag-curl-left($background: blue, $curl: red)
+  &:before
+    background: $background
+    bottom: -4px
+    height: 4px
+    left: 0
+    width: 4px
+  &:after
+    background: $curl
+    border-bottom-left-radius: 4px
+    border-top-left-radius: 4px
+    bottom: -6px
+    height: 6px
+    left: 0
+    width: 4px
