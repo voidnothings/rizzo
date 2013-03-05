@@ -5,6 +5,8 @@ Rizzo::Application.routes.draw do
   match "r/:encrypted_url"             => 'redirector#show', :as => :redirector
 
   match 'global-head'                  => 'global_resources#show', :defaults => { :snippet => "head" }
+  match 'global-head-no-scripts'       => 'global_resources#show', :defaults => { :snippet => "head-no-scripts"}
+  
   match 'global-body-header'           => 'global_resources#show', :defaults => { :snippet => "body_header" }
   match 'global-body-footer'           => 'global_resources#show', :defaults => { :snippet => "body_footer" }
   match 'secure/global-head'           => 'global_resources#show', :defaults => { :snippet => "head", :secure => "true" }
