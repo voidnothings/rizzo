@@ -1,4 +1,7 @@
-// LpGallery navigation bar
+// Gallery Navigation
+// 
+// 
+
 
 .lp-gallery-toolbar
   @extend %cross-icon-after
@@ -21,8 +24,10 @@
     top: 0
     right: 0
 
-// LpGallery stage
-//
+// Gallery Stage
+// 
+// 
+
 .lp-gallery-stage
   height: 350px
   left: 0
@@ -41,8 +46,10 @@
     filter: alpha(opacity=0)
     &.lp-swipe-hidden
       opacity: 0
+      filter: alpha(opacity=0)
     &.lp-swipe-visible
       opacity: 1
+      filter: alpha(opacity=100)
 
 .lp-gallery-stage
   background-color: $gallery-background
