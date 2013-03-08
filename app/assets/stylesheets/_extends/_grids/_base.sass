@@ -9,7 +9,7 @@
 %grid-wrapper
   +box-sizing()
   @extend %clearfix
-  @if $responsive == true
+  @if $is-responsive == true
     +respond-to(max800)
       margin-left: 0 !important
       padding-left: 0
@@ -43,7 +43,7 @@
   float: left
   .ie7 &, .no-boxsizing &
     padding-left: 0
-  @if $responsive == true
+  @if $is-responsive == true
     +respond-to(max800)
       float: none
       width: 100%
