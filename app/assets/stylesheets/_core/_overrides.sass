@@ -108,10 +108,15 @@ html
 .tt_post_form 
   a > img
     @extend %inline-block
-  input[type="button"], input[type="submit"]
+  input[type="button"], input[type="submit"], .jive-main-button
     -webkit-appearance: push-button
     cursor: pointer
     padding: 5px
+
+#forum
+  .container, #lightbox
+    input, textarea
+      border: 1px solid #CFCBCB
 
 // Shop
 
@@ -142,5 +147,9 @@ html
       border: 1px solid #CFCBCB
       padding: 4px 2px !important
 
-
+body.reportAbuse 
+  background: none !important
+  #mainContent 
+    textarea
+      border: 1px solid #CFCBCB
 
