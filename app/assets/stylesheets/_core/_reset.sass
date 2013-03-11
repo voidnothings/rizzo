@@ -36,7 +36,9 @@ a:focus
 img
   border: 0
   -ms-interpolation-mode: bicubic
-  max-width: 100%
+  // Prevent some IE bugs in legacy code
+  @if $is-responsive == true
+    max-width: 100%
 
 button, input, select, textarea
   border-radius: 0
