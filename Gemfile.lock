@@ -6,7 +6,8 @@ GIT
 
 GIT
   remote: git@github.com:lonelyplanet/beaker.git
-  revision: 17b23951448c930800852627d946dbe404fce4f4
+  revision: 0128549092a7660d530194de0ad6fb16b0cc93c9
+  branch: if_ie_font
   specs:
     beaker (0.1.0)
 

@@ -16,7 +16,7 @@ gem 'airbrake'
 group :assets do 
 
   gem 'avocado', git: 'git@github.com:lonelyplanet/avocado.git'
-  gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git'
+  gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git', branch: 'if_ie_font'
 
 end
 
