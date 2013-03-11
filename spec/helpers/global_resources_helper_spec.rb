@@ -69,8 +69,8 @@ describe GlobalResourcesHelper do
     end
 
     it "sets the current section" do 
-      helper.secondary_nav_bar(@args).should have_css("a[class='current nav__item--secondary']", text: 'b')
-      helper.secondary_nav_bar(@args).should_not have_css("a[class='current nav__item--secondary']", text: 'c')
+      helper.secondary_nav_bar(@args).should have_css("a[class='current js-nav-item nav__item--secondary']", text: 'b')
+      helper.secondary_nav_bar(@args).should_not have_css("a[class='current js-nav-item nav__item--secondary']", text: 'c')
     end
 
 
