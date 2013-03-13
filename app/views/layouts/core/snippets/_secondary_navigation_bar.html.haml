@@ -1,9 +1,15 @@
 .row.row--secondary#js-secondary-nav
   .row__inner.row__inner--secondary
-    %h1.row__title--secondary
-      = title
-    %nav.nav--secondary
-      %h6.accessibility Section navigation
+    - if defined?(seo_title) and !seo_title.blank?
+      .row__title--secondary
+        = title
+        %h1.accessibility  
+          = seo_title
+    - else
+      %h1.row__title--secondary
+        = title
+
+    .nav--secondary
       - collection.each do |n|
         %a.nav__item--secondary.js-nav-item{:class=>(n[:title] == current ? 'current' : ''), :href=> n[:url]}
           = n[:title]

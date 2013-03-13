@@ -16,6 +16,10 @@
       =render 'layouts/legacy/snippets/leaderboard'
 
   %nav.primary
+    %header.hidden
+      %h1
+        Global Navigation
+
     %ul
       - primary_navigation_items.each do |n|
         %li{ class: [n[:style]] << ('current' if n[:style] == current_section) }
