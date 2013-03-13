@@ -8,6 +8,7 @@ module GlobalResourcesHelper
     [
       {style:'home', title:'Home', uri: www_url},
       {style:'destinations', title:'Destinations', uri: www_url("destinations")},
+      {style:'themes', title:'Themes', uri: www_url("themes")},
       {style:'forum', title:'Thorn Tree forum', uri: www_url("thorntree")},
       {style:'shop', title:'Shop', uri: shop_url},
       {style:'hotels', title:'Hotels', uri: www_url("hotels")},
