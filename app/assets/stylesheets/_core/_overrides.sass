@@ -44,7 +44,6 @@ input, textarea, select
 .nav--primary, .nav-primary--user, .nav--secondary
   a
     cursor: pointer
-    line-height: 1em
     &:hover
       text-decoration: none
 
@@ -55,10 +54,19 @@ input, textarea, select
   font-size: 14px !important
 
 
+.nav--primary
+  line-height: 14px
+
+.nav--secondary
+  line-height: 18px
+
 .nav__item--secondary
   font-size: 12px !important
 
 .row--content
+  position: relative
+  // Ensure that the primary--nav dropdowns sit above mpu units
+  z-index: 1
   margin-bottom: 18px
   background-color:  #fff!important
   [id*=mediaBlock] &
@@ -102,3 +110,84 @@ input, textarea, select
 
 .nav__submenu__item:hover
   color: white !important
+
+/* Pages with Wallpapers */
+html
+  overflow-x: hidden !important
+
+.ad-wallpaper 
+  overflow-x: visible !important
+  .row--content
+    background-color: transparent !important
+    
+// Thorntree
+
+.tt_post_form 
+  a > img
+    @extend %inline-block
+  input[type="button"], input[type="submit"], .jive-main-button
+    -webkit-appearance: push-button
+    cursor: pointer
+    padding: 5px
+
+#forum
+  .container, #lightbox
+    input, textarea
+      border: 1px solid #CFCBCB
+
+// Shop
+
+#sideBar
+  #shoppingCart 
+    input
+      height: 16px
+      margin-top: -2px
+      padding: 2px
+  
+.bookPricePurch
+  .orangeAngleButton
+    overflow: hidden !important
+
+
+// Statler
+.globalListControls 
+  .paginateControls 
+    div
+      position: static !important
+      line-height: 12px !important
+
+// Destinations
+
+.formtastic
+  border: 1px solid #CFCBCB
+
+#flightWidget 
+  fieldset 
+    input
+      border: 1px solid #CFCBCB
+      padding: 4px 2px !important
+
+body.reportAbuse 
+  background: none !important
+  #mainContent 
+    textarea
+      border: 1px solid #CFCBCB
+
+.featureArticle #contentBody,
+.fastFacts
+  strong
+    font-weight: bold
+
+#mediaBlock-standalone
+  #languageSelect
+    background: white !important
+    color: #444 !important
+
+#bookableSidebar,
+#bookableContent
+  h3
+    font-weight: bold
+
+
+
+
