@@ -1,9 +1,15 @@
 %meta(name="viewport" content="width=1024")
-= stylesheet_link_tag 'common_core_overrides', :media => "all"
-%link(rel="stylesheet" href="http://static.lonelyplanet.com/static-ui/style/app-core-legacy.css" type="text/css" media="screen,projection")
 
-= airbrake_javascript_notifier unless params[:errbit] == 'false'
+= smart_stylesheet('common_core_overrides')
+= static_ui_stylesheet('app-core-legacy', (defined? secure) ? secure : false)
 
-%script(type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
-%script(type="text/javascript" src="http://static.lonelyplanet.com/static-ui/js/lp-js-library-legacy.js")
-%link(rel="icon" type="image/gif" href="http://www.lonelyplanet.com/favicon.ico")
+%link(rel="icon" type="image/gif" href="//www.lonelyplanet.com/favicon.ico")
+
+- unless defined? no_scripts
+  = render 'layouts/core/snippets/head_js'
+  - errbit_notifier
+  %script(type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
+  = static_ui_script('lp-js-library-legacy', (defined? secure) ? secure : false)
+
+
+

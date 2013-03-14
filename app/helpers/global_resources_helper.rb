@@ -102,6 +102,20 @@ module GlobalResourcesHelper
       end
     end
   end
+  
+  def errbit_notifier
+    unless params[:errbit] == 'false'
+      # haml_tag(:script, src:"#{asset_path 'errbit_notifier.js'}")
+      haml_tag(:script, src:"//rizzo.lonelyplanet.com/assets/errbit_notifier.js")
+      haml_tag :script do
+        haml_concat "window.Airbrake = (typeof(Airbrake) == 'undefined' && typeof(Hoptoad) != 'undefined') ? Hoptoad : Airbrake;"
+        haml_concat "window.Airbrake.setKey('#{Airbrake.configuration.js_api_key}');"
+        haml_concat "window.Airbrake.setHost('#{Airbrake.configuration.host.dup}:#{Airbrake.configuration.port}');"
+        haml_concat "window.Airbrake.setEnvironment('#{Airbrake.configuration.environment_name}');"
+        haml_concat "window.Airbrake.setErrorDefaults({ url: '#{request.url}', component: '#{controller_name}', action: '#{action_name}' });"
+      end
+    end
+  end
 
   def breadcrumbs_nav(breadcrumb_content)
     render :partial=>'layouts/core/snippets/footer_breadcrumbs', locals: {breadcrumbs: breadcrumb_content || []}

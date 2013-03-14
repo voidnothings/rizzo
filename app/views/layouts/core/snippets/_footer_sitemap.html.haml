@@ -1,38 +1,38 @@
-.row.row--sitemap
+.row.row--sitemap#js-footer-nav
   .row__inner.row__inner--footer.row--sitemap__inner
     %nav.nav--stacked.col--footer
       %h6
-        %a.title--footer.title--list--footer(href='/destinations') Destinations
+        %a.js-nav-item.title--footer.title--list--footer(href='/destinations') Destinations
       - footer_nav_destination_items.each do |destination|
-        %a.nav__item.nav__item--sitemap.nav__item--footer{href: "/#{destination[:url]}"}<
+        %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "/#{destination[:url]}"}<
           = destination[:title]
     
     %nav.nav--stacked.col--footer
       %h6
-        %a.title--footer.title--list--footer(href='/shop') Shop
+        %a.js-nav-item.title--footer.title--list--footer(href='/shop') Shop
       - footer_nav_shop_items.each do |shop|
-        %a.nav__item.nav__item--sitemap.nav__item--footer{href: "/shop/#{shop[:url]}"}<
+        %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "/shop/#{shop[:url]}"}<
           = shop[:title]
   
     %nav.nav--stacked.col--footer
       %h6
-        %a.title--footer.title--list--footer(href='/thorntree') Thorn Tree Forum
+        %a.js-nav-item.title--footer.title--list--footer(href='/thorntree') Thorn Tree Forum
       - footer_nav_thorntree_items.each do |thorntree|
-        %a.nav__item.nav__item--sitemap.nav__item--footer{href: "/thorntree/#{thorntree[:url]}"}<
+        %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "/thorntree/#{thorntree[:url]}"}<
           = thorntree[:title]
 
     %nav.nav--stacked.col--footer
       %h6
-        %a.title--footer.title--list--footer(href='/themes') Themes
+        %a.js-nav-item.title--footer.title--list--footer(href='/themes') Themes
       - footer_nav_themes_items.each do |theme|
-        %a.nav__item.nav__item--sitemap.nav__item--footer{href: "/themes/#{theme[:url]}"}<
+        %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "/themes/#{theme[:url]}"}<
           = theme[:title]
 
     %nav.nav--stacked.col--footer
       %h6
-        %a.title--footer.title--list--footer(href='/bookings') Travel Booking
+        %a.js-nav-item.title--footer.title--list--footer(href='/bookings') Travel Booking
       - footer_nav_travel_bookings_items.each do |booking|
-        %a.nav__item.nav__item--sitemap.nav__item--footer{href: "/#{booking[:url]}"}<
+        %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "/#{booking[:url]}"}<
           = booking[:title]
 
     .col--footer--last

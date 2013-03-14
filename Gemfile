@@ -1,11 +1,12 @@
-source :rubygems
+source 'https://rubygems.org'
 
 gem 'rails'
 gem 'haml'
 gem 'sass'
 gem 'haml-rails'
 gem 'sass-rails', '~> 3.2.3'
-gem 'coffee-rails', '~> 3.2.1'
+gem 'coffee-rails','3.2.2'
+gem 'coffee-script-source', '1.4.0'
 gem 'requirejs-rails'
 gem 'uglifier', '>= 1.0.3'
 gem 'unicorn'

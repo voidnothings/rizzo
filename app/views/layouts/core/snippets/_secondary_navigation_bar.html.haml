@@ -1,4 +1,4 @@
-.row.row--secondary.row--core
+.row.row--secondary.row--core#js-secondary-nav
   .row__inner.row__inner--secondary
     
     .split--left.row__title--secondary
@@ -7,5 +7,5 @@
     %nav.split--right.nav--inline.nav--secondary
       %h6.accessibility Section navigation
       - collection.each do |n|
-        %a.nav__item.nav__item--secondary{:class=>(n[:title] == current ? 'current' : ''), :href=> n[:url]}<
+        %a.nav__item.nav__item--secondary.js-nav-item{:class=>(n[:title] == current ? 'current' : ''), :href=> n[:url]}<
           = n[:title]
