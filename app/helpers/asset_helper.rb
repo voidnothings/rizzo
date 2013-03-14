@@ -18,7 +18,7 @@ module AssetHelper
       path = "http://static.lonelyplanet.com/static-ui/style/#{stylesheet}.css"
     end
     capture_haml do
-      haml_tag(:link, href: "#{path}", media: "screen,projection")
+      haml_tag(:link, href: "#{path}", media: "screen,projection" rel: 'stylesheet')
     end
   end
 
