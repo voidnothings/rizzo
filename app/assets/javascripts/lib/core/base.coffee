@@ -8,6 +8,7 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
       @showLeaderboard() if !args.secure
       @showCookieComplianceMsg()
       @initialiseFooterSelects()
+      @addNavTracking()
 
     adConfig: ->
       # defaults to window.lp (needs code refactoring)
@@ -55,4 +56,24 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
               window.setTimeout( ( => $('div.js-cookie-compliance').addClass('row--cookie-compliance--open')), 1)
         msg = new Msg(args)
         LocalStore.set('cookie-compliance', true)
+
+    addNavTracking: ->
+      $('#js-primary-nav').on 'click', '.js-nav-item', ->
+        window.s.linkstacker($(this).text())
+
+      $('#js-primary-nav').on 'click', '.js-nav-cart', ->
+        window.s.linkstacker("shopping-cart")
+
+      $('#js-primary-nav').on 'submit', '.js-nav-search', ->
+        window.s.linkstacker("search")
+
+      $('#js-secondary-nav').on 'click', '.js-nav-item', ->
+        window.s.linkstacker($(this).text() + "-sub")
+
+      $('#js-breadcrumbs').on 'click', '.js-nav-item', ->
+        window.s.linkstacker("breadcrumbs")
+
+      $('#js-footer-nav').on 'click', '.js-nav-item', ->
+        window.s.linkstacker("footer")
+
 )

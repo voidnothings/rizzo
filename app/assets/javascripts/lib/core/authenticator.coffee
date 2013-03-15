@@ -29,11 +29,11 @@ define ['jquery'], ($)->
         @showUserBox()
       else
         @showLoginAndRegister()
-        
+
     showLoginAndRegister: ()->
       @emptyUserNav()
-      joinElement = "<a class='nav__item nav__item--primary js-user-join' href='#{@options.registerLink}'>Join</a>"
-      signinElement = "<a class='nav__item nav__item--primary js-user-signin' href='#{@signInUrl()}'>Sign-In</a>"
+      joinElement = "<a class='nav__item nav__item--primary js-user-join js-nav-item' href='#{@options.registerLink}'>Join</a>"
+      signinElement = "<a class='nav__item nav__item--primary js-user-signin js-nav-item' href='#{@signInUrl()}'>Sign-In</a>"
       $('nav.js-user-nav').prepend(signinElement + joinElement)
 
     showUserBox: ->
@@ -55,8 +55,8 @@ define ['jquery'], ($)->
         {title: 'Forum Activity', uri: "#{@options.forumPostsUrlTemplate.replace('[USERNAME]', @lpUserName)}", style:"nav-user-options__item--forum js-user-forum" },
         {title: 'Sign-Out', uri: "#{@options.signOutUrl}", style:"nav-user-options__item--signout js-user-signout" }
       ]
-      optionElements =  ("<a class='nav__item nav__submenu__item nav__submenu__link nav-user-options__item #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
 
+      optionElements =  ("<a class='nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
       userMenu = "<div class='nav__submenu nav__submenu--user'><nav class='nav--stacked nav__submenu__content nav__submenu__content--user nav-user-options js-user-options'><h3 class='nav__submenu__item nav__submenu__title'>#{@lpUserName}</h3>#{optionElements}</nav></div>"
     
     signInUrl:->

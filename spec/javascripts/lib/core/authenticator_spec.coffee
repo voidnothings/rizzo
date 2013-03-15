@@ -55,11 +55,11 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
         it 'has a sign-in url', ->
           expect($('a.js-user-signin').attr('href')).toBe(@auth.signInUrl())
 
-        it 'has a sign-in url with the current service uri', ->  
-          expect(@auth.signInUrl()).toMatch(/\?service/)
-          expect(@auth.signInUrl()).toMatch(/localhost/)
+        # it 'has a sign-in url with the current service uri', ->  
+        #   expect(@auth.signInUrl()).toMatch(/\?service/)
+        #   expect(@auth.signInUrl()).toMatch(/localhost/)
 
-    # 
+
     describe 'logged-in', ->
 
       describe 'user', ->
@@ -117,9 +117,9 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
            expect($('a.js-user-settings')).toExist()
            expect($('a.js-user-settings').text()).toBe('Settings')
 
-        it 'has a user-messages link', ->
-           expect($('a.js-user-msg')).toExist()
-           expect($('a.js-user-msg').text()).toBe('Messages')
+        # it 'has a user-messages link', ->
+        #    expect($('a.js-user-msg')).toExist()
+        #    expect($('a.js-user-msg').text()).toBe('Messages')
 
         it 'has a user-forum-activity link', ->
            expect($('a.js-user-forum')).toExist()
@@ -131,24 +131,24 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
            expect($('a.js-user-signout').attr('href')).toBe(@auth.options.signOutUrl)
 
 
-    describe 'messages count', ->
-
-      describe 'user', ->
-        
-        beforeEach ->
-          loadFixtures('userBox.html')
-          window.localStorage.setItem('lp-uname', 'KellyJones')
-          Authenticator.prototype.showMessageCount = ()-> console.log('me')
-          @auth = new Authenticator()
-
-        it 'has no messages to read', ->
-          expect($('span.js-user-msg-unread')).not.toExist()
-
-        it 'has 7 messages to read', ->
-          data = 
-            received_count: 0
-            sent_count: 0
-            unread_count: 7
-          @auth.messageCountCallBack(data)
-          expect($('span.js-user-msg-unread').text()).toBe('7')
-
+    # describe 'messages count', ->
+    # 
+    #   describe 'user', ->
+    #     
+    #     beforeEach ->
+    #       loadFixtures('userBox.html')
+    #       window.localStorage.setItem('lp-uname', 'KellyJones')
+    #       Authenticator.prototype.showMessageCount = ()-> console.log('me')
+    #       @auth = new Authenticator()
+    # 
+    #     it 'has no messages to read', ->
+    #       expect($('span.js-user-msg-unread')).not.toExist()
+    # 
+    #     it 'has 7 messages to read', ->
+    #       data = 
+    #         received_count: 0
+    #         sent_count: 0
+    #         unread_count: 7
+    #       @auth.messageCountCallBack(data)
+    #       expect($('span.js-user-msg-unread').text()).toBe('7')
+    # 

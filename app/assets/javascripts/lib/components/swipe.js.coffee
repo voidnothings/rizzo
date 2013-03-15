@@ -50,7 +50,7 @@
 
 
 
-define ['jquery','handlebars','underscore'], ($) ->
+define ['jquery','underscore','handlebars'], ($,_) ->
 
   class Swipe
 
@@ -156,7 +156,7 @@ define ['jquery','handlebars','underscore'], ($) ->
 
     getSlidesWidth: ->
       slidesWidth = ($(s).width() for s in @slides)
-      slidesWidth.reduce (x,y) -> x + y
+      _.reduce(slidesWidth, (x,y) -> x + y )
 
     transform: (_index, duration = @args.speed)->
       if @args.transform is 'translateX' then @slide(_index, duration) else @fade(_index, duration)
