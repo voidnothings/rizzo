@@ -48,21 +48,19 @@ module GlobalResourcesHelper
     ]
   end
 
-  def cart_item_element
-    capture_haml do
-      haml_tag(:li, class: 'globalCartHead') do
-        haml_tag(:a, 'Cart: 0', href: 'http://shop.lonelyplanet.com/cart/view')
-      end
-    end
-  end
-
   def secondary_nav_bar(args)
     render :partial=>'layouts/core/snippets/secondary_navigation_bar', :locals=>{:title=>args[:title],  :collection=>args[:collection] || [], :current=> args[:current] || nil, :seo_title=> args[:seo_title]}
   end
 
+  def cart_item_element
+    capture_haml do
+      haml_tag(:a, 'Cart: 0', class: 'nav__item--cart js-user-cart', href: 'http://shop.lonelyplanet.com/cart/view')
+    end
+  end
+
   def membership_item_element
     capture_haml do
-      haml_tag(:li, class: 'signInRegister cartDivider')
+      haml_tag(:div, class: 'nav__item--user js-user--nav')
     end
   end
 

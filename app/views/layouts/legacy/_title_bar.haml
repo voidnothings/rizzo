@@ -1,3 +1,7 @@
-%header.title(class="#{style || 'green'}" )
-  .inner-shadow
-  = yield :title
+.row.row--header(class="row--header--#{style || 'green'}" )
+  .row__inner--shadow
+  .row__inner
+    = yield :title
+    %h1.accessibility
+      = yield :seo_title
+

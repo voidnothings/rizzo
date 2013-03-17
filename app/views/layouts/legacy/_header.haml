@@ -1,32 +1,29 @@
-%header.header
-  %a.skip(href="#container")
+.row.accessibility
+  %a(href="#container")
     Skip global navigation to content
-  .hwrap
-    .logo
-      %a.home{:href => host_with_subdomain('www'), :title=>'lonely planet home'}
-      %form.search{ :action => host_with_subdomain_and_path("www", "searchResult"), :method => "get" }
-        %p.is-hidden
-          %label(for="q")
-            Search Lonely Planet
-        %p
-          %input(type="text" id="search" maxlength="2048" class="searchText" name="q" value="")
-          %button(type="submit")
-            Search
+
+.row.row--leaderboard
+  .row__inner
+    .search--global  
+      %a.lp--logo--home{:href => host_with_subdomain('www'), :title=>'lonely planet home'}
+      %form.search--global{ :action => host_with_subdomain_and_path("www", "searchResult"), :method => "get" }
+        %label.acceessibility(for="q")
+          Search Lonely Planet
+        %input.search__input--global(type="text" id="search" maxlength="2048" class="searchText" name="q" value="")
+        %button.search__button--global(type="submit")
+          Search
     .leaderboard
       =render 'layouts/legacy/snippets/leaderboard'
 
-  %nav.primary
-    %header.hidden
-      %h1
-        Global Navigation
-
-    %ul
+.row.row--primary
+  .row__inner
+    .nav--primary
       - primary_navigation_items.each do |n|
-        %li{ class: [n[:style]] << ('current' if n[:style] == current_section) }
-          %a{ href: n[:uri] }
-            %span= n[:title]
+        %a{href: n[:uri], class: "nav__item--primary nav__item--#{n[:style]} #{'current' if n[:style] == current_section}" }
+          = n[:title]
           = show_arrow(n[:style])
       = membership_item_element
       = cart_item_element
 
-= yield :breadcrumbs
+.row.row--breadcrumbs
+  = yield :breadcrumbs
