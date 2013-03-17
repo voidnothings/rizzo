@@ -1,15 +1,21 @@
-.row.row--secondary#js-secondary-nav
-  .row__inner.row__inner--secondary
-    - if defined?(seo_title) and !seo_title.blank?
-      .row__title--secondary
-        = title
+- if defined?(section_name) and defined?(title)
+  .row.row--secondary#js-secondary-nav
+    .row__inner.row__inner--secondary
+      - if defined?(title)
+        .row__title--secondary
+          = title
+      - if defined?(page_name)    
         %h1.accessibility  
-          = seo_title
-    - else
-      %h1.row__title--secondary
-        = title
+          = page_name
 
-    .nav--secondary
-      - collection.each do |n|
-        %a.nav__item--secondary.js-nav-item{:class=>(n[:title] == current ? 'current' : ''), :href=> n[:url]}
-          = n[:title]
+      - if defined?(collection)
+        .nav--secondary
+          - collection.each do |n|
+            %a.nav__item--secondary.js-nav-item{:class=>(n[:title] == section_name ? 'current' : ''), :href=> n[:url]}
+              = n[:title]
+
+- elsif defined?(page_name)
+  .row  
+    .row__inner
+      %h1.accessibility  
+        = page_name

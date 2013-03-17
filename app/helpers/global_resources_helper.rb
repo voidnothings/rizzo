@@ -49,7 +49,7 @@ module GlobalResourcesHelper
   end
 
   def secondary_nav_bar(args)
-    render :partial=>'layouts/core/snippets/secondary_navigation_bar', :locals=>{:title=>args[:title],  :collection=>args[:collection] || [], :current=> args[:current] || nil, :seo_title=> args[:seo_title]}
+    render :partial=>'layouts/core/snippets/secondary_navigation_bar', :locals=> args
   end
 
   def cart_item_element
@@ -80,13 +80,22 @@ module GlobalResourcesHelper
     end
   end
   
-  def title_for(title_content,span_content='')
+  def section_title(args)
     capture_haml do
-      haml_tag(:h1) do
-        haml_tag(:span) { haml_concat title_content }
-        haml_concat span_content
+      if(args[:title])
+        haml_tag(:div, class: 'header__lead js-page-lead') do
+          haml_concat args[:title]
+        end
       end
-    end
+      if(args[:section_name])
+        haml_tag(:div, class: 'header__title js-page-title') do
+          haml_concat args[:section_name]
+        end
+      end  
+      haml_tag(:h1, class: 'accessibility js-page-header') do
+        haml_concat args[:page_name]
+      end  
+    end  
   end
   
   def errbit_notifier
