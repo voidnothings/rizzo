@@ -15,7 +15,7 @@ define ['jquery'], ($)->
       signOutUrl: 'https://secure.lonelyplanet.com/sign-in/logout'
 
     constructor: ->
-      @widget = $('.primary .signInRegister')
+      @widget = $('.nav__item--user')
       @options = Authentication.options
       @signonWidget()
 
@@ -72,26 +72,26 @@ define ['jquery'], ($)->
         else null
 
     displaySigninRegisterWidget: ->
-      @widget.removeClass('userLoggedIn').addClass('signInRegister')
-      signInButton = $('<button class="signInButton submitButtonShort" value="Sign in">Sign In</button>')
+      @widget.removeClass('user--logged-in')
+      signInButton = $('<button class="user--button--signin js-user-signin" value="Sign in">Sign In</button>')
       signInButton.click(=>@signIn())
       @widget.empty()
       @widget.append(signInButton)
-      @widget.append("<p><a href='#{@options.registerLink}'>Register</a></p>")
+      @widget.append("<a class='user--button--register js-user-register' href='#{@options.registerLink}'>Register</a>")
 
     avatar: ->
-      "<img src='#{@options.membersUrl}/#{@lpUserName}/mugshot/mini' alt='avatar' class='member' width='27px' height='27px'/>"
+      "<img src='#{@options.membersUrl}/#{@lpUserName}/mugshot/mini' alt='avatar' class='user__img' width='27px' height='27px'/>"
 
     refreshUnreadCountCallBack:(data={unread_count:0})->
       @setLocalData('lp-unread-msg', data.unread_count)
       @setLocalData('lp-sent-msg', data.sent_count)
       @setLocalData('lp-received-msg', data.received_count)
-      unread_indicator = $(".primary .unread")
+      unread_indicator = $(".js-user-msg-unread")
       unread_indicator.text(data.unread_count)
       if (data.unread_count > 0)
-        unread_indicator.addClass("newMail")
+        unread_indicator.addClass("user__msg-new")
       else
-        unread_indicator.removeClass("newMail")
+        unread_indicator.removeClass("user__msg-new")
 
     updateMessageCount: ->
       if (@lpUserName and (@lpUserName isnt '') and (@lpUserName isnt 'undefined'))
@@ -103,22 +103,31 @@ define ['jquery'], ($)->
 
     displayUserShortcutMenu: ->
       userMenu = [
-        "<a class='navHead' href='#{@options.membersUrl}'>#{@avatar()}",
-        "<span class='loggedInUsername'>#{@getLocalData('lp-uname')}</span>",
-        "<span class='unread'>#{@getLocalData('lp-unread-msg') || 0}</span>",
-        "<span class='arrow' alt='More shortcuts'/>",
+        "<a class='user-nav' href='#{@options.membersUrl}'>#{@avatar()}",
+        "<span class='user__name'>#{@getLocalData('lp-uname')}</span>",
+        "<span class='user__msg-unread js-user-msg-unread'>#{@getLocalData('lp-unread-msg') || 0}</span>",
+        "<span class='user-nav__arrow js-user-nav-handler' alt='More shortcuts'/>",
         "</a>",
-        "<ul class='menu hidden'>",
-        "<li><a href='#{@options.membersUrl}'>My profile</a></li>",
-        "<li><a href='#{@options.membersUrl}/#{@lpUserName}/edit'> Settings </a></li>",
-        "<li><a href='#{@options.messagesUrl}'> Messages </a></li>",
-        "<li><a href='#{@options.forumPostsUrlTemplate.replace('[USERNAME]', @lpUserName)}'> Forum activity </a></li>",
-        "<li class='signout'><a href='#{@options.signOutUrl}'> Sign out </a></li>",
+        "<ul class='user-nav__menu js-user-nav-menu'>",
+        "<li><a class='user-nav__item' href='#{@options.membersUrl}'>My profile</a></li>",
+        "<li><a class='user-nav__item' href='#{@options.membersUrl}/#{@lpUserName}/edit'>Settings</a></li>",
+        "<li><a class='user-nav__item' href='#{@options.messagesUrl}'>Messages</a></li>",
+        "<li><a class='user-nav__item' href='#{@options.forumPostsUrlTemplate.replace('[USERNAME]', @lpUserName)}'>Forum activity</a></li>",
+        "<li class=''><a class='user-nav__item user-nav__item--last' href='#{@options.signOutUrl}'>Sign out</a></li>",
         "</ul>"
       ].join('')
-      @widget.empty().addClass('userLoggedIn').removeClass('signInRegister').append(userMenu)
-      @widget.find('span.arrow').click((e)=> e.preventDefault(); @widget.find('ul.menu').toggle())
-      @widget.find('li.signout a').click((e)=> e.preventDefault();  @signOut();)
+      
+      @widget.empty().addClass('user--logged-in').append(userMenu)
+      
+      @widget.find('.js-user-nav-handler').click( (e) =>
+        e.preventDefault()
+        @widget.find('.js-user-nav-menu').toggle()
+      )
+
+      @widget.find('li.signout a').click( (e) =>
+        e.preventDefault()
+        @signOut()
+      )
 
     bindEvents: ->
       $('#unread').click(()-> e.preventDefault(); window.location = "#{options.membersUrl}/#{@lpUserName}/messages")

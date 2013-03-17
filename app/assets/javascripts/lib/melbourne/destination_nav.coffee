@@ -2,16 +2,15 @@ define ['jquery', 'jplugs/jquery-bgiframe-2.1.3', 'jplugs/jquery-toggle-class-on
 
   class DestinationNav
 
-    constructor: (_fragment, @selector) ->
+    constructor: (fragment, @selector) ->
       @tab = $(@selector)
-      return false if (@tab.hasClass('tabNotReady'))
-      @append(_fragment)
+      # return false if (@tab.hasClass('tabNotReady'))
+      @append(fragment)
       @prepare()
       @bindEvents()
 
-    append: (_fragment) ->
-      @tab.append(_fragment)
-      $("#{@selector + 'span.arrow'}").removeClass('invisible')
+    append: (fragment) ->
+      @tab.append(fragment)
 
     prepare: ->
       opts =

@@ -25,13 +25,13 @@ define( ['jquery','lib/melbourne/ad_manager','lib/melbourne/footer', 'lib/utils/
           mtfIFPath : '/'
           unit: [728,90]
 
-
     header: ->
       AdManager.init(@adConf,'ad_masthead')
       shopCart = new ShoppingCart()
       AssetFetch.get "http://www.lonelyplanet.com/global-navigation", () ->
         if (window.jsonNavItems and (window.jsonNavItems isnt '') and (window.jsonNavItems isnt 'undefined'))
-          dest = new DestinationNav(jsonNavItems.nav, "nav.primary ul li.destinations")
+          dest = new DestinationNav(jsonNavItems.nav, "a.nav__item--destinations")
+          console.log(dest)
 
       lpLoggedInUsername = null
       auth = new Authentication()

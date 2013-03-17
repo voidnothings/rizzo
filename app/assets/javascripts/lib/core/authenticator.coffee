@@ -2,7 +2,7 @@ define ['jquery'], ($)->
 
   class Authenticator
 
-    @version = '0.0.12'
+    @version = '0.0.13'
 
     @options =
       forumPostsUrlTemplate: '//www.lonelyplanet.com/thorntree/profile.jspa?username=[USERNAME]'
@@ -13,7 +13,8 @@ define ['jquery'], ($)->
     
     constructor: ->
       @userState = @userSignedIn()
-      @widget = $('nav.user-nav')
+      @el = $('.js-user-nav')
+
       @options = Authenticator.options
       @signonWidget()
       
@@ -34,17 +35,17 @@ define ['jquery'], ($)->
       @emptyUserNav()
       joinElement = "<a class='nav__item--primary--user js-user-join' href='#{@options.registerLink}'>Join</a>"
       signinElement = "<a class='nav__item--primary--user js-user-signin' href='#{@signInUrl()}'>Sign-In</a>"
-      $('nav.js-user-nav').prepend(joinElement + signinElement)
+      @el.prepend(joinElement + signinElement)
 
     showUserBox: ->
       @emptyUserNav()
-      $('nav.js-user-nav').addClass('is-signed-in')
+      @el.addClass('is-signed-in')
       userBoxElement = "<div class='user-box js-user-box nav__submenu__trigger'><img class='user-box__img js-box-handler' src='#{@userAvatar()}'/></div>"
-      $('nav.js-user-nav').prepend(userBoxElement)
-      $('div.js-user-box').append(@userOptionsMenu())
+      @el.prepend(userBoxElement)
+      $('.js-user-box').append(@userOptionsMenu())
 
     emptyUserNav: -> 
-      $('nav.js-user-nav').removeClass('is-signed-in')
+      @el.removeClass('is-signed-in')
       $('a.js-user-join, a.js-user-signin, div.js-user-box').remove()
 
     userOptionsMenu: ->
@@ -57,7 +58,7 @@ define ['jquery'], ($)->
       ]
       optionElements =  ("<a class='nav__submenu__item nav-user-options__item #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
 
-      userMenu = "<div class='nav__submenu'><nav class='nav__submenu__content nav__submenu__content--user nav-user-options js-user-options'><div class='nav-user-options__title'>#{@lpUserName}</div>#{optionElements}</nav></div>"
+      userMenu = "<div class='nav__submenu'><div class='nav__submenu__content nav__submenu__content--user nav-user-options js-user-options'><div class='nav-user-options__title'>#{@lpUserName}</div>#{optionElements}</div></div>"
     
     signInUrl:->
       "https://secure.lonelyplanet.com/sign-in/login?service=#{escape(window.location)}"
