@@ -86,6 +86,7 @@ define ['jquery', 'jplugs/jquery-bgiframe-2.1.3', 'jplugs/jquery-toggle-class-on
             $(_item).addClass('highlight')
         else
           $(_menuItems).find('.submenu').addClass('hidden')
+        return false
       )
      
       $(_item).children('a').add(submenu).on('click',(e)=>
