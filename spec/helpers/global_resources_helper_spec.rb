@@ -92,6 +92,19 @@ describe GlobalResourcesHelper do
       helper.secondary_nav_bar(@args).should have_css('h1.accessibility', text:'foo-body-heading')
     end
 
+  context "h1.accessible only" do
+    it 'has an invisible h1' do
+      helper.secondary_nav_bar({:page_name=>'foo-body-heading'}).should have_css('h1.accessibility', text:'foo-body-heading')
+    end
+
+    it 'does not render a title' do
+      helper.secondary_nav_bar({:page_name=>'foo-body-heading'}).should_not have_css('h1.row__title--secondary')
+    end
+
+    it 'does not render a secondary nav' do
+      helper.secondary_nav_bar({:page_name=>'foo-body-heading'}).should_not have_css('a.nav__item--secondary')
+    end
+
   end
 
 
