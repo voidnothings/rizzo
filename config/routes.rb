@@ -15,6 +15,9 @@ Rizzo::Application.routes.draw do
   match 'secure/global-body-header'    => 'global_resources#show', :defaults => { :snippet => "body_header", :secure => "true" }
   match 'secure/global-body-footer'    => 'global_resources#show', :defaults => { :snippet => "body_footer", :secure => "true" }
 
+  match 'secure/noscript/global-head'         => 'global_resources#show', :defaults => { :snippet => "head", :noscript => "true"}
+  match 'secure/noscript/global-body-footer'  => 'global_resources#show', :defaults => { :snippet => "body_footer", :noscript => "true"}  
+
   match 'legacy/global-head'                  => 'global_resources#show', :defaults => { :snippet => "head", :layout=>'legacy' }
   match 'legacy/global-body-header'           => 'global_resources#show', :defaults => { :snippet => "body_header", :layout=>'legacy' }
   match 'legacy/global-body-footer'           => 'global_resources#show', :defaults => { :snippet => "body_footer", :layout=>'legacy' }

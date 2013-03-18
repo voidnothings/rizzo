@@ -93,7 +93,7 @@ module GlobalResourcesHelper
   def errbit_notifier
     unless params[:errbit] == 'false'
       # haml_tag(:script, src:"#{asset_path 'errbit_notifier.js'}")
-      haml_tag(:script, src:"http://rizzo.lonelyplanet.com/assets/errbit_notifier.js")
+      haml_tag(:script, src:"//rizzo.lonelyplanet.com/assets/errbit_notifier.js")
       haml_tag :script do
         haml_concat "window.Airbrake = (typeof(Airbrake) == 'undefined' && typeof(Hoptoad) != 'undefined') ? Hoptoad : Airbrake;"
         haml_concat "window.Airbrake.setKey('#{Airbrake.configuration.js_api_key}');"

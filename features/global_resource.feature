@@ -10,10 +10,13 @@ Feature: Global Resources
   Scenario: it serves the secure global header
     Given I go to "/secure/global-head"
     Then the global-head should have the correct content
+    Then the global-head should serve a secure static-ui stylesheet
+    Then the global-head should serve a secure static-ui script
 
   Scenario: it serves the noscript global header
     Given I go to "/noscript/global-head"
     Then the noscript global-head should have the correct content
+    Then the global-head should serve a secure static-ui stylesheet
 
   Scenario: it serves the global-body-header
     Given I go to "/global-body-header"
