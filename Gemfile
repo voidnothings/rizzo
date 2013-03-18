@@ -14,10 +14,8 @@ gem 'rake'
 gem 'airbrake'
 
 group :assets do 
-
-  gem 'avocado', git: 'git@github.com:lonelyplanet/avocado.git'
-  gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git'
-
+  gem 'avocado', git: 'git@github.com:lonelyplanet/avocado.git', :branch => 'ads_doc_outline'
+  gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git', :branch => 'ads_doc_outline'
 end
 
 group :test do 

@@ -40,10 +40,10 @@ describe GlobalResourcesHelper do
         page_name: 'foo-body-heading',
       } 
     end
-    
+
     it { helper.section_title(@args).should have_css('div.header__lead', text:'Lisbon') } 
     it { helper.section_title(@args).should have_css('div.header__title'), text: 'Hotels' } 
-    it { helper.section_title(@args).should have_css('h1.accessibility.js-page-header', text: 'foo-body-heading') } 
+    it { helper.section_title(@args).should have_css('h1.accessibility', text: 'foo-body-heading') } 
 
   end
 
@@ -63,7 +63,7 @@ describe GlobalResourcesHelper do
           {title: 'b', url:'/b'},
           {title: 'c', url:'/c'},
           {title: 'd', url:'/d'}
-          ]
+      ]
       } 
     end
 
@@ -87,10 +87,12 @@ describe GlobalResourcesHelper do
       helper.secondary_nav_bar(@args).should have_css("a[class='current js-nav-item nav__item--secondary']", text: 'b')
       helper.secondary_nav_bar(@args).should_not have_css("a[class='current js-nav-item nav__item--secondary']", text: 'c')
     end
-    
+
     it 'sets the body heading' do
       helper.secondary_nav_bar(@args).should have_css('h1.accessibility', text:'foo-body-heading')
     end
+
+  end  
 
   context "h1.accessible only" do
     it 'has an invisible h1' do
