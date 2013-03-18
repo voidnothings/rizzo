@@ -64,14 +64,6 @@ module GlobalResourcesHelper
     end
   end
 
-  def arrow_button(args)
-    capture_haml do
-      haml_tag(:div, class: "#{args[:color]}AngleButton") do
-        haml_tag(:a, href: args[:href] || '#', class: "lpButton2010") { haml_tag(:span, args[:title]) }
-      end
-    end
-  end
-
   def show_arrow(style)
     if style=='destinations' ||  style=='destinations current'
       capture_haml do
