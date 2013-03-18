@@ -41,7 +41,7 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
 
         it 'is signed out', ->
           expect(@auth.userState).toBe(false)
-          expect($('nav.js-user-nav')).not.toHaveClass('is-logged')
+          expect($('.js-user-nav')).not.toHaveClass('is-logged')
 
         it 'sees a sign-in link', ->
           expect($('a.js-user-signin')).toExist()
@@ -74,7 +74,7 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
 
         it 'is signed in', ->
           expect(@auth.userState).toBe(true)
-          expect($('nav.js-user-nav')).toHaveClass('is-signed-in')
+          expect($('.js-user-nav')).toHaveClass('is-signed-in')
 
         it 'does not has a sign-in link', ->
           expect($('a.js-user-singin')).not.toExist()
@@ -103,7 +103,7 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
       describe 'user', ->
 
         it 'has a user dropdown menu', ->
-          expect($('nav.js-user-options')).toExist()
+          expect($('.js-user-options')).toExist()
 
         it 'shows the user name', ->
            expect($('div.nav-user-options__title')).toExist()
