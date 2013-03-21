@@ -85,12 +85,12 @@ $card-hotel-content-padding: 13px
   .card--hotel.has-image &
     height: $card-image-height
 
-  // single stack cards have taller images
-  .card--stack &
+  // single link cards have taller images
+  .card--link &
     height: $stack-card-image-height
 
   // double stack cards have full height images
-  .card--stack.card--double &
+  .card--link.card--double &
     height: $card-grid-height
 
   // Refactor to use landscape/portrait classes when rowlf imaging catches up
@@ -115,10 +115,10 @@ $card-hotel-content-padding: 13px
   padding: $card-content-padding
   right: 0
 
-  .card--stack &
+  .card--link &
     height: ($card-grid-height - $stack-card-image-height - (2 * $card-content-padding) )
 
-  .card--stack.card--double &
+  .card--link.card--double &
     +background-gradient($startColor: rgba(0,0,0,0), $endColor: rgba(0,0,0,1.0))
     color: #fff
     height: auto
@@ -157,7 +157,7 @@ $card-hotel-content-padding: 13px
     @include font-size(19)
     line-height: 20px
 
-  .card--stack &
+  .card--link &
     @include font-size(19)
     line-height: 20px
     margin-bottom: 0
