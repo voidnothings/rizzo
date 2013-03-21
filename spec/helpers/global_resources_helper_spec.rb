@@ -37,13 +37,11 @@ describe GlobalResourcesHelper do
       @args = {
         title: 'Lisbon',
         section_name: 'Hotels',
-        page_name: 'foo-body-heading',
       } 
     end
 
-    it { helper.section_title(@args).should have_css('div.header__lead', text:'Lisbon') } 
-    it { helper.section_title(@args).should have_css('div.header__title'), text: 'Hotels' } 
-    it { helper.section_title(@args).should have_css('h1.accessibility', text: 'foo-body-heading') } 
+    it { helper.section_title(@args).should have_css('span.header__lead'), text: 'Lisbon' } 
+    it { helper.section_title(@args).should have_css('h1.header__title', text:'Hotels') } 
 
   end
 
@@ -57,7 +55,6 @@ describe GlobalResourcesHelper do
       @args = {
         title: 'Lisbon',
         section_name: 'b',
-        page_name: 'foo-body-heading',
         collection: [
           {title: 'a', url:'/a'},
           {title: 'b', url:'/b'},
@@ -76,7 +73,11 @@ describe GlobalResourcesHelper do
     end
 
     it "renders a title section on the secondary nav-bar" do 
-      helper.secondary_nav_bar(@args).should have_css('div.row__title--secondary', text:'Lisbon')
+      helper.secondary_nav_bar(@args).should have_css('h1.row__title--secondary', text:'Lisbon')
+    end
+
+    it "renders an accessibility section name tag" do 
+      helper.secondary_nav_bar(@args).should have_css('h1.row__title--secondary span.accessibility', text:'b')
     end
 
     it "renders a list of navigation anchors" do 
@@ -88,27 +89,7 @@ describe GlobalResourcesHelper do
       helper.secondary_nav_bar(@args).should_not have_css("a[class='current js-nav-item nav__item--secondary']", text: 'c')
     end
 
-    it 'sets the body heading' do
-      helper.secondary_nav_bar(@args).should have_css('h1.accessibility', text:'foo-body-heading')
-    end
-
   end  
-
-  context "h1.accessible only" do
-    it 'has an invisible h1' do
-      helper.secondary_nav_bar({:page_name=>'foo-body-heading'}).should have_css('h1.accessibility', text:'foo-body-heading')
-    end
-
-    it 'does not render a title' do
-      helper.secondary_nav_bar({:page_name=>'foo-body-heading'}).should_not have_css('h1.row__title--secondary')
-    end
-
-    it 'does not render a secondary nav' do
-      helper.secondary_nav_bar({:page_name=>'foo-body-heading'}).should_not have_css('a.nav__item--secondary')
-    end
-
-  end
-
 
 end
 

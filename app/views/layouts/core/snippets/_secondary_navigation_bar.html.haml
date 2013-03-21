@@ -2,6 +2,9 @@
   .row__inner.row__inner--secondary
     %h1.row__title--secondary
       = title
+      - if defined?(section_name)
+        %span.accessibility
+          = section_name
 
     - if defined?(collection)
       .nav--secondary
