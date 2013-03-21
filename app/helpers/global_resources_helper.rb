@@ -74,18 +74,15 @@ module GlobalResourcesHelper
   
   def section_title(args)
     capture_haml do
-      if(args[:title])
-        haml_tag(:div, class: 'header__lead js-page-lead') do
-          haml_concat args[:title]
-        end
-      end
-      if(args[:section_name])
-        haml_tag(:div, class: 'header__title js-page-title') do
+      haml_tag(:h1, class: 'header__title') do
+        if(args[:title])
+          haml_tag(:span, class: 'header__lead') do
+            haml_concat args[:title]
+          end  
+        end  
+        if(args[:section_name])
           haml_concat args[:section_name]
         end
-      end  
-      haml_tag(:h1, class: 'accessibility js-page-header') do
-        haml_concat args[:page_name]
       end  
     end  
   end
