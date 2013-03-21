@@ -71,23 +71,25 @@ define ['jquery'], ($)->
       @userState = @userSignedIn()
       if(@userState is not prevState)
         @signonWidget()
-      @showMessageCount()
+#      @showMessageCount()
 
-    showMessageCount: ->
-      @updateMessageCount()
+#   commented out just in case this functionality is to be resurrected
 
-    updateMessageCount: ->
-      if (@lpUserName and (@lpUserName isnt '') and (@lpUserName isnt 'undefined'))
-        url = "#{@options.membersUrl}/#{@lpUserName}/messages/count?callback=?"
-        $.getJSON(url, (data)=>@messageCountCallBack(data))
+#    showMessageCount: ->
+#      @updateMessageCount()
 
-    messageCountCallBack: (data={unread_count:0})->
-      @setLocalData('lp-unread-msg', data.unread_count)
-      @setLocalData('lp-sent-msg', data.sent_count)
-      @setLocalData('lp-received-msg', data.received_count)
-      if data.unread_count > 0
-        user_msg_el = "<span class='nav-user-options__item__float js-user-msg-unread'>#{data.unread_count}</span>"
-        $('a.js-user-msg').append(user_msg_el)
+#    updateMessageCount: ->
+#      if (@lpUserName and (@lpUserName isnt '') and (@lpUserName isnt 'undefined'))
+#        url = "#{@options.membersUrl}/#{@lpUserName}/messages/count?callback=?"
+#        $.getJSON(url, (data)=>@messageCountCallBack(data))
+
+#    messageCountCallBack: (data={unread_count:0})->
+#      @setLocalData('lp-unread-msg', data.unread_count)
+#      @setLocalData('lp-sent-msg', data.sent_count)
+#      @setLocalData('lp-received-msg', data.received_count)
+#      if data.unread_count > 0
+#        user_msg_el = "<span class='nav-user-options__item__float js-user-msg-unread'>#{data.unread_count}</span>"
+#        $('a.js-user-msg').append(user_msg_el)
     
     bindEvents: ->
       $('#unread').click(()-> e.preventDefault(); window.location = "#{options.membersUrl}/#{@lpUserName}/messages")
