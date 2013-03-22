@@ -10,14 +10,14 @@ Then /^the global\-body\-header response should have the correct content$/ do
   page.should have_selector 'div.accessibility'
   page.should have_selector 'div.row--leaderboard'
   page.should have_selector 'nav.nav--primary'
-  page.should have_selector 'div.search--primary'
+  page.should have_selector 'form.search--primary'
   page.should have_selector 'nav.nav--primary--user'
 end
 
 Then /^the secure global\-body\-header response should have the correct content$/ do
   page.should have_selector 'div.accessibility'
   page.should have_selector 'nav.nav--primary'
-  page.should have_selector 'div.search--primary'
+  page.should have_selector 'form.search--primary'
   page.should have_selector 'nav.nav--primary--user'
 end
 
