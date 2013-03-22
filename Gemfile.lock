@@ -1,14 +1,12 @@
 GIT
   remote: git@github.com:lonelyplanet/avocado.git
-  revision: 53e8baf647918a7cb1f126cf83d332f372e58f68
-  branch: ads_doc_outline
+  revision: b31e2dd48b63d4c2579f36a4bcde3c83035d1768
   specs:
     avocado (0.0.31)
 
 GIT
   remote: git@github.com:lonelyplanet/beaker.git
-  revision: 308ff3b0e744665581168dd486b6ed2aa9e2276f
-  branch: ads_doc_outline
+  revision: a0b0ef3b2ab977710f0242a6d0305b92db4c624c
   specs:
     beaker (0.1.0)
 
