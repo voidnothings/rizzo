@@ -255,6 +255,42 @@ $card-hotel-content-padding: 13px
 
 
 // -----------------------------------------------------------------------------
+// Intro Card
+// -----------------------------------------------------------------------------
+
+.card--intro
+  padding: 25px
+
+.card--intro__title
+  @extend %benton-book
+  @extend %tighten-text
+  @extend %huge-type
+  color: $header-blue
+  margin-bottom: 5px
+
+.card--intro__content
+  @extend %relative
+  @extend %serif
+  @extend %smooth-text
+  @include font-size(18)
+  color: $dark-blue-gray
+  line-height: 20px
+z
+  &.card--intro__content--closed
+    height: 60px
+    margin-bottom: 20px
+
+    &:after
+      @extend %empty-abs-generated-content
+      +background-gradient($startColor: rgba(255,255,255,0), $endColor: rgba(255,255,255,1.0))
+      bottom: 0
+      height: 20px
+      left: 0
+      pointer-events: none
+      right: 0
+
+
+// -----------------------------------------------------------------------------
 // Card POI icons
 // -----------------------------------------------------------------------------
 
