@@ -266,18 +266,19 @@ $card-hotel-content-padding: 13px
   @extend %tighten-text
   @extend %huge-type
   color: $header-blue
-  margin-bottom: 5px
+  margin-bottom: 10px
 
 .card--intro__content
   @extend %relative
-  @extend %serif
+  @extend %benton-book
   @extend %smooth-text
   @include font-size(18)
-  color: $dark-blue-gray
+  color: #67747c // FIXME
   line-height: 20px
-z
+  overflow:  hidden
+
   &.card--intro__content--closed
-    height: 60px
+    height: 40px
     margin-bottom: 20px
 
     &:after
