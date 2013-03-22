@@ -15,7 +15,6 @@ Rizzo::Application.configure do
   
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   config.action_controller.asset_host = "//" << (ENV['RAILS_ASSET_DOMAIN'] || "assets.staticlp.com")
-  config.action_mailer.asset_host     = "//" << (ENV['RAILS_ASSET_DOMAIN'] || "assets.staticlp.com")
 
 end if defined?(Rizzo::Application)
 
