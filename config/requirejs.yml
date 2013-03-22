@@ -1,5 +1,4 @@
 paths:
-  jquery: "jquery/jquery-1.7.2.min"
   jplugs: "jquery/plugins"
 
 modules:
