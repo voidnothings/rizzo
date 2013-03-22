@@ -1,5 +1,5 @@
 paths:
-  jquery: "//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min"
+  jquery: "jquery/jquery-1.7.2.min"
   jplugs: "jquery/plugins"
 
 modules:
