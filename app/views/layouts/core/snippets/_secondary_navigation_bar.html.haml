@@ -2,8 +2,13 @@
   .row__inner.row__inner--secondary
     %h1.row__title--secondary
       = title
-    %nav.nav--secondary
-      %h6.accessibility Section navigation
-      - collection.each do |n|
-        %a.nav__item--secondary.js-nav-item{:class=>(n[:title] == current ? 'current' : ''), :href=> n[:url]}
-          = n[:title]
+      - if defined?(section_name)
+        %span.accessibility
+          = section_name
+
+    - if defined?(collection)
+      .nav--secondary
+        - collection.each do |n|
+          %a.nav__item--secondary.js-nav-item{:class=>(n[:title] == section_name ? 'current' : ''), :href=> n[:url]}
+            = n[:title]
+

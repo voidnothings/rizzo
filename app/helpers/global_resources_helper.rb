@@ -8,6 +8,7 @@ module GlobalResourcesHelper
     [
       {style:'home', title:'Home', uri: www_url},
       {style:'destinations', title:'Destinations', uri: www_url("destinations")},
+      {style:'themes', title:'Themes', uri: www_url("themes")},
       {style:'forum', title:'Thorn Tree forum', uri: www_url("thorntree")},
       {style:'shop', title:'Shop', uri: shop_url},
       {style:'hotels', title:'Hotels', uri: www_url("hotels")},
@@ -47,29 +48,19 @@ module GlobalResourcesHelper
     ]
   end
 
-  def cart_item_element
-    capture_haml do
-      haml_tag(:li, class: 'globalCartHead') do
-        haml_tag(:a, 'Cart: 0', href: 'http://shop.lonelyplanet.com/cart/view')
-      end
-    end
+  def secondary_nav_bar(args)
+    render :partial=>'layouts/core/snippets/secondary_navigation_bar', :locals=> args
   end
 
-  def secondary_nav_bar(args)
-    render :partial=>'layouts/core/snippets/secondary_navigation_bar', :locals=>{:title=>args[:title], :collection=>args[:collection] || [], :current=> args[:current] || nil}
+  def cart_item_element
+    capture_haml do
+      haml_tag(:a, 'Cart: 0', class: 'nav__item--cart js-user-cart', href: 'http://shop.lonelyplanet.com/cart/view')
+    end
   end
 
   def membership_item_element
     capture_haml do
-      haml_tag(:li, class: 'signInRegister cartDivider')
-    end
-  end
-
-  def arrow_button(args)
-    capture_haml do
-      haml_tag(:div, class: "#{args[:color]}AngleButton") do
-        haml_tag(:a, href: args[:href] || '#', class: "lpButton2010") { haml_tag(:span, args[:title]) }
-      end
+      haml_tag(:div, class: 'nav__item--user js-user--nav')
     end
   end
 
@@ -81,13 +72,19 @@ module GlobalResourcesHelper
     end
   end
   
-  def title_for(title_content,span_content='')
+  def section_title(args)
     capture_haml do
-      haml_tag(:h1) do
-        haml_tag(:span) { haml_concat title_content }
-        haml_concat span_content
-      end
-    end
+      haml_tag(:h1, class: 'header__title') do
+        if(args[:title])
+          haml_tag(:span, class: 'header__lead') do
+            haml_concat args[:title]
+          end  
+        end  
+        if(args[:section_name])
+          haml_concat args[:section_name]
+        end
+      end  
+    end  
   end
   
   def errbit_notifier

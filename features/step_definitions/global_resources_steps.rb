@@ -9,16 +9,16 @@ end
 Then /^the global\-body\-header response should have the correct content$/ do
   page.should have_selector 'div.accessibility'
   page.should have_selector 'div.row--leaderboard'
-  page.should have_selector 'nav.nav--primary'
+  page.should have_selector 'div.nav--primary'
   page.should have_selector 'div.search--primary'
-  page.should have_selector 'nav.nav-primary--user'
+  page.should have_selector 'div.nav-primary--user'
 end
 
 Then /^the secure global\-body\-header response should have the correct content$/ do
   page.should have_selector 'div.accessibility'
-  page.should have_selector 'nav.nav--primary'
+  page.should have_selector 'div.nav--primary'
   page.should have_selector 'div.search--primary'
-  page.should have_selector 'nav.nav-primary--user'
+  page.should have_selector 'div.nav-primary--user'
 end
 
 Then /^the global\-body\-footer should response have the correct content$/ do
@@ -32,7 +32,7 @@ Then /^the secure global\-body\-footer response should have the correct content$
 end
 
 Then /^the global\-body\-header response should not have the user nav box$/ do
-  page.should_not have_selector 'nav.nav-primary--user'
+  page.should_not have_selector 'div.nav-primary--user'
 end
 
 Then /^the noscript global\-head should have the correct content$/ do
