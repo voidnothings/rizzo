@@ -5,7 +5,7 @@ define ->
       _config.service?= 'http://ad.doubleclick.net/adi/2009.lonelyplanet'
       iframe = document.createElement('iframe')
       ord = Math.random()*10000000000000000
-      iframe.src = "#{_config.service}/#{_config.adZone};#{_config.adKeywords};#{_config.segQS};tile=#{_config.tile};mtfIFPath=#{_config.mtfIFPath};sz=#{_config.unit[0]}x#{_config.unit[1]};ord=#{_config.ord}?"
+      iframe.src = "#{_config.service}/#{_config.adZone};#{_config.adKeywords};#{_config.segQS};tile=#{_config.tile};sz=#{_config.unit[0]}x#{_config.unit[1]};ord=#{ord}?"
       iframe.title = "ad-leaderboard--frame"
       iframe.marginHeight = "0"
       iframe.marginWidth = "0"

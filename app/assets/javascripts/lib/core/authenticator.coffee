@@ -33,8 +33,8 @@ define ['jquery'], ($)->
         
     showLoginAndRegister: ()->
       @emptyUserNav()
-      joinElement = "<a class='nav__item--primary--user js-user-join' href='#{@options.registerLink}'>Join</a>"
-      signinElement = "<a class='nav__item--primary--user js-user-signin' href='#{@signInUrl()}'>Sign-In</a>"
+      joinElement = "<a class='nav__item--primary--user js-user-join js-nav-item' href='#{@options.registerLink}'>Join</a>"
+      signinElement = "<a class='nav__item--primary--user js-user-signin js-nav-item' href='#{@signInUrl()}'>Sign-In</a>"
       @el.prepend(joinElement + signinElement)
 
     showUserBox: ->
@@ -56,7 +56,7 @@ define ['jquery'], ($)->
         {title: 'Forum Activity', uri: "#{@options.forumPostsUrlTemplate.replace('[USERNAME]', @lpUserName)}", style:"nav-user-options__item--forum js-user-forum" },
         {title: 'Sign-Out', uri: "#{@options.signOutUrl}", style:"nav-user-options__item--signout js-user-signout" }
       ]
-      optionElements =  ("<a class='nav__submenu__item nav-user-options__item #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
+      optionElements =  ("<a class='nav__submenu__item nav-user-options__item #{u.style} js-nav-item' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
 
       userMenu = "<div class='nav__submenu'><div class='nav__submenu__content nav__submenu__content--user nav-user-options js-user-options'><div class='nav-user-options__title'>#{@lpUserName}</div>#{optionElements}</div></div>"
     
@@ -72,23 +72,25 @@ define ['jquery'], ($)->
       @userState = @userSignedIn()
       if(@userState is not prevState)
         @signonWidget()
-      @showMessageCount()
+#      @showMessageCount()
 
-    showMessageCount: ->
-      @updateMessageCount()
+#   commented out just in case this functionality is to be resurrected
 
-    updateMessageCount: ->
-      if (@lpUserName and (@lpUserName isnt '') and (@lpUserName isnt 'undefined'))
-        url = "#{@options.membersUrl}/#{@lpUserName}/messages/count?callback=?"
-        $.getJSON(url, (data)=>@messageCountCallBack(data))
+#    showMessageCount: ->
+#      @updateMessageCount()
 
-    messageCountCallBack: (data={unread_count:0})->
-      @setLocalData('lp-unread-msg', data.unread_count)
-      @setLocalData('lp-sent-msg', data.sent_count)
-      @setLocalData('lp-received-msg', data.received_count)
-      if data.unread_count > 0
-        user_msg_el = "<span class='nav-user-options__item__float js-user-msg-unread'>#{data.unread_count}</span>"
-        $('a.js-user-msg').append(user_msg_el)
+#    updateMessageCount: ->
+#      if (@lpUserName and (@lpUserName isnt '') and (@lpUserName isnt 'undefined'))
+#        url = "#{@options.membersUrl}/#{@lpUserName}/messages/count?callback=?"
+#        $.getJSON(url, (data)=>@messageCountCallBack(data))
+
+#    messageCountCallBack: (data={unread_count:0})->
+#      @setLocalData('lp-unread-msg', data.unread_count)
+#      @setLocalData('lp-sent-msg', data.sent_count)
+#      @setLocalData('lp-received-msg', data.received_count)
+#      if data.unread_count > 0
+#        user_msg_el = "<span class='nav-user-options__item__float js-user-msg-unread'>#{data.unread_count}</span>"
+#        $('a.js-user-msg').append(user_msg_el)
     
     bindEvents: ->
       $('#unread').click(()-> e.preventDefault(); window.location = "#{options.membersUrl}/#{@lpUserName}/messages")
