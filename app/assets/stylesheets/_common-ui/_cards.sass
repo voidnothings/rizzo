@@ -77,9 +77,6 @@ $card-hotel-content-padding: 13px
       img
         +filter(brightness(-15%))
 
-  .card--intro
-    height: auto
-
   .card--half-height
     height: $card-grid-half-height
 
@@ -103,6 +100,10 @@ $card-hotel-content-padding: 13px
   // single link cards have taller images
   .card--link &
     height: $stack-card-image-height
+
+  // half-height cards are all image
+  .card--half-height &
+    height: $card-grid-half-height
 
   // double stack cards have full height images
   .card--link.card--double &
@@ -264,7 +265,12 @@ $card-hotel-content-padding: 13px
 // -----------------------------------------------------------------------------
 
 .card--intro
+  +border-radius(4)
+  background: #fff
+  border: 1px solid #e2e7eb
+  margin-bottom: 10px
   padding: 25px
+  position: relative
 
 .card--intro__title
   @extend %benton-book
