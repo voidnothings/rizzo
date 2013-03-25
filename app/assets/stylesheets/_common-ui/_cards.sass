@@ -105,15 +105,19 @@ $card-hotel-content-padding: 13px
   .card--half-height &
     height: $card-grid-half-height
 
+  // gallery cards have a border around their image
+  .card--gallery &
+    height: $card-grid-half-height - 20px
+    margin: 10px
+
   // double stack cards have full height images
   .card--link.card--double &
     height: $card-grid-height
 
   // Refactor to use landscape/portrait classes when rowlf imaging catches up
   > .card__image
-    @extend %absolute-bottom
-    max-width: none
     height: 100%
+    max-width: none
 
 
 // -----------------------------------------------------------------------------
