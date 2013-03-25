@@ -322,7 +322,7 @@ $card-hotel-content-padding: 13px
     line-height: 1
     top: -10px
 
-.card--list
+%card--icon
   &:before
     @extend %benton-regular
     @extend %no-line-height
@@ -332,22 +332,22 @@ $card-hotel-content-padding: 13px
     top: 20px
     z-index: 5
 
-  //&.has-no-image
-  //  &:after
-  //    background: #b2b1b1
-  //    border-radius: 10px/5px
-  //    content: ''
-  //    height: 4px
-  //    left: 26px
-  //    position: absolute
-  //    top: 46px
-  //    width: 9px
-
   &.has-image
     &:before
       color: #fff
       font-size: 40px
       text-shadow: 0 0 5px rgba(0,0,0,0.75)
+
+%card--icon--media
+  @extend %card--icon
+  &:before
+    top: 75px
+    left: 75px
+    color: #fff
+    text-shadow: 0 0 5px rgba(0,0,0,0.75)
+
+.card--list
+  @extend %card--icon
 
 .card--lodging
   @extend %icon-poi-hotel-before
@@ -402,6 +402,14 @@ $card-hotel-content-padding: 13px
   color: #d9d9d9 // FIXME
   &.has-image
     @extend %icon-image-poi-info-before
+
+.card--gallery
+  @extend %card--icon--media
+  @extend %icon-gallery-before
+
+.card--video
+  @extend %card--icon--media
+  @extend %icon-video-before
 
 
 // -----------------------------------------------------------------------------
