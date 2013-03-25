@@ -12,7 +12,9 @@ Rizzo::Application.configure do
   config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
   config.i18n.fallbacks = true
   config.active_support.deprecation = :notify
-  config.action_controller.asset_host = "//rizzo.lonelyplanet.com"
+
+  # Enable serving of images, stylesheets, and JavaScripts from an asset server
+  config.action_controller.asset_host = "//" << (ENV['RAILS_ASSET_DOMAIN'] || "assets.staticlp.com")
 
 end if defined?(Rizzo::Application)
 
