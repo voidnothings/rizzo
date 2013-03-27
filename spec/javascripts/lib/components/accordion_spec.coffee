@@ -83,7 +83,7 @@ require ['public/assets/javascripts/lib/components/accordion.js'], (Accordion) -
       describe 'When open and closed height is specified', ->
         beforeEach ->
           loadFixtures('accordion.html')
-          window.myAccordion = new Accordion({parent: '.my-accordion', animateHeights: true, openHeight: 250, closedHeight: 50})
+          window.myAccordion = new Accordion({parent: '.my-accordion', animateHeights: true, openHeight: 250, height: 50})
 
         it 'has an explicit closed height', ->
           expect($('#item1').data('closed')).toEqual(50)
