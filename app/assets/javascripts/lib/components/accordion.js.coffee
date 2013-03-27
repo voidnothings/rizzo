@@ -16,11 +16,12 @@ define ['jquery'], ($) ->
     config =
       multiplePanels: false
       animateHeights: false
+      openPadding: 0
 
     prepare : (panels) ->
       panels.each ->
         closedHeight = if config.height then config.height else $(@).find('.js-accordion-trigger').outerHeight()
-        openHeight = if config.openHeight then config.openHeight else closedHeight + $(@).find('.js-accordion-panel').outerHeight()
+        openHeight = if config.openHeight then config.openHeight else closedHeight + $(@).find('.js-accordion-panel').outerHeight() + config.openPadding
         $(@).attr('data-open', openHeight).attr('data-closed', closedHeight)
 
     bindEvents : (parent) ->
