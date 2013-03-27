@@ -22,7 +22,7 @@ require ['public/assets/javascripts/lib/components/accordion.js'], (Accordion) -
         expect($('#item1')).not.toHaveClass('is-closed')
         expect($('#item1')).toHaveClass('is-open')
 
-      it 'closes panel 1', -> 
+      it 'closes panel 1', ->
         myAccordion.closePanel(0)
         expect($('#item1')).not.toHaveClass('is-open')
         expect($('#item1')).toHaveClass('is-closed')
@@ -64,4 +64,32 @@ require ['public/assets/javascripts/lib/components/accordion.js'], (Accordion) -
         expect($('#item1')).toHaveClass('is-open')
         expect($('#item2')).not.toHaveClass('is-closed')
         expect($('#item2')).toHaveClass('is-open')
+
+    describe 'Animated heights', ->
+
+      describe 'When open and closed height is assumed by default', ->
+        beforeEach ->
+          loadFixtures('accordion.html')
+          window.myAccordion = new Accordion({parent: '.my-accordion', animateHeights: true})
+
+        it 'has a closed height', ->
+          assumedClosedHeight = $('.my-accordion').find('.js-accordion-trigger').outerHeight()
+          expect($('#item1').data('closed')).toEqual(assumedClosedHeight)
+
+        it 'has an open height', ->
+          assumedOpenHeight = $('.my-accordion').find('.js-accordion-trigger').outerHeight()
+          expect($('#item1').data('open')).toEqual(assumedOpenHeight)
+
+      describe 'When open and closed height is specified', ->
+        beforeEach ->
+          loadFixtures('accordion.html')
+          window.myAccordion = new Accordion({parent: '.my-accordion', animateHeights: true, openHeight: 250, closedHeight: 50})
+
+        it 'has an explicit closed height', ->
+          expect($('#item1').data('closed')).toEqual(50)
+
+        it 'has an explicit open height', ->
+          expect($('#item1').data('open')).toEqual(250)
+
+
 

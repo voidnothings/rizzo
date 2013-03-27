@@ -4,6 +4,8 @@
 #   multiplePanels: can you have multiple panels open
 #   callback: optional function
 #   animateHeights: boolean
+#   openHeight: optional open height - assumed to outer height or panel if not specified
+#   closedHeight: optional closed height - assumed to outer height or panel if not specified
 # }
 # 
 
@@ -17,8 +19,8 @@ define ['jquery'], ($) ->
 
     prepare : (panels) ->
       panels.each ->
-        openHeight = $(@).outerHeight()
-        closedHeight = $(@).find('.js-accordion-trigger').outerHeight()
+        openHeight = if config.openHeight then config.openHeight else $(@).outerHeight()
+        closedHeight = if config.closedHeight then config.closedHeight else $(@).find('.js-accordion-trigger').outerHeight()
         $(@).attr('data-open', openHeight).attr('data-closed', closedHeight)
 
     bindEvents : (parent) ->
