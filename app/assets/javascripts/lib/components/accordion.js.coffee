@@ -61,7 +61,6 @@ define ['jquery'], ($) ->
       else
         $(panel)
 
-
     constructor : (args) ->
       config = $.extend config, args
       @parent = $(config.parent)

@@ -10,13 +10,13 @@ require ['public/assets/javascripts/lib/components/accordion.js'], (Accordion) -
       beforeEach ->
         loadFixtures('accordion.html')
         window.myAccordion = new Accordion({parent: '.my-accordion'})
-      
+
       it 'hides all panels', ->
         expect($('#item1')).toHaveClass('is-closed')
         expect($('#item2')).toHaveClass('is-closed')
         expect($('#item3')).toHaveClass('is-closed')
         expect($('#item4')).toHaveClass('is-closed')
-      
+
       it 'opens panel 1', ->
         myAccordion.openPanel(0)
         expect($('#item1')).not.toHaveClass('is-closed')
@@ -33,7 +33,6 @@ require ['public/assets/javascripts/lib/components/accordion.js'], (Accordion) -
         expect($('#item1')).toHaveClass('is-closed')
         expect($('#item2')).toHaveClass('is-open')
 
-    
     describe 'When only one panel is allowed to be open and we pass a selector', ->
       beforeEach ->
         loadFixtures('accordion.html')
@@ -65,10 +64,4 @@ require ['public/assets/javascripts/lib/components/accordion.js'], (Accordion) -
         expect($('#item1')).toHaveClass('is-open')
         expect($('#item2')).not.toHaveClass('is-closed')
         expect($('#item2')).toHaveClass('is-open')
-
-
-
-
-
-
 
