@@ -1,0 +1,43 @@
+// -----------------------------------------------------------------------------
+// Stack Intro Card
+// -----------------------------------------------------------------------------
+
+$stack-intro-text-line-height: 22px
+$stack-intro-lines-to-show: 2
+
+.stack__intro
+  +border-radius(4)
+  background: #fff
+  border: 1px solid #e2e7eb
+  margin-bottom: 10px
+  padding: 25px
+  position: relative
+
+.stack__intro__title
+  @extend %benton-book
+  @extend %tighten-text
+  @extend %huge-type
+  color: $header-blue
+  margin-bottom: 10px
+
+.stack__intro__content
+  @extend %relative
+  @extend %benton-book
+  @extend %smooth-text
+  @include font-size(18)
+  color: #67747c // FIXME
+  line-height: $stack-intro-text-line-height
+  overflow: hidden
+
+  .stack__intro--closed &
+    height: $stack-intro-text-line-height * $stack-intro-lines-to-show
+    margin-bottom: $stack-intro-text-line-height
+
+    &:after
+      @extend %empty-abs-generated-content
+      +background-gradient($startColor: rgba(255,255,255,0), $endColor: rgba(255,255,255,1.0))
+      bottom: 0
+      height: 20px
+      left: 0
+      pointer-events: none
+      right: 0
