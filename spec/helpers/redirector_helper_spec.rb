@@ -10,8 +10,6 @@ describe RedirectorHelper do
       Rizzo::UrlEncryptor.stub(encrypt: encrypted_url)
       encrypted_url.stub(length: length)
       length.stub(:< => true)
-      Stats = double unless defined? Stats
-      Stats.stub(:timing)
     end
     
     it "encrypts the url" do
@@ -25,11 +23,6 @@ describe RedirectorHelper do
       helper.redirector_to(url)
     end
 
-    it "increments the encrypted_url_too_long stat" do
-      Stats.should_receive(:timing).with("redirector.encrypted_url_length", length)
-      helper.redirector_to(url)
-    end
-    
     context "when the encrypted url is reasonably short" do
       it "returns a path to the redirector controller show action for the encrypted url" do
         helper.redirector_to(url).should =~ /\/r/#{url}/
