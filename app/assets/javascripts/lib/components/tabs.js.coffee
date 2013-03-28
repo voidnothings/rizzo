@@ -9,6 +9,7 @@ define ['jquery'], ($) ->
   class Tabs
 
     config = {}
+    activeTimeout = null
 
     tabsAreHidden = ->
       if config.tabsContainer.is(':hidden') then true else false
@@ -25,9 +26,10 @@ define ['jquery'], ($) ->
         padding = (parseInt(tab.css('padding'), 10) * 2)
         config.tabsContainer.css('height', (tab.children().outerHeight() + padding))
 
-        setTimeout ->
+        activeTimeout = setTimeout ->
           config.tabsContainer.find(tab).addClass('is-active')
           config.tabsContainer.css('opacity', '1')
+          activeTimeout = null
         , 300
 
 
@@ -40,6 +42,7 @@ define ['jquery'], ($) ->
 
 
     closeTabs : ->
+      clearTimeout(activeTimeout) if activeTimeout
       config.tabLabels.removeClass('is-active')
       config.tabsContainer.addClass('is-hidden').children('.js-tab-panel').removeClass('is-active')
 
