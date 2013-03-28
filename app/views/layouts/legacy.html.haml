@@ -15,6 +15,5 @@
   = render 'layouts/legacy/footer'
   .js-config.is-hidden   
     = js_configuration        
-    = requirejs_include_tag('app_melbourne'){|c|{'main' => 'app_melbourne'}}
     = yield :scripts
   = content_for(:build)
