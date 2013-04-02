@@ -18,6 +18,19 @@
   height: 10px
   border: 3px solid $active
 
+%lp-square
+  @extend %empty-generated-content
+  width: 11px
+  height: 11px
+  margin-left: 1px
+  border: 2px solid $soft-gray
+
+%lp-square-active
+  width: 9px
+  margin-left: 0px
+  height: 9px
+  border: 4px solid $active
+
 
 // -----------------------------------------------------------------------------
 // Extendable classes
@@ -34,6 +47,19 @@
     &:before
       @extend %lp-circle-active
       top: 1px
+
+%styled-checkbox--square
+  cursor: pointer
+  &:before
+    @extend %lp-square
+    @extend %absolute-left
+    top: 1px
+  &.active
+    font-weight: bold
+    color: $header-gray
+    &:before
+      @extend %lp-square-active
+      top: 1px      
 
 %styled-radio-button
   @extend %image-replacement
