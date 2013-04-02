@@ -116,6 +116,7 @@ $card-hotel-content-padding: 13px
 
   // Refactor to use landscape/portrait classes when rowlf imaging catches up
   > .card__image
+    @extend %absolute-bottom
     height: 100%
     max-width: none
 
@@ -358,7 +359,7 @@ $card-hotel-content-padding: 13px
 
 .card--info
   @extend %icon-poi-info-before
-  color: #d9d9d9 // FIXME
+  color: $need-to-know-info
   &.has-image
     @extend %icon-image-poi-info-before
 
