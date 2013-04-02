@@ -12,6 +12,7 @@
 // -----------------------------------------------------------------------------
 
 $card-grid-height: 380px
+$card-grid-half-height: 185px
 
 $double-card-width: 394px
 
@@ -64,7 +65,6 @@ $card-hotel-content-padding: 13px
 
 // cards that are the result of a search have a definite height and default width
 
-
 .results
   .card
     @extend %relative
@@ -76,6 +76,9 @@ $card-hotel-content-padding: 13px
 
       // img
         // +filter(brightness(-15%))
+
+  .card--half-height
+    height: $card-grid-half-height
 
 
 // -----------------------------------------------------------------------------
@@ -94,19 +97,28 @@ $card-hotel-content-padding: 13px
   .card--hotel.has-image &
     height: $card-image-height
 
-  // single stack cards have taller images
-  .card--stack &
+  // single link cards have taller images
+  .card--link &
     height: $stack-card-image-height
 
+  // half-height cards are all image
+  .card--half-height &
+    height: $card-grid-half-height
+
+  // gallery cards have a border around their image
+  .card--gallery &
+    height: $card-grid-half-height - 20px
+    margin: 10px
+
   // double stack cards have full height images
-  .card--stack.card--double &
+  .card--link.card--double &
     height: $card-grid-height
 
   // Refactor to use landscape/portrait classes when rowlf imaging catches up
   > .card__image
     @extend %absolute-bottom
-    max-width: none
     height: 100%
+    max-width: none
 
 
 // -----------------------------------------------------------------------------
@@ -124,10 +136,10 @@ $card-hotel-content-padding: 13px
   padding: $card-content-padding
   right: 0
 
-  .card--stack &
+  .card--link &
     height: ($card-grid-height - $stack-card-image-height - (2 * $card-content-padding) )
 
-  .card--stack.card--double &
+  .card--link.card--double &
     +background-gradient($startColor: rgba(0,0,0,0), $endColor: rgba(0,0,0,1.0))
     color: #fff
     height: auto
@@ -166,7 +178,7 @@ $card-hotel-content-padding: 13px
     @include font-size(19)
     line-height: 20px
 
-  .card--stack &
+  .card--link &
     @include font-size(19)
     line-height: 20px
     margin-bottom: 0
@@ -187,6 +199,7 @@ $card-hotel-content-padding: 13px
   @extend %smooth-text
   color: $body-copy
   line-height: 14px
+  list-style: inside
 
 // -----------------------------------------------------------------------------
 // Card Footer
@@ -269,32 +282,33 @@ $card-hotel-content-padding: 13px
     line-height: 1
     top: -10px
 
-.card--list
+%card--icon
   &:before
     @extend %benton-regular
     @extend %no-line-height
     font-size: 69px
-    left: 10px
     position: absolute
-    top: 20px
     z-index: 5
-
-  //&.has-no-image
-  //  &:after
-  //    background: #b2b1b1
-  //    border-radius: 10px/5px
-  //    content: ''
-  //    height: 4px
-  //    left: 26px
-  //    position: absolute
-  //    top: 46px
-  //    width: 9px
 
   &.has-image
     &:before
       color: #fff
       font-size: 40px
       text-shadow: 0 0 5px rgba(0,0,0,0.75)
+
+%card--icon--media
+  @extend %card--icon
+  &:before
+    top: 75px
+    left: 75px
+    color: #fff
+    text-shadow: 0 0 5px rgba(0,0,0,0.75)
+
+.card--list
+  @extend %card--icon
+  &:before
+    left: 10px
+    top: 20px
 
 .card--lodging
   @extend %icon-poi-hotel-before
@@ -346,9 +360,17 @@ $card-hotel-content-padding: 13px
 
 .card--info
   @extend %icon-poi-info-before
-  color: #d9d9d9
+  color: $need-to-know-info
   &.has-image
     @extend %icon-image-poi-info-before
+
+.card--gallery
+  @extend %card--icon--media
+  @extend %icon-gallery-before
+
+.card--video
+  @extend %card--icon--media
+  @extend %icon-video-before
 
 
 // -----------------------------------------------------------------------------
