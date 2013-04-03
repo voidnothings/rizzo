@@ -75,11 +75,11 @@ describe GlobalResourcesHelper do
     end
 
     it "renders a title section on the secondary nav-bar" do 
-      helper.secondary_nav_bar(@args).should have_css('div.row--secondary h1[class="place-title"]')
+      helper.secondary_nav_bar(@args).should have_css('div.row--secondary span[class="place-title"]')
     end
     
     it "renders an accessibility section name tag whithin body title" do 
-      helper.secondary_nav_bar(@args.merge({:is_body_title=>true})).should have_css('h1.place-title span.accessibility', text:'b')
+      helper.secondary_nav_bar(@args).should have_css('.place-title span.accessibility', text:'b')
     end
 
     it "renders a list of navigation anchors" do 

@@ -6,5 +6,5 @@
     - if defined?(collection)
       .split--right.nav--inline.nav--secondary
         - collection.each do |n|
-          %a.nav__item.nav__item--secondary.js-nav-item{:class=>(n[:title] == current ? 'current' : ''), :href=> n[:url]}<
+          %a.nav__item.nav__item--secondary.js-nav-item{:class=>(n[:title] == section_name ? 'current' : ''), :href=> n[:url]}<
             = n[:title]
