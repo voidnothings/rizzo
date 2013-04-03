@@ -1,7 +1,10 @@
 paths:
   jplugs: "jquery/plugins"
+  jquery: "jquery/jquery-1.7.2.min"
 
 modules:
   - name: 'app_core'
-  - name: 'app_legacy'
+  - name: 'app_core_legacy'
   - name: 'app_secure_core'
+  - name: 'app_secure_core_legacy'
+  - name: 'app_melbourne'

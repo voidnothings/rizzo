@@ -1,3 +1,4 @@
-%header.title(class="#{style || 'green'}" )
-  .inner-shadow
-  = yield :title
+.row.row--header(class="row--header--#{style || 'green'}" )
+  .row__inner--shadow
+  .row__inner.row__inner--header
+    = yield :title

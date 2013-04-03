@@ -2,8 +2,7 @@
 
   .split--left.nav--inline
     %a.media--lp-logo--head(href='http://www.lonelyplanet.com')
-    %nav.nav--inline.nav__item.nav--primary
-      %h6.accessibility Global navigation
+    .nav--inline.nav__item.nav--primary
       - core_navigation_items.each do |n|
         - if n[:submenu]
           .nav__item.nav__item--primary.nav__submenu__trigger
@@ -27,8 +26,7 @@
         %button.accessibility(type="submit" id="search-q-submit" name="search-q-submit")
 
       - if user_nav
-        %nav.nav__item.nav--inline.nav--primary--user.js-user-nav.split--right__inner
-          %h6.accessibility User Navigation
+        .nav__item.nav--inline.nav--primary--user.js-user-nav.split--right__inner
           %a.nav__item.nav__item--user.user-basket.js-user-basket.js-nav-cart(href='//shop.lonelyplanet.com/cart/view')
             %span.user-basket__icon
             %span.user-basket__text Your bag

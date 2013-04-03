@@ -1,9 +1,9 @@
+<<<<<<< HEAD
 .row.row--footer--about
   .row__inner.row__inner--footer
     .split--left.nav--inline
       %a.nav__item.media--lp-logo--footer(href='http://www.lonelyplanet.com')
-      %nav.nav__item.nav--inline
-        %h1.accessibility About Lonely Planet Navigation
+      .nav__item.nav--inline
         - footer_nav_about_items.each do |item|
           %a.nav__item.nav__item--about{href: item[:url]}<
             = item[:title].html_safe

@@ -1,45 +1,39 @@
 .row.row--sitemap#js-footer-nav
   .row__inner.row__inner--footer.row--sitemap__inner
-    %nav.nav--stacked.col--footer
-      %h6
-        %a.js-nav-item.title--footer.title--list--footer(href='/destinations') Destinations
+    .nav--stacked.col--footer
+      %a.js-nav-item.title--footer.title--list--footer(href='/destinations') Destinations
       - footer_nav_destination_items.each do |destination|
         %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "/#{destination[:url]}"}<
           = destination[:title]
-    
-    %nav.nav--stacked.col--footer
-      %h6
-        %a.js-nav-item.title--footer.title--list--footer(href='/shop') Shop
+
+    .nav--stacked.col--footer
+      %a.js-nav-item.title--footer.title--list--footer(href='/shop') Shop
       - footer_nav_shop_items.each do |shop|
         %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "/shop/#{shop[:url]}"}<
           = shop[:title]
-  
-    %nav.nav--stacked.col--footer
-      %h6
-        %a.js-nav-item.title--footer.title--list--footer(href='/thorntree') Thorn Tree Forum
+
+    .nav--stacked.col--footer
+      %a.js-nav-item.title--footer.title--list--footer(href='/thorntree') Thorn Tree Forum
       - footer_nav_thorntree_items.each do |thorntree|
         %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "/thorntree/#{thorntree[:url]}"}<
           = thorntree[:title]
 
-    %nav.nav--stacked.col--footer
-      %h6
-        %a.js-nav-item.title--footer.title--list--footer(href='/themes') Themes
+    .nav--stacked.col--footer
+      %a.js-nav-item.title--footer.title--list--footer(href='/themes') Themes
       - footer_nav_themes_items.each do |theme|
         %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "/themes/#{theme[:url]}"}<
           = theme[:title]
 
-    %nav.nav--stacked.col--footer
-      %h6
-        %a.js-nav-item.title--footer.title--list--footer(href='/bookings') Travel Booking
+    .nav--stacked.col--footer
+      %a.js-nav-item.title--footer.title--list--footer(href='/bookings') Travel Booking
       - footer_nav_travel_bookings_items.each do |booking|
         %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "/#{booking[:url]}"}<
           = booking[:title]
 
     .col--footer--last
-      %h6.title--footer.title--list--footer Join our mailing list
+      %span.title--footer.title--list--footer Join our mailing list
       %p.nav__item--footer
         Add your email here to receive all your travel inspiration, trips and exclusive offers
-
       %form.newsletter--footer(action='http://www.lonelyplanet.com/newsletter/subscribe_footer.php' method='post')
         %label.title--footer.polyfill--placeholder.newsletter--placeholder Email
         %input.input--small--newsletter(type='text' id='newsletter-email' autocomplete='off' name='newsletter-email' placeholder='your@email.com')

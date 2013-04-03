@@ -18,7 +18,6 @@ module RedirectorHelper
   def redirector_to(target_url)
     encrypted_url = Rizzo::UrlEncryptor.encrypt(target_url)
     length        = encrypted_url.length
-    Stats.timing("redirector.encrypted_url_length", length)
     if length < MAX_URL_LENGTH
       redirector_path :encrypted_url => encrypted_url
     else
