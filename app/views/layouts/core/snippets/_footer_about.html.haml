@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .row.row--footer--about
   .row__inner.row__inner--footer
     .split--left.nav--inline
@@ -12,7 +11,7 @@
       .nav--inline.nav--social.split--right__inner
         .title--footer.title--social.nav__item Follow us
         .nav--social__inner.nav__item
-          %nav.nav--inline
+          .nav--inline
             - social_media_nav.each do |item|
               %a.nav__item.nav__item--social{href: "#{item[:url]}", class: "icon--regular icon--#{item[:title]}"}
                 = item[:title].capitalize

@@ -4,8 +4,7 @@
       = place_heading(title, parent, slug, section_name || nil)
 
     - if defined?(collection)
-      %nav.split--right.nav--inline.nav--secondary
-        %h6.accessibility Section navigation
+      .split--right.nav--inline.nav--secondary
         - collection.each do |n|
           %a.nav__item.nav__item--secondary.js-nav-item{:class=>(n[:title] == current ? 'current' : ''), :href=> n[:url]}<
             = n[:title]

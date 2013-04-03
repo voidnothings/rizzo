@@ -49,7 +49,9 @@ module GlobalResourcesHelper
   end
 
   def secondary_nav_bar(args)
-    render :partial=>'layouts/core/snippets/secondary_navigation_bar', :locals=> args
+
+    render :partial=>'layouts/core/snippets/secondary_navigation_bar', :locals=>{:section_name=>args[:section_name] || nil, :title=>args[:title], :parent=>args[:parent], :slug=>args[:parent_slug], :collection=>args[:collection] || [], :current=> args[:current] || nil}
+
   end
 
   def cart_item_element
