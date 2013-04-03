@@ -14,7 +14,7 @@ gem 'rake'
 gem 'airbrake'
 
 group :assets do 
-  gem 'avocado', path: '/Users/Ian/development/lp/online/avocado'
+  gem 'avocado', git: 'git@github.com:lonelyplanet/avocado.git'
   gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git', branch: 'if_nav2.1'
 end
 
