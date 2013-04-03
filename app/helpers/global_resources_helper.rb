@@ -74,7 +74,7 @@ module GlobalResourcesHelper
   
   def section_title(args)
     capture_haml do
-      haml_tag(:h1, class: 'header__title') do
+      haml_tag(args[:is_body_title] ? :h1 : :div , class: 'header__title') do
         if(args[:title])
           haml_tag(:span, class: 'header__lead') do
             haml_concat args[:title]

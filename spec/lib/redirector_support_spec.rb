@@ -16,14 +16,14 @@ describe RedirectorSupport do
   
   describe "#increment_stats_bucket_for_bad_redirected_url" do
     it "increments the redirector.bad_url stat" do
-      Stats.should_receive(:increment).with("redirector.bad_url.#{url}")
+      Stats.should_receive(:increment).with("redirector.bad_url")
       subject.increment_stats_bucket_for_bad_redirected_url(url)
     end
   end
 
   describe "#increment_stats_bucket_for_redirected_url" do
     it "increments the redirector stat, with one part for the host, and a part for each subpath" do
-      Stats.should_receive(:increment).with("redirector.foo-bar-com.zip.zap")
+      Stats.should_receive(:increment).with("redirector.foo-bar-com")
       subject.increment_stats_bucket_for_redirected_url(url)
     end
   end

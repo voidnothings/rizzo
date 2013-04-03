@@ -41,7 +41,9 @@ describe GlobalResourcesHelper do
     end
 
     it { helper.section_title(@args).should have_css('span.header__lead'), text: 'Lisbon' } 
-    it { helper.section_title(@args).should have_css('h1.header__title', text:'Hotels') } 
+    it { helper.section_title(@args).should_not have_css('h1.header__title', text:'Hotels') } 
+    it { helper.section_title(@args).should have_css('div.header__title', text:'Hotels') } 
+    it { helper.section_title(@args.merge({:is_body_title=>true})).should have_css('h1.header__title', text:'Hotels') } 
 
   end
 
@@ -73,11 +75,15 @@ describe GlobalResourcesHelper do
     end
 
     it "renders a title section on the secondary nav-bar" do 
-      helper.secondary_nav_bar(@args).should have_css('h1.row__title--secondary', text:'Lisbon')
+      helper.secondary_nav_bar(@args).should have_css('.row__title--secondary', text:'Lisbon')
     end
 
-    it "renders an accessibility section name tag" do 
-      helper.secondary_nav_bar(@args).should have_css('h1.row__title--secondary span.accessibility', text:'b')
+    it "renders a title section on the secondary nav-bar as the body title" do 
+      helper.secondary_nav_bar(@args.merge({:is_body_title=>true})).should have_css('h1.row__title--secondary', text:'Lisbon')
+    end
+
+    it "renders an accessibility section name tag whithin body title" do 
+      helper.secondary_nav_bar(@args.merge({:is_body_title=>true})).should have_css('h1.row__title--secondary span.accessibility', text:'b')
     end
 
     it "renders a list of navigation anchors" do 
