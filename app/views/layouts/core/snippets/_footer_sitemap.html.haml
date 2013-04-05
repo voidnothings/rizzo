@@ -1,38 +1,38 @@
 .row.row--footer#js-footer-nav
   .row__inner.row__inner--footer
     .col--footer
-      %a.title--list--footer.nav__item--vertical--footer(href='/destinations')
+      %a.title--list--footer.nav__item--vertical--footer(href='http://www.lonelyplanet.com/destinations')
         Destinations
       - footer_nav_destination_items.each do |destination|
-        %a.js-nav-item.nav__item--vertical--footer{href: "/#{destination[:url]}"}
+        %a.js-nav-item.nav__item--vertical--footer{href: "http://www.lonelyplanet.com/#{destination[:url]}"}
           = destination[:title]
     
     .col--footer
-      %a.title--list--footer.nav__item--vertical--footer(href='/shop')
+      %a.title--list--footer.nav__item--vertical--footer(href='http://www.lonelyplanet.com/shop')
         Shop
       - footer_nav_shop_items.each do |shop|
-        %a.js-nav-item.nav__item--vertical--footer{href: "/shop/#{shop[:url]}"}
+        %a.js-nav-item.nav__item--vertical--footer{href: "http://www.lonelyplanet.com/shop/#{shop[:url]}"}
           = shop[:title]
   
     .col--footer
-      %a.title--list--footer.nav__item--vertical--footer(href='/thorntree')
+      %a.title--list--footer.nav__item--vertical--footer(href='http://www.lonelyplanet.com/thorntree')
         Thorn Tree Forum
       - footer_nav_thorntree_items.each do |thorntree|
-        %a.js-nav-item.nav__item--vertical--footer{href: "/thorntree/#{thorntree[:url]}"}
+        %a.js-nav-item.nav__item--vertical--footer{href: "http://www.lonelyplanet.com/thorntree/#{thorntree[:url]}"}
           = thorntree[:title]
 
     .col--footer
-      %a.title--list--footer.nav__item--vertical--footer(href='/themes')
+      %a.title--list--footer.nav__item--vertical--footer(href='http://www.lonelyplanet.com/themes')
         Themes
       - footer_nav_themes_items.each do |theme|
-        %a.js-nav-item.nav__item--vertical--footer{href: "/themes/#{theme[:url]}"}
+        %a.js-nav-item.nav__item--vertical--footer{href: "http://www.lonelyplanet.com/themes/#{theme[:url]}"}
           = theme[:title]
 
     .col--footer
-      %a.title--list--footer.nav__item--vertical--footer(href='/hotels')
+      %a.title--list--footer.nav__item--vertical--footer(href='http://www.lonelyplanet.com/hotels')
         Travel Booking
       - footer_nav_travel_bookings_items.each do |booking|
-        %a.js-nav-item.nav__item--vertical--footer{href: "/#{booking[:url]}"}
+        %a.js-nav-item.nav__item--vertical--footer{href: "http://www.lonelyplanet.com/#{booking[:url]}"}
           = booking[:title]
 
     .col--footer--last
