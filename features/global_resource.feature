@@ -42,12 +42,3 @@ Feature: Global Resources
     Given I go to "/secure/global-body-header?displaySignonWidget=false"
     Then the global-body-header response should not have the user nav box
   
-  Scenario: it serves the global-head with errbit script
-    Given an external app
-    When it requests the "global-head" snippet
-    Then the response should contain the "errbit" script
-
-  Scenario: it serves the global-head without errbit script
-    Given an external app
-    When it requests the "global-head?errbit=false" snippet
-    Then the response should not contain the "errbit" script
