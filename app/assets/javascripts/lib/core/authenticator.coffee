@@ -52,7 +52,7 @@ define ['jquery'], ($)->
       userOptions = [
         {title: 'My Profile', uri: "#{@options.membersUrl}", style:"js-user-profile"},
         {title: 'Settings', uri: "#{@options.membersUrl}/#{@lpUserName}/edit",  style:"js-user-settings"},
-        # {title: 'Messages', uri: "#{@options.messagesUrl}", style:"js-user-msg"},
+        {title: 'Messages', uri: "#{@options.messagesUrl}", style:"js-user-msg"},
         {title: 'Forum Activity', uri: "#{@options.forumPostsUrlTemplate.replace('[USERNAME]', @lpUserName)}", style:"nav-user-options__item--forum js-user-forum" },
         {title: 'Sign-Out', uri: "#{@options.signOutUrl}", style:"nav-user-options__item--signout js-user-signout" }
       ]
