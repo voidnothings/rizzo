@@ -12,7 +12,7 @@
         %label.dropdown__value.dropdown__value--language.js-select-overlay(href='#select-language')
           English
         %select.dropdown__select.js-select{name: "language", id: 'languageSelect'}
-          - [['en','English'],['de','Deutsch'],['fr','Français'],['es','Español'],['it','Italiano'],['cn','中文简体'],['jp','日本語']].each do |d|
+          - [['en','English'],['de','Deutsch'],['fr','Français'],['es','Español'],['it','Italiano'],['cn','中文简体'],['jp','日本語'],['ru','Русский'],['br','Português']].each do |d|
             %option(value="#{d[0]}")
               = d[1]
       %input.input--submit.submit--language(name="Go" type="submit" value="Go")
