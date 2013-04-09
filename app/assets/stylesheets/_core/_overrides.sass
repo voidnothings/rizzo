@@ -116,7 +116,7 @@ html
 
 #forum
   font-size: 12px !important
-  strong
+  strong, b
     font-weight: bold
   .container, #lightbox
     input, textarea
@@ -162,6 +162,11 @@ html
     font-weight: bold
   em
     font-style: italic
+  h2
+    > strong
+      font-weight: normal
+    + h3
+      margin-top: 1em
 
 .formtastic
   border: 1px solid #CFCBCB
@@ -199,9 +204,11 @@ body.reportAbuse
   h3
     font-weight: bold
 
-// Microsites issue with hotels
+// Microsites
 .text--legal
   width: 500px
+
+
 
 // Report abuse
 body.reportAbuse
@@ -212,5 +219,9 @@ body.reportAbuse
   overflow: auto !important
   border: 1px solid #CFCBCB
 
+
+// Somehow we have introduced size 11px text all across the site
+body
+  font-size: 12px
 
 
