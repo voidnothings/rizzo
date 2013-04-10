@@ -37,14 +37,11 @@ module GlobalResourcesHelper
 
   def default_secondary_nav
     [
-      {:title=>'Need to know', :url=>'#'},
-      {:title=>'In pictures', :url=>'#'},
+      {:title=>'Overview', :url=>'#'},
       {:title=>'Things to do', :url=>'#'},
-      {:title=>'Tips', :url=>'#'},
-      {:title=>'Discussion', :url=>'#'},
-      {:title=>'Guidebooks', :url=>'#'},
       {:title=>'Hotels', :url=>'#'},
-      {:title=>'Flights', :url=>'#'}
+      {:title=>'Tips & Articles', :url=>'#'},
+      {:title=>'Images & Video', :url=>'#'}
     ]
   end
 
