@@ -52,7 +52,7 @@ module FooterHelper
     [
       {:title=>'Hotels', :url=>'hotels'},
       {:title=>'Flights', :url=>'flights'},
-      {:title=>'Insurance', :url=>'insurance'}
+      {:title=>'Insurance', :url=>'travel-insurance'}
     ]
   end
   

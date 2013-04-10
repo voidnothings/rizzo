@@ -19,19 +19,19 @@ module GlobalResourcesHelper
   
   def core_navigation_items
     [
-      {title:'Destinations', uri: "//www.lonelyplanet.com/destinations"},
-      {title:'Themes', uri: "//www.lonelyplanet.com/themes"},
-      {title:'Shop', uri: "//shop.lonelyplanet.com"},
-      {title:'Thorn Tree Forum', uri: "//www.lonelyplanet.com/thorntree"},
+      {title:'Destinations', uri: "http://www.lonelyplanet.com/destinations"},
+      {title:'Themes', uri: "http://www.lonelyplanet.com/themes"},
+      {title:'Shop', uri: "http://shop.lonelyplanet.com"},
+      {title:'Thorn Tree Forum', uri: "http://www.lonelyplanet.com/thorntree"},
       {title:'Bookings',
         submenu: [
-            {title:'Hotels', uri:'//www.lonelyplanet.com/hotels', style:'hotels'},
-            {title:'Flights', uri:'//www.lonelyplanet.com/flights/', style:'flights'},
-            {title:'Adventure tours', uri:'//www.lonelyplanet.com/adventure-tours/', style:'adventure-tours'},
-            {title:'Sightseeing tours', uri:'//www.lonelyplanet.com/sightseeing-tours/', style:'sightseeing-tours'}
+            {title:'Hotels', uri:'http://www.lonelyplanet.com/hotels', style:'hotels'},
+            {title:'Flights', uri:'http://www.lonelyplanet.com/flights/', style:'flights'},
+            {title:'Adventure tours', uri:'http://www.lonelyplanet.com/adventure-tours/', style:'adventure-tours'},
+            {title:'Sightseeing tours', uri:'http://www.lonelyplanet.com/sightseeing-tours/', style:'sightseeing-tours'}
         ]
       },
-      {title:'Insurance', uri: "//www.lonelyplanet.com/travel-insurance"}
+      {title:'Insurance', uri: "http://www.lonelyplanet.com/travel-insurance"}
     ]
   end
 
