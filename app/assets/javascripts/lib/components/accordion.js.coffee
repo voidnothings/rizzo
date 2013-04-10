@@ -27,7 +27,7 @@ define ['jquery'], ($) ->
     bindEvents : (parent) ->
       that = @
       parent.on 'click', '.js-accordion-trigger', ->
-        if that.state is not 'blocked'
+        if that.state != 'blocked'
           panel = $(@).closest('.js-accordion-item').index()
           that.openPanel(panel)
         false

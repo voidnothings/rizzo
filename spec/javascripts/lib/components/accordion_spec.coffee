@@ -71,6 +71,14 @@ require ['public/assets/javascripts/lib/components/accordion.js'], (Accordion) -
         expect($('#item1')).not.toHaveClass('is-open')
         expect($('#item1')).toHaveClass('is-closed')
 
+      it 'opens panel 1 after state is unblocked', ->
+        myAccordion.block()
+        $('#item1 .js-accordion-trigger').click()
+        expect($('#item1')).toHaveClass('is-closed')
+        myAccordion.unblock()
+        $('#item1 .js-accordion-trigger').click()
+        expect($('#item1')).toHaveClass('is-open')
+
     describe 'Animated heights', ->
 
       describe 'When open and closed height is assumed by default', ->
