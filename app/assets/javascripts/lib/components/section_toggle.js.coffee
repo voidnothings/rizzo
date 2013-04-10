@@ -43,7 +43,7 @@ define ['jquery'], ($) ->
         @template = "<div class='btn--read-more js-handler'>#{(@args.text)[0]}</div>"
         if @args.shadow
           @template = "<div class='read-more__handler'>" + @template + "</div>"
-        @target.append(@template)
+        @wrapper.append(@template)
         @bindEvent()
         @close()
     
