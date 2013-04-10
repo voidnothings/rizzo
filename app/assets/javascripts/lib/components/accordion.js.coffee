@@ -27,9 +27,16 @@ define ['jquery'], ($) ->
     bindEvents : (parent) ->
       that = @
       parent.on 'click', '.js-accordion-trigger', ->
-        panel = $(@).closest('.js-accordion-item').index()
-        that.openPanel(panel)
+        if that.state is not 'blocked'
+          panel = $(@).closest('.js-accordion-item').index()
+          that.openPanel(panel)
         false
+
+    block : () ->
+      @state = 'blocked'
+
+    unblock : () ->
+      @state = 'active'
 
     openPanel : (panel) ->
       panel = @sanitisePanel(panel)
@@ -72,3 +79,5 @@ define ['jquery'], ($) ->
       @bindEvents(@parent)
       @closeAllPanels(@panels)
       config.callback && config.callback(@parent)
+      @state = 'active'
+
