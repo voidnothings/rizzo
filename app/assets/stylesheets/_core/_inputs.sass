@@ -73,7 +73,8 @@ input, textarea
   &:focus
     @extend %background-white
     color: $nav-search-bck-focus
-    width: 225px
+    // Reduced from 225 to 195 due to oveflow bug seen on CM's machine, will test with new release
+    width: 195px
 
 
 // -----------------------------------------------------------------------------
