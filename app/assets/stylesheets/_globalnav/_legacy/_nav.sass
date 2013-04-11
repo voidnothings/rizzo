@@ -1,0 +1,387 @@
+// Navigation Submenu Drop-Down
+//
+//
+// .nav__item--submenu    - A navigation menu list item that displays a sub-menu when hovered over
+//
+// // Styleguide 1.12
+
+
+// ----------------------------------------------------------------------------
+// 
+// nav 
+// 
+// ----------------------------------------------------------------------------
+
+.nav
+  @extend %helvetica-neue
+
+.nav__item
+  float: left
+
+.nav__item--vertical
+  display: block
+
+.nav__item--footer
+  @extend .nav__item
+  @extend %small-type
+  color: #515a65
+  &:hover
+    text-decoration: underline
+
+.nav__item--footer--darker
+  margin-right: 25px
+  padding: 12px 0
+  color: #cfd0d1
+  &:hover
+    color: #fff
+    text-decoration: none
+
+.nav__item--vertical--footer
+  @extend .nav__item--vertical
+  @extend %small-type
+  color: $body-copy
+  line-height: 18px
+  &:hover
+    text-decoration: underline
+  &:first-child
+    @extend .title--list--footer
+
+.nav__item--breadcrumbs--current
+  @extend .nav__item--breadcrumbs
+  font-weight: bold
+  &:hover
+    text-decoration: none
+
+.nav__item--breadcrumbs
+  padding: 12px 5px 0 25px
+  position: relative
+  &:before
+    width: 16px
+    height: 18px
+    @extend %empty-abs-generated-content
+    @extend %sprite-core--standard
+    left: 0px 
+    top: 9px
+    background-position: -128px -162px
+
+  .ie8 &
+    &:before
+      background-position: -128px -163px
+
+  .ie7 &
+    background-image: image_url("core/core-arrow--gray.png")
+    background-position: 2px 10px
+    background-repeat: no-repeat
+
+.icon--home
+  @extend %image-replacement
+  @extend %sprite-core--standard
+  background-position: -126px -93px
+  
+.nav__item--breadcrumbs--home 
+  width: 26px
+  height: 32px
+  @extend .icon--home
+
+.nav--breadcrumbs--footer
+  @extend %clearfix
+  padding: 0
+
+
+// ----------------------------------------------------------------------------
+// 
+// primary-nav
+// 
+// ----------------------------------------------------------------------------
+
+.nav--primary
+  @extend %helvetica-neue
+  float: left
+  margin-left: 9px
+  margin-top: 18px
+
+.nav__item--primary  
+  color: $nav-primary-type
+  padding: 10px 8px
+  font-size: 14px
+  &:hover
+    color: $nav-primary-type-hover 
+    text-decoration: none
+  &:active
+    color: $nav-primary-type
+    text-decoration: none
+
+
+// ----------------------------------------------------------------------------
+// 
+// secondary-nav
+// 
+// ----------------------------------------------------------------------------
+
+.nav--secondary
+  @extend %absolute-bottom
+  @extend %helvetica-neue
+  @extend %uppercase
+  right: 0
+  text-align: right
+
+.nav__item--secondary
+  @extend %small-type
+  @extend %inline-block
+  padding: 7px 8px 7px
+  line-height: 18px
+  color: $nav-secondary-type
+  &:hover
+    color: $nav-secondary-type-hover
+    text-decoration: none
+  &:active
+    color: $nav-secondary-type
+  &.current
+    @include border-radius(4)
+    background-color: $nav-secondary-current-item-bck
+    color: $nav-secondary-type-active
+
+
+// ----------------------------------------------------------------------------
+// 
+// user-nav
+// 
+// ----------------------------------------------------------------------------
+
+.nav-primary--user
+  @extend %absolute-right
+  margin-top: 8px
+
+.ie7
+  .nav-primary--user
+    width: 135px
+
+.nav__item--primary--user
+  @extend .nav__item--primary
+  float: right
+
+.nav-user__item--primary--basket
+  @extend .icon--regular
+  @extend %sprite-core--standard
+  background-position: -61px -126px
+  display: none
+  float: right
+  margin-right: 18px
+  margin-top: 3px
+  position: relative
+
+.nav-user-options__item__float
+  @extend %extra-small-type
+  +border-radius(4)
+  background: #fff
+  color: $nav-secondary-current-item-bck
+  margin-right: 14px
+  float: right
+  padding: 2px 3px 0
+
+
+// ----------------------------------------------------------------------------
+//
+// User Nav Items - Specific
+//
+// ----------------------------------------------------------------------------
+
+.basket__items 
+  @extend %absolute-top
+  @extend %central-align
+  @extend .icon--small
+  @include border-radius(8)
+  @include box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.5))
+  right: -5px
+  line-height: 16px
+  z-index: 1
+  margin: 0
+  color: $basket-item-type
+  background-color: $basket-item
+  font-weight: bold
+  font-size: 10px
+
+.user-box
+  cursor: pointer
+  float: right
+  padding-bottom: 12px
+  margin: 0 0 0 10px
+  padding-right: 25px
+  position: relative
+  &:after
+    @extend %empty-abs-generated-content 
+    @extend %sprite-core--standard
+    background-position: -102px -137px
+    top: 8px
+    right: 0
+    width: 20px
+    height: 20px
+    z-index: 10
+  &:hover
+    &:after
+      background-position: -102px -72px
+
+.user-box__img
+  @include box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.3), true)
+  @include border-radius(4)
+  background-color: $nav-search-bck
+  border: 1px solid #073a69
+  height: 30px
+  padding: 3px
+  width: 30px
+
+.split--footer
+  overflow: hidden
+  text-align: right
+  border-bottom: 1px solid #465158
+  padding: 12px 0
+
+
+// ----------------------------------------------------------------------------
+//
+// Drop-Down Sub-Menus
+//
+// ----------------------------------------------------------------------------
+
+.nav__item--submenu
+  @extend .nav__item--primary
+  cursor: pointer
+  display: inline
+  position: relative
+
+.nav__submenu__trigger
+  &:hover
+    .nav__submenu
+      display: block
+
+// padding around the submenu gives the submenu dropdown more area to hover over
+.nav__submenu
+  @extend %absolute
+  display: none
+  padding: 20px 10px 10px
+  right: 0px
+  top: 25px
+  z-index: 10
+
+.nav__submenu__content
+  @include border-radius(5)
+  @include box-shadow(0, 1, 3, 3, rgba(0, 0, 0, 0.2))
+  @include transition(all, 0.15, ease)
+  background-color: $nav-submenu-bck
+  padding: 4px 0
+  position: relative
+  width: 190px
+  &:before
+    +css-arrow(top, $width: 10px, $color: $nav-submenu-bck, $offset: 146px)
+    @extend %empty-abs-generated-content
+    display: block
+
+.nav__submenu__item
+  @extend .nav__item--vertical
+  @extend %helvetica-neue
+  border-color: $nav-submenu-bck
+  border-style: solid
+  border-width: 1px 0
+  color: #fff
+  font-size: 14px
+  padding: 12px
+  position: relative
+  &:hover
+    background-color: $nav-submenu-hover
+    border-color: $nav-submenu-hover-border
+    text-decoration: none
+  &:after
+    @extend %empty-abs-generated-content
+    @extend %sprite-core--standard
+    background-position: -98px -153px
+    height: 36px
+    right: 4px
+    top: 0
+    width: 22px
+
+
+// ----------------------------------------------------------------------------
+//
+// Bookings Drop-Down Menu
+//
+// ----------------------------------------------------------------------------
+
+.nav__submenu__content--bookings
+
+  .nav__submenu__item
+    padding-left: 39px
+    &:before
+      @extend %empty-abs-generated-content
+      @extend %sprite-core--standard
+      top: 10px
+
+.nav__submenu__item--flights
+  &:before
+    background-position: -4px -190px
+    height: 18px
+    left: 11px
+    width: 20px
+
+.nav__submenu__item--hotels
+  &:before
+    background-position: -99px -190px
+    height: 15px
+    left: 11px
+    width: 19px
+
+.nav__submenu__item--adventure-tours
+  &:before
+    background-position: -34px -190px
+    height: 20px
+    left: 11px
+    width: 21px
+
+.nav__submenu__item--sightseeing-tours
+  &:before
+    background-position: -68px -190px
+    height: 21px
+    left: 12px
+    width: 18px
+
+
+// ----------------------------------------------------------------------------
+//
+// User Drop-Down Menu
+//
+// ----------------------------------------------------------------------------
+
+.nav-user-options__title
+  @extend %large-type
+  color: #fff
+  font-weight: bold
+  padding: 12px
+
+.nav__submenu__content--user
+  padding-top: 0
+  top: 10px
+  width: 165px
+  &:before
+    +css-arrow(top, $width: 10px, $color: $nav-submenu-bck, $offset: 120px)
+
+//.nav-user-options__item--forum
+//  position: relative
+//  &:before
+//    @extend %empty-abs-generated-content
+//    border-bottom: 1px solid #1eb7bc
+//    height: 4px
+//    left: 0
+//    top: 100%
+//    width: 100%
+
+//.nav-user-options__item--signout
+//  margin-top: 8px
+
+//.nav-user-options__item--unread
+//  @extend %extra-small-type
+//  @include border-radius(4)
+//  background: #fff
+//  color: $nav-secondary-current-item-bck
+//  display: none
+//  float: right
+//  margin-right: 10px
+//  padding: 2px 6px 1px

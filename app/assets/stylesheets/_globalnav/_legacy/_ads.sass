@@ -6,20 +6,19 @@
 // ----------------------------------------------------------------------------
 
 .ad-leaderboard
-  @extend %block-center
   width: 782px
+  @extend %block-center
 
 .ad-leaderboard__inner
   @extend %ad-leaderboard-box
   @include border-radius(2)
+  float: left
   margin-left: 18px 
   &:after
     @extend %empty-abs-generated-content
     @extend %sprite-core--standard
-    background-position: -95px 0
-    width: 11px
-    height: 91px
+    background-position: -164px -64px
+    width: 10px
+    height: 90px
     right: 122px
     top: 2px
-  +retinafy()
-    @extend %sprite-core--retina

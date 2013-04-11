@@ -1,0 +1,116 @@
+// -----------------------------------------------------------------------------
+// 
+//  Simple Grid for the card main content
+// 
+// -----------------------------------------------------------------------------
+
+.card-holder
+  @extend %grid-wrapper-10
+
+.stack
+  margin-left: 10px
+  .card--single + &
+    @extend %margin-grid-column-10
+    width: ($card-width * 4) + ($card-gutter * 3)
+
+.card--single
+  @extend %margin-grid-column-10
+  width: $card-width
+
+.card--double
+  @extend %margin-grid-column-10
+  width: ($card-width * 2) + $card-gutter
+
+.card--triple
+  @extend %margin-grid-column-10
+  width: ($card-width * 3) + ($card-gutter * 2)
+
+.card--quadruple
+  @extend %margin-grid-column-10
+  width: ($card-width * 4) + ($card-gutter * 3)
+
+.card--full-width
+  margin-left: 10px
+  float: none
+  width: auto
+
+
+// -----------------------------------------------------------------------------
+// 
+//  Proportional grid 
+// 
+// -----------------------------------------------------------------------------
+
+// Grid
+// 
+// .grid-wrapper--10 - Grid wrapper with 10px gutter
+// .grid-wrapper--15 - Grid wrapper with 15px gutter
+// .grid-wrapper--20 - Grid wrapper with 20px gutter
+// .grid-wrapper--30 - Grid wrapper with 30px gutter
+// 
+// Styleguide 2.1
+
+.grid-wrapper--10
+  @extend %grid-wrapper-10
+  > [class*="col--"]
+    @extend %padded-grid-column-10
+
+.grid-wrapper--15
+  @extend %grid-wrapper-15
+  > [class*="col--"]
+    @extend %padded-grid-column-15
+
+.grid-wrapper--20
+  @extend %grid-wrapper-20
+  > [class*="col--"]
+    @extend %padded-grid-column-20
+
+.grid-wrapper--30
+  @extend %grid-wrapper-30
+  > [class*="col--"]
+    @extend %padded-grid-column-30
+
+
+.col--one-half
+  width: 50%
+
+.col--one-third
+  width: 33.333333333%
+.col--two-thirds
+  width: 66.666666666%
+
+.col--one-quarter
+  width: 25%
+.col--two-quarters
+  width: 50%
+.col--three-quarters
+  width: 75%
+
+.col--one-fifth
+  width: 20%
+.col--two-fifths
+  width: 40%
+.col--three-fifths
+  width: 60%
+.col--four-fifths
+  width: 80%
+
+// ----------------------------------------------------------------------------
+// 
+// (footer nav)
+//
+// ----------------------------------------------------------------------------
+
+.col--footer
+  float: left
+  margin-right: 46px
+
+.col--footer--last
+  float: right
+  width: 240px
+
+.ie7, .ie8
+  .col--footer--last
+    float: right
+    width: 232px
+

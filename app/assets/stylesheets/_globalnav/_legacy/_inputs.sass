@@ -1,0 +1,250 @@
+// Inputs
+// 
+// .input--regular      - Any button related to booking, including search to book
+// .input--datepicker    - Multi use button
+// .search__input--primary - Search box in header
+// 
+// Styleguide 3.1
+
+
+// ----------------------------------------------------------------------------
+// 
+//  Input defaults
+// 
+// ----------------------------------------------------------------------------
+
+input, textarea
+  @extend %border-box
+  @extend %helvetica-neue
+  @extend %no-border
+  outline: 0
+
+
+// ----------------------------------------------------------------------------
+// Inputs
+// 
+// Input--regular is used for any standard text based inputs: text,email,date
+// ----------------------------------------------------------------------------
+
+.input--regular
+  @extend %input--regular
+
+.input--submit
+  @extend %larger-type
+  cursor: pointer
+  &[disabled], &.input--submit--disabled
+    @extend %disabled-state
+
+.input--datepicker
+  @extend %input--regular
+  background-image: url(image_path("lodgings-spt.png"))
+  padding-right: 35px
+  background-repeat: no-repeat
+  background-position: 99% -112px
+  +retinafy()
+    background-image: url(image_path("lodgings-spt-2x.png"))
+    background-size: $sprite-size
+    background-position: 95% -111px
+  +placeholder()
+    color: $placeholder-copy
+
+.input--small--footer
+  @extend %input--small
+  padding: 9px
+  width: 175px
+  .ie7 &
+    width: 151px
+  .ie8 &
+    width: 161px
+
+
+
+// Dropdown
+// 
+// .dropdown - Lonely Planet masked select elements
+// 
+// Styleguide 3.2
+
+// ----------------------------------------------------------------------------
+// Custom Select Dropdown
+// 
+// Pseudo element has height, background-color and left padding in order to mask
+// the content of dropdown__value if it extends beyond its container
+// ----------------------------------------------------------------------------
+
+.dropdown
+  position: relative
+
+.dropdown__value
+  +word-break()
+  @extend %border-box
+  @extend %input--regular
+  @extend %chevron-down-after
+  @extend %right-icon
+  overflow: hidden
+  white-space: nowrap
+  display: block
+  border: 1px solid $soft-gray
+  padding: 10px 20px 10px 10px
+  &:after
+    @extend %four-pixel-rounded
+    pointer-events: none
+    background-color: inherit
+    color: inherit
+    top: 0
+    right: 0
+    width: 20px
+    height: 100%
+    font-size: 20px
+    line-height: 28px
+    padding-left: 5px
+
+.dropdown__select
+  +appearance(menulist-button)
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  opacity: 0
+  .ie7 &, .ie8 &
+    filter: alpha(opacity = 0)
+  .no-js &
+    opacity: 1
+    filter: alpha(opacity = 1)
+
+
+// ----------------------------------------------------------------------------
+//
+// Header: Search Form
+//
+// ----------------------------------------------------------------------------
+
+.search--primary
+  @extend %relative
+  float: left
+  margin: 8px 0 0 10px
+  &:before
+    @extend %empty-abs-generated-content
+    @extend %sprite-core--standard
+    background-position: -60px -155px
+    display: block
+    width: 32px
+    height: 32px
+
+.search__input
+  padding: 8px 10px 8px 30px
+
+.search__input--primary
+  @include box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.2), true)
+  @include border-radius(16)
+  @include transition(all, 0.2, ease)
+  background-color: $nav-search-bck
+  color: $nav-search-colour
+  line-height: 16px
+  width: 150px
+  &:focus
+    @extend %background-white
+    color: $nav-search-bck-focus
+    // Reduced from 225 to 195 due to oveflow bug seen on CM's machine, will test with new release
+    width: 195px
+
+
+// -----------------------------------------------------------------------------
+//
+// Header: Search Form - IE 7,8 & 9
+//
+// -----------------------------------------------------------------------------
+
+.search--primary
+
+  .ie9 &
+    margin-top: 10px
+    &:before
+      background-position: -60px -157px
+
+  .ie7 &, .ie8 &
+    border: 1px #20374F solid
+    background-color: $nav-search-bck
+
+  .ie8 &
+    &:before 
+      background-position: -62px -157px
+
+  .ie7 &
+    background-image: image_url("core/core-sprite-standard.png")
+    background-repeat: no-repeat
+    background-position: -62px -157px
+
+.search__input--primary
+  .ie7 &
+    margin-left: 33px
+    width: 170px
+    padding: 8px
+    border: none
+    @extend %background-white
+
+  .ie8 &
+    margin-left: 33px
+    width: 185px
+    padding: 8px 8px 8px 0
+    &:focus
+      @extend %background-white
+      color: $nav-search-bck-focus
+      padding-left: 8px
+
+
+
+// -----------------------------------------------------------------------------
+//
+// Footer: Language Selection
+//
+// -----------------------------------------------------------------------------
+
+.form--language
+  float: right
+  vertical-align: top
+
+.label--footer
+  @extend %inline-block
+  margin-right: 10px
+  padding: 10px 0
+
+.dropdown--language
+  @extend %inline-block
+  width: 86px
+
+// Footer select is slightly smaller so reduce padding and re-align chevron
+.dropdown__value--language
+  @extend %input--small
+  padding-top: 9px
+  padding-bottom: 8px
+  // Container is large enough so we can remove new formatting context
+  overflow: visible
+  &:after
+    line-height: 24px
+
+.submit--language
+  @extend %visually-hide
+  .no-js &
+    @extend %visually-show
+    @extend %four-pixel-rounded
+    padding: 8px
+    position: inherit
+
+
+// -----------------------------------------------------------------------------
+//
+// Footer: Newsletter Country Selection
+//
+// -----------------------------------------------------------------------------
+
+.dropdown--country
+  @extend %inline-block
+  margin: 6px 0
+  width:  100%
+
+.input--small--newsletter
+  @extend %input--small
+  padding: 9px
+  width: 100%
