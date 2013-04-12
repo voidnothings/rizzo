@@ -4,21 +4,17 @@
 // 
 // ----------------------------------------------------------------------------
 
-%lp-logo
-  @extend %sprite-core--standard
-  @extend %inline-block
-  +retinafy()
-    @extend %sprite-core--retina
-
 .media--lp-logo--head
-  @extend %lp-logo
+  @extend %sprite-core
+  @extend %inline-block
   background-position: 0 0
   width: 83px
   height: 41px
   margin: 7px 10px 0 0
 
 .media--lp-logo--footer
-  @extend %lp-logo
+  @extend %sprite-core
+  @extend %inline-block
   background-position: 0 -42px
   width: 83px
   height: 41px
@@ -26,7 +22,7 @@
 
 // ----------------------------------------------------------------------------
 // 
-// icons
+// Icons
 // 
 // ----------------------------------------------------------------------------
 
@@ -45,7 +41,7 @@
 .user-basket__icon
   @extend %icon
   @extend %inline-block
-  @extend %sprite-core--standard
+  @extend %sprite-core
   background-position: 0px -122px
   margin-right: 5px
   height: 22px
