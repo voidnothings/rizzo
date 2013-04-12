@@ -43,7 +43,7 @@ define ['jquery'], ($) ->
         @template = "<div class='btn--read-more js-handler'>#{(@args.text)[0]}</div>"
         if @args.shadow
           @template = "<div class='read-more__handler'>" + @template + "</div>"
-        @target.append(@template)
+        @wrapper.append(@template)
         @bindEvent()
         @close()
     
@@ -64,7 +64,7 @@ define ['jquery'], ($) ->
       @state = 'open'
 
     close: ->
-      @wrapper.css({'overflow': 'hidden', 'margin-bottom': '10px'})
+      @wrapper.css({'overflow': 'hidden'})
       if @args.shadow is true 
         @wrapper.height(@args.maxHeight-(@args.maxHeight%18)-2) 
       else 
