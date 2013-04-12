@@ -2,7 +2,7 @@ define ['jquery'], ($)->
 
   class Authenticator
 
-    @version = '0.0.12'
+    @version = '0.0.13'
 
     @options =
       forumPostsUrlTemplate: '//www.lonelyplanet.com/thorntree/profile.jspa?username=[USERNAME]'
@@ -13,7 +13,8 @@ define ['jquery'], ($)->
     
     constructor: ->
       @userState = @userSignedIn()
-      @widget = $('nav.user-nav')
+      @el = $('.js-user-nav')
+
       @options = Authenticator.options
       @signonWidget()
       
@@ -34,36 +35,35 @@ define ['jquery'], ($)->
       @emptyUserNav()
       joinElement = "<a class='nav__item nav__item--primary js-user-join js-nav-item' href='#{@options.registerLink}'>Join</a>"
       signinElement = "<a class='nav__item nav__item--primary js-user-signin js-nav-item' href='#{@signInUrl()}'>Sign-In</a>"
-      $('nav.js-user-nav').prepend(signinElement + joinElement)
+      @el.prepend(signinElement + joinElement)
 
     showUserBox: ->
       @emptyUserNav()
-      $('nav.js-user-nav').addClass('is-signed-in')
+      @el.addClass('is-signed-in')
       userBoxElement = "<div class='nav__item nav__item--user user-box js-user-box nav__submenu__trigger'><img class='user-box__img js-box-handler' src='#{@userAvatar()}'/></div>"
-      $('nav.js-user-nav').append(userBoxElement)
-      $('div.js-user-box').append(@userOptionsMenu())
+      @el.prepend(userBoxElement)
+      $('.js-user-box').append(@userOptionsMenu())
 
     emptyUserNav: -> 
-      $('nav.js-user-nav').removeClass('is-signed-in')
+      @el.removeClass('is-signed-in')
       $('a.js-user-join, a.js-user-signin, div.js-user-box').remove()
 
     userOptionsMenu: ->
       userOptions = [
         {title: 'My Profile', uri: "#{@options.membersUrl}", style:"js-user-profile"},
         {title: 'Settings', uri: "#{@options.membersUrl}/#{@lpUserName}/edit",  style:"js-user-settings"},
-        # {title: 'Messages', uri: "#{@options.messagesUrl}", style:"js-user-msg"},
+        {title: 'Messages', uri: "#{@options.messagesUrl}", style:"js-user-msg"},
         {title: 'Forum Activity', uri: "#{@options.forumPostsUrlTemplate.replace('[USERNAME]', @lpUserName)}", style:"nav-user-options__item--forum js-user-forum" },
         {title: 'Sign-Out', uri: "#{@options.signOutUrl}", style:"nav-user-options__item--signout js-user-signout" }
       ]
-
       optionElements =  ("<a class='nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
-      userMenu = "<div class='nav__submenu nav__submenu--user'><nav class='nav--stacked nav__submenu__content nav__submenu__content--user nav-user-options js-user-options'><h3 class='nav__submenu__item nav__submenu__title'>#{@lpUserName}</h3>#{optionElements}</nav></div>"
+      userMenu = "<div class='nav__submenu nav__submenu--user'><div class='nav--stacked nav__submenu__content nav__submenu__content--user nav-user-options js-user-options'><div class='nav__submenu__item nav__submenu__title'>#{@lpUserName}</div>#{optionElements}</div></div>"
     
     signInUrl:->
       "https://secure.lonelyplanet.com/sign-in/login?service=#{escape(window.location)}"
     
     userAvatar: ->
-      "#{@options.membersUrl}/#{@lpUserName}/mugshot/mini"
+      "http:#{@options.membersUrl}/#{@lpUserName}/mugshot/mini"
 
     update: ->
       @setLocalData("lp-uname", window.lpLoggedInUsername)
@@ -71,23 +71,25 @@ define ['jquery'], ($)->
       @userState = @userSignedIn()
       if(@userState is not prevState)
         @signonWidget()
-      @showMessageCount()
+#      @showMessageCount()
 
-    showMessageCount: ->
-      @updateMessageCount()
+#   commented out just in case this functionality is to be resurrected
 
-    updateMessageCount: ->
-      if (@lpUserName and (@lpUserName isnt '') and (@lpUserName isnt 'undefined'))
-        url = "#{@options.membersUrl}/#{@lpUserName}/messages/count?callback=?"
-        $.getJSON(url, (data)=>@messageCountCallBack(data))
+#    showMessageCount: ->
+#      @updateMessageCount()
 
-    messageCountCallBack: (data={unread_count:0})->
-      @setLocalData('lp-unread-msg', data.unread_count)
-      @setLocalData('lp-sent-msg', data.sent_count)
-      @setLocalData('lp-received-msg', data.received_count)
-      if data.unread_count > 0
-        user_msg_el = "<span class='nav-user-options__item__float js-user-msg-unread'>#{data.unread_count}</span>"
-        $('a.js-user-msg').append(user_msg_el)
+#    updateMessageCount: ->
+#      if (@lpUserName and (@lpUserName isnt '') and (@lpUserName isnt 'undefined'))
+#        url = "#{@options.membersUrl}/#{@lpUserName}/messages/count?callback=?"
+#        $.getJSON(url, (data)=>@messageCountCallBack(data))
+
+#    messageCountCallBack: (data={unread_count:0})->
+#      @setLocalData('lp-unread-msg', data.unread_count)
+#      @setLocalData('lp-sent-msg', data.sent_count)
+#      @setLocalData('lp-received-msg', data.received_count)
+#      if data.unread_count > 0
+#        user_msg_el = "<span class='nav-user-options__item__float js-user-msg-unread'>#{data.unread_count}</span>"
+#        $('a.js-user-msg').append(user_msg_el)
     
     bindEvents: ->
       $('#unread').click(()-> e.preventDefault(); window.location = "#{options.membersUrl}/#{@lpUserName}/messages")

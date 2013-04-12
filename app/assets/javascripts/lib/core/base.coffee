@@ -16,13 +16,15 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
         adZone : window.lp.ads.adZone or 'home'
         adKeywords : window.lp.ads.adKeywords or ' '
         tile : lp.ads.tile or ' '
+        ord : lp.ads.ord or Math.random()*10000000000000000
         segQS : lp.ads.segQS or ' '
         mtfIFPath : (lp.ads.mtfIFPath or '/')
         unit: [728,90]
       else   
         adZone : window.adZone or 'home'
         adKeywords : window.adKeywords  or ' '
-        tile : window.tile or ' '
+        tile : 1
+        ord : window.ord or Math.random()*10000000000000000
         segQS : window.segQS or ' '
         mtfIFPath : '/'
         unit: [728,90]
