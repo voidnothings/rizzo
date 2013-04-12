@@ -43,7 +43,7 @@ input, textarea
   background-position: 99% -112px
   +retinafy()
     background-image: url(image_path("lodgings-spt-2x.png"))
-    background-size: $sprite-size
+    background-size: $lodgings-sprite-size
     background-position: 95% -111px
   +placeholder()
     color: $placeholder-copy
@@ -126,7 +126,7 @@ input, textarea
   margin: 8px 0 0 10px
   &:before
     @extend %empty-abs-generated-content
-    @extend %sprite-core--standard
+    @extend %sprite-legacy--standard
     background-position: -60px -155px
     display: block
     width: 32px

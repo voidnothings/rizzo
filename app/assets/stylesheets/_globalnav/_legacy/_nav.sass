@@ -59,7 +59,7 @@
     width: 16px
     height: 18px
     @extend %empty-abs-generated-content
-    @extend %sprite-core--standard
+    @extend %sprite-legacy--standard
     left: 0px 
     top: 9px
     background-position: -128px -162px
@@ -69,13 +69,13 @@
       background-position: -128px -163px
 
   .ie7 &
-    background-image: image_url("core/core-arrow--gray.png")
+    background-image: image_url("legacy/core-arrow--gray.png")
     background-position: 2px 10px
     background-repeat: no-repeat
 
 .icon--home
   @extend %image-replacement
-  @extend %sprite-core--standard
+  @extend %sprite-legacy--standard
   background-position: -126px -93px
   
 .nav__item--breadcrumbs--home 
@@ -130,16 +130,16 @@
   @extend %inline-block
   padding: 7px 8px 7px
   line-height: 18px
-  color: $nav-secondary-type
+  color: $nav-secondary-type--legacy
   &:hover
-    color: $nav-secondary-type-hover
+    color: $nav-secondary-type-hover--legacy
     text-decoration: none
   &:active
-    color: $nav-secondary-type
+    color: $nav-secondary-type--legacy
   &.current
     @include border-radius(4)
-    background-color: $nav-secondary-current-item-bck
-    color: $nav-secondary-type-active
+    background-color: $nav-secondary-current-item-bck--legacy
+    color: $nav-secondary-type-active--legacy
 
 
 // ----------------------------------------------------------------------------
@@ -162,7 +162,7 @@
 
 .nav-user__item--primary--basket
   @extend .icon--regular
-  @extend %sprite-core--standard
+  @extend %sprite-legacy--standard
   background-position: -61px -126px
   display: none
   float: right
@@ -174,7 +174,7 @@
   @extend %extra-small-type
   +border-radius(4)
   background: #fff
-  color: $nav-secondary-current-item-bck
+  color: $nav-secondary-current-item-bck--legacy
   margin-right: 14px
   float: right
   padding: 2px 3px 0
@@ -210,7 +210,7 @@
   position: relative
   &:after
     @extend %empty-abs-generated-content 
-    @extend %sprite-core--standard
+    @extend %sprite-legacy--standard
     background-position: -102px -137px
     top: 8px
     right: 0
@@ -292,7 +292,7 @@
     text-decoration: none
   &:after
     @extend %empty-abs-generated-content
-    @extend %sprite-core--standard
+    @extend %sprite-legacy--standard
     background-position: -98px -153px
     height: 36px
     right: 4px
@@ -312,7 +312,7 @@
     padding-left: 39px
     &:before
       @extend %empty-abs-generated-content
-      @extend %sprite-core--standard
+      @extend %sprite-legacy--standard
       top: 10px
 
 .nav__submenu__item--flights
@@ -380,7 +380,7 @@
 //  @extend %extra-small-type
 //  @include border-radius(4)
 //  background: #fff
-//  color: $nav-secondary-current-item-bck
+//  color: $nav-secondary-current-item-bck--legacy
 //  display: none
 //  float: right
 //  margin-right: 10px
