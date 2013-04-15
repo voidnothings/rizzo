@@ -9,15 +9,15 @@ module SnippetSupport
       "layouts/core/snippets/_cs_#{snippet}"
     else
       "layouts/#{scope}/snippets/_#{snippet}"
-    end  
+    end
   end
 
   def user_nav?(args)
     if args[:displaySignonWidget] == 'false' || args[:user_nav] == 'false'
       false
-    else 
+    else
       true
-    end  
+    end
   end
 
 end
