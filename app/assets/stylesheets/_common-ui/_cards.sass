@@ -401,3 +401,32 @@ $card-hotel-content-padding: 13px
 .card__feedback__comments
   @extend %comments-before
   @extend %left-icon-text
+
+// -----------------------------------------------------------------------------
+// Link card counds
+// -----------------------------------------------------------------------------
+
+.card__count
+  @extend %absolute
+  @extend %benton-regular
+  @extend %no-line-height
+  color: #fff
+  font-size: 20px
+  left: 10px
+  top: 20px
+  z-index: 5
+
+  &:before
+    font-size: 35px
+
+  .card--link--activities &
+    @extend %icon-image-poi-activity-before
+
+  .card--link--entertainment &
+    @extend %icon-image-poi-entertainment-before
+
+  .card--link--restaurants &
+    @extend %icon-image-poi-restaurant-before
+
+  .card--link--shopping &
+    @extend %icon-image-poi-shopping-before
