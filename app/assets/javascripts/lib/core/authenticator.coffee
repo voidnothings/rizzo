@@ -35,13 +35,13 @@ define ['jquery'], ($)->
       @emptyUserNav()
       joinElement = "<a class='nav__item nav__item--primary js-user-join js-nav-item' href='#{@options.registerLink}'>Join</a>"
       signinElement = "<a class='nav__item nav__item--primary js-user-signin js-nav-item' href='#{@signInUrl()}'>Sign-In</a>"
-      @el.prepend(signinElement + joinElement)
+      @el.append(signinElement + joinElement)
 
     showUserBox: ->
       @emptyUserNav()
       @el.addClass('is-signed-in')
       userBoxElement = "<div class='nav__item nav__item--user user-box js-user-box nav__submenu__trigger'><img class='user-box__img js-box-handler' src='#{@userAvatar()}'/></div>"
-      @el.prepend(userBoxElement)
+      @el.append(userBoxElement)
       $('.js-user-box').append(@userOptionsMenu())
 
     emptyUserNav: -> 
