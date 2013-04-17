@@ -46,9 +46,7 @@ module GlobalResourcesHelper
   end
 
   def secondary_nav_bar(args)
-
-    render :partial=>'layouts/core/snippets/secondary_navigation_bar', :locals=>{:section_name=>args[:section_name] || nil, :title=>args[:title], :parent=>args[:parent], :slug=>args[:parent_slug], :collection=>args[:collection] || [], :current=> args[:current] || nil}
-
+    render :partial=>'layouts/core/snippets/secondary_navigation_bar', :locals=> args
   end
 
   def cart_item_element
@@ -70,33 +68,18 @@ module GlobalResourcesHelper
       end
     end
   end
-  
-  def section_title(args)
-    capture_haml do
-      haml_tag(args[:is_body_title] ? :h1 : :div , class: 'header__title') do
-        if(args[:title])
-          haml_tag(:span, class: 'header__lead') do
-            haml_concat args[:title]
-          end  
-        end  
-        if(args[:section_name])
-          haml_concat args[:section_name]
-        end
-      end  
-    end  
-  end
 
-  def place_heading(title, parent, slug, section)
+  def place_heading(title, section_name, parent, parent_slug)
     capture_haml do
       haml_tag(:span, class: 'place-title') do
         haml_concat(title)
-        unless section.nil?
+        unless section_name.nil?
           haml_tag(:span, class: 'accessibility') do
-            haml_concat(" " + section)
+            haml_concat(" " + section_name)
           end
         end
         unless parent.nil?
-          haml_tag(:a, class: 'place-title__parent', href: "http://www.lonelyplanet.com/#{slug}") do
+          haml_tag(:a, class: 'place-title__parent', href: "http://www.lonelyplanet.com/#{parent_slug}") do
             haml_concat(", " + parent)
           end
         end
@@ -106,7 +89,6 @@ module GlobalResourcesHelper
   
   def errbit_notifier
     unless params[:errbit] == 'false'
-      # haml_tag(:script, src:"#{asset_path 'errbit_notifier.js'}")
       haml_tag(:script, src:"//rizzo.lonelyplanet.com/assets/errbit_notifier.js")
       haml_tag :script do
         haml_concat "window.Airbrake = (typeof(Airbrake) == 'undefined' && typeof(Hoptoad) != 'undefined') ? Hoptoad : Airbrake;"

@@ -1,7 +1,11 @@
 .row.row--secondary.row--core#js-secondary-nav
   .row__inner.row__inner--secondary
     .split--left.row__title--secondary
-      = place_heading(title, parent, slug, section_name || nil)
+      - if defined? is_body_title
+        %h1.place-title 
+          = title
+      - else
+        = place_heading(title, section_name, (defined? parent) ? parent : nil, (defined? parent_slug) ? parent_slug : nil)
 
     - if defined?(collection)
       .split--right.nav--inline.nav--secondary
