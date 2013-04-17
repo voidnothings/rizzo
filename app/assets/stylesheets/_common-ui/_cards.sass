@@ -127,29 +127,28 @@ $card-hotel-content-padding: 13px
       bottom: -6px
       font-size: 50px
       left: 83px
-      z-index: 5
 
   // link card fancy arrow colours
   .card--link--activities &
-    color: #12dccc
+    color: $link-card-activities
 
   .card--link--entertainment &
-    color: #47a899
+    color: $link-card-entertainment
 
   .card--link--tours &
-    color: #16c98d
+    color: $link-card-tours
 
   .card--link--lodgings &
-    color: #fa5e5b
+    color: $link-card-lodgings
 
   .card--link--restaurants &
-    color: #684e79
+    color: $link-card-restaurants
 
   .card--link--shopping &
-    color: #ffc83f
+    color: $link-card-shopping
 
   .card--link--sights &
-    color: #bf538d
+    color: $link-card-sights
 
 
 // -----------------------------------------------------------------------------
@@ -466,3 +465,6 @@ $card-hotel-content-padding: 13px
 
   .card--link--sights &
     @extend %icon-image-poi-sight-before
+
+  .card--link--tours &
+    @extend %icon-image-poi-tour-before
