@@ -27,7 +27,7 @@ describe GlobalResourcesHelper do
 
   end
 
-  context "section_title (legacy layout)" do
+  context "place_heading at city level" do
 
     before do
       class << helper
@@ -37,15 +37,37 @@ describe GlobalResourcesHelper do
       @args = {
         title: 'Lisbon',
         section_name: 'Hotels',
+        parent: 'portugal',
+        parent_slug: '/portugal/'
       } 
+     
     end
 
-    it { helper.section_title(@args).should have_css('span.header__lead'), text: 'Lisbon' } 
-    it { helper.section_title(@args).should_not have_css('h1.header__title', text:'Hotels') } 
-    it { helper.section_title(@args).should have_css('div.header__title', text:'Hotels') } 
-    it { helper.section_title(@args.merge({:is_body_title=>true})).should have_css('h1.header__title', text:'Hotels') } 
+    it { helper.place_heading(@args[:title], @args[:section_name], @args[:parent], @args[:parent_slug]).should have_css('span.place-title'), text: @args[:title] } 
+    it { helper.place_heading(@args[:title], @args[:section_name], @args[:parent], @args[:parent_slug]).should have_css('span.accessibility'), text: @args[:section_name] } 
+    it { helper.place_heading(@args[:title], @args[:section_name], @args[:parent], @args[:parent_slug]).should have_css('a.place-title__parent'), text: @args[:parent], href: @args[:parent_slug] }      
 
   end
+
+  context "place_heading at city level" do
+
+    before do
+      class << helper
+        include Haml, Haml::Helpers
+      end
+      helper.init_haml_helpers
+      @args = {
+        title: 'Lisbon',
+        section_name: 'Hotels'
+      }
+    end
+
+    it { helper.place_heading(@args[:title], @args[:section_name], @args[:parent], @args[:parent_slug]).should have_css('span.place-title'), text: @args[:title] } 
+    it { helper.place_heading(@args[:title], @args[:section_name], @args[:parent], @args[:parent_slug]).should have_css('span.accessibility'), text: @args[:section_name] } 
+    it { helper.place_heading(@args[:title], @args[:section_name], @args[:parent], @args[:parent_slug]).should_not have_css('a.place-title__parent'), text: @args[:parent], href: @args[:parent_slug] }      
+
+  end
+
 
   context "secondary-nav-bar" do
 
