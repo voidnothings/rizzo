@@ -35,7 +35,11 @@ input, textarea, select
   .nav__item--breadcrumbs, .nav__item--breadcrumbs--current
     line-height: 1em!important
 
-.nav--primary, .nav-primary--user, .nav--secondary
+.row--primary
+  margin-bottom: 0 !important
+  -webkit-font-smoothing: subpixel-antialiased !important
+
+.nav--primary, .nav-primary--user, .nav--secondary, .nav__submenu, .nav--primary--user
   a
     cursor: pointer
     &:hover
@@ -46,6 +50,7 @@ input, textarea, select
 
 .nav--secondary
   line-height: 18px
+  -webkit-font-smoothing: subpixel-antialiased !important
 
 .nav__item--secondary
   font-size: 12px !important
