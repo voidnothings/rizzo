@@ -10,19 +10,19 @@ require ['public/assets/javascripts/lib/components/accordion.js'], (Accordion) -
       beforeEach ->
         loadFixtures('accordion.html')
         window.myAccordion = new Accordion({parent: '.my-accordion'})
-      
+
       it 'hides all panels', ->
         expect($('#item1')).toHaveClass('is-closed')
         expect($('#item2')).toHaveClass('is-closed')
         expect($('#item3')).toHaveClass('is-closed')
         expect($('#item4')).toHaveClass('is-closed')
-      
+
       it 'opens panel 1', ->
         myAccordion.openPanel(0)
         expect($('#item1')).not.toHaveClass('is-closed')
         expect($('#item1')).toHaveClass('is-open')
 
-      it 'closes panel 1', -> 
+      it 'closes panel 1', ->
         myAccordion.closePanel(0)
         expect($('#item1')).not.toHaveClass('is-open')
         expect($('#item1')).toHaveClass('is-closed')
@@ -33,7 +33,6 @@ require ['public/assets/javascripts/lib/components/accordion.js'], (Accordion) -
         expect($('#item1')).toHaveClass('is-closed')
         expect($('#item2')).toHaveClass('is-open')
 
-    
     describe 'When only one panel is allowed to be open and we pass a selector', ->
       beforeEach ->
         loadFixtures('accordion.html')
@@ -66,9 +65,45 @@ require ['public/assets/javascripts/lib/components/accordion.js'], (Accordion) -
         expect($('#item2')).not.toHaveClass('is-closed')
         expect($('#item2')).toHaveClass('is-open')
 
+      it 'does not open panel 1 because state is blocked', ->
+        myAccordion.block()
+        $('#item1 .js-accordion-trigger').click()
+        expect($('#item1')).not.toHaveClass('is-open')
+        expect($('#item1')).toHaveClass('is-closed')
 
+      it 'opens panel 1 after state is unblocked', ->
+        myAccordion.block()
+        $('#item1 .js-accordion-trigger').click()
+        expect($('#item1')).toHaveClass('is-closed')
+        myAccordion.unblock()
+        $('#item1 .js-accordion-trigger').click()
+        expect($('#item1')).toHaveClass('is-open')
 
+    describe 'Animated heights', ->
 
+      describe 'When open and closed height is assumed by default', ->
+        beforeEach ->
+          loadFixtures('accordion.html')
+          window.myAccordion = new Accordion({parent: '.my-accordion', animateHeights: true})
+
+        it 'has a closed height', ->
+          assumedClosedHeight = $('.my-accordion').find('.js-accordion-trigger').outerHeight()
+          expect($('#item1').data('closed')).toEqual(assumedClosedHeight)
+
+        it 'has an open height', ->
+          assumedOpenHeight = $('.my-accordion').find('.js-accordion-trigger').outerHeight()
+          expect($('#item1').data('open')).toEqual(assumedOpenHeight)
+
+      describe 'When open and closed height is specified', ->
+        beforeEach ->
+          loadFixtures('accordion.html')
+          window.myAccordion = new Accordion({parent: '.my-accordion', animateHeights: true, openHeight: 250, height: 50})
+
+        it 'has an explicit closed height', ->
+          expect($('#item1').data('closed')).toEqual(50)
+
+        it 'has an explicit open height', ->
+          expect($('#item1').data('open')).toEqual(250)
 
 
 
