@@ -4,28 +4,35 @@
 // 
 // -----------------------------------------------------------------------------
 
-$default-card-width: 190px
-$option-card-width: 192px
+.card-holder
+  @extend %grid-wrapper-10
 
-$gutter: 10px
+.stack
+  margin-left: 10px
+  .card--single + &
+    @extend %margin-grid-column-10
+    width: ($card-width * 4) + ($card-gutter * 3)
 
 .card--single
   @extend %margin-grid-column-10
-  width: $default-card-width
-  .full-width &
-    width: $option-card-width
+  width: $card-width
 
 .card--double
   @extend %margin-grid-column-10
-  width: ($default-card-width * 2) + $gutter
-  .full-width &
-    width: ($option-card-width * 2) + $gutter
+  width: ($card-width * 2) + $card-gutter
 
 .card--triple
   @extend %margin-grid-column-10
-  width: ($default-card-width * 3) + ($gutter * 2)
-  .full-width &
-    width: ($option-card-width * 3) + $gutter
+  width: ($card-width * 3) + ($card-gutter * 2)
+
+.card--quadruple
+  @extend %margin-grid-column-10
+  width: ($card-width * 4) + ($card-gutter * 3)
+
+.card--full-width
+  margin-left: 10px
+  float: none
+  width: auto
 
 
 // -----------------------------------------------------------------------------

@@ -51,7 +51,11 @@ input, textarea, select
   font-size: 12px !important
 
 .row--content
+  position: relative
+  // Ensure that the primary--nav dropdowns sit above mpu units
+  z-index: 1
   margin-bottom: 18px
+  font-size: 12px
   background-color:  #fff!important
   [id*=mediaBlock] &
     background-color: #000 !important
@@ -92,10 +96,148 @@ input, textarea, select
   color: white !important
 
 /* Pages with Wallpapers */
-html
+html.ad-wallpaper
   overflow-x: hidden !important
 
-.ad-wallpaper 
+body.ad-wallpaper 
   overflow-x: visible !important
   .row--content
     background-color: transparent !important
+    
+// Thorntree
+
+.tt_post_form 
+  a > img
+    @extend %inline-block
+  input[type="button"], input[type="submit"], .jive-main-button
+    -webkit-appearance: push-button
+    cursor: pointer
+    padding: 5px
+
+#forum
+  font-size: 12px !important
+  strong, b
+    font-weight: bold
+  .container, #lightbox
+    input, textarea
+      border: 1px solid #CFCBCB
+  input[type="image"]
+    border: none !important
+
+.advancedTTSearch
+  font-size: 12px !important
+  #mainContent
+    input, textarea
+      padding: 5px
+      border: 1px solid #CFCBCB !important
+    input[type="image"]
+      border: none !important
+
+
+// Shop
+
+#sideBar
+  #shoppingCart 
+    input
+      height: 16px
+      margin-top: -2px
+      padding: 2px
+  
+.bookPricePurch
+  .orangeAngleButton
+    overflow: hidden !important
+
+
+// Statler
+.globalListControls 
+  .paginateControls 
+    div
+      position: static !important
+      line-height: 12px !important
+
+// Destinations
+
+#contentBody
+  h3
+    font-weight: bold
+  em
+    font-style: italic
+  h2
+    > strong
+      font-weight: normal
+    + h3
+      margin-top: 1em
+
+.formtastic
+  border: 1px solid #CFCBCB
+
+body.contact
+  .formtastic
+    border: none !important
+    input, textarea
+      border: 1px solid #CFCBCB
+
+#flightWidget 
+  fieldset 
+    input
+      border: 1px solid #CFCBCB
+      padding: 4px 2px !important
+
+body.reportAbuse 
+  background: none !important
+  #mainContent 
+    textarea
+      border: 1px solid #CFCBCB
+
+.featureArticle #contentBody,
+.fastFacts
+  strong
+    font-weight: bold
+
+#mediaBlock-standalone
+  #languageSelect
+    background: white !important
+    color: #444 !important
+
+#bookableSidebar,
+#bookableContent
+  h3
+    font-weight: bold
+
+// Microsites
+.text--legal
+  width: 500px
+
+
+
+// Report abuse
+body.reportAbuse
+  background: none !important
+
+// Groups
+#profiles #mainContent form .termsConditions #termsConditions
+  overflow: auto !important
+  border: 1px solid #CFCBCB
+
+// blog changes
+.blog
+  h3,
+  strong
+    font-weight: bold
+  em
+    font-style: italic
+
+// Somehow we have introduced size 11px text all across the site
+// important for now as some CSS files are conflicting
+// wait and see if we get any feedback
+body
+  font-size: 12px !important
+
+.search__input--primary
+  font-size: 15px
+
+// Ads
+
+#expandableTop
+  background-color: #124385
+  padding: 5px 0 0

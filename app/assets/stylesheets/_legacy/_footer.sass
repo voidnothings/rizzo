@@ -4,110 +4,109 @@
 // 
 // ----------------------------------------------------------------------------
 
-footer
-  .info
-    background: #f2f2e8
-    border-top: 1px solid #dfdeda
-    border-bottom: 1px solid #ddddd5
-    clear: both
-    overflow: hidden
-    padding: 16px 0 21px
-    margin: 21px auto 0 auto
-    float: left
-    width: 100%
-    .src
-      h2
-        display: none
-      nav
-        a
-          float: left
-          margin-right: 5px
-          margin-right: 38px
-          padding-left: 39px
-          height: 36px
+.row--footer--follow-us
+  background: #f2f2e8
+  border-top: 1px solid #dfdeda
+  border-bottom: 1px solid #ddddd5
+  margin: 21px auto 0
 
-          &:hover
-            text-decoration: underline
-            color: #333!important
-          h3
-            color: #333
-            font-size: 1.15em
-            font-weight: bold
-            margin: 0
-            padding: 0
-          p
-            font-size: 0.9em
-            color: #666
-        a.newsletter
-          @include icn-newsletter
-        a.mobile
-          @include icn-mobile
-        a.follow
-          @include icn-follow
-        a.blogs
-          @include icn-blogs
-        a.magazine
-          @include icn-magazine
-          margin-right: 0
-  .src
-    margin: 0 auto
-    width: 965px
-  .foot
-    width: 100%
-    clear: both
-    overflow: hidden
-    padding: 21px 0 0
-    height: 130px
-    @include footer-shadow-stripe
-    .src
-      nav
-        float: left
-        margin: 0 0 17px 5px
-        a
-          float: left
-          margin-right: 24px
-          color: #333
-          &:hover
-            text-decoration: underline
-      form
-        float: right
-        text-align: right
-        position: relative
-        top: -2px
-        left: 0
-        label
-          float: none
-          display: inline
-          width: auto
-          font-weight: normal
-          text-transform: none
-          color: #333
-          padding: 0
-          font-size: 0.9em
-        select
-          border: 0
-          background: #c0bdb8
-          font-weight: bold
-          font-size: 0.9em
-          padding: 2px
-          width: 100px
-        input
-          display: none
-      > div
-        border-top: 1px solid #c0bdb8
-        padding: 24px 0 21px 0
-        font-size: 0.9em
-        clear: both
-        width: 100%
-        > a
-          float: left
-          margin-right: 21px
-          @include img-footer-logo
-          width: 83px
-          height: 41px
-        p
-          padding: 4px 0 0 21px
+.row--footer--about
+  @include footer-shadow-stripe
 
+.nav--footer
+  @extend %clearfix
+
+.nav--follow-us  
+  padding: 16px 0 21px
+  margin-right: -44px
+
+.nav--about
+  padding: 18px 0
+  margin-right: -44px  
+
+.nav__item  
+  float: left
+
+.nav__item--footer
+  color: #333
+  font-weight: bold
+  font-size: 14px
+  margin-right: 44px
+  padding: 0 0 0 40px
+  &:hover
+    text-decoration: underline
+    color: #666!important
+  
+.nav__item--lead
+  padding: 4px 0
+  font-size: 11px
+  font-weight: normal
+  color: #666
+  &:hover
+    text-decoration: none!important
+
+.nav__item--newsletter
+  @extend .nav__item--footer
+  @include icn-newsletter
+.nav__item--mobile
+  @extend .nav__item--footer
+  @include icn-mobile
+.nav__item--follow
+  @extend .nav__item--footer
+  @include icn-follow
+.nav__item--blogs
+  @extend .nav__item--footer
+  @include icn-blogs
+.nav__item--magazine
+  @extend .nav__item--footer
+  @include icn-magazine
+
+.nav__item--about
+  padding: 4px 0
+  margin-right: 24px
+  font-size: 12px
+  color: #333
+  float: left
+  &:hover
+    text-decoration: underline
+
+.legal__logo
+  float: left
+  margin-right: 22px
+  @include img-footer-logo
+  width: 83px
+  height: 41px
+
+.legal
+  border-top: 1px solid #c0bdb8
+  padding: 24px 0 21px 0
+
+.legal__copy
+  margin: 0
+  font-size: 11px
+  padding: 6px 0 3px  
+
+.language
+  margin-right: 44px
+  text-align: right
+.language__label
+  float: none
+  display: inline
+  width: auto
+  font-weight: normal
+  text-transform: none
+  color: #333
+  padding: 0
+  font-size: 0.9em
+.language__select
+  border: 0
+  background: #c0bdb8
+  font-weight: bold
+  font-size: 0.9em
+  padding: 2px
+  width: 100px
+.language__button
+  display: none
 
 // -----------------------------------------------------------------------------
 // Backwards compatability - revert the font size for the $$legacy header/footer
@@ -131,5 +130,6 @@ nav.primary, #breadcrumbWrap, footer > .info, footer > .foot
 #infoSourcesWrap
   p
     margin-bottom: 0
+
 
 

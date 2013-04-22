@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------------
 // 
-// Header Footer
+// Legacy Header
 // 
 // ----------------------------------------------------------------------------
 
@@ -9,207 +9,134 @@
   @include arrows-spt(-7px,-102px)
 @mixin icon-chevron-forward
   @include arrows-spt(-3px,-2px)
+@mixin mainNav-li-current
+  background-color: #D6CDC0
+  border-bottom: 1px solid #D6CDC0
+  a
+    color: #000
 
-.skip
+
+.row
+  @extend %clearfix
+
+.row__inner
+  margin: 0 auto
+  width: 968px
+
+.row__inner--expanded
+  margin: 20px auto
+  width: 1000px
+
+li
+  list-style: none
+
+.acceessibility
   position: fixed
   top: -9999px
   z-index: 999999
   left: -9999px
 
-.wrap > header
+.row--leaderboard
+  height: 108px
   background-color: #0a4f9c
-  .hwrap
-    width: 960px
-    height: 108px
-    z-index: 99999
-    position: relative
-    margin: 0 auto
-  .logo
-    margin: 0 auto
-    z-index: 10000
-    float: left
-    width: 214px
-    a.home
-      display: block
-      @include img-logo-lp
-      width: 123px
-      height: 65px
-      margin: 5px 0 0 40px
-    form
-      padding: 0
-      display: block
-      margin-top: 8px
-      input
-        border: 0
-        width: 134px
-        padding: 4px 
-        margin-right: 4px
-        font-weight: bold
-        line-height: 15px
-        height: 15px
-        float: left
-        color: #0a4f9c
-      button
-        +btn-search-bck
-        +box-shadow(0, 0, 0)
-        @extend %extra-small-type
-        display: table-cell
-        height: 24px
-        line-height: 12px
-        width: 52px
-        color: #3062A0
-        text-align: center
-        padding: 0
-        &:hover
-          @include btn-search-bck-hover
+
+.search--global
+  float: left
+  margin: 5px 0 5px 0px
+
+.lp--logo--home
+  margin: 0 auto
+  @include img-logo-lp
+  display: block
+  width: 123px
+  height: 65px
+
+.search__input--global  
+  border: 0
+  width: 134px
+  padding: 4px 
+  margin-right: 4px
+  font-weight: bold
+  line-height: 15px
+  height: 15px
+  float: left
+  color: #0a4f9c
+
+.search__button--global
+  +btn-search-bck
+  +box-shadow(0, 0, 0)
+  @extend %extra-small-type
+  display: table-cell
+  width: 52px
+  line-height: 18px
+  height: 22px
+  color: #3062A0
+  text-align: center
+  &:hover
+    @include btn-search-bck-hover
+
+.ad--leaderboard
+  float: left
+
+.leaderboard
+  float: right
+  margin-top: 5px
+  @include leaderboard-ad-notice 
+  padding-right: 10px
+  .leaderboardInner 
+    padding: 4px 4px 0 4px
+    background: #467AB4 url(http://static.lonelyplanet.com/static-ui/style/leaderboard-loader.gif) 50% 50% no-repeat
+    width: 728px
+    min-height: 94px
 
 // global header primary navigation
 body.ie7, body.ie8
   iframe
     overflow: hidden
 
-nav.primary
-  display: block
+.row--primary
   background: #f5eee6
   border-bottom: 1px solid #bcb2a4
   height: 44px
-  width: 100%
+
+.nav--primary
+  @extend %clearfix
+  padding-top: 10px
+
+.nav__item--primary  
+  +border-radius-each(2, 2, 0, 0)
+  text-decoration: none
+  background-color: #EAE1D8
+  line-height: 34px
+  float: left
+  text-decoration: none
+  font-weight: bold
+  color: #645e58
+  padding: 0px 10px
+  margin-right: 3px
+  font-size: 12px
+  &.current
+    background-color: #d6cdc0!important
+    border-bottom: 1px solid #D6CDC0
+    color: #000
+  &:hover
+    background-color: #e0d6cc
+    text-decoration: none
+
+.nav__item--destinations 
   position: relative
-  z-index: 9000
-  > ul
-    width: 960px
-    margin: 0 auto 0
-    padding-top: 10px
-    > li
-      float: left
-      background-color: #EAE1D8
-      margin-right: 3px
-      +border-radius-each(2, 2, 0, 0)
-      &.current
-        background-color: #D6CDC0
-        border-bottom: 1px solid #D6CDC0
-        a
-          color: #000
-      &:hover
-        background-color: #e0d6cc
-      > a
-        line-height: 34px
-      > a, p > a
-        float: left
-        text-decoration: none
-        font-weight: bold
-        color: #645e58
-        padding: 0px 10px
-        span
-          padding: 0
-
-      &.destinations
-        position: relative
-        > a
-          padding-right: 4px
-          display: block
-        > .arrow
-          float: left
-          width: 16px
-          height: 16px
-          display: block
-          margin: 9px 9px 0 0 
-          @include btn-arrow-down
-          cursor: pointer
-          &:hover
-            @include btn-arrow-down-hover
-        &:hover
-          > .arrow
-            @include btn-arrow-down-tab-hover
-
-nav.primary
-  li
-    &.globalCartHead
-      float: right
-      @include icn-cart-nav
-      a
-        line-height: 18px
-        padding: 6px 8px 6px 35px
-        color: #0077cc
-    &.globalCartHead, &.signInRegister p
-      &:hover
-        a
-          text-decoration: underline
-
-    &.cartDivider
-      border-left: 1px solid #CCCCCC
-      min-width: 128px
-  
-    &.signInRegister, &.globalCartHead
-      &:hover
-        background-color: transparent
-
-    &.signInRegister
-      &:hover
-        background-color: transparent
-      line-height: 28px
-      background: transparent
-      float: right
-      margin-right: 0
-      width: 10.5em
-      button
-        float: right
-        color: #fff
-        &.signInButton
-          @extend %extra-small-type
-          height: 26px
-          line-height: 22px
-          width: 59px
-          background-color: #0084cd
-          @include border-radius(3)
-          padding: 0
-          &:hover
-            background-color: #07408a
-      p
-        @extend %small-type
-        float: right
-        margin-right: 0
-        a
-          color: #044388
-
-    &.userLoggedIn
-      position: relative
-      z-index: 12
-      float: right
-      margin-right: 0
-      .member
-        float: left
-        padding: 0
-      > a
-        padding: 0
-        float: left
-        line-height: 1em
-        display: block
-      img
-        background-color: #f3f3f3
-        float: left
-      span.loggedInUsername
-        line-height: 2.2em
-        padding: 0 6px
-        float: left
-      .arrow
-        float: left
-      .unread
-        float: left
-        padding: 8px 5px 8px 20px
-        font-weight: normal
-        @include icn-mail-no-msg
-        border-right: 1px solid #B3ABA0
-        &.newMail
-          @include icn-mail-msg
-          font-weight: bold
-li
-  span.arrow
+  padding-right: 36px
+  > a
+    padding-right: 4px
+    display: block
+  > .arrow
+    position: absolute
+    right: 0px
+    top: 0px
     width: 16px
     height: 16px
     display: block
-    float: right
-    margin: 6px 9px 6px 4px
+    margin: 9px 9px 0 0 
     @include btn-arrow-down
     cursor: pointer
     &:hover
@@ -218,35 +145,156 @@ li
     > .arrow
       @include btn-arrow-down-tab-hover
 
+.nav__item--cart
+  @include icn-cart-nav
+  float: right
+  line-height: 18px
+  font-size: 12px
+  font-weight: bold
+  padding: 6px 12px 6px 35px
+  color: #07c
+  border-right: 1px solid #CCCCCC
+  // min-width: 128px
 
-.hidden
-  display: none
 
-li.destinations
-  ul.menu
-    width: 205px
-li.userLoggedIn    
-  ul.menu
-    right: 0
-    li
-      &:hover
-        background-color: transparent
-      &.signout
-        border-top: 1px solid #B3ABA0
-        @include icon-chevron-forward
-        padding-left: 15px
+.nav__item--cart, .nav__item--user
+  &:hover
+    text-decoration: underline
 
-      
+.nav__item--register
+  &.signInRegister, &.globalCartHead
+    &:hover
+      background-color: transparent
 
-ul.menu
-  background-color: #e0d6cc
+.nav__item--user   
+  line-height: 28px
+  background: transparent
+  float: right
+  margin-right: 0
+  &:hover
+    background-color: transparent
+    text-decoration: none
+
+.user--button--signin
+  @include border-radius(3)
+  font-size: 11px
+  color: #fff
+  float: right
+  height: 26px
+  line-height: 26px
+  width: 59px
+  background-color: #0084cd
+  padding: 0
+  &:hover
+    background-color: #07408a
+
+.user--button--register
+  margin: 0 10px
+  font-size: 12px
+  font-weight: bold
+  color: #044388
+
+.user--logged-in
+  background-color: #EAE1D8
+  position: relative
+  z-index: 12
+  float: right
+  margin-right: 0
+  cursor: pointer
+  &:hover
+    background-color: #d6cdc0
+
+.user__img
+  background-color: #f3f3f3
+  float: left
+
+.user__name
+  float: left
+  font-size: 12px
+  height: 18px
+  padding: 0 10px
+  line-height: 2.2em
+  font-weight: bold
+  color: #645e58
+  max-width: 130px
+  overflow: hidden
+  display: block
+  text-overflow: ellipsis
+
+.user__msg-unread
+  float: left
+  padding: 0 5px 0 20px
+  font-weight: normal
+  color: #645e58
+  line-height: 2.4em
+  @include icn-mail-no-msg
+  border-right: 1px solid #B3ABA0
+  font-size: 12px
+
+.user__msg-new
+  @include icn-mail-msg
+  font-weight: bold
+
+
+.user-nav__arrow
+  width: 16px
+  height: 16px
+  display: block
+  float: right
+  margin: 6px 4px
+  @include btn-arrow-down
+  cursor: pointer
+  &:hover
+    @include btn-arrow-down-hover
+
+.nav__item--user
+  &:hover
+    .user-nav__arrow
+      @include btn-arrow-down-tab-hover
+
+.nav__item--user
+  .user-nav__menu
+    display: none 
+  
+.user-nav__menu
+  background-color: #EAE1D8
   position: absolute
-  font-size: 1em
+  left: 0
+  right: 0
+  top: 100%
   border-bottom: 1px solid #bcb1a4
   border-right: 1px solid #bcb1a4
   border-left: 1px solid #bcb1a4
-  top: 100%
+  &:hover
+    background-color: #d6cdc0
+
+.user-nav__item
+  font-size: 12px
+  padding: 3px 0 3px
+  margin: 0 8px
+  color: #333
+
+.user-nav__item--last
+  border-top: 1px solid #B3ABA0
+  @include arrows-spt(-3px, 1px)
+  display: block
+  padding: 0 0 0 16px
+
+.hidden, .is-hidden
+  display: none
+
+ul.menu
+  background-color: #e0d6cc
+  border-bottom: 1px solid #bcb1a4
+  border-left: 1px solid #bcb1a4
+  border-right: 1px solid #bcb1a4
+  font-size: 12px
   left: 0
+  line-height: 18px
+  position: absolute
+  top: 100%
+  width: 205px
+  z-index: 10
   &.noHeading
     padding-top: 1em
   li
@@ -254,22 +302,22 @@ ul.menu
     margin: 0 7px 0.5em 7px
     padding: 2px 0 2px 3px
     a
-      line-height: 1.5
+      padding: 0
       color: #333
       &:hover
         text-decoration: underline
-    .submenu
-      li
-        padding: 0 0 0 3px
 
-    div.submenu    
-      background-color: #e0d6cc
-      position: absolute
-      top: 0
-      left: 100%
-      padding: 10px 0 10px 10px
-      border: 1px solid #969696
+.submenu    
+  li
+    padding: 0 0 0 3px
+  background-color: #e0d6cc
+  position: absolute
+  top: 0
+  left: 100%
+  padding: 10px 0 10px 10px
+  border: 1px solid #969696
 
+// 
 ul.menu 
   li.head
     font-weight: bold
@@ -291,120 +339,53 @@ ul.menu
       @include btn-arrow-right
       &:hover
         @include btn-arrow-right-hover
-
-  .submenu
-    &.col1
-      width: 150px
-    &.col2
-      width: 300px
-    &.col3
-      width: 450px
-    &.col4
-      width: 600px
-    &.col5
-      width: 750px
-    ul
-      width: 150px
-      float: left
-      li
-        padding:  0 0 3px
-
-header.title
-  border-bottom: 14px solid transparent
-  .inner-shadow
-    height: 8px
-    @include title-bar-inner-shadow
-  &.green
-    background-color: #409C20
-    border-bottom-color: #347B1D
-  &.aqua
-    background-color: #039BB2
-    border-bottom-color: #04899C
-  h1
-    font-weight: normal
-    line-height: 1.1
-    padding: 0 10px
-    color: #fff
-    width: 940px
-    margin: 0 auto -5px
-    @include font-size(30)
-    span
-      width: 100%
-      display: block
-      @extend %small-type
-
-nav.ttd, div.ttd
-  @include bck-ttd-nav
-  height: 72px
-  margin-bottom: 10px
-  padding: 10px 0 10px
-  float: left
-  margin-top: 20px
-  width: 100%
-  a
+// 
+.submenu
+  &.col1
+    width: 150px
+  &.col2
+    width: 300px
+  &.col3
+    width: 450px
+  &.col4
+    width: 600px
+  &.col5
+    width: 750px
+  ul
+    width: 150px
     float: left
-    min-width: 40px
-    margin: 5px 9px
-    display: block
-    color: #000
-    font-weight: bold
-    padding: 7px 10px 7px 38px
-    font-size: 0.9em
-    +vertically-center(28)
-    +border-radius(20)
-    span
-      color: #666
-      display: block
-      clear: both  
-    &.all
-      @include icn-ttd-all
-      margin-left: 20px
-    &.activities 
-      @include icn-ttd-activities
-    &.entertainment
-      @include icn-ttd-entertainment
-    &.restaurants
-      @include icn-ttd-restaurants
-    &.shopping
-      @include icn-ttd-shopping
-    &.sights
-      @include icn-ttd-sights
-    &.tours
-      @include icn-ttd-tours
-    &.hotels
-      @include icn-ttd-hotels
-    &:hover
-      background-color: #eee
-      +text-shadow(1, 1, 1, #fff)
-      text-decoration: none
-    &:active
-      background-color: #dedede 
-    &.current
-      background-color: #e5e5e5
-      +text-shadow(1, 1, 1, #fff)
-    &.last
-      margin-right: 0
+    li
+      padding:  0 0 3px
 
-.leaderboard
-  float: right
-  margin-top: 5px
-  @include leaderboard-ad-notice 
-  padding-right: 10px
-  .leaderboardInner 
-    padding: 4px 4px 0 4px
-    background: #467AB4 url(http://static.lonelyplanet.com/static-ui/style/leaderboard-loader.gif) 50% 50% no-repeat
-    width: 728px
-    min-height: 94px
+.row__inner--shadow
+  height: 8px
+  @include title-bar-inner-shadow
 
+.row--header--green
+  border-bottom: 14px solid transparent
+  background-color: #409c20
+  border-bottom-color: #347b1d
+
+.row__inner--header
+  padding: 0 0 0 20px
+  color: #fff
+
+.header__lead
+  @extend %small-type
+  font-weight: normal
+  display: block
+  line-height: 18px
+
+.header__title
+  @include font-size(30)
+  font-weight: normal
+  line-height: 24px
 
 // Breadcrumb 
 
 #breadcrumbWrap
   background: #d6ccc0
   height: 40px
-  &.posChange
-    position: relative
-    z-index: 8011
 
 #breadcrumb
   line-height: 1.4
@@ -459,7 +440,6 @@ input[type='text'].searchText
   margin-bottom: 0
 
 // Global static overrides - $$Legacy - Remove when possible
-//
 
 .clearfix
   display: block
