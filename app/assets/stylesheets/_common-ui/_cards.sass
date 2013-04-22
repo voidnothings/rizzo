@@ -97,18 +97,14 @@ $card-hotel-content-padding: 13px
   .card--hotel.has-image &
     height: $card-image-height
 
-  // single link cards have taller images
-  .card--link &
-    height: $stack-card-image-height
-
   // half-height cards are all image
   .card--half-height &
     height: $card-grid-half-height
 
-  // gallery cards have a border around their image
-  .card--gallery &
-    height: $card-grid-half-height - 20px
-    margin: 10px
+  // video cards have a border around their image
+  .card--video &
+    height: $card-grid-half-height - 14px
+    margin: 7px
 
   // double stack cards have full height images
   .card--link.card--double &
@@ -119,6 +115,42 @@ $card-hotel-content-padding: 13px
     @extend %absolute-bottom
     height: 100%
     max-width: none
+
+  // single link cards have taller images and fancy arrows
+  .card--link &
+    @extend %curly-arrow-bottom-before
+    height: $stack-card-image-height
+    overflow: visible
+
+    &:before
+      @extend %absolute
+      @extend %benton-regular
+      @extend %no-line-height
+      bottom: -6px
+      font-size: 50px
+      left: 83px
+
+  // link card fancy arrow colours
+  .card--link--activities &
+    color: $link-card-activities
+
+  .card--link--entertainment &
+    color: $link-card-entertainment
+
+  .card--link--tours &
+    color: $link-card-tours
+
+  .card--link--lodgings &
+    color: $link-card-lodgings
+
+  .card--link--restaurants &
+    color: $link-card-restaurants
+
+  .card--link--shopping &
+    color: $link-card-shopping
+
+  .card--link--sights &
+    color: $link-card-sights
 
 
 // -----------------------------------------------------------------------------
@@ -286,6 +318,8 @@ $card-hotel-content-padding: 13px
   &:before
     @extend %benton-regular
     @extend %no-line-height
+    cursor: pointer
+    pointer-events: none
     font-size: 69px
     position: absolute
     z-index: 5
@@ -401,3 +435,38 @@ $card-hotel-content-padding: 13px
 .card__feedback__comments
   @extend %comments-before
   @extend %left-icon-text
+
+// -----------------------------------------------------------------------------
+// Link card counts
+// -----------------------------------------------------------------------------
+
+.card__item-count
+  @extend %absolute
+  @extend %benton-regular
+  @extend %no-line-height
+  color: #fff
+  font-size: 20px
+  left: 10px
+  top: 20px
+  z-index: 5
+
+  &:before
+    font-size: 35px
+
+  .card--link--activities &
+    @extend %icon-image-poi-activity-before
+
+  .card--link--entertainment &
+    @extend %icon-image-poi-entertainment-before
+
+  .card--link--restaurants &
+    @extend %icon-image-poi-restaurant-before
+
+  .card--link--shopping &
+    @extend %icon-image-poi-shopping-before
+
+  .card--link--sights &
+    @extend %icon-image-poi-sight-before
+
+  .card--link--tours &
+    @extend %icon-image-poi-tour-before
