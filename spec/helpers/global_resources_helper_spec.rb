@@ -39,10 +39,8 @@ describe GlobalResourcesHelper do
         section_name: 'Hotels',
         parent: 'portugal',
         parent_slug: '/portugal/'
-      } 
-     
+      }
     end
-
     it { helper.place_heading(@args[:title], @args[:section_name], @args[:parent], @args[:parent_slug]).should have_css('span.place-title'), text: @args[:title] } 
     it { helper.place_heading(@args[:title], @args[:section_name], @args[:parent], @args[:parent_slug]).should have_css('span.accessibility'), text: @args[:section_name] } 
     it { helper.place_heading(@args[:title], @args[:section_name], @args[:parent], @args[:parent_slug]).should have_css('a.place-title__parent'), text: @args[:parent], href: @args[:parent_slug] }      
@@ -61,7 +59,6 @@ describe GlobalResourcesHelper do
         section_name: 'Hotels'
       }
     end
-
     it { helper.place_heading(@args[:title], @args[:section_name], @args[:parent], @args[:parent_slug]).should have_css('span.place-title'), text: @args[:title] } 
     it { helper.place_heading(@args[:title], @args[:section_name], @args[:parent], @args[:parent_slug]).should have_css('span.accessibility'), text: @args[:section_name] } 
     it { helper.place_heading(@args[:title], @args[:section_name], @args[:parent], @args[:parent_slug]).should_not have_css('a.place-title__parent'), text: @args[:parent], href: @args[:parent_slug] }      
