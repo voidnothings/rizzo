@@ -64,7 +64,7 @@ define ['jquery'], ($)->
       "https://secure.lonelyplanet.com/sign-in/login?service=#{escape(window.location)}"
     
     userAvatar: ->
-      "http:#{@options.membersUrl}/#{@lpUserName}/mugshot/mini"
+      "#{@options.membersUrl}/#{@lpUserName}/mugshot/mini"
 
     update: ->
       @setLocalData("lp-uname", window.lpLoggedInUsername)
