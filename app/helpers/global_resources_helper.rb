@@ -113,19 +113,12 @@ module GlobalResourcesHelper
     render :partial=>'layouts/core/snippets/footer_breadcrumbs', locals: {breadcrumbs: breadcrumb_content || []}
   end
   
-  def breadcrumb_for(breadcrumb_content=[])
+  def breadcrumb_for(breadcrumb)
     capture_haml do
-      haml_tag(:div, id: 'breadcrumbWrap', class: 'posChange') do
-        haml_tag(:ol, id: 'breadcrumb') do
-          breadcrumb_content.each_with_index do |item, index|
-            li_class = index == breadcrumb_content.size-1 ? "breadcrumb-item last" : "breadcrumb-item twoCol"
-            if item[:slug].blank?
-              haml_tag(:li, class: li_class) { haml_tag(:span, class: 'breadcrumb-item-title') { haml_concat item[:place] } }
-            else
-              haml_tag(:li, class: li_class) { haml_tag(:a, class: 'breadcrumb-item-title', href: "http://www.lonelyplanet.com/#{item[:slug]}") { haml_concat item[:place] } }
-            end
-          end
-        end
+      if breadcrumb[:slug].blank?
+        haml_tag(:span, class: "nav__item js-nav-item nav__item--breadcrumbs current", itemprop: "url") { haml_concat breadcrumb[:place] }
+      else
+        haml_tag(:a, class: "nav__item js-nav-item nav__item--breadcrumbs", href: "http://www.lonelyplanet.com/#{breadcrumb[:slug]}", itemprop:"url") { haml_concat breadcrumb[:place] } 
       end
     end
   end  
