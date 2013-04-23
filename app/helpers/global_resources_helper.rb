@@ -44,6 +44,15 @@ module GlobalResourcesHelper
       {:title=>'Images & Video', :url=>'#'}
     ]
   end
+  
+  def default_breadcrumbs
+    [
+      {:place=>"South America", :slug=>"south-america"},
+      {:place=>"Argentina", :slug=>"argentina"},
+      {:place=>"Buenos Aires", :slug=>"buneos-aires"},
+      {:place=>"Buenos Aires Hotels", "slug"=>nil}
+    ]
+  end
 
   def secondary_nav_bar(args)
     render :partial=>'layouts/core/snippets/secondary_navigation_bar', :locals=> args
