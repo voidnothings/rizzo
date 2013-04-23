@@ -36,13 +36,21 @@ module GlobalResourcesHelper
   end
 
   def default_secondary_nav
-    [
-      {:title=>'Overview', :url=>'#'},
-      {:title=>'Things to do', :url=>'#'},
-      {:title=>'Hotels', :url=>'#'},
-      {:title=>'Tips & Articles', :url=>'#'},
-      {:title=>'Images & Video', :url=>'#'}
-    ]
+    {
+      title: 'Buenos Aires',
+      section_name: 'Hotels',
+      slug: 'buenos-aires',
+      parent: 'Argentina',
+      parent_slug: "argentina",
+      collection: 
+        [
+          {:title=>'Overview', :url=>'#'},
+          {:title=>'Things to do', :url=>'#'},
+          {:title=>'Hotels', :url=>'#'},
+          {:title=>'Tips & Articles', :url=>'#'},
+          {:title=>'Images & Video', :url=>'#'}
+        ]
+    }
   end
   
   def default_breadcrumbs
@@ -78,10 +86,12 @@ module GlobalResourcesHelper
     end
   end
 
-  def place_heading(title, section_name, parent, parent_slug)
+  def place_heading(title, section_name, slug, parent, parent_slug)
     capture_haml do
-      haml_tag(:span, class: 'place-title') do
-        haml_concat(title)
+      haml_tag(:div, class: 'place-title') do
+        haml_tag(:a, class: 'place-title-heading', href: "http://www.lonelyplanet.com/#{slug}") do
+          haml_concat(title)
+        end
         unless section_name.nil?
           haml_tag(:span, class: 'accessibility') do
             haml_concat(" " + section_name)
