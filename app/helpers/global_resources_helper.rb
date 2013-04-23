@@ -38,7 +38,7 @@ module GlobalResourcesHelper
       {title:'Shop', uri: "http://shop.lonelyplanet.com"},
       {title:'Thorn Tree Forum', uri: "http://www.lonelyplanet.com/thorntree"},
       {title:'Bookings',
-        uri: 'http://www.lonelyplanet.com/flights/',
+        uri: 'http://www.lonelyplanet.com/hotels/',
         submenu: [
           {title:'Hotels', uri:'http://www.lonelyplanet.com/hotels', style:'hotels'},
           {title:'Flights', uri:'http://www.lonelyplanet.com/flights/', style:'flights'},
