@@ -22,12 +22,14 @@
 // 
 // ----------------------------------------------------------------------------
 
-
-.nav__item--primary, .nav__item--user
+%nav__item--look
   &, &:active
     color: $nav-primary-type
   &:hover
     color: $nav-primary-type-hover
+
+.nav__item--primary, .nav__item--user
+  @extend %nav__item--look
 
 .nav__item--primary
   padding: 20px 8px
@@ -90,7 +92,7 @@
 //
 // ----------------------------------------------------------------------------
 
-.nav__submenu__content--bookings
+.nav__submenu--bookings
   .nav__submenu__item
     @extend %left-icon
     padding-left: 39px
