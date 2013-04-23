@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git@github.com:lonelyplanet/beaker.git
-  revision: e554c6f7d36aada28f8be1f45d17138d56bc75e1
+  revision: 9bb745fcb0354834fbe0763083b7e30cf21940d0
   branch: if_nav2.1
   specs:
     beaker (0.1.0)
@@ -180,7 +180,7 @@ GEM
       railties (>= 3.0)
       rspec (~> 2.10.0)
     rubyzip (0.9.9)
-    sass (3.2.7)
+    sass (3.2.8)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)

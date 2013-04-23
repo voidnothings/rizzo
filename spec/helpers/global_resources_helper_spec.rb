@@ -47,7 +47,7 @@ describe GlobalResourcesHelper do
 
   end
 
-  context "place_heading at city level" do
+  context "place_heading at country level" do
 
     before do
       class << helper
