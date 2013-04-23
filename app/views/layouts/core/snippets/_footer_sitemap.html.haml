@@ -40,13 +40,15 @@
         %strong
           20% discount
         on your next guidebook purchase
-      %form.newsletter--footer(action='http://www.lonelyplanet.com/newsletter/subscribe_footer.php' method='post')
+      %form.newsletter--footer(action='http://dev.lonelyplanet.com:8888/newsletter/form-submission.php' method='post')
         %label.title--footer.polyfill--placeholder.newsletter--placeholder Email
-        %input.input--small--newsletter(type='text' id='newsletter-email' autocomplete='off' name='newsletter-email' placeholder='your@email.com')
+        %input.input--small--newsletter(type='text' id='newsletter-email' autocomplete='off' name='sailthru_email' placeholder='your@email.com' required='required')
+        %input(type='hidden' name='Source' value='homepagefooter')
+        %input(type='hidden' name='type' value='subscribe')
         .dropdown.dropdown--country.js-select-country
           %label.dropdown__value.dropdown__value--country.js-select-overlay(href='#select-country')
             Select country
-          %select.dropdown__select.js-select(name='newsletter-country' id='countrySelect')
+          %select.dropdown__select.js-select(name='sailthru_Country' id='countrySelect')
             - footer_newsletter_country_items.each do |country|
               %option(value="#{country[:title]}")
                 = country[:title]
