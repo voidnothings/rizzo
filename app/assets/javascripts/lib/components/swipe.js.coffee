@@ -144,7 +144,7 @@ define ['jquery','underscore','handlebars'], ($,_) ->
 
       @slide_width = $(@slides[0]).width()
       @slides_per_view = parseInt(@width / @slide_width)
-      @max_index = Math.round @length / @slides_per_view
+      @max_index = Math.ceil @length / @slides_per_view
       @container.get(0).style.width = (@getSlidesWidth() + 'px')
       # TOOO: just build the handlers if has more than one slide
       @buildHandlers() if @args.handlers

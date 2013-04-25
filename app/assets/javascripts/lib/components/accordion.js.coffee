@@ -4,6 +4,8 @@
 #   multiplePanels: can you have multiple panels open
 #   callback: optional function
 #   animateHeights: boolean
+#   openHeight: optional open height - assumed to outer height of panel if not specified
+#   closedHeight: optional closed height - assumed to outer height of panel if not specified
 # }
 # 
 
@@ -14,19 +16,27 @@ define ['jquery'], ($) ->
     config =
       multiplePanels: false
       animateHeights: false
+      openPadding: 0
 
     prepare : (panels) ->
       panels.each ->
-        openHeight = $(@).outerHeight()
-        closedHeight = $(@).find('.js-accordion-trigger').outerHeight()
+        closedHeight = if config.height then config.height else $(@).find('.js-accordion-trigger').outerHeight()
+        openHeight = if config.openHeight then config.openHeight else closedHeight + $(@).find('.js-accordion-panel').outerHeight() + config.openPadding
         $(@).attr('data-open', openHeight).attr('data-closed', closedHeight)
 
     bindEvents : (parent) ->
       that = @
       parent.on 'click', '.js-accordion-trigger', ->
-        panel = $(@).closest('.js-accordion-item').index()
-        that.openPanel(panel)
+        if that.state != 'blocked'
+          panel = $(@).closest('.js-accordion-item').index()
+          that.openPanel(panel)
         false
+
+    block : () ->
+      @state = 'blocked'
+
+    unblock : () ->
+      @state = 'active'
 
     openPanel : (panel) ->
       panel = @sanitisePanel(panel)
@@ -61,7 +71,6 @@ define ['jquery'], ($) ->
       else
         $(panel)
 
-
     constructor : (args) ->
       config = $.extend config, args
       @parent = $(config.parent)
@@ -70,3 +79,5 @@ define ['jquery'], ($) ->
       @bindEvents(@parent)
       @closeAllPanels(@panels)
       config.callback && config.callback(@parent)
+      @state = 'active'
+
