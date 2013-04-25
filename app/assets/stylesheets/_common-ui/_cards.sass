@@ -80,6 +80,10 @@ $card-hotel-content-padding: 13px
   .card--half-height
     height: $card-grid-half-height
 
+.card--dummy
+  visibility: hidden
+  z-index: 1
+
 
 // -----------------------------------------------------------------------------
 // Card Image
@@ -168,6 +172,9 @@ $card-hotel-content-padding: 13px
   overflow: hidden
   padding: $card-content-padding
   right: 0
+
+  .card--single.card--ad &
+    padding: 0
 
   .card--link &
     height: ($card-grid-height - $stack-card-image-height - (2 * $card-content-padding) )
