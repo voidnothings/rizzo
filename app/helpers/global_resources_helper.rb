@@ -104,7 +104,7 @@ module GlobalResourcesHelper
   def place_heading(title, section_name, slug, parent, parent_slug)
     capture_haml do
       haml_tag(:div, class: 'place-title') do
-        haml_tag(:a, class: 'place-title-heading', href: "http://www.lonelyplanet.com/#{slug}") do
+        haml_tag(:a, class: 'place-title-heading', href: "http://www.lonelyplanet.com/#{slug}/#{section_name}") do
           haml_concat(title)
         end
         unless section_name.nil?
@@ -113,7 +113,7 @@ module GlobalResourcesHelper
           end
         end
         unless parent.nil?
-          haml_tag(:a, class: 'place-title__parent', href: "http://www.lonelyplanet.com/#{parent_slug}") do
+          haml_tag(:a, class: 'place-title__parent', href: "http://www.lonelyplanet.com/#{parent_slug}/#{section_name}") do
             haml_concat(", " + parent)
           end
         end
@@ -138,9 +138,9 @@ module GlobalResourcesHelper
     render :partial=>'layouts/core/snippets/footer_breadcrumbs', locals: {breadcrumbs: breadcrumb_content || []}
   end
   
-  def breadcrumb_for(breadcrumb)
+  def breadcrumb_for(breadcrumb, last)
     capture_haml do
-      if breadcrumb[:slug].blank?
+      if last == true
         haml_tag(:span, class: "nav__item js-nav-item nav__item--breadcrumbs current", itemprop: "url") { haml_concat breadcrumb[:place] }
       else
         haml_tag(:a, class: "nav__item js-nav-item nav__item--breadcrumbs", href: "http://www.lonelyplanet.com/#{breadcrumb[:slug]}", itemprop:"url") { haml_concat breadcrumb[:place] } 

@@ -2,5 +2,5 @@
   .row__inner.row__inner--footer
     .nav--inline{itemscope: true, itemtype: "http://data-vocabulary.org/Breadcrumb"}
       %a.nav__item.nav__item--breadcrumbs--home{href: '/', itemprop:"url"} Home
-      - breadcrumbs.each do |breadcrumb|
-        = breadcrumb_for(breadcrumb)
+      - breadcrumbs.each_with_index do |breadcrumb, index|
+        = breadcrumb_for(breadcrumb, (breadcrumbs.length == (index+1)) ? true : false)
