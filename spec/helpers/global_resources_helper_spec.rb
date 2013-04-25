@@ -37,13 +37,14 @@ describe GlobalResourcesHelper do
       @args = {
         title: 'Lisbon',
         section_name: 'Hotels',
+        slug: '/lisbon/',
         parent: 'portugal',
         parent_slug: '/portugal/'
       }
     end
-    it { helper.place_heading(@args[:title], @args[:section_name], @args[:parent], @args[:parent_slug]).should have_css('span.place-title'), text: @args[:title] } 
-    it { helper.place_heading(@args[:title], @args[:section_name], @args[:parent], @args[:parent_slug]).should have_css('span.accessibility'), text: @args[:section_name] } 
-    it { helper.place_heading(@args[:title], @args[:section_name], @args[:parent], @args[:parent_slug]).should have_css('a.place-title__parent'), text: @args[:parent], href: @args[:parent_slug] }      
+    it { helper.place_heading(@args[:title], @args[:section_name], @args[:slug], @args[:parent], @args[:parent_slug]).should have_css('a.place-title-heading'), text: @args[:title] } 
+    it { helper.place_heading(@args[:title], @args[:section_name], @args[:slug], @args[:parent], @args[:parent_slug]).should have_css('span.accessibility'), text: @args[:section_name] } 
+    it { helper.place_heading(@args[:title], @args[:section_name], @args[:slug], @args[:parent], @args[:parent_slug]).should have_css('a.place-title__parent'), text: @args[:parent], href: @args[:parent_slug] }      
 
   end
 
@@ -56,12 +57,13 @@ describe GlobalResourcesHelper do
       helper.init_haml_helpers
       @args = {
         title: 'Lisbon',
-        section_name: 'Hotels'
+        section_name: 'Hotels',
+        slug: '/lisbon/'
       }
     end
-    it { helper.place_heading(@args[:title], @args[:section_name], @args[:parent], @args[:parent_slug]).should have_css('span.place-title'), text: @args[:title] } 
-    it { helper.place_heading(@args[:title], @args[:section_name], @args[:parent], @args[:parent_slug]).should have_css('span.accessibility'), text: @args[:section_name] } 
-    it { helper.place_heading(@args[:title], @args[:section_name], @args[:parent], @args[:parent_slug]).should_not have_css('a.place-title__parent'), text: @args[:parent], href: @args[:parent_slug] }      
+    it { helper.place_heading(@args[:title], @args[:section_name], @args[:slug], @args[:parent], @args[:parent_slug]).should have_css('a.place-title-heading'), text: @args[:title] } 
+    it { helper.place_heading(@args[:title], @args[:section_name], @args[:slug], @args[:parent], @args[:parent_slug]).should have_css('span.accessibility'), text: @args[:section_name] } 
+    it { helper.place_heading(@args[:title], @args[:section_name], @args[:slug], @args[:parent], @args[:parent_slug]).should_not have_css('a.place-title__parent'), text: @args[:parent], href: @args[:parent_slug] }      
 
   end
 
@@ -76,6 +78,7 @@ describe GlobalResourcesHelper do
       @args = {
         title: 'Lisbon',
         section_name: 'b',
+        slug: '/lisbon/',
         collection: [
           {title: 'a', url:'/a'},
           {title: 'b', url:'/b'},
@@ -94,7 +97,7 @@ describe GlobalResourcesHelper do
     end
 
     it "renders a title section on the secondary nav-bar" do 
-      helper.secondary_nav_bar(@args).should have_css('div.row--secondary span[class="place-title"]')
+      helper.secondary_nav_bar(@args).should have_css('div.row--secondary div.place-title')
     end
     
     it "renders an accessibility section name tag whithin body title" do 
