@@ -1,41 +1,38 @@
-define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager'], ($, AdManager, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroup) ->
+define( ['jquery','lib/core/ad_manager_old','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager'], ($, AdManager, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroup) ->
 
   class Base
 
     constructor: (args={})->
       @authenticateUser()
       @showUserBasket()
-      @showLeaderboard() if !args.secure
+      @initAds() if !args.secure
       @showCookieComplianceMsg()
       @initialiseFooterSelects()
       @addNavTracking()
 
     adConfig: ->
-      # defaults to window.lp (needs code refactoring)
-      if window.lp and window.lp.ads
-        adZone : window.lp.ads.adZone or 'home'
-        adKeywords : window.lp.ads.adKeywords or ' '
-        tile : lp.ads.tile or ' '
-        ord : lp.ads.ord or Math.random()*10000000000000000
-        segQS : lp.ads.segQS or ' '
-        mtfIFPath : (lp.ads.mtfIFPath or '/')
-        unit: [728,90]
-      else   
-        adZone : window.adZone or 'home'
-        adKeywords : window.adKeywords  or ' '
-        tile : 1
-        ord : window.ord or Math.random()*10000000000000000
-        segQS : window.segQS or ' '
-        mtfIFPath : '/'
-        unit: [728,90]
+      adZone : window.lp.ads.adZone or window.adZone or 'home'
+      adKeywords : window.lp.ads.adKeywords or window.adKeywords or ' '
+      tile : lp.ads.tile or 1
+      ord : lp.ads.ord or window.ord or Math.random()*10000000000000000
+      segQS : lp.ads.segQS or window.segQS or ' '
+      mtfIFPath : (lp.ads.mtfIFPath or '/')
+      unit: [728,90]
+      # sizes is all that's needed for the new implementation. The above can all be ditched when switching to the new manager.
+      sizes:
+        trafficDriver: [155,256]
+        sponsorTile: [276,32]
+        oneByOne: [1,1]
+        leaderboard: [[970,66], [728,90]]
+        mpu: [[300,250], [300, 600]]
       
     authenticateUser: ->
       @auth = new Authenticator()
       AssetFetch.get "https://secure.lonelyplanet.com/sign-in/status", () =>
         @auth.update()
 
-    showLeaderboard: ->
-      AdManager.init(@adConfig(), 'ad-leaderboard')
+    initAds: ->
+      AdManager.init(@adConfig(), 'js-ad-leaderboard') # Remove the second param when dropping the old ad manager
 
     showUserBasket: ->
       shopCart = new ShoppingCart()
