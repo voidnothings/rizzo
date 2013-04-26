@@ -30,18 +30,18 @@ define ['jquery'], ($)->
         @showUserBox()
       else
         @showLoginAndRegister()
-        
+
     showLoginAndRegister: ()->
       @emptyUserNav()
-      joinElement = "<a class='nav__item--primary--user js-user-join js-nav-item' href='#{@options.registerLink}'>Join</a>"
-      signinElement = "<a class='nav__item--primary--user js-user-signin js-nav-item' href='#{@signInUrl()}'>Sign-In</a>"
-      @el.prepend(joinElement + signinElement)
+      joinElement = "<a class='nav__item nav__item--primary js-user-join js-nav-item' href='#{@options.registerLink}'>Join</a>"
+      signinElement = "<a class='nav__item nav__item--primary js-user-signin js-nav-item' href='#{@signInUrl()}'>Sign-In</a>"
+      @el.append(signinElement + joinElement)
 
     showUserBox: ->
       @emptyUserNav()
       @el.addClass('is-signed-in')
-      userBoxElement = "<div class='user-box js-user-box nav__submenu__trigger'><img class='user-box__img js-box-handler' src='#{@userAvatar()}'/></div>"
-      @el.prepend(userBoxElement)
+      userBoxElement = "<div class='nav__item nav__item--user user-box js-user-box nav__submenu__trigger'><img class='user-box__img js-box-handler' src='#{@userAvatar()}'/></div>"
+      @el.append(userBoxElement)
       $('.js-user-box').append(@userOptionsMenu())
 
     emptyUserNav: -> 
@@ -56,9 +56,8 @@ define ['jquery'], ($)->
         {title: 'Forum Activity', uri: "#{@options.forumPostsUrlTemplate.replace('[USERNAME]', @lpUserName)}", style:"nav-user-options__item--forum js-user-forum" },
         {title: 'Sign-Out', uri: "#{@options.signOutUrl}", style:"nav-user-options__item--signout js-user-signout" }
       ]
-      optionElements =  ("<a class='nav__submenu__item nav-user-options__item #{u.style} js-nav-item' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
-
-      userMenu = "<div class='nav__submenu'><div class='nav__submenu__content nav__submenu__content--user nav-user-options js-user-options'><div class='nav-user-options__title'>#{@lpUserName}</div>#{optionElements}</div></div>"
+      optionElements =  ("<a class='nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
+      userMenu = "<div class='nav__submenu nav__submenu--user'><div class='nav--stacked nav__submenu__content nav__submenu__content--user nav-user-options js-user-options'><div class='nav__submenu__item nav__submenu__title'>#{@lpUserName}</div>#{optionElements}</div></div>"
     
     signInUrl:->
       "https://secure.lonelyplanet.com/sign-in/login?service=#{escape(window.location)}"
