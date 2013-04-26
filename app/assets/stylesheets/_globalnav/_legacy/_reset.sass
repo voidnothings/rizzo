@@ -24,8 +24,8 @@ html
 form, input, button, select, textarea
   font-size: 100%
 
-strong, b, mark, em
-  font: inherit
+b, strong
+  font-weight: bold
 
 a, a:active, a:hover, a:visited
   outline: none
@@ -74,6 +74,12 @@ sup
 
 sub
   bottom: -0.25em
+
+button::-moz-focus-inner,
+input::-moz-focus-inner
+  border: 0
+  padding: 0
+
 
 // -----------------------------------------------------------------------------
 // Slim Reset
