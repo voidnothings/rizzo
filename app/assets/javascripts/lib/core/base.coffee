@@ -20,6 +20,7 @@ define( ['jquery','lib/core/ad_manager_old','lib/utils/asset_fetch', 'lib/core/a
       unit: [728,90]
       # sizes is all that's needed for the new implementation. The above can all be ditched when switching to the new manager.
       sizes:
+        adSenseCard: [155,256]
         trafficDriver: [155,256]
         sponsorTile: [276,32]
         oneByOne: [1,1]

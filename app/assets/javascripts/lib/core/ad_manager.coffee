@@ -46,10 +46,18 @@ define ['gpt'], ->
           unit.push(lp.ads.layer4) if lp.ads.layer4
           unit.push(lp.ads.layer5) if lp.ads.layer5
           
-          googletag.defineSlot("/"+unit.join("/"), _config.sizes[type], newId).addService(googletag.pubads())
+          adUnit = googletag.defineSlot("/"+unit.join("/"), _config.sizes[type], newId).addService(googletag.pubads())
 
           if type is 'mpu'
             adManager.checkMpu(adEl)
+          else if /adsense/i.test(type) and lp.ads.channels
+            adUnit.set("adsense_border_color", "FFFFFF")
+              .set("adsense_background_color", "FFFFFF")
+              .set("adsense_link_color", "0C77BF")
+              .set("adsense_text_color", "677276")
+              .set("adsense_url_color", "000000")
+              .set("adsense_ad_types", "text")
+              .set("adsense_channel_ids", lp.ads.channels)
 
           # Make sure we get all instances of this type of ad.
           i++ if document.getElementById("js-ad-"+type) is null
@@ -84,9 +92,10 @@ define ['gpt'], ->
             cardsPerRow = Math.floor $(adEl).closest('.grid-view').width() / (thisCard.width() / 2)
             cards = $('.results .card')
             thisCardIndex = cards.index(thisCard)
-
-            # If this is the last card, there's no need to carry on... just let the ad push the content down.
-            if (cards.length is thisCardIndex+1)
+            
+            # If this is the third last card (there will always be *at least* a trafficDriver and adsense card following),
+            # then there's no need to carry on... just let the ad push the content down.
+            if (cards.length - thisCardIndex <= 3)
               return false
 
             # Eliminate all cards preceding our ad element so we can place a dummy el at the nth position *after* the current one using .eq()
