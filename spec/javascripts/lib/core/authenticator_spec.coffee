@@ -106,8 +106,8 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
           expect($('.js-user-options')).toExist()
 
         it 'shows the user name', ->
-           expect($('div.nav-user-options__title')).toExist()
-           expect($('div.nav-user-options__title').text()).toBe('KellyJones')
+           expect($('div.nav__submenu__title')).toExist()
+           expect($('div.nav__submenu__title').text()).toBe('KellyJones')
 
         it 'has a user-profile link', ->
            expect($('a.js-user-profile')).toExist()
