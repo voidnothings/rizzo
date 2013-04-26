@@ -19,16 +19,32 @@ module GlobalResourcesHelper
   
   def core_navigation_items
     [
-      {title:'Destinations', uri: "http://www.lonelyplanet.com/destinations"},
+      {title:'Destinations',
+        uri: "http://www.lonelyplanet.com/destinations",
+        submenu: [
+          {title:'Africa', uri:'http://www.lonelyplanet.com/africa'},
+          {title:'Antarctica', uri:'http://www.lonelyplanet.com/antarctica'},
+          {title:'Asia', uri:'http://www.lonelyplanet.com/asia'},
+          {title:'Caribbean', uri:'http://www.lonelyplanet.com/caribbean'},
+          {title:'Central America', uri:'http://www.lonelyplanet.com/central-america'},
+          {title:'Europe', uri:'http://www.lonelyplanet.com/europe'},
+          {title:'Middle East', uri:'http://www.lonelyplanet.com/middle-east'},
+          {title:'North America', uri:'http://www.lonelyplanet.com/north-america'},
+          {title:'Pacific', uri:'http://www.lonelyplanet.com/pacific'},
+          {title:'South America', uri:'http://www.lonelyplanet.com/south-america'}
+        ]
+      },
       {title:'Themes', uri: "http://www.lonelyplanet.com/themes"},
       {title:'Shop', uri: "http://shop.lonelyplanet.com"},
       {title:'Thorn Tree Forum', uri: "http://www.lonelyplanet.com/thorntree"},
       {title:'Bookings',
+        uri: 'http://www.lonelyplanet.com/hotels/',
         submenu: [
-            {title:'Hotels', uri:'http://www.lonelyplanet.com/hotels', style:'hotels'},
-            {title:'Flights', uri:'http://www.lonelyplanet.com/flights/', style:'flights'},
-            {title:'Adventure tours', uri:'http://www.lonelyplanet.com/adventure-tours/', style:'adventure-tours'},
-            {title:'Sightseeing tours', uri:'http://www.lonelyplanet.com/sightseeing-tours/', style:'sightseeing-tours'}
+          {title:'Hotels', uri:'http://www.lonelyplanet.com/hotels', style:'hotels'},
+          {title:'Flights', uri:'http://www.lonelyplanet.com/flights/', style:'flights'},
+          {title:'Adventure tours', uri:'http://www.lonelyplanet.com/adventure-tours/', style:'adventure-tours'},
+          {title:'Sightseeing tours', uri:'http://www.lonelyplanet.com/sightseeing-tours/', style:'sightseeing-tours'},
+          {title:'Travel Deals', uri:'http://www.lonelyplanet.com/travel-deals/', style:'travel-deals', country:'US'}
         ]
       },
       {title:'Insurance', uri: "http://www.lonelyplanet.com/travel-insurance"}
@@ -36,15 +52,29 @@ module GlobalResourcesHelper
   end
 
   def default_secondary_nav
+    {
+      title: 'Buenos Aires',
+      section_name: 'Hotels',
+      slug: 'buenos-aires',
+      parent: 'Argentina',
+      parent_slug: "argentina",
+      collection: 
+        [
+          {:title=>'Overview', :url=>'#'},
+          {:title=>'Things to do', :url=>'#'},
+          {:title=>'Hotels', :url=>'#'},
+          {:title=>'Tips & Articles', :url=>'#'},
+          {:title=>'Images & Video', :url=>'#'}
+        ]
+    }
+  end
+  
+  def default_breadcrumbs
     [
-      {:title=>'Need to know', :url=>'#'},
-      {:title=>'In pictures', :url=>'#'},
-      {:title=>'Things to do', :url=>'#'},
-      {:title=>'Tips', :url=>'#'},
-      {:title=>'Discussion', :url=>'#'},
-      {:title=>'Guidebooks', :url=>'#'},
-      {:title=>'Hotels', :url=>'#'},
-      {:title=>'Flights', :url=>'#'}
+      {:place=>"South America", :slug=>"south-america"},
+      {:place=>"Argentina", :slug=>"argentina"},
+      {:place=>"Buenos Aires", :slug=>"buneos-aires"},
+      {:place=>"Buenos Aires Hotels", "slug"=>nil}
     ]
   end
 
@@ -71,25 +101,29 @@ module GlobalResourcesHelper
       end
     end
   end
-  
-  def section_title(args)
+
+  def place_heading(title, section_name, slug, parent, parent_slug)
     capture_haml do
-      haml_tag(args[:is_body_title] ? :h1 : :div , class: 'header__title') do
-        if(args[:title])
-          haml_tag(:span, class: 'header__lead') do
-            haml_concat args[:title]
-          end  
-        end  
-        if(args[:section_name])
-          haml_concat args[:section_name]
+      haml_tag(:div, class: 'place-title') do
+        haml_tag(:a, class: 'place-title-heading', href: "http://www.lonelyplanet.com/#{slug}/#{section_name}") do
+          haml_concat(title)
         end
-      end  
-    end  
+        unless section_name.nil?
+          haml_tag(:span, class: 'accessibility') do
+            haml_concat(" " + section_name)
+          end
+        end
+        unless parent.nil?
+          haml_tag(:a, class: 'place-title__parent', href: "http://www.lonelyplanet.com/#{parent_slug}/#{section_name}") do
+            haml_concat(", " + parent)
+          end
+        end
+      end
+    end
   end
   
   def errbit_notifier
     unless params[:errbit] == 'false'
-      # haml_tag(:script, src:"#{asset_path 'errbit_notifier.js'}")
       haml_tag(:script, src:"//rizzo.lonelyplanet.com/assets/errbit_notifier.js")
       haml_tag :script do
         haml_concat "window.Airbrake = (typeof(Airbrake) == 'undefined' && typeof(Hoptoad) != 'undefined') ? Hoptoad : Airbrake;"
@@ -100,24 +134,17 @@ module GlobalResourcesHelper
       end
     end
   end
-  
+
   def breadcrumbs_nav(breadcrumb_content)
     render :partial=>'layouts/core/snippets/footer_breadcrumbs', locals: {breadcrumbs: breadcrumb_content || []}
   end
   
-  def breadcrumb_for(breadcrumb_content=[])
+  def breadcrumb_for(breadcrumb, last)
     capture_haml do
-      haml_tag(:div, id: 'breadcrumbWrap', class: 'posChange') do
-        haml_tag(:ol, id: 'breadcrumb') do
-          breadcrumb_content.each_with_index do |item, index|
-            li_class = index == breadcrumb_content.size-1 ? "breadcrumb-item last" : "breadcrumb-item twoCol"
-            if item[:slug].blank?
-              haml_tag(:li, class: li_class) { haml_tag(:span, class: 'breadcrumb-item-title') { haml_concat item[:place] } }
-            else
-              haml_tag(:li, class: li_class) { haml_tag(:a, class: 'breadcrumb-item-title', href: "http://www.lonelyplanet.com/#{item[:slug]}") { haml_concat item[:place] } }
-            end
-          end
-        end
+      if last == true
+        haml_tag(:span, class: "nav__item js-nav-item nav__item--breadcrumbs current", itemprop: "url") { haml_concat breadcrumb[:place] }
+      else
+        haml_tag(:a, class: "nav__item js-nav-item nav__item--breadcrumbs", href: "http://www.lonelyplanet.com/#{breadcrumb[:slug]}", itemprop:"url") { haml_concat breadcrumb[:place] } 
       end
     end
   end  

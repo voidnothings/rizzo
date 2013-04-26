@@ -1,21 +1,23 @@
 module SnippetSupport
 
-  def template_for(snippet, secure=false, noscript=false, scope='core')
+  def template_for(snippet, secure=false, noscript=false, cs=false, scope='legacy')
     if secure
-      "layouts/#{scope}/snippets/_secure_#{snippet}"
+      "layouts/legacy/snippets/_secure_#{snippet}"
     elsif noscript
-      "layouts/#{scope}/snippets/_noscript_#{snippet}"
+      "layouts/legacy/snippets/_noscript_#{snippet}"
+    elsif cs
+      "layouts/core/snippets/_cs_#{snippet}"
     else
       "layouts/#{scope}/snippets/_#{snippet}"
-    end  
+    end
   end
 
   def user_nav?(args)
     if args[:displaySignonWidget] == 'false' || args[:user_nav] == 'false'
       false
-    else 
+    else
       true
-    end  
+    end
   end
 
 end

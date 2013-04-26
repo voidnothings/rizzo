@@ -62,7 +62,9 @@ module FooterHelper
       {:title=>'facebook', :url=>'https://www.facebook.com/lonelyplanet'},
       {:title=>'google-plus', :url=>'https://plus.google.com/+LonelyPlanet/'},
       {:title=>'flickr', :url=>'http://www.flickr.com/groups/lonelyplanetpublications/'},
-      {:title=>'rss', :url=>'/blog/feed/atom/'}
+      {:title=>'rss', :url=>'/blog/feed/atom/'},
+      {:title=>'youtube', :url=>'http://www.youtube.com/user/LonelyPlanet'},
+      {:title=>'pinterest', :url=>'http://pinterest.com/lonelyplanet/'}
     ]
   end
   
@@ -73,6 +75,20 @@ module FooterHelper
       {:title=> 'Contact us', :url => '/contact/'},
       {:title=> 'Press centre, trade &amp; advertising', :url => '/press-trade-advertising/'},
       {:title=> 'Terms &amp; conditions', :url => '/legal/website-terms/'}
+    ]
+  end
+
+  def language_options
+    [
+      ['en','English'],
+      ['de','Deutsch'],
+      ['fr','Fran&#231;ais'],
+      ['es','Espa&#241;ol'],
+      ['it','Italiano'],
+      ['cn','&#20013;&#25991;&#31616;&#20307;'],
+      ['jp','&#26085;&#26412;&#35486;'], 
+      ['ru', '&#x420;&#x443;&#x441;&#x441;&#x43A;&#x438;&#x439;'],
+      ['br','Portugu&ecirc;s']
     ]
   end
 

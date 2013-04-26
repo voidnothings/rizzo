@@ -27,7 +27,7 @@ describe GlobalResourcesHelper do
 
   end
 
-  context "section_title (legacy layout)" do
+  context "place_heading at city level" do
 
     before do
       class << helper
@@ -37,15 +37,36 @@ describe GlobalResourcesHelper do
       @args = {
         title: 'Lisbon',
         section_name: 'Hotels',
-      } 
+        slug: '/lisbon/',
+        parent: 'portugal',
+        parent_slug: '/portugal/'
+      }
     end
-
-    it { helper.section_title(@args).should have_css('span.header__lead'), text: 'Lisbon' } 
-    it { helper.section_title(@args).should_not have_css('h1.header__title', text:'Hotels') } 
-    it { helper.section_title(@args).should have_css('div.header__title', text:'Hotels') } 
-    it { helper.section_title(@args.merge({:is_body_title=>true})).should have_css('h1.header__title', text:'Hotels') } 
+    it { helper.place_heading(@args[:title], @args[:section_name], @args[:slug], @args[:parent], @args[:parent_slug]).should have_css('a.place-title-heading'), text: @args[:title] } 
+    it { helper.place_heading(@args[:title], @args[:section_name], @args[:slug], @args[:parent], @args[:parent_slug]).should have_css('span.accessibility'), text: @args[:section_name] } 
+    it { helper.place_heading(@args[:title], @args[:section_name], @args[:slug], @args[:parent], @args[:parent_slug]).should have_css('a.place-title__parent'), text: @args[:parent], href: @args[:parent_slug] }      
 
   end
+
+  context "place_heading at country level" do
+
+    before do
+      class << helper
+        include Haml, Haml::Helpers
+      end
+      helper.init_haml_helpers
+      @args = {
+        title: 'Lisbon',
+        section_name: 'Hotels',
+        slug: '/lisbon/'
+      }
+    end
+    it { helper.place_heading(@args[:title], @args[:section_name], @args[:slug], @args[:parent], @args[:parent_slug]).should have_css('a.place-title-heading'), text: @args[:title] } 
+    it { helper.place_heading(@args[:title], @args[:section_name], @args[:slug], @args[:parent], @args[:parent_slug]).should have_css('span.accessibility'), text: @args[:section_name] } 
+    it { helper.place_heading(@args[:title], @args[:section_name], @args[:slug], @args[:parent], @args[:parent_slug]).should_not have_css('a.place-title__parent'), text: @args[:parent], href: @args[:parent_slug] }      
+
+  end
+
 
   context "secondary-nav-bar" do
 
@@ -57,6 +78,7 @@ describe GlobalResourcesHelper do
       @args = {
         title: 'Lisbon',
         section_name: 'b',
+        slug: '/lisbon/',
         collection: [
           {title: 'a', url:'/a'},
           {title: 'b', url:'/b'},
@@ -75,15 +97,11 @@ describe GlobalResourcesHelper do
     end
 
     it "renders a title section on the secondary nav-bar" do 
-      helper.secondary_nav_bar(@args).should have_css('.row__title--secondary', text:'Lisbon')
+      helper.secondary_nav_bar(@args).should have_css('div.row--secondary div.place-title')
     end
-
-    it "renders a title section on the secondary nav-bar as the body title" do 
-      helper.secondary_nav_bar(@args.merge({:is_body_title=>true})).should have_css('h1.row__title--secondary', text:'Lisbon')
-    end
-
+    
     it "renders an accessibility section name tag whithin body title" do 
-      helper.secondary_nav_bar(@args.merge({:is_body_title=>true})).should have_css('h1.row__title--secondary span.accessibility', text:'b')
+      helper.secondary_nav_bar(@args).should have_css('.place-title span.accessibility', text:'b')
     end
 
     it "renders a list of navigation anchors" do 
@@ -91,8 +109,8 @@ describe GlobalResourcesHelper do
     end
 
     it "sets the current section" do 
-      helper.secondary_nav_bar(@args).should have_css("a[class='current js-nav-item nav__item--secondary']", text: 'b')
-      helper.secondary_nav_bar(@args).should_not have_css("a[class='current js-nav-item nav__item--secondary']", text: 'c')
+      helper.secondary_nav_bar(@args).should have_css("a[class='current js-nav-item nav__item nav__item--secondary']", text: 'b')
+      helper.secondary_nav_bar(@args).should_not have_css("a[class='current js-nav-item nav__item nav__item--secondary']", text: 'c')
     end
 
   end  
