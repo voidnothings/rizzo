@@ -1,15 +1,12 @@
 GIT
   remote: git@github.com:lonelyplanet/avocado.git
-  revision: 643a1d4a06c6965388e79b93767018f33ca40a31
-  branch: if_nav2.1
+  revision: 380a40acc4618bf703c60f42bb251e66ce2c86e1
   specs:
     avocado (0.0.31)
 
 GIT
   remote: git@github.com:lonelyplanet/beaker.git
-  revision: 9e68fd35ed90341b5058df9eae6b661857bd0b34
-  ref: 9e68fd35ed90341b5058df9eae6b661857bd0b34
-  branch: if_nav2.1
+  revision: 5bd9a56a54cf6c23846a3fdd94b03ed81bdeeee9
   specs:
     beaker (0.1.0)
 
