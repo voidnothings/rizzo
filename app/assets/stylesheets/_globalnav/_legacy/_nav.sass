@@ -1,0 +1,130 @@
+// Navigation Submenu Drop-Down
+//
+//
+// .nav__item--submenu    - A navigation menu list item that displays a sub-menu when hovered over
+//
+// // Styleguide 1.12
+
+
+// ----------------------------------------------------------------------------
+// 
+// nav 
+// 
+// ----------------------------------------------------------------------------
+
+.nav
+  @extend %helvetica-neue
+
+.nav__item--vertical
+  display: block
+
+.wrap--footer
+  .nav__item
+    float: left
+
+.nav__item--footer
+  @extend %small-type
+  float: left
+  color: #515a65
+  &:hover
+    text-decoration: underline
+
+.nav__item--footer--darker
+  margin-right: 25px
+  padding: 12px 0
+  color: #cfd0d1
+  &:hover
+    color: #fff
+    text-decoration: none
+
+.nav__item--vertical--footer
+  @extend .nav__item--vertical
+  @extend %small-type
+  color: $body-copy
+  line-height: 18px
+  &:hover
+    text-decoration: underline
+  &:first-child
+    @extend .title--list--footer
+
+.nav__item--breadcrumbs--current
+  @extend .nav__item--breadcrumbs
+  font-weight: bold
+  &:hover
+    text-decoration: none
+
+.nav__item--breadcrumbs
+  padding: 12px 5px 0 25px
+  position: relative
+  &:before
+    width: 16px
+    height: 18px
+    @extend %empty-abs-generated-content
+    @extend %sprite-legacy--standard
+    left: 0px 
+    top: 9px
+    background-position: -128px -162px
+
+  .ie8 &
+    &:before
+      background-position: -128px -163px
+
+  .ie7 &
+    background-image: image_url("legacy/core-arrow--gray.png")
+    background-position: 2px 10px
+    background-repeat: no-repeat
+
+.icon--home
+  @extend %image-replacement
+  @extend %sprite-legacy--standard
+  background-position: -126px -93px
+  
+.nav__item--breadcrumbs--home 
+  width: 26px
+  height: 32px
+  @extend .icon--home
+
+.nav--breadcrumbs--footer
+  @extend %clearfix
+  padding: 0
+
+
+// ----------------------------------------------------------------------------
+// 
+// Primary nav
+// 
+// ----------------------------------------------------------------------------
+
+.row--primary .nav__item
+  font-size: 14px
+
+// ----------------------------------------------------------------------------
+// 
+// secondary-nav
+// 
+// ----------------------------------------------------------------------------
+
+.nav--secondary
+  @extend %absolute-bottom
+  @extend %helvetica-neue
+  @extend %uppercase
+  right: 0
+  text-align: right
+
+.nav__item--secondary
+  @extend %small-type
+  @extend %inline-block
+  padding: 7px 8px 7px
+  line-height: 18px
+  color: $nav-secondary-type--legacy
+  &:hover
+    color: $nav-secondary-type-hover--legacy
+    text-decoration: none
+  &:active
+    color: $nav-secondary-type--legacy
+  &.current
+    @include border-radius(4)
+    background-color: $nav-secondary-current-item-bck--legacy
+    color: $nav-secondary-type-active--legacy
+
+

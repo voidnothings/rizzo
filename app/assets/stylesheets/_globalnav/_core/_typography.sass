@@ -1,0 +1,66 @@
+// -----------------------------------------------------------------------------
+// Typographic Base
+//
+// We set the base font-size equal to 14px with a line-height of  20px.
+//
+// 20px is our magic number
+// All vertical margins and line-heights should be multiples of our magic number,
+// This maintains our vertical rhythm
+// -----------------------------------------------------------------------------
+
+html
+  font: 0.875em/1 'Helvetica Neue', Arial, sans-serif 
+
+body
+  min-height: 100%
+  color: $header-gray
+
+// -----------------------------------------------------------------------------
+// Typographic Element Definitions 
+// -----------------------------------------------------------------------------
+
+h1, h2, h3
+  @extend %smooth-text
+
+p
+  margin-bottom: 10px
+
+a
+  color: $link-color
+  cursor: pointer
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+
+// Needs to be declared twice to work properly cross browser, not to be combined
+::-moz-selection
+  background-color: $active
+  color: white
+
+::selection
+  background-color: $active
+  color: white
+
+
+// -----------------------------------------------------------------------------
+// Reusable Typographic Classes
+// -----------------------------------------------------------------------------
+
+.section-title
+  @extend %section-heading-size-type
+  color: $header-blue
+  margin-bottom: 15px
+
+.section-subtitle
+  @extend %irregular-type
+  color: $body-copy
+
+.label
+  @extend %larger-type
+  @extend %smooth-text
+  font-weight: bold
+  color: $header-gray
+
+.disclaimer
+  @extend %disclaimer-copy
+

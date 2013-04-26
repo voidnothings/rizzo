@@ -1,0 +1,46 @@
+// ----------------------------------------------------------------------------
+// 
+// lonely planet mark
+// 
+// ----------------------------------------------------------------------------
+
+.media--lp-logo
+  @extend %sprite-core
+  @extend %inline-block
+  background-position: 0 0
+  height: 41px
+  margin: 7px 10px 0 0
+  width: 83px
+
+.media--lp-logo--dark
+  background-position: 0 -42px
+  margin-top: 14px
+
+// ----------------------------------------------------------------------------
+// 
+// Icons
+// 
+// ----------------------------------------------------------------------------
+
+.icon--small
+  @extend %small-icon
+
+.icon--regular
+  @extend %regular-icon
+
+// ----------------------------------------------------------------------------
+// 
+// Critical Icons - Served from sprite rather than font
+// 
+// ----------------------------------------------------------------------------
+
+.user-basket__icon
+  @extend %icon
+  @extend %inline-block
+  @extend %sprite-core
+  background-position: 0px -127px
+  height: 18px
+  margin-right: 5px
+  vertical-align: middle
+  width: 24px
+

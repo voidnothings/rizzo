@@ -21,11 +21,6 @@
   background-color: $row-leader
   padding: 16px 0
 
-.row--primary
-  @extend %primary-gradient
-  @extend %clearfix
-  padding: 9px 0
-
 .row--secondary
   @extend %secondary-gradient
   @extend %clearfix
@@ -80,7 +75,7 @@
     font-weight: bold
   &:before
     @extend %empty-abs-generated-content
-    @extend %sprite-core--standard
+    @extend %sprite-legacy--standard
     left: 0px 
     top: 0px
     width: 40px

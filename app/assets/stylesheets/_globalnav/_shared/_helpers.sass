@@ -1,0 +1,60 @@
+// ----------------------------------------------------------------------------
+// 
+// Objects
+// 
+// These are objects which are less verbose to be outputted directly rather than
+// extended as they are already used in the header
+// 
+// ----------------------------------------------------------------------------
+
+// Split two objects left and right - ie the primary nav
+
+.split--left
+  float: left
+
+.split--right
+  float: right
+  text-align: right
+
+.split--right__inner
+  text-align: left
+
+
+// Inline and stacked navs
+
+.nav--inline
+  > .nav__item
+    vertical-align: top
+    @extend %inline-block
+
+.nav--stacked
+  > .nav__item
+    display: block
+
+
+// ----------------------------------------------------------------------------
+// 
+// Helpers
+// 
+// ----------------------------------------------------------------------------
+
+.is-hidden
+  display: none !important
+
+.accessibility
+  @extend %visually-hide
+
+.transition
+  +transition(all, 0.5, ease-in-out)
+
+
+// ----------------------------------------------------------------------------
+// 
+// Helper classes for use with legacy browsers
+//
+// ----------------------------------------------------------------------------
+
+.polyfill--placeholder
+  @extend %visually-hide
+  .ie7 &, .ie8 &, .ie9 &
+    @extend %visually-show

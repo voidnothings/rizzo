@@ -1,0 +1,156 @@
+// ----------------------------------------------------------------------------
+// 
+// Core nav item
+// 
+// ----------------------------------------------------------------------------
+
+.nav__item
+  &:hover, &:active, &.current
+    text-decoration: none
+
+
+// ----------------------------------------------------------------------------
+// 
+// secondary-nav
+// 
+// ----------------------------------------------------------------------------
+
+.nav--secondary
+  @extend %irregular-type
+  @extend %smooth-text
+
+.nav__item--secondary
+  padding: 7px 8px 6px
+  &, &:active
+    color: $nav-secondary-type
+  &:hover
+    color: $nav-secondary-type-hover
+  &.current
+    @extend %active-background
+    @extend %four-pixel-rounded
+    font-weight: bold
+    &:hover
+      color: #fff
+
+
+// ----------------------------------------------------------------------------
+// 
+// breadcrumbs-nav
+// 
+// ----------------------------------------------------------------------------
+
+.nav__item--breadcrumbs
+  @extend %left-icon
+  @extend %chevron-right-before
+  @extend %small-type
+  padding: 19px 8px 19px 20px
+  color: $header-gray
+  &:before
+    font-size: 16px
+    line-height: 12px
+  &:hover
+    text-decoration: underline
+  &.current
+    font-weight: bold
+    &:hover
+      text-decoration: none
+
+.nav__item--breadcrumbs--home
+  @extend %left-icon
+  @extend %left-icon--hidden-text
+  @extend %icon--home-before
+  width: 32px
+  &:before
+    top: 0
+    line-height: 42px
+    font-size: 32px
+    width: inherit
+    text-align: center
+    color: $header-gray
+  .ie7 &
+    @extend .nav__item--breadcrumbs
+    text-indent: 0
+    width: auto
+
+// ----------------------------------------------------------------------------
+// 
+// about-nav
+// 
+// ----------------------------------------------------------------------------
+
+.nav__item--about
+  margin-left: 20px
+  padding: 26px 0
+  color: $header-gray
+
+
+// ----------------------------------------------------------------------------
+// 
+// social-nav
+// 
+// ----------------------------------------------------------------------------
+
+.title--social
+  @extend %regular-type-size
+  padding: 25px 0
+  margin-right: 10px
+  .ie7 &
+    display: none
+
+.nav__item--social
+  +border-radius(16)
+  @extend %left-icon
+  @extend %left-icon--hidden-text
+  color: $header-gray
+  margin: 16px 0 17px
+  &:before
+    top: 0
+    line-height: 24px
+    font-size: 32px
+    width: inherit
+    text-align: center
+  &:hover
+    background-color: white
+  .ie7 &
+    text-indent: 0
+    height: auto !important
+    width: auto !important
+    margin: 26px 5px 0 0
+
+.icon--twitter
+  @extend %icon--twitter-before
+
+.icon--facebook
+  @extend %icon--facebook-before
+
+.icon--google-plus
+  @extend %icon--google-plus-before
+
+.icon--flickr
+  @extend %icon--flickr-before
+
+.icon--rss
+  @extend %icon--rss-before
+
+.icon--youtube
+  @extend %icon--youtube-before
+
+.icon--pinterest
+  @extend %icon--pinterest-before
+
+
+// ----------------------------------------------------------------------------
+// 
+// Sitemap-nav
+// 
+// ----------------------------------------------------------------------------
+
+.nav__item--footer
+  line-height: 18px
+
+.nav__item--sitemap
+  color: $body-copy
+  &:hover
+    color: $header-gray
+
+
