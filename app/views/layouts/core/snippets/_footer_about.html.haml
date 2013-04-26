@@ -4,7 +4,7 @@
       %a.nav__item.media--lp-logo.media--lp-logo--dark(href='http://www.lonelyplanet.com')
       .nav__item.nav--inline
         - footer_nav_about_items.each do |item|
-          %a.nav__item.nav__item--about{href: item[:url]}<
+          %a.nav__item.nav__item--about{href: "http://www.lonelyplanet.com#{item[:url]}"}<
             = item[:title].html_safe
 
     .split--right
