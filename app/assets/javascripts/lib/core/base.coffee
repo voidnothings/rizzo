@@ -5,12 +5,13 @@ define( ['jquery','lib/core/ad_manager_old','lib/utils/asset_fetch', 'lib/core/a
     constructor: (args={})->
       @authenticateUser()
       @showUserBasket()
-      @initAds() if !args.secure
+      @initAds() unless args.secure
       @showCookieComplianceMsg()
       @initialiseFooterSelects()
       @addNavTracking()
 
-    adConfig: ->
+    # This adConfig can all be ditched when switching to the new manager.
+    adConfig :
       adZone : window.lp.ads.adZone or window.adZone or 'home'
       adKeywords : window.lp.ads.adKeywords or window.adKeywords or ' '
       tile : lp.ads.tile or 1
@@ -18,14 +19,6 @@ define( ['jquery','lib/core/ad_manager_old','lib/utils/asset_fetch', 'lib/core/a
       segQS : lp.ads.segQS or window.segQS or ' '
       mtfIFPath : (lp.ads.mtfIFPath or '/')
       unit: [728,90]
-      # sizes is all that's needed for the new implementation. The above can all be ditched when switching to the new manager.
-      sizes:
-        adSenseCard: [155,256]
-        trafficDriver: [155,256]
-        sponsorTile: [276,32]
-        oneByOne: [1,1]
-        leaderboard: [[970,66], [728,90]]
-        mpu: [[300,250], [300, 600]]
       
     authenticateUser: ->
       @auth = new Authenticator()
@@ -33,7 +26,7 @@ define( ['jquery','lib/core/ad_manager_old','lib/utils/asset_fetch', 'lib/core/a
         @auth.update()
 
     initAds: ->
-      AdManager.init(@adConfig(), 'js-ad-leaderboard') # Remove the second param when dropping the old ad manager
+      AdManager.init(@adConfig, 'js-ad-leaderboard') # Remove params when dropping the old ad manager
 
     showUserBasket: ->
       shopCart = new ShoppingCart()
