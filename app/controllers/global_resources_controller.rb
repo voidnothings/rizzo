@@ -14,7 +14,7 @@ class GlobalResourcesController < GlobalController
   end
   
   def legacy
-    render '/global/legacy', :layout=> 'core',  :locals => { :user_nav => true }
+    render '/global/legacy', :layout=> false,  :locals => { :user_nav => true }
   end
 
 end
