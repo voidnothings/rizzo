@@ -57,6 +57,20 @@
 
 // new stuff from waldorf
 
+$body-title-blue: #206fac
+$body-active: #0fdecf
+
+//$body-facets: #c5d6d9 // $highlight
+//$body-dark: #3b444f // $body
+//$form-body: #3b444f // $body
+//$body-pale-gray: #67747c // $stack-intro-text
+//$body-light-gray: #f2f6fa // $nav-bg--hover
+
+//$form-input: #f5f9fb
+//$pale-gray: #e3e8ec
+//$form-background: #fff
+
+
 .aside
   width: 182px
 
@@ -122,11 +136,11 @@
   line-height: 1.5em
   padding: 10px 50px 10px 15px
   display: block
-  color: $body-pale-gray
+  color: $stack-intro-text
   &:hover
     cursor: pointer
     text-decoration: none
-    background-color: $body-light-gray
+    background-color: $nav-bg--hover
 
 .nav__item--current--stack
   background: $body-active
@@ -153,8 +167,8 @@
   right: 15px
   top: 9px
   display: block
-  color: $body-facets
-  border: 1px solid $body-facets
+  color: $highlight
+  border: 1px solid $highlight
   font-weight: bold
   text-align: right
 
@@ -167,11 +181,11 @@
   text-decoration: none
   padding: 8px 15px
   display: block
-  color: $body-pale-gray
+  color: $stack-intro-text
 
 .disclaimer--aside
   @extend %smooth-text
-  color: $body-pale-gray
+  color: $stack-intro-text
   +border-radius(4)
   +font-size(11)
   line-height: 1.5em
