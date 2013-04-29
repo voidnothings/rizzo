@@ -103,7 +103,7 @@ $body-active: #0fdecf
     left: -1px
     position: absolute
     top: -12px
-    width: 17px
+    width: 22px
     z-index: 2
   &:after
     +border-radius-each(4,0,0,4)
@@ -114,8 +114,14 @@ $body-active: #0fdecf
     position: absolute
     right: -1px
     top: -12px
-    width: 158px
+    width: 163px
     z-index: 2
+
+  .aside &
+    &:before
+      width: 17px
+    &:after
+      width: 158px
 
 .group__title--aside
   @extend %smooth-text
