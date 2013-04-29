@@ -83,11 +83,14 @@ body
 
 .row--leaderboard
   background-color: $row-leader
+  overflow: hidden
   padding: 16px 0
-  text-align: center
+  height: 90px
+  +transition(all, 0.5, ease)
 
-  .row__inner
-    display: table
+  &.is-closed
+    height: 0
+    padding: 0
 
 
 // ----------------------------------------------------------------------------

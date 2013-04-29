@@ -68,14 +68,23 @@ $card-hotel-content-padding: 13px
 .results
   .card
     @extend %relative
-    +transition(opacity, 0.5, ease)
+    +transition(all, 0.5, ease)
     height: $card-grid-height
+    overflow: hidden
 
     &:hover
       +box-shadow(2, 2, 8, 0, rgba(3, 46, 92, 0.15))
 
       // img
         // +filter(brightness(-15%))
+
+    &.is-closed
+      margin: 0
+      padding: 0
+      width: 0
+
+      .card__tag--horizontal
+        opacity: 0
 
   .card--half-height
     height: $card-grid-half-height
