@@ -67,7 +67,7 @@ $body-active: #0fdecf
 //$body-light-gray: #f2f6fa // $nav-bg--hover
 
 //$form-input: #f5f9fb
-//$pale-gray: #e3e8ec
+$pale-gray: #e3e8ec
 //$form-background: #fff
 
 
@@ -82,7 +82,7 @@ $body-active: #0fdecf
 .group--aside
   +border-radius(4)
   background: #fff
-  border: 1px solid #e3e8ec
+  border: 1px solid $pale-gray
   padding: 4px 0
 
 //.group__inner
@@ -95,33 +95,37 @@ $body-active: #0fdecf
   position: relative
   &:before
     +border-radius-each(0,4,4,0)
-    background-color: #e5ebee
-    border: 1px solid #e3e8ec
+    background-color: $body-background
+    border-width: 1px 1px 1px 0
+    border-color: $pale-gray
+    border-style: solid
     box-shadow: 15px 0 0 #fff
     content: ''
     height: 10px
-    left: -1px
+    left: 4px
     position: absolute
     top: -12px
-    width: 22px
+    width: 17px
     z-index: 2
   &:after
     +border-radius-each(4,0,0,4)
-    background-color: #e5ebee
-    border: 1px solid #e3e8ec
+    background-color: $body-background
+    border-width: 1px 0 1px 1px
+    border-color: $pale-gray
+    border-style: solid
     content: ''
     height: 10px
     position: absolute
-    right: -1px
+    right: 4px
     top: -12px
-    width: 163px
+    width: 158px
     z-index: 2
 
   .aside &
     &:before
       width: 17px
     &:after
-      width: 158px
+      width: 148px
 
 .group__title--aside
   @extend %smooth-text
