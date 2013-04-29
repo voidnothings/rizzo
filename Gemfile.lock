@@ -4,8 +4,10 @@ GIT
   specs:
     avocado (0.0.31)
 
-PATH
-  remote: /Users/Ian/development/lp/online/beaker
+GIT
+  remote: git@github.com:lonelyplanet/beaker.git
+  revision: a471a7772caaa1bb0f75bc6dd2d485fca80ab8ae
+  branch: if_footer
   specs:
     beaker (0.1.0)
 
