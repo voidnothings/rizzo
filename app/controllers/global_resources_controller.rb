@@ -12,5 +12,9 @@ class GlobalResourcesController < GlobalController
   def index
     render '/global/index', :layout=> 'core',  :locals => { :user_nav => user_nav?(params) }
   end
+  
+  def legacy
+    render '/global/legacy', :layout=> 'core',  :locals => { :user_nav => true }
+  end
 
 end

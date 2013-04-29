@@ -26,5 +26,6 @@ Rizzo::Application.routes.draw do
   
   match 'global'                       => 'global_resources#index'
   match 'secure/global'                => 'global_resources#index', :defaults => { :secure => "true" }
+  match 'legacy'                       => 'global_resources#legacy'
 
 end if defined?(Rizzo::Application)
