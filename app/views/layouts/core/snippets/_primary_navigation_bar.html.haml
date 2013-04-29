@@ -5,9 +5,9 @@
     .nav--inline.nav__item.nav--primary
       - core_navigation_items.each do |n|
         - if n[:submenu]
-          .nav__item--primary.nav__submenu__trigger
+          .nav__item.nav__item--primary.nav__submenu__trigger
             - if n[:uri]
-              %a.nav__item.nav__item--submenu.js-nav-item{ href: n[:uri] }
+              %a.nav__item--submenu.js-nav-item{ href: n[:uri] }
                 = n[:title]
             - else
               %span.nav__item.nav__item--submenu
