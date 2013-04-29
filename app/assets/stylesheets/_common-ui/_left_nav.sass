@@ -6,10 +6,10 @@
 // Styleguide 1.5
 
 .left-nav
-  @extend %four-pixel-rounded
-  @extend %stacked-nav
-  @extend %smooth-text
   @extend %body-copy
+  @extend %four-pixel-rounded
+  @extend %smooth-text
+  @extend %stacked-nav
   padding: 10px 0
 
   &.left-nav--hotels
@@ -26,10 +26,10 @@
   text-decoration: none
   &:after
     @extend %no-line-height
-    top: 21px
-    right: 5px
-    font-size: 18px
     color: #c5d6d9
+    font-size: 18px
+    right: 5px
+    top: 21px
 
   &:hover
     background-color: $nav-bg--hover
@@ -46,8 +46,8 @@
   @extend %reset-line-height
   @extend %larger-type
   @extend %stacked-nav
-  font-weight: bold
   color: $header-gray
+  font-weight: bold
   padding: 15px
 
 .left-nav--hotels
@@ -59,6 +59,7 @@
 
 $body-title-blue: #206fac
 $body-active: #0fdecf
+$pale-gray: #e3e8ec
 
 //$body-facets: #c5d6d9 // $highlight
 //$body-dark: #3b444f // $body
@@ -67,9 +68,7 @@ $body-active: #0fdecf
 //$body-light-gray: #f2f6fa // $nav-bg--hover
 
 //$form-input: #f5f9fb
-$pale-gray: #e3e8ec
 //$form-background: #fff
-
 
 .aside
   width: 182px
@@ -85,8 +84,6 @@ $pale-gray: #e3e8ec
   border: 1px solid $pale-gray
   padding: 4px 0
 
-//.group__inner
-
 .group__body
   padding-bottom: 15px
 
@@ -96,9 +93,9 @@ $pale-gray: #e3e8ec
   &:before
     +border-radius-each(0,4,4,0)
     background-color: $body-background
-    border-width: 1px 1px 1px 0
     border-color: $pale-gray
     border-style: solid
+    border-width: 1px 1px 1px 0
     box-shadow: 15px 0 0 #fff
     content: ''
     height: 10px
@@ -110,9 +107,9 @@ $pale-gray: #e3e8ec
   &:after
     +border-radius-each(4,0,0,4)
     background-color: $body-background
-    border-width: 1px 0 1px 1px
     border-color: $pale-gray
     border-style: solid
+    border-width: 1px 0 1px 1px
     content: ''
     height: 10px
     position: absolute
@@ -120,7 +117,6 @@ $pale-gray: #e3e8ec
     top: -12px
     width: 158px
     z-index: 2
-
   .aside &
     &:before
       width: 17px
@@ -130,23 +126,23 @@ $pale-gray: #e3e8ec
 .group__title--aside
   @extend %smooth-text
   +font-size(15)
-  line-height: 2em
   color: $body-title-blue
-  padding: 7px 15px
   display: block
+  line-height: 2em
+  padding: 7px 15px
 
 .nav--stack
   padding: 0
 
 .nav__item--stack
-  position: relative
   @extend %smooth-text
-  text-decoration: none
   +font-size(13)
+  color: $stack-intro-text
+  display: block
   line-height: 1.5em
   padding: 10px 50px 10px 15px
-  display: block
-  color: $stack-intro-text
+  position: relative
+  text-decoration: none
   &:hover
     background-color: #0fdecf
     color: #fff
@@ -166,76 +162,75 @@ $pale-gray: #e3e8ec
 
 .nav__item--current--stack
   .facet--count
-    color: $body-active
     background-color: #fff
     border: none
+    color: $body-active
 
 .facet--count
   +border-radius(4)
   +font-size(11)
+  background: #fff
+  border: 1px solid $highlight
+  color: $highlight
+  display: block
+  font-weight: bold
   line-height: 1em
   padding: 4px 3px
-  font-weight: 300
-  background: #fff
   position: absolute
   right: 15px
-  top: 9px
-  display: block
-  color: $highlight
-  border: 1px solid $highlight
-  font-weight: bold
   text-align: right
+  top: 9px
 
 .filters--aside
   padding: 0
 
 .filters__item--aside
-  position: relative
   @extend %smooth-text
-  text-decoration: none
-  padding: 8px 15px
-  display: block
   color: $stack-intro-text
+  display: block
+  padding: 8px 15px
+  position: relative
+  text-decoration: none
 
 .disclaimer--aside
   @extend %smooth-text
-  color: $stack-intro-text
   +border-radius(4)
   +font-size(11)
+  color: $stack-intro-text
+  display: block
   line-height: 1.5em
   padding: 0 15px
-  display: block
 
 .group__handler
   @extend %smooth-text
-  color: $body-title-blue
   +font-size(13)
+  color: $body-title-blue
+  cursor: pointer
+  display: block
   line-height: 1.5em
   padding: 8px 15px
-  display: block
-  cursor: pointer
   position: relative
   &:after
     content: 'Show More ...'
   &:hover
     text-decoration: none
   &:before
-    +transition()
-    position: absolute
-    top: -30px
-    height: 30px
-    content: ''
     +lp-section-toggle-background()
-    right: 0
+    +transition()
+    content: ''
+    height: 30px
     left: 0
     opacity: 1
+    position: absolute
+    right: 0
+    top: -30px
 
 .group__handler--less
   &:after
     content: 'Show Less ...'
   &:before
-    opacity: 0
     height: 0
+    opacity: 0
 
 // accordion functionality
 input.accordion__handler
@@ -250,8 +245,8 @@ input.accordion__handler:checked
     &:after
       content: 'Show Less ...'
     &:before
-      opacity: 0
       height: 0
+      opacity: 0
 
 input.accordion__handler:checked
   & + .accordion__target
@@ -259,16 +254,16 @@ input.accordion__handler:checked
       opacity: 1
     .group__title--accordion
       &:before
-        top: 19px
         content: '\e013'
+        top: 19px
 
 .accordion__target
   +transition(max-height,0.3,linear)
   overflow: hidden
 
 .accordion__target--break
-  border-bottom: 1px solid #e5ebee
   +border-radius-each(0,0,4,4)
+  border-bottom: 1px solid #e5ebee
 
 .accordion__target--small
   max-height: 45px
@@ -277,21 +272,21 @@ input.accordion__handler:checked
   max-height: 300px
 
 .group__title--accordion
+  cursor: pointer
+  display: block
   padding: 7px 15px 6px 40px
   position: relative
-  display: block
-  cursor: pointer
   &:before
-    +transition(top,0.25,ease)
     @extend %benton-regular
     @extend %smooth-text
-    line-height: 0
-    position: absolute
+    +transition(top,0.25,ease)
     +font-size(22)
-    left: 16px
-    top: 17px
     color: $body-title-blue
     content: '\e014'
+    left: 16px
+    line-height: 0
+    position: absolute
+    top: 17px
 
 .group__inner--accordion--last
   border: none
