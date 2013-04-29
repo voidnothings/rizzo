@@ -53,3 +53,229 @@
 .left-nav--hotels
   .left-nav__item:after
     content: none
+
+
+// new stuff from waldorf
+
+.aside
+  width: 182px
+
+.aside--sticky
+  position: fixed
+  top: 4px
+  z-index: 10
+
+.group--aside
+  +border-radius(4)
+  background: #fff
+  border: 1px solid #e3e8ec
+  padding: 4px 0
+
+//.group__inner
+
+.group__body
+  padding-bottom: 15px
+
+.group--linked
+  margin-top: 10px
+  position: relative
+  &:before
+    +border-radius-each(0,4,4,0)
+    background-color: #e5ebee
+    border: 1px solid #e3e8ec
+    box-shadow: 15px 0 0 #fff
+    content: ''
+    height: 10px
+    left: -1px
+    position: absolute
+    top: -12px
+    width: 17px
+    z-index: 2
+  &:after
+    +border-radius-each(4,0,0,4)
+    background-color: #e5ebee
+    border: 1px solid #e3e8ec
+    content: ''
+    height: 10px
+    position: absolute
+    right: -1px
+    top: -12px
+    width: 158px
+    z-index: 2
+
+.group__title--aside
+  @extend %smooth-text
+  +font-size(15)
+  line-height: 2em
+  color: $body-title-blue
+  padding: 7px 15px
+  display: block
+
+.nav--stack
+  padding: 0
+
+.nav__item--stack
+  position: relative
+  @extend %smooth-text
+  text-decoration: none
+  +font-size(13)
+  line-height: 1.5em
+  padding: 10px 50px 10px 15px
+  display: block
+  color: $body-pale-gray
+  &:hover
+    cursor: pointer
+    text-decoration: none
+    background-color: $body-light-gray
+
+.nav__item--current--stack
+  background: $body-active
+  color: #fff
+  font-weight: 700
+  &:hover
+    background: $body-active
+    color: #fff
+
+.nav__item--current--stack
+  .facet--count
+    color: $body-active
+    background-color: #fff
+    border: none
+
+.facet--count
+  +border-radius(4)
+  +font-size(11)
+  line-height: 1em
+  padding: 4px 3px
+  font-weight: 300
+  background: #fff
+  position: absolute
+  right: 15px
+  top: 9px
+  display: block
+  color: $body-facets
+  border: 1px solid $body-facets
+  font-weight: bold
+  text-align: right
+
+.filters--aside
+  padding: 0
+
+.filters__item--aside
+  position: relative
+  @extend %smooth-text
+  text-decoration: none
+  padding: 8px 15px
+  display: block
+  color: $body-pale-gray
+
+.disclaimer--aside
+  @extend %smooth-text
+  color: $body-pale-gray
+  +border-radius(4)
+  +font-size(11)
+  line-height: 1.5em
+  padding: 0 15px
+  display: block
+
+.group__handler
+  @extend %smooth-text
+  color: $body-title-blue
+  +font-size(13)
+  line-height: 1.5em
+  padding: 8px 15px
+  display: block
+  cursor: pointer
+  position: relative
+  &:after
+    content: 'Show More ...'
+  &:hover
+    text-decoration: none
+  &:before
+    +transition()
+    position: absolute
+    top: -30px
+    height: 30px
+    content: ''
+    +lp-section-toggle-background()
+    right: 0
+    left: 0
+    opacity: 1
+
+.group__handler--less
+  &:after
+    content: 'Show Less ...'
+  &:before
+    opacity: 0
+    height: 0
+
+// accordion functionality
+input.accordion__handler
+  display: none
+
+input.accordion__handler:checked
+  & + .accordion__target--small
+    max-height: 400px
+  & + .accordion__target--large
+    max-height: 2000px
+  & ~ .group__handler
+    &:after
+      content: 'Show Less ...'
+    &:before
+      opacity: 0
+      height: 0
+
+input.accordion__handler:checked
+  & + .accordion__target
+    .filter--reset--drop-down
+      opacity: 1
+    .group__title--accordion
+      &:before
+        top: 19px
+        content: '\e013'
+
+.accordion__target
+  +transition(max-height,0.3,linear)
+  overflow: hidden
+
+.accordion__target--break
+  border-bottom: 1px solid #e5ebee
+  +border-radius-each(0,0,4,4)
+
+.accordion__target--small
+  max-height: 45px
+
+.accordion__target--large
+  max-height: 300px
+
+.group__title--accordion
+  padding: 7px 15px 6px 40px
+  position: relative
+  display: block
+  cursor: pointer
+  &:before
+    +transition(top,0.25,ease)
+    @extend %benton-regular
+    @extend %smooth-text
+    line-height: 0
+    position: absolute
+    +font-size(22)
+    left: 16px
+    top: 17px
+    color: $body-title-blue
+    content: '\e014'
+
+.group__inner--accordion--last
+  border: none
+
+.ie7, .ie8
+  .group__title--accordion
+    padding: 7px 15px
+    &:before
+      content: ''
+  .group__handler
+    display: none
+  .accordion__target--small
+    max-height: 9999px
+  .accordion__target--large
+    max-height: 9999px
