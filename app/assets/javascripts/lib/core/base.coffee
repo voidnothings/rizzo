@@ -48,7 +48,7 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
     showCookieComplianceMsg: ->
       if LocalStore.get('cookie-compliance') is undefined or LocalStore.get('cookie-compliance') is null
         args = 
-          content: "<p class='cookie-text'><strong>Hi there,</strong> we use cookies to improve your experience on our website. You can <strong><a class='cookie-link' href='http://www.lonelyplanet.com/legal/cookies'>update your settings</a></strong> by clicking the Cookie Policy link at the bottom of the page.</p>"
+          content: "<p class='cookie-text'><strong>Hi there,</strong> we use cookies to improve your experience on our website. You can <a class='cookie-link' href='http://www.lonelyplanet.com/legal/cookies'>update your settings</a> by clicking the Cookie Policy link at the bottom of the page.</p>"
           style: "row--cookie-compliance js-cookie-compliance"
           userOptions :
             close: true
