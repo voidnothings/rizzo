@@ -147,6 +147,30 @@ $pale-gray: #e3e8ec
     background-color: $nav-bg--hover
     cursor: pointer
     text-decoration: none
+  &:before
+    @extend %benton-regular
+    +font-size(30)
+    color: $stack-intro-text
+    padding-right: 5px
+    vertical-align: sub
+
+.nav__item--stack-activities
+  @extend %icon-image-poi-activity-before
+
+.nav__item--stack-entertainment
+  @extend %icon-image-poi-entertainment-before
+
+.nav__item--stack-restaurants
+  @extend %icon-image-poi-restaurant-before
+
+.nav__item--stack-shopping
+  @extend %icon-image-poi-shopping-before
+
+.nav__item--stack-sights
+  @extend %icon-image-poi-sight-before
+
+.nav__item--stack-tours
+  @extend %icon-image-poi-tour-before
 
 .nav__item--current--stack
   background: $body-active
