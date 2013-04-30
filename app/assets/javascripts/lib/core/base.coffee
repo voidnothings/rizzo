@@ -60,7 +60,7 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
             onAdd : -> 
               window.setTimeout( ( => $('div.js-cookie-compliance').addClass('is-open')), 1)
         msg = new Msg(args)
-        # LocalStore.set('cookie-compliance', true)
+        LocalStore.set('cookie-compliance', true)
 
     addNavTracking: ->
       $('#js-primary-nav').on 'click', '.js-nav-item', ->
