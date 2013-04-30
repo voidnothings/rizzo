@@ -1,0 +1,48 @@
+// ----------------------------------------------------------------------------
+// 
+// Breadcrumbs
+// 
+// ----------------------------------------------------------------------------
+
+
+.nav__item--breadcrumbs--current
+  @extend .nav__item--breadcrumbs
+  font-weight: bold
+  &:hover
+    text-decoration: none
+
+.nav__item--breadcrumbs
+  padding: 12px 5px 0 25px
+  position: relative
+  &:before
+    width: 16px
+    height: 18px
+    @extend %empty-abs-generated-content
+    @extend %sprite-legacy--standard
+    left: 0px 
+    top: 9px
+    background-position: -128px -162px
+
+  .ie8 &
+    &:before
+      background-position: -128px -163px
+
+  .ie7 &
+    background-image: image_url("legacy/core-arrow--gray.png")
+    background-position: 2px 10px
+    background-repeat: no-repeat
+
+.icon--home
+  @extend %image-replacement
+  @extend %sprite-legacy--standard
+  background-position: -126px -93px
+  
+.nav__item--breadcrumbs--home 
+  width: 26px
+  height: 32px
+  @extend .icon--home
+
+.nav--breadcrumbs--footer
+  @extend %clearfix
+  padding: 0 0 15px 0
+

@@ -34,11 +34,11 @@ $submenu__arrow--width:  10px
   @extend %transition--base
   @extend %fly-out-shadow
   @extend %four-pixel-rounded
-  background-color: $nav-submenu-bck
+  background-color: $green
   padding: 4px 0
   position: relative
   &:before
-    +css-arrow-central(top, $width: $submenu__arrow--width, $color: $nav-submenu-bck, $offset: 0)
+    +css-arrow-central(top, $width: $submenu__arrow--width, $color: $green, $offset: 0)
     @extend %empty-abs-generated-content
     display: block
 
@@ -52,7 +52,7 @@ $submenu__arrow--width:  10px
   cursor: default
 
 .nav__submenu__link
-  border-color: $nav-submenu-bck
+  border-color: $green
   border-style: solid
   border-width: 1px 0
   &:hover
