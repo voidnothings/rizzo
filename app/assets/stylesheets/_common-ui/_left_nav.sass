@@ -137,20 +137,16 @@ $pale-gray: #e3e8ec
 .nav__item--stack
   @extend %smooth-text
   +font-size(13)
-  color: #7f9394
+  color: $stack-intro-text
   display: block
   line-height: 1.5em
   padding: 10px 50px 10px 15px
   position: relative
   text-decoration: none
   &:hover
-    background-color: #0fdecf
-    color: #fff
+    background-color: $nav-bg--hover
     cursor: pointer
     text-decoration: none
-    .facet--count
-      border-color: #fff
-      color: #0fdecf
 
 .nav__item--current--stack
   background: $body-active
