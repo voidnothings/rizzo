@@ -48,14 +48,17 @@ define( ['jquery','lib/core/ad_manager','lib/utils/asset_fetch', 'lib/core/authe
     showCookieComplianceMsg: ->
       if LocalStore.get('cookie-compliance') is undefined or LocalStore.get('cookie-compliance') is null
         args = 
-          content: "<p><strong>Hi there. We use cookies to improve your experience on our website. </strong><strong><a href='/legal/cookies'>Find out more about how we use cookies.</a></strong></p><p>You can update your settings by clicking the <strong><a href='/legal/cookies'>Cookie Policy</a></strong> link which can be found anytime at the bottom of the page.</p>"
+          content: "<p class='cookie-text'><strong>Hi there,</strong> we use cookies to improve your experience on our website. You can <a class='cookie-link' href='http://www.lonelyplanet.com/legal/cookies'>update your settings</a> by clicking the Cookie Policy link at the bottom of the page.</p>"
           style: "row--cookie-compliance js-cookie-compliance"
+          userOptions :
+            close: true
+            more: true
           delegate: 
             onRemove : -> 
-              $('div.js-cookie-compliance').removeClass('row--cookie-compliance--open')
-              $('div.js-cookie-compliance').addClass('row--cookie-compliance--close')
+              $('div.js-cookie-compliance').removeClass('is-open')
+              $('div.js-cookie-compliance').addClass('is-closed')
             onAdd : -> 
-              window.setTimeout( ( => $('div.js-cookie-compliance').addClass('row--cookie-compliance--open')), 1)
+              window.setTimeout( ( => $('div.js-cookie-compliance').addClass('is-open')), 1)
         msg = new Msg(args)
         LocalStore.set('cookie-compliance', true)
 
