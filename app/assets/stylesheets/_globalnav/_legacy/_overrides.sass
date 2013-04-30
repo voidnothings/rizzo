@@ -7,7 +7,7 @@
 
 body
   min-height: 100%
-  color: $base_font_color
+  color: $base-font-color
   background-color: #fff!important
 a
   cursor: pointer
@@ -24,9 +24,11 @@ input, textarea, select
   a
     cursor: pointer
     font-size: 12px!important
-    &:hover
-      color: #7F9394!important
-  .column--footer, .column--footer--last, .text--legal, input, .box-description__title--footer, .box-description__lead--footer, .nav__item--breadcrumbs--current, .label--footer, .form__select--language 
+
+  .title--list--footer:hover
+    color: $header-gray!important
+
+  .column--footer, .column--footer--last, input, .box-description__title--footer, .box-description__lead--footer, .nav__item--breadcrumbs--current, .label--footer, .form__select--language 
     font-size: 12px!important
   .nav__item--footer--darker
     &:hover
@@ -35,9 +37,18 @@ input, textarea, select
   .nav__item--breadcrumbs, .nav__item--breadcrumbs--current
     line-height: 1em!important
 
+.text--legal
+  font-size: 10px !important
+
+.row--sitemap 
+  .nav__item
+    &:hover
+      color: #7F9394!important
+
 .row--primary
   margin-bottom: 0 !important
   -webkit-font-smoothing: subpixel-antialiased !important
+  font-size: 14px
 
 .nav--primary, .nav-primary--user, .nav--secondary, .nav__submenu, .nav--primary--user
   a
@@ -78,15 +89,23 @@ input, textarea, select
 
 .dropdown__value--language
   width: 86px!important
-  margin-top: 4px!important
   border: 0!important
   font-size: 12px !important
 
-.input--small--footer
+.col--footer--last
+  color: $header-gray
+  .nav__item--footer
+    margin-bottom: 10px
+
+.dropdown__value--country
+  line-height: 14px !important
+  font-size: 14px !important
   border: none !important
-  padding: 8px 10px !important
-  margin-right: 5px !important
-  width: 170px !important
+
+.title--social
+  line-height: 14px !important
+  font-size: 14px !important
+  color: $header-gray !important
 
 .row--breadcrumbs
   background-color: $body-background
@@ -94,6 +113,11 @@ input, textarea, select
 
 .nav__item--breadcrumbs:hover
   color: $header-gray
+
+.nav__item--about
+  &:hover
+    color: $header-gray
+
 
 .nav__item--footer
   font-size: 12px !important
@@ -233,9 +257,6 @@ body.reportAbuse
   h3
     font-weight: bold
 
-// Microsites
-.text--legal
-  width: 500px
 
 
 
