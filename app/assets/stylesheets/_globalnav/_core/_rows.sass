@@ -40,33 +40,35 @@ body
 // ----------------------------------------------------------------------------
 
 .row--cookie-compliance
-  @extend %transition--base
-  background-color: $cookie-background
-  overflow: hidden
-  .btn--regular
-    margin-top: 4px
-    float: right
-
-.row--cookie-compliance--close
-  height: 0
-  .ie7 &
-    display: none
-
-.row--cookie-compliance--open
-  height: 56px
-  padding: 15px 0
-
-.row__inner__msg
+  @extend %smooth-type
   @extend %small-type
-  @extend %left-icon
-  @extend %the-dude-before
-  line-height: 1.5em
-  padding: 12px 0 12px 60px
-  strong
+  background-color: $feature
+  overflow: hidden
+  color: $highlight
+
+  .cookie-text
+    padding-top: 9px
+
+  .cookie-link
+    color: $highlight
+    text-decoration: underline
+
+  .btn--gray
+    margin-left: 10px
+  
+  .btn--regular
     font-weight: bold
-  &:before
-    font-size: 90px
-    color: $primary-nav
+
+  &.is-open
+    padding-top: 12px
+    padding-bottom: 12px
+
+  &.is-closed
+    height: 0
+    .ie7 &
+      display: none
+
+
 
 
 // ----------------------------------------------------------------------------
@@ -78,6 +80,33 @@ body
 .row--leaderboard
   background-color: $row-leader
   padding: 16px 0 
+
+
+// ----------------------------------------------------------------------------
+// 
+// Row fluid
+// 
+// ----------------------------------------------------------------------------
+
+.row--fluid
+  min-width: 1000px
+  padding-left: 20px
+  padding-right: 20px
+
+// ----------------------------------------------------------------------------
+// 
+// Row primary
+// 
+// ----------------------------------------------------------------------------
+
+.row--primary
+  background-color: $primary-nav
+  height: 55px
+  margin-bottom: 40px
+  .ie7 &
+    // Make sure that top nav dropdowns always stay on top
+    z-index: 2
+    position: relative
 
 
 // ----------------------------------------------------------------------------

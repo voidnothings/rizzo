@@ -6,7 +6,7 @@
 
 .btn--regular
   @extend %base-button
-  padding: 10px
+  padding: 10px 15px
 
 // ---------------------------------------------------
 //
@@ -16,15 +16,20 @@
 
 .btn--gray
   color: #fff
-  background-color: #4e5763
-  &:hover
-    background-color: #a5acb5
+  background-color: #67747c
 
 .btn--green
-  background-color: $validation-true
+  background-color: $green
   color: #fff
   font-weight: bold
-  &:hover
-    background-color: #fff
-    color: $validation-true
+
+.btn--accept
+  @extend %left-icon
+  @extend %tick-icon-before
+  padding-left: 35px
+  &:before
+    @extend %extra-large-type
+    left: 15px
+    top: 4px
+    font-weight: bold
 
