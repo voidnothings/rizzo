@@ -40,7 +40,7 @@
 .ad-trafficDriver
   @extend %ad-trafficDriver
   &.card__content
-    top: 65px
+    top: 0
 
 .ad-sponsorTile
   @extend %ad-sponsorTile
@@ -55,7 +55,7 @@
 
 .results .card.ad-doubleMpu
   @extend %ad-doubleMpu
-  +transition(height, 0.5, ease)
+  +multiple-transitions(height 0.5s ease, width 0.5s ease)
   overflow: hidden
   z-index: 2
 

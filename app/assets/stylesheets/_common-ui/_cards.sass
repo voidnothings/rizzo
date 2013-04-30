@@ -28,8 +28,19 @@ $card-hotel-content-padding: 13px
 
 .card
   @extend %standard-shadow
+  +transition(all, 0.5, ease)
   background: #fff
   margin-bottom: 10px
+
+  &.is-closed
+    margin: 0
+    padding: 0
+    width: 0
+
+    .card__tag--horizontal
+      opacity: 0
+    .card__content
+      width: 0
 
 .card--anchor
   cursor: pointer
@@ -68,23 +79,13 @@ $card-hotel-content-padding: 13px
 .results
   .card
     @extend %relative
-    +transition(all, 0.5, ease)
     height: $card-grid-height
-    overflow: hidden
 
     &:hover
       +box-shadow(2, 2, 8, 0, rgba(3, 46, 92, 0.15))
 
       // img
         // +filter(brightness(-15%))
-
-    &.is-closed
-      margin: 0
-      padding: 0
-      width: 0
-
-      .card__tag--horizontal
-        opacity: 0
 
   .card--half-height
     height: $card-grid-half-height
