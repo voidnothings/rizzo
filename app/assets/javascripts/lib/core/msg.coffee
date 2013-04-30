@@ -11,10 +11,11 @@ define ['jquery'], ($)->
       @add(@build(@args.content))
 
     build: () ->
-      @msg = "<div class='row #{@args.style}'><div class='row__inner'><div class='row__inner__msg'>#{@closeElement(@args.btnText)}#{@args.content}</div></div></div>"
+      @msg = "<div class='row row--fluid #{@args.style}'><div class='split--left cookie-msg'>#{@args.content}</div><div class='split--right'>#{@userOptions(@args.userOptions)}</div></div>"
       
-    closeElement: (text = 'Close Message')->
-      "<a class='btn--regular btn--gray js-close-msg'>#{text}</a>"
+    userOptions: (options, output="")->
+      output += "<a class='btn--regular btn--green btn--accept js-close-msg'>No worries</a>" unless options.close is false
+      output += "<a class='btn--regular btn--gray js-more-msg' href='http://www.lonelyplanet.com/legal/cookies/'>Learn more</a>" unless options.more is false
 
     add: (el) ->
       $(@options.target).prepend(el)
