@@ -93,7 +93,8 @@ define ['gpt'], ->
       adManager.afterLoaded adEl, (adEl, iframe) ->
         if iframe.height() > $(adEl).height()
           thisCard = $(adEl).closest('.card').addClass 'ad-doubleMpu'
-          cardsPerRow = Math.floor $(adEl).closest('.grid-view').width() / (thisCard.width() / 2)
+          grid = $(adEl).closest('.grid-view')
+          cardsPerRow = Math.floor grid.width() / (grid.find('.card--single').width())
           cards = $('.results .card')
           thisCardIndex = cards.index(thisCard)
           
@@ -104,17 +105,17 @@ define ['gpt'], ->
 
           # Eliminate all cards preceding our ad element so we can place a dummy el at the nth position *after* the current one using .eq()
           cards = $(cards.splice(thisCardIndex))
-          dummyEl = '<div class="card card--ad card--double card--list card--dummy" />'
+          dummyCard = '<div class="card card--ad card--double card--list card--dummy" />'
 
           thisCard.css(
             left: thisCard.position().left
             position: 'absolute'
             top: thisCard.position().top
           )
-
+          
           # cardsPerRow - 2 because the mpu takes the width of 2 cards.
-          cards.eq(cardsPerRow - 2).after(dummyEl)
-          thisCard.before(dummyEl)
+          cards.eq(cardsPerRow - 2).after(dummyCard)
+          thisCard.before(dummyCard)
 
     hideEmpty : (adEl, type) -> # TODO: remove type /spike
       adManager.afterLoaded adEl, (adEl, iframe) ->
