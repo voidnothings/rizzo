@@ -1,4 +1,4 @@
-require ['public/assets/javascripts/lib/core/ad_manager'], (adManager) ->
+require ['jquery', 'public/assets/javascripts/lib/core/ad_manager'], ($, adManager) ->
 
   # Utility function to help setting up each test.
   adSetUp = (ad_types) ->
@@ -41,6 +41,12 @@ require ['public/assets/javascripts/lib/core/ad_manager'], (adManager) ->
 
       it 'defines at least 1 ad slot', ->
         expect(window.googletag.defineSlot).toHaveBeenCalled()
+
+    describe 'loading', ->
+
+      beforeEach ->
+        adSetUp ["leaderboard", "mpu", "trafficDriver"]
+        adManager.init()
 
       it 'loads the ads', ->
         waitsFor (adsLoaded), "ads to be loaded into the expected divs"
