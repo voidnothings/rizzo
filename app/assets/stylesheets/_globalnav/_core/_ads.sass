@@ -56,9 +56,19 @@
 .results .card.ad-doubleMpu
   @extend %ad-doubleMpu
   +multiple-transitions(height 0.5s ease, width 0.5s ease)
-  overflow: hidden
   z-index: 2
 
   .card__content
     height: auto
     overflow: visible
+
+.ad-wallpaper
+  background-position: center top
+  background-repeat: no-repeat
+  cursor: pointer
+
+  .row__inner, .row--footer-push
+    cursor: default
+
+#js-ad-oneByOne
+  display: none
