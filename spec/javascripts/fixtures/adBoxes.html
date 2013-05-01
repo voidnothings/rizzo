@@ -2,14 +2,8 @@
 	// New
 	window.lp = window.lp || {};
 	window.lp.ads = lp.ads || {};
-	// Possible ad types are: trafficDriver, sponsorTile, oneByOne, leaderboard, pushdown, & mpu
-	window.lp.ads.toDisplay = ["leaderboard", "mpu", "trafficDriver"];
-	window.lp.ads.networkCode = "6956";
-	window.lp.ads.layer1 = "Test_LP";
-	//window.lp.ads.layer2 = "destinations";
-	//window.lp.ads.layer3 = "europe";
-	//window.lp.ads.layer4 = "england";
-	//window.lp.ads.layer5 = "london";
+	window.lp.ads.networkCode = 6956;
+	window.lp.ads.layers = ["Test_LP"];
 	
 	// This is just a JSON formatted object to make it easy to add as many key:value pairs as desired.
 	window.lp.ads.keyValues = { "theme": "family-travel, honeymoons, world-food", "template": "highlights", "topic":"highlights" };
@@ -18,7 +12,4 @@
 	window.lp.ads.adZone = "destinations/europe;";
 	window.lp.ads.adTnm = "overview";
 </script>
-
-<div id="js-ad-leaderboard"></div>
-<div id="js-ad-medium_rect"></div>
-<div id="js-ad-trafficDriver"></div>
+<div class="ad-container"></div>

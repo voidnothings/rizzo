@@ -9,7 +9,7 @@ define ['gpt'], ->
   adManager =
     # sizes is all that's needed for the new implementation. The above can all be ditched when switching to the new manager.
     sizes:
-      adSenseCard: [155,256]
+      adSense: [155,256]
       trafficDriver: [155,256]
       sponsorTile: [276,32]
       oneByOne: [1,1]
@@ -105,7 +105,7 @@ define ['gpt'], ->
 
           # Eliminate all cards preceding our ad element so we can place a dummy el at the nth position *after* the current one using .eq()
           cards = $(cards.splice(thisCardIndex))
-          dummyCard = '<div class="card card--ad card--double card--list card--dummy" />'
+          dummyCard = '<div class="card card--ad card--double card--list card--placeholder" />'
 
           thisCard.css(
             left: thisCard.position().left
@@ -135,16 +135,26 @@ define ['gpt'], ->
 
     # Abstract this polling functionality out for use in both checkMpu and hideEmpty
     afterLoaded : (adEl, callback) ->
+      count = 0
+      maxPoll = 15000 # The maximum amount of milliseconds to poll for
+      timeout = 250
+
       # Ugly but necessary. DOM Mutation events are deprecated, and there's not enough support for MutationObserver yet so we have to poll.
       poll = window.setInterval ->
+        count++
+        # Make sure we're not running this thing indefinitely
+        if (count >= maxPoll/timeout)
+          window.clearInterval poll
+          return
+
         iframe = $(adEl).children('iframe')
 
-        # If something's been loaded into our ad element
+        # If something's been loaded into our ad element, we're good to go
         if $.trim adEl.innerHTML isnt '' and iframe.height() > 0
           window.clearInterval poll
 
           callback.apply(this, [adEl, iframe])
-      , 250
+      , timeout
 
     # The old init used in the site wide leaderboard.
     initOld : (_config,_target) ->
