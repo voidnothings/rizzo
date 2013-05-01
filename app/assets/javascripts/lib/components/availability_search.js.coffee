@@ -3,15 +3,14 @@
 #
 # ------------------------------------------------------------------------------
   
-define ['jquery', 'lib/base/events', 'lib/utils/serialize_form', 'lib/managers/select_group_manager', 'lib/managers/availability/helpers/availability_datepicker'], ($, EventEmitter, Serializer, SelectManager, AvailabilityDatepicker) ->
+define ['jquery', 'lib/base/events', 'lib/utils/serialize_form', 'lib/managers/select_group_manager', 'lib/components/datepicker'], ($, EventEmitter, Serializer, SelectManager, AvailabilityDatepicker) ->
 
   class AvailabilitySearch
 
     $.extend(@prototype, EventEmitter)
 
     config :
-      el: null
-      state: 0
+      el: 'form'
 
     constructor: (args={}) ->
       $.extend @config, args

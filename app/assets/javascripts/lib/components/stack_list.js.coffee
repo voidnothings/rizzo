@@ -1,4 +1,4 @@
-define ['jquery', 'lib/base/events'], ($, EventEmitter ) ->
+define ['jquery', 'lib/extends/events'], ($, EventEmitter ) ->
 
   class StackList
 

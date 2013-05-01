@@ -3,7 +3,7 @@
 # Replace pagination with a load more button
 # ------------------------------------------------------------------------------
 
-define ['jquery','lib/base/events'], ($, EventEmitter ) ->
+define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
 
   class LoadMore
 

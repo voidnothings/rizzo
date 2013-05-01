@@ -3,7 +3,7 @@
 #
 # ------------------------------------------------------------------------------
   
-define ['jquery', 'lib/base/events', 'lib/utils/serialize_form', 'lib/managers/select_group_manager', 'lib/managers/availability/helpers/availability_datepicker'], ($, EventEmitter, Serializer, SelectManager, AvailabilityDatepicker) ->
+define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form', 'lib/managers/select_group_manager', 'lib/managers/availability/helpers/availability_datepicker'], ($, EventEmitter, Serializer, SelectManager, AvailabilityDatepicker) ->
 
   class AvailabilityInfo
 
@@ -15,8 +15,6 @@ define ['jquery', 'lib/base/events', 'lib/utils/serialize_form', 'lib/managers/s
 
     constructor: (args={}) ->
       $.extend @config, args
-      @state = 'initialized'
-      @params = {}
       @init()
 
     init: ->
@@ -31,6 +29,7 @@ define ['jquery', 'lib/base/events', 'lib/utils/serialize_form', 'lib/managers/s
         false
 
     update: (params = {}) ->
+      #to-do: iterate on params with base selector
       $('.js-availability-from').text(params.from)
       $('.js-availability-to').text(params.to)
       guestCopy = if params.guests > 1 then 'guests' else 'guest'

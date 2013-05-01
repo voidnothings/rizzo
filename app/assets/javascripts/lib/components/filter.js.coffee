@@ -1,6 +1,6 @@
-define ['jquery', 'lib/base/events', 'lib/utils/serialize_form'], ($, EventEmitter, Serializer) ->
+define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEmitter, Serializer) ->
 
-  class LodgingFilter
+  class Filter
 
     $.extend(@prototype, EventEmitter)
 
