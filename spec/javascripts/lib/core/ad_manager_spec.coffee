@@ -1,4 +1,4 @@
-require ['jquery', 'public/assets/javascripts/lib/core/ad_manager'], ($, adManager) ->
+require ['public/assets/javascripts/lib/core/ad_manager'], (adManager) ->
 
   # Utility function to help setting up each test.
   adSetUp = (ad_types) ->
