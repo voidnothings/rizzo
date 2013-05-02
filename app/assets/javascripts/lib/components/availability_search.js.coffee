@@ -14,7 +14,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form', 'lib/manager
 
     constructor: (args={}) ->
       $.extend @config, args
-      @state = 'initialized'
+      @state = (if args.hasDates then 'submited' else 'initialized')
       @init()
 
     init: ->
