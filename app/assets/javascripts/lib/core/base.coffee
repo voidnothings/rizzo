@@ -30,9 +30,8 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
       AssetFetch.get "https://secure.lonelyplanet.com/sign-in/status", () =>
         @auth.update()
 
-    # Note: We need to add this back in when the switch to the new DFP server happens
-    # initAds: ->
-    #   AdManager.init(@adConfig, 'js-ad-leaderboard') # Remove params when dropping the old ad manager
+    initAds: ->
+      AdManager.init(@adConfig(), 'ad-leaderboard') # Remove the second param when dropping the old ad manager
 
     showUserBasket: ->
       shopCart = new ShoppingCart()
