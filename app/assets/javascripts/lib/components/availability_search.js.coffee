@@ -3,7 +3,7 @@
 #
 # ------------------------------------------------------------------------------
   
-define ['jquery', 'lib/base/events', 'lib/utils/serialize_form', 'lib/managers/select_group_manager', 'lib/components/datepicker'], ($, EventEmitter, Serializer, SelectManager, AvailabilityDatepicker) ->
+define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form', 'lib/managers/select_group_manager', 'lib/components/datepicker'], ($, EventEmitter, Serializer, SelectManager, AvailabilityDatepicker) ->
 
   class AvailabilitySearch
 

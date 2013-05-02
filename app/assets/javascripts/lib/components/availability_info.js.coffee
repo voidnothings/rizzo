@@ -1,9 +1,10 @@
 # ------------------------------------------------------------------------------
-# Constructor class for the Availability form manager
+#
+# Availability Info
 #
 # ------------------------------------------------------------------------------
   
-define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form', 'lib/managers/select_group_manager', 'lib/managers/availability/helpers/availability_datepicker'], ($, EventEmitter, Serializer, SelectManager, AvailabilityDatepicker) ->
+define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
 
   class AvailabilityInfo
 
