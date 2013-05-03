@@ -7,9 +7,13 @@ Feature: Global Resources
     Given I go to "/global-head"
     Then the global-head should have the correct content
 
+  Scenario: it serves the global-head-thorntree
+    Given I go to "/global-head-thorntree"
+    Then the global-head-thorntree should have the correct content
+
   Scenario: it serves the secure global head
     Given I go to "/secure/global-head"
-    Then the global-head should have the correct content
+    Then the secure global-head should have the correct content
     Then the global-head should serve a secure static-ui stylesheet
     Then the global-head should serve a secure static-ui script
 
