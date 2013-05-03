@@ -55,20 +55,9 @@
     content: none
 
 
-// new stuff from waldorf
-
-$body-title-blue: #206fac
-$body-active: #0fdecf
-$pale-gray: #e3e8ec
-
-//$body-facets: #c5d6d9 // $highlight
-//$body-dark: #3b444f // $body
-//$form-body: #3b444f // $body
-//$body-pale-gray: #67747c // $stack-intro-text
-//$body-light-gray: #f2f6fa // $nav-bg--hover
-
-//$form-input: #f5f9fb
-//$form-background: #fff
+// -----------------------------------------------------------------------------
+// New-style nav
+// -----------------------------------------------------------------------------
 
 .aside
   width: 182px
@@ -81,7 +70,7 @@ $pale-gray: #e3e8ec
 .group--aside
   +border-radius(4)
   background: #fff
-  border: 1px solid $pale-gray
+  border: 1px solid $subdued
   padding: 4px 0
 
 .group__body
@@ -93,7 +82,7 @@ $pale-gray: #e3e8ec
   &:before
     +border-radius-each(0,4,4,0)
     background-color: $body-background
-    border-color: $pale-gray
+    border-color: $subdued
     border-style: solid
     border-width: 1px 1px 1px 0
     box-shadow: 15px 0 0 #fff
@@ -107,7 +96,7 @@ $pale-gray: #e3e8ec
   &:after
     +border-radius-each(4,0,0,4)
     background-color: $body-background
-    border-color: $pale-gray
+    border-color: $subdued
     border-style: solid
     border-width: 1px 0 1px 1px
     content: ''
@@ -126,7 +115,7 @@ $pale-gray: #e3e8ec
 .group__title--aside
   @extend %smooth-text
   +font-size(15)
-  color: $body-title-blue
+  color: $nav-search-btn-hover
   display: block
   line-height: 2em
   padding: 7px 15px
@@ -173,18 +162,18 @@ $pale-gray: #e3e8ec
   @extend %icon-image-poi-tour-before
 
 .nav__item--current--stack
-  background: $body-active
+  background: $active
   color: #fff
   font-weight: 700
   &:hover
-    background: $body-active
+    background: $active
     color: #fff
 
 .nav__item--current--stack
   .facet--count
     background-color: #fff
     border: none
-    color: $body-active
+    color: $active
 
 .facet--count
   +border-radius(4)
@@ -224,7 +213,7 @@ $pale-gray: #e3e8ec
 .group__handler
   @extend %smooth-text
   +font-size(13)
-  color: $body-title-blue
+  color: $nav-search-btn-hover
   cursor: pointer
   display: block
   line-height: 1.5em
@@ -301,7 +290,7 @@ input.accordion__handler:checked
     @extend %smooth-text
     +transition(top,0.25,ease)
     +font-size(22)
-    color: $body-title-blue
+    color: $nav-search-btn-hover
     content: '\e014'
     left: 16px
     line-height: 0
