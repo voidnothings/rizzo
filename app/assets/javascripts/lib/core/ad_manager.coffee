@@ -70,11 +70,7 @@ define ['gpt'], ->
             #   .set("adsense_ad_types", "text")
             #   .set("adsense_channel_ids", lp.ads.channels.replace(/\s/g, '+'))
 
-          # TODO: remove type from the below - it's there for testing purposes. /spike
-          if lp.ads.hideThenShow
-            adManager.showLoaded(adEl, type)
-          else if lp.ads.showThenHide
-            adManager.hideEmpty(adEl, type)
+          adManager.showLoaded(adEl, type)
 
         # This is just a JSON formatted object to make it easy to add as many key:value pairs as desired.
         for key of lp.ads.keyValues
@@ -101,7 +97,7 @@ define ['gpt'], ->
           cardsPerRow = Math.floor grid.width() / (grid.find('.card--single').width())
           cards = $('.results .card')
           thisCardIndex = cards.index(thisCard)
-          
+
           # If this is the third last card (there will always be *at least* a trafficDriver and adsense card following),
           # then there's no need to carry on... just let the ad push the content down.
           if (cards.length - thisCardIndex <= 3)
@@ -116,24 +112,14 @@ define ['gpt'], ->
             position: 'absolute'
             top: thisCard.position().top
           )
-          
+
           # cardsPerRow - 2 because the mpu takes the width of 2 cards.
           cards.eq(cardsPerRow - 2).after(dummyCard)
           thisCard.before(dummyCard)
 
-    hideEmpty : (adEl, type) -> # TODO: remove type /spike
-      adManager.afterLoaded adEl, (adEl, iframe) ->
-        # TODO: Remove the following line - used for testing only. /spike
-        adEl.style.display = 'none' if type is 'leaderboard' and lp.ads.fakeEmptyLeaderboard
-        if adEl.style.display is 'none'
-          $(adEl).closest('.row--leaderboard').addClass('is-closed')
-          $(adEl).closest('.card').addClass('is-closed')
-
     showLoaded : (adEl, type) ->
       adManager.afterLoaded adEl, (adEl, iframe) ->
-        # TODO: Remove the following line - used for testing only. /spike
-        adEl.style.display = 'none' if type is 'leaderboard' and lp.ads.fakeEmptyLeaderboard
-        if adEl.style.display isnt 'none' or (lp.ads.forceShow and not (type is 'leaderboard' and lp.ads.fakeEmptyLeaderboard))
+        if adEl.style.display isnt 'none'
           $(adEl).closest('.row--leaderboard').removeClass('is-closed')
           $(adEl).closest('.card').removeClass('is-closed')
 
