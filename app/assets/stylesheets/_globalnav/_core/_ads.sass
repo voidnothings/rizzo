@@ -7,15 +7,13 @@
 .ad-leaderboard
   @extend %ad-leaderboard
   +transition(all, 0.5, ease)
-  display: table-cell
+  text-align: center
   vertical-align: middle
-
-  > div
-    display: inline-block
-    text-align: center
+    
 
 .ad-leaderboard__inner
   @include border-radius(2)
+  @extend %inline-block
   background-color: $row-leader-ad
   border: 3px solid $row-leader-border
   position: relative
