@@ -83,7 +83,17 @@ body
 
 .row--leaderboard
   background-color: $row-leader
-  padding: 16px 0 
+  overflow: hidden
+  padding: 16px 0
+  height: 90px
+  +transition(all, 0.5, ease)
+
+  > .row__inner
+    display: table
+
+  &.is-closed
+    height: 0
+    padding: 0
 
 
 // ----------------------------------------------------------------------------
@@ -138,6 +148,7 @@ body
   background-color: $body-background
   padding-top: 25px
   margin-bottom: 40px
+  padding-top: 40px
 
 
 // ----------------------------------------------------------------------------
