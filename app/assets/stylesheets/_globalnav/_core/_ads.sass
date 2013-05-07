@@ -5,18 +5,71 @@
 // ----------------------------------------------------------------------------
 
 .ad-leaderboard
-  @extend %block-center
-  width: 782px
+  @extend %ad-leaderboard
+  +transition(all, 0.5, ease)
+  display: table-cell
+  vertical-align: middle
+
+  > div
+    display: inline-block
+    text-align: center
 
 .ad-leaderboard__inner
-  @extend %ad-leaderboard-box
   @include border-radius(2)
-  margin-left: 18px 
+  background-color: $row-leader-ad
+  border: 3px solid $row-leader-border
+  position: relative
   &:after
     @extend %empty-abs-generated-content
     @extend %sprite-core
     background-position: -95px 0
-    width: 11px
-    height: 91px
-    right: 122px
-    top: 2px
+    margin-top: -45px
+    width: 10px
+    height: 90px
+    right: -15px
+    top: 50%
+
+// ----------------------------------------------------------------------------
+// 
+// Other ads
+// 
+// ----------------------------------------------------------------------------
+.ad-trafficDriver, .ad-sponsorTile, .ad-mpu, .ad-doubleMpu
+  &.card__content
+    @extend %block-center
+
+.ad-trafficDriver
+  @extend %ad-trafficDriver
+  &.card__content
+    top: 0
+
+.ad-sponsorTile
+  @extend %ad-sponsorTile
+
+  .stack__intro &
+    float: right
+
+.ad-mpu
+  @extend %ad-mpu
+  &.card__content
+    top: 50px
+
+.results .card.ad-doubleMpu
+  @extend %ad-doubleMpu
+  +multiple-transitions(height 0.5s ease, width 0.5s ease)
+  z-index: 2
+
+  .card__content
+    height: auto
+    overflow: visible
+
+.ad-wallpaper
+  background-position: center top
+  background-repeat: no-repeat
+  cursor: pointer
+
+  .row__inner, .row--footer-push
+    cursor: default
+
+#js-ad-oneByOne
+  display: none
