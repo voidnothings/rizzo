@@ -10,7 +10,7 @@ define ['gpt'], ->
     # sizes is all that's needed for the new implementation. The above can all be ditched when switching to the new manager.
     sizes:
       adSense: [155,256]
-      trafficDriver: [155,256]
+      trafficDriver: [192,380]
       sponsorTile: [276,32]
       oneByOne: [1,1]
       leaderboard: [[970,66], [728,90]]
@@ -26,7 +26,13 @@ define ['gpt'], ->
       googletag.cmd.push ->
         adCount = 0
         toDisplay = lp.ads.toDisplay
-        
+
+        unit = [lp.ads.networkCode] # Network Code - Found in the "Admin" tab of DFP
+        i = 0
+        while i < lp.ads.layers.length
+          unit.push(lp.ads.layers[i])
+          i++
+
         i = 0
         while i < toDisplay.length
           type = toDisplay[i]
@@ -34,43 +40,41 @@ define ['gpt'], ->
           adSize = adManager.sizes[type]
           newId = "js-ad-"+type+"-"+adCount
 
-          # If the adEl doesn't exist on the page, return false so that JS execution doesn't fail.
+          adCount++
+
+          # Make sure we get all instances of this type of ad.
+          i++ if document.getElementById("js-ad-"+type) is null or adEl is null
+
+          # If the adEl doesn't exist on the page, continue to the next iteration so that JS execution doesn't fail.
           if adEl is null
-            i++
             continue
 
-          adCount++
-          
           # Exploit the fact that getElementById only returns the FIRST element with that ID and make this one unique.
           adEl.id = newId
 
-          unit = [lp.ads.networkCode] # Network Code - Found in the "Admin" tab of DFP
-          j = 0
-          while j < lp.ads.layers.length
-            unit.push(lp.ads.layers[j])
-            j++
-          
+          if /adsense/i.test(type)
+            # Note: we're using the old, non DFP way of calling adsense ads. Ideally once we figure out how to serve these through DFP, this can be ditched in favour of the below commented out code.
+            continue
+
           adUnit = googletag.defineSlot("/"+unit.join("/"), adSize, newId).addService(googletag.pubads())
 
           if type is 'mpu'
             adManager.checkMpu(adEl)
-          else if /adsense/i.test(type) and lp.ads.channels
-            adUnit.set("adsense_border_color", "FFFFFF")
-              .set("adsense_background_color", "FFFFFF")
-              .set("adsense_link_color", "0C77BF")
-              .set("adsense_text_color", "677276")
-              .set("adsense_url_color", "000000")
-              .set("adsense_ad_types", "text")
-              .set("adsense_channel_ids", lp.ads.channels)
+          # DFP code... we can't use this atm.
+          # else if /adsense/i.test(type) and lp.ads.channels
+            # adUnit.set("adsense_border_color", "FFFFFF")
+            #   .set("adsense_background_color", "FFFFFF")
+            #   .set("adsense_link_color", "0C77BF")
+            #   .set("adsense_text_color", "677276")
+            #   .set("adsense_url_color", "000000")
+            #   .set("adsense_ad_types", "text")
+            #   .set("adsense_channel_ids", lp.ads.channels.replace(/\s/g, '+'))
 
           # TODO: remove type from the below - it's there for testing purposes. /spike
           if lp.ads.hideThenShow
             adManager.showLoaded(adEl, type)
           else if lp.ads.showThenHide
             adManager.hideEmpty(adEl, type)
-
-          # Make sure we get all instances of this type of ad.
-          i++ if document.getElementById("js-ad-"+type) is null
 
         # This is just a JSON formatted object to make it easy to add as many key:value pairs as desired.
         for key of lp.ads.keyValues
