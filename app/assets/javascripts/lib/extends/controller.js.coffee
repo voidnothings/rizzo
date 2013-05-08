@@ -29,7 +29,7 @@ define ['jquery'], ($) ->
         window.history.pushState({}, null, url)
       else if @supportHash()
         @allowHistoryNav = false
-      window.location.hash = "!#{url}"
+        window.location.hash = "!#{url}"
 
     onPopState: (e) =>
       window.location.replace(window.location.href)
