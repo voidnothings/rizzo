@@ -169,6 +169,22 @@ $card-hotel-content-padding: 13px
 
 
 // -----------------------------------------------------------------------------
+// Card overlay
+// -----------------------------------------------------------------------------
+
+.collection--hotels
+  &.card--double
+    &:after
+      @extend %empty-abs-generated-content
+      top: 0
+      left: 0
+      display: block
+      width: $double-card-width
+      height: $card-grid-height
+      background: image_url('collections/best-places.png')
+
+
+// -----------------------------------------------------------------------------
 // Card 'content' section
 // -----------------------------------------------------------------------------
 
