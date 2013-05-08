@@ -122,7 +122,7 @@ $card-hotel-content-padding: 13px
     margin: 7px
 
   // double stack cards have full height images
-  .card--link.card--double &
+  .card--double &
     height: $card-grid-height
 
   // Refactor to use landscape/portrait classes when rowlf imaging catches up
@@ -169,6 +169,26 @@ $card-hotel-content-padding: 13px
 
 
 // -----------------------------------------------------------------------------
+// Card overlay
+// -----------------------------------------------------------------------------
+
+.card--collection
+  &.card--double
+    &:after
+      @extend %empty-abs-generated-content
+      top: 0
+      left: 0
+      display: block
+      width: $double-card-width
+      height: $card-grid-height
+      background-size: $double-card-width $card-grid-height
+
+.card--collection--hotels
+  &.card--double
+    &:after
+      background-image: image_url('collections/best-places.png')
+
+// -----------------------------------------------------------------------------
 // Card 'content' section
 // -----------------------------------------------------------------------------
 
@@ -189,7 +209,7 @@ $card-hotel-content-padding: 13px
   .card--link &
     height: ($card-grid-height - $stack-card-image-height - (2 * $card-content-padding) )
 
-  .card--link.card--double &
+  .card--double &
     +background-gradient($startColor: rgba(0,0,0,0), $endColor: rgba(0,0,0,1.0))
     color: #fff
     height: auto
