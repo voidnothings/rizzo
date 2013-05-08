@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'kss'
 require 'sinatra/base'
-
+require 'json'
 
 class StyleGuideApp < Sinatra::Base
 
@@ -29,6 +29,23 @@ class StyleGuideApp < Sinatra::Base
     erb :inputs
   end
 
+  get '/components.json' do
+    styleguide = Kss::Parser.new('app/assets/stylesheets')
+    results = []
+
+    styleguide.sections.keys.each do |key|
+
+      results.push({
+        'description' => styleguide.section(key).description,
+        'section' => styleguide.section(key).section,
+        'filename' => styleguide.section(key).filename
+      })
+
+    end
+
+    results.to_json
+  end
+
   helpers do
     # Generates a styleguide block. A little bit evil with @_out_buf, but
     # if you're using something like Rails, you can write a much cleaner helper
@@ -50,4 +67,5 @@ class StyleGuideApp < Sinatra::Base
       @_out_buf = out
     end
   end
+
 end
