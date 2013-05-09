@@ -5,7 +5,7 @@ require.config
 
   waitSeconds: 40
 
-define ['gpt'], ->
+require ['gpt'], ->
   adManager =
     # sizes is all that's needed for the new implementation.
     sizes:
