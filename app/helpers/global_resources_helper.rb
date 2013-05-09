@@ -148,6 +148,13 @@ module GlobalResourcesHelper
         haml_tag(:a, class: "nav__item js-nav-item nav__item--breadcrumbs", href: "http://www.lonelyplanet.com/#{breadcrumb[:slug]}", itemprop:"url") { haml_concat breadcrumb[:place] } 
       end
     end
-  end  
+  end
   
+  def dns_prefetch_for(links)
+    capture_haml do
+      links.each do |link|
+        haml_tag(:link, rel: "dns-prefetch", href: "//#{link}")
+      end
+    end
+  end
 end
