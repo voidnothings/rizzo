@@ -95,30 +95,33 @@ define ['gpt'], ->
     checkMpu : (adEl) ->
       adManager.afterLoaded adEl, (adEl, iframe) ->
         if iframe.height() > $(adEl).height()
-          thisCard = $(adEl).closest('.card').addClass 'ad-doubleMpu'
-          grid = $(adEl).closest('.grid-view')
-          cardsPerRow = Math.floor grid.width() / (grid.find('.card--single').width())
-          cards = $('.results .card')
-          thisCardIndex = cards.index(thisCard)
+          # We need a timeout here because the leaderboard might be animating down which messes with our 'top' calc.
+          setTimeout ->
+            thisCard = $(adEl).closest('.card').addClass 'ad-doubleMpu'
+            grid = $(adEl).closest('.grid-view')
+            cardsPerRow = Math.floor grid.width() / (grid.find('.card--single').width())
+            cards = $('.results .card')
+            thisCardIndex = cards.index(thisCard)
 
-          # If this is the third last card (there will always be *at least* a trafficDriver and adsense card following),
-          # then there's no need to carry on... just let the ad push the content down.
-          if (cards.length - thisCardIndex <= 3)
-            return false
+            # If this is the third last card (there will always be *at least* a trafficDriver and adsense card following),
+            # then there's no need to carry on... just let the ad push the content down.
+            if (cards.length - thisCardIndex < 3)
+              return false
 
-          # Eliminate all cards preceding our ad element so we can place a dummy el at the nth position *after* the current one using .eq()
-          cards = $(cards.splice(thisCardIndex))
-          dummyCard = '<div class="card card--ad card--double card--list card--placeholder" />'
+            # Eliminate all cards preceding our ad element so we can place a dummy el at the nth position *after* the current one using .eq()
+            cards = $(cards.splice(thisCardIndex))
+            dummyCard = '<div class="card card--ad card--double card--list card--placeholder" />'
 
-          thisCard.css(
-            left: thisCard.position().left
-            position: 'absolute'
-            top: thisCard.position().top
-          )
+            thisCard.css(
+              left: thisCard.position().left
+              position: 'absolute'
+              top: thisCard.position().top
+            )
 
-          # cardsPerRow - 2 because the mpu takes the width of 2 cards.
-          cards.eq(cardsPerRow - 2).after(dummyCard)
-          thisCard.before(dummyCard)
+            # cardsPerRow - 2 because the mpu takes the width of 2 cards.
+            cards.eq(cardsPerRow - 2).after(dummyCard)
+            thisCard.before(dummyCard)
+          , 500
 
     showLoaded : (adEl, type) ->
       adManager.afterLoaded adEl, (adEl, iframe) ->
