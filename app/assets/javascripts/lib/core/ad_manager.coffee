@@ -7,7 +7,7 @@ require.config
 
 define ['gpt'], ->
   adManager =
-    # sizes is all that's needed for the new implementation. The above can all be ditched when switching to the new manager.
+    # sizes is all that's needed for the new implementation.
     sizes:
       adSense: [155,256]
       trafficDriver: [192,380]
