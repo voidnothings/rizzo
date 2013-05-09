@@ -17,6 +17,9 @@ define ['gpt'], ->
       mpu: [[300,250], [300, 600]]
 
     init : () ->
+      # NOTE: The following line is temporary until we switch to the new DFP server.
+      $('body').removeClass('ad-manager-tmp').addClass('new-ad-manager')
+
       # GPT Boilerplate code
       window.googletag = window.googletag || {}
       googletag.cmd = googletag.cmd || []
