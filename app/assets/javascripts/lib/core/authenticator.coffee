@@ -3,27 +3,23 @@ define ['jquery'], ($)->
   class Authenticator
 
     @version = '0.0.13'
-
-    @options =
-      forumPostsUrlTemplate: '//www.lonelyplanet.com/thorntree/profile.jspa?username=[USERNAME]'
-      membersUrl: '//www.lonelyplanet.com/members'
-      messagesUrl: '//www.lonelyplanet.com/members/messages'
-      registerLink: 'https://secure.lonelyplanet.com/members/registration/new'
-      signOutUrl: 'https://secure.lonelyplanet.com/sign-in/logout'
     
-    constructor: ->
+    constructor: (baseDomain) ->
+      @options = @createUrls(baseDomain)
       @userState = @userSignedIn()
       @el = $('.js-user-nav')
-
-      @options = Authenticator.options
       @signonWidget()
-      
+    
+    createUrls: (baseDomain)->
+      forumPostsUrlTemplate: "//www.#{baseDomain}/thorntree/profile.jspa?username=[USERNAME]"
+      membersUrl: "//www.#{baseDomain}/members"
+      messagesUrl: "//www.#{baseDomain}/members/messages"
+      registerLink: "https://secure.#{baseDomain}/members/registration/new"
+      signOutUrl: "https://secure.#{baseDomain}/sign-in/logout"
+
     userSignedIn: ->
       @lpUserName = @getLocalData('lp-uname')
-      if (@lpUserName and (@lpUserName isnt '') and (@lpUserName isnt 'undefined'))
-        true
-      else
-        false
+      if (@lpUserName and (@lpUserName isnt '') and (@lpUserName isnt 'undefined')) then true else false
 
     signonWidget: ->
       if @userState is true
