@@ -61,12 +61,14 @@ $card-hotel-content-padding: 13px
     .btn--bookable
       background: $bookable-hover
 
+// add white fadeout at the bottom of card lists that have images
+
 .card--list.has-image
   &:after
     @extend %empty-abs-generated-content
-    height:  20px
     +background-gradient($startColor: rgba(255,255,255,0), $endColor: rgba(255,255,255,1.0))
     bottom: $card-content-padding
+    height: 20px
     left: 0
     right: 0
   &:hover
@@ -101,14 +103,15 @@ $card-hotel-content-padding: 13px
 
 .card__hero
   @extend %relative
+  height: $stack-card-image-height
   overflow: hidden
   width: 100%
 
-  .card--list.has-image &
+  .card--list &
     height: $card-image-height
 
   // hotel card
-  .card--hotel.has-image &
+  .card--hotel &
     height: $card-image-height
 
   // half-height cards are all image
@@ -131,11 +134,6 @@ $card-hotel-content-padding: 13px
     height: 100%
     max-width: none
 
-  // single link cards have taller images
-  .card--link &
-    height: $stack-card-image-height
-    overflow: visible
-
 
 // -----------------------------------------------------------------------------
 // Card overlay
@@ -145,56 +143,60 @@ $card-hotel-content-padding: 13px
   &.card--double
     &:after
       @extend %empty-abs-generated-content
-      top: 0
-      left: 0
-      display: block
-      width: $double-card-width
-      height: $card-grid-height
       background-size: $double-card-width $card-grid-height
+      display: block
+      height: $card-grid-height
+      left: 0
       pointer-events: none
+      top: 0
+      width: $double-card-width
 
 .card--collection--hotels
   &.card--double
     &:after
       background-image: image_url('collections/best-places.png')
 
+
 // -----------------------------------------------------------------------------
 // Card 'content' section
 // -----------------------------------------------------------------------------
 
 .card__content
-  @extend %absolute
-  @extend %transition--base
-  bottom: 0
   color: $new-header-grey
-  height: ($card-grid-height - 60px - $card-content-padding)
-  left: 0
-  overflow: hidden
+  height: ($card-grid-height - $stack-card-image-height - (2 * $card-content-padding) )
   padding: $card-content-padding
-  right: 0
 
   .card--single.card--ad &
     padding: 0
 
-  .card--link &
-    height: ($card-grid-height - $stack-card-image-height - (2 * $card-content-padding) )
+  .card--info &
+    height: ($card-grid-height - 50px - $card-content-padding)
+    padding-top: 50px
 
   .card--double &
+    @extend %absolute
     +background-gradient($startColor: rgba(0,0,0,0), $endColor: rgba(0,0,0,1.0))
+    bottom: 0
     color: #fff
     height: auto
+    left: 0
+    right: 0
+
+  .card--list.has-no-image &
+    height: ($card-grid-height - 60px - $card-content-padding)
+    padding-top: 60px
 
   .card--list.has-image &
+    @extend %absolute
+    @extend %transition--base
     background: #fff
-    bottom: $card-content-padding
+    bottom: 0
     height: ($card-grid-height - $card-image-height - (2 * $card-content-padding) )
+    left: 0
+    margin-bottom: $card-content-padding
+    overflow: hidden
     padding: $card-content-padding $card-content-padding 0 $card-content-padding
-
-  .card--hotel &
-    padding: $card-hotel-content-padding
-
-  .card--hotel.has-image &
-    height: ($card-grid-height - $card-image-height - (2 * $card-hotel-content-padding) )
+    right: 0
 
 
 // -----------------------------------------------------------------------------
@@ -241,6 +243,7 @@ $card-hotel-content-padding: 13px
   line-height: 14px
   list-style: inside
 
+
 // -----------------------------------------------------------------------------
 // Card Footer
 // -----------------------------------------------------------------------------
@@ -274,8 +277,18 @@ $card-hotel-content-padding: 13px
 // -----------------------------------------------------------------------------
 
 .card--hotel
+  .card__content
+    padding: $card-hotel-content-padding
+
+  &.has-image
+    .card__content
+      height: ($card-grid-height - $card-image-height - (2 * $card-hotel-content-padding) )
+
   &.has-no-image
     border-bottom: 2px solid $hotels-poi
+    .card__content
+      height: ($card-grid-height - 60px - $card-hotel-content-padding)
+      padding-top: 60px
 
   .card__footer
     bottom: 8px
@@ -327,8 +340,8 @@ $card-hotel-content-padding: 13px
     @extend %benton-regular
     @extend %no-line-height
     cursor: pointer
-    pointer-events: none
     font-size: 69px
+    pointer-events: none
     position: absolute
     z-index: 5
 
@@ -345,6 +358,13 @@ $card-hotel-content-padding: 13px
     left: 75px
     color: #fff
     text-shadow: 0 0 5px rgba(0,0,0,0.75)
+
+.card--info
+  @extend %card--icon
+  &:before
+    font-size: 50px
+    left: 10px
+    top: 20px
 
 .card--list
   @extend %card--icon
@@ -458,6 +478,9 @@ $card-hotel-content-padding: 13px
 
   &:before
     font-size: 35px
+
+  .card--collection--hotels &
+    @extend %icon-image-poi-hotel-before
 
   .card--link--activities &
     @extend %icon-image-poi-activity-before
