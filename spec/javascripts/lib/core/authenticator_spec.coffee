@@ -35,7 +35,11 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
     describe 'staging environment', ->
 
       beforeEach ->
-        @auth = new Authenticator("lpstaging.com")
+
+        @auth = new Authenticator()
+        spyOn(@auth, 'getDomain').andReturn("lpstaging.com")
+        @auth.constructor()
+
 
       it 'creates custom urls based on the domain', ->
         expect(@auth.options.registerLink).toContain("lpstaging.com")

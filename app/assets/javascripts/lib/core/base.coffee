@@ -3,17 +3,12 @@ define( ['jquery','lib/core/ad_manager_old','lib/utils/asset_fetch', 'lib/core/a
   class Base
 
     constructor: (args={})->
-      baseDomain : @getDomain()
-      @authenticateUser(baseDomain)
+      @authenticateUser()
       @showUserBasket()
       @initAds() if !args.secure
       @showCookieComplianceMsg()
       @initialiseFooterSelects()
       @addNavTracking()
-      
-
-    getDomain: ->
-      if window.location.hostname is "www.lpstaging.com" then "lpstaging.com" else "lonelyplanet.com"
 
     adConfig: ->
       adZone : window.lp.ads.adZone or window.adZone or 'home'

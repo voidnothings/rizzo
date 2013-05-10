@@ -4,12 +4,15 @@ define ['jquery'], ($)->
 
     @version = '0.0.13'
     
-    constructor: (baseDomain) ->
-      @options = @createUrls(baseDomain)
+    constructor: () ->
+      @options = @createUrls(@getDomain())
       @userState = @userSignedIn()
       @el = $('.js-user-nav')
       @signonWidget()
     
+    getDomain: ->
+      if window.location.hostname is "www.lpstaging.com" then "lpstaging.com" else "lonelyplanet.com"
+
     createUrls: (baseDomain)->
       forumPostsUrlTemplate: "//www.#{baseDomain}/thorntree/profile.jspa?username=[USERNAME]"
       membersUrl: "//www.#{baseDomain}/members"
