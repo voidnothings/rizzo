@@ -31,6 +31,24 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
       it 'has a sign-out url', ->
         expect(@auth.options.signOutUrl).toBeDefined()
 
+
+    describe 'staging environment', ->
+
+      beforeEach ->
+
+        @auth = new Authenticator()
+        spyOn(@auth, 'getDomain').andReturn("lpstaging.com")
+        @auth.constructor()
+
+
+      it 'creates custom urls based on the domain', ->
+        expect(@auth.options.registerLink).toContain("lpstaging.com")
+        expect(@auth.options.forumPostsUrlTemplate).toContain("lpstaging.com")
+        expect(@auth.options.membersUrl).toContain("lpstaging.com")
+        expect(@auth.options.messagesUrl).toContain("lpstaging.com")
+        expect(@auth.options.signOutUrl).toContain("lpstaging.com")
+
+
     describe 'logged-out', ->
 
       beforeEach ->
