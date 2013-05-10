@@ -131,41 +131,10 @@ $card-hotel-content-padding: 13px
     height: 100%
     max-width: none
 
-  // single link cards have taller images and fancy arrows
+  // single link cards have taller images
   .card--link &
-    @extend %curly-arrow-bottom-before
     height: $stack-card-image-height
     overflow: visible
-
-    &:before
-      @extend %absolute
-      @extend %benton-regular
-      @extend %no-line-height
-      top: 100%
-      font-size: 50px
-      left: 83px
-
-  // link card fancy arrow colours
-  .card--link--activities &
-    color: $link-card-activities
-
-  .card--link--entertainment &
-    color: $link-card-entertainment
-
-  .card--link--tours &
-    color: $link-card-tours
-
-  .card--link--lodgings &
-    color: $link-card-lodgings
-
-  .card--link--restaurants &
-    color: $link-card-restaurants
-
-  .card--link--shopping &
-    color: $link-card-shopping
-
-  .card--link--sights &
-    color: $link-card-sights
 
 
 // -----------------------------------------------------------------------------
