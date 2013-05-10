@@ -1,11 +1,4 @@
-require.config
-  paths:
-    # Include the GPT js via require so that we *know* it's loaded when it's meant to be used below.
-    'gpt': "//www.googletagservices.com/tag/js/gpt"
-
-  waitSeconds: 40
-
-require ['gpt'], ->
+define ['jquery', 'gpt'], ->
   adManager =
     # sizes is all that's needed for the new implementation.
     sizes:
