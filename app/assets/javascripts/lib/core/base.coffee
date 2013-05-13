@@ -10,13 +10,14 @@ define( ['jquery','lib/core/ad_manager_old','lib/utils/asset_fetch', 'lib/core/a
       @initialiseFooterSelects()
       @addNavTracking()
 
-    adConfig: ->
-      adZone : window.lp.ads.adZone or window.adZone or 'home'
-      adKeywords : window.lp.ads.adKeywords or window.adKeywords or ' '
-      tile : lp.ads.tile or 1
-      ord : lp.ads.ord or window.ord or Math.random()*10000000000000000
-      segQS : lp.ads.segQS or window.segQS or ' '
-      mtfIFPath : (lp.ads.mtfIFPath or '/')
+    lpAds = (window.lp and lp.ads)
+    adConfig :
+      adZone : if (lpAds && lpAds.adZone) then lpAds.adZone else window.adZone or 'home'
+      adKeywords : if (lpAds && lpAds.adKeywords) then lpAds.adKeywords else window.adKeywords or ' '
+      tile : if (lpAds && lpAds.tile)  then lpAds.tile else 1
+      ord : if (lpAds && lpAds.ord)  then lpAds.ord else window.ord or Math.random()*10000000000000000
+      segQS : if (lpAds && lpAds.segQS)  then lpAds.segQS else window.segQS or ' '
+      mtfIFPath : if (lpAds && lpAds.mtfIFPath)  then lpAds.mtfIFPath else '/'
       unit: [728,90]
       # sizes is all that's needed for the new implementation. The above can all be ditched when switching to the new manager.
       sizes:
