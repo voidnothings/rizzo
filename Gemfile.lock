@@ -6,7 +6,7 @@ GIT
 
 GIT
   remote: git@github.com:lonelyplanet/beaker.git
-  revision: 28ceb0a5579668ae0c55350f60285b5f292e7fe9
+  revision: 263cca0440348181d7065325c5981553f943d193
   specs:
     beaker (0.1.0)
 
