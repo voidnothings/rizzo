@@ -33,7 +33,7 @@ define( ['jquery','lib/core/ad_manager_old','lib/utils/asset_fetch', 'lib/core/a
         @auth.update()
 
     initAds: ->
-      AdManager.init(@adConfig(), 'ad-leaderboard') # Remove the second param when dropping the old ad manager
+      AdManager.init(@adConfig, 'js-ad-leaderboard') # Remove the second param when dropping the old ad manager
 
     showUserBasket: ->
       shopCart = new ShoppingCart()
