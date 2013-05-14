@@ -13,14 +13,14 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
       @initialiseFooterSelects()
       @addNavTracking()
 
-    # This adConfig can all be ditched when switching to the new DFP server.
+    lpAds = (window.lp and lp.ads)
     adConfig :
-      adZone : window.lp.ads.adZone or window.adZone or 'home'
-      adKeywords : window.lp.ads.adKeywords or window.adKeywords or ' '
-      tile : lp.ads.tile or 1
-      ord : lp.ads.ord or window.ord or Math.random()*10000000000000000
-      segQS : lp.ads.segQS or window.segQS or ' '
-      mtfIFPath : (lp.ads.mtfIFPath or '/')
+      adZone : if (lpAds && lpAds.adZone) then lpAds.adZone else window.adZone or 'home'
+      adKeywords : if (lpAds && lpAds.adKeywords) then lpAds.adKeywords else window.adKeywords or ' '
+      tile : if (lpAds && lpAds.tile)  then lpAds.tile else 1
+      ord : if (lpAds && lpAds.ord)  then lpAds.ord else window.ord or Math.random()*10000000000000000
+      segQS : if (lpAds && lpAds.segQS)  then lpAds.segQS else window.segQS or ' '
+      mtfIFPath : if (lpAds && lpAds.mtfIFPath)  then lpAds.mtfIFPath else '/'
       unit: [728,90]
 
     authenticateUser: ->
@@ -42,15 +42,18 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
 
     showCookieComplianceMsg: ->
       if LocalStore.get('cookie-compliance') is undefined or LocalStore.get('cookie-compliance') is null
-        args = 
-          content: "<p><strong>Hi there. We use cookies to improve your experience on our website. </strong><strong><a href='/legal/cookies'>Find out more about how we use cookies.</a></strong></p><p>You can update your settings by clicking the <strong><a href='/legal/cookies'>Cookie Policy</a></strong> link which can be found anytime at the bottom of the page.</p>"
+        args =
+          content: "<p class='cookie-text'><strong>Hi there,</strong> we use cookies to improve your experience on our website. You can <a class='cookie-link' href='http://www.lonelyplanet.com/legal/cookies'>update your settings</a> by clicking the Cookie Policy link at the bottom of the page.</p>"
           style: "row--cookie-compliance js-cookie-compliance"
-          delegate: 
-            onRemove : -> 
-              $('div.js-cookie-compliance').removeClass('row--cookie-compliance--open')
-              $('div.js-cookie-compliance').addClass('row--cookie-compliance--close')
-            onAdd : -> 
-              window.setTimeout( ( => $('div.js-cookie-compliance').addClass('row--cookie-compliance--open')), 1)
+          userOptions :
+            close: true
+            more: true
+          delegate:
+            onRemove : ->
+              $('div.js-cookie-compliance').removeClass('is-open')
+              $('div.js-cookie-compliance').addClass('is-closed')
+            onAdd : ->
+              window.setTimeout( ( => $('div.js-cookie-compliance').addClass('is-open')), 1)
         msg = new Msg(args)
         LocalStore.set('cookie-compliance', true)
 

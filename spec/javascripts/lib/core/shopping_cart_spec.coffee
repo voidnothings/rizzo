@@ -42,7 +42,6 @@ require ['public/assets/javascripts/lib/core/shopping_cart'], (ShoppingCart) ->
 
       it 'displays the basket element', ->
         nav = $('nav.js-user-nav')
-        expect($(nav)).toHaveClass('has-basket')
 
       it 'shows the number of shopping items', ->
         basketItems = $('span.js-basket-items').text()

@@ -5,12 +5,9 @@ define ['jquery', 'jplugs/jquery-cookies.2.2.0'], ($)->
     @version = '0.0.13'
 
     constructor: ->
-      @itemCount = null
+      itemCount = null
       @cartData = $.cookies.get("shopCartCookie")
       if (@cartData && @cartData["A"])
-        @itemCount = @cartData["A"].length
-      if (@itemCount)
-        $(".js-user-nav").addClass('has-basket')
-        $("span.js-basket-items").text(@itemCount)
-
-
+        itemCount = @cartData["A"].length
+      if (itemCount)
+        $(".js-user-basket").append("<span class=\"user-basket__items icon--small js-basket-items\">#{itemCount}</span>")
