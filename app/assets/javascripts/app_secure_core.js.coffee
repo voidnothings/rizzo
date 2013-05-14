@@ -1,4 +1,4 @@
-require ['jquery', 'lib/core/base'], ($, Base) ->
+require ['jquery', 'lib/core/base', 'flamsteed'], ($, Base) ->
   $ ->
     config = 
       secure: true
