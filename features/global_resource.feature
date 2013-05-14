@@ -21,6 +21,7 @@ Feature: Global Resources
     And the secure global-head content should be displayed
     And the global-head should serve a secure static-ui stylesheet
     And the global-head should serve a secure static-ui script
+    And the tynt tag should not be displayed
 
   Scenario: it serves the noscript global head
     Given I go to "/noscript/global-head"
