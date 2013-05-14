@@ -31,16 +31,6 @@ $card-hotel-content-padding: 13px
   background: #fff
   margin-bottom: 10px
 
-  &.is-closed
-    margin: 0
-    padding: 0
-    width: 0
-
-    .card__tag--horizontal
-      opacity: 0
-    .card__content
-      width: 0
-
 .card--anchor
   cursor: pointer
 
@@ -139,20 +129,20 @@ $card-hotel-content-padding: 13px
 // Card overlay
 // -----------------------------------------------------------------------------
 
-.card--collection
-  &.card--double
+.card--collection.card--double
+  .card__hero
     &:after
       @extend %empty-abs-generated-content
-      background-size: $double-card-width $card-grid-height
-      display: block
-      height: $card-grid-height
-      left: 0
-      pointer-events: none
       top: 0
+      left: 0
+      display: block
       width: $double-card-width
+      height: $card-grid-height
+      background-size: $double-card-width $card-grid-height
+      pointer-events: none
 
-.card--collection--hotels
-  &.card--double
+.card--double
+  .card__hero--hotels  
     &:after
       background-image: image_url('collections/best-places.png')
 
@@ -218,7 +208,7 @@ $card-hotel-content-padding: 13px
 
   .card--info &
     @include font-size(19)
-    line-height: 20px
+    margin-bottom: 20px
 
   .card--link &
     @include font-size(19)
@@ -237,12 +227,23 @@ $card-hotel-content-padding: 13px
   margin-bottom: 12px
 
 .card__description
-  @extend %irregular-type
   @extend %smooth-text
+  @extend %irregular-type
   color: $body-copy
   line-height: 14px
-  list-style: inside
 
+.card__list
+  @extend %smooth-text
+  @extend %irregular-type
+  color: $body-copy
+  list-style: circle inside
+
+.card__list__item
+  @extend %inline-block
+  margin-bottom: 15px
+  border-bottom: 1px solid #81BBE3
+  &:hover
+    text-decoration: none
 
 // -----------------------------------------------------------------------------
 // Card Footer
