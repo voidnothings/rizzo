@@ -15,7 +15,7 @@ describe "global service routes" do
   end
 
   it "routes /secure/global-head to global service" do
-    get('/secure/global-head').should route_to("global_resources#show", {:snippet=>'head', :secure => "true"})
+    get('/secure/global-head').should route_to("global_resources#show", {:snippet=>'head', :secure => "true", :suppress_tynt => "true"})
   end
 
   it "routes /secure/global-body-header to global service" do
