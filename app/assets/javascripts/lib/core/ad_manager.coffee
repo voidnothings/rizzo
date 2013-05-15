@@ -1,14 +1,18 @@
-require.config
-  paths:
-    # Include the GPT js via require so that we *know* it's loaded when it's meant to be used below.
-    'gpt': (if "https:" is document.location.protocol then "https:" else "http:") + "//www.googletagservices.com/tag/js/gpt"
-
-  waitSeconds: 40
-
-define ['gpt'], ->
-  
+define ['jquery', 'gpt'], ->
   adManager =
-    init : (_config) ->
+    # sizes is all that's needed for the new implementation.
+    sizes:
+      adSense: [155,256]
+      trafficDriver: [192,380]
+      sponsorTile: [276,32]
+      oneByOne: [1,1]
+      leaderboard: [[970,66], [728,90]]
+      mpu: [[300,250], [300, 600]]
+
+    init : () ->
+      # NOTE: The following line is temporary until we switch to the new DFP server.
+      $('body').removeClass('js-ad-manager-tmp').addClass('js-new-ad-manager')
+
       # GPT Boilerplate code
       window.googletag = window.googletag || {}
       googletag.cmd = googletag.cmd || []
@@ -18,41 +22,51 @@ define ['gpt'], ->
       googletag.cmd.push ->
         adCount = 0
         toDisplay = lp.ads.toDisplay
-        
+
+        unit = [lp.ads.networkCode] # Network Code - Found in the "Admin" tab of DFP
+        i = 0
+        while i < lp.ads.layers.length
+          unit.push(lp.ads.layers[i])
+          i++
+
         i = 0
         while i < toDisplay.length
           type = toDisplay[i]
           adEl = document.getElementById("js-ad-"+type)
-          adSize = _config.sizes[type]
+          adSize = adManager.sizes[type]
           newId = "js-ad-"+type+"-"+adCount
 
-          # If the adEl doesn't exist on the page, return false so that JS execution doesn't fail.
-          if adEl is null
-            i++
-            continue
-
           adCount++
-          
-          # Exploit the fact that getElementById only returns the FIRST element with that ID and make this one unique.
-          adEl.id = newId
-          # Force the width and height while the ad's loading.
-          # adEl.style.width = adSize[0]+'px'
-          # adEl.style.height = adSize[1]+'px'
-
-          unit = [lp.ads.networkCode] # Network Code - Found in the "Admin" tab of DFP
-          unit.push(lp.ads.layer1) if lp.ads.layer1
-          unit.push(lp.ads.layer2) if lp.ads.layer2
-          unit.push(lp.ads.layer3) if lp.ads.layer3
-          unit.push(lp.ads.layer4) if lp.ads.layer4
-          unit.push(lp.ads.layer5) if lp.ads.layer5
-          
-          googletag.defineSlot("/"+unit.join("/"), _config.sizes[type], newId).addService(googletag.pubads())
-
-          if type is 'mpu'
-            adManager.checkMpu(adEl)
 
           # Make sure we get all instances of this type of ad.
-          i++ if document.getElementById("js-ad-"+type) is null
+          i++ if document.getElementById("js-ad-"+type) is null or adEl is null
+
+          # If the adEl doesn't exist on the page, continue to the next iteration so that JS execution doesn't fail.
+          if adEl is null
+            continue
+
+          # Exploit the fact that getElementById only returns the FIRST element with that ID and make this one unique.
+          adEl.id = newId
+
+          if /adsense/i.test(type)
+            # Note: we're using the old, non DFP way of calling adsense ads. Ideally once we figure out how to serve these through DFP, this can be ditched in favour of the below commented out code.
+            continue
+
+          adUnit = googletag.defineSlot("/"+unit.join("/"), adSize, newId).addService(googletag.pubads())
+
+          if type is 'mpu'
+            adManager.poll adEl, adManager.checkMpu
+          # DFP code... we can't use this atm.
+          # else if /adsense/i.test(type) and lp.ads.channels
+            # adUnit.set("adsense_border_color", "FFFFFF")
+            #   .set("adsense_background_color", "FFFFFF")
+            #   .set("adsense_link_color", "0C77BF")
+            #   .set("adsense_text_color", "677276")
+            #   .set("adsense_url_color", "000000")
+            #   .set("adsense_ad_types", "text")
+            #   .set("adsense_channel_ids", lp.ads.channels.replace(/\s/g, '+'))
+
+          adManager.poll adEl, adManager.showLoaded
 
         # This is just a JSON formatted object to make it easy to add as many key:value pairs as desired.
         for key of lp.ads.keyValues
@@ -66,43 +80,72 @@ define ['gpt'], ->
         googletag.pubads().setTargeting("tnm", lp.ads.adTnm) if lp.ads.adTnm
 
         googletag.pubads().enableSingleRequest()
+        googletag.pubads().collapseEmptyDivs()
         googletag.enableServices()
 
         googletag.pubads().refresh()
 
-    checkMpu : (adEl) ->
-      # Ugly but necessary. DOM Mutation events are deprecated, and there's not enough support for MutationObserver yet.
-      poll = window.setInterval ->
-        iframe = $(adEl).find('iframe')
+    checkMpu : (adEl, iframe) ->
+      if iframe.height() > $(adEl).height()
+        # We need a timeout here because the leaderboard might be animating down which messes with our 'top' calc.
+        setTimeout ->
+          thisCard = $(adEl).closest('.js-card-ad').addClass 'ad-doubleMpu'
+          grid = $(adEl).closest('.js-stack')
+          cardsPerRow = Math.floor grid.width() / (grid.find('.js-single').width())
+          cards = $('.js-card')
+          thisCardIndex = cards.index(thisCard)
 
-        # If something's been loaded into our ad element
+          # If this is the third last card (there will always be *at least* a trafficDriver and adsense card following),
+          # then there's no need to carry on... just let the ad push the content down.
+          if (cards.length - thisCardIndex < 3)
+            return false
+
+          # Eliminate all cards preceding our ad element so we can place a dummy el at the nth position *after* the current one using .eq()
+          cards = $(cards.splice(thisCardIndex))
+          dummyCard = '<div class="card card--ad card--double card--list card--placeholder js-card" />'
+
+          # cardsPerRow - 2 because the mpu takes the width of 2 cards.
+          cards.eq(cardsPerRow - 2).after(dummyCard)
+          thisCard.css(
+            left: thisCard.position().left
+            position: 'absolute'
+            top: thisCard.position().top
+          ).before(dummyCard)
+
+          setTimeout ->
+            $(adEl).removeClass('is-faded-out')
+          , 500
+        , 500
+      else
+        # Otherwise remove this class straight away
+        $(adEl).removeClass('is-faded-out')
+
+    showLoaded : (adEl, iframe) ->
+      if adEl.style.display isnt 'none'
+        $(adEl).closest('.row--leaderboard').removeClass('is-closed')
+
+    # Abstract this polling functionality out for use in both checkMpu and hideEmpty
+    poll : (adEl, callback) ->
+      count = 0
+      maxPoll = 15000 # The maximum amount of milliseconds to poll for
+      timeout = 250
+
+      # Ugly but necessary. DOM Mutation events are deprecated, and there's not enough support for MutationObserver yet so we have to poll.
+      poll = window.setInterval ->
+        count++
+        # Make sure we're not running this thing indefinitely
+        if (count >= maxPoll/timeout)
+          window.clearInterval poll
+          return
+
+        iframe = $(adEl).children('iframe')
+
+        # If something's been loaded into our ad element, we're good to go
         if $.trim adEl.innerHTML isnt '' and iframe.height() > 0
           window.clearInterval poll
 
-          if iframe.height() > $(adEl).height()
-            thisCard = $(adEl).closest('.card').addClass 'ad-doubleMpu'
-            cardsPerRow = Math.floor $(adEl).closest('.grid-view').width() / (thisCard.width() / 2)
-            cards = $('.results .card')
-            thisCardIndex = cards.index(thisCard)
-
-            # If this is the last card, there's no need to carry on... just let the ad push the content down.
-            if (cards.length is thisCardIndex+1)
-              return false
-
-            # Eliminate all cards preceding our ad element so we can place a dummy el at the nth position *after* the current one using .eq()
-            cards = $(cards.splice(thisCardIndex))
-            dummyEl = '<div class="card card--ad card--double card--list card--dummy" />'
-
-            thisCard.css(
-              left: thisCard.position().left
-              position: 'absolute'
-              top: thisCard.position().top
-            )
-
-            # cardsPerRow - 2 because the mpu takes the width of 2 cards.
-            cards.eq(cardsPerRow - 2).after(dummyEl)
-            thisCard.before(dummyEl)
-      , 250
+          callback.apply(this, [adEl, iframe])
+      , timeout
 
     # The old init used in the site wide leaderboard.
     initOld : (_config,_target) ->
