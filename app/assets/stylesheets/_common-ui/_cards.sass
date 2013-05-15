@@ -161,9 +161,10 @@ $card-hotel-content-padding: 13px
 
   .card--info &
     height: ($card-grid-height - 50px - $card-content-padding)
+    overflow: hidden
     padding-top: 50px
 
-  .card--double &
+  .card--collection.card--double &
     @extend %absolute
     +background-gradient($startColor: rgba(0,0,0,0), $endColor: rgba(0,0,0,1.0))
     bottom: 0
@@ -208,7 +209,7 @@ $card-hotel-content-padding: 13px
 
   .card--info &
     @include font-size(19)
-    margin-bottom: 20px
+    margin-bottom: 22px
 
   .card--link &
     @include font-size(19)
