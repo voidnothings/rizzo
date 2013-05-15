@@ -17,8 +17,8 @@
 
   // Initialise a flamsteed buffer
   window.lp = window.lp || {};
-  window.lp = {
+  window.fs = {
     buffer: [], 
     log : function(x){this.buffer.push({e: x})},
-    time: function(x){!!window.performance.now && this.buffer.push({e: x, t: window.performance.now()}}
+    time: function(x){!!window.performance.now && this.buffer.push({e: x, t: window.performance.now()})}
   };
