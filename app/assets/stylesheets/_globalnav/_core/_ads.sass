@@ -38,6 +38,7 @@
 .ad-trafficDriver, .ad-sponsorTile, .ad-mpu, .ad-doubleMpu
   &.card__content
     @extend %block-center
+    +transition(all, 0.5, ease)
 
 .ad-trafficDriver
   &.card__content
@@ -52,8 +53,9 @@
 
 .ad-mpu.card__content
   @extend %ad-mpu
+  overflow: hidden
   position: relative
-  top: 50px
+  top: 65px
 
 .results .card.ad-doubleMpu
   @extend %ad-doubleMpu
@@ -61,8 +63,9 @@
   z-index: 2
 
   .card__content
-    height: auto
+    height: 600px
     overflow: visible
+    top: 80px
 
 .ad-wallpaper
   background-position: center top
