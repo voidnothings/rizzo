@@ -104,16 +104,21 @@ define ['jquery', 'gpt'], ->
           cards = $(cards.splice(thisCardIndex))
           dummyCard = '<div class="card card--ad card--double card--list card--placeholder js-card" />'
 
+          # cardsPerRow - 2 because the mpu takes the width of 2 cards.
+          cards.eq(cardsPerRow - 2).after(dummyCard)
           thisCard.css(
             left: thisCard.position().left
             position: 'absolute'
             top: thisCard.position().top
-          )
+          ).before(dummyCard)
 
-          # cardsPerRow - 2 because the mpu takes the width of 2 cards.
-          cards.eq(cardsPerRow - 2).after(dummyCard)
-          thisCard.before(dummyCard)
+          setTimeout ->
+            $(adEl).removeClass('is-faded-out')
+          , 500
         , 500
+      else
+        # Otherwise remove this class straight away
+        $(adEl).removeClass('is-faded-out')
 
     showLoaded : (adEl, iframe) ->
       if adEl.style.display isnt 'none'
