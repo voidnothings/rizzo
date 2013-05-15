@@ -11,7 +11,7 @@ define ['jquery', 'gpt'], ->
 
     init : () ->
       # NOTE: The following line is temporary until we switch to the new DFP server.
-      $('body').removeClass('ad-manager-tmp').addClass('new-ad-manager')
+      $('body').removeClass('js-ad-manager-tmp').addClass('js-new-ad-manager')
 
       # GPT Boilerplate code
       window.googletag = window.googletag || {}
@@ -55,7 +55,7 @@ define ['jquery', 'gpt'], ->
           adUnit = googletag.defineSlot("/"+unit.join("/"), adSize, newId).addService(googletag.pubads())
 
           if type is 'mpu'
-            adManager.checkMpu(adEl)
+            adManager.poll adEl, adManager.checkMpu
           # DFP code... we can't use this atm.
           # else if /adsense/i.test(type) and lp.ads.channels
             # adUnit.set("adsense_border_color", "FFFFFF")
@@ -66,7 +66,7 @@ define ['jquery', 'gpt'], ->
             #   .set("adsense_ad_types", "text")
             #   .set("adsense_channel_ids", lp.ads.channels.replace(/\s/g, '+'))
 
-          adManager.showLoaded(adEl, type)
+          adManager.poll adEl, adManager.showLoaded
 
         # This is just a JSON formatted object to make it easy to add as many key:value pairs as desired.
         for key of lp.ads.keyValues
@@ -85,45 +85,42 @@ define ['jquery', 'gpt'], ->
 
         googletag.pubads().refresh()
 
-    checkMpu : (adEl) ->
-      adManager.afterLoaded adEl, (adEl, iframe) ->
-        if iframe.height() > $(adEl).height()
-          # We need a timeout here because the leaderboard might be animating down which messes with our 'top' calc.
-          setTimeout ->
-            thisCard = $(adEl).closest('.card').addClass 'ad-doubleMpu'
-            grid = $(adEl).closest('.grid-view')
-            cardsPerRow = Math.floor grid.width() / (grid.find('.card--single').width())
-            cards = $('.results .card')
-            thisCardIndex = cards.index(thisCard)
+    checkMpu : (adEl, iframe) ->
+      if iframe.height() > $(adEl).height()
+        # We need a timeout here because the leaderboard might be animating down which messes with our 'top' calc.
+        setTimeout ->
+          thisCard = $(adEl).closest('.js-card-ad').addClass 'ad-doubleMpu'
+          grid = $(adEl).closest('.js-stack')
+          cardsPerRow = Math.floor grid.width() / (grid.find('.js-single').width())
+          cards = $('.js-card')
+          thisCardIndex = cards.index(thisCard)
 
-            # If this is the third last card (there will always be *at least* a trafficDriver and adsense card following),
-            # then there's no need to carry on... just let the ad push the content down.
-            if (cards.length - thisCardIndex < 3)
-              return false
+          # If this is the third last card (there will always be *at least* a trafficDriver and adsense card following),
+          # then there's no need to carry on... just let the ad push the content down.
+          if (cards.length - thisCardIndex < 3)
+            return false
 
-            # Eliminate all cards preceding our ad element so we can place a dummy el at the nth position *after* the current one using .eq()
-            cards = $(cards.splice(thisCardIndex))
-            dummyCard = '<div class="card card--ad card--double card--list card--placeholder" />'
+          # Eliminate all cards preceding our ad element so we can place a dummy el at the nth position *after* the current one using .eq()
+          cards = $(cards.splice(thisCardIndex))
+          dummyCard = '<div class="card card--ad card--double card--list card--placeholder js-card" />'
 
-            thisCard.css(
-              left: thisCard.position().left
-              position: 'absolute'
-              top: thisCard.position().top
-            )
+          thisCard.css(
+            left: thisCard.position().left
+            position: 'absolute'
+            top: thisCard.position().top
+          )
 
-            # cardsPerRow - 2 because the mpu takes the width of 2 cards.
-            cards.eq(cardsPerRow - 2).after(dummyCard)
-            thisCard.before(dummyCard)
-          , 500
+          # cardsPerRow - 2 because the mpu takes the width of 2 cards.
+          cards.eq(cardsPerRow - 2).after(dummyCard)
+          thisCard.before(dummyCard)
+        , 500
 
-    showLoaded : (adEl, type) ->
-      adManager.afterLoaded adEl, (adEl, iframe) ->
-        if adEl.style.display isnt 'none'
-          $(adEl).closest('.row--leaderboard').removeClass('is-closed')
-          $(adEl).closest('.card').removeClass('is-closed')
+    showLoaded : (adEl, iframe) ->
+      if adEl.style.display isnt 'none'
+        $(adEl).closest('.row--leaderboard').removeClass('is-closed')
 
     # Abstract this polling functionality out for use in both checkMpu and hideEmpty
-    afterLoaded : (adEl, callback) ->
+    poll : (adEl, callback) ->
       count = 0
       maxPoll = 15000 # The maximum amount of milliseconds to poll for
       timeout = 250
