@@ -6,10 +6,9 @@
 // Styleguide 1.5
 
 .left-nav
+  @extend %body-copy
   @extend %four-pixel-rounded
   @extend %stacked-nav
-  @extend %smooth-text
-  @extend %body-copy
   padding: 10px 0
 
   &.left-nav--hotels
@@ -26,10 +25,10 @@
   text-decoration: none
   &:after
     @extend %no-line-height
-    top: 21px
-    right: 5px
+    color: $highlight
     font-size: 18px
-    color: #c5d6d9
+    right: 5px
+    top: 21px
 
   &:hover
     background-color: $nav-bg--hover
@@ -46,10 +45,139 @@
   @extend %reset-line-height
   @extend %larger-type
   @extend %stacked-nav
-  font-weight: bold
   color: $header-gray
+  font-weight: bold
   padding: 15px
 
 .left-nav--hotels
   .left-nav__item:after
     content: none
+
+
+// -----------------------------------------------------------------------------
+// New-style nav
+// -----------------------------------------------------------------------------
+
+.aside
+  width: 182px
+
+.group--aside
+  +border-radius(4)
+  background: #fff
+  border: 1px solid $subdued
+  padding: 4px 0
+
+.group__body
+  padding-bottom: 15px
+
+%group--linked--common
+  background-color: $body-background
+  border-color: $subdued
+  border-style: solid
+  content: ''
+  height: 10px
+  position: absolute
+  top: -12px
+  z-index: 2
+
+.group--linked
+  margin-top: 10px
+  position: relative
+  &:before
+    @extend %group--linked--common
+    +border-radius-each(0,4,4,0)
+    border-width: 1px 1px 1px 0
+    box-shadow: 15px 0 0 #fff
+    left: 4px
+    width: 17px
+  
+  &:after
+    @extend %group--linked--common
+    +border-radius-each(4,0,0,4)
+    border-width: 1px 0 1px 1px
+    right: 4px
+    width: 158px  
+
+  .aside &
+    &:before
+      width: 17px
+    &:after
+      width: 148px
+
+.group__title--aside
+  @extend %smooth-text
+  @extend %larger-type
+  color: $nav-search-btn-hover
+  display: block
+  line-height: 2em
+  padding: 7px 15px
+
+.nav--stack
+  padding: 0
+
+.nav__item--stack
+  @extend %smooth-text
+  @extend %irregular-type
+  color: $body-copy
+  display: block
+  line-height: 1.5em
+  padding: 10px 50px 10px 15px
+  position: relative
+  text-decoration: none
+  &:hover
+    background-color: $nav-bg--hover
+    cursor: pointer
+    text-decoration: none
+  &:before
+    @extend %benton-regular
+    @extend %huge-type
+    color: $stack-intro-text
+    padding-right: 5px
+    vertical-align: sub
+
+.nav__item--stack-activities
+  @extend %icon-image-poi-activity-before
+
+.nav__item--stack-entertainment
+  @extend %icon-image-poi-entertainment-before
+
+.nav__item--stack-restaurants
+  @extend %icon-image-poi-restaurant-before
+
+.nav__item--stack-shopping
+  @extend %icon-image-poi-shopping-before
+
+.nav__item--stack-sights
+  @extend %icon-image-poi-sight-before
+
+.nav__item--stack-tours
+  @extend %icon-image-poi-tour-before
+
+.nav__item--current--stack
+  @extend %active-background
+  font-weight: 700
+  &:hover
+    background: $active
+    color: #fff
+
+.nav__item--current--stack
+  .facet--count
+    background-color: #fff
+    border: none
+    color: $active
+
+.facet--count
+  @extend %extra-small-type
+  +border-radius(4)
+  background: #fff
+  border: 1px solid $highlight
+  color: $highlight
+  display: block
+  font-weight: bold
+  line-height: 1em
+  padding: 4px 3px
+  position: absolute
+  right: 15px
+  text-align: right
+  top: 9px
+

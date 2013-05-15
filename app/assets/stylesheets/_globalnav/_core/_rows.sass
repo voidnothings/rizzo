@@ -86,14 +86,29 @@ body
   overflow: hidden
   padding: 16px 0
   height: 90px
-  +transition(all, 0.5, ease)
+
+  .js-new-ad-manager &
+    // This can be moved up to .row--leaderboard when switching to the new DFP server
+    +transition(all, 0.5, ease)
+
+    // This can be removed when switching to the new DFP server
+    .ad-leaderboard__inner
+      height: auto
+      width: auto
+
+  .js-new-ad-manager &, .js-ad-manager-tmp &
+    // This must be moved out when switching to the new DFP server
+    &.is-closed
+      height: 0
+      padding: 0
+
+  // This can be removed when switching to the new DFP server
+  .ad-leaderboard__inner
+    height: 90px
+    width: 728px
 
   > .row__inner
     display: table
-
-  &.is-closed
-    height: 0
-    padding: 0
 
 
 // ----------------------------------------------------------------------------
@@ -148,7 +163,6 @@ body
   background-color: $body-background
   padding-top: 25px
   margin-bottom: 40px
-  padding-top: 40px
 
 
 // ----------------------------------------------------------------------------

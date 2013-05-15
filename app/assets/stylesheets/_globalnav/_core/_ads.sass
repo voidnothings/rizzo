@@ -38,10 +38,11 @@
 .ad-trafficDriver, .ad-sponsorTile, .ad-mpu, .ad-doubleMpu
   &.card__content
     @extend %block-center
+    +transition(all, 0.5, ease)
 
 .ad-trafficDriver
-  @extend %ad-trafficDriver
   &.card__content
+    @extend %ad-trafficDriver
     top: 0
 
 .ad-sponsorTile
@@ -50,10 +51,10 @@
   .stack__intro &
     float: right
 
-.ad-mpu
+.ad-mpu.card__content
   @extend %ad-mpu
-  &.card__content
-    top: 50px
+  position: relative
+  top: 65px
 
 .results .card.ad-doubleMpu
   @extend %ad-doubleMpu
@@ -61,8 +62,8 @@
   z-index: 2
 
   .card__content
-    height: auto
-    overflow: visible
+    height: 600px
+    top: 80px
 
 .ad-wallpaper
   background-position: center top
@@ -72,5 +73,26 @@
   .row__inner, .row--footer-push
     cursor: default
 
-#js-ad-oneByOne
+.ad-adSense.card__content
+  font-size: 12px
+  line-height: 15px
+  margin: 0 auto
+  position: relative
+  top: 60px
+  width: 160px
+
+  .googleHeading a,
+  .ad p
+    color: $stack-intro-text
+
+  .ad
+    margin-bottom: 10px
+    p
+      margin-bottom: 0
+
+  .title a
+    color: $title
+    font-weight: bold
+
+.ad-oneByOne
   display: none
