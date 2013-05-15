@@ -15,6 +15,7 @@
   .wrap--footer
     = render 'layouts/core/footer'
   .js-config.is-hidden
+    = render 'layouts/core/snippets/fs_init'
     = js_configuration
     = yield :scripts
   = content_for(:build)
