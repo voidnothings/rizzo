@@ -5,7 +5,7 @@
 
     function fs(options) {
       options = options || {};
-      this.remoteUrl = options.remoteUrl || "http://localhost:4567";
+      this.remoteUrl = options.remoteUrl || "http://f.staticlp.com";
       this.log_max_size = options.log_max_size || 10;
       this.log_min_size = options.log_min_size || 3;
       this.log_max_interval = options.log_max_interval || 1500;
@@ -50,7 +50,7 @@
         this.debug && console.log("flushing:", this.buffer);
         this.flushing = true;
         this.resetTimer(this);
-        this.buffer.push(this.uuid)
+        this.buffer.push(this.u)
         this._sendData(this.buffer);
         this.emptyBuffer();
         this._tidyUp()
@@ -100,7 +100,13 @@
       for (key in data) {
         obj = data[key];
         for (prop in obj) {
-          s[s.length] = encodeURIComponent(prop) + "=" + encodeURIComponent(obj[prop]);
+          if(typeof(obj[prop]) === "object") {
+            for (var p in obj[prop]) {
+              s[s.length] = encodeURIComponent(p) + "=" + encodeURIComponent(obj[prop][p]);
+            }
+          } else {
+            s[s.length] = encodeURIComponent(prop) + "=" + encodeURIComponent(obj[prop]);
+          }
         }
       }
       return s.join("&").replace(/%20/g, "+");
@@ -131,12 +137,9 @@
       this.emptyBuffer();
       this.resetTimer();
       if (seedEvents && seedEvents.length > 0) {
-        seedEvents[0]['e']['fs_version'] = this.version
-        seedEvents[0].map(function(e){
+        seedEvents.map(function(e){
           this.log(e)
         }, this);
-      } else {
-        this.log({fs_version: this.version});
       }
       if (this.isRumCapable()) {
         window.addEventListener("unload", this._logRumAndFlush.bind(this));
