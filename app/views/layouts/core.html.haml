@@ -17,6 +17,9 @@
   .js-config.is-hidden
     = render 'layouts/core/snippets/fs_init'
     = js_configuration
+    - unless Rails.env.production?
+      :javascript
+        window.appEnvironment = "#{Rails.env}";
     = yield :scripts
 
   = "build: #{Variant.full_namespace}"
