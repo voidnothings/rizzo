@@ -3,11 +3,14 @@ define ['jquery', '//www.googletagservices.com/tag/js/gpt.js'], ->
     # sizes is all that's needed for the new implementation.
     sizes:
       adSense: [155,256]
-      trafficDriver: [192,380]
-      sponsorTile: [276,32]
-      oneByOne: [1,1]
       leaderboard: [[970,66], [728,90]]
-      mpu: [[300,250], [300, 600]]
+      # mpu: [[300,250], [300, 600]]
+      mpu: [300, 600]
+      oneByOne: [1,1]
+      sponsorTile: [276,32]
+      trafficDriver: [192,380]
+
+    firstLoaded: false
 
     init : () ->
       # NOTE: The following line is temporary until we switch to the new DFP server.
@@ -51,12 +54,14 @@ define ['jquery', '//www.googletagservices.com/tag/js/gpt.js'], ->
           if /adsense/i.test(type)
             # Note: we're using the old, non DFP way of calling adsense ads. Ideally once we figure out how to serve these through DFP, this can be ditched in favour of the below commented out code.
             continue
+          else if /oneByOne/.test(type)
+            adManager.poll adEl, adManager.checkOneByOne
 
           adUnit = googletag.defineSlot("/"+unit.join("/"), adSize, newId).addService(googletag.pubads())
 
           if type is 'mpu'
             adManager.poll adEl, adManager.checkMpu
-          # DFP code... we can't use this atm.
+          # DFP code... we can't use this until the switch to the new DFP server happens.
           # else if /adsense/i.test(type) and lp.ads.channels
             # adUnit.set("adsense_border_color", "FFFFFF")
             #   .set("adsense_background_color", "FFFFFF")
@@ -120,9 +125,73 @@ define ['jquery', '//www.googletagservices.com/tag/js/gpt.js'], ->
         # Otherwise remove this class straight away
         $(adEl).removeClass('is-faded-out')
 
+    checkOneByOne : (adEl, iframe) ->
+      setTimeout ->
+        # If there's an #ad-link element, it's the interstitial. Also, use the setTimeout 0 trick to make sure this gets loaded in (since it's external)
+        if ($(iframe).contents().find('#ad-link').length > 0)
+          adManager.setupInterstitial(adEl, iframe)
+      , 0
+      # Note: the wallpaper does all the work from the code that's returned by the ad server.
+
     showLoaded : (adEl, iframe) ->
       if adEl.style.display isnt 'none'
         $(adEl).closest('.row--leaderboard').removeClass('is-closed')
+
+    setupInterstitial : (adEl, iframe) ->
+      adLink = $(iframe).contents().find('#ad-link')
+      adDim = adLink.data('adDimensions')
+      adHtml = adLink.attr('target', '_blank').removeAttr('id').removeAttr('data-ad-dimensions')[0].outerHTML
+
+      timeout = 14
+
+      $(adEl)
+        .addClass('ad-interstitial')
+        .css(
+          display: 'block'
+          left: ($(window).width() / 2) - (adDim.width / 2)
+          top: ($(window).height() / 2) - (adDim.height / 2)
+        )
+        .html(adHtml)
+        .prepend('<a href="#" class="close">Close X</a>')
+        .append('<a href="#" class="countdown">Advertisement closes in <span id="timeleft">'+timeout+'</span> seconds.</a>')
+        .appendTo('body')
+        .wrap('<div class="ad-interstitial-wrap is-faded-out" />')
+
+      $('body').bind('keyup', adManager.closeInterstitial)
+      $('.ad-interstitial-wrap #ad-link').on 'click', (e) ->
+        # We need this because the preventDefault on .ad-interstitial-wrap gets in the way.
+        e.stopPropagation()
+      $('.ad-interstitial-wrap, .ad-interstitial-wrap .close, .ad-interstitial-wrap .countdown').click (e) ->
+        adManager.closeInterstitial()
+        e.preventDefault()
+
+      adManager.lp_interstitialTimer = window.setInterval ->
+        timeout--
+
+        if timeout is 0
+          window.clearInterval adManager.lp_interstitialTimer
+          adManager.closeInterstitial()
+          return false
+
+        timeLeft = $(adEl).find('#timeleft')
+
+        timeLeft.html(timeout)
+      , 1000
+
+      # Basically, give the JS a chance for the CSS transitions to be ready. See here: http://stackoverflow.com/questions/779379/why-is-settimeoutfn-0-sometimes-useful
+      setTimeout ->
+        $('.ad-interstitial-wrap').removeClass('is-faded-out')
+      , 0
+
+    closeInterstitial : (e) ->
+      if not e or not e.keyCode or (e.keyCode and e.keyCode is 27) # 27 = Escape
+        $('.ad-interstitial-wrap').addClass('is-faded-out').on 'transitionend otransitionend webkitTransitionEnd', ->
+          # Destroy this as we don't need it anymore
+          $('.ad-interstitial-wrap').remove()
+
+        $('body').unbind('keyup', adManager.closeInterstitial)
+        window.clearInterval adManager.lp_interstitialTimer
+        e && e.preventDefault() && e.stopPropagation()
 
     # Abstract this polling functionality out for use in both checkMpu and hideEmpty
     poll : (adEl, callback) ->
@@ -141,10 +210,16 @@ define ['jquery', '//www.googletagservices.com/tag/js/gpt.js'], ->
         iframe = $(adEl).children('iframe')
 
         # If something's been loaded into our ad element, we're good to go
-        if $.trim adEl.innerHTML isnt '' and iframe.height() > 0
+        if iframe.height() > 0 and iframe.contents().height() > 1
+          callback.apply(this, [adEl, iframe])
+
           window.clearInterval poll
 
-          callback.apply(this, [adEl, iframe])
+          if not adManager.firstLoaded and window.fs
+            window.lp.fs.time(
+              'e':'/destination/ad/first'
+            )
+            adManager.firstLoaded = true
       , timeout
 
     # The old init used in the site wide leaderboard.
