@@ -13,6 +13,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
       @initialiseFooterSelects()
       @addNavTracking()
 
+    # This adConfig can all be ditched when switching to the new DFP server.
     lpAds = (window.lp and lp.ads)
     adConfig :
       adZone : if (lpAds && lpAds.adZone) then lpAds.adZone else window.adZone or 'home'

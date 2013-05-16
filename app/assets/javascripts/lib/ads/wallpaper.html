@@ -1,0 +1,38 @@
+<html><head><script type="text/javascript">
+    var adConfig = {
+            image : 'http://cdn.bbcamerica.com/ads/LPWallpaperLondon.JPG',
+            url: 'http://shop.lonelyplanet.com/%3Flpaffil%3Dlphp-topindex'
+        },
+
+    /*===== DO NOT MODIFY BELOW this line =====*/
+
+        children,
+        container,
+        _win = window.parent || window,
+        _doc = window.parent.document || document;
+
+    container = _doc.getElementById('js-row--content');
+    container.className += ' ad-wallpaper';
+    container.style.backgroundImage = 'url("'+adConfig.image+'")';
+    container.onclick = function() {
+        _win.open(adConfig.url);
+    };
+
+    // This stops the ad getting clicked on when the site's *actual* content is clicked.
+    children = container.childNodes;
+    for (var i=0; i < children.length; i++) {
+        children[i].onclick = stopPropagation;
+    }
+
+    function stopPropagation(e) {
+        // If stopPropagation exists, run it on the original event
+        if ( e.stopPropagation ) {
+            e.stopPropagation();
+        }
+
+        // Support: IE
+        // Set the cancelBubble property of the original event to true
+        e.cancelBubble = true;
+    }
+</script>
+</head><body marginwidth="0" marginheight="0"></body></html>
