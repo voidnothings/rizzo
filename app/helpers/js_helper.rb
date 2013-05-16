@@ -50,4 +50,17 @@ module JsHelper
     javascript_tag output
   end
 
+  def js_hash(hash, target='window')
+    output = ""
+    hash.each do |k, v|
+      if v.is_a?(Hash)
+        output += "if (!#{target}.hasOwnProperty('#{k}')) #{target}.#{k} = {};"
+        output += js_hash(v, "#{target}.#{k}")
+      else
+        output += "#{target}.#{k} = #{v.to_json};"
+      end
+    end
+    output
+  end
+
 end
