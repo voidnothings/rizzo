@@ -7,6 +7,7 @@
 .ad-leaderboard
   @extend %ad-leaderboard
   +transition(all, 0.5, ease)
+  display: table-cell
   text-align: center
   vertical-align: middle
     
@@ -96,3 +97,48 @@
 
 .ad-oneByOne
   display: none
+
+.ad-interstitial-wrap
+  background: #333
+  background: rgba(0,0,0,0.8)
+  bottom: 0px
+  display: block
+  left: 0px
+  position: fixed
+  right: 0px
+  top: 0px
+  z-index: 10000
+  zoom: 1
+  +transition(opacity, 0.5, ease)
+
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#CC000000,endColorstr=#CC000000)
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#CC000000,endColorstr=#CC000000)
+
+.ad-interstitial
+  background: white
+  border: 1px solid #e3e3e3
+  display: none // Gets shown later via JS when there's content.
+  margin: 0 auto
+  padding: 25px 10px
+  position: absolute
+  z-index: 10001
+
+  -moz-box-shadow: 5px 5px 5px rgba(0,0,0,0.5)
+  -webkit-box-shadow: 5px 5px 5px rgba(0,0,0,0.5)
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.5)
+
+  iframe
+    border: none
+
+  .close
+    position: absolute
+    right: 10px
+    top: 5px
+
+  .countdown
+    bottom: 5px
+    display: block
+    left: 0
+    position: absolute
+    text-align: center
+    width: 100%
