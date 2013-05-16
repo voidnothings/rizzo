@@ -18,4 +18,5 @@
     = render 'layouts/core/snippets/fs_init'
     = js_configuration
     = yield :scripts
-  = content_for(:build)
+
+  = "build: #{Variant.full_namespace}"
