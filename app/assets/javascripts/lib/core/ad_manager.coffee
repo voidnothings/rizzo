@@ -153,7 +153,7 @@ define ['jquery', 'gpt'], ->
         )
         .html(adHtml)
         .prepend('<a href="#" class="close">Close X</a>')
-        .append('<a href="#" class="countdown">Advertisement closes in <span class="timeleft">'+timeout+'</span> seconds.</a>')
+        .append('<a href="#" class="countdown">Advertisement closes in <span id="timeleft">'+timeout+'</span> seconds.</a>')
         .appendTo('body')
         .wrap('<div class="ad-interstitial-wrap is-faded-out" />')
 
@@ -165,18 +165,18 @@ define ['jquery', 'gpt'], ->
         adManager.closeInterstitial()
         e.preventDefault()
 
-      # window.lp_interstitialTimer = window.setInterval ->
-      #   timeout--
+      adManager.lp_interstitialTimer = window.setInterval ->
+        timeout--
 
-      #   if timeout is 0
-      #     window.clearInterval window.lp_interstitialTimer
-      #     adManager.closeInterstitial()
-      #     return false
+        if timeout is 0
+          window.clearInterval adManager.lp_interstitialTimer
+          adManager.closeInterstitial()
+          return false
 
-      #   timeLeft = $(adEl).find('.timeleft')
+        timeLeft = $(adEl).find('#timeleft')
 
-      #   timeLeft.html(timeout)
-      # , 1000
+        timeLeft.html(timeout)
+      , 1000
 
       # Basically, give the JS a chance for the CSS transitions to be ready. See here: http://stackoverflow.com/questions/779379/why-is-settimeoutfn-0-sometimes-useful
       setTimeout ->
@@ -185,14 +185,12 @@ define ['jquery', 'gpt'], ->
 
     closeInterstitial : (e) ->
       if not e or not e.keyCode or (e.keyCode and e.keyCode is 27) # 27 = Escape
-        $('.ad-interstitial-wrap').addClass('is-faded-out')
-        setTimeout ->
+        $('.ad-interstitial-wrap').addClass('is-faded-out').on 'transitionend otransitionend webkitTransitionEnd', ->
           # Destroy this as we don't need it anymore
           $('.ad-interstitial-wrap').remove()
-        , 500 # that's how long the opacity transition on .ad-interstitial-wrap is.
 
         $('body').unbind('keyup', adManager.closeInterstitial)
-        window.clearInterval window.lp_interstitialTimer
+        window.clearInterval adManager.lp_interstitialTimer
         e && e.preventDefault() && e.stopPropagation()
 
     # Abstract this polling functionality out for use in both checkMpu and hideEmpty
@@ -218,8 +216,8 @@ define ['jquery', 'gpt'], ->
           window.clearInterval poll
 
           if not adManager.firstLoaded and window.fs
-            window.fs.log(
-              'event':'/destination/ad/first'
+            window.lp.fs.time(
+              'e':'/destination/ad/first'
             )
             adManager.firstLoaded = true
       , timeout
