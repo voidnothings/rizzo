@@ -141,7 +141,6 @@ define ['jquery', 'gpt'], ->
       adLink = $(iframe).contents().find('#ad-link')
       adDim = adLink.data('adDimensions')
       adHtml = adLink.attr('target', '_blank').removeAttr('id').removeAttr('data-ad-dimensions')[0].outerHTML
-      console.log(adHtml) if window.console
 
       timeout = 14
 
