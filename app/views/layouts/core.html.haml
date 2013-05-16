@@ -17,7 +17,14 @@
   .js-config.is-hidden
     = render 'layouts/core/snippets/fs_init'
     = js_configuration
+    - unless Rails.env.production?
+      :javascript
+        window.appEnvironment = "#{Rails.env}";
+    - if defined?($JS_VARS)
+      :javascript
+        #{js_hash($JS_VARS)}
     = yield :scripts
-  = content_for(:build)
+
+  = "build: #{Variant.full_namespace}"
 
   %div.ad-oneByOne#js-ad-oneByOne
