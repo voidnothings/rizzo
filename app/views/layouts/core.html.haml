@@ -20,6 +20,9 @@
     - unless Rails.env.production?
       :javascript
         window.appEnvironment = "#{Rails.env}";
+    - if defined?($JS_VARS)
+      :javascript
+        #{js_hash($JS_VARS)}
     = yield :scripts
 
   = "build: #{Variant.full_namespace}"

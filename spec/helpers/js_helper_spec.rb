@@ -49,6 +49,15 @@ describe JsHelper do
 
   end
 
+  describe "#js_hash" do
+    it "sets values on the window object" do
+      helper.js_hash({'aaa' => 'bbb', 'ccc' => 'ddd'}).should == 'window.aaa = "bbb";window.ccc = "ddd";'
+    end
+    it "checks sets values on nested objects" do
+      helper.js_hash({'aaa' => 'bbb', 'ccc' => {'ddd' => 'eee'}}).should == "window.aaa = \"bbb\";if (!window.hasOwnProperty('ccc')) window.ccc = {};window.ccc.ddd = \"eee\";"
+    end
+  end
+
   describe ::JsHelper::Config do
     let(:configuration) { { :foo => :bar }}
 
