@@ -11,7 +11,7 @@
       this.log_max_interval = options.log_max_interval || 1500;
       this.debug = options.debug || false;
       this.u = options.u || {u: Math.random() * 100000000000000000}; // uuid
-      this._init(options.events);
+      this.isCapable() && this._init(options.events);
     }
 
     fs.prototype.isCapable = function() {
@@ -19,11 +19,11 @@
     };
 
     fs.prototype.isRumCapable = function() {
-      return !!(window.performance.timing || window.msPerformance || window.webkitPerformance || window.mozPerformance);
+      return !!(window.performance || window.msPerformance || window.webkitPerformance || window.mozPerformance);
     };
 
     fs.prototype.isNowCapable = function() {
-      return !!window.performance.now;
+      return isRumCapable() && !!window.performance.now;
     };
 
     fs.prototype.emptyBuffer = function() {
@@ -40,7 +40,7 @@
 
     fs.prototype.time = function(data) {
       if (this.isNowCapable()) {
-        data.t = window.performance.now()
+        data.t = window.performance.now();
         this.log(data);
       }
     };
@@ -50,10 +50,10 @@
         this.debug && console.log("flushing:", this.buffer);
         this.flushing = true;
         this.resetTimer(this);
-        this.buffer.push(this.u)
+        this.buffer.push(this.u);
         this._sendData(this.buffer);
         this.emptyBuffer();
-        this._tidyUp()
+        this._tidyUp();
         this.flushing = false;
       }
     };
@@ -92,7 +92,7 @@
     // PRIVATE
     fs.prototype._tidyUp = function() {
       this.image.parentNode && this.image.parentNode.removeChild(this.image);
-    }
+    };
 
     // PRIVATE
     fs.prototype._serialize = function(data) {
@@ -100,12 +100,14 @@
       for (key in data) {
         obj = data[key];
         for (prop in obj) {
-          if(typeof(obj[prop]) === "object") {
-            for (var p in obj[prop]) {
-              s[s.length] = encodeURIComponent(p) + "=" + encodeURIComponent(obj[prop][p]);
+          if(obj.hasOwnProperty(prop)) {
+            if(typeof(obj[prop]) === "object") {
+              for (var p in obj[prop]) {
+                s[s.length] = encodeURIComponent(p) + "=" + encodeURIComponent(obj[prop][p]);
+              }
+            } else {
+              s[s.length] = encodeURIComponent(prop) + "=" + encodeURIComponent(obj[prop]);
             }
-          } else {
-            s[s.length] = encodeURIComponent(prop) + "=" + encodeURIComponent(obj[prop]);
           }
         }
       }
@@ -124,7 +126,7 @@
         perf[prop] = (t[prop] >= n) ? t[prop] - n : t[prop];
       }
       return perf;
-    }
+    };
 
     // PRIVATE
     fs.prototype._logRumAndFlush = function() {
@@ -138,13 +140,14 @@
       this.resetTimer();
       if (seedEvents && seedEvents.length > 0) {
         seedEvents.map(function(e){
-          this.log(e)
+          this.log(e);
         }, this);
       }
       if (this.isRumCapable()) {
         window.addEventListener("unload", this._logRumAndFlush.bind(this));
-      };
-      this.flush()
+      }
+      this.flush();
+    
     };
 
     return fs;
