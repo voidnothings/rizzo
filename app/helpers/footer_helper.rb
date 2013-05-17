@@ -19,7 +19,7 @@ module FooterHelper
       {:title=>'Destination Guides', :url=>'destination-guides'},
       {:title=>'eBooks', :url=>'ebooks'},
       {:title=>'Pictorial & Gifts', :url=>'pictorials-and-gifts'},
-      {:title=>'Phrase Books', :url=>'phrasebooks'},
+      {:title=>'Phrasebooks', :url=>'phrasebooks'},
       {:title=>'Activity Guides', :url=>'activity-guides'},
       {:title=>'Special Offers', :url=>'special-offers'}
     ]
