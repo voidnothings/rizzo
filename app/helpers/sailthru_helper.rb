@@ -27,9 +27,5 @@ module SailthruHelper
       haml_tag(:meta, name: "sailthru.title", content: title)
       haml_tag(:meta, name: "sailthru.tags",  content: tags) if tags
     end
-
-    content_for :scripts do
-      render 'layouts/core/snippets/sailthru'
-    end
   end
 end
