@@ -24,7 +24,10 @@
       :javascript
         #{js_hash($JS_VARS)}
     = yield :scripts
-
-  = "build: #{Variant.full_namespace}"
-
+  
   %div.ad-oneByOne#js-ad-oneByOne
+
+  /
+    = "build: #{Variant.full_namespace}"
+
+
