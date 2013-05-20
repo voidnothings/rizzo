@@ -15,6 +15,9 @@ $stack-intro-lines-to-show: 2
   @extend %relative
   overflow: hidden
 
+  .js &
+    height: $stack-intro-text-line-height * $stack-intro-lines-to-show
+
   .stack__intro--closed &
     height: $stack-intro-text-line-height * $stack-intro-lines-to-show
     margin-bottom: 10px
