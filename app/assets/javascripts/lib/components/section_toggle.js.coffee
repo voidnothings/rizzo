@@ -37,9 +37,16 @@ define ['jquery'], ($) ->
       @wrapper = $(@target).find('.js-read-more-wrapper')
       @baseHeight = @wrapper.height()
       @addHandler()
+
+    findheight: () ->
+      nodes = @wrapper.children()
+      height = 0
+      for (i = 0; i< nodes.length; i++ )
+        height += $(nodes[i]).height()
+      height
     
     addHandler: ->
-      if @wrapper.height() > @args.maxHeight
+      if @findHeight() > @args.maxHeight
         @template = "<div class='btn--read-more js-handler'>#{(@args.text)[0]}</div>"
         if @args.shadow
           @template = "<div class='read-more__handler'>" + @template + "</div>"
