@@ -2,7 +2,7 @@
 // Stack Intro Card
 // -----------------------------------------------------------------------------
 
-$stack-intro-text-line-height: 22px
+$stack-intro-text-line-height: 24px
 $stack-intro-lines-to-show: 2
 
 .stack__intro
@@ -10,19 +10,10 @@ $stack-intro-lines-to-show: 2
   padding: 25px
   position: relative
 
-.stack__intro__title
-  @extend %benton-book
-  @extend %tighten-text
-  @extend %huge-type
-  color: $header-blue
 
 .stack__intro__content
   @extend %relative
-  @extend %benton-book
-  @include font-size(18)
-  color: $stack-intro-text
   line-height: $stack-intro-text-line-height
-  margin-top: 10px
   overflow: hidden
 
   .stack__intro--closed &
@@ -37,3 +28,12 @@ $stack-intro-lines-to-show: 2
       left: 0
       pointer-events: none
       right: 0
+
+
+// Temporary type styling until crazy harry is updated and rowlf run (20/5/2013)
+.stack__intro__content
+  p:first-of-type
+    @extend .copy--feature
+  h2
+    @extend .copy--subtitle
+  @extend .copy--body
