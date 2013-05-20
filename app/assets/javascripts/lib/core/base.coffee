@@ -1,38 +1,37 @@
-define( ['jquery','lib/core/ad_manager_old','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager'], ($, AdManager, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroup) ->
+# Note: We need to add 'lib/core/ad_manager' back in after 'jquery' when the switch to the new DFP server happens.
+#   Also worth noting is that the ad_manager and ad_manager_old calls in waldorf/app/assets/javascripts/*.js need to be removed.
+define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager'], ($, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroup) ->
 
   class Base
 
     constructor: (args={})->
       @authenticateUser()
       @showUserBasket()
-      @initAds() if !args.secure
+      # Note: We need to add this back in when the switch to the new DFP server happens
+      # @initAds() unless args.secure
       @showCookieComplianceMsg()
       @initialiseFooterSelects()
       @addNavTracking()
 
-    adConfig: ->
-      adZone : window.lp.ads.adZone or window.adZone or 'home'
-      adKeywords : window.lp.ads.adKeywords or window.adKeywords or ' '
-      tile : lp.ads.tile or 1
-      ord : lp.ads.ord or window.ord or Math.random()*10000000000000000
-      segQS : lp.ads.segQS or window.segQS or ' '
-      mtfIFPath : (lp.ads.mtfIFPath or '/')
+    # This adConfig can all be ditched when switching to the new DFP server.
+    lpAds = (window.lp and lp.ads)
+    adConfig :
+      adZone : if (lpAds && lpAds.adZone) then lpAds.adZone else window.adZone or 'home'
+      adKeywords : if (lpAds && lpAds.adKeywords) then lpAds.adKeywords else window.adKeywords or ' '
+      tile : if (lpAds && lpAds.tile)  then lpAds.tile else 1
+      ord : if (lpAds && lpAds.ord)  then lpAds.ord else window.ord or Math.random()*10000000000000000
+      segQS : if (lpAds && lpAds.segQS)  then lpAds.segQS else window.segQS or ' '
+      mtfIFPath : if (lpAds && lpAds.mtfIFPath)  then lpAds.mtfIFPath else '/'
       unit: [728,90]
-      # sizes is all that's needed for the new implementation. The above can all be ditched when switching to the new manager.
-      sizes:
-        trafficDriver: [155,256]
-        sponsorTile: [276,32]
-        oneByOne: [1,1]
-        leaderboard: [[970,66], [728,90]]
-        mpu: [[300,250], [300, 600]]
-      
+
     authenticateUser: ->
       @auth = new Authenticator()
       AssetFetch.get "https://secure.lonelyplanet.com/sign-in/status", () =>
         @auth.update()
 
-    initAds: ->
-      AdManager.init(@adConfig(), 'ad-leaderboard') # Remove the second param when dropping the old ad manager
+    # Note: We need to add this back in when the switch to the new DFP server happens
+    # initAds: ->
+    #   AdManager.init(@adConfig, 'js-ad-leaderboard') # Remove params when dropping the old ad manager
 
     showUserBasket: ->
       shopCart = new ShoppingCart()
@@ -44,17 +43,17 @@ define( ['jquery','lib/core/ad_manager_old','lib/utils/asset_fetch', 'lib/core/a
 
     showCookieComplianceMsg: ->
       if LocalStore.get('cookie-compliance') is undefined or LocalStore.get('cookie-compliance') is null
-        args = 
+        args =
           content: "<p class='cookie-text'><strong>Hi there,</strong> we use cookies to improve your experience on our website. You can <a class='cookie-link' href='http://www.lonelyplanet.com/legal/cookies'>update your settings</a> by clicking the Cookie Policy link at the bottom of the page.</p>"
           style: "row--cookie-compliance js-cookie-compliance"
           userOptions :
             close: true
             more: true
-          delegate: 
-            onRemove : -> 
+          delegate:
+            onRemove : ->
               $('div.js-cookie-compliance').removeClass('is-open')
               $('div.js-cookie-compliance').addClass('is-closed')
-            onAdd : -> 
+            onAdd : ->
               window.setTimeout( ( => $('div.js-cookie-compliance').addClass('is-open')), 1)
         msg = new Msg(args)
         LocalStore.set('cookie-compliance', true)
