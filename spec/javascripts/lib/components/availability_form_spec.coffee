@@ -10,7 +10,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
     describe 'Initialisation', ->
       beforeEach ->
         loadFixtures('availability.html')
-        window.av = new Availability('.js-availability')
+        window.av = new Availability({el: '.js-availability-card'})
         spyOn(av, "hasFiltered").andReturn(true)
         av.constructor()
 
@@ -21,7 +21,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
     describe 'on page request', ->
       beforeEach ->
         loadFixtures('availability.html')
-        window.av = new Availability('.js-availability')
+        window.av = new Availability({el: '.js-availability-card'})
         spyOn(av, "_block")
         $(av.config.LISTENER).trigger(':page/request')
 
@@ -32,7 +32,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
     describe 'on page received', ->
       beforeEach ->
         loadFixtures('availability.html')
-        window.av = new Availability('.js-availability')
+        window.av = new Availability({el: '.js-availability-card'})
         spyOn(av, "_unblock")
         spyOn(av, "_set")
         spyOn(av, "_hide")
@@ -63,20 +63,19 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
     describe 'on search', ->
       beforeEach ->
         loadFixtures('availability.html')
-        window.av = new Availability('.js-availability')
+        window.av = new Availability({el: '.js-availability-card'})
         spyOn(av, "_setDefaultDates").andReturn(true)
 
       it 'triggers the page request event', ->
-        listener = $(av.config.LISTENER)
-        spyEvent = spyOnEvent(listener, ':page/request');
-        expect(av.submit).toHaveBeenCalled()
-        expect(':page/request').toHaveBeenTriggeredOn(listener)
+        spyEvent = spyOnEvent(av.$el, ':page/request');
+        av.$form.trigger('submit')
+        expect(':page/request').toHaveBeenTriggeredOn(av.$el)
 
 
     describe 'when the user wants to change dates', ->
       beforeEach ->
         loadFixtures('availability.html')
-        window.av = new Availability('.js-availability')
+        window.av = new Availability({el: '.js-availability-card'})
         spyOn(av, "_show")
         $(av.config.LISTENER).trigger(':infoCard/change')
 

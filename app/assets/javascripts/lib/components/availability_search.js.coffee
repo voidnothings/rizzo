@@ -28,7 +28,8 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
     
     # Subscribe
     listen: ->
-      $(@config.LISTENER).on ':page/request', => 
+      $(@config.LISTENER).on ':page/request', =>
+        console.log ("hello")
         @_block()
 
       $(@config.LISTENER).on ':page/received', (e, params) =>
@@ -41,9 +42,10 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
 
     # Publish
     broadcast: ->
-      @$el.on 'submit', (e) =>
+      @$form.on 'submit', (e) =>
         e.preventDefault()
-        @trigger(':page/request', getParams())
+        @trigger(':page/request', @_getParams())
+        false
 
 
     # Private area
