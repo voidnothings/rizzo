@@ -80,7 +80,7 @@ define ['jquery', '//www.googletagservices.com/tag/js/gpt.js'], ->
         # This is just a JSON formatted object to make it easy to add as many key:value pairs as desired.
         for key of lp.ads.keyValues
           if lp.ads.keyValues.hasOwnProperty(key)
-            googletag.pubads().setTargeting(key, lp.ads.keyValues[key])
+            pubAds.setTargeting(key, lp.ads.keyValues[key])
 
         # Deprecated key:value pairs
         pubAds.setTargeting("adZone", lp.ads.adZone)
