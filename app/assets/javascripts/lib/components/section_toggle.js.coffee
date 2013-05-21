@@ -37,16 +37,20 @@ define ['jquery'], ($) ->
       @target.toggleClass('is-open')
       @wrapper = $(@target).find('.js-read-more-wrapper')
       @wrapper.css({'overflow': 'hidden'})
-      @includeHandler = @findHeight(@args.maxHeight)
+      @includeHandler = @checkHeight(@args.maxHeight)
       @addHandler() if @includeHandler
 
-    findHeight: (maxHeight) ->
+    checkHeight: (maxHeight) ->
       nodes = @wrapper.children()
       height = 0
       i = 0
-      while ( height < maxHeight )
+
+      while ( i < nodes.length )
         height += $(nodes[i]).height()
+        if height >= maxHeight
+          return true
         i++
+
       return height >= maxHeight
 
     addHandler: ->
