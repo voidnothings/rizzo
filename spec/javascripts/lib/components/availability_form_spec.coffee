@@ -17,12 +17,6 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
       it 'has an event listener constant', ->
         expect(av.config.LISTENER).toBeDefined()
 
-      it 'has a state object', ->
-        expect(av.config.state).toBeDefined()
-
-      it 'understands if filters have been applied', ->
-        expect(av.config.state.filters).toBe(true)
-
 
     describe 'on page request', ->
       beforeEach ->

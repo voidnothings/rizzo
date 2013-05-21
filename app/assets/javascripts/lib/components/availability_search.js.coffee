@@ -11,12 +11,9 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
 
     config :
       LISTENER: '#js-card-holder'
-      state:
-        filters: false
 
     constructor: (args={}) ->
       $.extend @config, args
-      @config.state.filters = @hasFiltered()
       @init()
 
     init: ->
