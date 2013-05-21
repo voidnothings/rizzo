@@ -3,18 +3,20 @@
 #
 # ------------------------------------------------------------------------------
   
-define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form', 'lib/managers/select_group_manager', 'lib/components/datepicker'], ($, EventEmitter, Serializer, SelectManager, AvailabilityDatepicker) ->
+define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/serialize_form', 'lib/managers/select_group_manager', 'lib/components/datepicker'], ($, EventEmitter, PageState, Serializer, SelectManager, AvailabilityDatepicker) ->
 
-  class AvailabilitySearch
+  class AvailabilitySearch extends PageState
 
     $.extend(@prototype, EventEmitter)
 
     config :
-      el: 'form'
+      LISTENER: '#js-card-holder'
+      state:
+        filters: false
 
     constructor: (args={}) ->
       $.extend @config, args
-      @state = (if args.hasDates then 'submited' else 'initialized')
+      @config.state.filters = @hasFiltered()
       @init()
 
     init: ->
@@ -23,56 +25,60 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form', 'lib/manager
       formDatePicker = new AvailabilityDatepicker(@$el)
       guestSelect =  new SelectManager('.js-guest-select') 
       currencySelect = new SelectManager('.js-currency-select') 
-      @listen()  
+      @listen()
+      @broadcast()  
     
+    
+    # Subscribe
     listen: ->
-      @$form.on 'submit', (e) =>
-        e.preventDefault()
-        @submit()
-        false
+      $(@config.LISTENER).on ':page/request', => 
+        @_block()
 
-    setDefaultDates: ->
+      $(@config.LISTENER).on ':page/received', (e, params) =>
+        if @hasSearched() then @_hide()
+        @_unblock()
+        @_set('page_offsets', params.page_offsets) if params.page_offsets
+
+      $(@config.LISTENER).on ':infoCard/change', => 
+        @_show()
+
+    # Publish
+    broadcast: ->
+      @$el.on 'submit', (e) =>
+        e.preventDefault()
+        @trigger(':page/request', getParams())
+
+
+    # Private area
+
+    _setDefaultDates : ->
       currentDate = new Date()
       today = [currentDate.getFullYear(), (currentDate.getMonth() + 1), currentDate.getDate()]
       @$el.find('#js-av-start').data('pickadate').setDate(today[0], today[1], today[2])
       @$el.find('#js-av-end').data('pickadate').setDate(today[0], today[1], today[2] + 1)
 
-    hasBeenSubmitted: ->
-      (@state is 'submited') ? true : false 
-
-    submit: ->
+    _getParams : ->
       if @$form.find('#js-av-start').val() is ''  or @$form.find('#js-av-start').val() is undefined
-        @setDefaultDates()
-      params = @serialize()  
-      if params
-        @state = 'submited'
-        @trigger(':submit', params)
+        @_setDefaultDates()
+      params = new Serializer(@$form)
 
-    set: (name, value)->
+    _set : (name, value)->
       input = @$form.find("input[name*='#{name}']")
       if input and value
         input.attr('value', value)
 
-    block: ->
+    _block : ->
+      @$submit ?= @$form.find('#js-booking-submit')
+      @$submit.addClass('disabled').attr('disabled', true)
+
+    _unblock : ->
        @$submit ?= @$form.find('#js-booking-submit')
-       @$submit.addClass('disabled').attr('disabled', true)
-  
-    unblock: ->
-       @$submit ?= @$form.find('#js-booking-submit')
-       @$submit.removeClass('disabled').attr('disabled', false)    
+       @$submit.removeClass('disabled').attr('disabled', false)
 
-    show: ->
-       @$el.removeClass('is-hidden')
+    _show : ->
+      @$el.removeClass('is-hidden')
+
+    _hide : ->
+      @$el.addClass('is-hidden')       
 
 
-    hide: ->
-       @$el.addClass('is-hidden')       
-
-    serialize : ->
-      new Serializer(@$form)
-
-    currentParams : ->
-      if @hasBeenSubmitted()
-        return @serialize()
-      else 
-        return {}
