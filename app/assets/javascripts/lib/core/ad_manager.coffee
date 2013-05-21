@@ -10,6 +10,7 @@ define ['jquery', '//www.googletagservices.com/tag/js/gpt.js'], ->
       sponsorTile: [276,32]
       trafficDriver: [192,380]
 
+    adUnits: {}
     firstLoaded: false
 
     init : () ->
@@ -58,6 +59,7 @@ define ['jquery', '//www.googletagservices.com/tag/js/gpt.js'], ->
             adManager.poll adEl, adManager.checkOneByOne
 
           adUnit = googletag.defineSlot("/"+unit.join("/"), adSize, newId).addService(googletag.pubads())
+          adManager.adUnits[newId] = adUnit
 
           if type is 'mpu'
             adManager.poll adEl, adManager.checkMpu
@@ -198,10 +200,22 @@ define ['jquery', '//www.googletagservices.com/tag/js/gpt.js'], ->
       count = 0
       maxPoll = 15000 # The maximum amount of milliseconds to poll for
       timeout = 250
+      refreshCheck = false
 
       # Ugly but necessary. DOM Mutation events are deprecated, and there's not enough support for MutationObserver yet so we have to poll.
       poll = window.setInterval ->
         count++
+
+        # Every 2 seconds, refresh the ads
+        if not refreshCheck
+          refreshCheck = setTimeout ->
+            refreshCheck = false
+            iframe = $(adEl).children('iframe')
+            if iframe.length is 0
+              # Try refresh this ad
+              googletag.pubads().refresh([ adManager.adUnits[adEl.id] ])
+          , 1000
+
         # Make sure we're not running this thing indefinitely
         if (count >= maxPoll/timeout)
           window.clearInterval poll
@@ -210,7 +224,7 @@ define ['jquery', '//www.googletagservices.com/tag/js/gpt.js'], ->
         iframe = $(adEl).children('iframe')
 
         # If something's been loaded into our ad element, we're good to go
-        if iframe.height() > 0 and iframe.contents().height() > 1
+        if iframe.length > 0 and iframe.contents().height() > 1
           callback.apply(this, [adEl, iframe])
 
           window.clearInterval poll
