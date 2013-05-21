@@ -16,7 +16,7 @@
 #  args =
 #    selector: 'div.partner-review-facilities'
 #    text: ['more facilities', 'less facilities']
-#    maxheight: maxheight
+#    maxHeight: maxheight
 #    delegate:
 #      onupdate: (section, state) =>
 #        console.log(state)
@@ -30,60 +30,61 @@ define ['jquery'], ($) ->
  
   class SectionToggle
   
-    @version: '0.0.1'
+    @version: '0.0.2'
     
     constructor: (@args={}) ->
       @target = $(@args.selector)
+      @target.toggleClass('is-open')
       @wrapper = $(@target).find('.js-read-more-wrapper')
-      @baseHeight = @wrapper.height()
-      @addHandler()
+      @wrapper.css({'overflow': 'hidden'})
+      @includeHandler = @findHeight(@args.maxHeight)
+      @addHandler() if @includeHandler
 
-    findheight: () ->
+    findHeight: (maxHeight) ->
       nodes = @wrapper.children()
       height = 0
-      for (i = 0; i< nodes.length; i++ )
+      i = 0
+      while ( height < maxHeight )
         height += $(nodes[i]).height()
-      height
-    
+        i++
+      return height >= maxHeight
+
     addHandler: ->
-      if @findHeight() > @args.maxHeight
-        @template = "<div class='btn--read-more js-handler'>#{(@args.text)[0]}</div>"
-        if @args.shadow
-          @template = "<div class='read-more__handler'>" + @template + "</div>"
-        @wrapper.append(@template)
-        @bindEvent()
-        @close()
+      @template = "<div class='btn--read-more js-handler'>#{(@args.text)[0]}</div>"
+      if @args.shadow
+        @template = "<div class='read-more__handler'>" + @template + "</div>"
+      @wrapper.append(@template)
+      @handler = @target.find 'div.js-handler'
+      @bindEvent()
+      @close()
     
     bindEvent: ->
-      $(@target).find('div.js-handler').on('click', (e) =>
+      @handler.on 'click', (e) =>
         e.preventDefault()
         if @state is 'close' then @open() else @close()
         @onUpdate()
-      )
 
     open: ->
-      @wrapper.height(@baseHeight)
+      @wrapper.css({'max-height': '5000px'})
       # Wait for the transition to finish before taking away the gradient mask
+      # TODO: check for transitionend and use that instead if it's available
       setTimeout(=>
-        $(@target).addClass('is-open').removeClass('is-closed')
+        @toggleClasses()
       , 500)
       @setHandlerText(@args.text[1])
       @state = 'open'
 
     close: ->
-      @wrapper.css({'overflow': 'hidden'})
-      if @args.shadow is true 
-        @wrapper.height(@args.maxHeight-(@args.maxHeight%18)-2) 
-      else 
-        @wrapper.height(@args.maxHeight)
-      $(@target).addClass('is-closed').removeClass('is-open')
+      @wrapper.css({'max-height': @args.maxHeight + 'px'})
+      @toggleClasses()
       @setHandlerText(@args.text[0])
       @state = 'close'
 
     setHandlerText: (_text) ->
-      $(@target).find('div.js-handler').text(_text)
+      @handler.text _text
 
     onUpdate: ->
       @args.delegate.onUpdate(@,@state, @args.selector) if @args.delegate && @args.delegate.onUpdate
 
-
+    toggleClasses: ->
+      @target.toggleClass('is-open is-closed')
