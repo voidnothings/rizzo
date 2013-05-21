@@ -56,7 +56,7 @@ define ['jquery'], ($) ->
     addHandler: ->
       @template = "<div class='btn--read-more js-handler'>#{(@args.text)[0]}</div>"
       if @args.shadow
-        @template = "<div class='read-more__handler'>" + @template + "</div>"
+        @template = "<div class='read-more__handler'>#{@template}</div>"
       @wrapper.append(@template)
       @handler = @target.find 'div.js-handler'
       @bindEvent()
