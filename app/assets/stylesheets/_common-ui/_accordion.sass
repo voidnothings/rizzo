@@ -1,0 +1,109 @@
+// --------------------------------------
+// Aside filters
+// --------------------------------------
+
+.accordion__handler
+  @extend %small-type
+  color: $body
+  cursor: pointer
+  display: block
+
+.accordion__handler--top
+
+.accordion__handler--bottom
+  @extend %relative
+  @extend %smooth-text
+  line-height: 1.5em
+  font-weight: bold
+  padding: 8px 15px
+  &:after
+    content: attr(data-expand)
+  &:hover
+    text-decoration: none
+  &:before
+    +lp-section-toggle-background()
+    +transition()
+    @extend %empty-abs-generated-content
+    @extend %opaque
+    height: 30px
+    left: 0
+    right: 0
+    top: -30px
+
+// .accordion__handler--less
+//   &:after
+//     content: attr(data-collapse)
+//   &:before
+//     @extend %invisible
+//     border-top: 1px solid $subdued
+//     height: 0
+// 
+// 'Show Less ...'
+
+// 
+// // accordion functionality
+.accordion__input
+  display: none
+
+// 
+.accordion__input:checked 
+  & + .accordion__target--small
+    max-height: 400px
+  & + .accordion__target--large
+    max-height: 2000px
+  & ~ .accordion__handler--bottom  
+    &:after
+      content: attr(data-collapse)
+    &:before
+      @extend %invisible
+      height: 0
+
+.accordion__input:checked 
+  & + .accordion__target
+    .accordion__title
+      &:after
+        top: 18px
+        content: '\e013'
+// 
+.accordion__target
+  +transition(max-height,0.3,linear)
+  overflow: hidden
+
+.accordion__target--break  
+  border-bottom: 1px solid $background
+  +border-radius-each(0,0,4,4)
+
+.accordion__target--small
+  max-height: 40px 
+
+.accordion__target--large
+  max-height: 300px 
+
+.accordion__title
+  padding-right: 30px
+  position: relative
+  display: block
+  cursor: pointer
+  &:after
+    @extend %benton-regular
+    @extend %smooth-text
+    line-height: 0
+    position: absolute
+    +font-size(22)
+    right: 15px
+    top: 17px
+    color: $lpblue
+    content: '\e014'
+
+.ie7, .ie8
+  .accordion__title
+    padding: 7px 15px
+    &:before
+      @extend %empty-generated-content
+  .accordion__handler
+    display: none
+  .accordion__target--small
+    max-height: 9999px
+  .accordion__target--large
+    max-height: 9999px
+
