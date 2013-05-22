@@ -4,15 +4,15 @@
 #
 # ------------------------------------------------------------------------------
   
-define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
+define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitter, PageState) ->
 
-  class AvailabilityInfo
+  class AvailabilityInfo extends PageState
 
     $.extend(@prototype, EventEmitter)
 
     config :
       el: null
-      visible: null
+      LISTENER: '#js-card-holder'
 
     constructor: (args={}) ->
       $.extend @config, args
@@ -21,15 +21,32 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
     init: ->
       @$el = $(@config.el)
       @$btn = @$el.find('.js-availability-edit-btn')
-      @listen()  
+      @listen()
+      @broadcast()
+
     
+    # Subscribe
     listen: ->
+      $(@config.LISTENER).on ':page/request', =>
+        @_block()
+
+      $(@config.LISTENER).on ':page/received', (e, params) =>
+        if @hasSearched()
+          @_unblock(params.search)
+          @_update()
+          @_show()
+
+    # Publish
+    broadcast: ->
       @$btn.on 'click', (e) =>
         e.preventDefault()
-        @change()
+        @trigger(':info/change')
         false
 
-    update: (params = {}) ->
+
+    # Private area
+    
+    _update: (params = {}) ->
       #to-do: iterate on params with base selector
       $('.js-availability-from').text(params.from)
       $('.js-availability-to').text(params.to)
@@ -39,20 +56,15 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
       $('.js-availability-currency').addClass("currency__icon--#{params.currency.toLowerCase()}")
       $('.js-availability-currency').text(params.currency)
 
-    reset: () ->
-
-    change: ->
-      @trigger(':change')
-
-    show: ->
+    _show: ->
        @$el.removeClass('is-hidden')
 
-    hide: ->
+    _hide: ->
        @$el.addClass('is-hidden')
 
-    block: ->
+    _block: ->
        @$btn.addClass('disabled').attr('disabled', true)
   
-    unblock: ->
+    _unblock: ->
        @$btn.removeClass('disabled').attr('disabled', false)    
 

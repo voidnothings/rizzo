@@ -1,7 +1,14 @@
 require ['public/assets/javascripts/lib/components/availability_info.js'], (AvailabilityInfo) ->
 
   describe 'AvailabilityInfo', ->
-    
+  
+    params =
+      search:
+        from: "21 May 2013"
+        to: "23 May 2013"
+        guests: 1 
+        currency: "USD"
+
     describe 'Setup', ->
       it 'is defined', ->
         expect(AvailabilityInfo).toBeDefined()
@@ -12,11 +19,12 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
         window.avInfo = new AvailabilityInfo({ el: '.js-availability-info'})
 
       it 'has an event listener constant', ->
-        expect(av.config.LISTENER).toBeDefined()
+        expect(avInfo.config.LISTENER).toBeDefined()
 
 
     describe 'on page request', ->
       beforeEach ->
+        loadFixtures('availability_info.html')
         window.avInfo = new AvailabilityInfo({ el: '.js-availability-info'})
         spyOn(avInfo, "_block")
         $(avInfo.config.LISTENER).trigger(':page/request')
@@ -27,14 +35,17 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
 
     describe 'on page received', ->
       beforeEach ->
+        loadFixtures('availability_info.html')
         window.avInfo = new AvailabilityInfo({ el: '.js-availability-info'})
         spyOn(avInfo, "_show")
         spyOn(avInfo, "_update")
         spyOn(avInfo, "_unblock")
 
+
       describe 'when the user has not entered dates', ->
         beforeEach ->
           spyOn(avInfo, "hasSearched").andReturn(false)
+          $(avInfo.config.LISTENER).trigger(':page/received', params)
 
         it 'does not show the info card', ->
           expect(avInfo._show).not.toHaveBeenCalled()
@@ -44,6 +55,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
       describe 'when the user has entered dates', ->
         beforeEach ->
           spyOn(avInfo, "hasSearched").andReturn(true)
+          $(avInfo.config.LISTENER).trigger(':page/received', params)
 
         it 'shows the info card', ->
           expect(avInfo._show).toHaveBeenCalled()
@@ -57,6 +69,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
 
     describe 'on change', ->
       beforeEach ->
+        loadFixtures('availability_info.html')
         window.avInfo = new AvailabilityInfo({ el: '.js-availability-info'})
 
       it 'triggers the info/change event', ->
@@ -66,31 +79,26 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
 
 
     describe 'updating', ->
-      params =
-        from: "21 May 2013"
-        to: "23 May 2013"
-        guests: 1 
-        currency: "USD"
 
       describe 'for a single guest', ->
         beforeEach ->
           loadFixtures('availability_info.html')
           window.avInfo = new AvailabilityInfo({ el: '.js-availability-info'})
-          avInfo._update(params)
+          avInfo._update(params.search)
 
         it 'updates the user details', ->
-          expect($('.js-availability-from').text()).toBe(params.from)
-          expect($('.js-availability-to').text()).toBe(params.to)
-          expect($('.js-availability-guests').text()).toBe(params.guests + " guest")
-          expect($('.js-availability-currency').hasClass('currency__icon--' + params.currency.toLowerCase())).toBe(true)
-          expect($('.js-availability-currency').text()).toBe(params.currency)
+          expect($('.js-availability-from').text()).toBe(params.search.from)
+          expect($('.js-availability-to').text()).toBe(params.search.to)
+          expect($('.js-availability-guests').text()).toBe(params.search.guests + " guest")
+          expect($('.js-availability-currency').hasClass('currency__icon--' + params.search.currency.toLowerCase())).toBe(true)
+          expect($('.js-availability-currency').text()).toBe(params.search.currency)
 
       describe 'for multiple guests', ->
         beforeEach ->
           loadFixtures('availability_info.html')
           window.avInfo = new AvailabilityInfo({ el: '.js-availability-info'})
-          params.guests++
-          avInfo._update(params)
+          params.search.guests++
+          avInfo._update(params.search)
 
         it 'updates the user details', ->
-          expect($('.js-availability-guests').text()).toBe(params.guests + " guestsc")
+          expect($('.js-availability-guests').text()).toBe(params.search.guests + " guests")
