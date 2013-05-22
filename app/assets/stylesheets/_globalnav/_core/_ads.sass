@@ -36,6 +36,20 @@
 // Other ads
 // 
 // ----------------------------------------------------------------------------
+.card--ad
+  .card__tag--horizontal
+    +transition(opacity, 0.5, ease)
+
+  &.is-closed
+    margin-left: 0
+    margin-right: 0
+    padding-left: 0
+    padding-right: 0
+    width: 0
+
+    .card__tag--horizontal
+      opacity: 0
+
 .ad-trafficDriver, .ad-sponsorTile, .ad-mpu, .ad-doubleMpu
   &.card__content
     @extend %block-center
@@ -50,7 +64,8 @@
   @extend %ad-sponsorTile
 
   .stack__intro &
-    float: right
+    position: absolute
+    right: 25px
 
 .ad-mpu.card__content
   @extend %ad-mpu
