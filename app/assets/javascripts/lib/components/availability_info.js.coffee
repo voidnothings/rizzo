@@ -11,7 +11,6 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
     $.extend(@prototype, EventEmitter)
 
     config :
-      el: null
       LISTENER: '#js-card-holder'
 
     constructor: (args={}) ->

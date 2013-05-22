@@ -10,10 +10,11 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
     $.extend(@prototype, EventEmitter)
 
     config:
-      el: '.lodgings-footer'
+      el: '.pagination-footer'
       title: 'Show more'
       idleTitle: 'Loading ...'
       visible: true
+      LISTENER: '#js-card-holder'
 
     constructor : (args = {}) ->
       $.extend @config, args
@@ -23,50 +24,60 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
 
     init: ->  
       @$el = $(@config.el)
-      if !@config.visible
-        @$el.hide()
-      @clean()
-      @add()
+      @$el.hide() if !@config.visible
+      @_clean()
+      @_add()
       @listen()
+      @broadcast()
 
-    clean: ->
+    # Publish
+    broadcast: ->
+      @$el.on 'click', '#js-load-more', (e) =>
+        e.preventDefault()
+        @currentPage += 1
+        @_block()
+        @trigger(':page/append', @_serialize)
+
+    # Subscribe
+    listen: ->
+      $(@config.LISTENER).on ':page/request', =>
+        @_block()
+        @_reset()
+
+      $(@config.LISTENER).on ':page/received', =>
+        @_unblock()
+
+      $(@config.LISTENER).on ':page/append/received', =>
+        @_unblock()
+
+
+    # Private
+
+    _clean: ->
       @$el.empty()
       
-    add: ->
+    _add: ->
       container = $('<div>').css('text-align', 'center')
       @$btn = $('<a>').attr('id', 'js-load-more').addClass('btn btn--load full-width').text(@config.title)
       @$el.append(container.append(@$btn))
 
-    hide: ->
+    _hide: ->
       @$el.addClass('is-hidden')
       @config.visible = false
     
-    show: ->
+    _show: ->
       @$el.removeClass('is-hidden')
       @config.visible = true
 
-    reset: ->
+    _reset: ->
       @currentPage = 1
 
-    block: ->
+    _block: ->
       @$btn.addClass('loading disabled').text(@config.idleTitle)
 
-    unblock: ->
+    _unblock: ->
       @$btn.removeClass('loading disabled').text(@config.title)
 
-    serialize: ->
+    _serialize: ->
       {page: @currentPage}
-
-    currentParams: ->
-      if @currentPage is 1
-        {}
-      else
-        @serialize()
-
-    listen: () ->
-      @$el.on 'click', '#js-load-more', (e) =>
-        e.preventDefault()
-        @currentPage += 1
-        @trigger(':click', @serialize())
-
 
