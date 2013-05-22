@@ -26,6 +26,7 @@ define ['jquery', '//www.googletagservices.com/tag/js/gpt.js'], ->
       googletag.cmd.push ->
         adCount = 0
         toDisplay = lp.ads.toDisplay
+        toPoll = {}
 
         unit = [lp.ads.networkCode] # Network Code - Found in the "Admin" tab of DFP
         i = 0
@@ -39,6 +40,7 @@ define ['jquery', '//www.googletagservices.com/tag/js/gpt.js'], ->
           adEl = document.getElementById("js-ad-"+type)
           adSize = adManager.sizes[type]
           newId = "js-ad-"+type+"-"+adCount
+          pubAds = googletag.pubads()
 
           adCount++
 
@@ -52,19 +54,23 @@ define ['jquery', '//www.googletagservices.com/tag/js/gpt.js'], ->
           # Exploit the fact that getElementById only returns the FIRST element with that ID and make this one unique.
           adEl.id = newId
 
-          if /adsense/i.test(type)
+          if /mpu/i.test(type)
+            toPoll[newId] = ->
+              adManager.showAd.apply this, arguments
+              adManager.checkMpu.apply this, arguments
+          else if /adsense/i.test(type)
             # Note: we're using the old, non DFP way of calling adsense ads. Ideally once we figure out how to serve these through DFP, this can be ditched in favour of the below commented out code.
             continue
           else if /oneByOne/.test(type)
-            adManager.poll adEl, adManager.checkOneByOne
+            toPoll[newId] = adManager.checkOneByOne
+          else if /trafficDriver/.test(type)
+            toPoll[newId] = adManager.showAd
 
-          adUnit = googletag.defineSlot("/"+unit.join("/"), adSize, newId).addService(googletag.pubads())
+          adUnit = googletag.defineSlot("/"+unit.join("/"), adSize, newId).addService(pubAds)
           adManager.adUnits[newId] = adUnit
 
-          if type is 'mpu'
-            adManager.poll adEl, adManager.checkMpu
-          # DFP code... we can't use this until the switch to the new DFP server happens.
-          # else if /adsense/i.test(type) and lp.ads.channels
+          # DFP code... we can't use this until the switch to the new DFP server happens and we figure out how this works.
+          # if /adsense/i.test(type) and lp.ads.channels
             # adUnit.set("adsense_border_color", "FFFFFF")
             #   .set("adsense_background_color", "FFFFFF")
             #   .set("adsense_link_color", "0C77BF")
@@ -73,24 +79,31 @@ define ['jquery', '//www.googletagservices.com/tag/js/gpt.js'], ->
             #   .set("adsense_ad_types", "text")
             #   .set("adsense_channel_ids", lp.ads.channels.replace(/\s/g, '+'))
 
-          adManager.poll adEl, adManager.showLoaded
-
         # This is just a JSON formatted object to make it easy to add as many key:value pairs as desired.
         for key of lp.ads.keyValues
-          googletag.pubads().setTargeting(key, lp.ads.keyValues[key])
+          if lp.ads.keyValues.hasOwnProperty(key)
+            pubAds.setTargeting(key, lp.ads.keyValues[key])
 
         # Deprecated key:value pairs
-        googletag.pubads().setTargeting("adZone", lp.ads.adZone)
-        googletag.pubads().setTargeting("ctt", lp.ads.continent) if lp.ads.continent
-        googletag.pubads().setTargeting("cnty", lp.ads.country) if lp.ads.country
-        googletag.pubads().setTargeting("dest", lp.ads.destination) if lp.ads.destination
-        googletag.pubads().setTargeting("tnm", lp.ads.adTnm) if lp.ads.adTnm
+        pubAds.setTargeting("adZone", lp.ads.adZone)
+        pubAds.setTargeting("ctt", lp.ads.continent) if lp.ads.continent
+        pubAds.setTargeting("cnty", lp.ads.country) if lp.ads.country
+        pubAds.setTargeting("dest", lp.ads.destination) if lp.ads.destination
+        pubAds.setTargeting("tnm", lp.ads.adTnm) if lp.ads.adTnm
 
-        googletag.pubads().enableSingleRequest()
-        googletag.pubads().collapseEmptyDivs()
+        pubAds.enableSingleRequest()
+        pubAds.collapseEmptyDivs()
         googletag.enableServices()
 
-        googletag.pubads().refresh()
+        # Call the display method for all ads we've defined.
+        for ad of adManager.adUnits
+          if adManager.adUnits.hasOwnProperty(ad)
+            googletag.display(ad)
+
+        # Kick off polling where needed.
+        for elId of toPoll
+          if toPoll.hasOwnProperty(elId)
+            adManager.poll document.getElementById(elId), toPoll[elId]
 
     checkMpu : (adEl, iframe) ->
       if iframe.height() > $(adEl).height()
@@ -135,9 +148,9 @@ define ['jquery', '//www.googletagservices.com/tag/js/gpt.js'], ->
       , 0
       # Note: the wallpaper does all the work from the code that's returned by the ad server.
 
-    showLoaded : (adEl, iframe) ->
+    showAd : (adEl, iframe) ->
       if adEl.style.display isnt 'none'
-        $(adEl).closest('.row--leaderboard').removeClass('is-closed')
+        $(adEl).closest('.js-card').removeClass('is-closed')
 
     setupInterstitial : (adEl, iframe) ->
       adLink = $(iframe).contents().find('#ad-link')
@@ -200,40 +213,29 @@ define ['jquery', '//www.googletagservices.com/tag/js/gpt.js'], ->
       count = 0
       maxPoll = 15000 # The maximum amount of milliseconds to poll for
       timeout = 250
-      refreshCheck = false
 
       # Ugly but necessary. DOM Mutation events are deprecated, and there's not enough support for MutationObserver yet so we have to poll.
       poll = window.setInterval ->
         count++
-
-        # Every 2 seconds, refresh the ads
-        if not refreshCheck
-          refreshCheck = setTimeout ->
-            refreshCheck = false
-            iframe = $(adEl).children('iframe')
-            if iframe.length is 0
-              # Try refresh this ad
-              googletag.pubads().refresh([ adManager.adUnits[adEl.id] ])
-          , 1000
 
         # Make sure we're not running this thing indefinitely
         if (count >= maxPoll/timeout)
           window.clearInterval poll
           return
 
-        iframe = $(adEl).children('iframe')
+        $(adEl).children('iframe').each ->
+          iframe = $(this)
+          # If something's been loaded into our ad element, we're good to go
+          if adEl.style.display isnt 'none' and iframe.contents().height() > 1 and iframe.contents().find('body').html() isnt ""
+            callback.apply(this, [adEl, iframe])
 
-        # If something's been loaded into our ad element, we're good to go
-        if iframe.length > 0 and iframe.contents().height() > 1
-          callback.apply(this, [adEl, iframe])
+            window.clearInterval poll
 
-          window.clearInterval poll
-
-          if not adManager.firstLoaded and window.fs
-            window.lp.fs.time(
-              'e':'/destination/ad/first'
-            )
-            adManager.firstLoaded = true
+            if not adManager.firstLoaded and window.fs
+              window.lp.fs.time(
+                'e':'/destination/ad/first'
+              )
+              adManager.firstLoaded = true
       , timeout
 
     # The old init used in the site wide leaderboard.
