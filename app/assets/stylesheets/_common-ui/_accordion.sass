@@ -42,8 +42,8 @@
 .accordion__input:checked 
   & + .accordion__target
     .accordion__title
+      @extend %chevron-up-after
       &:after
-        @extend %chevron-up-after:after
         top: 18px
 
 .accordion__target
@@ -63,13 +63,13 @@
 .accordion__title
   @extend %relative
   @extend %right-icon
+  @extend %chevron-down-after
   cursor: pointer
   display: block
   padding-right: 30px
   &:after
     +font-size(22)
     @extend %benton-regular
-    @extend %chevron-down-after:after
     @extend %smooth-text
     color: $lpblue
     line-height: 0
