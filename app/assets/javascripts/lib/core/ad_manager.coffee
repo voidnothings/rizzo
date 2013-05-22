@@ -1,4 +1,4 @@
-define ['jquery', '//www.googletagservices.com/tag/js/gpt.js'], ->
+define ['jquery', 'gpt'], ->
   adManager =
     # sizes is all that's needed for the new implementation.
     sizes:
