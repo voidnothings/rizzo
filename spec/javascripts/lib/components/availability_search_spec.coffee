@@ -11,8 +11,6 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
       beforeEach ->
         loadFixtures('availability.html')
         window.av = new Availability({el: '.js-availability-card'})
-        spyOn(av, "hasFiltered").andReturn(true)
-        av.constructor()
 
       it 'has an event listener constant', ->
         expect(av.config.LISTENER).toBeDefined()
