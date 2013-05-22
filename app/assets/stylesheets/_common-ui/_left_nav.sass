@@ -67,9 +67,6 @@
   border: 1px solid $subdued
   padding: 4px 0
 
-.group__body
-  padding-bottom: 15px
-
 %group--linked--common
   background-color: $body-background
   border-color: $subdued
@@ -106,14 +103,20 @@
 
 .group__title--aside
   @extend %smooth-text
-  @extend %larger-type
+  @extend %small-type
   color: $nav-search-btn-hover
+  @extend %uppercase
   display: block
   line-height: 2em
-  padding: 7px 15px
+  padding: 9px 15px
+
+
+// ---------------------------------------
+// Nav item 
+// ---------------------------------------
 
 .nav--stack
-  padding: 0
+  @extend %no-padding
 
 .nav__item--stack
   @extend %smooth-text
@@ -121,7 +124,7 @@
   color: $body-copy
   display: block
   line-height: 1.5em
-  padding: 10px 50px 10px 15px
+  padding: 12px 15px
   position: relative
   text-decoration: none
   &:hover
@@ -134,6 +137,23 @@
     color: $body-copy
     padding-right: 5px
     vertical-align: sub
+
+.nav__item--current--stack
+  background: $teal
+  color: white
+  font-weight: 700
+
+.nav__item--chevron
+  padding-right: 35px
+  @extend %relative
+  &:after
+    @extend %chevron-right-before:before
+    @extend %benton-regular
+    @extend %absolute-right
+    font-size: 20px
+    pointer-events: none
+    right: 15px
+    top: 30%
 
 .nav__item--stack-activities
   @extend %icon-image-poi-activity-before
@@ -162,13 +182,18 @@
 
 .nav__item--current--stack
   .facet--count
-    background-color: #fff
-    border: none
-    color: $active
+    color: white
+
+.nav__item--delimited
+  border-top: 1px solid $subdued
+
+.facet--inline-count
+  color: #8fa1a4
+  padding-left: 2px
 
 .facet--count
-  @extend %extra-small-type
   +border-radius(4)
+  @extend %extra-small-type
   background: #fff
   border: 1px solid $highlight
   color: $highlight
