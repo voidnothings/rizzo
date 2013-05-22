@@ -29,7 +29,6 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
     # Subscribe
     listen: ->
       $(@config.LISTENER).on ':page/request', =>
-        console.log ("hello")
         @_block()
 
       $(@config.LISTENER).on ':page/received', (e, params) =>
