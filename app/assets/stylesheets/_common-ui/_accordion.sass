@@ -43,8 +43,8 @@
   & + .accordion__target
     .accordion__title
       &:after
+        @extend %chevron-up-after:after
         top: 18px
-        content: '\e013'
 
 .accordion__target
   +transition(max-height,0.3,linear)
@@ -61,20 +61,22 @@
   max-height: 300px 
 
 .accordion__title
-  padding-right: 30px
-  position: relative
-  display: block
+  @extend %relative
+  @extend %right-icon
   cursor: pointer
+  display: block
+  padding-right: 30px
   &:after
-    @extend %benton-regular
-    @extend %smooth-text
-    line-height: 0
-    position: absolute
     +font-size(22)
+    @extend %benton-regular
+    @extend %chevron-down-after:after
+    @extend %smooth-text
+    color: $lpblue
+    line-height: 0
+    pointer-events: none
+    position: absolute
     right: 15px
     top: 17px
-    color: $lpblue
-    content: '\e014'
 
 .ie7, .ie8
   .accordion__title
