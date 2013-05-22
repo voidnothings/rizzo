@@ -3,23 +3,17 @@
 // --------------------------------------
 
 .accordion__handler
+  @extend %relative
   @extend %small-type
+  @extend %smooth-text
   color: $body
   cursor: pointer
   display: block
-
-.accordion__handler--top
-
-.accordion__handler--bottom
-  @extend %relative
-  @extend %smooth-text
-  line-height: 1.5em
   font-weight: bold
+  line-height: 1.5em
   padding: 8px 15px
   &:after
     content: attr(data-expand)
-  &:hover
-    text-decoration: none
   &:before
     +lp-section-toggle-background()
     +transition()
@@ -30,22 +24,9 @@
     right: 0
     top: -30px
 
-// .accordion__handler--less
-//   &:after
-//     content: attr(data-collapse)
-//   &:before
-//     @extend %invisible
-//     border-top: 1px solid $subdued
-//     height: 0
-// 
-// 'Show Less ...'
-
-// 
-// // accordion functionality
 .accordion__input
   display: none
 
-// 
 .accordion__input:checked 
   & + .accordion__target--small
     max-height: 400px
@@ -64,7 +45,7 @@
       &:after
         top: 18px
         content: '\e013'
-// 
+
 .accordion__target
   +transition(max-height,0.3,linear)
   overflow: hidden
