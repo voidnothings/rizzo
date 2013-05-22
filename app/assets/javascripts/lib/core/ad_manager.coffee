@@ -54,15 +54,17 @@ define ['jquery', '//www.googletagservices.com/tag/js/gpt.js'], ->
           # Exploit the fact that getElementById only returns the FIRST element with that ID and make this one unique.
           adEl.id = newId
 
-          if /leaderboard/i.test(type)
-            toPoll[newId] = adManager.showLeaderboard
-          else if /mpu/i.test(type)
-            toPoll[newId] = adManager.checkMpu
+          if /mpu/i.test(type)
+            toPoll[newId] = ->
+              adManager.showAd.apply this, arguments
+              adManager.checkMpu.apply this, arguments
           else if /adsense/i.test(type)
             # Note: we're using the old, non DFP way of calling adsense ads. Ideally once we figure out how to serve these through DFP, this can be ditched in favour of the below commented out code.
             continue
           else if /oneByOne/.test(type)
             toPoll[newId] = adManager.checkOneByOne
+          else if /trafficDriver/.test(type)
+            toPoll[newId] = adManager.showAd
 
           adUnit = googletag.defineSlot("/"+unit.join("/"), adSize, newId).addService(pubAds)
           adManager.adUnits[newId] = adUnit
@@ -146,9 +148,9 @@ define ['jquery', '//www.googletagservices.com/tag/js/gpt.js'], ->
       , 0
       # Note: the wallpaper does all the work from the code that's returned by the ad server.
 
-    showLeaderboard : (adEl, iframe) ->
+    showAd : (adEl, iframe) ->
       if adEl.style.display isnt 'none'
-        $(adEl).closest('.row--leaderboard').removeClass('is-closed')
+        $(adEl).closest('.js-card').removeClass('is-closed')
 
     setupInterstitial : (adEl, iframe) ->
       adLink = $(iframe).contents().find('#ad-link')
