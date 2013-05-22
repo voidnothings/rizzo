@@ -17,16 +17,18 @@
 .btn--bookable
   @extend %base-button
   @extend %larger-type
-  background-color: $bookable
-  color: $new-header-grey
+  background-color: $yella
+  color: $title
   padding: 6px 15px
   font-weight: bold
+  &:hover
+    background-color: $yella-highlight
 
 .btn--read-more
   @extend %base-button
   @extend %irregular-type
   padding: 5px 7px
-  color: $body-copy
+  color: $title
   border: 1px solid $soft-gray
   font-weight: bold
 
@@ -38,20 +40,24 @@
   padding: 10px 15px
   background-color: #fff
   border: 1px solid #c9d1d7
-  color: $header-blue
+  color: $lpblue
+  &:hover
+    background-color: $lpblue-highlight
 
 .btn--load-more
   @extend .btn--functional
   width: 100%
   &.disabled
-    color: $body-copy
+    color: $title
 
 .btn--edit-dates
   +box-shadow(1, 1, 1, 0, rgba(0,0,0,0.1))
   @extend %base-button
   background-color: #fff
-  color: $link-color
+  color: $lpblue
   padding: 4px 6px
   font-weight: bold
+  &:hover
+    color: $lpblue-highlight
 
 
