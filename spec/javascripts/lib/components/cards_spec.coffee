@@ -20,7 +20,7 @@ require ['public/assets/javascripts/lib/components/cards.js'], (Cards) ->
         spyOn(cards, "_block")
         $(cards.config.LISTENER).trigger(':page/request')
 
-      it 'disables the cards', ->
+      it 'calls cards.block', ->
         expect(cards._block).toHaveBeenCalled()
 
 
@@ -41,7 +41,7 @@ require ['public/assets/javascripts/lib/components/cards.js'], (Cards) ->
         spyOn(cards, "_unblock")
         $(cards.config.LISTENER).trigger(':page/received')
 
-      it 'disables the cards', ->
+      it 'calls cards.unblock', ->
         expect(cards._unblock).toHaveBeenCalled()
 
 

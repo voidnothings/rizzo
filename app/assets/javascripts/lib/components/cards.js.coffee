@@ -23,6 +23,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
       @$el = $(@config.el)
       @listen()
 
+
     # Subscribe
     listen: ->
       $(@config.LISTENER).on ':page/request', =>
@@ -32,7 +33,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
         @_unblock()
 
 
-    # # Private
+    # Private
 
     _block: ->
       x = @$el.find(@config.types)
