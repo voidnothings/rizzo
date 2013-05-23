@@ -44,18 +44,15 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
       describe 'it calls', ->
         beforeEach ->
           spyOn(stack, "_clear")
-          spyOn(stack, "_replace")
-          spyOn(stack, "_show")
-          $(stack.config.LISTENER).trigger(':page/received')  
+          spyOn(stack, "_add")
+          $(stack.config.LISTENER).trigger(':page/received', params)  
 
         it 'calls stack._clear', ->
           expect(stack._clear).toHaveBeenCalled()
 
-        it 'calls stack._replace', ->
-          expect(stack._replace).toHaveBeenCalledWith(params.list)
-      
-        it 'calls stack._show', ->
-          expect(stack._show).toHaveBeenCalledWith(params.list)
+        it 'calls stack._add', ->
+          expect(stack._add).toHaveBeenCalledWith(params.list)
+
 
       describe 'clear', ->
         beforeEach ->
@@ -64,24 +61,18 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
         it 'clears the stack', ->
           expect($(stack.$el).find(config.types).length).toBe(0)
 
-      describe 'replace', ->
+      describe 'add()', ->
         beforeEach ->
-          spyOn(stack, "_show").andReturn(false)
-          stack._replace(params.list)
+          spyOn(stack, "_show")
+          stack._add(params.list)
 
-        it 'replaces the stack with the returned cards', ->
+        it 'adds the stack with the returned cards', ->
           expect($(stack.$el).find(".test4").hasClass('card--invisible')).toBe(true)
           expect($(stack.$el).find(".test5").hasClass('card--invisible')).toBe(true)
           expect($(stack.$el).find(".test6").hasClass('card--invisible')).toBe(true)
 
-      describe 'show', ->
-        beforeEach ->
-          stack._replace(params.list)
-
-        it 'fades in the returned cards', ->
-          expect($(stack.$el).find(".test4").hasClass('card--invisible')).toBe(false)
-          expect($(stack.$el).find(".test5").hasClass('card--invisible')).toBe(false)
-          expect($(stack.$el).find(".test6").hasClass('card--invisible')).toBe(false)
+        it 'shows the cards', ->
+          expect(stack._show).toHaveBeenCalled()
 
 
     describe 'on page append', ->
@@ -91,18 +82,26 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
 
       describe 'does not clear down the existing cards', ->
         beforeEach ->
-          spyOn(stack, "_replace")
-          spyOn(stack, "_show")
-          $(stack.config.LISTENER).trigger(':page/append')  
+          spyOn(stack, "_clear")
+          spyOn(stack, "_add")
+          $(stack.config.LISTENER).trigger(':page/append', params)  
 
         it 'does not call stack._clear', ->
           expect(stack._clear).not.toHaveBeenCalled()
 
-        it 'calls stack._replace', ->
-          expect(stack._replace).toHaveBeenCalledWith(params.list)
-      
-        it 'calls stack._show', ->
-          expect(stack._show).toHaveBeenCalledWith(params.list)
+        it 'calls stack._add', ->
+          expect(stack._add).toHaveBeenCalledWith(params.list)
 
         it 'appends the cards', ->
           expect($(stack.$el).find(config.types).length).not.toBe(0)
+
+
+    describe 'when the user clicks a disabled card', ->
+      beforeEach ->
+        loadFixtures('stack_disabled.html')
+        window.stack = new Stack(config)
+
+      it 'triggers the info/change event', ->
+        spyEvent = spyOnEvent(stack.$el, ':info/show');
+        stack.$el.find('.card--disabled a').trigger('click')
+        expect(':info/show').toHaveBeenTriggeredOn(stack.$el)

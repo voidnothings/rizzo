@@ -22,6 +22,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
     init: ->
       @$el = $(@config.el)
       @listen()
+      @broadcast()
 
 
     # Subscribe
@@ -29,8 +30,19 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
       $(@config.LISTENER).on ':page/request', =>
         @_block()
 
-      $(@config.LISTENER).on ':page/received', =>
+      $(@config.LISTENER).on ':page/received', (e, params) =>
+        @_clear()
+        @_add(params.list)
+
+      $(@config.LISTENER).on ':page/append', (e, params) =>
+        @_add(params.list)
+
+    # Publish
+    broadcast: ->
+      @$el.on 'click', '.card--disabled a', (e) =>
+        e.preventDefault()
         @_unblock()
+        @trigger(':info/show')
 
 
     # Private
@@ -41,3 +53,22 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
 
     _unblock: ->
       @$el.find(@config.types).removeClass('card--disabled')
+
+    _clear: ->
+      @$el.find(@config.types).remove()
+      @$el.find('.js-error').remove()
+
+    _add: (list)->
+      $cards = $(list).addClass('card--invisible')
+      @$el.append($cards)
+      @_show($cards)
+
+    _show: (cards) ->
+      i = 0
+      insertCards = setInterval( ->
+        if i isnt cards.length
+          $(cards[i]).removeClass('card--invisible')
+          i++
+        else
+          clearInterval insertCards
+      , 20)
