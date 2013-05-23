@@ -23,17 +23,17 @@ require ['public/assets/javascripts/lib/components/meta.js'], (Meta) ->
     describe 'on page received', ->
       beforeEach ->
         loadFixtures('meta.html')
-        window.meta = new Meta(config)
+        window.meta = new Meta()
       
       describe 'when there is a stack description', ->
         beforeEach ->
           $(meta.config.LISTENER).trigger(':page/received', data)
 
         it 'updates the meta title', ->
-          expect($('meta[name="title"]')).attr('content').toBe(data.title)
+          expect($('meta[name="title"]').attr('content')).toBe(data.title)
 
         it 'updates the meta description', ->
-          expect($('meta[name="description"]')).attr('content').toBe(data.description)
+          expect($('meta[name="description"]').attr('content')).toBe(data.description)
 
         it 'updates the stack title', ->
           expect($('.js-intro-title').text()).toBe(data.title)
@@ -47,10 +47,10 @@ require ['public/assets/javascripts/lib/components/meta.js'], (Meta) ->
           $(meta.config.LISTENER).trigger(':page/received', data_no_description)
 
         it 'updates the meta title', ->
-          expect($('meta[name="title"]')).attr('content').toBe(data.title)
+          expect($('meta[name="title"]').attr('content')).toBe(data.title)
 
         it 'updates the meta description', ->
-          expect($('meta[name="description"]')).attr('content').toBe(data.description)
+          expect($('meta[name="description"]').attr('content')).toBe(data.description)
 
         it 'does not update the stack description', ->
           expect($('.js-intro-lead').text()).toBe("")
