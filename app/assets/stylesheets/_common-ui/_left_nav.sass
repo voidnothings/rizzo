@@ -140,8 +140,13 @@
 
 .nav__item--current--stack
   font-weight: 700
-  &, &:hover
-    @extend %active-background
+  color: white
+  @extend %active-background
+
+.nav__item--stack
+  &.nav__item--current--stack
+    &:hover
+      @extend %active-background
 
 .nav__item--chevron
   padding-right: 35px
