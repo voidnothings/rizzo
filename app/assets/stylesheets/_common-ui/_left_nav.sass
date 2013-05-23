@@ -107,8 +107,8 @@
   color: $nav-search-btn-hover
   @extend %uppercase
   display: block
-  line-height: 2em
-  padding: 9px 15px
+  line-height: 1.3em
+  padding: 13px 15px
 
 
 // ---------------------------------------
@@ -139,9 +139,9 @@
     vertical-align: sub
 
 .nav__item--current--stack
-  background: $teal
-  color: white
   font-weight: 700
+  &, &:hover
+    @extend %active-background
 
 .nav__item--chevron
   padding-right: 35px
@@ -173,9 +173,8 @@
 .nav__item--stack-tours
   @extend %icon-image-poi-tour-before
 
-.nav__item--current--stack
-  @extend %active-background
-  font-weight: 700
+
+  
 
 .nav__item--current--stack
   .facet--count, .facet--inline-count
