@@ -6,7 +6,7 @@
 
 define ['jquery','lib/extends/events'], ($, EventEmitter) ->
 
-  class Cards
+  class Stack
 
     $.extend(@prototype, EventEmitter)
 
