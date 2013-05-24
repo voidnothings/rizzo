@@ -4,8 +4,7 @@ define ['jquery', 'gpt'], ->
     sizes:
       adSense: [155,256]
       leaderboard: [[970,66], [728,90]]
-      # mpu: [[300,250], [300, 600]]
-      mpu: [300, 600]
+      mpu: [[300,250], [300, 600]]
       oneByOne: [1,1]
       sponsorTile: [276,32]
       trafficDriver: [192,380]
@@ -90,6 +89,7 @@ define ['jquery', 'gpt'], ->
         pubAds.setTargeting("cnty", lp.ads.country) if lp.ads.country
         pubAds.setTargeting("dest", lp.ads.destination) if lp.ads.destination
         pubAds.setTargeting("tnm", lp.ads.adTnm) if lp.ads.adTnm
+        pubAds.setTargeting("thm", lp.ads.adThm) if lp.ads.adThm
 
         pubAds.enableSingleRequest()
         pubAds.collapseEmptyDivs()
