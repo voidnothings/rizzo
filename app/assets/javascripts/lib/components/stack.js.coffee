@@ -48,8 +48,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
     # Private
 
     _block: ->
-      x = @$el.find(@config.types)
-      x.addClass('card--disabled')
+      @$el.find(@config.types).addClass('card--disabled')
 
     _unblock: ->
       @$el.find(@config.types).removeClass('card--disabled')

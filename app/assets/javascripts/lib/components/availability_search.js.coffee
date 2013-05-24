@@ -32,7 +32,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
         @_block()
 
       $(@config.LISTENER).on ':page/received', (e, params) =>
-        if @hasSearched() then @_hide()
+        @_hide() if @hasSearched()
         @_unblock()
         @_set('page_offsets', params.page_offsets) if params.page_offsets
 
