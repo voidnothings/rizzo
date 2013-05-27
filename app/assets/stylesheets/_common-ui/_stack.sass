@@ -15,19 +15,11 @@ $stack-intro-lines-to-show: 2
   @extend %relative
   overflow: hidden
 
-  .stack__intro--closed &
-    height: $stack-intro-text-line-height * $stack-intro-lines-to-show
-    margin-bottom: 10px
+  .js-read-more &
+    max-height: 0
 
-    &:after
-      @extend %empty-abs-generated-content
-      +background-gradient($startColor: rgba(255,255,255,0), $endColor: rgba(255,255,255,1.0))
-      bottom: 0
-      height: 20px
-      left: 0
-      pointer-events: none
-      right: 0
-
+  .no-js &
+    max-height: none
 
 // Temporary type styling until crazy harry is updated and rowlf run (20/5/2013)
 .stack__intro__content
