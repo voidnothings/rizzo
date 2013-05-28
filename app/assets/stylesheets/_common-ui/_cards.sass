@@ -47,7 +47,7 @@ $card-hotel-content-padding: 13px
     padding: 0
     width: 100%
 
-  &:hover
+  .js-hover &:hover
     .btn--bookable
       background: $bookable-hover
 
@@ -73,7 +73,7 @@ $card-hotel-content-padding: 13px
     height: 20px
     left: 0
     right: 0
-  &:hover
+  .js-hover &:hover
     .card__content
       height: $card-grid-height - 60px - $card-content-padding
 
@@ -85,7 +85,7 @@ $card-hotel-content-padding: 13px
     +transition(all, 0.5, ease)
     height: $card-grid-height
 
-    &:hover
+    .js-hover &:hover
       +box-shadow(2, 2, 8, 0, rgba(3, 46, 92, 0.15))
 
       // img

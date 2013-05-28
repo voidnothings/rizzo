@@ -18,7 +18,7 @@
 %nav__item--look
   &, &:active
     color: $nav-primary-type
-  &:hover
+  .js-hover &:hover
     color: $nav-primary-type-hover
 
 .nav__item--primary, .nav__item--user
@@ -42,13 +42,13 @@
   padding: 7px 8px 6px
   &, &:active
     color: $nav-secondary-type
-  &:hover
+  .js-hover &:hover
     color: $nav-secondary-type-hover
   &.current
     @extend %active-background
     @extend %four-pixel-rounded
     font-weight: bold
-    &:hover
+    .js-hover &:hover
       color: #fff
 
 
@@ -208,7 +208,7 @@
     font-size: 32px
     width: inherit
     text-align: center
-  &:hover
+  .js-hover &:hover
     background-color: white
   .ie7 &
     text-indent: 0
@@ -249,7 +249,7 @@
 
 .nav__item--sitemap
   color: $body-copy
-  &:hover
+  .js-hover &:hover
     color: $header-gray
 
 
