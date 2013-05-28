@@ -51,18 +51,17 @@ $card-hotel-content-padding: 13px
     .btn--bookable
       background: $bookable-hover
 
-.card--media
-  &:hover
-    .card__hero
-      &:after
-        @extend %empty-abs-generated-content
-        top: 0
-        left: 0
-        bottom: 0
-        right: 0
-        background-color: rgba(0,0,0,0.3)
-    .card__content
+.card--media:hover
+  .card__hero
+    &:after
+      @extend %empty-abs-generated-content
+      top: 0
+      left: 0
       bottom: 0
+      right: 0
+      background-color: rgba(0,0,0,0.3)
+  .card__content
+    bottom: 0
 
 // add white fadeout at the bottom of card lists that have images
 
