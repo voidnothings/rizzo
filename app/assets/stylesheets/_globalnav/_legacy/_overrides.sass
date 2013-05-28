@@ -31,7 +31,7 @@ input, textarea, select
   .column--footer, .column--footer--last, input, .box-description__title--footer, .box-description__lead--footer, .nav__item--breadcrumbs--current, .label--footer, .form__select--language 
     font-size: 12px!important
   .nav__item--footer--darker
-    &:hover
+    .js-hover &:hover
       color: #fff!important
       text-decoration: none!important
   .nav__item--breadcrumbs, .nav__item--breadcrumbs--current
@@ -42,7 +42,7 @@ input, textarea, select
 
 .row--sitemap 
   .nav__item
-    &:hover
+    .js-hover &:hover
       color: #7F9394!important
 
 .row--cookie-compliance
@@ -86,7 +86,7 @@ input, textarea, select
 .btn-submit--small
   padding: 8px 10px
   font-size: 12px!important
-  &:hover
+  .js-hover &:hover
     background-color: #fff
     color: $nav-secondary-current-item-bck--legacy
 
@@ -114,18 +114,18 @@ input, textarea, select
   background-color: $body-background
   margin-bottom: 0
 
-.nav__item--breadcrumbs:hover
+  .js-hover .nav__item--breadcrumbs:hover
   color: $header-gray
 
 .nav__item--about
-  &:hover
+  .js-hover &:hover
     color: $header-gray
 
 
 .nav__item--footer
   font-size: 12px !important
 
-.nav__submenu__item:hover
+  .js-hover .nav__submenu__item:hover
   color: white !important
 
 /* Pages with Wallpapers */
