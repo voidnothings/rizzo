@@ -44,6 +44,16 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
         @_unblock()
         @trigger(':info/show')
 
+      @$el.on 'click', '.js-stack-card-filter', (e) =>
+        e.preventDefault()
+        anchor = $(e.currentTarget).find('a')
+        params =
+          url: anchor.attr('href')
+          external_filter:
+            filter: anchor.attr('data-filter')
+            stack: anchor.attr('data-stack-kind')
+        @trigger(':page/request', params)
+
 
     # Private
 

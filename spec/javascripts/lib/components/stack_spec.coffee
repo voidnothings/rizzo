@@ -105,3 +105,26 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
         spyEvent = spyOnEvent(stack.$el, ':info/show');
         stack.$el.find('.card--disabled a').trigger('click')
         expect(':info/show').toHaveBeenTriggeredOn(stack.$el)
+
+
+    describe 'when the user clicks a filter card', ->
+      beforeEach ->
+        loadFixtures('stack.html')
+        window.stack = new Stack(config)
+
+      it 'triggers the :page/request event with the correct params', ->
+        spyEvent = spyOnEvent(stack.$el, ':page/request');
+        filterCard = stack.$el.find('.js-stack-card-filter')
+        anchor = filterCard.find('a')
+        params =
+          url: anchor.attr('href')
+          external_filter:
+            filter: anchor.attr('data-filter')
+            stack: anchor.attr('data-stack-kind')
+
+        filterCard.trigger('click')
+        expect(':page/request').toHaveBeenTriggeredOnAndWith(stack.$el, params)
+
+
+
+
