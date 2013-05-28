@@ -51,6 +51,18 @@ $card-hotel-content-padding: 13px
     .btn--bookable
       background: $bookable-hover
 
+.card--media:hover
+  .card__hero
+    &:after
+      @extend %empty-abs-generated-content
+      top: 0
+      left: 0
+      bottom: 0
+      right: 0
+      background-color: rgba(0,0,0,0.3)
+  .card__content
+    bottom: 0
+
 // add white fadeout at the bottom of card lists that have images
 
 .card--list.has-image
@@ -83,6 +95,7 @@ $card-hotel-content-padding: 13px
 
   .card--half-height
     height: $card-grid-half-height
+    overflow: hidden
 
 .card--placeholder
   visibility: hidden
@@ -108,12 +121,11 @@ $card-hotel-content-padding: 13px
 
   // half-height cards are all image
   .card--half-height &
-    height: $card-grid-half-height
-
-  // video cards have a border around their image
-  .card--video &
     height: $card-grid-half-height - 14px
     width: $card-width - 14px
+
+  .card--media &
+    position: relative
     margin: 7px
 
   // double stack cards have full height images
@@ -191,6 +203,18 @@ $card-hotel-content-padding: 13px
     padding: $card-content-padding $card-content-padding 0 $card-content-padding
     right: 0
 
+  .card--media &
+    @extend %absolute
+    @extend %transition--base
+    height: 38px
+    bottom: -38px - $card-content-padding
+    left: 0
+    right: 0
+    margin-bottom: 7px
+    overflow: hidden
+    padding: 0 $card-content-padding 0 $card-content-padding
+    color: #fff
+
 
 // -----------------------------------------------------------------------------
 // Card details
@@ -203,23 +227,22 @@ $card-hotel-content-padding: 13px
   margin-bottom: 2px
 
 .card__name
-  @extend %large-type
+  +font-size(19)
   +word-break()
   font-weight: bold
   line-height: 17px
   margin-bottom: 12px
 
   .card--info &
-    @include font-size(19)
     margin-bottom: 22px
 
   .card--link &
-    @include font-size(19)
     line-height: 20px
     margin-bottom: 0
 
   .card--list--tour &
     margin-bottom: 5px
+
 
 .card__locale
   @extend %serif
@@ -283,6 +306,9 @@ $card-hotel-content-padding: 13px
 .card--hotel
   .card__content
     padding: $card-hotel-content-padding
+
+  .card__name
+    +font-size(16)
 
   &.has-image
     .card__content
