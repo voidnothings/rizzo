@@ -24,7 +24,6 @@ define ['jquery'], ($) ->
       document.title = title
 
     _updateMeta: (data) ->
-      console.log(data.title) if window.console 
       $('meta[name="title"]').attr('content', data.title)
       $('meta[name="description"]').attr('content', data.description)
 
