@@ -79,18 +79,19 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
         window.s.linkstacker("footer")
 
     scrollPerf: ->
-      # Used to track the enabling of hover effects
-      enableTimer = false
+      if ($('html.ie7, html.ie8').length is 0)
+        # Used to track the enabling of hover effects
+        enableTimer = false
 
-      $('body').addClass('js-hover')
+        $('body').addClass('js-hover')
 
-      # Listen for a scroll and use that to remove the possibility of hover effects
-      window.addEventListener 'scroll', ->
-        clearTimeout(enableTimer);
-        $('body').removeClass('js-hover')
+        # Listen for a scroll and use that to remove the possibility of hover effects
+        window.addEventListener 'scroll', ->
+          clearTimeout(enableTimer);
+          $('body').removeClass('js-hover')
 
-        enableTimer = setTimeout ->
-          $('body').addClass('js-hover')
-        , 500
-      , false
+          enableTimer = setTimeout ->
+            $('body').addClass('js-hover')
+          , 500
+        , false
 )
