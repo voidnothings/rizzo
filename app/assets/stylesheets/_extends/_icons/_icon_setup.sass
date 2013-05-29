@@ -4,39 +4,31 @@
 
 
 // -----------------------------------------------------------------------------
-//  Icon sizes
-
-
-%small-icon  
-  width: 16px
-  height: 16px
-
-%regular-icon
-  width: 32px
-  height: 32px
-
-// -----------------------------------------------------------------------------
 // Helper extends for positioning icons at the horizontal extremes of an 
 // element
 // -----------------------------------------------------------------------------
 
 %left-icon
   position: relative
+  font-family: 'bentonsansregular'
+  font-weight: 400
   &:before
-    @extend %small-icon
-    font-family: 'bentonsansregular'
     position: absolute
     left: 0
+    width: 16px
+    height: 16px
     display: block
     pointer-events: none
 
 %right-icon
   position: relative
+  font-family: 'bentonsansregular'
+  font-weight: 400
   &:after
-    @extend %small-icon
-    font-family: 'bentonsansregular'
     position: absolute
     right: 0
+    width: 16px
+    height: 16px
     display: block
     pointer-events: none
 
