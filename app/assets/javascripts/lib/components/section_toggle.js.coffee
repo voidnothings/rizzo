@@ -34,11 +34,10 @@ define ['jquery'], ($) ->
     
     constructor: (@args={}) ->
       @target = $(@args.selector)
-      @target.toggleClass('is-open')
+      @target.addClass('is-open')
       @wrapper = $(@target).find('.js-read-more-wrapper')
-      @wrapper.css({'overflow': 'hidden'})
-      @includeHandler = @checkHeight(@args.maxHeight)
-      @addHandler() if @includeHandler
+      @wrapper.addClass if @args.style is 'inline' then 'read-more-inline' else 'read-more-block'
+      @addHandler() if @checkHeight(@args.maxHeight)
 
     checkHeight: (maxHeight) ->
       nodes = @wrapper.children()
@@ -54,11 +53,12 @@ define ['jquery'], ($) ->
       return height >= maxHeight
 
     addHandler: ->
-      @template = "<div class='btn--read-more js-handler'>#{(@args.text)[0]}</div>"
+      @handler = $("<div class='btn--read-more js-handler'>#{(@args.text)[0]}</div>")
+      @wrapper.append(@handler)
+
       if @args.shadow
-        @template = "<div class='read-more__handler'>#{@template}</div>"
-      @wrapper.append(@template)
-      @handler = @target.find 'div.js-handler'
+        @handler.wrap("<div class='read-more__handler'></div>")
+
       @bindEvent()
       @close()
     
@@ -72,9 +72,12 @@ define ['jquery'], ($) ->
       @wrapper.css({'max-height': '5000px'})
       # Wait for the transition to finish before taking away the gradient mask
       # TODO: check for transitionend and use that instead if it's available
-      setTimeout(=>
+      if @args.style is 'inline'
         @toggleClasses()
-      , 500)
+      else
+        setTimeout(=>
+          @toggleClasses()
+        , 500)
       @setHandlerText(@args.text[1])
       @state = 'open'
 
