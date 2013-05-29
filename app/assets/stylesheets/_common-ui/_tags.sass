@@ -12,7 +12,7 @@
 // -----------------------------------------------------------------------------
 
 .card__tags
-  @extend %absolute
+  position: absolute
   right: 8px
   z-index: 1
   top: -3px
@@ -56,11 +56,11 @@
 // -----------------------------------------------------------------------------
 
 .card__tag--horizontal
-  @extend %absolute
   @extend %card__tag
   @extend %small-type
   @extend %card__tag__container--left
   +card-tag-curl-left($side-tag, $side-tag-curl)
+  position: absolute
   background: $side-tag
   color: #fff
   font-weight: bold
@@ -130,8 +130,8 @@
 // -----------------------------------------------------------------------------
 
 .price-tag
-  @extend %absolute
   @extend %benton-book
+  position: absolute
   min-width: 60px
   right: 5px
   text-align: center

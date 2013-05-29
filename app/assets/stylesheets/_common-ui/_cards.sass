@@ -179,7 +179,7 @@ $card-hotel-content-padding: 13px
     padding-top: 50px
 
   .card--collection.card--double &
-    @extend %absolute
+    position: absolute
     +background-gradient($startColor: rgba(0,0,0,0), $endColor: rgba(0,0,0,1.0))
     bottom: 0
     color: #fff
@@ -192,8 +192,8 @@ $card-hotel-content-padding: 13px
     padding-top: 60px
 
   .card--list.has-image &
-    @extend %absolute
     @extend %transition--base
+    position: absolute
     background: #fff
     bottom: 0
     height: ($card-grid-height - $card-image-height - (2 * $card-content-padding) )
@@ -276,8 +276,8 @@ $card-hotel-content-padding: 13px
 // -----------------------------------------------------------------------------
 
 .card__footer
-  @extend %absolute
   @extend %small-type
+  position: absolute
   background: #fff
   bottom: 0
   color: $body-copy
@@ -331,7 +331,7 @@ $card-hotel-content-padding: 13px
 
   .btn--bookable
     @extend %irregular-type
-    @extend %absolute
+    position: absolute
     bottom: 0
     line-height: inherit
     padding: 10px 12px
@@ -354,7 +354,7 @@ $card-hotel-content-padding: 13px
 // -----------------------------------------------------------------------------
 
 .card__poi-icon
-  @extend %absolute
+  position: absolute
   @extend %benton-regular
   @extend %no-line-height
   color: $hotels-poi
@@ -497,9 +497,9 @@ $card-hotel-content-padding: 13px
 // -----------------------------------------------------------------------------
 
 .card__item-count
-  @extend %absolute
   @extend %benton-regular
   @extend %no-line-height
+  position: absolute
   color: #fff
   font-size: 20px
   left: 10px
