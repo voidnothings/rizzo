@@ -7,6 +7,7 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter ) ->
     config :
       el: null
       list: null
+      LISTENER: '#js-card-holder'
       
     constructor: (args={}) ->
       $.extend @config, args
@@ -18,20 +19,11 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter ) ->
       @listen()
 
     listen: ->  
-      @$el.on('click',@config.list, (e) =>
+      @$el.on 'click' , @config.list, (e) =>
         e.preventDefault()
         @select(e.currentTarget)
-        false
-      )
+        @trigger(':page/request', {url: $(e.currentTarget).attr('href')})
 
     select: (target) ->
       @$list.removeClass('nav__item--current--stack')
       $(target).addClass('nav__item--current--stack')
-      @navigate($(target).attr('href'), target)
-
-    selectByHref: (href) ->
-      @select(@$eo.find("nav__item--stack[href=#{href}]"))
-
-    navigate: (url, target) ->
-      @trigger(':click', {url: url, target: target})
-
