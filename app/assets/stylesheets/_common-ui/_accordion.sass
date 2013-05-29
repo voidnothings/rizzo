@@ -3,7 +3,7 @@
 // --------------------------------------
 
 .accordion__handler
-  @extend %relative
+  position: relative
   @extend %small-type
   @extend %smooth-text
   color: $body
@@ -61,7 +61,7 @@
   max-height: 300px 
 
 .accordion__title
-  @extend %relative
+  position: relative
   @extend %right-icon
   @extend %chevron-down-after
   cursor: pointer
@@ -70,7 +70,6 @@
   &:after
     +font-size(22)
     @extend %benton-regular
-    @extend %smooth-text
     color: $lpblue
     line-height: 0
     pointer-events: none

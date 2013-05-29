@@ -4,44 +4,33 @@
 
 
 // -----------------------------------------------------------------------------
-//  Icon sizes
-
-%icon
-  display: block
-  background-repeat: no-repeat
-
-%small-icon  
-  @extend %icon
-  width: 16px
-  height: 16px
-
-%regular-icon
-  @extend %icon
-  width: 32px
-  height: 32px
-
-// -----------------------------------------------------------------------------
 // Helper extends for positioning icons at the horizontal extremes of an 
 // element
 // -----------------------------------------------------------------------------
 
 %left-icon
-  @extend %relative
+  position: relative
+  font-family: 'bentonsansregular'
+  font-weight: 400
   &:before
-    @extend %benton-regular
-    @extend %absolute-left
-    @extend %small-icon
-    pointer-events: none
+    position: absolute
+    left: 0
+    width: 16px
+    height: 16px
     display: block
+    pointer-events: none
 
 %right-icon
-  @extend %relative
+  position: relative
+  font-family: 'bentonsansregular'
+  font-weight: 400
   &:after
-    @extend %benton-regular
-    @extend %absolute-right
-    @extend %small-icon
-    pointer-events: none
+    position: absolute
+    right: 0
+    width: 16px
+    height: 16px
     display: block
+    pointer-events: none
 
 // -----------------------------------------------------------------------------
 // Hidden text with Icon

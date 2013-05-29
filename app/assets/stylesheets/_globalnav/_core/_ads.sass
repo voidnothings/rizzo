@@ -132,7 +132,7 @@
   +transition(opacity, 0.5, ease)
 
 .ad-interstitial
-  @extend %absolute
+  position: absolute
   background: white
   border: 1px solid #e3e3e3
   display: none // Gets shown later via JS when there's content.
@@ -146,7 +146,7 @@
     border: none
 
   .close
-    @extend %absolute
+    position: absolute
     right: 10px
     top: 5px
 

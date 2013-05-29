@@ -6,7 +6,7 @@
 // -----------------------------------------------------------------------------
 
 .card--full-page
-  @extend %relative
+  position: relative
   @extend %box-off-double
 
 .lodging--top-choice
@@ -32,7 +32,6 @@
 
 .card--full-page__title
   @extend %benton-book
-  @extend %tighten-text
   @extend %card-header-size
   color: $header-blue
   margin-bottom: 5px
@@ -80,7 +79,7 @@
   margin-bottom: 10px
 
 .stack__article__content__leadin
-  @extend %relative
+  position: relative
   @extend %serif
   @extend %smooth-text
   @include font-size(17)

@@ -59,7 +59,7 @@
 
 .lp-swipe-ctrl
   +transition(opacity, 0.5, ease-in-out)
-  @extend %absolute
+  position: absolute
   bottom: 0
   cursor: pointer
   width: 50px
@@ -134,7 +134,7 @@
     cursor: pointer
     height: 50px
     overflow: hidden
-    @extend %relative
+    position: relative
     &.current
       &:after
         @extend %empty-abs-generated-content
