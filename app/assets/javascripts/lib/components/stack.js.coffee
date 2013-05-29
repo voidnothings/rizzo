@@ -39,11 +39,23 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
 
     # Publish
     broadcast: ->
-      @$el.on 'click', '.card--disabled a', (e) =>
+      # Cancel search and show info card
+      @$el.on 'click', '.card--disabled', (e) =>
         e.preventDefault()
         @_unblock()
         @trigger(':info/show')
 
+      # Clear all filters when there are no results
+      @$el.on 'click', '.js-clear-all-filters', (e) =>
+        e.preventDefault()
+        @trigger(':filter/reset')
+
+      # Adjust dates when there are no results
+      @$el.on 'click', '.js-adjust-dates', (e) =>
+        e.preventDefault()
+        @trigger(':search/change')
+
+      # Filter using one of the in-stack collection cards
       @$el.on 'click', '.js-stack-card-filter', (e) =>
         e.preventDefault()
         anchor = $(e.currentTarget).find('a')

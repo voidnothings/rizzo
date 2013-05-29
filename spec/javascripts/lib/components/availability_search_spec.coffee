@@ -75,7 +75,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
         loadFixtures('availability.html')
         window.av = new Availability({el: '.js-availability-card'})
         spyOn(av, "_show")
-        $(av.config.LISTENER).trigger(':infoCard/change')
+        $(av.config.LISTENER).trigger(':search/change')
 
       it 'shows the availability form', ->
         expect(av._show).toHaveBeenCalled()

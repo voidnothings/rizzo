@@ -73,9 +73,9 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
         window.avInfo = new AvailabilityInfo({ el: '.js-availability-info'})
 
       it 'triggers the info/change event', ->
-        spyEvent = spyOnEvent(avInfo.$el, ':info/change');
+        spyEvent = spyOnEvent(avInfo.$el, ':search/change');
         avInfo.$btn.trigger('click')
-        expect(':info/change').toHaveBeenTriggeredOn(avInfo.$el)
+        expect(':search/change').toHaveBeenTriggeredOn(avInfo.$el)
 
 
     describe 'updating', ->

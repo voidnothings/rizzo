@@ -36,7 +36,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
         @_unblock()
         @_set('page_offsets', params.page_offsets) if params.page_offsets
 
-      $(@config.LISTENER).on ':infoCard/change', => 
+      $(@config.LISTENER).on ':search/change', => 
         @_show()
 
     # Publish

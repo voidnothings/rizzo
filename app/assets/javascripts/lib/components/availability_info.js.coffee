@@ -39,7 +39,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
     broadcast: ->
       @$btn.on 'click', (e) =>
         e.preventDefault()
-        @trigger(':info/change')
+        @trigger(':search/change')
         false
 
 

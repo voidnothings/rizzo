@@ -103,8 +103,30 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
 
       it 'triggers the info/change event', ->
         spyEvent = spyOnEvent(stack.$el, ':info/show');
-        stack.$el.find('.card--disabled a').trigger('click')
+        stack.$el.find('.card--disabled').trigger('click')
         expect(':info/show').toHaveBeenTriggeredOn(stack.$el)
+
+
+    describe 'when the user wants to clear all filters', ->
+      beforeEach ->
+        loadFixtures('stack.html')
+        window.stack = new Stack(config)
+
+      it 'triggers the filter/reset event', ->
+        spyEvent = spyOnEvent(stack.$el, ':filter/reset');
+        stack.$el.find('.js-clear-all-filters').trigger('click')
+        expect(':filter/reset').toHaveBeenTriggeredOn(stack.$el)
+
+
+    describe 'when the user clicks to adjust their dates', ->
+      beforeEach ->
+        loadFixtures('stack.html')
+        window.stack = new Stack(config)
+
+      it 'triggers the search/change event', ->
+        spyEvent = spyOnEvent(stack.$el, ':search/change');
+        stack.$el.find('.js-adjust-dates').trigger('click')
+        expect(':search/change').toHaveBeenTriggeredOn(stack.$el)
 
 
     describe 'when the user clicks a filter card', ->
