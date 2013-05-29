@@ -29,8 +29,10 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
     listen: ->
       $(@config.LISTENER).on ':page/request', =>
         @_block()
+        @_addLoader()
 
       $(@config.LISTENER).on ':page/received', (e, params) =>
+        @_removeLoader()
         @_clear()
         @_add(params.list)
 
@@ -68,6 +70,12 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
 
 
     # Private
+
+    _addLoader: ->
+      @$el.addClass('is-loading')
+
+    _removeLoader: ->
+      @$el.removeClass('is-loading')
 
     _block: ->
       @$el.find(@config.types).addClass('card--disabled')

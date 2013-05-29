@@ -20,8 +20,12 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
       beforeEach ->
         loadFixtures('stack.html')
         window.stack = new Stack(config)
+        spyOn(stack, "_addLoader")
         spyOn(stack, "_block")
         $(stack.config.LISTENER).trigger(':page/request')
+
+      it 'calls stack.addLoader', ->
+        expect(stack._addLoader).toHaveBeenCalled()
 
       it 'calls stack.block', ->
         expect(stack._block).toHaveBeenCalled()
@@ -31,6 +35,9 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
           loadFixtures('stack.html')
           window.stack = new Stack(config)
           $(stack.config.LISTENER).trigger(':page/request')
+
+        it 'adds the is-loading class', ->
+          expect($(stack.$el).hasClass('is-loading')).toBe(true)
 
         it 'adds disabled classes to the stack', ->
           expect($(stack.$el).find(config.types).hasClass('card--disabled')).toBe(true)
@@ -43,9 +50,13 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
 
       describe 'it calls', ->
         beforeEach ->
+          spyOn(stack, "_removeLoader")
           spyOn(stack, "_clear")
           spyOn(stack, "_add")
           $(stack.config.LISTENER).trigger(':page/received', params)  
+
+        it 'calls stack._removeLoader', ->
+          expect(stack._removeLoader).toHaveBeenCalled()
 
         it 'calls stack._clear', ->
           expect(stack._clear).toHaveBeenCalled()
@@ -53,6 +64,13 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
         it 'calls stack._add', ->
           expect(stack._add).toHaveBeenCalledWith(params.list)
 
+      describe 'removes loader', ->
+        beforeEach ->
+          stack.$el.addClass('is-loading')
+          stack._removeLoader()
+
+        it 'removes the is loading class', ->
+          expect($(stack.$el).hasClass('is-loading')).toBe(false)
 
       describe 'clear', ->
         beforeEach ->
