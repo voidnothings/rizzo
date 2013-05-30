@@ -11,7 +11,7 @@
 #     maxHeight   : [number] The default visible height size for the target selector
 #     delegate    : [object] A wrapper object for callback object [onUpdate]
 #     shadow      : [boolean] Determines whether or not the text is cut off by a shadow
-#     style       : [string] 'inline' or 'block', the style of click handler to display
+#     style       : [string] 'inline' or 'block' (default), the style of click handler to display
 #
 # Example:
 #  args =
@@ -35,24 +35,19 @@ define ['jquery'], ($) ->
     @version: '0.0.3'
     
     constructor: (@args={}) ->
-      # @transitionEnabled = if 'transition' of document.body.style then true else false
+      @transitionEnabled = if 'transition' of document.body.style then true else false
       @target = $(@args.selector)
       @target.addClass('is-open')
       @wrapper = $(@target).find('.js-read-more-wrapper')
       @wrapper.addClass if @args.style is 'inline' then 'read-more-inline' else 'read-more-block'
       @totalHeight = @getFullHeight()
       @addHandler() if @totalHeight > @args.maxHeight
-      @setHeight @args.maxHeight, @args.text[0], 'close'
+      @setWrapperState @args.maxHeight, @args.text[0], 'close'
 
     getFullHeight: ->
       height = 0
-      nodes = @wrapper.children()
-      i = 0
-
-      while( i < nodes.length ) 
-        height += $(nodes[i]).outerHeight(true)
-        i++
-
+      for node in @wrapper.children()
+        height += $(node).outerHeight(true)
       height
 
     addHandler: ->
@@ -70,13 +65,13 @@ define ['jquery'], ($) ->
       @handler.on 'click', (e) =>
         e.stopPropagation()
         if @state is 'close'
-          @setHeight(@totalHeight, @args.text[1], 'open')
+          @setWrapperState(@totalHeight, @args.text[1], 'open')
         else
-          @setHeight(@args.maxHeight, @args.text[0], 'close')
+          @setWrapperState(@args.maxHeight, @args.text[0], 'close')
         @onUpdate()
 
-    setHeight: (height, text, state) ->
-      if state is 'open'
+    setWrapperState: (height, text, state) ->
+      if state is 'open' and @transitionEnabled
         # Wait for the transition to finish before taking away the gradient mask
         setTimeout(=>
           @toggleClasses()
