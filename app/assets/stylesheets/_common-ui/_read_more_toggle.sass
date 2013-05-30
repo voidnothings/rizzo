@@ -9,10 +9,12 @@
 // 
 // ----------------------------------------------------------------------------
 
-.is-closed,
-.is-open
-  .read-more
-    padding-bottom: 32px
+.read-more
+  overflow: hidden
+  position: relative
+
+.read-more-block
+  padding-bottom: 32px
 
 .read-more__handler
   position: absolute
@@ -33,5 +35,3 @@
 
   .is-open &
     background: transparent
-    +transition(padding, 1s, ease-in-out)
-
