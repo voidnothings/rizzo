@@ -11,6 +11,7 @@
 #     maxHeight   : [number] The default visible height size for the target selector
 #     delegate    : [object] A wrapper object for callback object [onUpdate]
 #     shadow      : [boolean] Determines whether or not the text is cut off by a shadow
+#     style       : [string] 'inline' or 'block' (default), the style of click handler to display
 #
 # Example:
 #  args =
@@ -24,65 +25,63 @@
 # 
 # Dependencies:
 #   jQuery
-
  
 define ['jquery'], ($) ->
  
   class SectionToggle
   
-    @version: '0.0.2'
+    # TODO: turn on transition events again when they're actually reliable!!
+
+    @version: '0.0.3'
     
     constructor: (@args={}) ->
+      @transitionEnabled = if 'transition' of document.body.style then true else false
       @target = $(@args.selector)
-      @target.toggleClass('is-open')
+      @target.addClass('is-open')
       @wrapper = $(@target).find('.js-read-more-wrapper')
-      @wrapper.css({'overflow': 'hidden'})
-      @includeHandler = @checkHeight(@args.maxHeight)
-      @addHandler() if @includeHandler
+      @wrapper.addClass if @args.style is 'inline' then 'read-more-inline' else 'read-more-block'
+      @totalHeight = @getFullHeight()
+      @addHandler() if @totalHeight > @args.maxHeight
+      @setWrapperState @args.maxHeight, @args.text[0], 'close'
 
-    checkHeight: (maxHeight) ->
-      nodes = @wrapper.children()
+    getFullHeight: ->
       height = 0
-      i = 0
-
-      while ( i < nodes.length )
-        height += $(nodes[i]).height()
-        if height >= maxHeight
-          return true
-        i++
-
-      return height >= maxHeight
+      for node in @wrapper.children()
+        height += $(node).outerHeight(true)
+      height
 
     addHandler: ->
-      @template = "<div class='btn--read-more js-handler'>#{(@args.text)[0]}</div>"
-      if @args.shadow
-        @template = "<div class='read-more__handler'>#{@template}</div>"
-      @wrapper.append(@template)
-      @handler = @target.find 'div.js-handler'
-      @bindEvent()
-      @close()
+      @handler = $("<div class='btn--read-more js-handler'>#{(@args.text)[0]}</div>")
+      @wrapper.append(@handler)
+      @handler.wrap("<div class='read-more__handler'/>") if @args.shadow
+      @bindEvents()
     
-    bindEvent: ->
+    bindEvents: ->
+      # @wrapper.on('transitionend', => 
+      #   console.log 'transitionend'
+      #   @toggleClasses()
+      # )
+
       @handler.on 'click', (e) =>
-        e.preventDefault()
-        if @state is 'close' then @open() else @close()
+        e.stopPropagation()
+        if @state is 'close'
+          @setWrapperState(@totalHeight, @args.text[1], 'open')
+        else
+          @setWrapperState(@args.maxHeight, @args.text[0], 'close')
         @onUpdate()
 
-    open: ->
-      @wrapper.css({'max-height': '5000px'})
-      # Wait for the transition to finish before taking away the gradient mask
-      # TODO: check for transitionend and use that instead if it's available
-      setTimeout(=>
+    setWrapperState: (height, text, state) ->
+      if state is 'open' and @transitionEnabled
+        # Wait for the transition to finish before taking away the gradient mask
+        setTimeout(=>
+          @toggleClasses()
+        , 500)
+      else
         @toggleClasses()
-      , 500)
-      @setHandlerText(@args.text[1])
-      @state = 'open'
 
-    close: ->
-      @wrapper.css({'max-height': @args.maxHeight + 'px'})
-      @toggleClasses()
-      @setHandlerText(@args.text[0])
-      @state = 'close'
+      @wrapper.css({'max-height': height + 'px'})
+      @setHandlerText(text)
+      @state = state
 
     setHandlerText: (_text) ->
       @handler.text _text
