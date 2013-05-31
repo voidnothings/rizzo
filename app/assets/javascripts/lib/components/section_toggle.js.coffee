@@ -35,8 +35,12 @@ define ['jquery'], ($) ->
     @version: '0.0.3'
     
     constructor: (@args={}) ->
-      @transitionEnabled = if 'transition' of document.body.style then true else false
       @target = $(@args.selector)
+
+      if @target.length == 0
+        return false
+
+      @transitionEnabled = if 'transition' of document.body.style then true else false
       @target.addClass('is-open')
       @wrapper = $(@target).find('.js-read-more-wrapper')
       @wrapper.addClass if @args.style is 'inline' then 'read-more-inline' else 'read-more-block'
