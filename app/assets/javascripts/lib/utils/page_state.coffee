@@ -2,7 +2,7 @@ define [], () ->
 
   class PageState
 
-    augmentedUrls: /\/rated$|\/apartments$|\/hostels-and-budget-hotels$|\/guesthouses$/
+    augmentedUrls: /(.*)(?=\/rated$|\/apartments$|\/hostels-and-budget-hotels$|\/guesthouses$|\?)/
     checkFilters: /filters/
     checkSearch: /search/
 
@@ -12,12 +12,12 @@ define [], () ->
     getSlug: ->
       window.location.pathname
 
-    getparams: ->
+    getParams: ->
       window.location.search
 
     getDocumentRoot: ->
-      url = @getSlug()
-      url = if @augmentedUrls.test(url) then url.split('/hotels')[0] + '/hotels' else url
+      url = @getSlug() + @getParams()
+      url = if @augmentedUrls.test(url) then url.match(@augmentedUrls)[1] else url
 
     hasFiltered: ->
       url = @getSlug()

@@ -16,6 +16,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
     init: ->
       @$el = $(@config.el)
       @listen()
+      @broadcast()
       @_removeSEOLinks(@$el)
 
 
@@ -34,10 +35,18 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
     broadcast: ->
 
       @$el.on 'change', 'input[type=checkbox]', (e) =>
+        # currentTarget.name filters out the checkboxes used to toggle the accordion
         if e.currentTarget.name
-          $(e.currentTarget).siblings('.js-filter-label').toggleClass('active')
-          @trigger(':page/request', @serialize())
+          @_toggleActiveClass(e.currentTarget)
+          @trigger(':page/request', @_serialize())
         false
+
+      # Listen to filter cards that exist outside of the component
+      $(@config.LISTENER).on 'click', '.js-stack-card-filter', (e) =>
+        e.preventDefault()
+        filters = $(e.currentTarget).find('[data-filter]').data('filter')
+        @_set(filters)
+        @trigger(':page/request', @_serialize())
 
 
     # Private area
@@ -61,6 +70,9 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
 
     _enable: (name) ->  
       @$el.find(".js-#{name}-filter").find('input[type=checkbox]').attr('disabled', false)
+
+    _toggleActiveClass: (element) ->
+      $(element).siblings('.js-filter-label').toggleClass('active')
 
     _serialize : ->
       new Serializer(@$el)

@@ -119,7 +119,57 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
           expect(filter.$el.find("input").is(':checked')).toBe(false)
 
 
+    describe 'on filter input change', ->
 
+      beforeEach ->
+        loadFixtures('filter.html')
+        window.filter = new Filter({el: '#js-filters-change'})
+
+      describe 'calls', ->
+        beforeEach ->
+          spyOn(filter, "_toggleActiveClass")
+          spyOn(filter, "_serialize")
+          spyEvent = spyOnEvent(filter.$el, ':page/request');
+          element = filter.$el.find('input[type=checkbox]')
+          element.trigger('change')
+        
+        it '_toggleActiveClass', ->
+          expect(filter._toggleActiveClass).toHaveBeenCalled()
+
+        it '_serialize', ->
+          expect(filter._serialize).toHaveBeenCalled()
+
+        it 'triggers the page request event', ->
+          expect(':page/request').toHaveBeenTriggeredOn(filter.$el)
+
+      
+      describe 'side effects', ->
+        beforeEach ->
+          $(filter.$el).find('input[type=checkbox]').trigger('change')
+
+        it 'assigns the sibling lable an active class', ->
+          expect(filter.$el.find('input[type=checkbox]').siblings().hasClass('active')).toBe(true)
+
+
+    describe 'when the user clicks a filter card', ->
+      beforeEach ->
+        loadFixtures('filter.html')
+        window.filter = new Filter({el: '#js-filters'})
+        spyOn(filter, "_set")
+        spyEvent = spyOnEvent(filter.$el, ':page/request');
+        
+        
+
+      it 'calls _set with the new filters', ->
+        filterCard = $(filter.config.LISTENER).find('.js-stack-card-filter')
+        filters = filterCard.find('[data-filter]').data('filter')
+        filterCard.trigger('click')
+        expect(filter._set).toHaveBeenCalledWith(filters)
+
+      it 'triggers the :page/request event with the correct params', ->
+        filterCard = $(filter.config.LISTENER).find('.js-stack-card-filter')
+        filterCard.trigger('click')
+        expect(':page/request').toHaveBeenTriggeredOn(filter.$el)
 
 
 
