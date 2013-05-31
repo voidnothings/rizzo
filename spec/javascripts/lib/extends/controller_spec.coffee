@@ -141,3 +141,19 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
 
 
 
+    describe 'when the server returns data and there is no support for pushState', ->
+      beforeEach ->
+        loadFixtures('controller.html')
+        window.controller = new Controller()
+        spyEvent = spyOnEvent(controller.$el, ':page/received');
+        spyOn(controller, "_supportsHistory").andReturn(false)
+        spyOn(controller, "_supportsHash").andReturn(true)
+        spyOn(controller, "_createUrl").andReturn('foo')
+        spyOn(controller, "_navigate")
+        controller.replace(newParams)
+
+      it 'updates the push state', ->
+        expect(controller._navigate).toHaveBeenCalledWith('foo')
+
+      it 'trigger the page/received event', ->
+        expect(':page/received').toHaveBeenTriggeredOnAndWith(controller.$el, newParams)

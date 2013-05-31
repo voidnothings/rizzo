@@ -15,6 +15,9 @@ define [], () ->
     getParams: ->
       window.location.search
 
+    getHashValue: ->
+      window.location.hash
+
     getDocumentRoot: ->
       url = @getSlug() + @getParams()
       url = if @augmentedUrls.test(url) then url.match(@augmentedUrls)[1] else url

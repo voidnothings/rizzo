@@ -71,7 +71,6 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
 
     _generateState: ->
       @state.params = $.deparam(@getParams())
-      window.y = @state.params
 
     _updateState: (params) ->
       for key of params
@@ -82,7 +81,10 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
       $.param(@state)
 
     _createUrl: ->
-      base = @getDocumentRoot() + "?" + @_serializeState()
+      if @_supportsHistory()
+        base = @getDocumentRoot() + "?" + @_serializeState()
+      else if @_supportsHash()
+        base = "#!" + @_serializeState()
 
     _navigate: (url, callback) ->
       if (@_supportsHistory() or @_supportsHash())
@@ -95,7 +97,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
         window.history.pushState({}, null, url)
       else if @_supportsHash()
         @allowHistoryNav = false
-        window.location.hash = "!#{url}"
+        window.location.hash = url
 
 
 
@@ -111,13 +113,7 @@ onPopState: (e) =>
 onHashChange: (e) =>
   _this = e.data._this
   if _this.allowHistoryNav
-    hash = _this.hashValue()
+    hash = @_getHashValue
     url = (if hash then (hash.substring(2)) else window.location.href)
     window.location.replace(url)
   _this.allowHistoryNav = true
-
-hashValue: ->
-  if (window.location.hash and window.location.hash isnt '')
-    window.location.hash
-  else
-    false
