@@ -9,7 +9,6 @@ define ['jquery', 'lib/extends/events','lib/components/group_toggle'], ($, Event
       body: '.js-copy-body' 
       
     constructor: (args={}) ->
-      console.log('this is in')
       $.extend @config, args
       @$el = $(@config.el)
       @$title = $("#{@config.el} #{@config.title}")
@@ -18,7 +17,7 @@ define ['jquery', 'lib/extends/events','lib/components/group_toggle'], ($, Event
       @init()
 
     init: ->
-      @introContentToggle = new GroupToggle({el: "#{@config.el} .js-group-toggle" })
+      @_introContentToggle = new GroupToggle({el: "#{@config.el} .js-group-toggle" })
 
     update: (args) ->
       @_checkContent(args)
@@ -34,9 +33,9 @@ define ['jquery', 'lib/extends/events','lib/components/group_toggle'], ($, Event
         @$lead.show()
 
       if args.body is ''
-        @introContentToggle.disable()
+        @_introContentToggle.disable()
       else  
-        @introContentToggle.enable()
+        @_introContentToggle.enable()
 
       
 
