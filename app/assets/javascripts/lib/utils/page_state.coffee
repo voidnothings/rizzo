@@ -15,8 +15,14 @@ define [], () ->
     getParams: ->
       window.location.search
 
-    getHashValue: ->
+    getHash: ->
       window.location.hash
+
+    setUrl: (url) ->
+      window.location.replace(url)
+
+    setHash: (hash) ->
+      window.location.hash = hash
 
     getDocumentRoot: ->
       url = @getSlug() + @getParams()
