@@ -88,7 +88,7 @@ define ['jquery'], ($) ->
       @state = state
 
     setHandlerText: (_text) ->
-      @handler.text _text
+      @handler and @handler.text _text
 
     onUpdate: ->
       @args.delegate.onUpdate(@,@state, @args.selector) if @args.delegate && @args.delegate.onUpdate
