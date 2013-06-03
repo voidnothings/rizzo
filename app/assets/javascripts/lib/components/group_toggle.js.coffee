@@ -1,9 +1,6 @@
 define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
   
-  'use strict'
-
   class GroupToggle extends EventEmitter
-    
 
     config :
       el: '.js-group-toggle'
@@ -19,11 +16,25 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
 
     listen: ->
       @$handler.on('click' , =>
-        @toggle()
+        @_toggle()
       )
-
       
-    toggle: ->
+    disable: ->
+      @$content.hide()
+      @$handler.hide()
+
+    enable: -> 
+      @$content.show()
+      @$handler.show()
+    
+    _toggle: ->
+      @_manageMaxHeight()
+      @$el.toggleClass('is-closed is-open')
+
+    _getHeight: ->
+      Number(@$content.outerHeight())
+
+    _manageMaxHeight: ->  
       @$content.on('transitionend webkitTransitionEnd oTransitionEnd otransitionend', =>
         height = @getHeight()
         if height is 0
@@ -33,15 +44,4 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
       )
       if @getHeight() isnt 0
         @$content.attr( { style: '' } )
-      @$el.toggleClass('is-closed is-open')
 
-    disable: ->
-      @$content.hide()
-      @$handler.hide()
-
-    enable: -> 
-      @$content.show()
-      @$handler.show()
-    
-    getHeight: ->
-      Number(@$content.outerHeight())

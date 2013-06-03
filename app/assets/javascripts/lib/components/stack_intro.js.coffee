@@ -21,12 +21,13 @@ define ['jquery', 'lib/extends/events','lib/components/group_toggle'], ($, Event
       @introContentToggle = new GroupToggle({el: "#{@config.el} .js-group-toggle" })
 
     update: (args) ->
-      @checkContentPresence(args)
+      @_checkContent(args)
       @$title.text(args.title)
       @$lead.text(args.lead)
       @$body.html(args.body)
+
     
-    checkContentPresence: (args) ->
+    _checkContent: (args) ->
       if args.lead is ''
         @$lead.hide()
       else  
