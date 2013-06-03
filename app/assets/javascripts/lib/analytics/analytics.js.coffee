@@ -1,4 +1,4 @@
-define ['lib/analytics/analytics_auth','lib/analytics/analytics_perf','vendor/assets/javascripts/omniture/s_code'], (AnalyticsAuth, AnalyticsPerf) ->
+define ['lib/analytics/analytics_auth', 'lib/analytics/analytics_perf', 's_code'], (AnalyticsAuth, AnalyticsPerf) ->
 
   class Analytics
 
@@ -6,10 +6,6 @@ define ['lib/analytics/analytics_auth','lib/analytics/analytics_perf','vendor/as
       data ?= (window.lp.tracking)
       @config = $.extend(data, @_userAuth())
     
-
-
-    
-
     trackLink: (params = {}) ->
       @_save()
       @_add(params)

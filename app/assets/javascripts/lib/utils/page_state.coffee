@@ -31,9 +31,9 @@ define [], () ->
     hasFiltered: ->
       url = @getSlug()
       if @augmentedUrls.test(url) then return true
-      params = @getparams()
+      params = @getParams()
       @checkFilters.test(params)
 
     hasSearched: ->
-      params = @getparams()
+      params = @getParams()
       @checkSearch.test(params)

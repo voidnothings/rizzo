@@ -43,7 +43,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
     broadcast: ->
       @$form.on 'submit', (e) =>
         e.preventDefault()
-        @trigger(':page/request', @_getParams())
+        @trigger(':page/request', @_getSearchData())
         false
 
 
@@ -55,7 +55,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
       @$el.find('#js-av-start').data('pickadate').setDate(today[0], today[1], today[2])
       @$el.find('#js-av-end').data('pickadate').setDate(today[0], today[1], today[2] + 1)
 
-    _getParams : ->
+    _getSearchData : ->
       if @$form.find('#js-av-start').val() is ''  or @$form.find('#js-av-start').val() is undefined
         @_setDefaultDates()
       params = new Serializer(@$form)
