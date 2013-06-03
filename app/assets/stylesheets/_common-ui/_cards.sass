@@ -389,6 +389,23 @@ $card-hotel-content-padding: 13px
     color: #fff
     text-shadow: 0 0 5px rgba(0,0,0,0.75)
 
+.card--media__badge
+  @extend %benton-regular
+  @extend %no-line-height
+  color: #fff
+  font-size: 69px
+  left: 75px
+  position: absolute
+  text-shadow: 0 0 5px rgba(0,0,0,0.75)
+  top: 75px
+  z-index: 5
+
+  .card--gallery &
+    @extend %icon-gallery-before
+
+  .card--video &
+    @extend %icon-video-before
+
 .card--info
   @extend %card--icon
   &:before
@@ -452,14 +469,6 @@ $card-hotel-content-padding: 13px
   @extend %icon-poi-info-before
   color: $need-to-know-info
 
-.card--gallery
-  @extend %card--icon--media
-  @extend %icon-gallery-before
-
-.card--video
-  @extend %card--icon--media
-  @extend %icon-video-before
-
 
 // -----------------------------------------------------------------------------
 // Text sections with left hand icons
@@ -491,6 +500,7 @@ $card-hotel-content-padding: 13px
 .card__feedback__comments
   @extend %comments-before
   @extend %left-icon-text
+
 
 // -----------------------------------------------------------------------------
 // Link card counts
