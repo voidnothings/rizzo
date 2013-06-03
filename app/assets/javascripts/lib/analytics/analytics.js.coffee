@@ -1,34 +1,30 @@
-define ['lib/analytics/analytics_auth','lib/analytics/analytics_perf','lib/analytics/s_code'], (AnalyticsAuth, AnalyticsPerf) ->
+define ['lib/analytics/analytics_auth','lib/analytics/analytics_perf','vendor/assets/javascripts/omniture/s_code'], (AnalyticsAuth, AnalyticsPerf) ->
 
   class Analytics
 
     constructor: (data)->
       data ?= (window.lp.tracking)
-      @config = $.extend(data,@userAuth())
+      @config = $.extend(data, @_userAuth())
     
-    trackLink: (name, params = {}) ->
-      @save()
-      @add(params)
-      @copy()
+
+
+    
+
+    trackLink: (params = {}) ->
+      @_save()
+      @_add(params)
+      @_copy()
       if(typeof(window.s.tl) is 'function')
         window.s.tl()
-      @restore()
+      @_restore()
 
     track: (params = {}, restore = false) ->
-      @save() if restore
-      @add(params)
-      @copy()
+      @_save() if restore
+      @_add(params)
+      @_copy()
       if(typeof(window.s.t) is 'function')
         window.s.t()
-      @restore() if restore
-
-    add: (params = {})->
-      for a of params
-        @config[a] = params[a]
-
-    copy: ->
-      for a of @config
-        window.s[a] = @config[a]
+      @_restore() if restore
 
     linkTrackVars: (context) ->
       evars = (a for a of context)
@@ -37,30 +33,40 @@ define ['lib/analytics/analytics_auth','lib/analytics/analytics_perf','lib/analy
     linkTrackEvents: (events) ->
       window.s.linkTrackEvents = events
 
-    save: ->
+    trackView: (args={}) ->
+      params = @_pagePerf()
+      @track(params, true)
+
+    # Private
+
+    _add: (params = {})->
+      for a of params
+        @config[a] = params[a]
+
+    _copy: ->
+      for a of @config
+        window.s[a] = @config[a]
+
+    _save: ->
       @prevConfig = {}
       for a of @config
         @prevConfig[a] = @config[a]
 
-    restore: ->
+    _restore: ->
       for a of @config
         delete window.s[a]
       @config = {}
       for a of @prevConfig
         @config[a] = @prevConfig[a]
-      @copy()
+      @_copy()
       @prevConfig = null
       true
 
-    trackView: (args={}) ->
-      params = @pagePerf()
-      @track(params, true)
-
-    userAuth: ->
+    _userAuth: ->
       params = new AnalyticsAuth()
       params.get()
 
-    pagePerf: ->
+    _pagePerf: ->
       params = new AnalyticsPerf()
       params.get()
 

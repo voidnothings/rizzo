@@ -1,17 +1,3 @@
-  
-/******************************
-
- *  Unified S_code [AMD Wrapper]
- *  version 3.6
- *  Modified 6 June 2012 by Tom Marianczak
- *  Adversitement BV
- *
- *  AMD added on: 16 Jul 2012
- *
- *********************************/
-
-define(function(){
-
   function getSubDomain(){
     var full = window.location.host;
     var parts = full.split('.');
@@ -49,9 +35,12 @@ define(function(){
     s_account = "lonelyplanet-groups,lonelyplanet-global";
   }else if(getURLChannel() == "blog"){ 
     s_account = "lonelyplanet-blogs,lonelyplanet-global";
+  }else if(getURLChannel() == "hotels"){ 
+    s_account = "lonelyplanet-global,lonelyplanet-lphotels";
   } /* */
 
   if(getSubDomain() == 'secure' && (getURLChannel() == 'sign-in' || getURLChannel() == 'members')){
+    s_account = "lonelyplanet-global,lonelyplanet-profile";
     s_account = "lonelyplanet-global,lonelyplanet-profile";
   }
 
@@ -111,19 +100,25 @@ define(function(){
 
 
     if(s.channel == "lpHotels"){
-      // Prepend the hh value to these variables to enable easier pathing within the global report suite
-      s.prop1 = "hh " + s.prop1;
       s.eVar3 = s.prop1;
 
       // Populate content type variables
+      if(!s.prop7){
       s.prop7 = s.prop1;
-      s.eVar12 = s.prop1;
+    }
+    if(!s.eVar12){
+        s.eVar12 = s.prop1;
+    }
     }
 
     if(s.channel.toLowerCase() == "thorntree"){
       // Populate content type variables
+      if(!s.prop7){
       s.prop7 = s.prop1;
-      s.eVar12 = s.prop1;
+    }
+    if(!s.eVar12){
+        s.eVar12 = s.prop1;
+    }
     }
 
     /* Code to clear out the referrer when clicking on the Flash applications */
@@ -168,7 +163,7 @@ define(function(){
       }
 
     if (s.pageName == 'groups : groups message created')
-    {	
+    { 
       /* Populate the Create Group Message event */
       if(s.events == null || s.events == "") {
         s.events="event36";
@@ -179,7 +174,7 @@ define(function(){
     }
 
     if (s.pageName == 'groups : groups photo created')
-    {	
+    { 
       /* Populate the Create Group Photo event */
       if(s.events == null || s.events == "") {
         s.events="event37";
@@ -276,6 +271,9 @@ define(function(){
   s.usePlugins=true;
   function s_doPlugins(s) {
     /* Add calls to plugins here */
+    if(s.eVar4){
+      s.eVar4 = s.eVar4.replace("hh","");
+    }
 
     if(s.getQueryParam("lpaffil") != 'undefined'){
       s.eVar1=s.getQueryParam("lpaffil");  //External Campaigns
@@ -405,6 +403,62 @@ define(function(){
   s.getValOnce=new Function("v","c","e",""
       +"var s=this,k=s.c_r(c),a=new Date;e=e?e:0;if(v){a.setTime(a.getTime("
       +")+e*86400000);s.c_w(c,v,e?a:0);}return v==k?'':v");
+
+  /*
+   * Plugin: trackas 1.0 - call to track the availability search.  Refer to separate documentation
+   * Written by Tom Marianczak of Adversitement BV
+   * Last updated 2012/12/14
+   */
+  s.trackas = function(asobj)
+  {
+    //default the params if necessary
+    var eventstotrack = [], varstotrack = []; 
+    varstotrack.push('events','products');
+    asobj.linktracktype = asobj.linktracktype || 'o'; //default to other
+    asobj.product_name = asobj.product_name || asobj.type;
+    incrementor = "";
+    
+    if(asobj.type === 'hotel')
+    {
+      //is hotel - lets set the events
+      switch(asobj.sub_type){
+        case 'list':
+          eventstotrack.push('event31');
+        break;
+        case 'details':
+          eventstotrack.push('event32');
+        break;
+        case 'landing-page':
+          eventstotrack.push('event30');
+        break;
+      }
+      
+      s.eVar39 = asobj.booking_duration;
+      s.eVar61 = asobj.booking_start;
+      s.eVar62 = asobj.booking_people;
+      varstotrack.push('eVar39','eVar61','eVar62');         
+    }
+
+    //these items are common to all search types
+    s.eVar3 = asobj.location_region;
+    s.eVar4 = asobj.location_country;
+    s.eVar5 = asobj.location_city;
+    s.eVar38 = asobj.booking_currency;
+    varstotrack.push('eVar3', 'eVar4', 'eVar5', 'eVar38');
+    
+    //now we need to create a link name for the tracklink Function
+    linkname = "lp:availability-search:"+asobj.type+":"+asobj.sub_type;
+    
+    //now setup the actual link tracking
+    s.linkTrackVars = varstotrack.join();
+    s.linkTrackEvents = s.events = eventstotrack.join();
+    //and send the tracking event
+    s.tl(this,asobj.linktracktype,linkname);
+    
+    //so we've set everything and sent the tracking call
+    //lets return true so that the system continues to work
+    return true;  
+  }
 
 
   /************* DO NOT ALTER ANYTHING BELOW THIS LINE ! **************/
@@ -556,5 +610,9 @@ define(function(){
     c=s_d(c);if(e>0){a=parseInt(i=v.substring(e+5));if(a>3)a=parseFloat(i)}else if(m>0)a=parseFloat(u.substring(m+10));else a=parseFloat(v);if(a<5||v.indexOf('Opera')>=0||u.indexOf('Opera')>=0)c=s_ft(c);if(!s){s=new Object;if(!w.s_c_in){w.s_c_il=new Array;w.s_c_in=0}s._il=w.s_c_il;s._in=w.s_c_in;s._il[s._in]=s;w.s_c_in++;}s._c='s_c';(new Function("s","un","pg","ss",c))(s,un,pg,ss);return s}
     function s_giqf(){var w=window,q=w.s_giq,i,t,s;if(q)for(i=0;i<q.length;i++){t=q[i];s=s_gi(t.oun);s.sa(t.un);s.setTagContainer(t.tagContainerName)}w.s_giq=0}s_giqf()
 
-});
 
+  if (typeof(define) == "function"){
+    define(function() {
+     return window.s;
+    });
+  }
