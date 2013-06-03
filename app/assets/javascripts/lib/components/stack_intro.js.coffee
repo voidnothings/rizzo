@@ -1,4 +1,4 @@
-define ['jquery', 'lib/extends/events','lib/managers/group_toggle'], ($, EventEmitter, GroupToggle) ->
+define ['jquery', 'lib/extends/events','lib/components/group_toggle'], ($, EventEmitter, GroupToggle) ->
 
   class StackIntro extends EventEmitter
 
