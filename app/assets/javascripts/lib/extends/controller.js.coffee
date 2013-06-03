@@ -21,6 +21,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
       @_generateState()
       @_initHistory()
 
+
     # Subscribe
     listen: ->
       $(@config.LISTENER).on ':page/request', (e, data) =>
@@ -31,6 +32,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
         @_updateState(data)
         @_callServer(@append)
 
+
     # Publish
     replace: (data)->
       @_navigate(@_createUrl())
@@ -40,8 +42,8 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
       @_navigate(@_createUrl())
       @trigger(':page/append/received', data)
 
-    # Private
 
+    # Private
     _callServer: (callback) ->
       $.ajax
         url: @_createUrl()
@@ -53,12 +55,16 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
         # Modern browsers
         # WebKit fires a popstate event on document load
         # https://code.google.com/p/chromium/issues/detail?id=63040
-        setTimeout((()=>$(window).bind 'popstate', @onPopState), 1)
+        setTimeout((()=>$(window).bind 'popstate', ->
+          @setUrl(@getUrl())
+        ), 1)
       else if @_supportsHash()
         #ie8 and ie9
         @allowHistoryNav = true
-        $(window).on('hashchange', { _this: @ }, @onHashChange ) 
-        @onHashChange({data:{ _this: @ }}) if @hashValue()
+        # Set up our event listener to listen to hashchange (back/forward)
+        $(window).on('hashchange', @_onHashChange)
+        # If there's a hash on page load, fire the _onHashChange function and redirect the user to the correct page.
+        @_onHashChange() if @getHash()
       else
         #ie7
         false
@@ -83,37 +89,29 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
     _createUrl: ->
       if @_supportsHistory()
         base = @getDocumentRoot() + "?" + @_serializeState()
-      else if @_supportsHash()
+      else
         base = "#!" + @_serializeState()
 
     _navigate: (url, callback) ->
       if (@_supportsHistory() or @_supportsHash())
         @_setState(url)
       else
-        window.location.replace(url) 
+        @setUrl(url) 
 
     _setState: (url) ->
       if @_supportsHistory()
         window.history.pushState({}, null, url)
-      else if @_supportsHash()
+      else
+        # Ensure we don't trigger a refresh
         @allowHistoryNav = false
-        window.location.hash = url
+        # Store the new url in the hash
+        @setHash(url)
 
-
-
-
-
-
-
-
-# TODO
-onPopState: (e) =>
-  window.location.replace(window.location.href)
-
-onHashChange: (e) =>
-  _this = e.data._this
-  if _this.allowHistoryNav
-    hash = @_getHashValue
-    url = (if hash then (hash.substring(2)) else window.location.href)
-    window.location.replace(url)
-  _this.allowHistoryNav = true
+    _onHashChange: () =>
+      # Only cause a refresh if it's back/forward
+      if @allowHistoryNav
+        hash = @getHash()
+        url = if hash then (hash.substring(2)) else @getUrl()
+        @setUrl(url)
+      # Ensure we are always listening for back/forward navigation
+      @allowHistoryNav = true
