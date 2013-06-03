@@ -26,6 +26,9 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         property_type:
           "4star": true
 
+    appendParams =
+      page: 2
+
     describe 'Setup', ->
 
       it 'is defined', ->
@@ -186,16 +189,28 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
       beforeEach ->
         loadFixtures('controller.html')
         window.controller = new Controller()
-        spyOn(controller, "_updateState")
         spyOn(controller, "_callServer")
         $(controller.config.LISTENER).trigger(':page/request', newParams)
 
       it 'updates the internal state', ->
-        expect(controller._updateState).toHaveBeenCalledWith(newParams)
+        expect(controller.state.filters).toBe(newParams.filters)
 
       it 'requests data from the server', ->
-        expect(controller._callServer).toHaveBeenCalled()
+        expect(controller._callServer).toHaveBeenCalledWith(controller.replace)
 
+
+    describe 'on page append request', ->
+      beforeEach ->
+        loadFixtures('controller.html')
+        window.controller = new Controller()
+        spyOn(controller, "_callServer")
+        $(controller.config.LISTENER).trigger(':page/append', appendParams)
+
+      it 'updates the internal state', ->
+        expect(controller.state.page).toBe(2)
+
+      it 'requests data from the server', ->
+        expect(controller._callServer).toHaveBeenCalledWith(controller.append)
 
 
     describe 'when the server returns data', ->
