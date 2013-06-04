@@ -26,7 +26,7 @@ $card-hotel-content-padding: 13px
 // -----------------------------------------------------------------------------
 
 .card
-  // @extend %standard-shadow
+  @extend %standard-shadow
   background: #fff
   margin-bottom: 10px
   position: relative
@@ -43,6 +43,7 @@ $card-hotel-content-padding: 13px
 .card--full-image
 
 .card--image-only
+  overflow: hidden
 
 
 // -----------------------------------------------------------------------------
@@ -100,18 +101,17 @@ $card-hotel-content-padding: 13px
     position: absolute
     right: 0
 
-
   .card--image-only &
     @extend %transition--base
-    position: absolute
-    height: 38px
     bottom: -38px - $card-content-padding
+    color: #fff
+    height: 38px
     left: 0
-    right: 0
     margin-bottom: 7px
     overflow: hidden
     padding: 0 $card-content-padding 0 $card-content-padding
-    color: #fff
+    position: absolute
+    right: 0
 
 
 
