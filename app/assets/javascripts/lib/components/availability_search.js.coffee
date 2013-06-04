@@ -19,6 +19,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
     init: ->
       @$el = $(@config.el)
       @$form = @$el.find('form')
+      @$submit ?= @$form.find('#js-booking-submit')
       formDatePicker = new AvailabilityDatepicker(@$el)
       guestSelect =  new SelectManager('.js-guest-select') 
       currencySelect = new SelectManager('.js-currency-select') 
@@ -66,17 +67,15 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
         input.attr('value', value)
 
     _block : ->
-      @$submit ?= @$form.find('#js-booking-submit')
       @$submit.addClass('disabled').attr('disabled', true)
 
     _unblock : ->
-       @$submit ?= @$form.find('#js-booking-submit')
        @$submit.removeClass('disabled').attr('disabled', false)
 
     _show : ->
       @$el.removeClass('is-hidden')
 
     _hide : ->
-      @$el.addClass('is-hidden')       
+      @$el.addClass('is-hidden')
 
 
