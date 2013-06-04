@@ -14,10 +14,8 @@
 $card-grid-height: 380px
 $card-grid-half-height: 185px
 
-$double-card-width: 394px
-
-$card-image-height: 185px
-$stack-card-image-height: 275px
+$standard-card-image-height: 275px
+$small-card-image-height: 185px
 
 $card-content-padding: 15px
 $card-hotel-content-padding: 13px
@@ -65,10 +63,10 @@ $card-hotel-content-padding: 13px
       left: 0
 
   .card--standard-image &
-    height: $stack-card-image-height
+    height: $standard-card-image-height
 
   .card--small-image &
-    height: $card-image-height
+    height: $small-card-image-height
 
   .card--full-image &
     height: $card-grid-height
@@ -87,7 +85,7 @@ $card-hotel-content-padding: 13px
   padding: $card-content-padding
 
   .card--standard-image &
-    height: ($card-grid-height - $stack-card-image-height - (2 * $card-content-padding) )
+    height: ($card-grid-height - $standard-card-image-height - (2 * $card-content-padding) )
     padding: $card-content-padding
 
   .card--small-image &
