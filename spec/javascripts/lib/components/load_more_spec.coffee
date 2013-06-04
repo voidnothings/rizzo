@@ -10,7 +10,11 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
         expect(LoadMore::config).toBeDefined()
 
 
-    describe 'Remove pagination', ->
+    # --------------------------------------------------------------------------
+    # Initialisation
+    # --------------------------------------------------------------------------
+
+    describe 'Cleaning html pagination', ->
       beforeEach ->
         loadFixtures('load_more.html')
 
@@ -27,6 +31,63 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
         it 'appends the load more button', ->
           expect($('#js-load-more')).toExist()
 
+
+    # --------------------------------------------------------------------------
+    # Private Methods
+    # --------------------------------------------------------------------------
+
+    describe 'hiding', ->
+      beforeEach ->
+        loadFixtures('load_more.html')
+        window.lm = new LoadMore({el: '.js-pagination'})
+        lm.constructor({visible: false})
+
+      it 'hides the pagination', ->
+        expect(lm.$el.hasClass('is-hidden')).toBe(true)
+
+
+    describe 'reset', ->
+      beforeEach ->
+        loadFixtures('load_more.html')
+        window.lm = new LoadMore({el: '.js-pagination'})
+        lm.currentPage = 2
+        lm._reset()
+
+      it 'resets the current page', ->
+        expect(lm.currentPage).toBe(1)
+
+
+    describe 'blocking', ->
+      beforeEach ->
+        loadFixtures('load_more.html')
+        window.lm = new LoadMore({el: '.js-pagination'})
+        lm._block()
+
+      it 'adds the disabled and loading classes', ->
+        expect(lm.$btn.hasClass('loading disabled')).toBe(true)
+
+      it 'updates the loading text', ->
+        expect(lm.$btn.text()).toBe(lm.config.idleTitle)
+
+
+    describe 'unblocking', ->
+      beforeEach ->
+        loadFixtures('load_more.html')
+        window.lm = new LoadMore({el: '.js-pagination'})
+        lm.$btn.addClass('loading disabled').text("some text")
+        lm._unblock()
+
+      it 'adds the disabled and loading classes', ->
+        expect(lm.$btn.hasClass('loading disabled')).toBe(false)
+
+      it 'updates the loading text', ->
+        expect(lm.$btn.text()).toBe(lm.config.title)
+
+
+
+    # --------------------------------------------------------------------------
+    # Events API
+    # --------------------------------------------------------------------------
 
     describe 'on page request', ->
       beforeEach ->
@@ -71,10 +132,19 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
         window.lm = new LoadMore({el: '.js-pagination'})
         spyEvent = spyOnEvent(lm.$el, ':page/append');
         spyOn(lm, "_block")
+        spyOn(lm, "_serialize").andReturn("foo")
+        lm.currentPage = 4
         lm.$btn.trigger('click')
 
-      it 'triggers the page/append event', ->
-        expect(':page/append').toHaveBeenTriggeredOn(lm.$el)
+      it 'updates the current page', ->
+        expect(lm.currentPage).toBe(5)
 
       it 'disables the pagination', ->
         expect(lm._block).toHaveBeenCalled()
+
+      it 'serializes the pagination', ->
+        expect(lm._serialize).toHaveBeenCalled()
+
+      it 'triggers the page/append event', ->
+        expect(':page/append').toHaveBeenTriggeredOnAndWith(lm.$el, "foo")
+

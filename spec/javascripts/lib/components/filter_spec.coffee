@@ -112,6 +112,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
 
     describe 'setting filter values', ->
       external_filters = "5star,4star,3star,2star"
+
       beforeEach ->
         loadFixtures('filter.html')
 
@@ -131,7 +132,9 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
           expect(filter.$el.find("input[name*='#{external_filter[3]}']").is(':checked')).toBe(true)
           expect(filter.$el.find("input[name*='#{external_filter[3]}']").siblings().hasClass('active')).toBe(true)
 
+
       describe 'setting to false', ->
+
         beforeEach ->
           window.filter = new Filter({el: '#js-filters-reset'})
           filter._set(external_filters, false)
@@ -149,8 +152,8 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
 
 
     describe 'resetting the filter', ->
-      external_filters = "5star,4star,3star,2star"
-      external_filter = external_filters.split(",")
+      external_filter = ["5star","4star","3star","2star"]
+
       beforeEach ->
         window.filter = new Filter({el: '#js-filters-reset'})
         filter._reset()
@@ -219,6 +222,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
 
 
     describe 'when the user clicks a filter card', ->
+
       beforeEach ->
         loadFixtures('filter.html')
         window.filter = new Filter({el: '#js-filters'})
@@ -235,10 +239,4 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         filterCard = $(filter.config.LISTENER).find('.js-stack-card-filter')
         filterCard.trigger('click')
         expect(':page/request').toHaveBeenTriggeredOn(filter.$el)
-
-
-
-
-
-
 

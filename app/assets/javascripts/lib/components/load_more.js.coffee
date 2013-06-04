@@ -24,7 +24,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
 
     init: ->  
       @$el = $(@config.el)
-      @$el.hide() if !@config.visible
+      @_hide() if !@config.visible
       @_clean()
       @_add()
       @listen()
@@ -36,7 +36,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
         e.preventDefault()
         @currentPage += 1
         @_block()
-        @trigger(':page/append', @_serialize)
+        @trigger(':page/append', @_serialize())
 
     # Subscribe
     listen: ->
@@ -64,10 +64,6 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
     _hide: ->
       @$el.addClass('is-hidden')
       @config.visible = false
-    
-    _show: ->
-      @$el.removeClass('is-hidden')
-      @config.visible = true
 
     _reset: ->
       @currentPage = 1
