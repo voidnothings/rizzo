@@ -66,6 +66,11 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         expect(controller._onHashChange).toHaveBeenCalled()
 
 
+
+    # --------------------------------------------------------------------------
+    # Private Methods
+    # --------------------------------------------------------------------------
+
     describe 'generating state', ->
       beforeEach ->
         window.controller = new Controller()
@@ -87,7 +92,7 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         expect(Controller::state.filters["property_type"]["4star"]).toBe(true)
 
 
-    describe 'creating the url from state', ->
+    describe 'creating the url', ->
       beforeEach ->
         window.controller = new Controller()
         spyOn(controller, "getUrl").andReturn("http://www.lonelyplanet.com/england/london/hotels?utf8=✓&search%5Bpage_offsets%5D=0%2C58&search%5Bfrom%5D=29+May+2013&search%5Bto%5D=30+May+2013&search%5Bguests%5D=2&search%5Bcurrency%5D=USD&filters%5Bproperty_type%5D%5B3star%5D=true&filters%5Blp_reviewed%5D=true")
@@ -184,6 +189,11 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
       it 'enters the ajax function', ->
         expect($.ajax).toHaveBeenCalledWith({url: "http://www.lonelyplanet.com?foo=bar", dataType : 'json', success : callback })
 
+
+
+    # --------------------------------------------------------------------------
+    # Events API
+    # --------------------------------------------------------------------------
 
     describe 'on page request', ->
       beforeEach ->

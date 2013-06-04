@@ -22,6 +22,90 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
         expect(avInfo.config.LISTENER).toBeDefined()
 
 
+
+    # --------------------------------------------------------------------------
+    # Private Methods
+    # --------------------------------------------------------------------------
+
+    describe 'updating', ->
+
+      describe 'for a single guest', ->
+        beforeEach ->
+          loadFixtures('availability_info.html')
+          window.avInfo = new AvailabilityInfo({ el: '.js-availability-info'})
+          avInfo._update(params.search)
+
+        it 'updates the user details', ->
+          expect($('.js-availability-from').text()).toBe(params.search.from)
+          expect($('.js-availability-to').text()).toBe(params.search.to)
+          expect($('.js-availability-guests').text()).toBe(params.search.guests + " guest")
+          expect($('.js-availability-currency').hasClass('currency__icon--' + params.search.currency.toLowerCase())).toBe(true)
+          expect($('.js-availability-currency').text()).toBe(params.search.currency)
+
+      describe 'for multiple guests', ->
+        beforeEach ->
+          loadFixtures('availability_info.html')
+          window.avInfo = new AvailabilityInfo({ el: '.js-availability-info'})
+          params.search.guests++
+          avInfo._update(params.search)
+
+        it 'updates the user details', ->
+          expect($('.js-availability-guests').text()).toBe(params.search.guests + " guests")
+
+
+    describe 'showing', ->
+
+      beforeEach ->
+        loadFixtures('availability_info.html')
+        window.avInfo = new AvailabilityInfo({ el: '.js-availability-info-hidden'})
+        avInfo._show()
+
+      it 'removes the is-hidden class', ->
+        expect(avInfo.$el.hasClass('is-hidden')).toBe(false)
+
+
+    describe 'hiding', ->
+
+      beforeEach ->
+        loadFixtures('availability_info.html')
+        window.avInfo = new AvailabilityInfo({ el: '.js-availability-info'})
+        avInfo._hide()
+
+      it 'adds the is-hidden class', ->
+        expect(avInfo.$el.hasClass('is-hidden')).toBe(true)
+
+
+    describe 'blocking', ->
+
+      beforeEach ->
+        loadFixtures('availability_info.html')
+        window.avInfo = new AvailabilityInfo({ el: '.js-availability-info'})
+        avInfo._block()
+
+      it 'adds the disabled class', ->
+        expect(avInfo.$btn.hasClass('disabled')).toBe(true)
+
+      it 'adds the disabled attribute', ->
+        expect(avInfo.$btn.attr('disabled')).toBe("disabled")
+
+    describe 'unblocking', ->
+
+      beforeEach ->
+        loadFixtures('availability_info.html')
+        window.avInfo = new AvailabilityInfo({ el: '.js-availability-info-blocked'})
+        avInfo._unblock()
+
+      it 'removes the disabled class', ->
+        expect(avInfo.$btn.hasClass('disabled')).toBe(false)
+
+      it 'adds the disabled attribute', ->
+        expect(avInfo.$btn.attr('disabled')).toBe(undefined)
+
+
+    # --------------------------------------------------------------------------
+    # Events API
+    # --------------------------------------------------------------------------
+
     describe 'on page request', ->
       beforeEach ->
         loadFixtures('availability_info.html')
@@ -78,27 +162,4 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
         expect(':search/change').toHaveBeenTriggeredOn(avInfo.$el)
 
 
-    describe 'updating', ->
-
-      describe 'for a single guest', ->
-        beforeEach ->
-          loadFixtures('availability_info.html')
-          window.avInfo = new AvailabilityInfo({ el: '.js-availability-info'})
-          avInfo._update(params.search)
-
-        it 'updates the user details', ->
-          expect($('.js-availability-from').text()).toBe(params.search.from)
-          expect($('.js-availability-to').text()).toBe(params.search.to)
-          expect($('.js-availability-guests').text()).toBe(params.search.guests + " guest")
-          expect($('.js-availability-currency').hasClass('currency__icon--' + params.search.currency.toLowerCase())).toBe(true)
-          expect($('.js-availability-currency').text()).toBe(params.search.currency)
-
-      describe 'for multiple guests', ->
-        beforeEach ->
-          loadFixtures('availability_info.html')
-          window.avInfo = new AvailabilityInfo({ el: '.js-availability-info'})
-          params.search.guests++
-          avInfo._update(params.search)
-
-        it 'updates the user details', ->
-          expect($('.js-availability-guests').text()).toBe(params.search.guests + " guests")
+    

@@ -35,6 +35,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
           @_update()
           @_show()
 
+
     # Publish
     broadcast: ->
       @$btn.on 'click', (e) =>
@@ -47,13 +48,13 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
     
     _update: (params = {}) ->
       #to-do: iterate on params with base selector
-      $('.js-availability-from').text(params.from)
-      $('.js-availability-to').text(params.to)
+      @$el.find('.js-availability-from').text(params.from)
+      @$el.find('.js-availability-to').text(params.to)
       guestCopy = if params.guests > 1 then 'guests' else 'guest'
-      $('.js-availability-guests').text("#{params.guests} #{guestCopy}")
-      $('.js-availability-currency').removeClass('currency__icon--aud currency_icon--eur currency__icon--gbp currency__icon--usd')
-      $('.js-availability-currency').addClass("currency__icon--#{params.currency.toLowerCase()}")
-      $('.js-availability-currency').text(params.currency)
+      @$el.find('.js-availability-guests').text("#{params.guests} #{guestCopy}")
+      @$el.find('.js-availability-currency').removeClass('currency__icon--aud currency_icon--eur currency__icon--gbp currency__icon--usd')
+      @$el.find('.js-availability-currency').addClass("currency__icon--#{params.currency.toLowerCase()}")
+      @$el.find('.js-availability-currency').text(params.currency)
 
     _show: ->
        @$el.removeClass('is-hidden')
