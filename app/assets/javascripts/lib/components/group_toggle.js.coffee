@@ -28,20 +28,5 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
       @$handler.show()
     
     _toggle: ->
-      @_setMaxHeight()
       @$el.toggleClass('is-close is-open')
-
-    _getHeight: ->
-      Number(@$content.outerHeight())
-
-    _setMaxHeight: -> 
-      @$content.one('transitionend webkitTransitionEnd oTransitionEnd otransitionend', =>
-        height = @_getHeight()
-        if height is 0
-          @$content.removeAttr('style')
-        else  
-          @$content.css( { maxHeight: "#{height}px" } )
-      )
-      if @_getHeight() isnt 0
-        @$content.removeAttr('style')
 
