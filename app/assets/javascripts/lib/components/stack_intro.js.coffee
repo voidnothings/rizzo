@@ -2,14 +2,15 @@ define ['jquery', 'lib/extends/events','lib/components/group_toggle'], ($, Event
 
   class StackIntro extends EventEmitter
 
-    config :
-      el: '.js-stack-intro'
-      title: '.js-copy-title'
-      lead: '.js-copy-lead'
-      body: '.js-copy-body' 
-      
     constructor: (args={}) ->
+
+      @config = 
+        el: '.js-stack-intro'
+        title: '.js-copy-title'
+        lead: '.js-copy-lead'
+        body: '.js-copy-body' 
       $.extend @config, args
+
       @$el = $(@config.el)
       @$title = $("#{@config.el} #{@config.title}")
       @$lead = $("#{@config.el} #{@config.lead}")
@@ -24,7 +25,6 @@ define ['jquery', 'lib/extends/events','lib/components/group_toggle'], ($, Event
       @$title.text(args.title)
       @$lead.text(args.lead)
       @$body.html(args.body)
-
     
     _checkContent: (args) ->
       if args.lead is ''
@@ -36,7 +36,4 @@ define ['jquery', 'lib/extends/events','lib/components/group_toggle'], ($, Event
         @_introContentToggle.disable()
       else  
         @_introContentToggle.enable()
-
-      
-
 

@@ -2,13 +2,13 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
   
   class GroupToggle extends EventEmitter
 
-    config :
-      el: '.js-group-toggle'
-      handler: '.js-group-handler'
-      content: '.js-group-content'
-      
     constructor: (args={}) ->
+      @config =
+        el: '.js-group-toggle'
+        handler: '.js-group-handler'
+        content: '.js-group-content'
       $.extend @config, args
+
       @$el = $(@config.el)
       @$handler = $("#{@config.el} #{@config.handler}")
       @$content = $("#{@config.el} #{@config.content}")
