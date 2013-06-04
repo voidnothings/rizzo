@@ -94,6 +94,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
       it 'adds the disabled attribute', ->
         expect(av.$submit.attr('disabled')).toBe("disabled")
 
+
     describe 'unblocking', ->
 
       beforeEach ->

@@ -18,12 +18,16 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter ) ->
       @$list = @$el.find(@config.list)
       @listen()
 
+    
+    # Subscribe
     listen: ->  
       @$el.on 'click' , @config.list, (e) =>
         e.preventDefault()
-        @select(e.currentTarget)
+        @_select(e.currentTarget)
         @trigger(':page/request', {url: $(e.currentTarget).attr('href')})
 
-    select: (target) ->
+    
+    # Private
+    _select: (target) ->
       @$list.removeClass('nav__item--current--stack')
       $(target).addClass('nav__item--current--stack')
