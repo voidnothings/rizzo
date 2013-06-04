@@ -76,9 +76,6 @@ $card-hotel-content-padding: 13px
   height: $card-grid-height - (2 * $card-content-padding)
   padding: $card-content-padding
 
-  .js-hover .card:hover &
-    bottom: 0
-
   .card--standard-image &
     height: ($card-grid-height - $standard-card-image-height - (2 * $card-content-padding) )
 
@@ -105,3 +102,6 @@ $card-hotel-content-padding: 13px
     padding: 0 $card-content-padding 0 $card-content-padding
     position: absolute
     right: 0
+
+  .js-hover .card--image-only:hover &
+    bottom: 0
