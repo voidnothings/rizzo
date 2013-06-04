@@ -1,0 +1,37 @@
+// -----------------------------------------------------------------------------
+// Link card counts
+// -----------------------------------------------------------------------------
+
+.card__item-count
+  @extend %benton-regular
+  @extend %no-line-height
+  position: absolute
+  color: #fff
+  font-size: 20px
+  left: 10px
+  top: 20px
+  z-index: 5
+
+  &:before
+    font-size: 35px
+
+  .card--collection--hotels &
+    @extend %icon-image-poi-hotel-before
+
+  .card--link--activities &
+    @extend %icon-image-poi-activity-before
+
+  .card--link--entertainment &
+    @extend %icon-image-poi-entertainment-before
+
+  .card--link--restaurants &
+    @extend %icon-image-poi-restaurant-before
+
+  .card--link--shopping &
+    @extend %icon-image-poi-shopping-before
+
+  .card--link--sights &
+    @extend %icon-image-poi-sight-before
+
+  .card--link--tours &
+    @extend %icon-image-poi-tour-before

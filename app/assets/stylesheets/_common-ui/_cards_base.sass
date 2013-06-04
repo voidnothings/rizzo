@@ -1,0 +1,122 @@
+// Cards Base
+//
+//
+// .card
+//
+// Styleguide 1.3
+
+// -----------------------------------------------------------------------------
+// Base card object and sizing variables
+//
+// - Width of a Card defaults to single - override when necessary
+// -----------------------------------------------------------------------------
+
+$card-grid-height: 380px
+$card-grid-half-height: 185px
+
+$double-card-width: 394px
+
+$card-image-height: 185px
+$stack-card-image-height: 275px
+
+$card-content-padding: 15px
+$card-hotel-content-padding: 13px
+
+
+// -----------------------------------------------------------------------------
+// Card Base
+// -----------------------------------------------------------------------------
+
+.card
+  // @extend %standard-shadow
+  background: #fff
+  margin-bottom: 10px
+  position: relative
+
+
+// -----------------------------------------------------------------------------
+// Card Modifiers
+// -----------------------------------------------------------------------------
+
+.card--standard-image
+
+.card--small-image
+
+.card--full-image
+
+.card--image-only
+
+
+// -----------------------------------------------------------------------------
+// Card Images
+// -----------------------------------------------------------------------------
+
+.card__hero
+  overflow: hidden
+  position: relative
+
+  .card:hover &
+    &:after
+      @extend %empty-abs-generated-content
+      background-color: rgba(0,0,0,0.3)
+      top: 0
+      right: 0
+      bottom: 0
+      left: 0
+
+  .card--standard-image &
+    height: $stack-card-image-height
+
+  .card--small-image &
+    height: $card-image-height
+
+  .card--full-image &
+    height: $card-grid-height
+
+  .card--image-only &
+    height: $card-grid-half-height - 14px
+
+
+// -----------------------------------------------------------------------------
+// Card Content Areas
+// -----------------------------------------------------------------------------
+
+.card__content
+  color: $new-header-grey
+  height: $card-grid-height - (2 * $card-content-padding)
+  padding: $card-content-padding
+
+  .card--standard-image &
+    height: ($card-grid-height - $stack-card-image-height - (2 * $card-content-padding) )
+    padding: $card-content-padding
+
+  .card--small-image &
+
+
+  .card--full-image &
+    +background-gradient($startColor: rgba(0,0,0,0), $endColor: rgba(0,0,0,0.75))
+    bottom: 0
+    color: #fff
+    height: auto
+    left: 0
+    position: absolute
+    right: 0
+
+
+  .card--image-only &
+    @extend %transition--base
+    position: absolute
+    height: 38px
+    bottom: -38px - $card-content-padding
+    left: 0
+    right: 0
+    margin-bottom: 7px
+    overflow: hidden
+    padding: 0 $card-content-padding 0 $card-content-padding
+    color: #fff
+
+
+
+
+
+
