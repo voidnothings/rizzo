@@ -44,11 +44,13 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
         @_block()
         @_reset()
 
-      $(@config.LISTENER).on ':page/received', =>
+      $(@config.LISTENER).on ':page/received', (e, data) =>
         @_unblock()
+        if data.total is 0 or data.current is data.total then @_hide() else @_show()
 
-      $(@config.LISTENER).on ':page/append/received', =>
+      $(@config.LISTENER).on ':page/append/received', (e, data) =>
         @_unblock()
+        if data.total is 0 or data.current is data.total then @_hide() else @_show()
 
 
     # Private
@@ -60,6 +62,10 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
       container = $('<div>').css('text-align', 'center')
       @$btn = $('<a>').attr('id', 'js-load-more').addClass('btn btn--load full-width').text(@config.title)
       @$el.append(container.append(@$btn))
+
+    _show: ->
+      @$el.removeClass('is-hidden')
+      @config.visible = true
 
     _hide: ->
       @$el.addClass('is-hidden')

@@ -39,6 +39,10 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
       $(@config.LISTENER).on ':page/append', (e, params) =>
         @_add(params.list)
 
+      $(@config.LISTENER).on ':search/change', (e) =>
+        @_block()
+
+
     # Publish
     broadcast: ->
       # Cancel search and show info card

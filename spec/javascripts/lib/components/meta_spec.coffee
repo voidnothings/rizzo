@@ -11,6 +11,9 @@ require ['public/assets/javascripts/lib/components/meta.js'], (Meta) ->
       title: "Vietnam hotels and hostels"
       description: "Some general information about accommodation in Vietnam"
 
+    data_no_title =
+      description: "Some general information about accommodation in Vietnam"
+
 
     describe 'Setup', ->
       it 'is defined', ->
@@ -81,13 +84,21 @@ require ['public/assets/javascripts/lib/components/meta.js'], (Meta) ->
         spyOn(meta, "_updateTitle")
         spyOn(meta, "_updateMeta")
         spyOn(meta, "_updateView")
-        $(meta.config.LISTENER).trigger(':page/received', data)
 
       it 'calls _updateTitle with the title', ->
+        $(meta.config.LISTENER).trigger(':page/received', data)
         expect(meta._updateTitle).toHaveBeenCalledWith(data.title)
 
       it 'calls _updateMeta with the data', ->
+        $(meta.config.LISTENER).trigger(':page/received', data)
         expect(meta._updateMeta).toHaveBeenCalledWith(data)
 
       it 'calls _updateView with the data', ->
+        $(meta.config.LISTENER).trigger(':page/received', data)
         expect(meta._updateView).toHaveBeenCalledWith(data)
+
+      it 'does not update the page unless there is a title returned', ->
+        $(meta.config.LISTENER).trigger(':page/received', data_no_title)
+        expect(meta._updateTitle).not.toHaveBeenCalled()
+        expect(meta._updateMeta).not.toHaveBeenCalled()
+        expect(meta._updateView).not.toHaveBeenCalled()

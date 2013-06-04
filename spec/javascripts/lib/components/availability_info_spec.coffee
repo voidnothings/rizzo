@@ -136,6 +136,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
           expect(avInfo._update).not.toHaveBeenCalled()
           expect(avInfo._unblock).not.toHaveBeenCalled()
 
+
       describe 'when the user has entered dates', ->
         beforeEach ->
           spyOn(avInfo, "hasSearched").andReturn(true)
@@ -145,21 +146,40 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
           expect(avInfo._show).toHaveBeenCalled()
 
         it 'updates the info card', ->
-          expect(avInfo._update).toHaveBeenCalled()
+          expect(avInfo._update).toHaveBeenCalledWith(params.search)
 
         it 'unblocks the info card', ->
           expect(avInfo._unblock).toHaveBeenCalled()
+
+
+    describe 'when the user clicks on a disabled card', ->
+      beforeEach ->
+        loadFixtures('availability_info.html')
+        window.avInfo = new AvailabilityInfo({ el: '.js-availability-info'})
+        spyOn(avInfo, "_show")
+        spyOn(avInfo, "_unblock")
+        $(avInfo.config.LISTENER).trigger(':info/show')
+
+      it 'unblocks the info card', ->
+        expect(avInfo._unblock).toHaveBeenCalled()
+
+      it 'shows the info card', ->
+        expect(avInfo._show).toHaveBeenCalled()
 
 
     describe 'on change', ->
       beforeEach ->
         loadFixtures('availability_info.html')
         window.avInfo = new AvailabilityInfo({ el: '.js-availability-info'})
+        spyEvent = spyOnEvent(avInfo.$el, ':search/change');
+        spyOn(avInfo, "_hide")
+        avInfo.$btn.trigger('click')
 
       it 'triggers the info/change event', ->
-        spyEvent = spyOnEvent(avInfo.$el, ':search/change');
-        avInfo.$btn.trigger('click')
         expect(':search/change').toHaveBeenTriggeredOn(avInfo.$el)
+
+      it 'hides', ->
+        expect(avInfo._hide).toHaveBeenCalled()
 
 
     

@@ -136,7 +136,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
       describe 'if the user has searched', ->
         beforeEach ->
           spyOn(av, "hasSearched").andReturn(true)
-          $(av.config.LISTENER).trigger(':page/received', {page_offsets: 2})
+          $(av.config.LISTENER).trigger(':page/received', {pages: {page_offsets: 2}})
       
         it 'hides the availability form', ->
           expect(av._hide).toHaveBeenCalled()
@@ -150,7 +150,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
       describe 'if the user has not already searched', ->
         beforeEach ->
           spyOn(av, "hasSearched").andReturn(false)
-          $(av.config.LISTENER).trigger(':page/received', {page_offsets: 2})
+          $(av.config.LISTENER).trigger(':page/received', {pages: {page_offsets: 2}})
 
         it 'does not hide the availability form', ->
           expect(av._hide).not.toHaveBeenCalled()

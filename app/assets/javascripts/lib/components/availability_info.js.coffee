@@ -31,15 +31,22 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
 
       $(@config.LISTENER).on ':page/received', (e, params) =>
         if @hasSearched()
-          @_unblock(params.search)
-          @_update()
+          @_unblock()
+          @_update(params.search)
           @_show()
+
+      $(@config.LISTENER).on ':info/show', (e, params) =>
+        @_unblock()
+        @_show()
+
+
 
 
     # Publish
     broadcast: ->
       @$btn.on 'click', (e) =>
         e.preventDefault()
+        @_hide()
         @trigger(':search/change')
         false
 

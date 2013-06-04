@@ -13,9 +13,10 @@ define ['jquery'], ($) ->
     # Subscribe
     listen: ->
       $(@config.LISTENER).on ':page/received', (e, data) =>
-        @_updateTitle(data.title)
-        @_updateMeta(data)
-        @_updateView(data)
+        if data.title
+          @_updateTitle(data.title)
+          @_updateMeta(data)
+          @_updateView(data)
 
 
     # Private
