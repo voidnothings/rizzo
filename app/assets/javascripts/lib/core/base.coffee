@@ -79,7 +79,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
         window.s.linkstacker("footer")
 
     scrollPerf: ->
-      if ($('html.ie7, html.ie8').length is 0)
+      if ($('html.ie7, html.ie8, body.browserIE7, body.browserIE8').length is 0)
         # Used to track the enabling of hover effects
         enableTimer = false
 
