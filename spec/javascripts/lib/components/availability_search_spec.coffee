@@ -64,11 +64,9 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
       beforeEach ->
         loadFixtures('availability.html')
         window.av = new Availability({ el: '.js-availability-card-hidden'})
-        console.log(av.$el.hasClass('is-hidden')) if window.console 
         av._show()
 
       it 'removes the is-hidden class', ->
-        console.log(av.$el.hasClass('is-hidden')) if window.console 
         expect(av.$el.hasClass('is-hidden')).toBe(false)
 
 

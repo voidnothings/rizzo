@@ -25,7 +25,6 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
 
       $(@config.LISTENER).on ':page/received', (e, data) =>
         @_update(data)
-        @_set(data.external_filter, true) if data.external_filter
 
       $(@config.LISTENER).on ':filter/reset', =>
         @_reset()
@@ -72,7 +71,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
       @$el.find(".js-#{name}-filter").find('input[type=checkbox]').attr('disabled', false)
 
     _toggleActiveClass: (element) ->
-      $(element).siblings('.js-filter-label').toggleClass('active')
+      @$el.find(element).siblings('.js-filter-label').toggleClass('active')
 
     _serialize : ->
       new Serializer(@$el)

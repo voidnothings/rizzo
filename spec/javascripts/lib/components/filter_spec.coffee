@@ -14,13 +14,162 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         expect(Filter).toBeDefined()
 
     describe 'Initialisation', ->
-      window.test = Filter
       beforeEach ->
         window.filter = new Filter({el: '#js-filters'})
+        spyOn(filter, "_removeSEOLinks")
+        filter.constructor()
 
       it 'has an event listener constant', ->
         expect(filter.config.LISTENER).toBeDefined()
 
+      it 'removes the SEO links', ->
+        expect(filter._removeSEOLinks).toHaveBeenCalledWith(filter.$el)
+
+
+
+    # --------------------------------------------------------------------------
+    # Private Methods
+    # --------------------------------------------------------------------------
+
+    describe 'removing SEO links', ->
+      beforeEach ->
+        loadFixtures('filter.html')
+        window.filter = new Filter({el: '#js-filters-seo'})
+
+      it 'removes the links inside the labels', ->
+        expect(filter.$el.find('.js-filter-label').children().length).toBe(0)
+
+      it 'sets the label text to be the link text', ->
+        expect(filter.$el.find('.js-filter-label').text()).toBe("5 Star Hotel")
+
+
+    describe 'updating', ->
+      beforeEach ->
+        window.filter = new Filter({el: '#js-filters'})
+        spyOn(filter, "_hideGroup")
+        spyOn(filter, "_showGroup")
+        spyOn(filter, "_enable")
+
+      it 'hides the price filters given the correct params', ->
+        filter._update({disable_price_filters: true})
+        expect(filter._hideGroup).toHaveBeenCalledWith("price")
+
+      it 'shows and enables the price filters given the correct params', ->
+        filter._update({disable_price_filters: false})
+        expect(filter._showGroup).toHaveBeenCalledWith("price")
+        expect(filter._enable).toHaveBeenCalledWith("price")
+
+
+    describe 'hiding filter groups', ->
+      beforeEach ->
+        loadFixtures('filter.html')
+        window.filter = new Filter({el: '#js-filters'})
+        filter._hideGroup('price')
+
+      it 'it hides the price filters', ->
+        expect(filter.$el.find(".js-price-filter").hasClass('is-hidden')).toBe(true)
+
+
+    describe 'showing filter groups', ->
+      beforeEach ->
+        loadFixtures('filter.html')
+        window.filter = new Filter({el: '#js-filters-disabled'})
+        filter._showGroup('price')
+
+      it 'it shows the price filters', ->
+        expect(filter.$el.find(".js-price-filter").hasClass('is-hidden')).toBe(false)
+
+
+    describe 'enabling filter groups', ->
+      beforeEach ->
+        loadFixtures('filter.html')
+        window.filter = new Filter({el: '#js-filters-disabled'})
+        filter._enable('price')
+
+      it 'it enables the price filters', ->
+        expect(filter.$el.find(".js-price-filter").find('input[type=checkbox][disabled]').length).toBe(0)
+
+
+    describe 'adding active classes', ->
+      beforeEach ->
+        loadFixtures('filter.html')
+        window.filter = new Filter({el: '#js-filters-change'})
+        filter._toggleActiveClass("#test")
+
+      it 'assigns the sibling label an active class', ->
+        expect(filter.$el.find('input[type=checkbox]').siblings().hasClass('active')).toBe(true)
+
+
+    describe 'removing active classes', ->
+      beforeEach ->
+        loadFixtures('filter.html')
+        window.filter = new Filter({el: '#js-filters-active'})
+        filter._toggleActiveClass("#test")
+
+      it 'removes the sibling label active class', ->
+        expect(filter.$el.find('input[type=checkbox]').siblings().hasClass('active')).toBe(false)
+
+
+    describe 'setting filter values', ->
+      external_filters = "5star,4star,3star,2star"
+      beforeEach ->
+        loadFixtures('filter.html')
+
+      describe 'setting to true', ->
+        beforeEach ->
+          window.filter = new Filter({el: '#js-filters-external'})
+          filter._set(external_filters, true)
+
+        it 'checks the correct price filters', ->
+          external_filter = external_filters.split(",")
+          expect(filter.$el.find("input[name*='#{external_filter[0]}']").is(':checked')).toBe(true)
+          expect(filter.$el.find("input[name*='#{external_filter[0]}']").siblings().hasClass('active')).toBe(true)
+          expect(filter.$el.find("input[name*='#{external_filter[1]}']").is(':checked')).toBe(true)
+          expect(filter.$el.find("input[name*='#{external_filter[1]}']").siblings().hasClass('active')).toBe(true)
+          expect(filter.$el.find("input[name*='#{external_filter[2]}']").is(':checked')).toBe(true)
+          expect(filter.$el.find("input[name*='#{external_filter[2]}']").siblings().hasClass('active')).toBe(true)
+          expect(filter.$el.find("input[name*='#{external_filter[3]}']").is(':checked')).toBe(true)
+          expect(filter.$el.find("input[name*='#{external_filter[3]}']").siblings().hasClass('active')).toBe(true)
+
+      describe 'setting to false', ->
+        beforeEach ->
+          window.filter = new Filter({el: '#js-filters-reset'})
+          filter._set(external_filters, false)
+
+        it 'checks the correct price filters', ->
+          external_filter = external_filters.split(",")
+          expect(filter.$el.find("input[name*='#{external_filter[0]}']").is(':checked')).toBe(false)
+          expect(filter.$el.find("input[name*='#{external_filter[0]}']").siblings().hasClass('active')).toBe(false)
+          expect(filter.$el.find("input[name*='#{external_filter[1]}']").is(':checked')).toBe(false)
+          expect(filter.$el.find("input[name*='#{external_filter[1]}']").siblings().hasClass('active')).toBe(false)
+          expect(filter.$el.find("input[name*='#{external_filter[2]}']").is(':checked')).toBe(false)
+          expect(filter.$el.find("input[name*='#{external_filter[2]}']").siblings().hasClass('active')).toBe(false)
+          expect(filter.$el.find("input[name*='#{external_filter[3]}']").is(':checked')).toBe(false)
+          expect(filter.$el.find("input[name*='#{external_filter[3]}']").siblings().hasClass('active')).toBe(false)
+
+
+    describe 'resetting the filter', ->
+      external_filters = "5star,4star,3star,2star"
+      external_filter = external_filters.split(",")
+      beforeEach ->
+        window.filter = new Filter({el: '#js-filters-reset'})
+        filter._reset()
+
+      it 'checks the correct price filters', ->
+        expect(filter.$el.find("input[name*='#{external_filter[0]}']").is(':checked')).toBe(false)
+        expect(filter.$el.find("input[name*='#{external_filter[0]}']").siblings().hasClass('active')).toBe(false)
+        expect(filter.$el.find("input[name*='#{external_filter[1]}']").is(':checked')).toBe(false)
+        expect(filter.$el.find("input[name*='#{external_filter[1]}']").siblings().hasClass('active')).toBe(false)
+        expect(filter.$el.find("input[name*='#{external_filter[2]}']").is(':checked')).toBe(false)
+        expect(filter.$el.find("input[name*='#{external_filter[2]}']").siblings().hasClass('active')).toBe(false)
+        expect(filter.$el.find("input[name*='#{external_filter[3]}']").is(':checked')).toBe(false)
+        expect(filter.$el.find("input[name*='#{external_filter[3]}']").siblings().hasClass('active')).toBe(false)
+
+
+
+    # --------------------------------------------------------------------------
+    # Events API
+    # --------------------------------------------------------------------------
 
     describe 'on page received', ->
 
@@ -29,72 +178,11 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         beforeEach ->
           loadFixtures('filter.html')
           window.filter = new Filter({el: '#js-filters'})
+          spyOn(filter, "_update")
+          $(filter.config.LISTENER).trigger(':page/received', "foo")
 
-        describe 'it calls', ->
-          beforeEach ->
-            spyOn(filter, "_hideGroup")
-            $(filter.config.LISTENER).trigger(':page/received', data)
-
-          it 'the hideGroup function', ->
-            expect(filter._hideGroup).toHaveBeenCalledWith("price")
-
-        describe 'side effects', ->
-          beforeEach ->
-            $(filter.config.LISTENER).trigger(':page/received', data)
-
-          it 'it hides the price filters', ->
-            expect(filter.$el.find(".js-price-filter").hasClass('is-hidden')).toBe(true)
-
-
-      describe 'when there is no flag to disable price filters', ->
-
-        beforeEach ->
-          loadFixtures('filter.html')
-          window.filter = new Filter({el: '#js-filters-disabled'})
-
-        describe 'it calls', ->
-          beforeEach ->
-            spyOn(filter, "_showGroup")
-            $(filter.config.LISTENER).trigger(':page/received', data_alt)
-
-          it 'the showGroup function', ->
-            expect(filter._showGroup).toHaveBeenCalledWith("price")
-
-        describe 'side effects', ->
-          beforeEach ->
-            $(filter.config.LISTENER).trigger(':page/received', data_alt)
-
-          it 'it shows the price filters', ->
-            expect(filter.$el.find(".js-price-filter").hasClass('is-hidden')).toBe(false)
-
-          it 'enables the price filters', ->
-            expect(filter.$el.find(".js-#{name}-filter").find('input[type=checkbox][disabled]').length).toBe(0)
-
-
-      describe 'when the filter has been triggered by an external filter', ->
-
-        beforeEach ->
-          loadFixtures('filter.html')
-          window.filter = new Filter({el: '#js-filters-external'})
-
-        describe 'it calls', ->
-          beforeEach ->
-            spyOn(filter, "_set")
-            $(filter.config.LISTENER).trigger(':page/received', data)
-
-          it 'the set function with the filter names', ->
-            expect(filter._set).toHaveBeenCalledWith(data.external_filter, true)
-
-        describe 'side-effects', ->
-          beforeEach ->
-            $(filter.config.LISTENER).trigger(':page/received', data)
-
-          it 'checks the correct price filters', ->
-            external_filters = data.external_filter.split(",")
-            expect(filter.$el.find("input[name*='#{external_filters[0]}']").is(':checked')).toBe(true)
-            expect(filter.$el.find("input[name*='#{external_filters[1]}']").is(':checked')).toBe(true)
-            expect(filter.$el.find("input[name*='#{external_filters[2]}']").is(':checked')).toBe(true)
-            expect(filter.$el.find("input[name*='#{external_filters[3]}']").is(':checked')).toBe(true)
+        it 'updates the filters', ->
+          expect(filter._update).toHaveBeenCalledWith("foo")
 
 
     describe 'on filter reset', ->
@@ -102,21 +190,11 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
       beforeEach ->
         loadFixtures('filter.html')
         window.filter = new Filter({el: '#js-filters-reset'})
+        spyOn(filter, "_reset")
+        $(filter.config.LISTENER).trigger(':filter/reset')
 
-      describe 'it calls', ->
-        beforeEach ->
-          spyOn(filter, "_reset")
-          $(filter.config.LISTENER).trigger(':filter/reset', data)
-
-        it 'the reset function', ->
-          expect(filter._reset).toHaveBeenCalled()
-
-      describe 'side effects', ->
-        beforeEach ->
-          $(filter.config.LISTENER).trigger(':filter/reset', data)
-
-        it 'resets the price filters', ->
-          expect(filter.$el.find("input").is(':checked')).toBe(false)
+      it 'the reset function', ->
+        expect(filter._reset).toHaveBeenCalled()
 
 
     describe 'on filter input change', ->
@@ -124,31 +202,20 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
       beforeEach ->
         loadFixtures('filter.html')
         window.filter = new Filter({el: '#js-filters-change'})
-
-      describe 'calls', ->
-        beforeEach ->
-          spyOn(filter, "_toggleActiveClass")
-          spyOn(filter, "_serialize")
-          spyEvent = spyOnEvent(filter.$el, ':page/request');
-          element = filter.$el.find('input[type=checkbox]')
-          element.trigger('change')
-        
-        it '_toggleActiveClass', ->
-          expect(filter._toggleActiveClass).toHaveBeenCalled()
-
-        it '_serialize', ->
-          expect(filter._serialize).toHaveBeenCalled()
-
-        it 'triggers the page request event', ->
-          expect(':page/request').toHaveBeenTriggeredOn(filter.$el)
-
+        spyOn(filter, "_toggleActiveClass")
+        spyOn(filter, "_serialize")
+        spyEvent = spyOnEvent(filter.$el, ':page/request');
+        element = filter.$el.find('input[type=checkbox]')
+        element.trigger('change')
       
-      describe 'side effects', ->
-        beforeEach ->
-          $(filter.$el).find('input[type=checkbox]').trigger('change')
+      it '_toggleActiveClass', ->
+        expect(filter._toggleActiveClass).toHaveBeenCalled()
 
-        it 'assigns the sibling lable an active class', ->
-          expect(filter.$el.find('input[type=checkbox]').siblings().hasClass('active')).toBe(true)
+      it '_serialize', ->
+        expect(filter._serialize).toHaveBeenCalled()
+
+      it 'triggers the page request event', ->
+        expect(':page/request').toHaveBeenTriggeredOnAndWith(filter.$el, filter._serialize())
 
 
     describe 'when the user clicks a filter card', ->
@@ -157,8 +224,6 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         window.filter = new Filter({el: '#js-filters'})
         spyOn(filter, "_set")
         spyEvent = spyOnEvent(filter.$el, ':page/request');
-        
-        
 
       it 'calls _set with the new filters', ->
         filterCard = $(filter.config.LISTENER).find('.js-stack-card-filter')
