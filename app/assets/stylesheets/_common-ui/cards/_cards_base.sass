@@ -44,6 +44,7 @@ $card-hotel-content-padding:  13px
 // -----------------------------------------------------------------------------
 
 .card__hero
+  height: $standard-card-image-height
   overflow: hidden
   position: relative
 
@@ -58,9 +59,6 @@ $card-hotel-content-padding:  13px
       right: 0
       bottom: 0
       left: 0
-
-  .card--standard-image &
-    height: $standard-card-image-height
 
   .card--small-image &
     height: $small-card-image-height
@@ -79,12 +77,12 @@ $card-hotel-content-padding:  13px
 
 .card__content
   color: $new-header-grey
-  height: $card-grid-height - $card-content-padding - $default-card-top-padding
-  padding: $default-card-top-padding $card-content-padding $card-content-padding $card-content-padding
+  height: ($card-grid-height - $standard-card-image-height - (2 * $card-content-padding) )
+  padding: $card-content-padding
 
-  .card--standard-image &
-    height: ($card-grid-height - $standard-card-image-height - (2 * $card-content-padding) )
-    padding: $card-content-padding
+  .card--no-image &
+    height: $card-grid-height - $default-card-top-padding - $card-content-padding
+    padding: $default-card-top-padding $card-content-padding $card-content-padding
 
   .card--small-image &
     height: ($card-grid-height - $small-card-image-height - (2 * $card-content-padding) )

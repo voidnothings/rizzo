@@ -87,9 +87,10 @@
 
 // TODO: put back POI icon styles when they're required
 .card--poi--hotel
-  @extend %icon-poi-hotel-before
-  &:before
-    color: $hotels-poi
+  &.card--no-image
+    @extend %icon-poi-hotel-before
+    &:before
+      color: $hotels-poi
 
   &.card--small-image
     @extend %icon-image-poi-hotel-before
@@ -100,14 +101,11 @@
 // -----------------------------------------------------------------------------
 
 .card--destination
-  @extend %card-icon
-  @extend %local-marker-before
-  &:before
-    color: #10d6c6
-
-  &.card--small-image
+  &.card--no-image
+    @extend %card-icon
+    @extend %local-marker-before
     &:before
-      content: none
+      color: #10d6c6
 
 .card--info
   @extend %card-icon
