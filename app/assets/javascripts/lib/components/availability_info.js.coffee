@@ -39,9 +39,6 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
         @_unblock()
         @_show()
 
-
-
-
     # Publish
     broadcast: ->
       @$btn.on 'click', (e) =>

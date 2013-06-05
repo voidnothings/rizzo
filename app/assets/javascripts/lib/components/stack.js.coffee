@@ -36,7 +36,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
         @_clear()
         @_add(data.list)
 
-      $(@config.LISTENER).on ':page/append', (e, data) =>
+      $(@config.LISTENER).on ':page/append/received', (e, data) =>
         @_add(data.list)
 
       $(@config.LISTENER).on ':search/change', (e) =>

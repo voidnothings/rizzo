@@ -30,13 +30,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
       @listen()
       @broadcast()
 
-    # Publish
-    broadcast: ->
-      @$el.on 'click', '#js-load-more', (e) =>
-        e.preventDefault()
-        @currentPage += 1
-        @_block()
-        @trigger(':page/append', @_serialize())
+
 
     # Subscribe
     listen: ->
@@ -46,12 +40,19 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
 
       $(@config.LISTENER).on ':page/received', (e, data) =>
         @_unblock()
-        if data.total is 0 or data.current is data.total then @_hide() else @_show()
+        if data.pages.total is 0 or data.pages.current is data.pages.total then @_hide() else @_show()
 
       $(@config.LISTENER).on ':page/append/received', (e, data) =>
         @_unblock()
-        if data.total is 0 or data.current is data.total then @_hide() else @_show()
+        if data.pages.total is 0 or data.pages.current is data.pages.total then @_hide() else @_show()
 
+    # Publish
+    broadcast: ->
+      @$el.on 'click', '#js-load-more', (e) =>
+        e.preventDefault()
+        @currentPage += 1
+        @_block()
+        @trigger(':page/append', @_serialize())
 
     # Private
 
