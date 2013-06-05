@@ -49,7 +49,8 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
       @$el.on 'click', '.card--disabled', (e) =>
         e.preventDefault()
         @_unblock()
-        @trigger(':info/show')
+        @trigger(':search/hide')
+        false
 
       # Clear all filters when there are no results
       @$el.on 'click', '.js-clear-all-filters', (e) =>

@@ -35,7 +35,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
           @_update(params.search)
           @_show()
 
-      $(@config.LISTENER).on ':info/show', (e, params) =>
+      $(@config.LISTENER).on ':search/hide', (e, params) =>
         @_unblock()
         @_show()
 

@@ -40,6 +40,9 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
       $(@config.LISTENER).on ':search/change', => 
         @_show()
 
+      $(@config.LISTENER).on ':search/hide', => 
+        @_hide()
+
     # Publish
     broadcast: ->
       @$form.on 'submit', (e) =>

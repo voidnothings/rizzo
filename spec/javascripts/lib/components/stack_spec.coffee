@@ -162,11 +162,11 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
       beforeEach ->
         loadFixtures('stack_disabled.html')
         window.stack = new Stack(config)
-        spyEvent = spyOnEvent(stack.$el, ':info/show')
+        spyEvent = spyOnEvent(stack.$el, ':search/hide')
         stack.$el.find('.card--disabled').trigger('click')
 
-      it 'triggers the info/change event', ->
-        expect(':info/show').toHaveBeenTriggeredOn(stack.$el)
+      it 'triggers the search/hide event', ->
+        expect(':search/hide').toHaveBeenTriggeredOn(stack.$el)
 
 
     describe 'when the user wants to clear all filters', ->

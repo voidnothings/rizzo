@@ -158,7 +158,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
         window.avInfo = new AvailabilityInfo({ el: '.js-availability-info'})
         spyOn(avInfo, "_show")
         spyOn(avInfo, "_unblock")
-        $(avInfo.config.LISTENER).trigger(':info/show')
+        $(avInfo.config.LISTENER).trigger(':search/hide')
 
       it 'unblocks the info card', ->
         expect(avInfo._unblock).toHaveBeenCalled()
