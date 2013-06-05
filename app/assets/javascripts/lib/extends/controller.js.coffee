@@ -7,8 +7,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
     config:
       LISTENER: '#js-card-holder'
 
-    state:
-      params: null
+    state: {}
 
     constructor: (args = {}) ->
       $.extend @config, args
@@ -76,7 +75,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
       @isHashEnabled ?= ("onhashchange" of window)
 
     _generateState: ->
-      @state.params = $.deparam(@getParams())
+      @state = $.deparam(@getParams())
 
     _updateState: (params) ->
       for key of params

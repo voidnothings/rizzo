@@ -125,7 +125,6 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
         spyOn(lm, "_hide")
 
       it 'enables the pagination', ->
-        console.log(stub) if window.console 
         $(lm.config.LISTENER).trigger(':page/received', stub)
         expect(lm._unblock).toHaveBeenCalled()
 

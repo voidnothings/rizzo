@@ -78,28 +78,31 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
 
       it 'updates the state object with the search parameters', ->
         # Using JSON stringify to compare contents rather than instances
-        controller._generateState(serialized.urlWithSearchAndFilters)
-        expect(JSON.stringify(controller.state.params, null, 2) is JSON.stringify(deserialized, null, 2)).toBe(true)
+        controller._generateState()
+        expect(JSON.stringify(controller.state, null, 2) is JSON.stringify(deserialized, null, 2)).toBe(true)
 
 
     describe 'updating state', ->
       beforeEach ->
         window.controller = new Controller()
-        controller._generateState(serialized.urlWithSearch)
+        spyOn(controller, "getParams").andReturn(serialized.newUrlWithSearchAndFilters)
+        controller._generateState()
 
       it 'creates a new state', ->
         controller._updateState(newParams)
-        expect(Controller::state.filters["property_type"]["4star"]).toBe(true)
+        expect(controller.state.filters["property_type"]["4star"]).toBe(true)
 
 
     describe 'creating the url', ->
       beforeEach ->
         window.controller = new Controller()
-        spyOn(controller, "getUrl").andReturn("http://www.lonelyplanet.com/england/london/hotels?utf8=✓&search%5Bpage_offsets%5D=0%2C58&search%5Bfrom%5D=29+May+2013&search%5Bto%5D=30+May+2013&search%5Bguests%5D=2&search%5Bcurrency%5D=USD&filters%5Bproperty_type%5D%5B3star%5D=true&filters%5Blp_reviewed%5D=true")
-        controller._generateState(serialized.urlWithSearch)
+        spyOn(controller, "getParams").andReturn(serialized.newUrlWithSearchAndFilters)
+        spyOn(controller, "getDocumentRoot").andReturn("/")
+        controller._generateState()
 
       describe 'with pushState support', ->
         it 'serializes the state', ->
+
           newUrl = controller._createUrl()
           expect(newUrl).toBe("/?" + serialized.newUrlWithSearchAndFilters)
 
