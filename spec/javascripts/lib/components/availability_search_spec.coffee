@@ -111,7 +111,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
 
 
     # --------------------------------------------------------------------------
-    # Private Methods
+    # Events API
     # --------------------------------------------------------------------------
 
     describe 'on page request', ->

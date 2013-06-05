@@ -19,8 +19,8 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter ) ->
       @listen()
 
     
-    # Subscribe
-    listen: ->  
+    # Publish
+    broadcast: ->  
       @$el.on 'click' , @config.list, (e) =>
         e.preventDefault()
         @_select(e.currentTarget)

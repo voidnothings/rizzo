@@ -31,13 +31,13 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
         @_block()
         @_addLoader()
 
-      $(@config.LISTENER).on ':page/received', (e, params) =>
+      $(@config.LISTENER).on ':page/received', (e, data) =>
         @_removeLoader()
         @_clear()
-        @_add(params.list)
+        @_add(data.list)
 
-      $(@config.LISTENER).on ':page/append', (e, params) =>
-        @_add(params.list)
+      $(@config.LISTENER).on ':page/append', (e, data) =>
+        @_add(data.list)
 
       $(@config.LISTENER).on ':search/change', (e) =>
         @_block()
