@@ -44,7 +44,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
       $(@config.LISTENER).on 'click', '.js-stack-card-filter', (e) =>
         e.preventDefault()
         filters = $(e.currentTarget).find('[data-filter]').data('filter')
-        @_set(filters)
+        @_set(filters, true)
         @trigger(':page/request', @_serialize())
 
 
@@ -74,7 +74,9 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
       @$el.find(element).siblings('.js-filter-label').toggleClass('active')
 
     _serialize : ->
-      new Serializer(@$el)
+      filters = new Serializer(@$el)
+      # Hand the controller an empty filters object rather than simply an empty object
+      filters = if filters.hasOwnProperty('filters') then filters else {filters: {}}
 
     _set: (filters, value=false)->
       for name in filters.split(',')

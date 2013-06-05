@@ -233,7 +233,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         filterCard = $(filter.config.LISTENER).find('.js-stack-card-filter')
         filters = filterCard.find('[data-filter]').data('filter')
         filterCard.trigger('click')
-        expect(filter._set).toHaveBeenCalledWith(filters)
+        expect(filter._set).toHaveBeenCalledWith(filters, true)
 
       it 'triggers the :page/request event with the correct params', ->
         filterCard = $(filter.config.LISTENER).find('.js-stack-card-filter')
