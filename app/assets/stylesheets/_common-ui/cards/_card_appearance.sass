@@ -1,0 +1,113 @@
+.card__content
+  color: $new-header-grey
+
+
+.card__property-type,
+.card__context
+  @extend %small-type
+  display: block
+  margin-bottom: 2px
+
+.card__name
+  +font-size(19)
+  +word-break()
+  font-weight: bold
+  line-height: 17px
+  margin-bottom: 12px
+
+
+.card__locale
+  @extend %serif
+  @extend %small-type
+  color: $body-copy
+  font-style: italic
+  line-height: 14px
+  margin-bottom: 12px
+
+.card__description
+  @extend %smooth-text
+  @extend %irregular-type
+  color: $body-copy
+  line-height: 14px
+
+.card__list
+  @extend %smooth-text
+  @extend %irregular-type
+  color: $body-copy
+  list-style: circle inside
+
+.card__list__item
+  @extend %inline-block
+  border-bottom: 1px solid #81BBE3
+  margin-bottom: 15px
+  &:hover
+    text-decoration: none
+
+// -----------------------------------------------------------------------------
+// Card Footer
+// -----------------------------------------------------------------------------
+
+.card__footer
+  @extend %small-type
+  position: absolute
+  background: #fff
+  bottom: 0
+  color: $body-copy
+  left: 0
+  padding: 8px
+  right: 0
+  z-index: 1
+
+  .card--list--lodging &
+    padding: 8px
+
+  // fade to white at the top of the footer - needed when footer obscures content fadeout
+  &:after
+    @extend %empty-abs-generated-content
+    +background-gradient($startColor: rgba(255,255,255,0), $endColor: rgba(255,255,255,1.0))
+    height: 20px
+    left: 0
+    right: 0
+    top: -20px
+
+
+// -----------------------------------------------------------------------------
+// Differences for hotel cards
+// -----------------------------------------------------------------------------
+
+.card--hotel
+  // border-bottom: 2px solid $hotels-poi
+
+  // &.card--small-image
+  //   border: 0
+
+  .card__name
+    @extend %large-type
+
+  .card__footer
+    bottom: 8px
+    left: 8px
+    right: 8px
+
+    // remove top fadeout
+    &:after
+      content: none
+
+  .btn--bookable
+    @extend %irregular-type
+    position: absolute
+    bottom: 0
+    line-height: inherit
+    padding: 10px 12px
+    right: 0
+    width: auto
+
+  .badge--lp-reviewed
+    left: 0
+    bottom: 0
+    height: 23px
+
+  .badge--top-choice
+    height: 24px
+    left: 30px
+    bottom: 0
