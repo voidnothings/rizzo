@@ -77,6 +77,10 @@ require ['public/assets/javascripts/lib/components/meta.js'], (Meta) ->
 
 
 
+    # --------------------------------------------------------------------------
+    # Events API
+    # --------------------------------------------------------------------------
+
     describe 'on page received', ->
       beforeEach ->
         loadFixtures('meta.html')
