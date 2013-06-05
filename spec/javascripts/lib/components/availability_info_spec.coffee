@@ -129,7 +129,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
       describe 'when the user has not entered dates', ->
         beforeEach ->
           spyOn(avInfo, "hasSearched").andReturn(false)
-          $(avInfo.config.LISTENER).trigger(':page/received', params)
+          $(avInfo.config.LISTENER).trigger(':page/received', ["", params])
 
         it 'does not show the info card', ->
           expect(avInfo._show).not.toHaveBeenCalled()
@@ -140,7 +140,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
       describe 'when the user has entered dates', ->
         beforeEach ->
           spyOn(avInfo, "hasSearched").andReturn(true)
-          $(avInfo.config.LISTENER).trigger(':page/received', params)
+          $(avInfo.config.LISTENER).trigger(':page/received', ["", params])
 
         it 'shows the info card', ->
           expect(avInfo._show).toHaveBeenCalled()
