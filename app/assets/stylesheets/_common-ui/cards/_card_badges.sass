@@ -2,9 +2,13 @@
 // Link card counts
 // -----------------------------------------------------------------------------
 
-.card__item-count
+%card--badge
   @extend %benton-regular
   @extend %no-line-height
+
+
+.card__item-count
+  @extend %card--badge
   position: absolute
   color: #fff
   font-size: 20px
@@ -35,3 +39,37 @@
 
   .card--link--tours &
     @extend %icon-image-poi-tour-before
+
+%card--icon
+  &:before
+    @extend %card--badge
+    cursor: pointer
+    font-size: 69px
+    pointer-events: none
+    position: absolute
+    z-index: 5
+
+.card--media__badge
+  @extend %card--badge
+  color: #fff
+  font-size: 69px
+  left: 75px
+  position: absolute
+  text-shadow: 0 0 5px rgba(0,0,0,0.75)
+  top: 75px
+  z-index: 5
+
+  .card--gallery &
+    @extend %icon-gallery-before
+
+  .card--video &
+    @extend %icon-video-before
+
+.card--info
+  @extend %card--icon
+  @extend %icon-poi-info-before
+  color: $need-to-know-info
+  &:before
+    font-size: 50px
+    left: 10px
+    top: 20px
