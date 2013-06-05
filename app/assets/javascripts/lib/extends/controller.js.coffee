@@ -34,13 +34,13 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
 
 
     # Publish
-    replace: (data)->
+    replace: (data) =>
       @_navigate(@_createUrl())
-      @trigger(':page/received', data)
+      @trigger(':page/received', [data, @state])
 
     append: (data) =>
       @_navigate(@_createUrl())
-      @trigger(':page/append/received', data)
+      @trigger(':page/append/received', [data, @state])
 
 
     # Private
@@ -55,7 +55,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
         # Modern browsers
         # WebKit fires a popstate event on document load
         # https://code.google.com/p/chromium/issues/detail?id=63040
-        setTimeout((()=>$(window).bind 'popstate', ->
+        setTimeout((()=>$(window).bind 'popstate', =>
           @setUrl(@getUrl())
         ), 1)
       else if @_supportsHash()
