@@ -54,8 +54,8 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
       parent.find('.js-filter-label').each ->
         $(this).html($(this).children('a').text())
 
-    _update: (params)->
-      if params.disable_price_filters
+    _update: (data)->
+      if data.disable_price_filters
         @_hideGroup('price')
       else
         @_showGroup('price')

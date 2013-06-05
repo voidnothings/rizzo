@@ -16,7 +16,7 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter ) ->
     init: ->
       @$el = $(@config.el)
       @$list = @$el.find(@config.list)
-      @listen()
+      @broadcast()
 
     
     # Publish
