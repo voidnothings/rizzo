@@ -11,14 +11,15 @@
 // - Width of a Card defaults to single - override when necessary
 // -----------------------------------------------------------------------------
 
-$card-grid-height: 380px
-$card-grid-half-height: 185px
+$card-grid-height:           380px
+$card-grid-half-height:      185px
 
 $standard-card-image-height: 275px
-$small-card-image-height: 185px
+$small-card-image-height:    185px
 
-$card-content-padding: 15px
-$card-hotel-content-padding: 13px
+$default-card-top-padding:    60px
+$card-content-padding:        15px
+$card-hotel-content-padding:  13px
 
 
 // -----------------------------------------------------------------------------
@@ -77,8 +78,9 @@ $card-hotel-content-padding: 13px
 // -----------------------------------------------------------------------------
 
 .card__content
-  height: $card-grid-height - $card-content-padding - 65px
-  padding: 65px $card-content-padding $card-content-padding $card-content-padding
+  color: $new-header-grey
+  height: $card-grid-height - $card-content-padding - $default-card-top-padding
+  padding: $default-card-top-padding $card-content-padding $card-content-padding $card-content-padding
 
   .card--standard-image &
     height: ($card-grid-height - $standard-card-image-height - (2 * $card-content-padding) )

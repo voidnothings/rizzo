@@ -1,6 +1,13 @@
-.card__content
-  color: $new-header-grey
-
+.card__hero--hotels  
+  &:after
+    @extend %empty-abs-generated-content
+    background-image: image_url('collections/best-places.png')
+    background-size: $double-card-width $card-grid-height
+    height: $card-grid-height
+    left: 0
+    pointer-events: none
+    top: 0
+    width: $double-card-width
 
 .card__property-type,
 .card__context
@@ -9,12 +16,14 @@
   margin-bottom: 2px
 
 .card__name
-  +font-size(19)
+  @extend %large-type
   +word-break()
   font-weight: bold
   line-height: 17px
   margin-bottom: 12px
 
+  .card--standard-image &
+    +font-size(19)
 
 .card__locale
   @extend %serif
@@ -61,37 +70,43 @@
   .card--list--lodging &
     padding: 8px
 
+  // TODO: uncomment this when extended content section is required
   // fade to white at the top of the footer - needed when footer obscures content fadeout
-  &:after
-    @extend %empty-abs-generated-content
-    +background-gradient($startColor: rgba(255,255,255,0), $endColor: rgba(255,255,255,1.0))
-    height: 20px
-    left: 0
-    right: 0
-    top: -20px
+  // &:after
+  //   @extend %empty-abs-generated-content
+  //   +background-gradient($startColor: rgba(255,255,255,0), $endColor: rgba(255,255,255,1.0))
+  //   height: 20px
+  //   left: 0
+  //   right: 0
+  //   top: -20px
 
 
 // -----------------------------------------------------------------------------
 // Differences for hotel cards
 // -----------------------------------------------------------------------------
 
-.card--hotel
-  // border-bottom: 2px solid $hotels-poi
+.card--poi--hotel
+  border-bottom: 2px solid $hotels-poi
 
-  // &.card--small-image
-  //   border: 0
+  .card__content
+    height: $card-grid-height - $default-card-top-padding - $card-content-padding - 2px // account for border
 
-  .card__name
-    @extend %large-type
+  &.card--small-image
+    border: 0
+
+    .card__content
+      padding: $card-hotel-content-padding
+      height: ($card-grid-height - $small-card-image-height - (2 * $card-hotel-content-padding) )
 
   .card__footer
     bottom: 8px
     left: 8px
     right: 8px
 
+    // TODO: uncomment this when extended content section is required
     // remove top fadeout
-    &:after
-      content: none
+    // &:after
+    //   content: none
 
   .btn--bookable
     @extend %irregular-type

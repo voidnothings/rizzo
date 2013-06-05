@@ -1,14 +1,10 @@
 // -----------------------------------------------------------------------------
-// Link card counts
+// Card item counts
 // -----------------------------------------------------------------------------
 
-%card--badge
+.card__item-count
   @extend %benton-regular
   @extend %no-line-height
-
-
-.card__item-count
-  @extend %card--badge
   position: absolute
   color: #fff
   font-size: 20px
@@ -40,17 +36,14 @@
   .card--link--tours &
     @extend %icon-image-poi-tour-before
 
-%card--icon
-  &:before
-    @extend %card--badge
-    cursor: pointer
-    font-size: 69px
-    pointer-events: none
-    position: absolute
-    z-index: 5
+
+// -----------------------------------------------------------------------------
+// Media card badges
+// -----------------------------------------------------------------------------
 
 .card--media__badge
-  @extend %card--badge
+  @extend %benton-regular
+  @extend %no-line-height
   color: #fff
   font-size: 69px
   left: 75px
@@ -65,11 +58,60 @@
   .card--video &
     @extend %icon-video-before
 
-.card--info
-  @extend %card--icon
-  @extend %icon-poi-info-before
-  color: $need-to-know-info
+
+// -----------------------------------------------------------------------------
+// POI card badges
+// -----------------------------------------------------------------------------
+
+%card-icon
   &:before
-    font-size: 50px
+    @extend %benton-regular
+    @extend %no-line-height
+    cursor: pointer
+    font-size: 69px
     left: 10px
-    top: 20px
+    position: absolute
+    pointer-events: none
+    top: 25px
+    z-index: 5
+
+.card--poi
+  @extend %card-icon
+
+  &.card--small-image
+    &:before
+      color: #fff
+      font-size: 50px
+      text-shadow: 0 0 5px rgba(0,0,0,0.75)
+      top: 15px
+
+// TODO: put back POI icon styles when they're required
+.card--poi--hotel
+  @extend %icon-poi-hotel-before
+  &:before
+    color: $hotels-poi
+
+  &.card--small-image
+    @extend %icon-image-poi-hotel-before
+
+
+// -----------------------------------------------------------------------------
+// Other card badges
+// -----------------------------------------------------------------------------
+
+.card--destination
+  @extend %card-icon
+  @extend %local-marker-before
+  &:before
+    color: #10d6c6
+
+  &.card--small-image
+    &:before
+      content: none
+
+.card--info
+  @extend %card-icon
+  @extend %icon-poi-info-before
+  &:before
+    color: $need-to-know-info
+    font-size: 50px
