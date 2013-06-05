@@ -12,14 +12,14 @@ require ['public/assets/javascripts/lib/components/group_toggle.js'], (GroupTogg
       beforeEach ->
         loadFixtures('stack_intro.html')
         @toggle = new GroupToggle()
-# 
+      
       it 'has default configuration', ->
         args =
           el: '.js-group-toggle'
           handler: '.js-group-handler'
           content: '.js-group-content'
         expect(@toggle.config).toEqual(args)
-# 
+      
       it 'extends base configuration', ->
         customArgs =
           el: '.js-group-toggle'
