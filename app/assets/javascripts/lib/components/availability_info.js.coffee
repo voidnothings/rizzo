@@ -29,7 +29,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
       $(@config.LISTENER).on ':page/request', =>
         @_block()
 
-      $(@config.LISTENER).on ':page/received', (e, params) =>
+      $(@config.LISTENER).on ':page/received', (e, data, params) =>
         if @hasSearched()
           @_unblock()
           @_update(params.search)
