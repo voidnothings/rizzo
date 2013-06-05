@@ -1,6 +1,5 @@
-:javascript
-  // Using feature detection to work around page caching
-  if (!window.navigator.geolocation) {
+/[if lt IE9]
+  :javascript
     document.createElement('header');
     document.createElement('nav');
     document.createElement('section');
@@ -10,8 +9,8 @@
     document.createElement('figure');
     document.createElement('figurecap');
     document.createElement('hgroup');
-  }
 
+:javascript
   // Switch no-js class for js
   (function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);
 
