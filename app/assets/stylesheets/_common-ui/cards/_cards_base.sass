@@ -29,7 +29,6 @@ $card-hotel-content-padding: 13px
   @extend %standard-shadow
   background: #fff
   margin-bottom: 10px
-  overflow: hidden
   position: relative
 
   .js-hover &:hover
@@ -75,15 +74,16 @@ $card-hotel-content-padding: 13px
 // -----------------------------------------------------------------------------
 
 .card__content
-  color: $new-header-grey
-  height: $card-grid-height - (2 * $card-content-padding)
-  padding: $card-content-padding
+  height: $card-grid-height - $card-content-padding - 65px
+  padding: 65px $card-content-padding $card-content-padding $card-content-padding
 
   .card--standard-image &
     height: ($card-grid-height - $standard-card-image-height - (2 * $card-content-padding) )
+    padding: $card-content-padding
 
   .card--small-image &
     height: ($card-grid-height - $small-card-image-height - (2 * $card-content-padding) )
+    padding: $card-content-padding
 
   .card--full-image &
     +background-gradient($startColor: rgba(0,0,0,0), $endColor: rgba(0,0,0,0.75))
@@ -93,6 +93,7 @@ $card-hotel-content-padding: 13px
     left: 0
     position: absolute
     right: 0
+    padding: $card-content-padding
 
   .card--image-only &
     @extend %transition--base
