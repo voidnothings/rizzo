@@ -10,7 +10,6 @@
   display: table-cell
   text-align: center
   vertical-align: middle
-    
 
 .ad-leaderboard__inner
   @include border-radius(2)
@@ -62,6 +61,11 @@
   &.card__content
     @extend %ad-trafficDriver
     top: 0
+
+.ad--placeholder
+  height: 380px
+  visibility: hidden
+  z-index: 1
 
 .ad-sponsorTile
   @extend %ad-sponsorTile
