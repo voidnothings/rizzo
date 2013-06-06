@@ -25,11 +25,15 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
     listen: ->
       $(@config.LISTENER).on ':cards/request', (e, data) =>
         @_updateState(data)
-        @_callServer(@replace)
+        @_callServer(@_createRequestUrl(), @replace)
 
       $(@config.LISTENER).on ':cards/append', (e, data) =>
         @_updateState(data)
-        @_callServer(@append)
+        @_callServer(@_createRequestUrl(), @append)
+
+      $(@config.LISTENER).on ':page/request', (e, data) =>
+        @newDocumentRoot = data.url.split('?')[0]
+        @_callServer(@_createRequestUrl(@newDocumentRoot), @newPage)
 
 
     # Publish
@@ -41,11 +45,14 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
       @_navigate(@_createUrl())
       @trigger(':cards/append/received', [data, @state])
 
+    newPage: (data) =>
+      @_navigate(@_createUrl(newDocumentRoot))
+
 
     # Private
-    _callServer: (callback) ->
+    _callServer: (url, callback) ->
       $.ajax
-        url: @_createRequestUrl()
+        url: url
         dataType: 'json'
         success: callback
 
@@ -85,14 +92,18 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
     _serializeState: ->
       $.param(@state)
 
-    _createRequestUrl: () ->
-      @getDocumentRoot() + ".json?" + @_serializeState()
+    # If navigating to a subsection we pass in the new document root
+    _createRequestUrl: (rootUrl) ->
+      documentRoot = rootUrl or @getDocumentRoot()
+      documentRoot + ".json?" + @_serializeState()
 
-    _createUrl: ->
+    # If navigating to a subsection we pass in the new document root
+    _createUrl: (rootUrl) ->
+      documentRoot = rootUrl or @getDocumentRoot()
       if @_supportsHistory()
-        base = @getDocumentRoot() + "?" + @_serializeState()
+        base = documentRoot + "?" + @_serializeState()
       else
-        base = "#!" + @_serializeState()
+        base = "#!" + documentRoot + @_serializeState()
 
     _navigate: (url, callback) ->
       if (@_supportsHistory() or @_supportsHash())

@@ -100,18 +100,27 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         controller._generateState()
 
       describe 'with pushState support', ->
-        it 'serializes the state', ->
+        it 'serializes the state with the document root', ->
 
           newUrl = controller._createUrl()
           expect(newUrl).toBe("/?" + serialized.newUrlWithSearchAndFilters)
+
+        it 'serializes the state with the *new* document root', ->
+
+          newUrl = controller._createUrl("/reviewed")
+          expect(newUrl).toBe("/reviewed?" + serialized.newUrlWithSearchAndFilters)
 
       describe 'without pushState support', ->
         beforeEach ->
           spyOn(controller, "_supportsHistory").andReturn(false)
 
-        it 'creates a hashbang url', ->
+        it 'creates a hashbang url with the document root', ->
           newUrl = controller._createUrl()
-          expect(newUrl).toBe("#!" + serialized.newUrlWithSearchAndFilters)
+          expect(newUrl).toBe("#!/" + serialized.newUrlWithSearchAndFilters)
+
+        it 'creates a hashbang url with the *new* document root', ->
+          newUrl = controller._createUrl("/reviewed")
+          expect(newUrl).toBe("#!/reviewed" + serialized.newUrlWithSearchAndFilters)
 
 
     describe 'creating the request url', ->
@@ -120,9 +129,13 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         spyOn(controller, "_serializeState").andReturn(serialized.newUrlWithSearchAndFilters)
         spyOn(controller, "getDocumentRoot").andReturn("/foo")
 
-      it 'serializes the state and appends .json', ->
+      it 'serializes the state with the document root and appends .json', ->
         newUrl = controller._createRequestUrl()
         expect(newUrl).toBe("/foo.json?" + serialized.newUrlWithSearchAndFilters)
+
+      it 'serializes the state with the *new* document root and appends .json', ->
+        newUrl = controller._createRequestUrl("/bar")
+        expect(newUrl).toBe("/bar.json?" + serialized.newUrlWithSearchAndFilters)
 
 
     describe 'updating push state', ->
@@ -193,11 +206,7 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
       beforeEach ->
         window.controller = new Controller()
         spyOn($, "ajax")
-        spyOn(controller, "_createRequestUrl").andReturn("http://www.lonelyplanet.com/foo.json?foo=bar")
-        controller._callServer(callback)
-
-      it 'creates a new url', ->
-        expect(controller._createRequestUrl).toHaveBeenCalled()
+        controller._callServer("http://www.lonelyplanet.com/foo.json?foo=bar", callback)
 
       it 'enters the ajax function', ->
         expect($.ajax).toHaveBeenCalledWith({url: "http://www.lonelyplanet.com/foo.json?foo=bar", dataType : 'json', success : callback })
@@ -213,13 +222,14 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         loadFixtures('controller.html')
         window.controller = new Controller()
         spyOn(controller, "_callServer")
+        spyOn(controller, "_createRequestUrl").andReturn("http://www.lonelyplanet.com/foo.json?foo=bar")
         $(controller.config.LISTENER).trigger(':cards/request', newParams)
 
       it 'updates the internal state', ->
         expect(controller.state.filters).toBe(newParams.filters)
 
       it 'requests data from the server', ->
-        expect(controller._callServer).toHaveBeenCalledWith(controller.replace)
+        expect(controller._callServer).toHaveBeenCalledWith("http://www.lonelyplanet.com/foo.json?foo=bar", controller.replace)
 
 
     describe 'on cards append request', ->
@@ -227,14 +237,23 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         loadFixtures('controller.html')
         window.controller = new Controller()
         spyOn(controller, "_callServer")
+        spyOn(controller, "_createRequestUrl").andReturn("http://www.lonelyplanet.com/foo.json?foo=bar")
         $(controller.config.LISTENER).trigger(':cards/append', appendParams)
 
       it 'updates the internal state', ->
         expect(controller.state.page).toBe(2)
 
       it 'requests data from the server', ->
-        expect(controller._callServer).toHaveBeenCalledWith(controller.append)
+        expect(controller._callServer).toHaveBeenCalledWith("http://www.lonelyplanet.com/foo.json?foo=bar", controller.append)
 
+
+    describe 'on page request', ->
+      beforeEach ->
+        loadFixtures('controller.html')
+        window.controller = new Controller()
+        spyOn(controller, "_callServer")
+        spyOn(controller, "_augmentDocumentRoot")
+        $(controller.config.LISTENER).trigger(':page/request', "pageParams")
 
     describe 'when the server returns data', ->
       beforeEach ->
