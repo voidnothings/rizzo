@@ -111,7 +111,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
         loadFixtures('availability_info.html')
         window.avInfo = new AvailabilityInfo({ el: '.js-availability-info'})
         spyOn(avInfo, "_block")
-        $(avInfo.config.LISTENER).trigger(':page/request')
+        $(avInfo.config.LISTENER).trigger(':cards/request')
 
       it 'disables the availability form', ->
         expect(avInfo._block).toHaveBeenCalled()

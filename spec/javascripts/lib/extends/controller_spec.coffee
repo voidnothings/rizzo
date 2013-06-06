@@ -213,7 +213,7 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         loadFixtures('controller.html')
         window.controller = new Controller()
         spyOn(controller, "_callServer")
-        $(controller.config.LISTENER).trigger(':page/request', newParams)
+        $(controller.config.LISTENER).trigger(':cards/request', newParams)
 
       it 'updates the internal state', ->
         expect(controller.state.filters).toBe(newParams.filters)
@@ -227,7 +227,7 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         loadFixtures('controller.html')
         window.controller = new Controller()
         spyOn(controller, "_callServer")
-        $(controller.config.LISTENER).trigger(':page/append', appendParams)
+        $(controller.config.LISTENER).trigger(':cards/append', appendParams)
 
       it 'updates the internal state', ->
         expect(controller.state.page).toBe(2)

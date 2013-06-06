@@ -14,7 +14,7 @@ define ['jquery'], ($) ->
         $('body').removeClass('js-clock')
         false
 
-      $(@config.LISTENER).on ':page/append/received', (e) =>
+      $(@config.LISTENER).on ':cards/append/received', (e) =>
         $('body').removeClass('js-clock')
         false
 

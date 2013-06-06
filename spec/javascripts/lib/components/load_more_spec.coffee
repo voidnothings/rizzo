@@ -110,7 +110,7 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
         window.lm = new LoadMore({el: '.js-pagination'})
         spyOn(lm, "_reset")
         spyOn(lm, "_block")
-        $(lm.config.LISTENER).trigger(':page/request')
+        $(lm.config.LISTENER).trigger(':cards/request')
 
       it 'resets the pagination', ->
         expect(lm._reset).toHaveBeenCalled()
@@ -153,19 +153,19 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
         spyOn(lm, "_hide")
 
       it 'enables the pagination', ->
-        $(lm.config.LISTENER).trigger(':page/append/received', stub)
+        $(lm.config.LISTENER).trigger(':cards/append/received', stub)
         expect(lm._unblock).toHaveBeenCalled()
 
       it 'shows the pagination', ->
-        $(lm.config.LISTENER).trigger(':page/append/received', stub)
+        $(lm.config.LISTENER).trigger(':cards/append/received', stub)
         expect(lm._show).toHaveBeenCalled()
 
       it 'hides the pagination if the total pages is 0', ->
-        $(lm.config.LISTENER).trigger(':page/append/received', stub_single)
+        $(lm.config.LISTENER).trigger(':cards/append/received', stub_single)
         expect(lm._hide).toHaveBeenCalled()
 
       it 'hides the pagination if we are on the final page', ->
-        $(lm.config.LISTENER).trigger(':page/append/received', stub_final_page)
+        $(lm.config.LISTENER).trigger(':cards/append/received', stub_final_page)
         expect(lm._hide).toHaveBeenCalled()
 
 
@@ -173,7 +173,7 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
       beforeEach ->
         loadFixtures('load_more.html')
         window.lm = new LoadMore({el: '.js-pagination'})
-        spyEvent = spyOnEvent(lm.$el, ':page/append');
+        spyEvent = spyOnEvent(lm.$el, ':cards/append');
         spyOn(lm, "_block")
         spyOn(lm, "_serialize").andReturn("foo")
         lm.currentPage = 4
@@ -189,5 +189,5 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
         expect(lm._serialize).toHaveBeenCalled()
 
       it 'triggers the page/append event', ->
-        expect(':page/append').toHaveBeenTriggeredOnAndWith(lm.$el, "foo")
+        expect(':cards/append').toHaveBeenTriggeredOnAndWith(lm.$el, "foo")
 

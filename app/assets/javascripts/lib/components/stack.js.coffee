@@ -27,7 +27,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
 
     # Subscribe
     listen: ->
-      $(@config.LISTENER).on ':page/request', =>
+      $(@config.LISTENER).on ':cards/request', =>
         @_block()
         @_addLoader()
 
@@ -36,7 +36,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
         @_clear()
         @_add(data.content)
 
-      $(@config.LISTENER).on ':page/append/received', (e, data) =>
+      $(@config.LISTENER).on ':cards/append/received', (e, data) =>
         @_add(data.content)
 
       $(@config.LISTENER).on ':search/change', (e) =>

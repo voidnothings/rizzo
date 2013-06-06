@@ -26,11 +26,11 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
     
     # Subscribe
     listen: ->
-      $(@config.LISTENER).on ':page/request', =>
+      $(@config.LISTENER).on ':cards/request', =>
         @_block()
 
       $(@config.LISTENER).on ':page/received', (e, data, params) =>
-        if @hasSearched()
+        if @hasSearched() and @_isHidden()
           @_unblock()
           @_update(params.search)
           @_show()
@@ -70,5 +70,8 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
        @$btn.addClass('disabled').attr('disabled', true)
   
     _unblock: ->
-       @$btn.removeClass('disabled').attr('disabled', false)    
+       @$btn.removeClass('disabled').attr('disabled', false)
+
+    _isHidden: ->
+      @$el.hasClass('is-hidden')
 

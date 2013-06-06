@@ -207,7 +207,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         window.filter = new Filter({el: '#js-filters-change'})
         spyOn(filter, "_toggleActiveClass")
         spyOn(filter, "_serialize")
-        spyEvent = spyOnEvent(filter.$el, ':page/request');
+        spyEvent = spyOnEvent(filter.$el, ':cards/request');
         element = filter.$el.find('input[type=checkbox]')
         element.trigger('change')
       
@@ -218,7 +218,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         expect(filter._serialize).toHaveBeenCalled()
 
       it 'triggers the page request event', ->
-        expect(':page/request').toHaveBeenTriggeredOnAndWith(filter.$el, filter._serialize())
+        expect(':cards/request').toHaveBeenTriggeredOnAndWith(filter.$el, filter._serialize())
 
 
     describe 'when the user clicks a filter card', ->
@@ -227,7 +227,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         loadFixtures('filter.html')
         window.filter = new Filter({el: '#js-filters'})
         spyOn(filter, "_set")
-        spyEvent = spyOnEvent(filter.$el, ':page/request');
+        spyEvent = spyOnEvent(filter.$el, ':cards/request');
 
       it 'calls _set with the new filters', ->
         filterCard = $(filter.config.LISTENER).find('.js-stack-card-filter')
@@ -235,8 +235,8 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         filterCard.trigger('click')
         expect(filter._set).toHaveBeenCalledWith(filters, true)
 
-      it 'triggers the :page/request event with the correct params', ->
+      it 'triggers the :cards/request event with the correct params', ->
         filterCard = $(filter.config.LISTENER).find('.js-stack-card-filter')
         filterCard.trigger('click')
-        expect(':page/request').toHaveBeenTriggeredOn(filter.$el)
+        expect(':cards/request').toHaveBeenTriggeredOn(filter.$el)
 

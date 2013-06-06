@@ -37,7 +37,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
         # currentTarget.name filters out the checkboxes used to toggle the accordion
         if e.currentTarget.name
           @_toggleActiveClass(e.currentTarget)
-          @trigger(':page/request', @_serialize())
+          @trigger(':cards/request', @_serialize())
         false
 
       # Listen to filter cards that exist outside of the component
@@ -45,7 +45,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
         e.preventDefault()
         filters = $(e.currentTarget).find('[data-filter]').data('filter')
         @_set(filters, true)
-        @trigger(':page/request', @_serialize())
+        @trigger(':cards/request', @_serialize())
 
 
     # Private area
@@ -95,7 +95,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
           $input.attr('checked', false)
           label = $input.siblings('label.js-filter-label')
           label.removeClass('active')
-      @trigger(':page/request', @_serialize())
+      @trigger(':cards/request', @_serialize())
 
     
     

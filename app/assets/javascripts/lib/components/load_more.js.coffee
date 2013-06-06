@@ -34,7 +34,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
 
     # Subscribe
     listen: ->
-      $(@config.LISTENER).on ':page/request', =>
+      $(@config.LISTENER).on ':cards/request', =>
         @_block()
         @_reset()
 
@@ -42,7 +42,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
         @_unblock()
         if data.pagination.total is 0 or data.pagination.current is data.pagination.total then @_hide() else @_show()
 
-      $(@config.LISTENER).on ':page/append/received', (e, data) =>
+      $(@config.LISTENER).on ':cards/append/received', (e, data) =>
         @_unblock()
         if data.pagination.total is 0 or data.pagination.current is data.pagination.total then @_hide() else @_show()
 
@@ -52,7 +52,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
         e.preventDefault()
         @currentPage += 1
         @_block()
-        @trigger(':page/append', @_serialize())
+        @trigger(':cards/append', @_serialize())
 
     # Private
 

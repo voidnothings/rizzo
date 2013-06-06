@@ -23,11 +23,11 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
 
     # Subscribe
     listen: ->
-      $(@config.LISTENER).on ':page/request', (e, data) =>
+      $(@config.LISTENER).on ':cards/request', (e, data) =>
         @_updateState(data)
         @_callServer(@replace)
 
-      $(@config.LISTENER).on ':page/append', (e, data) =>
+      $(@config.LISTENER).on ':cards/append', (e, data) =>
         @_updateState(data)
         @_callServer(@append)
 
@@ -39,7 +39,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
 
     append: (data) =>
       @_navigate(@_createUrl())
-      @trigger(':page/append/received', [data, @state])
+      @trigger(':cards/append/received', [data, @state])
 
 
     # Private

@@ -109,7 +109,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
         window.stack = new Stack(config)
         spyOn(stack, "_addLoader")
         spyOn(stack, "_block")
-        $(stack.config.LISTENER).trigger(':page/request')
+        $(stack.config.LISTENER).trigger(':cards/request')
 
       it 'calls stack.addLoader', ->
         expect(stack._addLoader).toHaveBeenCalled()
@@ -149,7 +149,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
         beforeEach ->
           spyOn(stack, "_clear")
           spyOn(stack, "_add")
-          $(stack.config.LISTENER).trigger(':page/append/received', params)  
+          $(stack.config.LISTENER).trigger(':cards/append/received', params)  
 
         it 'does not call stack._clear', ->
           expect(stack._clear).not.toHaveBeenCalled()

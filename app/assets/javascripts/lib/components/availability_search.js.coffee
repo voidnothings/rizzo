@@ -29,7 +29,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
     
     # Subscribe
     listen: ->
-      $(@config.LISTENER).on ':page/request', =>
+      $(@config.LISTENER).on ':cards/request', =>
         @_block()
 
       $(@config.LISTENER).on ':page/received', (e, data) =>
@@ -47,7 +47,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
     broadcast: ->
       @$form.on 'submit', (e) =>
         e.preventDefault()
-        @trigger(':page/request', @_getSearchData())
+        @trigger(':cards/request', @_getSearchData())
         false
 
 

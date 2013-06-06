@@ -119,7 +119,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
         loadFixtures('availability.html')
         window.av = new Availability({el: '.js-availability-card'})
         spyOn(av, "_block")
-        $(av.config.LISTENER).trigger(':page/request')
+        $(av.config.LISTENER).trigger(':cards/request')
 
       it 'disables the availability form', ->
         expect(av._block).toHaveBeenCalled()
@@ -170,9 +170,9 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
         spyOn(av, "_getSearchData").andReturn("foo")
 
       it 'triggers the page request event with the search data', ->
-        spyEvent = spyOnEvent(av.$el, ':page/request');
+        spyEvent = spyOnEvent(av.$el, ':cards/request');
         av.$form.trigger('submit')
-        expect(':page/request').toHaveBeenTriggeredOnAndWith(av.$el, "foo")
+        expect(':cards/request').toHaveBeenTriggeredOnAndWith(av.$el, "foo")
 
 
     describe 'when the user wants to change dates', ->
