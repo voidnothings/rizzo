@@ -46,7 +46,8 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
       @trigger(':cards/append/received', [data, @state])
 
     newPage: (data) =>
-      @_navigate(@_createUrl(newDocumentRoot))
+      @_navigate(@_createUrl(@newDocumentRoot))
+      @trigger(':page/received', [data, @state])
 
 
     # Private
