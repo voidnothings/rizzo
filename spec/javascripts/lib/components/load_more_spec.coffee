@@ -91,16 +91,16 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
     # --------------------------------------------------------------------------
 
     stub =
-      pages :
+      pagination :
         total: 10
         current: 1
 
     stub_single =
-      pages:
+      pagination:
         total: 0
 
     stub_final_page =
-      pages:
+      pagination:
         total: 10
         current: 10
 

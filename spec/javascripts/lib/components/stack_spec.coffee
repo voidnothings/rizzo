@@ -6,7 +6,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
       types: ".test, .test2"
 
     params =
-      list: "<div class='test4'>Four</div><div class='test5'>Four</div><div class='test6'>Four</div>"
+      content: "<div class='test4'>Four</div><div class='test5'>Four</div><div class='test6'>Four</div>"
 
     describe 'Setup', ->
       it 'is defined', ->
@@ -86,7 +86,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
         loadFixtures('stack.html')
         window.stack = new Stack(config)
         spyOn(stack, "_show")
-        stack._add(params.list)
+        stack._add(params.content)
 
 
       it 'adds the stack with the returned cards', ->
@@ -137,7 +137,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
           expect(stack._clear).toHaveBeenCalled()
 
         it 'calls stack._add', ->
-          expect(stack._add).toHaveBeenCalledWith(params.list)
+          expect(stack._add).toHaveBeenCalledWith(params.content)
 
 
     describe 'on page append', ->
@@ -155,7 +155,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
           expect(stack._clear).not.toHaveBeenCalled()
 
         it 'calls stack._add', ->
-          expect(stack._add).toHaveBeenCalledWith(params.list)
+          expect(stack._add).toHaveBeenCalledWith(params.content)
 
 
     describe 'when the user clicks a disabled card', ->

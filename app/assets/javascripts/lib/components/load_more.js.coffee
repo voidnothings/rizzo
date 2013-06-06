@@ -40,11 +40,11 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
 
       $(@config.LISTENER).on ':page/received', (e, data) =>
         @_unblock()
-        if data.pages.total is 0 or data.pages.current is data.pages.total then @_hide() else @_show()
+        if data.pagination.total is 0 or data.pagination.current is data.pagination.total then @_hide() else @_show()
 
       $(@config.LISTENER).on ':page/append/received', (e, data) =>
         @_unblock()
-        if data.pages.total is 0 or data.pages.current is data.pages.total then @_hide() else @_show()
+        if data.pagination.total is 0 or data.pagination.current is data.pagination.total then @_hide() else @_show()
 
     # Publish
     broadcast: ->

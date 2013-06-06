@@ -34,10 +34,10 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
       $(@config.LISTENER).on ':page/received', (e, data) =>
         @_removeLoader()
         @_clear()
-        @_add(data.list)
+        @_add(data.content)
 
       $(@config.LISTENER).on ':page/append/received', (e, data) =>
-        @_add(data.list)
+        @_add(data.content)
 
       $(@config.LISTENER).on ':search/change', (e) =>
         @_block()

@@ -5,13 +5,12 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
     serialized = 
       url: "http://www.lonelyplanet.com/france/paris/hotels"
       urlWithSearchAndFilters: "http://www.lonelyplanet.com/england/london/hotels?utf8=✓&search%5Bpage_offsets%5D=0%2C58&search%5Bfrom%5D=29+May+2013&search%5Bto%5D=30+May+2013&search%5Bguests%5D=2&search%5Bcurrency%5D=USD&filters%5Bproperty_type%5D%5B3star%5D=true&filters%5Blp_reviewed%5D=true"
-      urlParams: "utf8=✓&search%5Bpage_offsets%5D=0%2C58&search%5Bfrom%5D=29+May+2013&search%5Bto%5D=30+May+2013&search%5Bguests%5D=2&search%5Bcurrency%5D=USD&filters%5Bproperty_type%5D%5B3star%5D=true&filters%5Blp_reviewed%5D=true"
+      urlParams: "utf8=✓&search%5Bfrom%5D=29+May+2013&search%5Bto%5D=30+May+2013&search%5Bguests%5D=2&search%5Bcurrency%5D=USD&filters%5Bproperty_type%5D%5B3star%5D=true&filters%5Blp_reviewed%5D=true"
       newUrlWithSearchAndFilters: "filters%5Bproperty_type%5D%5B4star%5D=true"
     
     deserialized =
       utf8: "✓"
       search:
-        page_offsets: "0,58"
         from: "29 May 2013"
         to: "30 May 2013"
         guests: "2"
