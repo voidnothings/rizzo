@@ -115,6 +115,17 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
           expect(newUrl).toBe("#!" + serialized.newUrlWithSearchAndFilters)
 
 
+    describe 'creating the request url', ->
+      beforeEach ->
+        window.controller = new Controller()
+        spyOn(controller, "_serializeState").andReturn(serialized.newUrlWithSearchAndFilters)
+        spyOn(controller, "getDocumentRoot").andReturn("/foo")
+
+      it 'serializes the state and appends .json', ->
+        newUrl = controller._createRequestUrl()
+        expect(newUrl).toBe("/foo.json?" + serialized.newUrlWithSearchAndFilters)
+
+
     describe 'updating push state', ->
       beforeEach ->
         spyOn(history, 'pushState');
@@ -183,14 +194,14 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
       beforeEach ->
         window.controller = new Controller()
         spyOn($, "ajax")
-        spyOn(controller, "_createUrl").andReturn("http://www.lonelyplanet.com?foo=bar")
+        spyOn(controller, "_createRequestUrl").andReturn("http://www.lonelyplanet.com/foo.json?foo=bar")
         controller._callServer(callback)
 
       it 'creates a new url', ->
-        expect(controller._createUrl).toHaveBeenCalled()
+        expect(controller._createRequestUrl).toHaveBeenCalled()
 
       it 'enters the ajax function', ->
-        expect($.ajax).toHaveBeenCalledWith({url: "http://www.lonelyplanet.com?foo=bar", dataType : 'json', success : callback })
+        expect($.ajax).toHaveBeenCalledWith({url: "http://www.lonelyplanet.com/foo.json?foo=bar", dataType : 'json', success : callback })
 
 
 
@@ -240,7 +251,6 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
 
       it 'triggers the page/received event', ->
         expect(':page/received').toHaveBeenTriggeredOnAndWith(controller.$el, newParams)
-
 
 
     describe 'when the server returns data and there is no support for pushState', ->

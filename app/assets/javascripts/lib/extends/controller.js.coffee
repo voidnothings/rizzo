@@ -45,7 +45,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
     # Private
     _callServer: (callback) ->
       $.ajax
-        url: @_createUrl()
+        url: @_createRequestUrl()
         dataType: 'json'
         success: callback
 
@@ -84,6 +84,9 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
 
     _serializeState: ->
       $.param(@state)
+
+    _createRequestUrl: () ->
+      @getDocumentRoot() + ".json?" + @_serializeState()
 
     _createUrl: ->
       if @_supportsHistory()
