@@ -28,7 +28,7 @@ require ['public/assets/javascripts/lib/components/stack_list.js'], (StackList) 
       it 'triggers the page request event', ->
         element = stackList.$el.find('.js-neighbourhood-item')
         params = {url: element.attr('href')}
-        spyEvent = spyOnEvent(stackList.$el, ':cards/request');
+        spyEvent = spyOnEvent(stackList.$el, ':page/request');
         
         element.trigger('click')
-        expect(':cards/request').toHaveBeenTriggeredOnAndWith(stackList.$el, params)
+        expect(':page/request').toHaveBeenTriggeredOnAndWith(stackList.$el, params)

@@ -248,7 +248,7 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
       it 'updates the push state', ->
         expect(controller._navigate).toHaveBeenCalledWith('foo')
 
-      it 'triggers the page/received event', ->
+      it 'triggers the cards/received event', ->
         expect(':cards/received').toHaveBeenTriggeredOnAndWith(controller.$el, newParams)
 
 
@@ -266,5 +266,5 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
       it 'updates the hashbang', ->
         expect(controller._navigate).toHaveBeenCalledWith('foo')
 
-      it 'trigger the page/received event', ->
+      it 'trigger the cards/received event', ->
         expect(':cards/received').toHaveBeenTriggeredOnAndWith(controller.$el, newParams)

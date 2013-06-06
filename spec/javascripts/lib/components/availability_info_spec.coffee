@@ -75,6 +75,20 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
         expect(avInfo.$el.hasClass('is-hidden')).toBe(true)
 
 
+    describe 'checking if hidden', ->
+
+      beforeEach ->
+        loadFixtures('availability_info.html')
+        window.avInfo = new AvailabilityInfo({ el: '.js-availability-info-hidden'})
+
+      it 'returns true if hidden', ->
+        expect(avInfo._isHidden()).toBe(true)
+
+      it 'returns false if visible', ->
+        avInfo.$el.removeClass('is-hidden')
+        expect(avInfo._isHidden()).toBe(false)
+
+
     describe 'blocking', ->
 
       beforeEach ->
@@ -140,6 +154,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
       describe 'when the user has entered dates', ->
         beforeEach ->
           spyOn(avInfo, "hasSearched").andReturn(true)
+          spyOn(avInfo, "_isHidden").andReturn(true)
           $(avInfo.config.LISTENER).trigger(':cards/received', ["", params])
 
         it 'shows the info card', ->
