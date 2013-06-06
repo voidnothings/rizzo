@@ -1,4 +1,8 @@
-.card__hero--hotels  
+// -----------------------------------------------------------------------------
+// Hero card image overlay
+// -----------------------------------------------------------------------------
+
+.card__hero--hotels
   &:after
     @extend %empty-abs-generated-content
     background-image: image_url('collections/best-places.png')
@@ -63,22 +67,35 @@
   bottom: 0
   color: $body-copy
   left: 0
-  padding: 8px
+  padding: 0 $card-content-padding $card-content-padding
   right: 0
   z-index: 1
 
-  .card--list--lodging &
-    padding: 8px
-
-  // TODO: uncomment this when extended content section is required
   // fade to white at the top of the footer - needed when footer obscures content fadeout
-  // &:after
-  //   @extend %empty-abs-generated-content
-  //   +background-gradient($startColor: rgba(255,255,255,0), $endColor: rgba(255,255,255,1.0))
-  //   height: 20px
-  //   left: 0
-  //   right: 0
-  //   top: -20px
+  &:after
+    @extend %empty-abs-generated-content
+    +background-gradient($startColor: rgba(255,255,255,0), $endColor: rgba(255,255,255,0.9))
+    height: $card-content-padding
+    left: 0
+    right: 0
+    top: -$card-content-padding
+
+.destination__item-count
+  @extend %irregular-type
+  color: $body
+  margin-right: 5px
+  &:before
+    @extend %benton-regular
+
+.destination__item-count--sights
+  @extend %icon-image-poi-sight-before
+  &:before
+    font-size: 25px
+
+.destination__item-count--lodgings
+  @extend %icon-image-poi-hotel-before
+  &:before
+    font-size: 30px
 
 
 // -----------------------------------------------------------------------------
@@ -103,10 +120,9 @@
     left: 8px
     right: 8px
 
-    // TODO: uncomment this when extended content section is required
     // remove top fadeout
-    // &:after
-    //   content: none
+    &:after
+      content: none
 
   .btn--bookable
     @extend %irregular-type
