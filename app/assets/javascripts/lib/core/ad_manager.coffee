@@ -24,6 +24,7 @@ define ['jquery', 'gpt'], ->
 
       googletag.cmd.push ->
         adCount = 0
+        ord = Math.random()
         toDisplay = lp.ads.toDisplay
         toPoll = {}
 
@@ -66,6 +67,14 @@ define ['jquery', 'gpt'], ->
             toPoll[newId] = adManager.showAd
 
           adUnit = googletag.defineSlot("/"+unit.join("/"), adSize, newId).addService(pubAds)
+
+          # These are also deprecated and can be removed at some point in the future.
+          adUnit.setTargeting('ord', ord)
+          adUnit.setTargeting('tile', adCount)
+          if /oneByOne/.test(type)
+            adUnit.setTargeting('sz', '1x1')
+          # End deprecated.
+
           adManager.adUnits[newId] = adUnit
 
           # DFP code... we can't use this until the switch to the new DFP server happens and we figure out how this works.
@@ -84,12 +93,12 @@ define ['jquery', 'gpt'], ->
             pubAds.setTargeting(key, lp.ads.keyValues[key])
 
         # Deprecated key:value pairs
-        pubAds.setTargeting("adZone", lp.ads.adZone)
         pubAds.setTargeting("ctt", lp.ads.continent) if lp.ads.continent
         pubAds.setTargeting("cnty", lp.ads.country) if lp.ads.country
         pubAds.setTargeting("dest", lp.ads.destination) if lp.ads.destination
         pubAds.setTargeting("tnm", lp.ads.adTnm) if lp.ads.adTnm
         pubAds.setTargeting("thm", lp.ads.adThm) if lp.ads.adThm
+        # End deprecated.
 
         pubAds.enableSingleRequest()
         pubAds.collapseEmptyDivs()
