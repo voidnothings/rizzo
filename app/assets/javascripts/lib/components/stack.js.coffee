@@ -31,7 +31,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
         @_block()
         @_addLoader()
 
-      $(@config.LISTENER).on ':page/received', (e, data) =>
+      $(@config.LISTENER).on ':cards/received', (e, data) =>
         @_removeLoader()
         @_clear()
         @_add(data.content)

@@ -208,7 +208,7 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
     # Events API
     # --------------------------------------------------------------------------
 
-    describe 'on page request', ->
+    describe 'on cards request', ->
       beforeEach ->
         loadFixtures('controller.html')
         window.controller = new Controller()
@@ -222,7 +222,7 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         expect(controller._callServer).toHaveBeenCalledWith(controller.replace)
 
 
-    describe 'on page append request', ->
+    describe 'on cards append request', ->
       beforeEach ->
         loadFixtures('controller.html')
         window.controller = new Controller()
@@ -240,7 +240,7 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
       beforeEach ->
         loadFixtures('controller.html')
         window.controller = new Controller()
-        spyEvent = spyOnEvent(controller.$el, ':page/received');
+        spyEvent = spyOnEvent(controller.$el, ':cards/received');
         spyOn(controller, "_createUrl").andReturn('foo')
         spyOn(controller, "_navigate")
         controller.replace(newParams)
@@ -249,14 +249,14 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         expect(controller._navigate).toHaveBeenCalledWith('foo')
 
       it 'triggers the page/received event', ->
-        expect(':page/received').toHaveBeenTriggeredOnAndWith(controller.$el, newParams)
+        expect(':cards/received').toHaveBeenTriggeredOnAndWith(controller.$el, newParams)
 
 
     describe 'when the server returns data and there is no support for pushState', ->
       beforeEach ->
         loadFixtures('controller.html')
         window.controller = new Controller()
-        spyEvent = spyOnEvent(controller.$el, ':page/received');
+        spyEvent = spyOnEvent(controller.$el, ':cards/received');
         spyOn(controller, "_supportsHistory").andReturn(false)
         spyOn(controller, "_supportsHash").andReturn(true)
         spyOn(controller, "_createUrl").andReturn('foo')
@@ -267,4 +267,4 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         expect(controller._navigate).toHaveBeenCalledWith('foo')
 
       it 'trigger the page/received event', ->
-        expect(':page/received').toHaveBeenTriggeredOnAndWith(controller.$el, newParams)
+        expect(':cards/received').toHaveBeenTriggeredOnAndWith(controller.$el, newParams)

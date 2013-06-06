@@ -103,7 +103,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
     # Events API
     # --------------------------------------------------------------------------
 
-    describe 'on page request', ->
+    describe 'on cards request', ->
       beforeEach ->
         loadFixtures('stack.html')
         window.stack = new Stack(config)
@@ -128,7 +128,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
           spyOn(stack, "_removeLoader")
           spyOn(stack, "_clear")
           spyOn(stack, "_add")
-          $(stack.config.LISTENER).trigger(':page/received', params)  
+          $(stack.config.LISTENER).trigger(':cards/received', params)  
 
         it 'calls stack._removeLoader', ->
           expect(stack._removeLoader).toHaveBeenCalled()

@@ -35,7 +35,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
     # Publish
     replace: (data) =>
       @_navigate(@_createUrl())
-      @trigger(':page/received', [data, @state])
+      @trigger(':cards/received', [data, @state])
 
     append: (data) =>
       @_navigate(@_createUrl())

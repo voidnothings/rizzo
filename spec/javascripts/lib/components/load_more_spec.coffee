@@ -104,7 +104,7 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
         total: 10
         current: 10
 
-    describe 'on page request', ->
+    describe 'on cards request', ->
       beforeEach ->
         loadFixtures('load_more.html')
         window.lm = new LoadMore({el: '.js-pagination'})
@@ -128,19 +128,19 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
         spyOn(lm, "_hide")
 
       it 'enables the pagination', ->
-        $(lm.config.LISTENER).trigger(':page/received', stub)
+        $(lm.config.LISTENER).trigger(':cards/received', stub)
         expect(lm._unblock).toHaveBeenCalled()
 
       it 'shows the pagination', ->
-        $(lm.config.LISTENER).trigger(':page/received', stub)
+        $(lm.config.LISTENER).trigger(':cards/received', stub)
         expect(lm._show).toHaveBeenCalled()
 
       it 'hides the pagination if the total pages is 0', ->
-        $(lm.config.LISTENER).trigger(':page/received', stub_single)
+        $(lm.config.LISTENER).trigger(':cards/received', stub_single)
         expect(lm._hide).toHaveBeenCalled()
 
       it 'hides the pagination if we are on the final page', ->
-        $(lm.config.LISTENER).trigger(':page/received', stub_final_page)
+        $(lm.config.LISTENER).trigger(':cards/received', stub_final_page)
         expect(lm._hide).toHaveBeenCalled()
 
 

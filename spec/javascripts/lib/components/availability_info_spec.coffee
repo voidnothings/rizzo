@@ -106,7 +106,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
     # Events API
     # --------------------------------------------------------------------------
 
-    describe 'on page request', ->
+    describe 'on cards request', ->
       beforeEach ->
         loadFixtures('availability_info.html')
         window.avInfo = new AvailabilityInfo({ el: '.js-availability-info'})
@@ -129,7 +129,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
       describe 'when the user has not entered dates', ->
         beforeEach ->
           spyOn(avInfo, "hasSearched").andReturn(false)
-          $(avInfo.config.LISTENER).trigger(':page/received', ["", params])
+          $(avInfo.config.LISTENER).trigger(':cards/received', ["", params])
 
         it 'does not show the info card', ->
           expect(avInfo._show).not.toHaveBeenCalled()
@@ -140,7 +140,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
       describe 'when the user has entered dates', ->
         beforeEach ->
           spyOn(avInfo, "hasSearched").andReturn(true)
-          $(avInfo.config.LISTENER).trigger(':page/received', ["", params])
+          $(avInfo.config.LISTENER).trigger(':cards/received', ["", params])
 
         it 'shows the info card', ->
           expect(avInfo._show).toHaveBeenCalled()

@@ -10,7 +10,7 @@ define ['jquery'], ($) ->
 
     # Subscribe
     listen: ->
-      $(@config.LISTENER).on ':page/received', (e) ->
+      $(@config.LISTENER).on ':cards/received', (e) ->
         $('body').removeClass('js-clock')
         false
 

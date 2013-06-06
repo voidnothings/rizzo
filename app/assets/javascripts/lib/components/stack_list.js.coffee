@@ -24,7 +24,7 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter ) ->
       @$el.on 'click' , @config.list, (e) =>
         e.preventDefault()
         @_select(e.currentTarget)
-        @trigger(':cards/request', {url: $(e.currentTarget).attr('href')})
+        @trigger(':page/request', {url: $(e.currentTarget).attr('href')})
 
     
     # Private

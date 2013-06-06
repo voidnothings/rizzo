@@ -12,7 +12,7 @@ define ['jquery'], ($) ->
 
     # Subscribe
     listen: ->
-      $(@config.LISTENER).on ':page/received', (e, data) =>
+      $(@config.LISTENER).on ':cards/received', (e, data) =>
         if data.copy.title
           @_updateTitle(data.copy.title)
           @_updateMeta(data)
