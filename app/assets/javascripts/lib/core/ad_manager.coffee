@@ -4,7 +4,8 @@ define ['jquery', 'gpt'], ->
     sizes:
       adSense: [155,256]
       leaderboard: [[970,66], [728,90]]
-      mpu: [[300,250], [300, 600]]
+      # mpu: [[300,250], [300, 600]]
+      mpu: [300, 600]
       oneByOne: [1,1]
       sponsorTile: [276,32]
       trafficDriver: [192,380]
@@ -131,7 +132,7 @@ define ['jquery', 'gpt'], ->
 
           # Eliminate all cards preceding our ad element so we can place a dummy el at the nth position *after* the current one using .eq()
           cards = $(cards.splice(thisCardIndex))
-          dummyCard = '<div class="card card--ad card--double card--list card--placeholder js-card" />'
+          dummyCard = '<div class="card card--double ad--placeholder js-card" />'
 
           # cardsPerRow - 2 because the mpu takes the width of 2 cards.
           cards.eq(cardsPerRow - 2).after(dummyCard)
