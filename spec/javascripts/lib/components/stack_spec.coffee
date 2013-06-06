@@ -149,7 +149,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
         beforeEach ->
           spyOn(stack, "_clear")
           spyOn(stack, "_add")
-          $(stack.config.LISTENER).trigger(':page/append', params)  
+          $(stack.config.LISTENER).trigger(':page/append/received', params)  
 
         it 'does not call stack._clear', ->
           expect(stack._clear).not.toHaveBeenCalled()

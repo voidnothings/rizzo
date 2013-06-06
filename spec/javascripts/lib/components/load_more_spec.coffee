@@ -91,15 +91,18 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
     # --------------------------------------------------------------------------
 
     stub =
-      total: 10
-      current: 1
+      pages :
+        total: 10
+        current: 1
 
     stub_single =
-      total: 0
+      pages:
+        total: 0
 
     stub_final_page =
-      total: 10
-      current: 10
+      pages:
+        total: 10
+        current: 10
 
     describe 'on page request', ->
       beforeEach ->
