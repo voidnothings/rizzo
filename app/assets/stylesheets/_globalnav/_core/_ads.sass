@@ -37,7 +37,7 @@
 // ----------------------------------------------------------------------------
 .card--ad
   .card__tag--horizontal
-    +transition(opacity, 0.5, ease)
+    +transition(opacity, 1, ease)
 
   &.is-closed
     margin-left: 0
@@ -55,7 +55,7 @@
 .ad-trafficDriver, .ad-sponsorTile, .ad-mpu, .ad-doubleMpu
   &.card__content
     @extend %block-center
-    +transition(all, 0.5, ease)
+    +transition(all, 1, ease)
 
 .ad-trafficDriver
   &.card__content
@@ -80,19 +80,36 @@
 .ad-mpu.card__content
   @extend %ad-mpu
 
-.results .card.ad-doubleMpu
-  @extend %ad-doubleMpu
-  +multiple-transitions(height 0.5s ease, width 0.5s ease)
-  z-index: 2
+.results .card
+  &.card--ad
+    +multiple-transitions(height 1s ease, width 1s ease)
+  
+  &.ad-doubleMpu
+    @extend %ad-doubleMpu
+    z-index: 2
 
-  .card__content
-    height: 600px
-    top: 80px
+    .card__content
+      height: 600px
+      top: 80px
 
 .ad-wallpaper
   background-position: center top
   background-repeat: no-repeat
   cursor: pointer
+  position: relative
+
+  .row__inner--content
+    z-index: 2
+
+  &:after
+    @extend %empty-abs-generated-content
+    +background-gradient($startColor: rgba(255,255,255,0), $endColor: $body-background)
+    height: 150px
+    // The wallpapers are always the same size (according to the specs sent to the traffickers). We can change the spec
+    //  but until traffickers start uploading the new ones, this will have to do.
+    top: 1150px
+    width: 100%
+    z-index: 1
 
   .row__inner, .row--footer-push
     cursor: default
