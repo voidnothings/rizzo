@@ -13,11 +13,11 @@ define ['jquery', 'jplugs/pickadate.legacy'], ($) ->
  
     constructor: (@target, @callbacks = {}) ->
       self = @
-      @firstTime = true
       @in_date =  $(@target).find("#js-av-start")
       @out_date = $(@target).find("#js-av-end")
       @in_label = $('.js-av-start-label')
       @out_label = $('.js-av-end-label')
+      @firstTime = if (@in_date.val() is ''  or @in_date.val() is undefined) then true else false
       today = []
       tomorrow = []
       d = new Date()
