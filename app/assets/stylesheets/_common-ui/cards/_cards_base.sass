@@ -100,9 +100,9 @@ $image-only-padding:           7px
     color: #fff
     height: auto
     left: 0
+    padding: $card-content-padding
     position: absolute
     right: 0
-    padding: $card-content-padding
 
   .card--image-only &
     @extend %transition--base
@@ -117,3 +117,24 @@ $image-only-padding:           7px
 
   .js-hover .card--image-only:hover &
     bottom: 3px
+
+
+// -----------------------------------------------------------------------------
+// Card Extended Content
+// -----------------------------------------------------------------------------
+
+.card--extended-content
+  height: $card-grid-height
+
+  .card__content
+    +transition(height, 0.5, ease)
+    background: #fff
+    bottom: 0
+    left: 0
+    position: absolute
+    right: 0
+    z-index: 3
+
+  &:hover
+    .card__content
+      height: $card-grid-height - ( 2*$card-hotel-content-padding) - 45px !important // important until hotel image padding is the same...

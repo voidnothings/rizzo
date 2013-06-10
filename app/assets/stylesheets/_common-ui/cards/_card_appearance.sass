@@ -71,14 +71,15 @@
   right: 0
   z-index: 1
 
-  // fade to white at the top of the footer - needed when footer obscures content fadeout
-  &:after
-    @extend %empty-abs-generated-content
-    +background-gradient($startColor: rgba(255,255,255,0), $endColor: rgba(255,255,255,0.9))
-    height: $card-content-padding
-    left: 0
-    right: 0
-    top: -$card-content-padding
+  // fade to white at the top of the footer when extended content
+  .card--extended-content &
+    &:after
+      @extend %empty-abs-generated-content
+      +background-gradient($startColor: rgba(255,0,255,0), $endColor: rgba(255,0,255,0.9))
+      height: $card-content-padding
+      left: 0
+      right: 0
+      top: -$card-content-padding
 
 .destination__item-count
   @extend %irregular-type
@@ -116,29 +117,17 @@
       height: ($card-grid-height - $small-card-image-height - (2 * $card-hotel-content-padding) )
 
   .card__footer
-    bottom: 8px
-    left: 8px
-    right: 8px
-
-    // remove top fadeout
-    &:after
-      content: none
+    padding: 0 8px 8px 8px
 
   .btn--bookable
     @extend %irregular-type
-    position: absolute
-    bottom: 0
-    line-height: inherit
     padding: 10px 12px
-    right: 0
     width: auto
 
   .badge--lp-reviewed
-    left: 0
-    bottom: 0
+    left: 8px
     height: 23px
 
   .badge--top-choice
     height: 24px
-    left: 30px
-    bottom: 0
+    left: 38px
