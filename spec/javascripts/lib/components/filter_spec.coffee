@@ -182,7 +182,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
           loadFixtures('filter.html')
           window.filter = new Filter({el: '#js-filters'})
           spyOn(filter, "_update")
-          $(filter.config.LISTENER).trigger(':cards/received', "foo")
+          $(filter.config.LISTENER).trigger(':page/received', "foo")
 
         it 'updates the filters', ->
           expect(filter._update).toHaveBeenCalledWith("foo")
