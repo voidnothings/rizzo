@@ -86,14 +86,15 @@
       top: 15px
 
 // TODO: put back POI icon styles when they're required
-.card--poi--hotel
-  &.card--no-image
-    @extend %icon-poi-hotel-before
-    &:before
-      color: $hotels-poi
+.with-hotel-badges
+  .card--poi--hotel
+    &.card--no-image
+      @extend %icon-poi-hotel-before
+      &:before
+        color: $hotels-poi
 
-  &.card--small-image
-    @extend %icon-image-poi-hotel-before
+    &.card--small-image
+      @extend %icon-image-poi-hotel-before
 
 
 // -----------------------------------------------------------------------------
