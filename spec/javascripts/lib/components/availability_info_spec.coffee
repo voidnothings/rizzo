@@ -146,9 +146,9 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
           $(avInfo.config.LISTENER).trigger(':cards/received', ["", params])
 
         it 'does not show the info card', ->
+          expect(avInfo._unblock).toHaveBeenCalled()
           expect(avInfo._show).not.toHaveBeenCalled()
           expect(avInfo._update).not.toHaveBeenCalled()
-          expect(avInfo._unblock).not.toHaveBeenCalled()
 
 
       describe 'when the user has entered dates', ->

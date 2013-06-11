@@ -13,7 +13,7 @@ define ['jquery'], ($) ->
     # Subscribe
     listen: ->
       $(@config.LISTENER).on ':cards/received', (e, data) =>
-        if data.copy.title
+        if data.copy && data.copy.title
           @_updateTitle(data.copy.title)
           @_updateMeta(data)
           @_updateView(data)
