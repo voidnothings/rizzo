@@ -3,12 +3,13 @@ define ['jquery', 'lib/extends/events','lib/components/group_toggle'], ($, Event
   class StackIntro extends EventEmitter
 
     constructor: (args={}) ->
-
-      @config = 
+      @config =
+        LISTENER: '#js-card-holder'
         el: '.js-stack-intro'
         title: '.js-copy-title'
         lead: '.js-copy-lead'
         body: '.js-copy-body' 
+
       $.extend @config, args
 
       @$el = $(@config.el)
@@ -16,11 +17,21 @@ define ['jquery', 'lib/extends/events','lib/components/group_toggle'], ($, Event
       @$lead = $("#{@config.el} #{@config.lead}")
       @$body = $("#{@config.el} #{@config.body}")
       @init()
+      @listen()
 
     init: ->
       @_introContentToggle = new GroupToggle({el: "#{@config.el} .js-group-toggle" })
 
-    update: (args) ->
+    listen: ->
+      $(@config.LISTENER).on ':cards/received', (e, data) =>
+        @_update(data.copy)
+
+      $(@config.LISTENER).on ':page/received', (e, data) =>
+        @_update(data.copy)
+
+    # Private
+
+    _update: (args) ->
       @_checkContent(args)
       @$title.text(args.title)
       @$lead.text(args.lead)
