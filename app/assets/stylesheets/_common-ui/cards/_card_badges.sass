@@ -73,7 +73,7 @@
     position: absolute
     pointer-events: none
     top: 25px
-    z-index: 5
+    z-index: 3
 
 .card--poi
   @extend %card-icon
@@ -81,19 +81,65 @@
   &.card--small-image
     &:before
       color: #fff
-      font-size: 50px
+      font-size: 40px
       text-shadow: 0 0 5px rgba(0,0,0,0.75)
-      top: 15px
+      top: 20px
 
-// TODO: put back POI icon styles when they're required
 .card--poi--hotel
   &.card--no-image
     @extend %icon-poi-hotel-before
     &:before
       color: $hotels-poi
-
   &.card--small-image
     @extend %icon-image-poi-hotel-before
+
+.card--poi--sight
+  &.card--no-image
+    @extend %icon-poi-sight-before
+    &:before
+      color: $sight-poi
+  &.card--small-image
+    @extend %icon-image-poi-sight-before
+
+.card--poi--activity
+  &.card--no-image
+    @extend %icon-poi-activity-before
+    &:before
+      color: $activity-poi
+  &.card--small-image
+    @extend %icon-image-poi-activity-before
+
+.card--poi--tour
+  &.card--no-image
+    @extend %icon-poi-tour-before
+    &:before
+      color: $tour-poi
+  &.card--small-image
+    @extend %icon-image-poi-tour-before
+
+.card--poi--shopping
+  &.card--no-image
+    @extend %icon-poi-shopping-before
+    &:before
+      color: $shopping-poi
+  &.card--small-image
+    @extend %icon-image-poi-shopping-before
+
+.card--poi--entertainment
+  &.card--no-image
+    @extend %icon-poi-entertainment-before
+    &:before
+      color: $entertainment-poi
+  &.card--small-image
+    @extend %icon-image-poi-entertainment-before
+
+.card--poi--restaurant
+  &.card--no-image
+    @extend %icon-poi-restaurant-before
+    &:before
+      color: $restaurant-poi
+  &.card--small-image
+    @extend %icon-image-poi-restaurant-before
 
 
 // -----------------------------------------------------------------------------
