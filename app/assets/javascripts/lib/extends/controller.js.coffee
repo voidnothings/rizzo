@@ -96,6 +96,9 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
         if params.hasOwnProperty(key)
           @state[key] = params[key]
 
+    _updateOffset: (pagination) ->
+      @state.search.page_offsets = pagination.page_offsets if @state.search
+
     _serializeState: ->
       $.param(@state)
 

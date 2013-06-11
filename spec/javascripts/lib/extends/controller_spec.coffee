@@ -24,6 +24,8 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
       filters:
         property_type:
           "4star": true
+      pagination:
+        page_offsets: 2
 
     appendParams =
       page: 2
@@ -139,6 +141,16 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
       it 'serializes the state with the *new* document root and appends .json', ->
         newUrl = controller._createRequestUrl("/bar")
         expect(newUrl).toBe("/bar.json?" + serialized.newUrlWithSearchAndFilters)
+
+
+    describe 'updating the page offset', ->
+      beforeEach ->
+        window.controller = new Controller()
+        controller.state = deserialized
+        controller._updateOffset({page_offsets: 3})
+
+      it 'should update the state with the returned page offset', ->
+        expect(controller.state.search.page_offsets).toBe(3)
 
 
     describe 'updating push state', ->
@@ -264,7 +276,11 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         spyEvent = spyOnEvent(controller.$el, ':cards/received');
         spyOn(controller, "_createUrl").andReturn('foo')
         spyOn(controller, "_navigate")
+        spyOn(controller, "_updateOffset")
         controller.replace(newParams)
+
+      it 'updates the page offset', ->
+        expect(controller._updateOffset).toHaveBeenCalledWith(newParams.pagination)
 
       it 'updates the push state', ->
         expect(controller._navigate).toHaveBeenCalledWith('foo')
