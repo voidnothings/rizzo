@@ -23,39 +23,45 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
 
     # Subscribe
     listen: ->
-      $(@config.LISTENER).on ':cards/request', (e, data) =>
+      $(@config.LISTENER).on ':cards/request', (e, data, analytics) =>
         @_updateState(data)
-        @_callServer(@_createRequestUrl(), @replace)
+        @_callServer(@_createRequestUrl(), @replace, analytics)
 
-      $(@config.LISTENER).on ':cards/append', (e, data) =>
+      $(@config.LISTENER).on ':cards/append', (e, data, analytics) =>
         @_updateState(data)
-        @_callServer(@_createRequestUrl(), @append)
+        @_callServer(@_createRequestUrl(), @append, analytics)
 
-      $(@config.LISTENER).on ':page/request', (e, data) =>
+      $(@config.LISTENER).on ':page/request', (e, data, analytics) =>
         @newDocumentRoot = data.url.split('?')[0]
-        @_callServer(@_createRequestUrl(@newDocumentRoot), @newPage)
+        @_callServer(@_createRequestUrl(@newDocumentRoot), @newPage, analytics)
 
 
     # Publish
-    replace: (data) =>
-      @_navigate(@_createUrl())
-      @trigger(':cards/received', [data, @state])
 
-    append: (data) =>
+    # Page offset currently lives within search so we must check and update each time
+    replace: (data, analytics) =>
+      @_updateOffset(data.pagination) if data.pagination and data.pagination.page_offsets
       @_navigate(@_createUrl())
-      @trigger(':cards/append/received', [data, @state])
+      @trigger(':cards/received', [data, @state, analytics])
 
-    newPage: (data) =>
+    append: (data, analytics) =>
+      @_updateOffset(data.pagination) if data.pagination and data.pagination.page_offsets
+      @_navigate(@_createUrl())
+      @trigger(':cards/append/received', [data, @state, analytics])
+
+    newPage: (data, analytics) =>
+      @_updateOffset(data.pagination) if data.pagination and data.pagination.page_offsets
       @_navigate(@_createUrl(@newDocumentRoot))
-      @trigger(':page/received', [data, @state])
+      @trigger(':page/received', [data, @state, analytics])
 
 
     # Private
-    _callServer: (url, callback) ->
+    _callServer: (url, callback, analytics) ->
       $.ajax
         url: url
         dataType: 'json'
-        success: callback
+        success: (data) ->
+          callback(data, analytics)
 
     _initHistory: ->
       if @_supportsHistory()

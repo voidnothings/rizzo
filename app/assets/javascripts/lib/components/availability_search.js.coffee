@@ -47,7 +47,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
     broadcast: ->
       @$form.on 'submit', (e) =>
         e.preventDefault()
-        @trigger(':cards/request', @_getSearchData())
+        @trigger(':cards/request', [@_getSearchData(), {callback: "trackSearch"}])
         false
 
 

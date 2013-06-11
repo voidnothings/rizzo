@@ -28,6 +28,9 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
     appendParams =
       page: 2
 
+    analytics = 
+      callback: "setSearch"
+
     describe 'Setup', ->
 
       it 'is defined', ->
@@ -202,14 +205,13 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
 
 
     describe 'calling the server', ->
-      callback = -> "foo"
       beforeEach ->
         window.controller = new Controller()
         spyOn($, "ajax")
-        controller._callServer("http://www.lonelyplanet.com/foo.json?foo=bar", callback)
+        controller._callServer("http://www.lonelyplanet.com/foo.json?foo=bar", "foo")
 
       it 'enters the ajax function', ->
-        expect($.ajax).toHaveBeenCalledWith({url: "http://www.lonelyplanet.com/foo.json?foo=bar", dataType : 'json', success : callback })
+        expect($.ajax).toHaveBeenCalled()
 
 
 
@@ -223,13 +225,13 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         window.controller = new Controller()
         spyOn(controller, "_callServer")
         spyOn(controller, "_createRequestUrl").andReturn("http://www.lonelyplanet.com/foo.json?foo=bar")
-        $(controller.config.LISTENER).trigger(':cards/request', newParams)
+        $(controller.config.LISTENER).trigger(':cards/request', newParams, analytics)
 
       it 'updates the internal state', ->
         expect(controller.state.filters).toBe(newParams.filters)
 
       it 'requests data from the server', ->
-        expect(controller._callServer).toHaveBeenCalledWith("http://www.lonelyplanet.com/foo.json?foo=bar", controller.replace)
+        expect(controller._callServer).toHaveBeenCalledWith("http://www.lonelyplanet.com/foo.json?foo=bar", controller.replace, controller.analytics)
 
 
     describe 'on cards append request', ->
@@ -238,13 +240,13 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         window.controller = new Controller()
         spyOn(controller, "_callServer")
         spyOn(controller, "_createRequestUrl").andReturn("http://www.lonelyplanet.com/foo.json?foo=bar")
-        $(controller.config.LISTENER).trigger(':cards/append', appendParams)
+        $(controller.config.LISTENER).trigger(':cards/append', appendParams, analytics)
 
       it 'updates the internal state', ->
         expect(controller.state.page).toBe(2)
 
       it 'requests data from the server', ->
-        expect(controller._callServer).toHaveBeenCalledWith("http://www.lonelyplanet.com/foo.json?foo=bar", controller.append)
+        expect(controller._callServer).toHaveBeenCalledWith("http://www.lonelyplanet.com/foo.json?foo=bar", controller.append, controller.analytics)
 
 
     describe 'on page request', ->

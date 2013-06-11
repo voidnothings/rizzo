@@ -52,7 +52,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
         e.preventDefault()
         @currentPage += 1
         @_block()
-        @trigger(':cards/append', @_serialize())
+        @trigger(':cards/append', [@_serialize(), {callback: "trackPagination"}])
 
     # Private
 

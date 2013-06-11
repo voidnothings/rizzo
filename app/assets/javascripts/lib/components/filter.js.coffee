@@ -37,7 +37,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
         # currentTarget.name filters out the checkboxes used to toggle the accordion
         if e.currentTarget.name
           @_toggleActiveClass(e.currentTarget)
-          @trigger(':cards/request', @_serialize())
+          @trigger(':cards/request', [@_serialize(), {callback: "trackFilter"}])
         false
 
       # Listen to filter cards that exist outside of the component

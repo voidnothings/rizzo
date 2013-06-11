@@ -8,6 +8,8 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter ) ->
       el: null
       list: null
       LISTENER: '#js-card-holder'
+      analytics:
+        callback: "trackStack"
       
     constructor: (args={}) ->
       $.extend @config, args
@@ -23,11 +25,14 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter ) ->
     broadcast: ->  
       @$el.on 'click' , @config.list, (e) =>
         e.preventDefault()
-        @_select(e.currentTarget)
-        @trigger(':page/request', {url: $(e.currentTarget).attr('href')})
+        $this = $(e.currentTarget)
+        @_select($this)
+        @config.analytics.url = $this.attr('href')
+        @config.analytics.stack = $this.data("card-kind") or ""
+        @trigger(':page/request', [{url: @config.analytics.url}, @config.analytics])
 
     
     # Private
-    _select: (target) ->
+    _select: (el) ->
       @$list.removeClass('nav__item--current--stack')
-      $(target).addClass('nav__item--current--stack')
+      el.addClass('nav__item--current--stack')
