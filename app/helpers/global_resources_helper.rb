@@ -147,6 +147,8 @@ module GlobalResourcesHelper
     capture_haml do
       if last == true
         haml_tag(:span, class: "nav__item js-nav-item nav__item--breadcrumbs current", itemprop: "url") { haml_concat breadcrumb[:place] }
+      elsif breadcrumb[:slug].blank?
+        haml_tag(:span, class: "nav__item js-nav-item nav__item--breadcrumbs", itemprop: "url") { haml_concat breadcrumb[:place] }
       else
         haml_tag(:a, class: "nav__item js-nav-item nav__item--breadcrumbs", href: "http://www.lonelyplanet.com/#{breadcrumb[:slug]}", itemprop:"url") { haml_concat breadcrumb[:place] } 
       end
