@@ -53,44 +53,17 @@ require ['public/assets/javascripts/lib/components/meta.js'], (Meta) ->
         expect($('meta[name="description"]').attr('content')).toBe(data_no_description.copy.description)
 
 
-    describe 'updating the view', ->
-      beforeEach ->
-        loadFixtures('meta.html')
-        window.meta = new Meta()
-
-      describe 'when there is a stack description', ->
-        beforeEach ->
-          meta._updateView(data)
-
-        it 'updates the stack title', ->
-          expect($('.js-intro-title').text()).toBe(data.copy.title)
-
-        it 'updates the stack description', ->
-          expect($('.js-intro-lead').text()).toBe(data.copy.stack_description)
-
-      describe 'when there is no stack description', ->
-        beforeEach ->
-          meta._updateView(data_no_description)
-
-        it 'updates the stack title', ->
-          expect($('.js-intro-title').text()).toBe(data.copy.title)
-
-        it 'does not update the stack description', ->
-          expect($('.js-intro-lead').text()).toBe("")
-
-
 
     # --------------------------------------------------------------------------
     # Events API
     # --------------------------------------------------------------------------
 
-    describe 'on page received', ->
+    describe 'on cards received', ->
       beforeEach ->
         loadFixtures('meta.html')
         window.meta = new Meta()
         spyOn(meta, "_updateTitle")
         spyOn(meta, "_updateMeta")
-        spyOn(meta, "_updateView")
 
       it 'calls _updateTitle with the title', ->
         $(meta.config.LISTENER).trigger(':cards/received', data)
@@ -100,12 +73,28 @@ require ['public/assets/javascripts/lib/components/meta.js'], (Meta) ->
         $(meta.config.LISTENER).trigger(':cards/received', data)
         expect(meta._updateMeta).toHaveBeenCalledWith(data)
 
-      it 'calls _updateView with the data', ->
+      it 'does not update the page unless there is a title returned', ->
+        $(meta.config.LISTENER).trigger(':cards/received', data_no_title)
+        expect(meta._updateTitle).not.toHaveBeenCalled()
+        expect(meta._updateMeta).not.toHaveBeenCalled()
+
+
+    describe 'on page received', ->
+      beforeEach ->
+        loadFixtures('meta.html')
+        window.meta = new Meta()
+        spyOn(meta, "_updateTitle")
+        spyOn(meta, "_updateMeta")
+
+      it 'calls _updateTitle with the title', ->
         $(meta.config.LISTENER).trigger(':cards/received', data)
-        expect(meta._updateView).toHaveBeenCalledWith(data)
+        expect(meta._updateTitle).toHaveBeenCalledWith(data.copy.title)
+
+      it 'calls _updateMeta with the data', ->
+        $(meta.config.LISTENER).trigger(':cards/received', data)
+        expect(meta._updateMeta).toHaveBeenCalledWith(data)
 
       it 'does not update the page unless there is a title returned', ->
         $(meta.config.LISTENER).trigger(':cards/received', data_no_title)
         expect(meta._updateTitle).not.toHaveBeenCalled()
         expect(meta._updateMeta).not.toHaveBeenCalled()
-        expect(meta._updateView).not.toHaveBeenCalled()

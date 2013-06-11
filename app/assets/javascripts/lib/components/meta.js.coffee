@@ -16,7 +16,11 @@ define ['jquery'], ($) ->
         if data.copy && data.copy.title
           @_updateTitle(data.copy.title)
           @_updateMeta(data)
-          @_updateView(data)
+
+      $(@config.LISTENER).on ':page/received', (e, data) =>
+        if data.copy && data.copy.title
+          @_updateTitle(data.copy.title)
+          @_updateMeta(data)
 
 
     # Private
@@ -27,10 +31,3 @@ define ['jquery'], ($) ->
     _updateMeta: (data) ->
       $('meta[name="title"]').attr('content', data.copy.title)
       $('meta[name="description"]').attr('content', data.copy.description)
-
-    _updateView: (data) ->
-      $('.js-intro-title').text(data.copy.title)
-      if data.copy.stack_description
-        $('.js-intro-lead').text(data.copy.stack_description)
-      else
-        $('.js-intro-lead').empty()
