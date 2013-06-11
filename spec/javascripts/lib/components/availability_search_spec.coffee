@@ -37,7 +37,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
               to: "07 Jun 2013"
               guests: "1"
               currency: "USD"
-          expect(JSON.stringify(values, null, 2) is JSON.stringify(expectedResult, null, 2)).toBe(true)
+          expect(values).toEqual(expectedResult)
 
       describe 'without values', ->
         beforeEach ->

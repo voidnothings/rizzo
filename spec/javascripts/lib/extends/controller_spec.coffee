@@ -81,9 +81,8 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         spyOn(controller, "getParams").andReturn(serialized.urlParams)
 
       it 'updates the state object with the search parameters', ->
-        # Using JSON stringify to compare contents rather than instances
         controller._generateState()
-        expect(JSON.stringify(controller.state, null, 2) is JSON.stringify(deserialized, null, 2)).toBe(true)
+        expect(controller.state).toEqual(deserialized)
 
 
     describe 'updating state', ->
