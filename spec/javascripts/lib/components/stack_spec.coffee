@@ -126,7 +126,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
         expect(stack._block).toHaveBeenCalled()
 
 
-    describe 'on page received', ->
+    describe 'on cards received', ->
       beforeEach ->
         loadFixtures('stack.html')
         window.stack = new Stack(config)

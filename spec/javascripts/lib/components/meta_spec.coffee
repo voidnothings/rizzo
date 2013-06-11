@@ -6,12 +6,6 @@ require ['public/assets/javascripts/lib/components/meta.js'], (Meta) ->
       copy: 
         title: "Vietnam hotels and hostels"
         description: "Some general information about accommodation in Vietnam"
-        stack_description: "Some general stack based information about accommodation in Vietnam"
-
-    data_no_description = 
-      copy:
-        title: "Vietnam hotels and hostels"
-        description: "Some general information about accommodation in Vietnam"
 
     data_no_title =
       copy:
@@ -44,13 +38,13 @@ require ['public/assets/javascripts/lib/components/meta.js'], (Meta) ->
       beforeEach ->
         loadFixtures('meta.html')
         window.meta = new Meta()
-        meta._updateMeta(data_no_description)
+        meta._updateMeta(data)
 
       it 'updates the meta title', ->
-        expect($('meta[name="title"]').attr('content')).toBe(data_no_description.copy.title)
+        expect($('meta[name="title"]').attr('content')).toBe(data.copy.title)
 
       it 'updates the meta description', ->
-        expect($('meta[name="description"]').attr('content')).toBe(data_no_description.copy.description)
+        expect($('meta[name="description"]').attr('content')).toBe(data.copy.description)
 
 
 
