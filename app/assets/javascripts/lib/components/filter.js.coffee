@@ -23,7 +23,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
     # Subscribe
     listen: ->  
 
-      $(@config.LISTENER).on ':cards/received', (e, data) =>
+      $(@config.LISTENER).on ':page/received', (e, data) =>
         @_update(data)
 
       $(@config.LISTENER).on ':filter/reset', =>
