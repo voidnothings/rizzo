@@ -13,8 +13,8 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
     config:
       el: '#js-results'
       LISTENER: '#js-card-holder'
-      types: ".card--hotel, .js-nearby-accommodations, .js-stack-card-filter"
-      allTypes: ".js-stack-card, .card--hotel, .js-nearby-accommodations, .js-stack-card-filter"
+      types: ".card--hotel, .js-nearby-accommodations, .js-stack-card-filter, .js-error"
+      allTypes: ".js-stack-card, .card--hotel, .js-nearby-accommodations, .js-stack-card-filter, .js-error"
 
     constructor: (args = {}) ->
       $.extend @config, args
@@ -34,7 +34,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
 
       $(@config.LISTENER).on ':cards/received', (e, data) =>
         @_removeLoader()
-        @_clearCards()
+        @_clear(true)
         @_add(data.content)
 
       $(@config.LISTENER).on ':cards/append/received', (e, data) =>
@@ -46,7 +46,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
 
       $(@config.LISTENER).on ':page/received', (e, data) =>
         @_removeLoader()
-        @_clearAll()
+        @_clear(false)
         @_add(data.content)
 
       $(@config.LISTENER).on ':search/change', (e) =>
@@ -87,12 +87,9 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
     _unblock: ->
       @$el.find(@config.types).removeClass('card--disabled')
 
-    _clearCards: ->
-      @$el.find(@config.types).remove()
-      @$el.find('.js-error').remove()
-
-    _clearAll: ->
-      @$el.find(@config.allTypes).remove()
+    _clear: (keepFilters) ->
+      cards = if keepFilters then @config.types else @config.allTypes
+      @$el.find(cards).remove()
 
     _add: (list)->
       $cards = $(list).addClass('card--invisible')

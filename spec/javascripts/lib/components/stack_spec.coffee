@@ -3,7 +3,8 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
   describe 'Stack', ->
     
     config = 
-      types: ".test, .test2"
+      types: ".test, .test2, .js-error"
+      allTypes: ".test, .test2, .js-error, .js-stack-card-filter"
 
     params =
       content: "<div class='test4'>Four</div><div class='test5'>Four</div><div class='test6'>Four</div>"
@@ -71,12 +72,19 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
       beforeEach ->
         loadFixtures('stack.html')
         window.stack = new Stack(config)
-        stack._clear()
 
-      it 'removes the disabled class', ->
+      it 'removes the cards but keeps the filters', ->
+        stack._clear(true)
         expect($(stack.$el).find(config.types).length).toBe(0)
+        expect($(stack.$el).find(config.allTypes).length).not.toBe(0)
+
+      it 'removes the cards and the filters', ->
+        stack._clear(false)
+        expect($(stack.$el).find(config.types).length).toBe(0)
+        expect($(stack.$el).find(config.allTypes).length).toBe(0)
 
       it 'removes any error messages', ->
+        stack._clear(true)
         expect($(stack.$el).find(".js-error").length).toBe(0)
 
 
