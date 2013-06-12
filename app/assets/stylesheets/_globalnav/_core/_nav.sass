@@ -147,12 +147,16 @@
   &:before
     font-size: 16px
     line-height: 12px
-  &:hover
-    text-decoration: underline
   &.current
     font-weight: bold
     &:hover
       text-decoration: none
+
+// Qualified selector because not all breadcrumbs are links
+// with slugs and should not be underlined
+a.nav__item--breadcrumbs
+  &:hover
+    text-decoration: underline
 
 .nav__item--breadcrumbs--home
   @extend %left-icon
