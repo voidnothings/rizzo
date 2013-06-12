@@ -127,7 +127,7 @@ $image-only-padding:           7px
   height: $card-grid-height
 
   .card__content
-    +transition(height, 0.5, ease)
+    +transition(height, 0.3, ease)
     background: #fff
     bottom: 0
     left: 0
@@ -149,5 +149,9 @@ $image-only-padding:           7px
     .card__content
       height: $card-grid-height - ( 2*$card-hotel-content-padding) - 45px !important // important until hotel image padding is the same...
 
+      &:after
+        content: none
+
+    .card__footer
       &:after
         content: none
