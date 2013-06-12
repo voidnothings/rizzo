@@ -1,22 +1,43 @@
 <html><head><script type="text/javascript">
-    var adConfig = {
-            image : 'http://cdn.bbcamerica.com/ads/LPWallpaperLondon.JPG',
-            url: 'http://shop.lonelyplanet.com/%3Flpaffil%3Dlphp-topindex'
-        },
+    var adImage = 'http://cdn.bbcamerica.com/ads/LPWallpaperLondon.JPG';
+    var adClickUrl = 'http://shop.lonelyplanet.com/%3Flpaffil%3Dlphp-topindex';
+    var adImpressionUrl = 'http://placehold.it/1x1';
 
     /*===== DO NOT MODIFY BELOW this line =====*/
 
-        children,
+    var children,
         container,
+        impressionsImage,
         _win = window.parent || window,
         _doc = window.parent.document || document;
 
-    container = _doc.getElementById('js-row--content');
+    container = _doc.getElementById('js-row--content') || _win.jQuery('.row--content')[0] || _win.jQuery('.row--secondary').next('.row')[0];
+
     container.className += ' ad-wallpaper';
-    container.style.backgroundImage = 'url("'+adConfig.image+'")';
+    container.style.backgroundImage = 'url("'+adImage+'")';
+    container.style.backgroundPosition = 'center top';
+    container.style.backgroundRepeat = 'no-repeat';
+    // This `if` is a hack for the legacy destination pages.
+    if (_win.jQuery('#mapTab').length > 0) {
+        container.style.top = '-48px';
+        container.style.paddingTop = '73px';
+        _win.jQuery('#mapTab, #mapWrap').css({
+            'position': 'relative',
+            'zIndex': 2
+        });
+    }
+
     container.onclick = function() {
-        _win.open(adConfig.url);
+        _win.open(adClickUrl);
     };
+
+    if (adImpressionUrl && /^(http|\/\/)/.test(adImpressionUrl)) {
+        impressionsImage = document.createElement('img');
+        impressionsImage.style.height = '1px';
+        impressionsImage.style.visibility = 'hidden';
+        impressionsImage.style.width = '1px';
+        impressionsImage.src = adImpressionUrl;
+    }
 
     // This stops the ad getting clicked on when the site's *actual* content is clicked.
     children = container.childNodes;
@@ -25,14 +46,16 @@
     }
 
     function stopPropagation(e) {
+        e = e || window.event; // cross browser event
+
         // If stopPropagation exists, run it on the original event
         if ( e.stopPropagation ) {
             e.stopPropagation();
+        } else {
+            // Support: IE
+            // Set the cancelBubble property of the original event to true
+            e.cancelBubble = true;
         }
-
-        // Support: IE
-        // Set the cancelBubble property of the original event to true
-        e.cancelBubble = true;
     }
 </script>
 </head><body marginwidth="0" marginheight="0"></body></html>
