@@ -5,59 +5,10 @@
 // 
 // Styleguide 1.5
 
-.left-nav
-  @extend %body-copy
-  @extend %four-pixel-rounded
-  @extend %stacked-nav
-  padding: 10px 0
 
-  &.left-nav--hotels
-    margin-top: 46px
-
-.left-nav__item
-  position: relative
-  @extend %irregular-type
-  @extend %link-without-underline
-  @extend %chevron-right-after
-  @extend %right-icon
-  color: $body-copy
-  padding: 15px 50px 15px 15px
-  text-decoration: none
-  &:after
-    @extend %no-line-height
-    color: $highlight
-    font-size: 18px
-    right: 5px
-    top: 21px
-
-  .js-hover &:hover
-    background-color: $nav-bg--hover
-    .facet-count
-      background-color: #fff
-
-  &.current, &.current:hover
-    @extend %active-background
-    font-weight: bold
-    &:after
-      color: #fff
-
-.left-nav__heading
-  @extend %reset-line-height
-  @extend %larger-type
-  @extend %stacked-nav
-  color: $header-gray
-  font-weight: bold
-  padding: 15px
-
-.left-nav--hotels
-  .left-nav__item:after
-    content: none
-
-
-// -----------------------------------------------------------------------------
-// New-style nav
-// -----------------------------------------------------------------------------
-
+// ---------------------------------------
+// Nav grouped sections
+// ---------------------------------------
 
 .group--aside
   +border-radius(4)
@@ -101,7 +52,7 @@
       width: 148px
 
 .group__title--aside
-  @extend %smooth-text
+  @extend %freight-semibold
   @extend %small-type
   color: $nav-search-btn-hover
   @extend %uppercase
@@ -119,7 +70,7 @@
 
 .nav__item--stack
   @extend %smooth-text
-  @extend %irregular-type
+  @extend %regular-type
   color: $body-copy
   display: block
   line-height: 1.5em
@@ -148,9 +99,9 @@
       @extend %active-background
 
 .nav__item--chevron
+  @extend %chevron-right-after
   padding-right: 35px
   position: relative
-  @extend %chevron-right-after
   &:after
     @extend %freight-book
     @extend %absolute-right
