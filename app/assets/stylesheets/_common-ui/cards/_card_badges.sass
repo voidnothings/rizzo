@@ -3,18 +3,19 @@
 // -----------------------------------------------------------------------------
 
 .card__item-count
-  @extend %freight-semibold
+  +font-size(20)
+  @extend %freight-book
   @extend %no-line-height
   position: absolute
   color: #fff
-  font-size: 20px
   left: 10px
-  top: 20px
+  top: 15px
   z-index: 5
 
   &:before
-    @extend %freight-book
-    font-size: 35px
+    +font-size(35)
+    position: relative
+    top: 3px
 
 
   .card--collection--hotels &

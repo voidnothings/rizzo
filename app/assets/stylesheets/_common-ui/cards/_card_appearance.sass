@@ -15,15 +15,17 @@
 
 .card__property-type,
 .card__context
-  @extend %small-type
+  @extend %freight-book
+  @extend %irregular-type
   display: block
   margin-bottom: 2px
+  font-style: italic
 
 .card__name
-  @extend %large-type
+  @extend %freight-book
+  +font-size(22)
   +word-break()
-  font-weight: bold
-  line-height: 17px
+  
   margin-bottom: 12px
 
   .card--standard-image &
