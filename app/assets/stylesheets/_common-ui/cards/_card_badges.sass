@@ -86,61 +86,39 @@
       top: 20px
 
 .card--poi--hotel
-  &.card--no-image
-    @extend %icon-poi-hotel-before
-    &:before
-      color: $hotels-poi
-
-  &.card--small-image
-    @extend %icon-image-poi-hotel-before
+  +poi-badge(hotel)
+  &:before
+    color: $hotels-poi
 
 .card--poi--sight
-  &.card--no-image
-    @extend %icon-poi-sight-before
-    &:before
-      color: $sight-poi
-  &.card--small-image
-    @extend %icon-image-poi-sight-before
+  +poi-badge(sight)
+  &:before
+    color: $sight-poi
 
 .card--poi--activity
-  &.card--no-image
-    @extend %icon-poi-activity-before
-    &:before
-      color: $activity-poi
-  &.card--small-image
-    @extend %icon-image-poi-activity-before
+  +poi-badge(activity)
+  &:before
+    color: $activity-poi
 
 .card--poi--tour
-  &.card--no-image
-    @extend %icon-poi-tour-before
-    &:before
-      color: $tour-poi
-  &.card--small-image
-    @extend %icon-image-poi-tour-before
+  +poi-badge(tour)
+  &:before
+    color: $tour-poi
 
 .card--poi--shopping
-  &.card--no-image
-    @extend %icon-poi-shopping-before
-    &:before
-      color: $shopping-poi
-  &.card--small-image
-    @extend %icon-image-poi-shopping-before
+  +poi-badge(shopping)
+  &:before
+    color: $shopping-poi
 
 .card--poi--entertainment
-  &.card--no-image
-    @extend %icon-poi-entertainment-before
-    &:before
-      color: $entertainment-poi
-  &.card--small-image
-    @extend %icon-image-poi-entertainment-before
+  +poi-badge(entertainment)
+  &:before
+    color: $entertainment-poi
 
 .card--poi--restaurant
-  &.card--no-image
-    @extend %icon-poi-restaurant-before
-    &:before
-      color: $restaurant-poi
-  &.card--small-image
-    @extend %icon-image-poi-restaurant-before
+  +poi-badge(restaurant)
+  &:before
+    color: $restaurant-poi
 
 
 // -----------------------------------------------------------------------------
