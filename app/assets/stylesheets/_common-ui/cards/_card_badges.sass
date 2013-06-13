@@ -73,7 +73,7 @@
     position: absolute
     pointer-events: none
     top: 25px
-    z-index: 5
+    z-index: 3
 
 .card--poi
   @extend %card-icon
@@ -81,20 +81,44 @@
   &.card--small-image
     &:before
       color: #fff
-      font-size: 50px
+      font-size: 40px
       text-shadow: 0 0 5px rgba(0,0,0,0.75)
-      top: 15px
+      top: 20px
 
-// TODO: put back POI icon styles when they're required
-.with-hotel-badges
-  .card--poi--hotel
-    &.card--no-image
-      @extend %icon-poi-hotel-before
-      &:before
-        color: $hotels-poi
+.card--poi--hotel
+  +poi-badge(hotel)
+  &:before
+    color: $hotels-poi
 
-    &.card--small-image
-      @extend %icon-image-poi-hotel-before
+.card--poi--sight
+  +poi-badge(sight)
+  &:before
+    color: $sight-poi
+
+.card--poi--activity
+  +poi-badge(activity)
+  &:before
+    color: $activity-poi
+
+.card--poi--tour
+  +poi-badge(tour)
+  &:before
+    color: $tour-poi
+
+.card--poi--shopping
+  +poi-badge(shopping)
+  &:before
+    color: $shopping-poi
+
+.card--poi--entertainment
+  +poi-badge(entertainment)
+  &:before
+    color: $entertainment-poi
+
+.card--poi--restaurant
+  +poi-badge(restaurant)
+  &:before
+    color: $restaurant-poi
 
 
 // -----------------------------------------------------------------------------
