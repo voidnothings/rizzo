@@ -20,10 +20,10 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
       $.extend @config, args
       @currentPage = 1
       @pageOffsets = '0'
-      @init()
+      @$el = $(@config.el)
+      @init() unless @$el.length is 0
 
     init: ->  
-      @$el = $(@config.el)
       @_hide() if !@config.visible
       @_clean()
       @_add()

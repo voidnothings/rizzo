@@ -11,16 +11,15 @@ define ['jquery', 'lib/extends/events','lib/components/group_toggle'], ($, Event
         body: '.js-copy-body' 
 
       $.extend @config, args
-
       @$el = $(@config.el)
+      @init() unless @$el.length is 0
+
+    init: ->
       @$title = $("#{@config.el} #{@config.title}")
       @$lead = $("#{@config.el} #{@config.lead}")
       @$body = $("#{@config.el} #{@config.body}")
-      @init()
-      @listen()
-
-    init: ->
       @_introContentToggle = new GroupToggle({el: "#{@config.el} .js-group-toggle" })
+      @listen()
 
     listen: ->
       $(@config.LISTENER).on ':cards/received', (e, data) =>

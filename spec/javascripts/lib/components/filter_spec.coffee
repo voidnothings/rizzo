@@ -15,6 +15,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
 
     describe 'Initialisation', ->
       beforeEach ->
+        loadFixtures('filter.html')
         window.filter = new Filter({el: '#js-filters'})
         spyOn(filter, "_removeSEOLinks")
         filter.constructor()

@@ -13,10 +13,10 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter ) ->
       
     constructor: (args={}) ->
       $.extend @config, args
-      @init()
+      @$el = $(@config.el)
+      @init() unless @$el.length is 0
 
     init: ->
-      @$el = $(@config.el)
       @$list = @$el.find(@config.list)
       @broadcast()
 
