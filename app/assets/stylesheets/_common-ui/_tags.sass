@@ -168,3 +168,20 @@
 .price-tag__curr
   @extend .card__tag__price--curr
   font-size: 0.65em
+
+.rooms,
+.card--hotel
+  .price-tag__price
+    font-weight: bold
+    line-height: 1em
+    padding: 0 0 2px 0
+
+  .card__tag__price--curr
+    @extend %irregular-type
+    top: -2px
+    word-spacing: 0px
+
+  .price-tag__inner    
+    padding: 8px 10px
+    // font-weight: bold
+
