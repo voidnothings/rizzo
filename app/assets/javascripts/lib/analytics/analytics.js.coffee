@@ -1,4 +1,4 @@
-define ['lib/analytics/analytics_auth', 'lib/analytics/analytics_perf', 's_code'], (AnalyticsAuth, AnalyticsPerf) ->
+define ['lib/analytics/analytics_auth', 'lib/analytics/analytics_perf', 'omniture/s_code'], (AnalyticsAuth, AnalyticsPerf) ->
 
   class Analytics
 
@@ -35,6 +35,11 @@ define ['lib/analytics/analytics_auth', 'lib/analytics/analytics_perf', 's_code'
 
     # Private
 
+    _save: ->
+      @prevConfig = {}
+      for a of @config
+        @prevConfig[a] = @config[a]
+
     _add: (params = {})->
       for a of params
         @config[a] = params[a]
@@ -42,11 +47,6 @@ define ['lib/analytics/analytics_auth', 'lib/analytics/analytics_perf', 's_code'
     _copy: ->
       for a of @config
         window.s[a] = @config[a]
-
-    _save: ->
-      @prevConfig = {}
-      for a of @config
-        @prevConfig[a] = @config[a]
 
     _restore: ->
       for a of @config

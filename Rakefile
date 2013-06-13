@@ -3,8 +3,10 @@ require 'find'
 require 'rake/clean'
 require 'guard'
 require 'headless'
+require 'fileutils'
 
 CLOBBER.include('public/assets/javascripts/lib')
+CLOBBER.include('public/assets/javascripts/spec')
 
 desc 'Compile CoffeeScript files to JavaScript'
 task :compile => [:clobber] do

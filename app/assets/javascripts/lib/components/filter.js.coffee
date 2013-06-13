@@ -52,7 +52,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
 
     _removeSEOLinks: (parent) ->
       parent.find('.js-filter-label').each ->
-        $(this).html($(this).children('a').text())
+        $(@).html($(@).children('a').text())
 
     _update: (data)->
       if data.disable_price_filters

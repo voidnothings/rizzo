@@ -12,7 +12,7 @@ require ['public/assets/javascripts/lib/components/meta.js'], (Meta) ->
         description: "Some general information about accommodation in Vietnam"
 
 
-    describe 'Setup', ->
+    describe 'Object', ->
       it 'is defined', ->
         expect(Meta).toBeDefined()
 

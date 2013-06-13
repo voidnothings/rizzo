@@ -9,7 +9,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
     data_alt =
       disable_price_filters: false
 
-    describe 'Setup', ->
+    describe 'Object', ->
       it 'is defined', ->
         expect(Filter).toBeDefined()
 
@@ -20,7 +20,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         filter.constructor()
 
       it 'has an event listener constant', ->
-        expect(filter.config.LISTENER).toBeDefined()
+        expect(filter.config.LISTENER).toBe("#js-card-holder")
 
       it 'removes the SEO links', ->
         expect(filter._removeSEOLinks).toHaveBeenCalledWith(filter.$el)
@@ -67,7 +67,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         filter._hideGroup('price')
 
       it 'it hides the price filters', ->
-        expect(filter.$el.find(".js-price-filter").hasClass('is-hidden')).toBe(true)
+        expect(filter.$el.find(".js-price-filter")).toHaveClass('is-hidden')
 
 
     describe 'showing filter groups', ->
@@ -77,7 +77,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         filter._showGroup('price')
 
       it 'it shows the price filters', ->
-        expect(filter.$el.find(".js-price-filter").hasClass('is-hidden')).toBe(false)
+        expect(filter.$el.find(".js-price-filter")).not.toHaveClass('is-hidden')
 
 
     describe 'enabling filter groups', ->
@@ -97,7 +97,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         filter._toggleActiveClass("#test")
 
       it 'assigns the sibling label an active class', ->
-        expect(filter.$el.find('input[type=checkbox]').siblings().hasClass('active')).toBe(true)
+        expect(filter.$el.find('input[type=checkbox]').siblings()).toHaveClass('active')
 
 
     describe 'removing active classes', ->
@@ -107,7 +107,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         filter._toggleActiveClass("#test")
 
       it 'removes the sibling label active class', ->
-        expect(filter.$el.find('input[type=checkbox]').siblings().hasClass('active')).toBe(false)
+        expect(filter.$el.find('input[type=checkbox]').siblings()).not.toHaveClass('active')
 
 
     describe 'setting filter values', ->
@@ -124,13 +124,13 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         it 'checks the correct price filters', ->
           external_filter = external_filters.split(",")
           expect(filter.$el.find("input[name*='#{external_filter[0]}']").is(':checked')).toBe(true)
-          expect(filter.$el.find("input[name*='#{external_filter[0]}']").siblings().hasClass('active')).toBe(true)
+          expect(filter.$el.find("input[name*='#{external_filter[0]}']").siblings()).toHaveClass('active')
           expect(filter.$el.find("input[name*='#{external_filter[1]}']").is(':checked')).toBe(true)
-          expect(filter.$el.find("input[name*='#{external_filter[1]}']").siblings().hasClass('active')).toBe(true)
+          expect(filter.$el.find("input[name*='#{external_filter[1]}']").siblings()).toHaveClass('active')
           expect(filter.$el.find("input[name*='#{external_filter[2]}']").is(':checked')).toBe(true)
-          expect(filter.$el.find("input[name*='#{external_filter[2]}']").siblings().hasClass('active')).toBe(true)
+          expect(filter.$el.find("input[name*='#{external_filter[2]}']").siblings()).toHaveClass('active')
           expect(filter.$el.find("input[name*='#{external_filter[3]}']").is(':checked')).toBe(true)
-          expect(filter.$el.find("input[name*='#{external_filter[3]}']").siblings().hasClass('active')).toBe(true)
+          expect(filter.$el.find("input[name*='#{external_filter[3]}']").siblings()).toHaveClass('active')
 
 
       describe 'setting to false', ->
@@ -142,13 +142,13 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         it 'checks the correct price filters', ->
           external_filter = external_filters.split(",")
           expect(filter.$el.find("input[name*='#{external_filter[0]}']").is(':checked')).toBe(false)
-          expect(filter.$el.find("input[name*='#{external_filter[0]}']").siblings().hasClass('active')).toBe(false)
+          expect(filter.$el.find("input[name*='#{external_filter[0]}']").siblings()).not.toHaveClass('active')
           expect(filter.$el.find("input[name*='#{external_filter[1]}']").is(':checked')).toBe(false)
-          expect(filter.$el.find("input[name*='#{external_filter[1]}']").siblings().hasClass('active')).toBe(false)
+          expect(filter.$el.find("input[name*='#{external_filter[1]}']").siblings()).not.toHaveClass('active')
           expect(filter.$el.find("input[name*='#{external_filter[2]}']").is(':checked')).toBe(false)
-          expect(filter.$el.find("input[name*='#{external_filter[2]}']").siblings().hasClass('active')).toBe(false)
+          expect(filter.$el.find("input[name*='#{external_filter[2]}']").siblings()).not.toHaveClass('active')
           expect(filter.$el.find("input[name*='#{external_filter[3]}']").is(':checked')).toBe(false)
-          expect(filter.$el.find("input[name*='#{external_filter[3]}']").siblings().hasClass('active')).toBe(false)
+          expect(filter.$el.find("input[name*='#{external_filter[3]}']").siblings()).not.toHaveClass('active')
 
 
     describe 'resetting the filter', ->
@@ -160,13 +160,13 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
 
       it 'checks the correct price filters', ->
         expect(filter.$el.find("input[name*='#{external_filter[0]}']").is(':checked')).toBe(false)
-        expect(filter.$el.find("input[name*='#{external_filter[0]}']").siblings().hasClass('active')).toBe(false)
+        expect(filter.$el.find("input[name*='#{external_filter[0]}']").siblings()).not.toHaveClass('active')
         expect(filter.$el.find("input[name*='#{external_filter[1]}']").is(':checked')).toBe(false)
-        expect(filter.$el.find("input[name*='#{external_filter[1]}']").siblings().hasClass('active')).toBe(false)
+        expect(filter.$el.find("input[name*='#{external_filter[1]}']").siblings()).not.toHaveClass('active')
         expect(filter.$el.find("input[name*='#{external_filter[2]}']").is(':checked')).toBe(false)
-        expect(filter.$el.find("input[name*='#{external_filter[2]}']").siblings().hasClass('active')).toBe(false)
+        expect(filter.$el.find("input[name*='#{external_filter[2]}']").siblings()).not.toHaveClass('active')
         expect(filter.$el.find("input[name*='#{external_filter[3]}']").is(':checked')).toBe(false)
-        expect(filter.$el.find("input[name*='#{external_filter[3]}']").siblings().hasClass('active')).toBe(false)
+        expect(filter.$el.find("input[name*='#{external_filter[3]}']").siblings()).not.toHaveClass('active')
 
 
 

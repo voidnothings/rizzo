@@ -60,7 +60,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
 
     addNavTracking: ->
       $('#js-primary-nav').on 'click', '.js-nav-item', ->
-        window.s.linkstacker($(this).text())
+        window.s.linkstacker($(@).text())
 
       $('#js-primary-nav').on 'click', '.js-nav-cart', ->
         window.s.linkstacker("shopping-cart")
@@ -69,7 +69,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
         window.s.linkstacker("search")
 
       $('#js-secondary-nav').on 'click', '.js-nav-item', ->
-        window.s.linkstacker($(this).text() + "-sub")
+        window.s.linkstacker($(@).text() + "-sub")
 
       $('#js-breadcrumbs').on 'click', '.js-nav-item', ->
         window.s.linkstacker("breadcrumbs")

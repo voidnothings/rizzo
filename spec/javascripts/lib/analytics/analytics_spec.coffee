@@ -12,10 +12,10 @@ require ['lib/analytics/analytics'], (Analytics) ->
       window.analytics = new Analytics()
       window.s.channel = "test"
 
-    describe 'Setup', ->
+    describe 'Object', ->
       it 'is defined', ->
         expect(Analytics).toBeDefined()
-    
+
 
     describe 'adding', ->
 
@@ -102,7 +102,7 @@ require ['lib/analytics/analytics'], (Analytics) ->
         spyOn(analytics, "_copy")
         spyOn(analytics, "_restore")
         spyOn(window.s, "t")
-      
+
       describe 'when restore is true', ->
         beforeEach ->
           analytics.track(stub, true)
@@ -131,3 +131,4 @@ require ['lib/analytics/analytics'], (Analytics) ->
 
         it 'does not call restore', ->
           expect(analytics._restore).not.toHaveBeenCalled()
+

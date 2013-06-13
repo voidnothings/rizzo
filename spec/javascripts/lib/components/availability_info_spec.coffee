@@ -9,7 +9,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
         guests: 1 
         currency: "USD"
 
-    describe 'Setup', ->
+    describe 'Object', ->
       it 'is defined', ->
         expect(AvailabilityInfo).toBeDefined()
 
@@ -19,7 +19,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
         window.avInfo = new AvailabilityInfo({ el: '.js-availability-info'})
 
       it 'has an event listener constant', ->
-        expect(avInfo.config.LISTENER).toBeDefined()
+        expect(avInfo.config.LISTENER).toBe("#js-card-holder")
 
 
 
@@ -39,7 +39,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
           expect($('.js-availability-from').text()).toBe(params.search.from)
           expect($('.js-availability-to').text()).toBe(params.search.to)
           expect($('.js-availability-guests').text()).toBe(params.search.guests + " guest")
-          expect($('.js-availability-currency').hasClass('currency__icon--' + params.search.currency.toLowerCase())).toBe(true)
+          expect($('.js-availability-currency')).toHaveClass('currency__icon--' + params.search.currency.toLowerCase())
           expect($('.js-availability-currency').text()).toBe(params.search.currency)
 
       describe 'for multiple guests', ->
@@ -61,7 +61,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
         avInfo._show()
 
       it 'removes the is-hidden class', ->
-        expect(avInfo.$el.hasClass('is-hidden')).toBe(false)
+        expect(avInfo.$el).not.toHaveClass('is-hidden')
 
 
     describe 'hiding', ->
@@ -72,7 +72,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
         avInfo._hide()
 
       it 'adds the is-hidden class', ->
-        expect(avInfo.$el.hasClass('is-hidden')).toBe(true)
+        expect(avInfo.$el).toHaveClass('is-hidden')
 
 
     describe 'checking if hidden', ->
@@ -97,7 +97,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
         avInfo._block()
 
       it 'adds the disabled class', ->
-        expect(avInfo.$btn.hasClass('disabled')).toBe(true)
+        expect(avInfo.$btn).toHaveClass('disabled')
 
       it 'adds the disabled attribute', ->
         expect(avInfo.$btn.attr('disabled')).toBe("disabled")
@@ -110,7 +110,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
         avInfo._unblock()
 
       it 'removes the disabled class', ->
-        expect(avInfo.$btn.hasClass('disabled')).toBe(false)
+        expect(avInfo.$btn).not.toHaveClass('disabled')
 
       it 'adds the disabled attribute', ->
         expect(avInfo.$btn.attr('disabled')).toBe(undefined)

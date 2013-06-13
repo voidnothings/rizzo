@@ -33,7 +33,7 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
     analytics = 
       callback: "setSearch"
 
-    describe 'Setup', ->
+    describe 'Object', ->
 
       it 'is defined', ->
         expect(Controller).toBeDefined()

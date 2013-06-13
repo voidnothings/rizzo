@@ -4,7 +4,7 @@ require ['public/assets/javascripts/lib/components/tabs.js'], (Tabs) ->
 
     waitTime = 10
 
-    describe 'Setup', ->
+    describe 'Object', ->
       it 'is defined', ->
         expect(Tabs).toBeDefined()
 

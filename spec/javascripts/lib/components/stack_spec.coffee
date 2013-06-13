@@ -9,7 +9,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
     params =
       content: "<div class='test4'>Four</div><div class='test5'>Four</div><div class='test6'>Four</div>"
 
-    describe 'Setup', ->
+    describe 'Object', ->
       it 'is defined', ->
         expect(Stack).toBeDefined()
 
@@ -29,7 +29,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
         stack._addLoader()
 
       it 'adds the loading spinner', ->
-        expect(stack.$el.hasClass('is-loading')).toBe(true)
+        expect(stack.$el).toHaveClass('is-loading')
 
 
     describe 'removeLoader', ->
@@ -41,7 +41,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
         stack._removeLoader()
 
       it 'removes the loading spinner', ->
-        expect(stack.$el.hasClass('is-loading')).toBe(false)
+        expect(stack.$el).not.toHaveClass('is-loading')
 
 
     describe 'blocking', ->
@@ -52,7 +52,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
         stack._block()
 
       it 'adds the disabled class', ->
-        expect(stack.$el.find(stack.config.types).hasClass('card--disabled')).toBe(true)
+        expect(stack.$el.find(stack.config.types)).toHaveClass('card--disabled')
 
 
     describe 'unblocking', ->
@@ -64,7 +64,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
         stack._unblock()
 
       it 'clears the stack', ->
-        expect(stack.$el.find(stack.config.types).hasClass('card--disabled')).toBe(false)
+        expect(stack.$el.find(stack.config.types)).not.toHaveClass('card--disabled')
 
 
     describe 'clearing', ->
@@ -98,9 +98,9 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
 
 
       it 'adds the stack with the returned cards', ->
-        expect($(stack.$el).find(".test4").hasClass('card--invisible')).toBe(true)
-        expect($(stack.$el).find(".test5").hasClass('card--invisible')).toBe(true)
-        expect($(stack.$el).find(".test6").hasClass('card--invisible')).toBe(true)
+        expect($(stack.$el).find(".test4")).toHaveClass('card--invisible')
+        expect($(stack.$el).find(".test5")).toHaveClass('card--invisible')
+        expect($(stack.$el).find(".test6")).toHaveClass('card--invisible')
 
       it 'shows the cards', ->
         expect(stack._show).toHaveBeenCalled()
