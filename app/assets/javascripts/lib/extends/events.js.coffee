@@ -3,10 +3,9 @@ define ['jquery'], ($) ->
   EventEmitter =
 
     _JQInit: ->
-      @_JQ = $(this)
+      @_JQ = $(@)
 
     trigger: (evt, data) ->
-      # @_JQ or @_JQInit()
       @$el.trigger(evt, data)
 
     on: (evt, handler) ->
