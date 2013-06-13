@@ -16,6 +16,14 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
         expect(av.config.LISTENER).toBe("#js-card-holder")
 
 
+    describe 'When the parent element does not exist', ->
+      beforeEach ->
+        loadFixtures('availability.html')
+        window.av = new Availability({ el: '.foo'})
+        spyOn(av, "init")
+
+      it 'does not initialise', ->
+        expect(av.init).not.toHaveBeenCalled()
 
     # --------------------------------------------------------------------------
     # Private Methods

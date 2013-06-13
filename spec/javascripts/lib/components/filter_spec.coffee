@@ -27,6 +27,15 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         expect(filter._removeSEOLinks).toHaveBeenCalledWith(filter.$el)
 
 
+    describe 'When the parent element does not exist', ->
+      beforeEach ->
+        loadFixtures('filter.html')
+        window.filter = new Filter({ el: '.foo'})
+        spyOn(filter, "init")
+
+      it 'does not initialise', ->
+        expect(filter.init).not.toHaveBeenCalled()
+
 
     # --------------------------------------------------------------------------
     # Private Methods

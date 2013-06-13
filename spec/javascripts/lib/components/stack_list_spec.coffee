@@ -14,6 +14,16 @@ require ['public/assets/javascripts/lib/components/stack_list.js'], (StackList) 
         expect(StackList::config).toBeDefined()
 
 
+    describe 'Initialising', ->
+      beforeEach ->
+        loadFixtures('stack_list.html')
+        window.stackList = new StackList({ el: '.foo'})
+        spyOn(stackList, "init")
+
+      it 'When the parent element does not exist it does not initialise', ->
+        expect(stackList.init).not.toHaveBeenCalled()
+
+
     describe 'when the user clicks on a stack', ->
       beforeEach ->
         loadFixtures('stack_list.html')

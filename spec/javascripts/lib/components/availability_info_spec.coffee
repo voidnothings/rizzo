@@ -22,6 +22,15 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
         expect(avInfo.config.LISTENER).toBe("#js-card-holder")
 
 
+    describe 'When the parent element does not exist', ->
+      beforeEach ->
+        loadFixtures('availability_info.html')
+        window.avInfo = new AvailabilityInfo({ el: '.foo'})
+        spyOn(avInfo, "init")
+
+      it 'does not initialise', ->
+        expect(avInfo.init).not.toHaveBeenCalled()
+
 
     # --------------------------------------------------------------------------
     # Private Methods
