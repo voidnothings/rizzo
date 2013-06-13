@@ -6,7 +6,7 @@ require ['public/assets/javascripts/lib/components/stack_list.js'], (StackList) 
       el: '#js-stack-list-aside', 
       list: '.js-neighbourhood-item,.js-facet,.js-descendant-item,.js-stack-collection'
 
-    describe 'Setup', ->
+    describe 'Object', ->
       it 'is defined', ->
         expect(StackList).toBeDefined()
 
@@ -22,8 +22,8 @@ require ['public/assets/javascripts/lib/components/stack_list.js'], (StackList) 
       it 'sets the nav item as current', ->
         element = stackList.$el.find('.js-neighbourhood-item')
         element.trigger('click')
-        expect(element.hasClass('nav__item--current--stack')).toBe(true)
-        expect($('.js-facet').hasClass('nav__item--current--stack')).toBe(false)
+        expect(element).toHaveClass('nav__item--current--stack')
+        expect($('.js-facet')).not.toHaveClass('nav__item--current--stack')
 
       it 'triggers the page request event', ->
         element = stackList.$el.find('.js-neighbourhood-item')

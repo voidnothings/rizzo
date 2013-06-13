@@ -2,7 +2,7 @@ require ['public/assets/javascripts/lib/components/stack_intro.js'], (StackIntro
 
   describe 'StackIntro', ->
 
-    describe 'Setup', ->
+    describe 'Object', ->
 
       it 'is defined', ->
         expect(StackIntro).toBeDefined()

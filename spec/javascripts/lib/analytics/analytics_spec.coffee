@@ -12,7 +12,7 @@ require ['lib/analytics/analytics'], (Analytics) ->
       window.analytics = new Analytics()
       window.s.channel = "test"
 
-    describe 'Setup', ->
+    describe 'Object', ->
       it 'is defined', ->
         expect(Analytics).toBeDefined()
 

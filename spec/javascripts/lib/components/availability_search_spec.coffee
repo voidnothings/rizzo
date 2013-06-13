@@ -2,7 +2,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
 
   describe 'Availability', ->
     
-    describe 'Setup', ->
+    describe 'Object', ->
       it 'is defined', ->
         expect(Availability).toBeDefined()
 
@@ -13,7 +13,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
         window.av = new Availability({el: '.js-availability-card'})
 
       it 'has an event listener constant', ->
-        expect(av.config.LISTENER).toBeDefined()
+        expect(av.config.LISTENER).toBe("#js-card-holder")
 
 
 
@@ -67,7 +67,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
         av._show()
 
       it 'removes the is-hidden class', ->
-        expect(av.$el.hasClass('is-hidden')).toBe(false)
+        expect(av.$el).not.toHaveClass('is-hidden')
 
 
     describe 'hiding', ->
@@ -78,7 +78,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
         av._hide()
 
       it 'adds the is-hidden class', ->
-        expect(av.$el.hasClass('is-hidden')).toBe(true)
+        expect(av.$el).toHaveClass('is-hidden')
 
 
     describe 'blocking', ->
@@ -89,7 +89,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
         av._block()
 
       it 'adds the disabled class', ->
-        expect(av.$submit.hasClass('disabled')).toBe(true)
+        expect(av.$submit).toHaveClass('disabled')
 
       it 'adds the disabled attribute', ->
         expect(av.$submit.attr('disabled')).toBe("disabled")
@@ -103,7 +103,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
         av._unblock()
 
       it 'removes the disabled class', ->
-        expect(av.$submit.hasClass('disabled')).toBe(false)
+        expect(av.$submit).not.toHaveClass('disabled')
 
       it 'adds the disabled attribute', ->
         expect(av.$submit.attr('disabled')).toBe(undefined)
@@ -141,7 +141,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
         it 'hides the availability form', ->
           expect(av._hide).toHaveBeenCalled()
 
-        it 'enables the availability form', ->
+        it 'enables the availability form search button', ->
           expect(av._unblock).toHaveBeenCalled()
 
         it 'updates the page offset', ->
@@ -155,7 +155,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
         it 'does not hide the availability form', ->
           expect(av._hide).not.toHaveBeenCalled()
 
-        it 'enables the availability form', ->
+        it 'enables the availability form search button', ->
           expect(av._unblock).toHaveBeenCalled()
 
         it 'updates the page offset', ->

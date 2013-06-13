@@ -3,7 +3,7 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
 
   describe 'Load More Button', ->
 
-    describe 'Setup', ->
+    describe 'Object', ->
       it 'is defined', ->
         expect(LoadMore).toBeDefined()
 
@@ -44,7 +44,7 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
         lm.constructor({visible: false})
 
       it 'hides the pagination', ->
-        expect(lm.$el.hasClass('is-hidden')).toBe(true)
+        expect(lm.$el).toHaveClass('is-hidden')
 
 
     describe 'reset', ->
@@ -65,7 +65,7 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
         lm._block()
 
       it 'adds the disabled and loading classes', ->
-        expect(lm.$btn.hasClass('loading disabled')).toBe(true)
+        expect(lm.$btn).toHaveClass('loading disabled')
 
       it 'updates the loading text', ->
         expect(lm.$btn.text()).toBe(lm.config.idleTitle)
@@ -79,7 +79,7 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
         lm._unblock()
 
       it 'adds the disabled and loading classes', ->
-        expect(lm.$btn.hasClass('loading disabled')).toBe(false)
+        expect(lm.$btn).not.toHaveClass('loading disabled')
 
       it 'updates the loading text', ->
         expect(lm.$btn.text()).toBe(lm.config.title)

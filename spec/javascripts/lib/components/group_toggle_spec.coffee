@@ -2,7 +2,7 @@ require ['public/assets/javascripts/lib/components/group_toggle.js'], (GroupTogg
 
   describe 'GroupToggle', ->
    
-    describe 'Setup', ->
+    describe 'Object', ->
 
       it 'is defined', ->
         expect(GroupToggle).toBeDefined()
