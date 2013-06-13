@@ -1,3 +1,7 @@
+# Taken from Ben Alman's BBQ library and converted to CS
+# Explaine: http://benalman.com/code/projects/jquery-bbq/examples/deparam/
+# Source: https://github.com/cowboy/jquery-bbq/blob/master/jquery.ba-bbq.js#L466
+
 define ["jquery"], (jQuery) ->
   decode = decodeURIComponent
   $.deparam = jq_deparam = (params, coerce) ->
