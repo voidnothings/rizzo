@@ -152,6 +152,16 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         expect(controller.state.search.page_offsets).toBe(3)
 
 
+    describe 'Remove the page param', ->
+      beforeEach ->
+        window.controller = new Controller()
+        controller.state = appendParams
+        controller._removePageParam()
+
+      it 'params do not include page', ->
+        expect(controller.state.page).toBe(undefined)
+
+
     describe 'updating push state', ->
       beforeEach ->
         spyOn(history, 'pushState');
@@ -251,7 +261,7 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         window.controller = new Controller()
         spyOn(controller, "_callServer")
         spyOn(controller, "_createRequestUrl").andReturn("http://www.lonelyplanet.com/foo.json?foo=bar")
-        $(controller.config.LISTENER).trigger(':cards/append', appendParams, analytics)
+        $(controller.config.LISTENER).trigger(':cards/append', {page: 2}, analytics)
 
       it 'updates the internal state', ->
         expect(controller.state.page).toBe(2)
