@@ -33,6 +33,16 @@ require ['public/assets/javascripts/lib/components/stack_intro.js'], (StackIntro
         expect(customIntro.config).toEqual(customArgs)
 
 
+    describe 'When the parent element does not exist', ->
+      beforeEach ->
+        loadFixtures('stack_intro.html')
+        window.stackIntro = new StackIntro({ el: '.foo'})
+        spyOn(stackIntro, "init")
+
+      it 'does not initialise', ->
+        expect(stackIntro.init).not.toHaveBeenCalled()
+
+
     # --------------------------------------------------------------------------
     # Private Methods
     # --------------------------------------------------------------------------

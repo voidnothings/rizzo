@@ -14,10 +14,10 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
 
     constructor: (args={}) ->
       $.extend @config, args
-      @init()
+      @$el = $(@config.el)
+      @init() unless @$el.length is 0
 
     init: ->
-      @$el = $(@config.el)
       @$form = @$el.find('form')
       @$submit ?= @$form.find('#js-booking-submit')
       formDatePicker = new AvailabilityDatepicker(@$el)

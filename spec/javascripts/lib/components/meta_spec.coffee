@@ -20,7 +20,6 @@ require ['public/assets/javascripts/lib/components/meta.js'], (Meta) ->
         expect(Meta::config).toBeDefined()
 
 
-
     # --------------------------------------------------------------------------
     # Private Methods
     # --------------------------------------------------------------------------

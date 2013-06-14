@@ -15,10 +15,10 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
 
     constructor: (args={}) ->
       $.extend @config, args
-      @init()
+      @$el = $(@config.el)
+      @init() unless @$el.length is 0
 
     init: ->
-      @$el = $(@config.el)
       @$btn = @$el.find('.js-availability-edit-btn')
       @listen()
       @broadcast()

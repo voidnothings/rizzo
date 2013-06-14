@@ -5,6 +5,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
     config = 
       types: ".test, .test2, .js-error"
       allTypes: ".test, .test2, .js-error, .js-stack-card-filter"
+      el: '#js-results'
 
     params =
       content: "<div class='test4'>Four</div><div class='test5'>Four</div><div class='test6'>Four</div>"
@@ -15,6 +16,16 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
 
       it 'has default options', ->
         expect(Stack::config).toBeDefined()
+
+
+    describe 'Initialising', ->
+      beforeEach ->
+        loadFixtures('stack.html')
+        window.stack = new Stack({ el: '.foo'})
+        spyOn(stack, "init")
+
+      it 'When the parent element does not exist it does not initialise', ->
+        expect(stack.init).not.toHaveBeenCalled()
 
 
     # --------------------------------------------------------------------------

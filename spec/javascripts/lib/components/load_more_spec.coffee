@@ -11,6 +11,16 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
         expect(LoadMore::config).toBeDefined()
 
 
+    describe 'When the parent element does not exist', ->
+      beforeEach ->
+        loadFixtures('load_more.html')
+        window.lm = new LoadMore({ el: '.foo'})
+        spyOn(lm, "init")
+
+      it 'does not initialise', ->
+        expect(lm.init).not.toHaveBeenCalled()
+
+
     # --------------------------------------------------------------------------
     # Initialisation
     # --------------------------------------------------------------------------

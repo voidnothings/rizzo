@@ -15,6 +15,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
 
     describe 'Initialisation', ->
       beforeEach ->
+        loadFixtures('filter.html')
         window.filter = new Filter({el: '#js-filters'})
         spyOn(filter, "_removeSEOLinks")
         filter.constructor()
@@ -25,6 +26,15 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
       it 'removes the SEO links', ->
         expect(filter._removeSEOLinks).toHaveBeenCalledWith(filter.$el)
 
+
+    describe 'When the parent element does not exist', ->
+      beforeEach ->
+        loadFixtures('filter.html')
+        window.filter = new Filter({ el: '.foo'})
+        spyOn(filter, "init")
+
+      it 'does not initialise', ->
+        expect(filter.init).not.toHaveBeenCalled()
 
 
     # --------------------------------------------------------------------------
