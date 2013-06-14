@@ -93,6 +93,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
 
     _generateState: ->
       @state = $.deparam(@getParams())
+      @_removePageParam()
 
     _updateState: (params) ->
       for key of params
@@ -116,10 +117,12 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
     # If navigating to a subsection we pass in the new document root
     _createUrl: (rootUrl) ->
       documentRoot = rootUrl or @getDocumentRoot()
+      newParams = @_serializeState()
       if @_supportsHistory()
-        base = documentRoot + "?" + @_serializeState()
+        params = "?" + newParams if newParams
+        base = documentRoot + newParams
       else
-        base = "#!" + documentRoot + @_serializeState()
+        base = "#!" + documentRoot + newParams
 
     _navigate: (url, callback) ->
       if (@_supportsHistory() or @_supportsHash())
