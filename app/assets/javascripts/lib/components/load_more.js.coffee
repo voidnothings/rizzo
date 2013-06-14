@@ -82,5 +82,5 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
       @$btn.removeClass('loading disabled').text(@config.title)
 
     _serialize: ->
-      {page: @currentPage}
+      if @currentPage > 1 then {page: @currentPage} else {}
 

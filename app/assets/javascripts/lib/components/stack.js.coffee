@@ -13,7 +13,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
     config:
       el: '#js-results'
       LISTENER: '#js-card-holder'
-      types: ".js-lodging, .js-nearby-accommodations, .js-error"
+      types: ".js-lodging, .js-nearby-accommodations, .js-error, .js-stack-card-filter"
       allTypes: ".js-lodging, .js-nearby-accommodations, .js-error, .js-stack-card-filter"
 
     constructor: (args = {}) ->
