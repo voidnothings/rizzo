@@ -45,7 +45,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
         e.preventDefault()
         filters = $(e.currentTarget).find('[data-filter]').data('filter')
         @_set(filters, true)
-        @trigger(':cards/request', @_serialize())
+        @trigger(':cards/request', [@_serialize(), {callback: "trackFilter"}])
 
 
     # Private area
@@ -97,24 +97,3 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
           label.removeClass('active')
       @trigger(':cards/request', @_serialize())
 
-    
-    
-    # Still used??
-      
-      # @$el.on('click', '.js-filter-reset', (e) =>
-      #   e.preventDefault()
-      #   @reset($(e.currentTarget).parent('label').siblings('.filters__body--drop-down'))
-      #   false
-      # )  
-      
-      # disable: (target) ->  
-      #   inputs = target.find('input[type=checkbox]')
-      #   inputs.attr('checked', false).attr('disabled', true)
-      #   labels = target.find('label.js-filter-label')
-      #   labels.removeClass('active')
-
-    
- 
-    
- 
- 
