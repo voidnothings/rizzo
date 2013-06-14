@@ -117,12 +117,11 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
     # If navigating to a subsection we pass in the new document root
     _createUrl: (rootUrl) ->
       documentRoot = rootUrl or @getDocumentRoot()
-      newParams = @_serializeState()
+      params = "?" + @_serializeState() if @_serializeState()
       if @_supportsHistory()
-        params = "?" + newParams if newParams
-        base = documentRoot + newParams
+        base = documentRoot + params
       else
-        base = "#!" + documentRoot + newParams
+        base = "#!" + documentRoot + params
 
     _navigate: (url, callback) ->
       if (@_supportsHistory() or @_supportsHash())

@@ -120,11 +120,11 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
 
         it 'creates a hashbang url with the document root', ->
           newUrl = controller._createUrl()
-          expect(newUrl).toBe("#!/" + serialized.newUrlWithSearchAndFilters)
+          expect(newUrl).toBe("#!/" + "?" + serialized.newUrlWithSearchAndFilters)
 
         it 'creates a hashbang url with the *new* document root', ->
           newUrl = controller._createUrl("/reviewed")
-          expect(newUrl).toBe("#!/reviewed" + serialized.newUrlWithSearchAndFilters)
+          expect(newUrl).toBe("#!/reviewed" + "?" + serialized.newUrlWithSearchAndFilters)
 
 
     describe 'creating the request url', ->
