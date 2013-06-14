@@ -13,8 +13,8 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
     config:
       el: '#js-results'
       LISTENER: '#js-card-holder'
-      types: ".card--hotel, .js-nearby-accommodations, .js-stack-card-filter, .js-error"
-      allTypes: ".js-stack-card, .card--hotel, .js-nearby-accommodations, .js-stack-card-filter, .js-error"
+      types: ".js-lodging, .js-nearby-accommodations, .js-error"
+      allTypes: ".js-lodging, .js-nearby-accommodations, .js-error, .js-stack-card-filter"
 
     constructor: (args = {}) ->
       $.extend @config, args
