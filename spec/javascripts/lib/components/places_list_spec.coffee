@@ -1,4 +1,4 @@
-require ['public/assets/javascripts/lib/components/places_list.js'], (PlacesList) ->
+require ['public/assets/javascripts/lib/components/place_list.js'], (PlaceList) ->
 
   describe 'PlacesList', ->
 
@@ -8,16 +8,16 @@ require ['public/assets/javascripts/lib/components/places_list.js'], (PlacesList
 
     describe 'Object', ->
       it 'is defined', ->
-        expect(PlacesList).toBeDefined()
+        expect(PlaceList).toBeDefined()
 
       it 'has default options', ->
-        expect(PlacesList::config).toBeDefined()
+        expect(PlaceList::config).toBeDefined()
 
 
     describe 'Initialising', ->
       beforeEach ->
         loadFixtures('places_list.html')
-        window.placesList = new PlacesList({ el: '.foo'})
+        window.placesList = new PlaceList({ el: '.foo'})
         spyOn(placesList, "init")
 
       it 'When the parent element does not exist it does not initialise', ->
@@ -27,7 +27,7 @@ require ['public/assets/javascripts/lib/components/places_list.js'], (PlacesList
     describe 'Updating', ->
       beforeEach ->
         loadFixtures('places_list.html')
-        window.placesList = new PlacesList(config)
+        window.placesList = new PlaceList(config)
         spyOn(placesList, "getParams").andReturn("?foo=bar")
         placesList._update()
 
@@ -41,7 +41,7 @@ require ['public/assets/javascripts/lib/components/places_list.js'], (PlacesList
     describe 'on cards received', ->
       beforeEach ->
         loadFixtures('places_list.html')
-        window.placesList = new PlacesList(config)
+        window.placesList = new PlaceList(config)
 
       describe 'it calls', ->
         beforeEach ->
