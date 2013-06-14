@@ -60,7 +60,6 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
         e.preventDefault()
         @_unblock()
         @trigger(':search/hide')
-        false
 
       # Clear all filters when there are no results
       @$el.on 'click', '.js-clear-all-filters', (e) =>

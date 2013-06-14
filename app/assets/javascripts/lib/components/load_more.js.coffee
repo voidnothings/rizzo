@@ -10,7 +10,6 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
     $.extend(@prototype, EventEmitter)
 
     config:
-      el: '.pagination-footer'
       title: 'Show more'
       idleTitle: 'Loading ...'
       visible: true
