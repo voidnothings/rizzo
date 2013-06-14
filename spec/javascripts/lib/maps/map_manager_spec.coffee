@@ -11,15 +11,9 @@ require ['public/assets/javascripts/lib/maps/map_manager', 'gpt'], (MapManager) 
       it 'is defined', ->
         expect(MapManager).toBeDefined()
 
-    describe 'initialized', ->
+    describe '@_sanitizeData', ->
       beforeEach ->
-        window.mapManager = new MapManager()
-      it 'is defined', ->
-        expect(mapManager).toBeDefined()
-
-    describe '_sanitizeData', ->
-      beforeEach ->
-        window.mapManager = new MapManager()
+        window.mapManager = MapManager
 
       describe 'activities', ->
 
