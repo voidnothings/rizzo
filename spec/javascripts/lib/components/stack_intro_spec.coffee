@@ -11,7 +11,7 @@ require ['public/assets/javascripts/lib/components/stack_intro.js'], (StackIntro
       
       beforeEach ->
         loadFixtures('stack_intro.html')
-        @stackIntro = new StackIntro()
+        @stackIntro = new StackIntro({el: '.js-stack-intro'})
 
       it 'has default configuration', ->
         args =
@@ -50,7 +50,7 @@ require ['public/assets/javascripts/lib/components/stack_intro.js'], (StackIntro
     describe 'updating', ->
       beforeEach ->
         loadFixtures('stack_intro.html')
-        window.stackIntro = new StackIntro()
+        window.stackIntro = new StackIntro({el: '.js-stack-intro'})
 
       it 'updates intro title', ->
         title = 'City Of Goa'
@@ -72,7 +72,7 @@ require ['public/assets/javascripts/lib/components/stack_intro.js'], (StackIntro
       
       beforeEach ->
         loadFixtures('stack_intro.html')
-        @stackIntro = new StackIntro()
+        @stackIntro = new StackIntro({el: '.js-stack-intro'})
 
       it 'hides lead container', ->
         lead = ''
@@ -108,7 +108,7 @@ require ['public/assets/javascripts/lib/components/stack_intro.js'], (StackIntro
     describe 'on received events', ->
       beforeEach ->
         loadFixtures('stack_intro.html')
-        @stackIntro = new StackIntro()
+        @stackIntro = new StackIntro({el: '.js-stack-intro'})
         spyOn(@stackIntro, "_update")
 
       it 'cards/received', ->

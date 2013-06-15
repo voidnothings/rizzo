@@ -15,6 +15,8 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
       visible: true
       LISTENER: '#js-card-holder'
 
+    # @params
+    # el: {string} selector for parent element
     constructor : (args = {}) ->
       $.extend @config, args
       @currentPage = 1

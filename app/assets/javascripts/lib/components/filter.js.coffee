@@ -5,10 +5,10 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
     $.extend(@prototype, EventEmitter)
 
     config :
-      el: null
-      state: null
       LISTENER: '#js-card-holder'
-      
+    
+    # @params
+    # el: {string} selector for parent element
     constructor: (args={}) ->
       $.extend @config, args
       @$el = $(@config.el)

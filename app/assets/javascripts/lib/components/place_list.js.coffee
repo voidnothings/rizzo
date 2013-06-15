@@ -9,7 +9,9 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
       list: null
       LISTENER: '#js-card-holder'
 
-
+    # @params
+    # el: {string} selector for parent element
+    # list: {string} delimited list of child selectors
     constructor: (args={}) ->
       $.extend @config, args
       @$el = $(@config.el)

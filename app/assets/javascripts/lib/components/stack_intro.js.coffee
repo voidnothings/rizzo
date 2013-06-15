@@ -2,10 +2,12 @@ define ['jquery', 'lib/extends/events','lib/components/group_toggle'], ($, Event
 
   class StackIntro extends EventEmitter
 
+
+    # @params
+    # el: {string} selector for parent element
     constructor: (args={}) ->
       @config =
         LISTENER: '#js-card-holder'
-        el: '.js-stack-intro'
         title: '.js-copy-title'
         lead: '.js-copy-lead'
         body: '.js-copy-body' 

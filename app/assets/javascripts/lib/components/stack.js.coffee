@@ -11,11 +11,13 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
     $.extend(@prototype, EventEmitter)
 
     config:
-      el: '#js-results'
       LISTENER: '#js-card-holder'
-      types: ".js-lodging, .js-nearby-accommodations, .js-error, .js-stack-card-filter"
+      list: ".js-lodging, .js-nearby-accommodations, .js-error, .js-stack-card-filter"
       allTypes: ".js-lodging, .js-nearby-accommodations, .js-error, .js-stack-card-filter"
 
+    # @params
+    # el: {string} selector for parent element
+    # list: {string} delimited list of selectors for cards
     constructor: (args = {}) ->
       $.extend @config, args
       @$el = $(@config.el)

@@ -12,6 +12,8 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
     config :
       LISTENER: '#js-card-holder'
 
+    # @params
+    # el: {string} selector for parent element
     constructor: (args={}) ->
       $.extend @config, args
       @$el = $(@config.el)

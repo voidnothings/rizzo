@@ -5,12 +5,13 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter ) ->
     $.extend(@prototype, EventEmitter)
 
     config :
-      el: null
-      list: null
       LISTENER: '#js-card-holder'
       analytics:
         callback: "trackStack"
-      
+    
+    # @params
+    # el: {string} selector for parent element
+    # list: {string} delimited list of child selectors
     constructor: (args={}) ->
       $.extend @config, args
       @$el = $(@config.el)
