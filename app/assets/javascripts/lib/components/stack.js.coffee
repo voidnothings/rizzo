@@ -18,7 +18,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
     constructor: (args) ->
       $.extend @config, args
       @$el = $(args.el)
-      @$list = @$el.find(args.list)
+      @list = args.list
       @init() unless @$el.length is 0
 
     init: ->
@@ -81,13 +81,13 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
       @$el.removeClass('is-loading')
 
     _block: ->
-      @$list.addClass('card--disabled')
+      @$el.find(@list).addClass('card--disabled')
 
     _unblock: ->
-      @$list.removeClass('card--disabled')
+      @$el.find(@list).removeClass('card--disabled')
 
     _clear: () ->
-      @$list.remove()
+      @$el.find(@list).remove()
 
     _add: (newCards)->
       $cards = $(newCards).addClass('card--invisible')
