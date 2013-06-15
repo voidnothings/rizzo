@@ -2,6 +2,8 @@ require ['public/assets/javascripts/lib/components/stack_intro.js'], (StackIntro
 
   describe 'StackIntro', ->
 
+    LISTENER = '#js-card-holder'
+
     describe 'Object', ->
 
       it 'is defined', ->
@@ -15,7 +17,6 @@ require ['public/assets/javascripts/lib/components/stack_intro.js'], (StackIntro
 
       it 'has default configuration', ->
         args =
-          LISTENER: '#js-card-holder'
           el: '.js-stack-intro'
           title: '.js-copy-title'
           lead: '.js-copy-lead'
@@ -24,7 +25,6 @@ require ['public/assets/javascripts/lib/components/stack_intro.js'], (StackIntro
 
       it 'extends base configuration', ->
         customArgs =
-          LISTENER: '#js-card-holder'
           el: '.foo-intro'
           title: '.foo-title'
           lead: '.foo-lead'
@@ -112,9 +112,9 @@ require ['public/assets/javascripts/lib/components/stack_intro.js'], (StackIntro
         spyOn(@stackIntro, "_update")
 
       it 'cards/received', ->
-        $(stackIntro.config.LISTENER).trigger(':cards/received', data)  
+        $(LISTENER).trigger(':cards/received', data)  
         expect(@stackIntro._update).toHaveBeenCalledWith(data.copy)
 
       it 'page/received', ->
-        $(stackIntro.config.LISTENER).trigger(':page/received', data)  
+        $(LISTENER).trigger(':page/received', data)  
         expect(@stackIntro._update).toHaveBeenCalledWith(data.copy)

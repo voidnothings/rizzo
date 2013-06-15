@@ -2,6 +2,8 @@ require ['public/assets/javascripts/lib/components/place_list.js'], (PlaceList) 
 
   describe 'PlacesList', ->
 
+    LISTENER = '#js-card-holder'
+
     config = 
       el: '#js-stack-list-aside', 
       list: '.js-descendant-item, .js-nearby-place-item'
@@ -10,14 +12,11 @@ require ['public/assets/javascripts/lib/components/place_list.js'], (PlaceList) 
       it 'is defined', ->
         expect(PlaceList).toBeDefined()
 
-      it 'has default options', ->
-        expect(PlaceList::config).toBeDefined()
-
 
     describe 'Initialising', ->
       beforeEach ->
         loadFixtures('places_list.html')
-        window.placesList = new PlaceList({ el: '.foo'})
+        window.placesList = new PlaceList(config)
         spyOn(placesList, "init")
 
       it 'When the parent element does not exist it does not initialise', ->
@@ -46,7 +45,7 @@ require ['public/assets/javascripts/lib/components/place_list.js'], (PlaceList) 
       describe 'it calls', ->
         beforeEach ->
           spyOn(placesList, '_update')
-          $(placesList.config.LISTENER).trigger(':cards/received')
+          $(LISTENER).trigger(':cards/received')
 
         it 'calls placesList._update', ->
           expect(placesList._update).toHaveBeenCalled()

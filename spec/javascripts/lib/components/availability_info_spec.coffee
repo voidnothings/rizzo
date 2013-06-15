@@ -1,7 +1,9 @@
 require ['public/assets/javascripts/lib/components/availability_info.js'], (AvailabilityInfo) ->
 
   describe 'AvailabilityInfo', ->
-  
+    
+    LISTENER = '#js-card-holder'
+
     params =
       search:
         from: "21 May 2013"
@@ -16,19 +18,11 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
 
     describe 'Initialisation', ->
       beforeEach ->
-        window.avInfo = new AvailabilityInfo({ el: '.js-availability-info'})
-
-      it 'has an event listener constant', ->
-        expect(avInfo.config.LISTENER).toBe("#js-card-holder")
-
-
-    describe 'When the parent element does not exist', ->
-      beforeEach ->
         loadFixtures('availability_info.html')
         window.avInfo = new AvailabilityInfo({ el: '.foo'})
         spyOn(avInfo, "init")
 
-      it 'does not initialise', ->
+      it 'When the parent element does not exist it does not initialise', ->
         expect(avInfo.init).not.toHaveBeenCalled()
 
 
@@ -134,7 +128,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
         loadFixtures('availability_info.html')
         window.avInfo = new AvailabilityInfo({ el: '.js-availability-info'})
         spyOn(avInfo, "_block")
-        $(avInfo.config.LISTENER).trigger(':cards/request')
+        $(LISTENER).trigger(':cards/request')
 
       it 'disables the availability form', ->
         expect(avInfo._block).toHaveBeenCalled()
@@ -152,7 +146,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
       describe 'when the user has not entered dates', ->
         beforeEach ->
           spyOn(avInfo, "hasSearched").andReturn(false)
-          $(avInfo.config.LISTENER).trigger(':cards/received', ["", params])
+          $(LISTENER).trigger(':cards/received', ["", params])
 
         it 'does not show the info card', ->
           expect(avInfo._unblock).toHaveBeenCalled()
@@ -164,7 +158,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
         beforeEach ->
           spyOn(avInfo, "hasSearched").andReturn(true)
           spyOn(avInfo, "_isHidden").andReturn(true)
-          $(avInfo.config.LISTENER).trigger(':cards/received', ["", params])
+          $(LISTENER).trigger(':cards/received', ["", params])
 
         it 'shows the info card', ->
           expect(avInfo._show).toHaveBeenCalled()
@@ -182,7 +176,7 @@ require ['public/assets/javascripts/lib/components/availability_info.js'], (Avai
         window.avInfo = new AvailabilityInfo({ el: '.js-availability-info'})
         spyOn(avInfo, "_show")
         spyOn(avInfo, "_unblock")
-        $(avInfo.config.LISTENER).trigger(':search/hide')
+        $(LISTENER).trigger(':search/hide')
 
       it 'unblocks the info card', ->
         expect(avInfo._unblock).toHaveBeenCalled()

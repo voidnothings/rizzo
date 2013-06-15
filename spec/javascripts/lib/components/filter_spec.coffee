@@ -2,6 +2,8 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
 
   describe 'Filter', ->
 
+    LISTENER = '#js-card-holder'
+
     data =
       disable_price_filters: true
       external_filter: '5star,4star,3star,2star'
@@ -18,10 +20,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         loadFixtures('filter.html')
         window.filter = new Filter({el: '#js-filters'})
         spyOn(filter, "_removeSEOLinks")
-        filter.constructor()
-
-      it 'has an event listener constant', ->
-        expect(filter.config.LISTENER).toBe("#js-card-holder")
+        filter.constructor({el: '#js-filters'})
 
       it 'removes the SEO links', ->
         expect(filter._removeSEOLinks).toHaveBeenCalledWith(filter.$el)
@@ -192,7 +191,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
           loadFixtures('filter.html')
           window.filter = new Filter({el: '#js-filters'})
           spyOn(filter, "_update")
-          $(filter.config.LISTENER).trigger(':page/received', "foo")
+          $(LISTENER).trigger(':page/received', "foo")
 
         it 'updates the filters', ->
           expect(filter._update).toHaveBeenCalledWith("foo")
@@ -204,7 +203,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         loadFixtures('filter.html')
         window.filter = new Filter({el: '#js-filters-reset'})
         spyOn(filter, "_reset")
-        $(filter.config.LISTENER).trigger(':filter/reset')
+        $(LISTENER).trigger(':filter/reset')
 
       it 'the reset function', ->
         expect(filter._reset).toHaveBeenCalled()
@@ -240,13 +239,13 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         spyEvent = spyOnEvent(filter.$el, ':cards/request');
 
       it 'calls _set with the new filters', ->
-        filterCard = $(filter.config.LISTENER).find('.js-stack-card-filter')
+        filterCard = $(LISTENER).find('.js-stack-card-filter')
         filters = filterCard.find('[data-filter]').data('filter')
         filterCard.trigger('click')
         expect(filter._set).toHaveBeenCalledWith(filters, true)
 
       it 'triggers the :cards/request event with the correct params', ->
-        filterCard = $(filter.config.LISTENER).find('.js-stack-card-filter')
+        filterCard = $(LISTENER).find('.js-stack-card-filter')
         filterCard.trigger('click')
         expect(':cards/request').toHaveBeenTriggeredOn(filter.$el)
 

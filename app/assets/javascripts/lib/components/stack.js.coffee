@@ -10,17 +10,15 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
 
     $.extend(@prototype, EventEmitter)
 
-    config:
-      LISTENER: '#js-card-holder'
-      list: ".js-lodging, .js-nearby-accommodations, .js-error, .js-stack-card-filter"
-      allTypes: ".js-lodging, .js-nearby-accommodations, .js-error, .js-stack-card-filter"
+    LISTENER = '#js-card-holder'
 
-    # @params
+    # @params {}
     # el: {string} selector for parent element
     # list: {string} delimited list of selectors for cards
-    constructor: (args = {}) ->
+    constructor: (args) ->
       $.extend @config, args
-      @$el = $(@config.el)
+      @$el = $(args.el)
+      @$list = @$el.find(args.list)
       @init() unless @$el.length is 0
 
     init: ->
@@ -30,28 +28,28 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
 
     # Subscribe
     listen: ->
-      $(@config.LISTENER).on ':cards/request', =>
+      $(LISTENER).on ':cards/request', =>
         @_block()
         @_addLoader()
 
-      $(@config.LISTENER).on ':cards/received', (e, data) =>
+      $(LISTENER).on ':cards/received', (e, data) =>
         @_removeLoader()
-        @_clear(true)
+        @_clear()
         @_add(data.content)
 
-      $(@config.LISTENER).on ':cards/append/received', (e, data) =>
+      $(LISTENER).on ':cards/append/received', (e, data) =>
         @_add(data.content)
 
-      $(@config.LISTENER).on ':page/request', =>
+      $(LISTENER).on ':page/request', =>
         @_block()
         @_addLoader()
 
-      $(@config.LISTENER).on ':page/received', (e, data) =>
+      $(LISTENER).on ':page/received', (e, data) =>
         @_removeLoader()
-        @_clear(false)
+        @_clear()
         @_add(data.content)
 
-      $(@config.LISTENER).on ':search/change', (e) =>
+      $(LISTENER).on ':search/change', (e) =>
         @_block()
 
 
@@ -83,17 +81,16 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
       @$el.removeClass('is-loading')
 
     _block: ->
-      @$el.find(@config.types).addClass('card--disabled')
+      @$list.addClass('card--disabled')
 
     _unblock: ->
-      @$el.find(@config.types).removeClass('card--disabled')
+      @$list.removeClass('card--disabled')
 
-    _clear: (keepFilters) ->
-      cards = if keepFilters then @config.types else @config.allTypes
-      @$el.find(cards).remove()
+    _clear: () ->
+      @$list.remove()
 
-    _add: (list)->
-      $cards = $(list).addClass('card--invisible')
+    _add: (newCards)->
+      $cards = $(newCards).addClass('card--invisible')
       @$el.append($cards)
       @_show($cards)
 

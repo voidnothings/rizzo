@@ -4,14 +4,12 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
 
     $.extend(@prototype, EventEmitter)
 
-    config :
-      LISTENER: '#js-card-holder'
+    LISTENER = '#js-card-holder'
     
-    # @params
+    # @params {}
     # el: {string} selector for parent element
-    constructor: (args={}) ->
-      $.extend @config, args
-      @$el = $(@config.el)
+    constructor: (args) ->
+      @$el = $(args.el)
       @init() unless @$el.length is 0
 
     init: ->
@@ -23,10 +21,10 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
     # Subscribe
     listen: ->  
 
-      $(@config.LISTENER).on ':page/received', (e, data) =>
+      $(LISTENER).on ':page/received', (e, data) =>
         @_update(data)
 
-      $(@config.LISTENER).on ':filter/reset', =>
+      $(LISTENER).on ':filter/reset', =>
         @_reset()
 
 
@@ -41,7 +39,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
         false
 
       # Listen to filter cards that exist outside of the component
-      $(@config.LISTENER).on 'click', '.js-stack-card-filter', (e) =>
+      $(LISTENER).on 'click', '.js-stack-card-filter', (e) =>
         e.preventDefault()
         filters = $(e.currentTarget).find('[data-filter]').data('filter')
         @_set(filters, true)

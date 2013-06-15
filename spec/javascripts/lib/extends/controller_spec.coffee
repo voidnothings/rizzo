@@ -2,6 +2,8 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
 
   describe 'Controller', ->
 
+    LISTENER = '#js-card-holder'
+
     serialized = 
       url: "http://www.lonelyplanet.com/france/paris/hotels"
       urlWithSearchAndFilters: "http://www.lonelyplanet.com/england/london/hotels?utf8=✓&search%5Bpage_offsets%5D=0%2C58&search%5Bfrom%5D=29+May+2013&search%5Bto%5D=30+May+2013&search%5Bguests%5D=2&search%5Bcurrency%5D=USD&filters%5Bproperty_type%5D%5B3star%5D=true&filters%5Blp_reviewed%5D=true"
@@ -37,12 +39,6 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
 
       it 'is defined', ->
         expect(Controller).toBeDefined()
-
-      it 'has default options', ->
-        expect(Controller::config).toBeDefined()
-
-      it 'has a listener', ->
-        expect(Controller::config.LISTENER).toBeDefined()
 
       it 'has a state object', ->
         expect(Controller::state).toBeDefined()
@@ -246,7 +242,7 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         window.controller = new Controller()
         spyOn(controller, "_callServer")
         spyOn(controller, "_createRequestUrl").andReturn("http://www.lonelyplanet.com/foo.json?foo=bar")
-        $(controller.config.LISTENER).trigger(':cards/request', newParams, analytics)
+        $(LISTENER).trigger(':cards/request', newParams, analytics)
 
       it 'updates the internal state', ->
         expect(controller.state.filters).toBe(newParams.filters)
@@ -261,7 +257,7 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         window.controller = new Controller()
         spyOn(controller, "_callServer")
         spyOn(controller, "_createRequestUrl").andReturn("http://www.lonelyplanet.com/foo.json?foo=bar")
-        $(controller.config.LISTENER).trigger(':cards/append', {page: 2}, analytics)
+        $(LISTENER).trigger(':cards/append', {page: 2}, analytics)
 
       it 'updates the internal state', ->
         expect(controller.state.page).toBe(2)
@@ -276,7 +272,7 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         window.controller = new Controller()
         spyOn(controller, "_callServer")
         spyOn(controller, "_augmentDocumentRoot")
-        $(controller.config.LISTENER).trigger(':page/request', "pageParams")
+        $(LISTENER).trigger(':page/request', "pageParams")
 
     describe 'when the server returns data', ->
       beforeEach ->

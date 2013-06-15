@@ -9,15 +9,16 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
 
     $.extend(@prototype, EventEmitter)
 
+    LISTENER = '#js-card-holder'
+
     config:
       title: 'Show more'
       idleTitle: 'Loading ...'
       visible: true
-      LISTENER: '#js-card-holder'
 
-    # @params
+    # @params {}
     # el: {string} selector for parent element
-    constructor : (args = {}) ->
+    constructor : (args) ->
       $.extend @config, args
       @currentPage = 1
       @pageOffsets = '0'
@@ -35,15 +36,15 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
 
     # Subscribe
     listen: ->
-      $(@config.LISTENER).on ':cards/request', =>
+      $(LISTENER).on ':cards/request', =>
         @_block()
         @_reset()
 
-      $(@config.LISTENER).on ':cards/received', (e, data) =>
+      $(LISTENER).on ':cards/received', (e, data) =>
         @_unblock()
         if data.pagination.total is 0 or data.pagination.current is data.pagination.total then @_hide() else @_show()
 
-      $(@config.LISTENER).on ':cards/append/received', (e, data) =>
+      $(LISTENER).on ':cards/append/received', (e, data) =>
         @_unblock()
         if data.pagination.total is 0 or data.pagination.current is data.pagination.total then @_hide() else @_show()
 

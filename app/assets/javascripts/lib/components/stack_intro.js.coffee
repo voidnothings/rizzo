@@ -2,12 +2,12 @@ define ['jquery', 'lib/extends/events','lib/components/group_toggle'], ($, Event
 
   class StackIntro extends EventEmitter
 
+    LISTENER = '#js-card-holder'
 
     # @params
     # el: {string} selector for parent element
     constructor: (args={}) ->
       @config =
-        LISTENER: '#js-card-holder'
         title: '.js-copy-title'
         lead: '.js-copy-lead'
         body: '.js-copy-body' 
@@ -24,10 +24,10 @@ define ['jquery', 'lib/extends/events','lib/components/group_toggle'], ($, Event
       @listen()
 
     listen: ->
-      $(@config.LISTENER).on ':cards/received', (e, data) =>
+      $(LISTENER).on ':cards/received', (e, data) =>
         @_update(data.copy)
 
-      $(@config.LISTENER).on ':page/received', (e, data) =>
+      $(LISTENER).on ':page/received', (e, data) =>
         @_update(data.copy)
 
     # Private

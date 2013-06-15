@@ -4,27 +4,24 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
 
     $.extend(@prototype, EventEmitter)
 
-    config :
-      el: null
-      list: null
-      LISTENER: '#js-card-holder'
+    LISTENER = '#js-card-holder'
 
-    # @params
+    # @params {}
     # el: {string} selector for parent element
     # list: {string} delimited list of child selectors
-    constructor: (args={}) ->
-      $.extend @config, args
-      @$el = $(@config.el)
+    constructor: (args) ->
+      @$el = $(args.el)
+      @$list = $(args.list)
       @init() unless @$el.length is 0
 
     init: ->
-      @$list = @$el.find(@config.list)
+      @$list = @$el.find(@$list)
       @listen()
 
 
     # Subscribe
     listen: ->  
-      $(@config.LISTENER).on ':cards/received', =>
+      $(LISTENER).on ':cards/received', =>
         @_update()
 
 

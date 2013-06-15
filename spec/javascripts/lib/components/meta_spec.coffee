@@ -1,6 +1,8 @@
 require ['public/assets/javascripts/lib/components/meta.js'], (Meta) ->
 
   describe 'Meta', ->
+
+    LISTENER = '#js-card-holder'
     
     data =
       copy: 
@@ -15,9 +17,6 @@ require ['public/assets/javascripts/lib/components/meta.js'], (Meta) ->
     describe 'Object', ->
       it 'is defined', ->
         expect(Meta).toBeDefined()
-
-      it 'has default options', ->
-        expect(Meta::config).toBeDefined()
 
 
     # --------------------------------------------------------------------------
@@ -59,15 +58,15 @@ require ['public/assets/javascripts/lib/components/meta.js'], (Meta) ->
         spyOn(meta, "_updateMeta")
 
       it 'calls _updateTitle with the title', ->
-        $(meta.config.LISTENER).trigger(':cards/received', data)
+        $(LISTENER).trigger(':cards/received', data)
         expect(meta._updateTitle).toHaveBeenCalledWith(data.copy.title)
 
       it 'calls _updateMeta with the data', ->
-        $(meta.config.LISTENER).trigger(':cards/received', data)
+        $(LISTENER).trigger(':cards/received', data)
         expect(meta._updateMeta).toHaveBeenCalledWith(data)
 
       it 'does not update the page unless there is a title returned', ->
-        $(meta.config.LISTENER).trigger(':cards/received', data_no_title)
+        $(LISTENER).trigger(':cards/received', data_no_title)
         expect(meta._updateTitle).not.toHaveBeenCalled()
         expect(meta._updateMeta).not.toHaveBeenCalled()
 
@@ -80,14 +79,14 @@ require ['public/assets/javascripts/lib/components/meta.js'], (Meta) ->
         spyOn(meta, "_updateMeta")
 
       it 'calls _updateTitle with the title', ->
-        $(meta.config.LISTENER).trigger(':cards/received', data)
+        $(LISTENER).trigger(':cards/received', data)
         expect(meta._updateTitle).toHaveBeenCalledWith(data.copy.title)
 
       it 'calls _updateMeta with the data', ->
-        $(meta.config.LISTENER).trigger(':cards/received', data)
+        $(LISTENER).trigger(':cards/received', data)
         expect(meta._updateMeta).toHaveBeenCalledWith(data)
 
       it 'does not update the page unless there is a title returned', ->
-        $(meta.config.LISTENER).trigger(':cards/received', data_no_title)
+        $(LISTENER).trigger(':cards/received', data_no_title)
         expect(meta._updateTitle).not.toHaveBeenCalled()
         expect(meta._updateMeta).not.toHaveBeenCalled()

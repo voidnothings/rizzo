@@ -2,6 +2,8 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
 
   describe 'Availability', ->
     
+    LISTENER = '#js-card-holder'
+
     describe 'Object', ->
       it 'is defined', ->
         expect(Availability).toBeDefined()
@@ -10,19 +12,10 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
     describe 'Initialisation', ->
       beforeEach ->
         loadFixtures('availability.html')
-        window.av = new Availability({el: '.js-availability-card'})
-
-      it 'has an event listener constant', ->
-        expect(av.config.LISTENER).toBe("#js-card-holder")
-
-
-    describe 'When the parent element does not exist', ->
-      beforeEach ->
-        loadFixtures('availability.html')
         window.av = new Availability({ el: '.foo'})
         spyOn(av, "init")
 
-      it 'does not initialise', ->
+      it 'does not initialise when there is no parent', ->
         expect(av.init).not.toHaveBeenCalled()
 
     # --------------------------------------------------------------------------
@@ -127,7 +120,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
         loadFixtures('availability.html')
         window.av = new Availability({el: '.js-availability-card'})
         spyOn(av, "_block")
-        $(av.config.LISTENER).trigger(':cards/request')
+        $(LISTENER).trigger(':cards/request')
 
       it 'disables the availability form', ->
         expect(av._block).toHaveBeenCalled()
@@ -144,7 +137,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
       describe 'if the user has searched', ->
         beforeEach ->
           spyOn(av, "hasSearched").andReturn(true)
-          $(av.config.LISTENER).trigger(':cards/received', {pagination: {page_offsets: 2}})
+          $(LISTENER).trigger(':cards/received', {pagination: {page_offsets: 2}})
       
         it 'hides the availability form', ->
           expect(av._hide).toHaveBeenCalled()
@@ -158,7 +151,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
       describe 'if the user has not already searched', ->
         beforeEach ->
           spyOn(av, "hasSearched").andReturn(false)
-          $(av.config.LISTENER).trigger(':cards/received', {pagination: {page_offsets: 2}})
+          $(LISTENER).trigger(':cards/received', {pagination: {page_offsets: 2}})
 
         it 'does not hide the availability form', ->
           expect(av._hide).not.toHaveBeenCalled()
@@ -188,7 +181,7 @@ require ['public/assets/javascripts/lib/components/availability_search.js'], (Av
         loadFixtures('availability.html')
         window.av = new Availability({el: '.js-availability-card'})
         spyOn(av, "_show")
-        $(av.config.LISTENER).trigger(':search/change')
+        $(LISTENER).trigger(':search/change')
 
       it 'shows the availability form', ->
         expect(av._show).toHaveBeenCalled()

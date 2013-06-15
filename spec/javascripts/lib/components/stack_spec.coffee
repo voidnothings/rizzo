@@ -2,9 +2,10 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
 
   describe 'Stack', ->
     
+    LISTENER = '#js-card-holder'
+
     config = 
-      types: ".test, .test2, .js-error"
-      allTypes: ".test, .test2, .js-error, .js-stack-card-filter"
+      list: ".test, .test2, .js-error"
       el: '#js-results'
 
     params =
@@ -14,14 +15,11 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
       it 'is defined', ->
         expect(Stack).toBeDefined()
 
-      it 'has default options', ->
-        expect(Stack::config).toBeDefined()
-
 
     describe 'Initialising', ->
       beforeEach ->
         loadFixtures('stack.html')
-        window.stack = new Stack({ el: '.foo'})
+        window.stack = new Stack(config)
         spyOn(stack, "init")
 
       it 'When the parent element does not exist it does not initialise', ->
@@ -63,7 +61,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
         stack._block()
 
       it 'adds the disabled class', ->
-        expect(stack.$el.find(stack.config.types)).toHaveClass('card--disabled')
+        expect(stack.$el.find(config.list)).toHaveClass('card--disabled')
 
 
     describe 'unblocking', ->
@@ -71,11 +69,11 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
       beforeEach ->
         loadFixtures('stack.html')
         window.stack = new Stack(config)
-        stack.$el.find(stack.config.types).addClass('card--disabled')
+        stack.$el.find(stack.$list).addClass('card--disabled')
         stack._unblock()
 
       it 'clears the stack', ->
-        expect(stack.$el.find(stack.config.types)).not.toHaveClass('card--disabled')
+        expect(stack.$el.find(stack.$list)).not.toHaveClass('card--disabled')
 
 
     describe 'clearing', ->
@@ -84,18 +82,9 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
         loadFixtures('stack.html')
         window.stack = new Stack(config)
 
-      it 'removes the cards but keeps the filters', ->
-        stack._clear(true)
-        expect($(stack.$el).find(config.types).length).toBe(0)
-        expect($(stack.$el).find(config.allTypes).length).not.toBe(0)
-
       it 'removes the cards and the filters', ->
-        stack._clear(false)
-        expect($(stack.$el).find(config.types).length).toBe(0)
-        expect($(stack.$el).find(config.allTypes).length).toBe(0)
-
-      it 'removes any error messages', ->
-        stack._clear(true)
+        stack._clear()
+        expect($(stack.$el).find(config.list).length).toBe(0)
         expect($(stack.$el).find(".js-error").length).toBe(0)
 
 
@@ -128,7 +117,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
         window.stack = new Stack(config)
         spyOn(stack, "_addLoader")
         spyOn(stack, "_block")
-        $(stack.config.LISTENER).trigger(':cards/request')
+        $(LISTENER).trigger(':cards/request')
 
       it 'calls stack.addLoader', ->
         expect(stack._addLoader).toHaveBeenCalled()
@@ -147,7 +136,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
           spyOn(stack, "_removeLoader")
           spyOn(stack, "_clear")
           spyOn(stack, "_add")
-          $(stack.config.LISTENER).trigger(':cards/received', params)  
+          $(LISTENER).trigger(':cards/received', params)  
 
         it 'calls stack._removeLoader', ->
           expect(stack._removeLoader).toHaveBeenCalled()
@@ -168,7 +157,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
         beforeEach ->
           spyOn(stack, "_clear")
           spyOn(stack, "_add")
-          $(stack.config.LISTENER).trigger(':cards/append/received', params)  
+          $(LISTENER).trigger(':cards/append/received', params)  
 
         it 'does not call stack._clear', ->
           expect(stack._clear).not.toHaveBeenCalled()

@@ -4,8 +4,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
 
     $.extend(@prototype, EventEmitter)
 
-    config:
-      LISTENER: '#js-card-holder'
+    LISTENER = '#js-card-holder'
 
     state: {}
 
@@ -16,22 +15,22 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
 
     init: ->
       # Controller uses the main listening element for pub & sub
-      @$el = $(@config.LISTENER)
+      @$el = $(LISTENER)
       @_generateState()
       @_initHistory()
 
 
     # Subscribe
     listen: ->
-      $(@config.LISTENER).on ':cards/request', (e, data, analytics) =>
+      $(LISTENER).on ':cards/request', (e, data, analytics) =>
         @_updateState(data)
         @_callServer(@_createRequestUrl(), @replace, analytics)
 
-      $(@config.LISTENER).on ':cards/append', (e, data, analytics) =>
+      $(LISTENER).on ':cards/append', (e, data, analytics) =>
         @_updateState(data)
         @_callServer(@_createRequestUrl(), @append, analytics)
 
-      $(@config.LISTENER).on ':page/request', (e, data, analytics) =>
+      $(LISTENER).on ':page/request', (e, data, analytics) =>
         @newDocumentRoot = data.url.split('?')[0]
         @_callServer(@_createRequestUrl(@newDocumentRoot), @newPage, analytics)
 

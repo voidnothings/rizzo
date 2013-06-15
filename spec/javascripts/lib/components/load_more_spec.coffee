@@ -1,7 +1,8 @@
 require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
 
-
   describe 'Load More Button', ->
+
+    LISTENER = '#js-card-holder'
 
     describe 'Object', ->
       it 'is defined', ->
@@ -120,7 +121,7 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
         window.lm = new LoadMore({el: '.js-pagination'})
         spyOn(lm, "_reset")
         spyOn(lm, "_block")
-        $(lm.config.LISTENER).trigger(':cards/request')
+        $(LISTENER).trigger(':cards/request')
 
       it 'resets the pagination', ->
         expect(lm._reset).toHaveBeenCalled()
@@ -138,19 +139,19 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
         spyOn(lm, "_hide")
 
       it 'enables the pagination', ->
-        $(lm.config.LISTENER).trigger(':cards/received', stub)
+        $(LISTENER).trigger(':cards/received', stub)
         expect(lm._unblock).toHaveBeenCalled()
 
       it 'shows the pagination', ->
-        $(lm.config.LISTENER).trigger(':cards/received', stub)
+        $(LISTENER).trigger(':cards/received', stub)
         expect(lm._show).toHaveBeenCalled()
 
       it 'hides the pagination if the total pages is 0', ->
-        $(lm.config.LISTENER).trigger(':cards/received', stub_single)
+        $(LISTENER).trigger(':cards/received', stub_single)
         expect(lm._hide).toHaveBeenCalled()
 
       it 'hides the pagination if we are on the final page', ->
-        $(lm.config.LISTENER).trigger(':cards/received', stub_final_page)
+        $(LISTENER).trigger(':cards/received', stub_final_page)
         expect(lm._hide).toHaveBeenCalled()
 
 
@@ -163,19 +164,19 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
         spyOn(lm, "_hide")
 
       it 'enables the pagination', ->
-        $(lm.config.LISTENER).trigger(':cards/append/received', stub)
+        $(LISTENER).trigger(':cards/append/received', stub)
         expect(lm._unblock).toHaveBeenCalled()
 
       it 'shows the pagination', ->
-        $(lm.config.LISTENER).trigger(':cards/append/received', stub)
+        $(LISTENER).trigger(':cards/append/received', stub)
         expect(lm._show).toHaveBeenCalled()
 
       it 'hides the pagination if the total pages is 0', ->
-        $(lm.config.LISTENER).trigger(':cards/append/received', stub_single)
+        $(LISTENER).trigger(':cards/append/received', stub_single)
         expect(lm._hide).toHaveBeenCalled()
 
       it 'hides the pagination if we are on the final page', ->
-        $(lm.config.LISTENER).trigger(':cards/append/received', stub_final_page)
+        $(LISTENER).trigger(':cards/append/received', stub_final_page)
         expect(lm._hide).toHaveBeenCalled()
 
 

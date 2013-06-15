@@ -9,14 +9,12 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
 
     $.extend(@prototype, EventEmitter)
 
-    config :
-      LISTENER: '#js-card-holder'
+    LISTENER = '#js-card-holder'
 
-    # @params
+    # @params {}
     # el: {string} selector for parent element
-    constructor: (args={}) ->
-      $.extend @config, args
-      @$el = $(@config.el)
+    constructor: (args) ->
+      @$el = $(args.el)
       @init() unless @$el.length is 0
 
     init: ->
@@ -31,18 +29,18 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
     
     # Subscribe
     listen: ->
-      $(@config.LISTENER).on ':cards/request', =>
+      $(LISTENER).on ':cards/request', =>
         @_block()
 
-      $(@config.LISTENER).on ':cards/received', (e, data) =>
+      $(LISTENER).on ':cards/received', (e, data) =>
         @_hide() if @hasSearched()
         @_unblock()
         @_set('page_offsets', data.pagination.page_offsets) if data.pagination && data.pagination.page_offsets
 
-      $(@config.LISTENER).on ':search/change', => 
+      $(LISTENER).on ':search/change', => 
         @_show()
 
-      $(@config.LISTENER).on ':search/hide', => 
+      $(LISTENER).on ':search/hide', => 
         @_hide()
 
     # Publish

@@ -2,23 +2,22 @@ define ['jquery'], ($) ->
  
   class Cucumber
 
-    config :
-      LISTENER: '#js-card-holder'
+    LISTENER = '#js-card-holder'
 
-    constructor: (args={}) ->
+    constructor: () ->
       @listen()
 
     # Subscribe
     listen: ->
-      $(@config.LISTENER).on ':cards/received', (e) ->
+      $(LISTENER).on ':cards/received', (e) ->
         $('body').removeClass('js-clock')
         false
 
-      $(@config.LISTENER).on ':page/received', (e) ->
+      $(LISTENER).on ':page/received', (e) ->
         $('body').removeClass('js-clock')
         false
 
-      $(@config.LISTENER).on ':cards/append/received', (e) =>
+      $(LISTENER).on ':cards/append/received', (e) =>
         $('body').removeClass('js-clock')
         false
 
