@@ -11,21 +11,23 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
 
     LISTENER = '#js-card-holder'
 
-    config:
-      title: 'Show more'
-      idleTitle: 'Loading ...'
-      visible: true
 
     # @params {}
     # el: {string} selector for parent element
     constructor : (args) ->
+
+      @config =
+        title: 'Show more'
+        idleTitle: 'Loading ...'
+        visible: true
+
       $.extend @config, args
       @currentPage = 1
       @pageOffsets = '0'
       @$el = $(@config.el)
       @init() unless @$el.length is 0
 
-    init: ->  
+    init: ->
       @_hide() if !@config.visible
       @_clean()
       @_add()

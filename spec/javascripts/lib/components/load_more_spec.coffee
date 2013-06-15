@@ -8,8 +8,14 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
       it 'is defined', ->
         expect(LoadMore).toBeDefined()
 
+
+    describe 'Initialisation', ->
+      beforeEach ->
+        loadFixtures('load_more.html')
+        window.lm = new LoadMore({el: '.js-pagination'})
+      
       it 'has default options', ->
-        expect(LoadMore::config).toBeDefined()
+        expect(lm.config).toBeDefined()
 
 
     describe 'When the parent element does not exist', ->
@@ -51,8 +57,7 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
     describe 'hiding', ->
       beforeEach ->
         loadFixtures('load_more.html')
-        window.lm = new LoadMore({el: '.js-pagination'})
-        lm.constructor({visible: false})
+        window.lm = new LoadMore({el: '.js-pagination', visible: false})
 
       it 'hides the pagination', ->
         expect(lm.$el).toHaveClass('is-hidden')

@@ -10,17 +10,23 @@ require ['public/assets/javascripts/lib/components/stack_list.js'], (StackList) 
       it 'is defined', ->
         expect(StackList).toBeDefined()
 
-      it 'has default options', ->
-        expect(StackList::config).toBeDefined()
-
 
     describe 'Initialising', ->
+      beforeEach ->
+        loadFixtures('stack_list.html')
+        window.stackList = new StackList(config)
+
+      it 'has default options', ->
+        expect(stackList.config).toBeDefined()
+
+
+    describe 'Not initialising', ->
       beforeEach ->
         loadFixtures('stack_list.html')
         window.stackList = new StackList({ el: '.foo'})
         spyOn(stackList, "init")
 
-      it 'When the parent element does not exist it does not initialise', ->
+      it 'When the parent element does not exist', ->
         expect(stackList.init).not.toHaveBeenCalled()
 
 
