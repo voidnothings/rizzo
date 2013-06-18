@@ -30,12 +30,13 @@ require ['public/assets/javascripts/lib/components/section_toggle.js'], (Section
         spyOn(SectionToggle.prototype, "getFullHeight").andReturn(50)
         spyOn(SectionToggle.prototype, "addHandler")
         spyOn(SectionToggle.prototype, "setWrapperState")
+        window.SectionToggle = new SectionToggle({maxHeight: 100})
 
       it 'keeps the toggle area open and does not have a toggle button', ->
-        window.SectionToggle = new SectionToggle({maxHeight: 100})
         expect(window.SectionToggle.addHandler).not.toHaveBeenCalled()
         expect(window.SectionToggle.setWrapperState).not.toHaveBeenCalled()
         expect(window.SectionToggle.$el).toHaveClass('is-open')
+        expect(window.SectionToggle.$el.find('.btn--read-more').length).toBe(0)
 
 
     describe 'When the total height of the area is larger than the max height', ->
@@ -43,19 +44,27 @@ require ['public/assets/javascripts/lib/components/section_toggle.js'], (Section
         loadFixtures('section_toggle.html')
         spyOn(SectionToggle.prototype, "getFullHeight").andReturn(150)
 
-      it 'closes toggle area and adds a block-style toggle button', ->
+      it 'appends a block-style toggle button by default', ->
         window.SectionToggle = new SectionToggle({maxHeight: 100})
-        expect(window.SectionToggle.$el).toHaveClass('is-closed')
         expect(window.SectionToggle.$el.find('.btn--read-more').length).toBe(1)
         expect(window.SectionToggle.wrapper).toHaveClass('read-more-block')
-        expect(window.SectionToggle.wrapper.css('maxHeight')).toEqual('100px')
 
-      it 'closes toggle area and adds an inline-style toggle button', ->
+      it 'appends a shadow block-style toggle button when requested', ->
+        window.SectionToggle = new SectionToggle({maxHeight: 100, shadow: true})
+        expect(window.SectionToggle.$el.find('.read-more__handler').length).toBe(1)
+        expect(window.SectionToggle.$el.find('.btn--read-more').length).toBe(1)
+        expect(window.SectionToggle.wrapper).toHaveClass('read-more-block')
+
+      it 'appends an inline-style toggle button when requested', ->
         window.SectionToggle = new SectionToggle({maxHeight: 100, style: 'inline'})
-        expect(window.SectionToggle.$el).toHaveClass('is-closed')
         expect(window.SectionToggle.$el.find('.btn--read-more').length).toBe(1)
         expect(window.SectionToggle.wrapper).toHaveClass('read-more-inline')
+
+      it 'closes toggle area by default', ->
+        window.SectionToggle = new SectionToggle({maxHeight: 100})
         expect(window.SectionToggle.wrapper.css('maxHeight')).toEqual('100px')
+        expect(window.SectionToggle.$el).toHaveClass('is-closed')
+        expect(window.SectionToggle.handler.text()).toBe('Read More')
 
 
     describe 'When the Read More button is clicked', ->
@@ -63,11 +72,10 @@ require ['public/assets/javascripts/lib/components/section_toggle.js'], (Section
         loadFixtures('section_toggle.html')
         spyOn(SectionToggle.prototype, "getFullHeight").andReturn(150)
         window.SectionToggle = new SectionToggle({maxHeight: 100})
-        window.SectionToggle.click()
+        window.SectionToggle.transitionEnabled = false # to execute toggleClasses immediately
+        window.SectionToggle.$el.find('.btn--read-more').click()
 
       it 'opens the toggle area when the toggle button is clicked', ->
         expect(window.SectionToggle.$el).toHaveClass('is-open')
-        # expect(window.SectionToggle.$el.find('.btn--read-more').length).toBe(1)
-        # expect(window.SectionToggle.wrapper).toHaveClass('read-more-block')
-        # expect(window.SectionToggle.wrapper.css('maxHeight')).toEqual('150px')
-
+        expect(window.SectionToggle.wrapper.css('maxHeight')).toEqual('150px')
+        expect(window.SectionToggle.handler.text()).toBe('Read Less')
