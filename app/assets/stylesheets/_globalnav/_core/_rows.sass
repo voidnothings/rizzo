@@ -42,6 +42,7 @@ body
 .row--cookie-compliance
   @extend %smooth-text
   @extend %small-type
+  @extend %lp-font-stack
   line-height: 1.2
   background-color: $feature
   overflow: hidden
@@ -169,7 +170,7 @@ body
   margin-bottom: 30px
 
 .row--sitemap__inner
-  @extend %small-type
+  @extend %irregular-type
   padding-top: 20px
 
 
@@ -181,7 +182,7 @@ body
 // ----------------------------------------------------------------------------
 
 .row--footer--about
-  @extend %small-type
+  @extend %irregular-type
 
 
 // ----------------------------------------------------------------------------
@@ -201,6 +202,8 @@ body
 // ----------------------------------------------------------------------------
 
 .wrap--footer
+  @extend %lp-font-stack
+  @extend %subpixel-text
   background-color: $body-background
 
 .wrap--footer-push

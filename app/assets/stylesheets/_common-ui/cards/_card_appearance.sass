@@ -15,15 +15,15 @@
 
 .card__property-type,
 .card__context
-  @extend %small-type
+  @extend %irregular-type
   display: block
   margin-bottom: 2px
+  font-style: italic
 
 .card__name
-  @extend %large-type
+  +font-size(22)
   +word-break()
-  font-weight: bold
-  line-height: 17px
+  
   margin-bottom: 12px
 
   .card--standard-image &
@@ -38,13 +38,11 @@
   margin-bottom: 12px
 
 .card__description
-  @extend %smooth-text
   @extend %irregular-type
   color: $body-copy
   line-height: 14px
 
 .card__list
-  @extend %smooth-text
   @extend %irregular-type
   color: $body-copy
   list-style: circle inside
@@ -85,8 +83,6 @@
   @extend %irregular-type
   color: $body
   margin-right: 5px
-  &:before
-    @extend %benton-regular
 
 .destination__item-count--sights
   @extend %icon-image-poi-sight-before

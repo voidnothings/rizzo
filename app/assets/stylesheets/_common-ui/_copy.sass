@@ -1,22 +1,24 @@
+// Freight is applied to the main content area of the page
+.copy--freight
+  @extend %lp-font-stack
+
 .copy--title
   +font-size(32)
-  @extend %benton-book
   color: $header-blue
   letter-spacing: -0.05em
-  line-height: 40px
+  line-height: 1.5em
   margin-bottom: 0.8em
 
 .copy--subtitle
   +font-size(16)
-  @extend %benton-regular
+  font-weight: bold
   color: $header-blue
   text-transform: uppercase
-  letter-spacing: 0.1em
+  letter-spacing: 0.2em
   margin: 1.8em 0 0.9em
 
 .copy--feature
   +font-size(20)
-  @extend %benton-book
   color: $body-copy
   line-height: 1.5em
   em
@@ -24,6 +26,5 @@
 
 .copy--body
   +font-size(15)
-  @extend %benton-book
   color: $body-copy
-  line-height: 25px
+  line-height: 1.66em

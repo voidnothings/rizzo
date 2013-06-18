@@ -36,7 +36,8 @@
 
 .nav--secondary
   @extend %irregular-type
-  @extend %smooth-text
+  @extend %subpixel-text
+  @extend %regular-type-size
 
 .nav__item--secondary
   padding: 7px 8px 6px
@@ -114,6 +115,7 @@
     @extend %left-icon
     padding-left: 39px
     &:before
+      @extend %lp-font-stack
       line-height: 30px
       font-size: 34px
       top: 0
@@ -141,7 +143,7 @@
 .nav__item--breadcrumbs
   @extend %left-icon
   @extend %chevron-right-before
-  @extend %small-type
+  @extend %irregular-type
   padding: 19px 8px 19px 20px
   color: $header-gray
   &:before

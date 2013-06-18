@@ -4,6 +4,7 @@
   @extend %truncate-text
   @extend %left-icon
   @extend %icon--location-flag-before
+  line-height: 1.2
   margin-right: 20px
   // Fix the text-overflow bug in firefox to avoid the final letter being clipped
   padding-right: 2px
@@ -14,7 +15,7 @@
     line-height: 16px
 
 .place-title-heading
-  @extend %benton-regular
+  font-weight: bold
   letter-spacing: -0.1em
   color: $dark-blue-gray
   line-height: 26px
@@ -22,7 +23,6 @@
     text-decoration: none
 
 .place-title__parent
-  @extend %benton-book
   color: $dark-blue-gray
   &:hover
     text-decoration: none

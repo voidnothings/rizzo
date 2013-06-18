@@ -5,7 +5,6 @@
 .accordion__handler
   position: relative
   @extend %small-type
-  @extend %smooth-text
   color: $body
   cursor: pointer
   display: block
@@ -67,8 +66,8 @@
   display: block
   padding-right: 30px
   &:after
+    font-weight: 400
     +font-size(22)
-    @extend %benton-regular
     color: $lpblue
     line-height: 0
     pointer-events: none
