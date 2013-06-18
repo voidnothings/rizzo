@@ -34,19 +34,25 @@ define ['jquery'], ($) ->
 
     @version: '0.0.3'
     
-    constructor: (@args={}) ->
-      @target = $(@args.selector)
+    constructor: (args={}) ->
+      @config =
+        selector:   '.js-read-more'
+        text:       ['Read More', 'Read Less']
+        maxHeight:  2500
 
-      if @target.length == 0
-        return false
+      $.extend @config, args
+      @$el = $(@config.selector)
+      @init() unless @$el.length is 0
 
+    init: ->
       @transitionEnabled = if 'transition' of document.body.style then true else false
-      @target.addClass('is-open')
-      @wrapper = $(@target).find('.js-read-more-wrapper')
-      @wrapper.addClass if @args.style is 'inline' then 'read-more-inline' else 'read-more-block'
+      @$el.addClass('is-open')
+      @wrapper = @$el.find('.js-read-more-wrapper')
+      @wrapper.addClass if @config.style is 'inline' then 'read-more-inline' else 'read-more-block'
       @totalHeight = @getFullHeight()
-      @addHandler() if @totalHeight > @args.maxHeight
-      @setWrapperState @args.maxHeight, @args.text[0], 'close'
+      if @totalHeight > @config.maxHeight
+        @addHandler()
+        @setWrapperState @config.maxHeight, @config.text[0], 'close'
 
     getFullHeight: ->
       height = 0
@@ -55,9 +61,9 @@ define ['jquery'], ($) ->
       height
 
     addHandler: ->
-      @handler = $("<div class='btn--read-more js-handler'>#{(@args.text)[0]}</div>")
+      @handler = $("<div class='btn--read-more js-handler'>#{(@config.text)[0]}</div>")
       @wrapper.append(@handler)
-      @handler.wrap("<div class='read-more__handler'/>") if @args.shadow
+      @handler.wrap("<div class='read-more__handler'/>") if @config.shadow
       @bindEvents()
     
     bindEvents: ->
@@ -68,11 +74,14 @@ define ['jquery'], ($) ->
 
       @handler.on 'click', (e) =>
         e.stopPropagation()
-        if @state is 'close'
-          @setWrapperState(@totalHeight, @args.text[1], 'open')
-        else
-          @setWrapperState(@args.maxHeight, @args.text[0], 'close')
-        @onUpdate()
+        @click()
+
+    click: ->
+      if @state is 'close'
+        @setWrapperState(@totalHeight, @config.text[1], 'open')
+      else
+        @setWrapperState(@config.maxHeight, @config.text[0], 'close')
+      @onUpdate()
 
     setWrapperState: (height, text, state) ->
       if state is 'open' and @transitionEnabled
@@ -91,7 +100,7 @@ define ['jquery'], ($) ->
       @handler and @handler.text _text
 
     onUpdate: ->
-      @args.delegate.onUpdate(@,@state, @args.selector) if @args.delegate && @args.delegate.onUpdate
+      @config.delegate.onUpdate(@, @state, @config.selector) if @config.delegate && @config.delegate.onUpdate
 
     toggleClasses: ->
-      @target.toggleClass('is-open is-closed')
+      @$el.toggleClass('is-open is-closed')
