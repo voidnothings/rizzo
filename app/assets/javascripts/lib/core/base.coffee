@@ -79,11 +79,12 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
         window.s.linkstacker("footer")
 
     scrollPerf: ->
+      # Add this irrespective of browser support so that other hovers can function as normal.
+      $('body').addClass('js-hover')
+
       if ($('html.ie7, html.ie8, body.browserIE7, body.browserIE8').length is 0)
         # Used to track the enabling of hover effects
         enableTimer = false
-
-        $('body').addClass('js-hover')
 
         # Listen for a scroll and use that to remove the possibility of hover effects
         window.addEventListener 'scroll', ->
