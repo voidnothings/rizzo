@@ -13,7 +13,7 @@ require ['public/assets/javascripts/lib/components/section_toggle.js'], (Section
 
       it 'has default options', ->
         window.SectionToggle = new SectionToggle()
-        expect(window.SectionToggle).toBeDefined()
+        expect(window.SectionToggle.config).toBeDefined()
 
       it 'initialises when the parent element exists', ->
         window.SectionToggle = new SectionToggle()
@@ -67,7 +67,7 @@ require ['public/assets/javascripts/lib/components/section_toggle.js'], (Section
         expect(window.SectionToggle.handler.text()).toBe('Read More')
 
 
-    describe 'When the Read More button is clicked', ->
+    describe 'When the Read More button is clicked while closed', ->
       beforeEach ->
         loadFixtures('section_toggle.html')
         spyOn(SectionToggle.prototype, "getFullHeight").andReturn(150)
@@ -79,3 +79,18 @@ require ['public/assets/javascripts/lib/components/section_toggle.js'], (Section
         expect(window.SectionToggle.$el).toHaveClass('is-open')
         expect(window.SectionToggle.wrapper.css('maxHeight')).toEqual('150px')
         expect(window.SectionToggle.handler.text()).toBe('Read Less')
+
+
+    describe 'When the Read More button is clicked while open', ->
+      beforeEach ->
+        loadFixtures('section_toggle.html')
+        spyOn(SectionToggle.prototype, "getFullHeight").andReturn(150)
+        window.SectionToggle = new SectionToggle({maxHeight: 100})
+        window.SectionToggle.transitionEnabled = false # to execute toggleClasses immediately
+        window.SectionToggle.$el.find('.btn--read-more').click()
+        window.SectionToggle.$el.find('.btn--read-more').click()
+
+      it 'opens the toggle area when the toggle button is clicked', ->
+        expect(window.SectionToggle.$el).toHaveClass('is-closed')
+        expect(window.SectionToggle.wrapper.css('maxHeight')).toEqual('100px')
+        expect(window.SectionToggle.handler.text()).toBe('Read More')
