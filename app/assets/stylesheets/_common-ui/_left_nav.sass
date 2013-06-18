@@ -52,8 +52,8 @@
       width: 148px
 
 .group__title--aside
-  @extend %freight-semibold
   @extend %small-type
+  font-weight: bold
   color: $nav-search-btn-hover
   @extend %uppercase
   display: block
@@ -81,7 +81,6 @@
     cursor: pointer
     text-decoration: none
   &:before
-    @extend %freight-book
     @extend %huge-type
     color: $body-copy
     padding-right: 5px
@@ -102,8 +101,8 @@
   padding-right: 35px
   position: relative
   &:after
-    @extend %freight-book
     @extend %absolute-right
+    font-weight: 400
     pointer-events: none
     font-size: 20px
     right: 15px

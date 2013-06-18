@@ -15,14 +15,12 @@
 
 .card__property-type,
 .card__context
-  @extend %freight-book
   @extend %irregular-type
   display: block
   margin-bottom: 2px
   font-style: italic
 
 .card__name
-  @extend %freight-book
   +font-size(22)
   +word-break()
   
@@ -85,8 +83,6 @@
   @extend %irregular-type
   color: $body
   margin-right: 5px
-  &:before
-    @extend %freight-book
 
 .destination__item-count--sights
   @extend %icon-image-poi-sight-before

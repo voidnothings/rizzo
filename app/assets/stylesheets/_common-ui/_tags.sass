@@ -22,7 +22,7 @@
 // -----------------------------------------------------------------------------
 
 %card__tag
-  @extend %freight-semibold
+  font-weight: bold
   &:before,
   &:after
     @extend %empty-abs-generated-content
@@ -130,7 +130,6 @@
 // -----------------------------------------------------------------------------
 
 .price-tag
-  @extend %freight-book
   position: absolute
   min-width: 60px
   right: 5px
@@ -154,7 +153,6 @@
   padding: 8px 10px
 
 .price-tag__inner--non-bookable
-  @extend %freight-book
   +multiple-text-shadow(-1px -1px 1px rgba(0, 0, 0, 0.25), 1px 1px 1px rgba(255,255,255,0.8))
   color: #dad01a
   font-size: 50px
