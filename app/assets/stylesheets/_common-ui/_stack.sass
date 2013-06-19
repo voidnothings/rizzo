@@ -35,3 +35,40 @@ $stack-intro-lines-to-show: 2
   h2
     @extend .copy--subtitle
   @extend .copy--body
+
+
+// -----------------------------------------------------------------------------
+// Travel warning
+// -----------------------------------------------------------------------------
+
+.travel-alert
+  @extend %four-pixel-rounded
+  @extend %larger-type
+  @extend %warning-sign-before
+  background: #fffaca
+  color: $body
+  line-height: 20px
+  margin-top: 10px
+  padding: 15px 15px 15px 38px
+  position: relative
+
+  &:before
+    @extend %benton-regular
+    color: $red
+    font-size: 30px
+    left: 15px
+    position: absolute
+    top: 15px
+
+  em
+    font-style: normal
+    color: $link-color
+
+.travel-alert__link
+  @extend %chevron-right-after
+  color: $link-color
+  font-weight: bold
+
+  &:after
+    @extend %benton-regular
+    font-size: 20px
