@@ -1,33 +1,40 @@
-define ['lib/analytics/analytics_auth','lib/analytics/analytics_perf','lib/analytics/s_code'], (AnalyticsAuth, AnalyticsPerf) ->
+define ['lib/analytics/analytics_auth', 'lib/analytics/analytics_perf', 'omniture/s_code'], (AnalyticsAuth, AnalyticsPerf) ->
 
   class Analytics
 
-    constructor: (_window, data = null)->
-      @_window = _window
-      data ?= (@_window.lp.tracking)
-      @config = $.extend(data,@_userAuth())
-
-    trackView: (args={}) ->
-      params = @_pagePerf()
-      @track(params, true)
-
-    trackLink: (name, params = {}) ->
+    constructor: (data)->
+      data ?= (window.lp.tracking)
+      @config = $.extend(data, @_userAuth())
+    
+    trackLink: (params = {}) ->
       @_save()
       @_add(params)
       @_copy()
-      if(typeof(@_window.s.tl) is 'function')
-        @_window.s.tl()
+      if(typeof(window.s.tl) is 'function')
+        window.s.tl()
       @_restore()
 
     track: (params = {}, restore = false) ->
       @_save() if restore
       @_add(params)
       @_copy()
-      if(typeof(@_window.s.t) is 'function')
-        @_window.s.t()
+      if(typeof(window.s.t) is 'function')
+        window.s.t()
       @_restore() if restore
 
-    #private
+    linkTrackVars: (context) ->
+      evars = (a for a of context)
+      window.s.linkTrackVars = evars
+
+    linkTrackEvents: (events) ->
+      window.s.linkTrackEvents = events
+
+    trackView: (args={}) ->
+      params = @_pagePerf()
+      @track(params, true)
+
+    # Private
+
     _save: ->
       @prevConfig = {}
       for a of @config
@@ -39,11 +46,11 @@ define ['lib/analytics/analytics_auth','lib/analytics/analytics_perf','lib/analy
 
     _copy: ->
       for a of @config
-        @_window.s[a] = @config[a]
+        window.s[a] = @config[a]
 
     _restore: ->
       for a of @config
-        delete @_window.s[a]
+        delete window.s[a]
       @config = {}
       for a of @prevConfig
         @config[a] = @prevConfig[a]

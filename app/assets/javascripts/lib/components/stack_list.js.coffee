@@ -4,34 +4,38 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter ) ->
 
     $.extend(@prototype, EventEmitter)
 
-    config :
-      el: null
-      list: null
-      
+    LISTENER = '#js-card-holder'
+    
+    # @params
+    # el: {string} selector for parent element
+    # list: {string} delimited list of child selectors
     constructor: (args={}) ->
+
+      @config =
+        analytics:
+          callback: "trackStack"
+
       $.extend @config, args
-      @init()
+      @$el = $(@config.el)
+      @init() unless @$el.length is 0
 
     init: ->
-      @$el = $(@config.el)
       @$list = @$el.find(@config.list)
-      @listen()
+      @broadcast()
 
-    listen: ->  
-      @$el.on('click',@config.list, (e) =>
+    
+    # Publish
+    broadcast: ->  
+      @$el.on 'click' , @config.list, (e) =>
         e.preventDefault()
-        @select(e.currentTarget)
-        false
-      )
+        $this = $(e.currentTarget)
+        @_select($this)
+        @config.analytics.url = $this.attr('href')
+        @config.analytics.stack = $this.data("card-kind") or ""
+        @trigger(':page/request', [{url: @config.analytics.url}, @config.analytics])
 
-    select: (target) ->
+    
+    # Private
+    _select: (el) ->
       @$list.removeClass('nav__item--current--stack')
-      $(target).addClass('nav__item--current--stack')
-      @navigate($(target).attr('href'), target)
-
-    selectByHref: (href) ->
-      @select(@$eo.find("nav__item--stack[href=#{href}]"))
-
-    navigate: (url, target) ->
-      @trigger(':click', {url: url, target: target})
-
+      el.addClass('nav__item--current--stack')

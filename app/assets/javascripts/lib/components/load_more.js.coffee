@@ -9,64 +9,82 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
 
     $.extend(@prototype, EventEmitter)
 
-    config:
-      el: '.lodgings-footer'
-      title: 'Show more'
-      idleTitle: 'Loading ...'
-      visible: true
+    LISTENER = '#js-card-holder'
 
-    constructor : (args = {}) ->
+
+    # @params {}
+    # el: {string} selector for parent element
+    constructor : (args) ->
+
+      @config =
+        title: 'Show more'
+        idleTitle: 'Loading ...'
+        visible: true
+
       $.extend @config, args
       @currentPage = 1
       @pageOffsets = '0'
-      @init()
-
-    init: ->  
       @$el = $(@config.el)
-      if !@config.visible
-        @$el.hide()
-      @clean()
-      @add()
-      @listen()
+      @init() unless @$el.length is 0
 
-    clean: ->
+    init: ->
+      @_hide() if !@config.visible
+      @_clean()
+      @_add()
+      @listen()
+      @broadcast()
+
+
+
+    # Subscribe
+    listen: ->
+      $(LISTENER).on ':cards/request', =>
+        @_block()
+        @_reset()
+
+      $(LISTENER).on ':cards/received', (e, data) =>
+        @_unblock()
+        if data.pagination.total is 0 or data.pagination.current is data.pagination.total then @_hide() else @_show()
+
+      $(LISTENER).on ':cards/append/received', (e, data) =>
+        @_unblock()
+        if data.pagination.total is 0 or data.pagination.current is data.pagination.total then @_hide() else @_show()
+
+    # Publish
+    broadcast: ->
+      @$el.on 'click', '#js-load-more', (e) =>
+        e.preventDefault()
+        @currentPage += 1
+        @_block()
+        @trigger(':cards/append', [@_serialize(), {callback: "trackPagination"}])
+
+    # Private
+
+    _clean: ->
       @$el.empty()
       
-    add: ->
+    _add: ->
       container = $('<div>').css('text-align', 'center')
       @$btn = $('<a>').attr('id', 'js-load-more').addClass('btn btn--load full-width').text(@config.title)
       @$el.append(container.append(@$btn))
 
-    hide: ->
-      @$el.addClass('is-hidden')
-      @config.visible = false
-    
-    show: ->
+    _show: ->
       @$el.removeClass('is-hidden')
       @config.visible = true
 
-    reset: ->
+    _hide: ->
+      @$el.addClass('is-hidden')
+      @config.visible = false
+
+    _reset: ->
       @currentPage = 1
 
-    block: ->
+    _block: ->
       @$btn.addClass('loading disabled').text(@config.idleTitle)
 
-    unblock: ->
+    _unblock: ->
       @$btn.removeClass('loading disabled').text(@config.title)
 
-    serialize: ->
-      {page: @currentPage}
-
-    currentParams: ->
-      if @currentPage is 1
-        {}
-      else
-        @serialize()
-
-    listen: () ->
-      @$el.on 'click', '#js-load-more', (e) =>
-        e.preventDefault()
-        @currentPage += 1
-        @trigger(':click', @serialize())
-
+    _serialize: ->
+      if @currentPage > 1 then {page: @currentPage} else {}
 

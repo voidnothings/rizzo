@@ -30,9 +30,8 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
       AssetFetch.get "https://secure.lonelyplanet.com/sign-in/status", () =>
         @auth.update()
 
-    # Note: We need to add this back in when the switch to the new DFP server happens
-    # initAds: ->
-    #   AdManager.init(@adConfig, 'js-ad-leaderboard') # Remove params when dropping the old ad manager
+    initAds: ->
+      AdManager.init(@adConfig(), 'ad-leaderboard') # Remove the second param when dropping the old ad manager
 
     showUserBasket: ->
       shopCart = new ShoppingCart()
@@ -61,7 +60,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
 
     addNavTracking: ->
       $('#js-primary-nav').on 'click', '.js-nav-item', ->
-        window.s.linkstacker($(this).text())
+        window.s.linkstacker($(@).text())
 
       $('#js-primary-nav').on 'click', '.js-nav-cart', ->
         window.s.linkstacker("shopping-cart")
@@ -70,7 +69,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
         window.s.linkstacker("search")
 
       $('#js-secondary-nav').on 'click', '.js-nav-item', ->
-        window.s.linkstacker($(this).text() + "-sub")
+        window.s.linkstacker($(@).text() + "-sub")
 
       $('#js-breadcrumbs').on 'click', '.js-nav-item', ->
         window.s.linkstacker("breadcrumbs")

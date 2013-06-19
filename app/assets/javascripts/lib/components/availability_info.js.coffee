@@ -4,55 +4,76 @@
 #
 # ------------------------------------------------------------------------------
   
-define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
+define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitter, PageState) ->
 
-  class AvailabilityInfo
+  class AvailabilityInfo extends PageState
 
     $.extend(@prototype, EventEmitter)
 
-    config :
-      el: null
-      visible: null
+    LISTENER = '#js-card-holder'
 
-    constructor: (args={}) ->
-      $.extend @config, args
-      @init()
+    # @params {}
+    # el: {string} selector for parent element
+    constructor: (args) ->
+      @$el = $(args.el)
+      @init() unless @$el.length is 0
 
     init: ->
-      @$el = $(@config.el)
       @$btn = @$el.find('.js-availability-edit-btn')
-      @listen()  
+      @listen()
+      @broadcast()
+
     
+    # Subscribe
     listen: ->
+      $(LISTENER).on ':cards/request', =>
+        @_block()
+
+      $(LISTENER).on ':cards/received', (e, data, params) =>
+        @_unblock()
+        if @hasSearched() and @_isHidden()
+          @_update(params.search)
+          @_show()
+
+      $(LISTENER).on ':search/hide', (e, params) =>
+        @_unblock()
+        @_show()
+
+      $(LISTENER).on ':search/change', => 
+        @_hide()
+
+    # Publish
+    broadcast: ->
       @$btn.on 'click', (e) =>
         e.preventDefault()
-        @change()
+        @trigger(':search/change')
         false
 
-    update: (params = {}) ->
+
+    # Private area
+    
+    _update: (params = {}) ->
       #to-do: iterate on params with base selector
-      $('.js-availability-from').text(params.from)
-      $('.js-availability-to').text(params.to)
+      @$el.find('.js-availability-from').text(params.from)
+      @$el.find('.js-availability-to').text(params.to)
       guestCopy = if params.guests > 1 then 'guests' else 'guest'
-      $('.js-availability-guests').text("#{params.guests} #{guestCopy}")
-      $('.js-availability-currency').removeClass('currency__icon--aud currency_icon--eur currency__icon--gbp currency__icon--usd')
-      $('.js-availability-currency').addClass("currency__icon--#{params.currency.toLowerCase()}")
-      $('.js-availability-currency').text(params.currency)
+      @$el.find('.js-availability-guests').text("#{params.guests} #{guestCopy}")
+      @$el.find('.js-availability-currency').removeClass('currency__icon--aud currency_icon--eur currency__icon--gbp currency__icon--usd')
+      @$el.find('.js-availability-currency').addClass("currency__icon--#{params.currency.toLowerCase()}")
+      @$el.find('.js-availability-currency').text(params.currency)
 
-    reset: () ->
-
-    change: ->
-      @trigger(':change')
-
-    show: ->
+    _show: ->
        @$el.removeClass('is-hidden')
 
-    hide: ->
+    _hide: ->
        @$el.addClass('is-hidden')
 
-    block: ->
+    _block: ->
        @$btn.addClass('disabled').attr('disabled', true)
   
-    unblock: ->
-       @$btn.removeClass('disabled').attr('disabled', false)    
+    _unblock: ->
+       @$btn.removeClass('disabled').attr('disabled', false)
+
+    _isHidden: ->
+      @$el.hasClass('is-hidden')
 

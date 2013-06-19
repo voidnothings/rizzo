@@ -8,8 +8,11 @@ define ['jquery'], ($) ->
  
   class Tabs
 
-    config = {}
+    config = {
+      animationDelay: 300
+    }
     activeTimeout = null
+    
 
     tabsAreHidden = ->
       if config.tabsContainer.is(':hidden') then true else false
@@ -30,7 +33,7 @@ define ['jquery'], ($) ->
           config.tabsContainer.find(tab).addClass('is-active')
           config.tabsContainer.css('opacity', '1')
           activeTimeout = null
-        , 300
+        , config.animationDelay
 
 
     bindEvents = (tabs, tabsContainer) =>
@@ -53,9 +56,10 @@ define ['jquery'], ($) ->
       openNewTab(tabLabel, tab)
 
 
-    constructor: (selector) ->
+    constructor: (selector, delay) ->
       config.tabs = $(selector)
       config.tabsContainer = config.tabs.find('.js-tabs-content')
       config.tabLabels = config.tabs.find('.js-tab-trigger')
+      config.animationDelay = delay
       bindEvents(config.tabs, config.tabsContainer)
 

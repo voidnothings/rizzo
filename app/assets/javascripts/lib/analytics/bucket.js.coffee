@@ -17,6 +17,6 @@ define [], ->
     normalize: (value)->
       if(value > @max)
         return @max
-      if(value < this.min)
+      if(value < @min)
         return @min
       @distribute(value)

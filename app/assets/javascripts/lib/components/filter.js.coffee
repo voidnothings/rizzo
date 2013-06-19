@@ -4,78 +4,94 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
 
     $.extend(@prototype, EventEmitter)
 
-    config :
-      el: null
-      state: null
-      
-    constructor: (args={}) ->
-      $.extend @config, args
-      @init()
+    LISTENER = '#js-card-holder'
+    
+    # @params {}
+    # el: {string} selector for parent element
+    constructor: (args) ->
+      @$el = $(args.el)
+      @init() unless @$el.length is 0
 
     init: ->
-      @$el = $(@config.el)
-      @removeSEOLinks()
       @listen()
+      @broadcast()
+      @_removeSEOLinks(@$el)
 
+
+    # Subscribe
     listen: ->  
-      @$el.on('change', 'input[type=checkbox]', (e) =>
+
+      $(LISTENER).on ':page/received', (e, data) =>
+        @_update(data)
+
+      $(LISTENER).on ':filter/reset', =>
+        @_reset()
+
+
+    # Publish
+    broadcast: ->
+
+      @$el.on 'change', 'input[type=checkbox]', (e) =>
+        # currentTarget.name filters out the checkboxes used to toggle the accordion
         if e.currentTarget.name
-          $(e.currentTarget).siblings('.js-filter-label').toggleClass('active')
-          @submit()
+          @_toggleActiveClass(e.currentTarget)
+          @trigger(':cards/request', [@_serialize(), {callback: "trackFilter"}])
         false
-      )
-      @$el.on('click', '.js-filter-reset', (e) =>
+
+      # Listen to filter cards that exist outside of the component
+      $(LISTENER).on 'click', '.js-stack-card-filter', (e) =>
         e.preventDefault()
-        @reset($(e.currentTarget).parent('label').siblings('.filters__body--drop-down'))
-        false
-      )  
-    
-    submit: ->
-      @trigger(':change', @serialize())
+        filters = $(e.currentTarget).find('[data-filter]').data('filter')
+        @_set(filters, true)
+        @trigger(':cards/request', [@_serialize(), {callback: "trackFilter"}])
 
-    set: (name, value=false)->
-      filter = @$el.find("input[name*='#{name}']")
-      if filter
-        filter.attr('checked', value)
-        if value
-          filter.siblings('label').addClass('active')
-        else
-          filter.siblings('label').removeClass('active')
 
-    reset: (target = @$el) ->
-      for input in target.find('input[type=checkbox]')
+    # Private area
+
+    _removeSEOLinks: (parent) ->
+      parent.find('.js-filter-label').each ->
+        $(@).html($(@).children('a').text())
+
+    _update: (data)->
+      if data.disable_price_filters
+        @_hideGroup('price')
+      else
+        @_showGroup('price')
+        @_enable('price')
+
+    _hideGroup: (name) ->
+      @$el.find(".js-#{name}-filter").addClass('is-hidden')
+
+    _showGroup: (name) ->
+      @$el.find(".js-#{name}-filter").removeClass('is-hidden')
+
+    _enable: (name) ->  
+      @$el.find(".js-#{name}-filter").find('input[type=checkbox]').attr('disabled', false)
+
+    _toggleActiveClass: (element) ->
+      @$el.find(element).siblings('.js-filter-label').toggleClass('active')
+
+    _serialize : ->
+      filters = new Serializer(@$el)
+      # Hand the controller an empty filters object rather than simply an empty object
+      filters = if filters.hasOwnProperty('filters') then filters else {filters: {}}
+
+    _set: (filters, value=false)->
+      for name in filters.split(',')
+        filter = @$el.find("input[name*='#{name}']")
+        if filter
+          filter.attr('checked', value)
+          if value
+            filter.siblings('label').addClass('active')
+          else
+            filter.siblings('label').removeClass('active')
+
+    _reset: () ->
+      for input in @$el.find('input[type=checkbox]')
         $input = $(input) 
         if $input.attr('name')
           $input.attr('checked', false)
           label = $input.siblings('label.js-filter-label')
           label.removeClass('active')
-      @submit()
-
-    hideGroup: (name) ->
-      @$el.find(".js-#{name}-filter").addClass('is-hidden')
-
-    showGroup: (name) ->
-      target = @$el.find(".js-#{name}-filter")
-      target.removeClass('is-hidden')
-      @enable(target)
-
-    disable: (target) ->  
-      inputs = target.find('input[type=checkbox]')
-      inputs.attr('checked', false).attr('disabled', true)
-      labels = target.find('label.js-filter-label')
-      labels.removeClass('active')
-
-    enable: (target) ->  
-      inputs = target.find('input[type=checkbox]')
-      inputs.attr('disabled', false)
- 
-    serialize : ->
-      new Serializer(@$el)
- 
-    currentParams: ->  
-      @serialize()
-
-    removeSEOLinks: (parent)->
-      @$el.find('.js-filter-label').each ->
-        $(this).html($(this).children('a').text())      
+      @trigger(':cards/request', @_serialize())
 

@@ -1,90 +1,134 @@
-require ['public/assets/javascripts/lib/analytics/analytics.js'], (Analytics) ->
+require ['lib/analytics/analytics'], (Analytics) ->
 
   describe 'Analytics', ->
 
-    describe 'Setup', ->
+    stub = {
+      test: 'one',
+      test2: 'two'
+    }
+
+    beforeEach ->
+      window.lp = {}
+      window.analytics = new Analytics()
+      window.s.channel = "test"
+
+    describe 'Object', ->
       it 'is defined', ->
         expect(Analytics).toBeDefined()
 
-    describe 'instance', ->
+
+    describe 'adding', ->
+
       beforeEach ->
-        @windowStub =
-          s:
-            t: ->
-            tl: ->
-          lp: {tracking: {}}
-        @analytics = new Analytics(@windowStub)
-      it 'should initialize', ->
-        expect(@analytics).toBeDefined()
+        analytics._add(stub)
 
-      describe 'members', ->
-        it '@_window', ->
-          expect(@analytics._window).toBeDefined()
+      it 'adds a simple object to the onniture config', ->
+        expect(analytics.config.test).toBe(stub.test)
+        expect(analytics.config.test2).toBe(stub.test2)
 
-        it '@config', ->
-          expect(@analytics.config).toBeDefined()
 
-      describe 'trackView', ->
+    describe 'saving', ->
+
+      beforeEach ->
+        analytics.config = stub
+        analytics._save()
+
+      it 'saves the current state of the analytics config', ->
+        expect(analytics.prevConfig.test).toBe(stub.test)
+        expect(analytics.prevConfig.test2).toBe(stub.test2)
+
+
+    describe 'copying', ->
+
+      beforeEach ->
+        analytics.config = stub
+        analytics._copy()
+
+      it 'copies the current config across to the window.s object', ->
+        expect(window.s.test).toBe(stub.test)
+        expect(window.s.test2).toBe(stub.test2)
+
+
+    describe 'restoring', ->
+
+      beforeEach ->
+        analytics.prevConfig = {foo: "bar"}
+        analytics.config = stub
+        spyOn(analytics, "_copy")
+        analytics._copy()
+        analytics._restore()
+
+      it 'removes the config variables from window.s', ->
+        expect(window.s.test).not.toBeDefined()
+        expect(window.s.test2).not.toBeDefined()
+
+      it 'restores the values from prevConfig', ->
+        expect(analytics.config.test).not.toBeDefined()
+        expect(analytics.config.foo).toBe("bar")
+
+      it 'copies the values back over to window.s', ->
+        expect(analytics._copy).toHaveBeenCalled()
+
+
+    describe 'trackLink', ->
+      beforeEach ->
+        spyOn(analytics, "_save")
+        spyOn(analytics, "_add")
+        spyOn(analytics, "_copy")
+        spyOn(analytics, "_restore")
+        spyOn(window.s, "tl")
+        analytics.trackLink(stub)
+
+      it 'saves the current config', ->
+        expect(analytics._save).toHaveBeenCalled()
+
+      it 'adds the new params', ->
+        expect(analytics._add).toHaveBeenCalledWith(stub)
+
+      it 'copies across the new params', ->
+        expect(analytics._copy).toHaveBeenCalled()
+
+      it 'sends the data to analytics', ->
+        expect(window.s.tl).toHaveBeenCalled()
+
+      it 'restores the old params', ->
+        expect(analytics._restore).toHaveBeenCalled()
+
+
+    describe 'tracking', ->
+      beforeEach ->
+        spyOn(analytics, "_save")
+        spyOn(analytics, "_add")
+        spyOn(analytics, "_copy")
+        spyOn(analytics, "_restore")
+        spyOn(window.s, "t")
+
+      describe 'when restore is true', ->
         beforeEach ->
-          @pagePerfResult = {eVar71: '10:11:12'}
-          spyOn(@analytics, '_pagePerf').andReturn(@pagePerfResult)
-          spyOn(@analytics, 'track')
-          @analytics.trackView()
-        it 'gets page performance', ->
-          expect(@analytics._pagePerf).toHaveBeenCalled()
+          analytics.track(stub, true)
 
-        it 'tracks', ->
-          expect(@analytics.track).toHaveBeenCalledWith(@pagePerfResult, true)
+        it 'saves the current config', ->
+          expect(analytics._save).toHaveBeenCalled()
 
-      describe 'track', ->
+        it 'adds the new params', ->
+          expect(analytics._add).toHaveBeenCalledWith(stub)
+
+        it 'copies across the new params', ->
+          expect(analytics._copy).toHaveBeenCalled()
+
+        it 'sends the data to analytics', ->
+          expect(window.s.t).toHaveBeenCalled()
+
+        it 'restores the old params', ->
+          expect(analytics._restore).toHaveBeenCalled()
+
+      describe 'when restore is false', ->
         beforeEach ->
-          @params = {hello: 'something I need to track'}
-          @restore = true
-          spyOn(@analytics, '_save').andCallThrough()
-          spyOn(@analytics, '_add').andCallThrough()
-          spyOn(@analytics, '_copy').andCallThrough()
-          spyOn(@analytics._window.s, 't')
+          analytics.track(stub)
 
-        it 'should store event to window.s', ->
-          spyOn(@analytics, '_restore')
-          @analytics.track(@params, @restore)
-          expect(@windowStub.s.hello).toEqual('something I need to track')
+        it 'does not save the current config', ->
+          expect(analytics._save).not.toHaveBeenCalled()
 
-        it 'should execute _window.s.t function', ->
-          spyOn(@analytics, '_restore')
-          @analytics.track(@params, @restore)
-          expect(@analytics._window.s.t).toHaveBeenCalled()
-
-        describe 'and restore', ->
-          it 'should restore equilibrium', ->
-            spyOn(@analytics, '_restore').andCallThrough()
-            @analytics.track(@params, @restore)
-            expect(@windowStub.s.hello).toBeUndefined()
-
-      describe 'trackLink', ->
-        beforeEach ->
-          @params = {hello: 'some link I need to track'}
-          spyOn(@analytics, '_save').andCallThrough()
-          spyOn(@analytics, '_add').andCallThrough()
-          spyOn(@analytics, '_copy').andCallThrough()
-          spyOn(@analytics._window.s, 'tl')
-
-        it 'should store event to window.s', ->
-          spyOn(@analytics, '_restore')
-          @analytics.trackLink('name', @params)
-          expect(@windowStub.s.hello).toEqual('some link I need to track')
-
-        it 'should execute _window.s.tl function', ->
-          spyOn(@analytics, '_restore')
-          @analytics.trackLink('name', @params)
-          expect(@analytics._window.s.tl).toHaveBeenCalled()
-
-        describe 'and restore', ->
-          it 'should restore equilibrium', ->
-            spyOn(@analytics, '_restore').andCallThrough()
-            @analytics.trackLink('name', @params)
-            expect(@windowStub.s.hello).toBeUndefined()
-
-
-
+        it 'does not call restore', ->
+          expect(analytics._restore).not.toHaveBeenCalled()
 

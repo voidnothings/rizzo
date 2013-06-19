@@ -3,76 +3,82 @@
 #
 # ------------------------------------------------------------------------------
   
-define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form', 'lib/managers/select_group_manager', 'lib/components/datepicker'], ($, EventEmitter, Serializer, SelectManager, AvailabilityDatepicker) ->
+define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/serialize_form', 'lib/managers/select_group_manager', 'lib/components/datepicker'], ($, EventEmitter, PageState, Serializer, SelectManager, AvailabilityDatepicker) ->
 
-  class AvailabilitySearch
+  class AvailabilitySearch extends PageState
 
     $.extend(@prototype, EventEmitter)
 
-    config :
-      el: 'form'
+    LISTENER = '#js-card-holder'
 
-    constructor: (args={}) ->
-      $.extend @config, args
-      @state = (if args.hasDates then 'submited' else 'initialized')
-      @init()
+    # @params {}
+    # el: {string} selector for parent element
+    constructor: (args) ->
+      @$el = $(args.el)
+      @init() unless @$el.length is 0
 
     init: ->
-      @$el = $(@config.el)
       @$form = @$el.find('form')
+      @$submit ?= @$form.find('#js-booking-submit')
       formDatePicker = new AvailabilityDatepicker(@$el)
       guestSelect =  new SelectManager('.js-guest-select') 
       currencySelect = new SelectManager('.js-currency-select') 
-      @listen()  
+      @listen()
+      @broadcast()  
     
+    
+    # Subscribe
     listen: ->
+      $(LISTENER).on ':cards/request', =>
+        @_block()
+
+      $(LISTENER).on ':cards/received', (e, data) =>
+        @_hide() if @hasSearched()
+        @_unblock()
+        @_set('page_offsets', data.pagination.page_offsets) if data.pagination && data.pagination.page_offsets
+
+      $(LISTENER).on ':search/change', => 
+        @_show()
+
+      $(LISTENER).on ':search/hide', => 
+        @_hide()
+
+    # Publish
+    broadcast: ->
       @$form.on 'submit', (e) =>
         e.preventDefault()
-        @submit()
+        @trigger(':cards/request', [@_getSearchData(), {callback: "trackSearch"}])
         false
 
-    setDefaultDates: ->
+
+    # Private area
+
+    _setDefaultDates : ->
       currentDate = new Date()
       today = [currentDate.getFullYear(), (currentDate.getMonth() + 1), currentDate.getDate()]
       @$el.find('#js-av-start').data('pickadate').setDate(today[0], today[1], today[2])
       @$el.find('#js-av-end').data('pickadate').setDate(today[0], today[1], today[2] + 1)
 
-    hasBeenSubmitted: ->
-      (@state is 'submited') ? true : false 
-
-    submit: ->
+    _getSearchData : ->
       if @$form.find('#js-av-start').val() is ''  or @$form.find('#js-av-start').val() is undefined
-        @setDefaultDates()
-      params = @serialize()  
-      if params
-        @state = 'submited'
-        @trigger(':submit', params)
+        @_setDefaultDates()
+      params = new Serializer(@$form)
 
-    set: (name, value)->
+    _set : (name, value)->
       input = @$form.find("input[name*='#{name}']")
       if input and value
         input.attr('value', value)
 
-    block: ->
-       @$submit ?= @$form.find('#js-booking-submit')
-       @$submit.addClass('disabled').attr('disabled', true)
-  
-    unblock: ->
-       @$submit ?= @$form.find('#js-booking-submit')
-       @$submit.removeClass('disabled').attr('disabled', false)    
+    _block : ->
+      @$submit.addClass('disabled').attr('disabled', true)
 
-    show: ->
-       @$el.removeClass('is-hidden')
+    _unblock : ->
+       @$submit.removeClass('disabled').attr('disabled', false)
+
+    _show : ->
+      @$el.removeClass('is-hidden')
+
+    _hide : ->
+      @$el.addClass('is-hidden')
 
 
-    hide: ->
-       @$el.addClass('is-hidden')       
-
-    serialize : ->
-      new Serializer(@$form)
-
-    currentParams : ->
-      if @hasBeenSubmitted()
-        return @serialize()
-      else 
-        return {}

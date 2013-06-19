@@ -13,7 +13,6 @@ task :compile => [:clobber] do
   Guard.setup
   Guard::Dsl.evaluate_guardfile(:guardfile => 'Guardfile')
   Guard.guards(:group => :assets).each{|g| g.run_all()}
-  FileUtils.cp('app/assets/javascripts/lib/analytics/s_code.js', 'public/assets/javascripts/lib/analytics/s_code.js')
 end
 
 namespace :jasmine do

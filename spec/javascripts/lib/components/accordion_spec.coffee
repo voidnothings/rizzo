@@ -2,7 +2,7 @@ require ['public/assets/javascripts/lib/components/accordion.js'], (Accordion) -
 
   describe 'Accordion', ->
 
-    describe 'Setup', ->
+    describe 'Object', ->
       it 'is defined', ->
         expect(Accordion).toBeDefined()
 
