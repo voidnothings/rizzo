@@ -28,20 +28,24 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
     listen: ->
       $(LISTENER).on ':cards/request', =>
         @_block()
+
       $(LISTENER).on ':cards/received', (e, data, params) =>
         @_unblock()
         if @hasSearched() and @_isHidden()
           @_update(params.search)
           @_show()
+
       $(LISTENER).on ':search/hide', (e, params) =>
         @_unblock()
         @_show()
+
+      $(LISTENER).on ':search/change', => 
+        @_hide()
 
     # Publish
     broadcast: ->
       @$btn.on 'click', (e) =>
         e.preventDefault()
-        @_hide()
         @trigger(':search/change')
         false
 
