@@ -31,10 +31,10 @@ require ['public/assets/javascripts/lib/components/place_list.js'], (PlaceList) 
         placesList._update()
 
       it 'updates the descendant item hrefs', ->
-        expect(placesList.$el.find('.js-descendant-item').attr('href')).toContain('/country?foo=bar')
+        expect(placesList.$el.find('.js-descendant-item').attr('href')).toMatch(/\/country\?foo\=bar$/)
 
       it 'updates the nearby place item hrefs', ->
-        expect(placesList.$el.find('.js-nearby-place-item').attr('href')).toContain('/nearby-place?foo=bar')
+        expect(placesList.$el.find('.js-nearby-place-item').attr('href')).toMatch(/\/nearby-place\?foo\=bar$/)
 
 
     describe 'on cards received', ->
