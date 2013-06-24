@@ -67,6 +67,7 @@
   bottom: 0
   color: $body-copy
   left: 0
+  line-height: 12px
   padding: 8px $card-content-padding $card-content-padding
   right: 0
   z-index: 3
@@ -113,8 +114,9 @@
     border: 0
 
     .card__content
-      padding: $card-hotel-content-padding
       height: ($card-grid-height - $small-card-image-height - (2 * $card-hotel-content-padding) )
+      margin-bottom: $card-hotel-content-padding
+      padding: $card-hotel-content-padding $card-hotel-content-padding 0 $card-hotel-content-padding
 
   .card__footer
     padding: 8px
