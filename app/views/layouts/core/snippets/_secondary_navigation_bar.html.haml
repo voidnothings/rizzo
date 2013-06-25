@@ -2,11 +2,14 @@
   .row__inner.row__inner--secondary
     .split--left.row__title--secondary
       - if defined? is_body_title
-        %h1.place-title 
+        %h1.place-title
           = title
       - else
-        = place_heading(title, section_name, slug, (defined? parent) ? parent : nil, (defined? parent_slug) ? parent_slug : nil, (defined? no_place_link) ? no_place_link : false)
-    
+        = place_heading(title, section_name, slug,                          |
+                          (parent if defined? parent),                      |
+                          (parent_slug if defined? parent_slug),            |
+                          (defined? no_place_link) ? no_place_link : false) |
+
     - if defined?(collection)
       .split--right.nav--inline.nav--secondary
         - collection.each do |n|
