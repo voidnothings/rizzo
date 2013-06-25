@@ -1,4 +1,4 @@
-define ['lib/analytics/analytics_auth', 'lib/analytics/analytics_perf', 'omniture/s_code'], (AnalyticsAuth, AnalyticsPerf) ->
+define ['lib/analytics/analytics_auth', 'lib/analytics/analytics_perf', 's_code'], (AnalyticsAuth, AnalyticsPerf) ->
 
   class Analytics
 
