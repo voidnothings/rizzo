@@ -11,6 +11,3 @@ require.config({
     s_code: "vendor/assets/javascripts/omniture/s_code"
   }
 });
-
-
-
