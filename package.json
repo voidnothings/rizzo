@@ -1,11 +1,12 @@
 {
-    "name": "avocado"
-  , "version": "0.0.31"
-  , "private": true
-  , "dependencies": {
-    "jasmine-node": "latest"
-    , "jsdom": "latest"
-    , "coffee-script": "latest"
+  "name": "avocado",
+  "version": "0.0.31",
+  "private": true,
+  "dependencies": {
+    "jasmine-node": "latest",
+    "jsdom": "latest",
+    "coffee-script": "latest",
+    "bower": "latest"
   },
   "devDependencies": {
     "grunt": "0.4.1",

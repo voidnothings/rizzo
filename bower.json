@@ -1,0 +1,6 @@
+{
+	"name": "avocado",
+  "dependencies": {
+    "flamsteed": "latest"
+  }
+}
