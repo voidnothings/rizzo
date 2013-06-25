@@ -37,10 +37,11 @@ $submenu__arrow--width:  10px
   background-color: $green
   padding: 4px 0
   position: relative
-  &:before
-    +css-arrow-central(top, $width: $submenu__arrow--width, $color: $green, $offset: 0)
-    @extend %empty-abs-generated-content
-    display: block
+  +css-arrow-central(top, $width: $submenu__arrow--width, $size: 38px)
+  &:after
+    color: $green
+    font-family: freight
+    position: absolute
 
 .nav__submenu__item
   color: #fff

@@ -1,0 +1,348 @@
+// -----------------------------------------------------------------------------
+// Tour Itinerary
+// -----------------------------------------------------------------------------
+
+.tour-itinerary--title
+  font-weight: bold
+.tour-itinerary .copy--body
+  margin: 20px 0
+
+// -----------------------------------------------------------------------------
+// Booking Panel (normally as an aside)
+// -----------------------------------------------------------------------------
+
+.booking-panel
+  background: $info-background
+  padding: 20px
+  position: relative
+
+  .card__tag__inner--price
+    padding-top: 10px
+  .card__tag__price--curr
+    font-size: 18px
+    word-spacing: -5px
+  .card__tag__price--price
+    font-size: 30px
+    margin-bottom: 10px
+
+.booking-panel--logo
+  margin-bottom: 20px
+
+// -----------------------------------------------------------------------------
+// Details Panel (the lighter panel usually attached to the booking panel)
+// -----------------------------------------------------------------------------
+
+.details-panel
+  background: $secondary-content-bg
+  padding: 20px
+  .section-glossary .section-title
+    font-size: 14px
+    margin: 20px 0 5px
+
+// -----------------------------------------------------------------------------
+// Information List
+// -----------------------------------------------------------------------------
+
+.info-list
+  .section-title
+    font-size: 15px
+    font-weight: bold
+    margin-bottom: 10px
+
+  .copy--body
+    margin-bottom: 20px
+    margin-left: 27px
+
+.info-list--icon
+  @extend %left-icon-text
+
+  &:before
+    font-size: 2em
+    font-weight: normal
+    margin-right: 0.2em
+    line-height: 20px
+  &.info-list--info:before
+    font-weight: bold
+    line-height: 0.9em
+    margin-left: 0.1em
+  &.info-list--cross, &.info-list--info, &.info-list--tick
+    &:before
+      font-size: 18px
+      margin-right: 0.4em
+  &.info-list--cross, &.info-list--tick
+    &:before
+      margin-left: 0.2em
+      margin-right: 0.5em
+
+.info-list--clock
+  @extend %icon--clock-before
+
+.info-list--cross
+  @extend %cross-icon-before
+
+.info-list--departs-from
+  @extend %icon--arrow-right-before
+
+.info-list--duration
+  @extend %tour-duration-before
+
+.info-list--info
+  &:before
+    content: "@"
+
+.info-list--location
+  @extend %local-marker-before
+
+.info-list--returns-to
+  @extend %icon--arrow-left-before
+
+.info-list--tick
+  @extend %tick-icon-before
+
+.info-list--underground
+  @extend %icon--underground-before
+
+// -----------------------------------------------------------------------------
+// Send this
+// -----------------------------------------------------------------------------
+
+.send-this
+  .ie7 &
+    display: none
+  .section-subtitle
+    display: inline-block
+    margin-right: 10px
+
+.send-this--icon
+  color: inherit
+  display: inline-block
+  font-size: 30px
+  margin: -15px 10px 0
+  &:hover
+    text-decoration: none
+  &:before
+    vertical-align: middle
+
+  .tooltip
+    color: white
+    font-size: 14px
+    left: -80%
+    &:after
+      color: $new-header-grey
+      left: 53%
+
+.send-this--icon-email
+  @extend %icon--email-before
+
+.send-this--icon-print
+  @extend %icon--print-before
+
+// -----------------------------------------------------------------------------
+// Meta Info Box
+// -----------------------------------------------------------------------------
+
+.meta-info
+  @extend %clearfix
+  @extend %four-pixel-rounded
+  background: #FFF
+  list-style: none
+  margin-bottom: 20px
+  padding: 22px 0 22px 22px
+
+  .ranking-bar
+    margin-top: 21px
+    + .meta-info--item-subtitle
+      margin-top: 14px
+
+.meta-info--column
+  float: left
+  margin: 0 8px
+  min-height: 60px
+  text-align: center
+  width: 60px
+  &:first-child
+    margin-left: 0
+
+.meta-info--item
+  float: left
+  width: 33.33%
+
+.meta-info--item-title
+  font-size: 11px
+  font-weight: bold
+  margin-bottom: 13px
+  text-transform: uppercase
+
+.meta-info--item-subtitle
+  font-size: 11px
+  font-weight: normal
+  margin-top: 10px
+
+.meta-info--item-content
+  font-size: 22px
+  font-weight: bold
+
+// -----------------------------------------------------------------------------
+// Ranking bar
+// -----------------------------------------------------------------------------
+
+.ranking-bar
+  background: $subdued
+  height: 10px
+  &:before
+    @extend %empty-generated-content
+    height: 100%
+
+@for $i from 1 through 5
+  .ranking-bar--#{$i}:before
+    width: 20% * $i
+    @if $i == 1 or $i == 2
+      background: $green
+    @if $i == 3 or $i == 4
+      background: $orange
+    @if $i == 5
+      background: $red
+
+// -----------------------------------------------------------------------------
+// Tag list
+// -----------------------------------------------------------------------------
+
+.tag-list
+  @extend %clearfix
+  list-style: circle
+  list-style-position: inside
+
+.tag-list--tag
+  @extend %four-pixel-rounded
+  background: $secondary-content-bg
+  border: 1px solid $secondary-content-border
+  float: left
+  margin-bottom: 5px
+  margin-right: 5px
+  padding: 2px 10px 3px
+
+// -----------------------------------------------------------------------------
+// Special Offer tag
+// -----------------------------------------------------------------------------
+.special-offer
+  @extend %four-pixel-rounded
+  background: $red
+  color: white
+  display: inline-block
+  font-size: 11px
+  font-weight: bold
+  padding: 5px
+  text-transform: uppercase
+
+// -----------------------------------------------------------------------------
+// Media gallery - named such so as to avoid clashing with the Hotels .gallery
+// -----------------------------------------------------------------------------
+.media-gallery
+  overflow: hidden
+  position: relative
+
+.media-gallery--container
+  @extend %transition--base
+  .media-gallery &
+    height: 290px
+    width: 435px
+  .media-gallery--showcase &
+    height: 422px
+    width: 748px
+
+.media-gallery, .media-gallery__nav
+  @extend %clearfix
+
+.media-gallery__nav
+  @extend %transition--base
+  position: absolute
+  width: 100%
+
+  .media-gallery &
+    top: 135px
+  // .media-gallery--showcase &
+  //   top: 
+
+.media-gallery__nav--item
+  @extend %transition--base
+  +border-radius(23)
+  background: black
+  background: rgba(0,0,0,0.6)
+  color: white
+  font-size: 14px
+  font-weight: bold
+  opacity: 0.8
+  padding: 13px 16px
+  position: absolute
+
+  &:hover
+    opacity: 1
+    text-decoration: none
+  &:before, &:after
+    @extend %transition--base
+    display: inline-block
+    font-size: 32px
+    font-weight: normal
+    vertical-align: top
+
+.media-gallery__nav--prev
+  @extend %chevron-left-after
+  left: -62px
+  padding-left: 32px
+  &:after
+    padding-left: 10px
+  &:hover
+    left: -20px
+    &:after
+      padding-left: 0
+.media-gallery__nav--next
+  @extend %chevron-right-before
+  right: -62px
+  padding-right: 32px
+  &:before
+    padding-right: 10px
+  &:hover
+    right: -20px
+    &:before
+      padding-right: 0
+
+.media-gallery__tabs--tab
+  +css-arrow-central(top, $width: 10px, $arrowOffset: 17px)
+  background: $gallery-tab-background
+  color: #fff
+  display: block
+  float: left
+  font-size: 12px
+  height: 40px
+  line-height: 30px
+  padding: 0 10px
+  position: relative
+  text-transform: uppercase
+  &:after
+    display: none
+    font-size: 32px
+    position: absolute
+    top: -23px
+  &:before
+    display: inline-block
+    font-size: 28px
+    letter-spacing: 2px
+    position: relative
+    top: 1px
+  &:hover, &.is-active
+    background: $red
+    text-decoration: none
+  &.is-active:after
+    color: $red
+    display: block
+
+.media-gallery__tabs--tab-photos
+  @extend %icon-gallery-before
+
+.media-gallery__tabs--tab-videos
+  @extend %icon-video-before
+
+.media-gallery__tabs--tab-map
+  @extend %local-marker-before
+  &:before
+    letter-spacing: 0

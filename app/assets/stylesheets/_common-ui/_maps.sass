@@ -1,3 +1,27 @@
+.map
+  @extend %transition--base
+  height: 422px
+  overflow: hidden
+  position: relative
+  width: 748px
+
+.map--container
+  @extend %transition--base
+  position: relative
+  z-index: 1
+
+.map--resize-trigger
+  @extend %transition--base
+  background: $new-header-grey
+  background: rgba(3, 46, 92, 0.2)
+  bottom: 0
+  height: 35px
+  position: absolute
+  right: 0
+  width: 35px
+  z-index: 2
+
+
 .map--static
   @extend %four-pixel-rounded
   // height: 186px
@@ -7,4 +31,6 @@
   @extend %four-pixel-rounded
   display: block
 
-
+.map--small
+  height: 120px
+  width: 427px
