@@ -54,6 +54,7 @@
   &:hover
     text-decoration: none
 
+
 // -----------------------------------------------------------------------------
 // Card Footer
 // -----------------------------------------------------------------------------
@@ -65,9 +66,15 @@
   bottom: 0
   color: $body-copy
   left: 0
-  padding: 8px $card-content-padding $card-content-padding
+  line-height: 12px
+  padding: 8px
   right: 0
   z-index: 3
+
+  .btn--bookable
+    @extend %irregular-type
+    display: block
+    padding: 10px 12px
 
   // fade to white at the top of the footer when extended content
   .card--extended-content &
@@ -78,6 +85,11 @@
       left: 0
       right: 0
       top: -$card-content-padding
+
+
+// -----------------------------------------------------------------------------
+// Card Footer Items
+// -----------------------------------------------------------------------------
 
 .destination__item-count
   @extend %irregular-type
@@ -100,35 +112,8 @@
 // -----------------------------------------------------------------------------
 
 .card--poi--hotel
-  border-bottom: 2px solid $hotels-poi
-
-  .card__content
-    height: $card-grid-height - $default-card-top-padding - $card-content-padding - 2px // account for border
-
   &.card--small-image
-    border: 0
-
     .card__content
-      padding: $card-hotel-content-padding
       height: ($card-grid-height - $small-card-image-height - (2 * $card-hotel-content-padding) )
-
-  .card__footer
-    padding: 8px
-
-  .btn--bookable
-    @extend %irregular-type
-    padding: 10px 12px
-    width: auto
-
-  .badge--lp-reviewed
-    left: 8px
-    height: 23px
-
-  .badge--top-choice
-    height: 24px
-    left: 38px
-
-.without-hotel-badges
-  .card--poi--hotel.card--small-image
-    &:before
-      content: none
+      margin-bottom: $card-hotel-content-padding
+      padding: $card-hotel-content-padding $card-hotel-content-padding 0 $card-hotel-content-padding
