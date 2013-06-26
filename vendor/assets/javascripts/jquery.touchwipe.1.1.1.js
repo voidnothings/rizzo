@@ -7,7 +7,7 @@
  * @version 1.1 (1st September 2010) - support wipe up and wipe down
  * @version 1.0 (15th July 2010)
  */
-(function($) { 
+define(['jquery'], function($) { 
    $.fn.touchwipe = function(settings) {
      var config = {
     		min_move_x: 20,
@@ -79,4 +79,4 @@
      return this;
    };
  
- })(jQuery);
+ });

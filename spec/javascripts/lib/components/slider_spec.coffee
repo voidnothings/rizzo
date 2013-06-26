@@ -83,15 +83,13 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
 
       it 'next link triggers _nextSlide', ->
         $('.js-slider-next').trigger('click')
-        setTimeout ->
-          expect(slider._nextSlide).toHaveBeenCalled()
-        , 0
+        expect(slider._nextSlide).toHaveBeenCalled()
+        
 
       it 'prev link triggers _prevSlide', ->
         $('.js-slider-prev').trigger('click')
-        setTimeout ->
-          expect(slider._prevSlide).toHaveBeenCalled()
-        , 0
+        expect(slider._prevSlide).toHaveBeenCalled()
+        
 
       # TODO: Tests for Touch events (particularly swiping).
       # it 'swipes left', ->

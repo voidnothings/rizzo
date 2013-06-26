@@ -23,10 +23,12 @@ define ['jquery','lib/extends/events','touchwipe','pointer'], ($, touchwipe, poi
       @init() unless @$el.length is 0
 
     init: ->
-      @$slide_container.after('<div class="js-slider-controls"><a href="#" class="js-slider-next">1 of '+@$slides.length+'</a><a href="#" class="js-slider-prev">1 of '+@$slides.length+'</a></div>')
+      @$slide_container.after('<div class="js-slider-controls"><a href="#" class="js-slider-next">1 of '+@slides.length+'</a><a href="#" class="js-slider-prev">1 of '+@slides.length+'</a></div>')
       $(@slides+':first').addClass('is-current')
-      $('.js-slider-next').on('click', @_nextSlide)
-      $('.js-slider-prev').on('click', @_prevSlide)
+      $('.js-slider-next').on 'click', =>
+        @_nextSlide()
+      $('.js-slider-prev').on 'click', =>
+        @_prevSlide()
       # @listen()
       # @broadcast()
 
