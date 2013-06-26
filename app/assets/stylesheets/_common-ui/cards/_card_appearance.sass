@@ -65,9 +65,9 @@
   bottom: 0
   color: $body-copy
   left: 0
-  padding: 0 $card-content-padding $card-content-padding
+  padding: 8px $card-content-padding $card-content-padding
   right: 0
-  z-index: 1
+  z-index: 3
 
   // fade to white at the top of the footer when extended content
   .card--extended-content &
@@ -113,7 +113,7 @@
       height: ($card-grid-height - $small-card-image-height - (2 * $card-hotel-content-padding) )
 
   .card__footer
-    padding: 0 8px 8px 8px
+    padding: 8px
 
   .btn--bookable
     @extend %irregular-type
@@ -127,3 +127,8 @@
   .badge--top-choice
     height: 24px
     left: 38px
+
+.without-hotel-badges
+  .card--poi--hotel.card--small-image
+    &:before
+      content: none
