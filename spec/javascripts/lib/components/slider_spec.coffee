@@ -1,0 +1,100 @@
+require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
+
+  describe 'Slider', ->
+
+    LISTENER = '#js-slider'
+
+    config =
+      el: "#js-slider"
+      slides: ".slide"
+      slide_container: ".slide-container"
+
+    params =
+      size: 
+        small:
+          height: 290
+          width: 427
+        large:
+          height: 580
+          width: 854
+
+    describe 'object', ->
+      it 'is defined', ->
+        expect(Slider).toBeDefined()
+
+    describe 'initialising', ->
+      beforeEach ->
+        window.slider = new Slider(config)
+        spyOn(slider, "init")
+
+      it 'does not initialise when the parent element does not exist', ->
+        expect(slider.init).not.toHaveBeenCalled()
+
+    describe 'set up', ->
+      beforeEach ->
+        loadFixtures('slider.html')
+        window.slider = new Slider(config)
+
+      it 'adds the next/prev links', ->
+        expect($('.js-slider-next').length).toBeGreaterThan(0)
+        expect($('.js-slider-prev').length).toBeGreaterThan(0)
+
+      it 'adds the `is-current` class to the first slide', ->
+        expect($('.slide:first').hasClass('is-current')).toBe(true)
+
+    describe 'functionality:', ->
+
+      beforeEach ->
+        loadFixtures('slider.html')
+        window.slider = new Slider(config)
+
+      it 'moves to the next slide', ->
+        slider._nextSlide()
+        expect($('.slide').eq(2).is('.is-current')).toBe(true)
+        # Current slide: 2
+
+      it 'updates the slide counter', ->
+        slider._nextSlide()
+        expect(/2 of/.test($('.js-slider-next').text())).toBe(true)
+        # Current slide: 2
+
+      it 'moves to the previous slide', ->
+        slider._previousSlide()
+        expect($('.slide').eq(1).is('.is-current')).toBe(true)
+        # Current slide: 1
+
+      it 'wraps to the last slide when on the first slide', ->
+        slider._previousSlide()
+        expect($('.slide').eq(3).is('.is-current')).toBe(true)
+        # Current slide: 3
+
+      it 'wraps to the first slide when on the last slide', ->
+        slider._nextSlide()
+        expect($('.slide').eq(1).is('.is-current')).toBe(true)
+        # Current slide: 1
+  
+    describe 'events:', ->
+
+      beforeEach ->
+        loadFixtures('slider.html')
+        window.slider = new Slider(config)
+        spyOn(slider, '_nextSlide');
+        spyOn(slider, '_prevSlide');
+
+      it 'next link triggers _nextSlide', ->
+        $('.js-slider-next').trigger('click')
+        setTimeout ->
+          expect(slider._nextSlide).toHaveBeenCalled()
+        , 0
+
+      it 'prev link triggers _prevSlide', ->
+        $('.js-slider-prev').trigger('click')
+        setTimeout ->
+          expect(slider._prevSlide).toHaveBeenCalled()
+        , 0
+
+      # TODO: Tests for Touch events (particularly swiping).
+      # it 'swipes left', ->
+        
+      # it 'swipes right', ->
+
