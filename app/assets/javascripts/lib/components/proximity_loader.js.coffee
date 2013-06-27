@@ -50,7 +50,6 @@ define ['jquery'], ($) ->
     _loadScriptFor: (element) ->
       scriptPlaceholder = element.$el.find('.js-hidden-script')
       unless scriptPlaceholder.length is 0
-        console.log(scriptPlaceholder) if window.console 
         commentedScript = scriptPlaceholder.html()
         # Remove the comments and execute the script
         script = commentedScript.replace('<!--', '').replace('-->', '')
