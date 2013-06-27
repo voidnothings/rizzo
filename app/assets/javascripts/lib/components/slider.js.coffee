@@ -8,8 +8,6 @@ define ['jquery','pointer','touchwipe'], ($, pointer, touchwipe) ->
 
   class Slider
 
-    $.extend(@prototype, EventEmitter)
-
     LISTENER = '#js-slider'
 
     # @params {}
