@@ -88,10 +88,9 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
       it 'prev link triggers _previousSlide', ->
         $('.js-slider-prev').trigger('click')
         expect(slider._previousSlide).toHaveBeenCalled()
-        
-
+      
       # TODO: Tests for Touch events (particularly swiping).
-      # it 'swipes left', ->
+      # it 'swiping left triggers _nextSlide', ->
         
-      # it 'swipes right', ->
+      # it 'swiping right triggers _previousSlide', ->
 

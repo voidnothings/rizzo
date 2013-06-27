@@ -4,7 +4,7 @@
 # 
 # ------------------------------------------------------------------------------
 
-define ['jquery','touchwipe','pointer'], ($, touchwipe, pointer) ->
+define ['jquery','pointer','touchwipe'], ($, pointer, touchwipe) ->
 
   class Slider
 
@@ -32,6 +32,16 @@ define ['jquery','touchwipe','pointer'], ($, touchwipe, pointer) ->
         @_nextSlide()
       $('.js-slider-prev').on 'click', =>
         @_previousSlide()
+
+      # Swiping navigation.
+      @$el.touchwipe =>
+        wipeLeft: =>
+          @_nextSlide()
+        wipeRight: =>
+          @_previousSlide()
+        min_move_x: 20
+        min_move_y: 20
+        preventDefaultEvents: true
 
     # Private
 

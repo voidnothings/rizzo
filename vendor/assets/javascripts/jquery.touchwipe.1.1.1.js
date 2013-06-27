@@ -27,7 +27,7 @@ define(['jquery'], function($) {
 		 var isMoving = false;
 
     	 function cancelTouch() {
-    		 this.removeEventListener('touchmove', onTouchMove);
+    		 this.removeEventListener('pointermove', onTouchMove);
     		 startX = null;
     		 isMoving = false;
     	 }	
@@ -68,11 +68,11 @@ define(['jquery'], function($) {
     			 startX = e.touches[0].pageX;
     			 startY = e.touches[0].pageY;
     			 isMoving = true;
-    			 this.addEventListener('touchmove', onTouchMove, false);
+    			 this.addEventListener('pointermove', onTouchMove, false);
     		 }
     	 }    	 
-    	 if ('ontouchstart' in document.documentElement) {
-    		 this.addEventListener('touchstart', onTouchStart, false);
+    	 if ('pointerdown' in document.documentElement) {
+    		 this.addEventListener('pointerdown', onTouchStart, false);
     	 }
      });
  
