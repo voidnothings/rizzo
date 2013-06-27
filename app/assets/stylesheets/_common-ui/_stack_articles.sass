@@ -84,16 +84,17 @@
 // Social Footer
 // -----------------------------------------------------------------------------
 
-.social
+.sharing
   @extend %clearfix
   border-top: 1px solid $ruled-separator
   padding: 20px 0
 
-.social__label
+.sharing__label
   +font-size(12)
   text-transform: uppercase
   font-weight: bold
   color: $title
+  line-height: 22px
 
 .icon--print
   @extend %left-icon
@@ -106,7 +107,7 @@
   color: $title
   &:before
     font-size: 34px
-    line-height: 14px
+    line-height: 18px
 
 .icon--email
   @extend %left-icon
@@ -119,7 +120,15 @@
   color: $title
   &:before
     font-size: 34px
-    line-height: 14px
+    line-height: 18px
+
+.facebook-like
+  margin-left: 10px
+  min-width: 90px
+
+.tweet-button
+  margin-left: 10px
+  max-width: 103px
 
 // -----------------------------------------------------------------------------
 // Article Breadcrumbs
