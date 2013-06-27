@@ -23,68 +23,41 @@ define ['jquery','lib/extends/events','touchwipe','pointer'], ($, touchwipe, poi
       @init() unless @$el.length is 0
 
     init: ->
-      @$slide_container.after('<div class="js-slider-controls"><a href="#" class="js-slider-next">1 of '+@slides.length+'</a><a href="#" class="js-slider-prev">1 of '+@slides.length+'</a></div>')
+      @$slide_container.after('<div class="js-slider-controls"><a href="#" class="js-slider-next">1 of '+$(@slides).length+'</a><a href="#" class="js-slider-prev">1 of '+$(@slides).length+'</a></div>')
       $(@slides+':first').addClass('is-current')
       $('.js-slider-next').on 'click', =>
         @_nextSlide()
       $('.js-slider-prev').on 'click', =>
-        @_prevSlide()
-      # @listen()
-      # @broadcast()
-
-  #   # Subscribe
-  #   listen: ->
-  #     $(LISTENER).on ':cards/request', =>
-  #       @_block()
-  #       @_addLoader()
-
-  #     $(LISTENER).on ':cards/received', (e, data) =>
-  #       @_removeLoader()
-  #       @_clear()
-  #       @_add(data.content)
-
-  #     $(LISTENER).on ':cards/append/received', (e, data) =>
-  #       @_add(data.content)
-
-  #     $(LISTENER).on ':page/request', =>
-  #       @_block()
-  #       @_addLoader()
-
-  #     $(LISTENER).on ':page/received', (e, data) =>
-  #       @_removeLoader()
-  #       @_clear()
-  #       @_add(data.content)
-
-  #     $(LISTENER).on ':search/change', (e) =>
-  #       @_block()
-
-
-  #   # Publish
-  #   broadcast: ->
-  #     # Cancel search and show info card
-  #     @$el.on 'click', '.card--disabled', (e) =>
-  #       e.preventDefault()
-  #       @_unblock()
-  #       @trigger(':search/hide')
-
-  #     # Clear all filters when there are no results
-  #     @$el.on 'click', '.js-clear-all-filters', (e) =>
-  #       e.preventDefault()
-  #       @trigger(':filter/reset')
-
-  #     # Adjust dates when there are no results
-  #     @$el.on 'click', '.js-adjust-dates', (e) =>
-  #       e.preventDefault()
-  #       @trigger(':search/change')
+        @_previousSlide()
 
     # Private
 
     _nextSlide: ->
-      $(@slides+'.is-current')
-        .removeClass('is-current')
-        .next().addClass('is-current')
+      index = $(@slides).index($(@slides+'.is-current')) + 1 # +1 since .index is zero based.
+      current = $(@slides+'.is-current').removeClass('is-current')
+
+      # Wrap around if at the end
+      if index is $(@slides).length
+        $(@slides+':first').addClass('is-current')
+      else
+        current.next().addClass('is-current')
+
+      @_updateCount()
       
-    _prevSlide: ->
-      $(@slides+'.is-current')
-        .removeClass('is-current')
-        .prev().addClass('is-current')
+    _previousSlide: ->
+      index = $(@slides).index($(@slides+'.is-current')) + 1
+      current = $(@slides+'.is-current').removeClass('is-current')
+
+      # Wrap around if at the beginning
+      if index is 1
+        $(@slides+':last').addClass('is-current')
+      else
+        current.prev().addClass('is-current')
+
+      @_updateCount()
+
+    _updateCount: ->
+      current = $('.js-slider-next').html()
+      index = $(@slides).index($(@slides+'.is-current')) + 1
+
+      $('.js-slider-next, .js-slider-prev').html(current.replace(/(^[0-9]+)/, index))

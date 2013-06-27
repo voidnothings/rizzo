@@ -42,6 +42,9 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
       it 'adds the `is-current` class to the first slide', ->
         expect($('.slide:first').hasClass('is-current')).toBe(true)
 
+      it 'has the correct slides state', ->
+        expect($('.js-slider-next').html()).toBe("1 of 3")
+
     describe 'functionality:', ->
 
       beforeEach ->
@@ -50,28 +53,25 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
 
       it 'moves to the next slide', ->
         slider._nextSlide()
-        expect($('.slide').eq(2).is('.is-current')).toBe(true)
-        # Current slide: 2
+        expect($('.slide').eq(1).is('.is-current')).toBe(true)
 
       it 'updates the slide counter', ->
         slider._nextSlide()
-        expect(/2 of/.test($('.js-slider-next').text())).toBe(true)
-        # Current slide: 2
+        expect($('.js-slider-next').html()).toBe('2 of 3')
 
       it 'moves to the previous slide', ->
+        slider._nextSlide()
         slider._previousSlide()
-        expect($('.slide').eq(1).is('.is-current')).toBe(true)
-        # Current slide: 1
+        expect($('.slide').eq(0).is('.is-current')).toBe(true)
 
       it 'wraps to the last slide when on the first slide', ->
         slider._previousSlide()
-        expect($('.slide').eq(3).is('.is-current')).toBe(true)
-        # Current slide: 3
+        expect($('.slide').eq(2).is('.is-current')).toBe(true)
 
       it 'wraps to the first slide when on the last slide', ->
+        slider._previousSlide()
         slider._nextSlide()
-        expect($('.slide').eq(1).is('.is-current')).toBe(true)
-        # Current slide: 1
+        expect($('.slide').eq(0).is('.is-current')).toBe(true)
   
     describe 'events:', ->
 
@@ -79,16 +79,15 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
         loadFixtures('slider.html')
         window.slider = new Slider(config)
         spyOn(slider, '_nextSlide');
-        spyOn(slider, '_prevSlide');
+        spyOn(slider, '_previousSlide');
 
       it 'next link triggers _nextSlide', ->
         $('.js-slider-next').trigger('click')
         expect(slider._nextSlide).toHaveBeenCalled()
         
-
-      it 'prev link triggers _prevSlide', ->
+      it 'prev link triggers _previousSlide', ->
         $('.js-slider-prev').trigger('click')
-        expect(slider._prevSlide).toHaveBeenCalled()
+        expect(slider._previousSlide).toHaveBeenCalled()
         
 
       # TODO: Tests for Touch events (particularly swiping).
