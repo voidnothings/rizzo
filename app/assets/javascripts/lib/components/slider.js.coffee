@@ -25,7 +25,8 @@ define ['jquery','pointer','touchwipe'], ($, pointer, touchwipe) ->
         .append('<a href="#" class="js-slider-next">1 of '+$(@slides).length+'</a>')
         .append('<a href="#" class="js-slider-prev">1 of '+$(@slides).length+'</a>')
 
-      $(@slides+':first').addClass('is-current')
+      @_setupSlideClasses()
+
       $('.js-slider-next').on 'click', =>
         @_nextSlide()
       $('.js-slider-prev').on 'click', =>
@@ -45,27 +46,38 @@ define ['jquery','pointer','touchwipe'], ($, pointer, touchwipe) ->
 
     _nextSlide: ->
       slides = $(@slides)
-      current = $(@slides+'.is-current').removeClass('is-current')
+      current = $(@slides+'.is-current')
       index = slides.index(current) + 1 # +1 since .index is zero based.
+
+      @_resetSlideClasses()
 
       # Wrap around if at the end
       if index is slides.length
-        $(@slides+':first').addClass('is-current')
+        @_setupSlideClasses()
+      else if index is slides.length - 1
+        current.addClass('is-prev').next().addClass('is-current')
+        $(@slides+':first').addClass('is-next')
       else
-        current.next().addClass('is-current')
+        current.addClass('is-prev').next().addClass('is-current').next().addClass('is-next')
 
       @_updateCount()
       
     _previousSlide: ->
       slides = $(@slides)
-      current = $(@slides+'.is-current').removeClass('is-current')
+      current = $(@slides+'.is-current')
       index = slides.index(current) + 1 # +1 since .index is zero based.
+
+      @_resetSlideClasses()
 
       # Wrap around if at the beginning
       if index is 1
-        $(@slides+':last').addClass('is-current')
+        $(@slides+':last').addClass('is-current').prev().addClass('is-prev')
+        $(@slides+':first').addClass('is-next')
+      else if index is 2
+        current.addClass('is-next').prev().addClass('is-current')
+        $(@slides+':last').addClass('is-prev')
       else
-        current.prev().addClass('is-current')
+        current.addClass('is-next').prev().addClass('is-current').prev().addClass('is-prev')
 
       @_updateCount()
 
@@ -74,3 +86,10 @@ define ['jquery','pointer','touchwipe'], ($, pointer, touchwipe) ->
       index = $(@slides).index($(@slides+'.is-current')) + 1
 
       $('.js-slider-next, .js-slider-prev').html(current.replace(/(^[0-9]+)/, index))
+
+    _setupSlideClasses: ->
+      $(@slides+':first').addClass('is-current').next().addClass('is-next')
+      $(@slides+':last').addClass('is-prev')
+
+    _resetSlideClasses: ->
+      $(@slides+'.is-current, '+@slides+'.is-next, '+@slides+'.is-prev').removeClass('is-current is-next is-prev')
