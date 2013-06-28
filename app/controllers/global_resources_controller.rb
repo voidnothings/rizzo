@@ -21,4 +21,8 @@ class GlobalResourcesController < GlobalController
     render '/global/homepage', :layout=> 'homepage'
   end
 
+  def responsive
+    render '/global/responsive', :layout=> 'responsive'
+  end
+
 end
