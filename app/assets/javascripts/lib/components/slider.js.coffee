@@ -20,9 +20,9 @@ define ['jquery','pointer','touchwipe'], ($, pointer, touchwipe) ->
     # $el: {string} selector for parent element
     # slides: {string} selector for the individual slide elements.
     constructor: (args) ->
-      $.extend @config, args
-      @$el = $(args.el)
-      @slides = args.slides
+      $.extend config, args
+      @$el = $(config.el)
+      @slides = config.slides
       @slides_container = '.js-slides-container'
       @init() unless @$el.length is 0
 
