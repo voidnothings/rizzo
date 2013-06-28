@@ -4,7 +4,7 @@
 # 
 # ------------------------------------------------------------------------------
 
-define ['jquery','pointer','touchwipe'], ($, pointer, touchwipe) ->
+define ['jquery'], ($) ->
 
   class Slider
 
@@ -12,7 +12,6 @@ define ['jquery','pointer','touchwipe'], ($, pointer, touchwipe) ->
 
     # Default config
     config =
-      el: "#js-slider"
       slides: ".js-slide"
       slide_container: ".js-slides-container"
 
@@ -21,16 +20,21 @@ define ['jquery','pointer','touchwipe'], ($, pointer, touchwipe) ->
     # slides: {string} selector for the individual slide elements.
     constructor: (args) ->
       $.extend config, args
+      @current_slide = 1
       @$el = $(config.el)
       @slides = config.slides
       @slides_container = @$el.find('.js-slides-container')
       @init() unless @$el.length is 0
+      # Polyfill for IE8
+      $('html.ie7, html.ie8, body.browserIE7, body.browserIE8').find('.js-resizer').on 'click', ->
+        $('input[name="'+$(this).attr('for')+'"]').toggleClass('is-checked')
 
     init: ->
       @slides_container.append('<div class="js-slider-controls"></div>')
       @$el.find('.js-slider-controls')
-        .append('<a href="#" class="js-slider-next">1 of '+$(@slides).length+'</a>')
-        .append('<a href="#" class="js-slider-prev">1 of '+$(@slides).length+'</a>')
+        .append('<a href="#" class="js-slider-next js-slider-control">1 of '+$(@slides).length+'</a>')
+        .append('<a href="#" class="js-slider-prev js-slider-control">1 of '+$(@slides).length+'</a>')
+
       if _has3d()
         @slides_container.addClass('supports-transform')
 
@@ -38,18 +42,22 @@ define ['jquery','pointer','touchwipe'], ($, pointer, touchwipe) ->
 
       $('.js-slider-next').on 'click', =>
         @_nextSlide()
+        return false
       $('.js-slider-prev').on 'click', =>
         @_previousSlide()
+        return false
 
-      # Swiping navigation.
-      @$el.touchwipe =>
-        wipeLeft: =>
-          @_nextSlide()
-        wipeRight: =>
-          @_previousSlide()
-        min_move_x: 20
-        min_move_y: 20
-        preventDefaultEvents: true
+      if $('html.ie7, html.ie8, body.browserIE7, body.browserIE8').length is 0
+        require ['pointer','touchwipe'], =>
+          # Swiping navigation.
+          @$el.touchwipe =>
+            wipeLeft: =>
+              @_nextSlide()
+            wipeRight: =>
+              @_previousSlide()
+            min_move_x: 20
+            min_move_y: 20
+            preventDefaultEvents: true
 
     # Private
 
