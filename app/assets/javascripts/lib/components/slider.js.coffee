@@ -10,6 +10,12 @@ define ['jquery','pointer','touchwipe'], ($, pointer, touchwipe) ->
 
     LISTENER = '#js-slider'
 
+    # Default config
+    config =
+      el: "#js-slider"
+      slides: ".js-slide"
+      slide_container: ".js-slides-container"
+
     # @params {}
     # $el: {string} selector for parent element
     # slides: {string} selector for the individual slide elements.
@@ -17,10 +23,11 @@ define ['jquery','pointer','touchwipe'], ($, pointer, touchwipe) ->
       $.extend @config, args
       @$el = $(args.el)
       @slides = args.slides
+      @slides_container = '.js-slides-container'
       @init() unless @$el.length is 0
 
     init: ->
-      @$el.append('<div class="js-slider-controls"></div>')
+      @$el.find(@slides_container).append('<div class="js-slider-controls"></div>')
       @$el.find('.js-slider-controls')
         .append('<a href="#" class="js-slider-next">1 of '+$(@slides).length+'</a>')
         .append('<a href="#" class="js-slider-prev">1 of '+$(@slides).length+'</a>')

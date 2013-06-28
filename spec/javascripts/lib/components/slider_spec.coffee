@@ -6,8 +6,8 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
 
     config =
       el: "#js-slider"
-      slides: ".slide"
-      slide_container: ".slide-container"
+      slides: ".js-slide"
+      slide_container: ".js-slides-container"
 
     params =
       size: 
@@ -40,11 +40,11 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
         expect($('.js-slider-prev').length).toBeGreaterThan(0)
 
       it 'adds the `is-current` class to the first slide', ->
-        expect($('.slide:first').hasClass('is-current')).toBe(true)
+        expect($('.js-slide:first').hasClass('is-current')).toBe(true)
 
       it 'marks off the next/previous slides', ->
-        expect($('.slide:first').next().hasClass('is-next')).toBe(true)
-        expect($('.slide:last').hasClass('is-prev')).toBe(true)
+        expect($('.js-slide:first').next().hasClass('is-next')).toBe(true)
+        expect($('.js-slide:last').hasClass('is-prev')).toBe(true)
 
       it 'has the correct slides state', ->
         expect($('.js-slider-next').html()).toBe("1 of 5")
@@ -61,46 +61,46 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
 
       it 'goes to the next slide (first -> second)', ->
         slider._nextSlide()
-        expect($('.slide').eq(0).is('.is-prev')).toBe(true)
-        expect($('.slide').eq(1).is('.is-current')).toBe(true)
-        expect($('.slide').eq(2).is('.is-next')).toBe(true)
+        expect($('.js-slide').eq(0).is('.is-prev')).toBe(true)
+        expect($('.js-slide').eq(1).is('.is-current')).toBe(true)
+        expect($('.js-slide').eq(2).is('.is-next')).toBe(true)
 
       it 'goes to the previous slide (third -> second)', ->
         slider._nextSlide()
         slider._nextSlide()
         slider._previousSlide()
-        expect($('.slide').eq(0).is('.is-prev')).toBe(true)
-        expect($('.slide').eq(1).is('.is-current')).toBe(true)
-        expect($('.slide').eq(2).is('.is-next')).toBe(true)
+        expect($('.js-slide').eq(0).is('.is-prev')).toBe(true)
+        expect($('.js-slide').eq(1).is('.is-current')).toBe(true)
+        expect($('.js-slide').eq(2).is('.is-next')).toBe(true)
 
       it 'wraps "is-prev" to end (second -> first)', ->
         slider._nextSlide()
         slider._previousSlide()
-        expect($('.slide').eq(4).is('.is-prev')).toBe(true)
-        expect($('.slide').eq(0).is('.is-current')).toBe(true)
-        expect($('.slide').eq(1).is('.is-next')).toBe(true)
+        expect($('.js-slide').eq(4).is('.is-prev')).toBe(true)
+        expect($('.js-slide').eq(0).is('.is-current')).toBe(true)
+        expect($('.js-slide').eq(1).is('.is-next')).toBe(true)
 
       it 'wraps "is-next" to beginning (second last -> last)', ->
         slider._nextSlide() # 2
         slider._nextSlide() # 3
         slider._nextSlide() # 4
         slider._nextSlide() # 5
-        expect($('.slide').eq(3).is('.is-prev')).toBe(true)
-        expect($('.slide').eq(4).is('.is-current')).toBe(true)
-        expect($('.slide').eq(0).is('.is-next')).toBe(true)
+        expect($('.js-slide').eq(3).is('.is-prev')).toBe(true)
+        expect($('.js-slide').eq(4).is('.is-current')).toBe(true)
+        expect($('.js-slide').eq(0).is('.is-next')).toBe(true)
 
       it 'wraps "is-current" to end (first -> last)', ->
         slider._previousSlide()
-        expect($('.slide').eq(3).is('.is-prev')).toBe(true)
-        expect($('.slide').eq(4).is('.is-current')).toBe(true)
-        expect($('.slide').eq(0).is('.is-next')).toBe(true)
+        expect($('.js-slide').eq(3).is('.is-prev')).toBe(true)
+        expect($('.js-slide').eq(4).is('.is-current')).toBe(true)
+        expect($('.js-slide').eq(0).is('.is-next')).toBe(true)
 
       it 'wraps "is-current" from end to beginning (last -> first)', ->
         slider._previousSlide()
         slider._nextSlide()
-        expect($('.slide').eq(4).is('.is-prev')).toBe(true)
-        expect($('.slide').eq(0).is('.is-current')).toBe(true)
-        expect($('.slide').eq(1).is('.is-next')).toBe(true)
+        expect($('.js-slide').eq(4).is('.is-prev')).toBe(true)
+        expect($('.js-slide').eq(0).is('.is-current')).toBe(true)
+        expect($('.js-slide').eq(1).is('.is-next')).toBe(true)
   
     describe 'events:', ->
 
@@ -123,3 +123,4 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
         
       # it 'swiping right triggers _previousSlide', ->
 
+  # TODO: account for resizing and resize handler.
