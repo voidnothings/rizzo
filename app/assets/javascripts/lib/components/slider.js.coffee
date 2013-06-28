@@ -23,14 +23,16 @@ define ['jquery','pointer','touchwipe'], ($, pointer, touchwipe) ->
       $.extend config, args
       @$el = $(config.el)
       @slides = config.slides
-      @slides_container = '.js-slides-container'
+      @slides_container = @$el.find('.js-slides-container')
       @init() unless @$el.length is 0
 
     init: ->
-      @$el.find(@slides_container).append('<div class="js-slider-controls"></div>')
+      @slides_container.append('<div class="js-slider-controls"></div>')
       @$el.find('.js-slider-controls')
         .append('<a href="#" class="js-slider-next">1 of '+$(@slides).length+'</a>')
         .append('<a href="#" class="js-slider-prev">1 of '+$(@slides).length+'</a>')
+      if _has3d()
+        @slides_container.addClass('supports-transform')
 
       @_setupSlideClasses()
 
@@ -100,3 +102,23 @@ define ['jquery','pointer','touchwipe'], ($, pointer, touchwipe) ->
 
     _resetSlideClasses: ->
       $(@slides+'.is-current, '+@slides+'.is-next, '+@slides+'.is-prev').removeClass('is-current is-next is-prev')
+
+    _has3d = ->
+      el = document.createElement("p")
+      has3d = undefined
+      transforms =
+        webkitTransform: "-webkit-transform"
+        OTransform: "-o-transform"
+        msTransform: "-ms-transform"
+        MozTransform: "-moz-transform"
+        transform: "transform"
+
+      
+      # Add it to the body to get the computed style.
+      document.body.insertBefore el, null
+      for t of transforms
+        if el.style[t] isnt `undefined`
+          el.style[t] = "translate3d(1px,1px,1px)"
+          has3d = window.getComputedStyle(el).getPropertyValue(transforms[t])
+      document.body.removeChild el
+      has3d isnt `undefined` and has3d.length > 0 and has3d isnt "none"
