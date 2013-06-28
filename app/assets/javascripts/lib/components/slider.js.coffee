@@ -13,19 +13,20 @@ define ['jquery'], ($) ->
     # Default config
     config =
       slides: ".js-slide"
-      slide_container: ".js-slides-container"
+      slides_container: ".js-slides-container"
 
     # @params {}
     # $el: {string} selector for parent element
     # slides: {string} selector for the individual slide elements.
+    # slides_container: {string} selector for the element containing the slides
     constructor: (args) ->
       $.extend config, args
       @current_slide = 1
       @$el = $(config.el)
       @slides = config.slides
-      @slides_container = @$el.find('.js-slides-container')
+      @slides_container = @$el.find(config.slides_container)
       @init() unless @$el.length is 0
-      # Polyfill for IE8
+      # Polyfill for resizer in IE7/8
       $('html.ie7, html.ie8, body.browserIE7, body.browserIE8').find('.js-resizer').on 'click', ->
         $('input[name="'+$(this).attr('for')+'"]').toggleClass('is-checked')
 
@@ -120,7 +121,6 @@ define ['jquery'], ($) ->
         msTransform: "-ms-transform"
         MozTransform: "-moz-transform"
         transform: "transform"
-
       
       # Add it to the body to get the computed style.
       document.body.insertBefore el, null
