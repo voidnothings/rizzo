@@ -11,6 +11,14 @@
   height: 41px
   margin: 7px 10px 0 0
   width: 83px
+  .responsive .row--core &
+    position: absolute
+    left: 50%
+    margin-left: -41px
+    +respond-to(wide-view)
+      position: static
+      margin-left: 0
+
 
 .media--lp-logo--dark
   background-position: 0 -42px
@@ -45,4 +53,14 @@
   margin-right: 5px
   vertical-align: middle
   width: 24px
+  .responsive &
+    text-indent: 0
+    width: auto
+    background-image: none
+    +respond-to(wide-view)
+      text-indent: -999em
+      width: 24px
+      background-image: url(image_path("core/core-sprite-standard.png"))
+      +retinafy()
+        background-image: url(image_path("core/core-sprite-2x.png"))
 

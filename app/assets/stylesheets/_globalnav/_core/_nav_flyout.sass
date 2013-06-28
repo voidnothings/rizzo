@@ -17,6 +17,11 @@ $submenu__arrow--width:  10px
   .js-hover &:hover
     .nav__submenu
       display: block
+  .responsive &:hover
+    .nav__submenu
+      display: none
+      +respond-to(wide-view)
+        display: block
 
 // padding around the submenu gives the submenu dropdown more area to hover over
 .nav__submenu

@@ -24,8 +24,62 @@
 .nav__item--primary, .nav__item--user
   @extend %nav__item--look
 
+.responsive .m-hidden-menu
+  @extend %transition--base
+  background: $nav-search-bck
+  position: absolute
+  top: 55px
+  left: 0
+  right: 0
+  max-height: 0
+  overflow: hidden
+  +respond-to(wide-view)
+    background: none
+    position: static
+    height: auto
+    overflow: visible
+
 .nav__item--primary
   padding: 20px 4px
+  .responsive &
+    padding: 15px 10px
+    &:hover
+      background-color: $primary-nav
+    +respond-to(wide-view)
+      padding: 20px 4px
+      &:hover
+        background-color: none
+
+.nav--primary--trigger,
+.nav--user--trigger
+  display: none
+  .responsive &
+    display: block
+    width: 40px
+    height: 35px
+    background-color: $nav-search-bck
+    position: absolute
+    top: 10px
+    cursor: pointer
+
+.nav--primary--trigger
+  left: 10px
+
+.nav--user--trigger
+  right: 10px
+
+#nav--primary--trigger + .m-hidden-menu,
+#nav--user--trigger + .m-hidden-menu
+  +respond-to(wide-view)
+    display: inline-block
+    zoom: 1
+    *display: inline
+
+#nav--primary--trigger:checked + .m-hidden-menu
+  max-height: 400px
+#nav--user--trigger:checked + .m-hidden-menu
+  max-height: 400px
+
 
 
 // ----------------------------------------------------------------------------
@@ -62,6 +116,10 @@
   position: relative
   margin-left: 15px
   padding: 17px 8px 16px
+  .responsive &
+    margin-left: 0
+    +respond-to(wide-view)
+      margin-left: 15px
 
 .user-basket__items
   @extend %absolute-left
@@ -75,6 +133,27 @@
   background-color: $basket-item
   font-weight: bold
   font-size: 10px
+  .responsive &
+    +font-size(13)
+    position: static
+    background: none
+    color: white
+    box-shadow: none
+    &:before
+      content: '('
+    &:after
+      content: ')'
+    +respond-to(wide-view)
+      +box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.5))
+      font-size: 10px
+      color: $basket-item-type
+      background-color: $basket-item
+      position: absolute
+      left: 0
+      &:before, &:after
+        content: ''
+
+
 
 .user-box
   @extend %right-icon
