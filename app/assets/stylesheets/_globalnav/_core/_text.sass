@@ -32,6 +32,15 @@
   display: block
   color: $title-footer--darker
   margin-bottom: 15px
+  .responsive &
+    padding: 14px 0
+    display: inline-block
+    margin: 0
+    +respond-to(wide-view)
+      padding: 0
+      display: block
+      margin-bottom: 15px
+
 
 .title--footer
   font-weight: bold

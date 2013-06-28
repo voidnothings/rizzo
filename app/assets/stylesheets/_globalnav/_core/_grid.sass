@@ -105,6 +105,16 @@
 .col--footer
   float: left
   margin: 0 46px 15px 0
+  .responsive &
+    float: none
+    margin: 0
+    border-bottom: 1px solid #d6dedf
+    padding-left: 10px
+    +respond-to(wide-view)
+      float: left
+      margin: 0 46px 15px 0
+      border: none
+      padding: 0
   
 
 .col--footer--last

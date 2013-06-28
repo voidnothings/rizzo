@@ -30,6 +30,8 @@
 .accordion__input:checked 
   & + .accordion__target--small
     max-height: 400px
+  & + .accordion__target--mid
+    max-height: 600px
   & + .accordion__target--large
     max-height: 2000px
   & ~ .accordion__handler
@@ -51,11 +53,15 @@
   overflow: hidden
 
 .accordion__target--break  
-  border-bottom: 1px solid $background
+  border-bottom: 1px solid $body-background
   +border-radius-each(0,0,4,4)
 
-.accordion__target--small
-  max-height: 40px 
+.accordion__target--small,
+.accordion__target--mid
+  max-height: 40px
+  .responsive &
+    +respond-to(wide-view)
+      max-height: none
 
 .accordion__target--large
   max-height: 300px 
@@ -76,6 +82,13 @@
     right: 15px
     top: 17px
 
+.accordion__title--footer
+  float: right
+  padding-right: 0
+  width: 70px
+  height: 30px
+  
+
 .ie7, .ie8
   .accordion__title
     padding: 7px 15px
@@ -84,6 +97,8 @@
   .accordion__handler
     display: none
   .accordion__target--small
+    max-height: 9999px
+  .accordion__target--mid
     max-height: 9999px
   .accordion__target--large
     max-height: 9999px

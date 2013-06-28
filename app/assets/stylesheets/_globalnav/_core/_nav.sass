@@ -329,10 +329,19 @@ a.nav__item--breadcrumbs
 
 .nav__item--footer
   line-height: 18px
+  .responsive &
+    padding: 8px 0
+    &:last-child
+      padding-bottom: 20px
+    +respond-to(wide-view)
+      padding: 0
+      &:last-child
+        padding-bottom: 0
 
 .nav__item--sitemap
   color: $body-copy
   .js-hover &:hover
     color: $header-gray
+
 
 

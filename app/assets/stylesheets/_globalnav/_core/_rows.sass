@@ -27,6 +27,10 @@ body
   @extend %clearfix
   position: relative
   @extend %regular-width
+  .responsive &
+    width: auto
+    +respond-to(wide-view)
+      width: 1000px
 
 .row--core
   @extend %helvetica-neue
@@ -173,6 +177,10 @@ body
 .row--sitemap__inner
   @extend %small-type
   padding-top: 20px
+  .responsive &
+    padding: 0
+    +respond-to(wide-view)
+      padding-top: 20px
 
 
 
