@@ -30,7 +30,8 @@
   
   %div.ad-oneByOne#js-ad-oneByOne
 
-  /
-    = "build: #{Variant.full_namespace}"
+  - if defined? Variant
+    /
+      = "build: #{Variant.full_namespace}"
 
 
