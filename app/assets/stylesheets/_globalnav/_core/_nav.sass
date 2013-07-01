@@ -393,9 +393,16 @@ a.nav__item--breadcrumbs
       max-height: 40px
       +respond-to(wide-view)
         max-height: none
+
   .accordion__title
     display: none
     .responsive &
       display: block
       +respond-to(wide-view)
         display: none
+
+  .accordion__title--footer
+    float: right
+    padding-right: 0
+    width: 50%
+    height: 30px
