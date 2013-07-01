@@ -4,11 +4,11 @@
 //       to be defined wherever it's implemented.
 // -----------------------------------------------------------------------------
 
-.js-slides-container
+.slider--container
   overflow: hidden
   position: relative
   -ms-scroll-chaining: none
-.js-slide
+.slider--slide
   +transition(all,0.25,linear)
   display: none
   position: absolute
@@ -31,19 +31,19 @@
       left: auto
       +transform(translate3d(99.9%, 0, 0))
 
-.js-slider-controls
+.slider--controls
   @extend %clearfix
   @extend %transition--base
   position: absolute
   width: 100%
 
-.js-slider-control
+.slider--control
+  @extend %regular-type-size
   @extend %transition--base
   +border-radius(23)
   background: black
   background: rgba(0,0,0,0.6)
   color: white
-  font-size: 14px
   font-weight: bold
   line-height: 1.66em
   opacity: 0.8
@@ -55,28 +55,33 @@
     text-decoration: none
   &:before, &:after
     @extend %transition--base
+    +font-size(32)
     display: inline-block
-    font-size: 32px
     font-weight: normal
     vertical-align: top
 
-.js-slider-prev
+$slideOffset: -85px
+$slideHoverOffset: -20px
+$slidePadding: 32px
+$slideArrowSpacing: 25px
+$slideHoverArrowSpacing: 5px
+.slider--control-prev
   @extend %chevron-left-after
-  left: -85px
-  padding-left: 32px
+  left: $slideOffset
+  padding-left: $slidePadding
   &:after
-    padding-left: 25px
+    padding-left: $slideHoverPadding
   &:hover
-    left: -20px
+    left: $slideHoverOffset
     &:after
-      padding-left: 5px
-.js-slider-next
+      padding-left: $slideHoverArrowSpacing
+.slider--control-next
   @extend %chevron-right-before
-  right: -85px
-  padding-right: 32px
+  right: $slideOffset
+  padding-right: $slidePadding
   &:before
-    padding-right: 25px
+    padding-right: $slideHoverPadding
   &:hover
-    right: -20px
+    right: $slideHoverOffset
     &:before
-      padding-right: 5px
+      padding-right: $slideHoverArrowSpacing
