@@ -12,8 +12,8 @@ define ['jquery'], ($) ->
 
     # Default config
     config =
-      slides: ".slider--slide"
-      slides_container: ".slider--container"
+      slides: ".slider__slide"
+      slides_container: ".slider__container"
 
     # @params {}
     # $el: {string} selector for parent element
@@ -31,20 +31,20 @@ define ['jquery'], ($) ->
         $('input[name="'+$(this).attr('for')+'"]').toggleClass('is-checked')
 
     init: ->
-      @slides_container.append('<div class="slider--controls"></div>')
-      @$el.find('.slider--controls')
-        .append('<a href="#" class="slider--control slider--control-next">1 of '+$(@slides).length+'</a>')
-        .append('<a href="#" class="slider--control slider--control-prev">1 of '+$(@slides).length+'</a>')
+      @slides_container.append('<div class="slider__controls"></div>')
+      @$el.find('.slider__controls')
+        .append('<a href="#" class="slider__control slider__control--next">1 of '+$(@slides).length+'</a>')
+        .append('<a href="#" class="slider__control slider__control--prev">1 of '+$(@slides).length+'</a>')
 
       if _has3d()
         @slides_container.addClass('supports-3d')
 
       @_setupSlideClasses()
 
-      $('.slider--control-next').on 'click', =>
+      $('.slider__control--next').on 'click', =>
         @_nextSlide()
         return false
-      $('.slider--control-prev').on 'click', =>
+      $('.slider__control--prev').on 'click', =>
         @_previousSlide()
         return false
 
@@ -100,10 +100,10 @@ define ['jquery'], ($) ->
       @_updateCount()
 
     _updateCount: ->
-      current = $('.slider--control-next').html()
+      current = $('.slider__control--next').html()
       index = $(@slides).index($(@slides+'.is-current')) + 1
 
-      $('.slider--control-next, .slider--control-prev').html(current.replace(/(^[0-9]+)/, index))
+      $('.slider__control--next, .slider__control--prev').html(current.replace(/(^[0-9]+)/, index))
 
     _setupSlideClasses: ->
       $(@slides+':first').addClass('is-current').next().addClass('is-next')
