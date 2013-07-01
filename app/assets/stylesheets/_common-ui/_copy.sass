@@ -7,7 +7,7 @@
   letter-spacing: -0.05em
 
 .heading--subtitle
-  +font-size(14)
+  @extend %regular-type-size
   @extend %benton-book
 
 
@@ -22,7 +22,7 @@
   margin-bottom: 0.8em
   
 .copy--subtitle
-  +font-size(16)
+  @extend %large-type
   @extend %benton-regular
   color: $header-blue
   text-transform: uppercase
@@ -30,7 +30,7 @@
   margin: 1.8em 0 0.9em
 
 .copy--feature
-  +font-size(20)
+  @extend %section-heading-size-type
   @extend %benton-book
   color: $body-copy
   line-height: 1.5em
@@ -38,11 +38,11 @@
     font-style: normal
 
 .copy--body
-  +font-size(15)
+  @extend %larger-type
   @extend %benton-book
   color: $body-copy
   line-height: 25px
 
 .copy--caption
-  +font-size(12)
+  @extend %small-type
   font-style: italic
