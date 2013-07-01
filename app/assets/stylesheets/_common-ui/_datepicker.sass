@@ -33,7 +33,7 @@
 
 .pickadate__month,
 .pickadate__year
-  @extend %large-type
+  @extend %extra-large-type
   color: $header-gray
   font-weight: bold
 
@@ -42,7 +42,7 @@
 
 .pickadate__month--prev,
 .pickadate__month--next
-  color: $body-copy
+  color: $body
   position: absolute
   top: 0
   width: 25px
@@ -72,15 +72,16 @@
   width: 100%
 
 .pickadate__weekday
-  @extend %extra-small-type
-  color: $body-copy
+  @extend %regular-type
+  color: $body
   font-weight: normal
 
 .pickadate__day
   +border-radius(30)
   @extend %irregular-type
+  @extend %helvetica-neue
   @extend %inline-block
-  color: $body-copy
+  color: $body 
   font-weight: bold
   width: 26px
   height: 26px
@@ -98,6 +99,7 @@
 .pickadate__day--outfocus,
 .pickadate__day--disabled
   border: none
+  color: $body-highlight
 
 .pickadate__day--disabled
   opacity: 0.5
