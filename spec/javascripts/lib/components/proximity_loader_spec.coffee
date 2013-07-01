@@ -9,8 +9,6 @@ require ['public/assets/javascripts/lib/components/proximity_loader.js'], (Proxi
 
   describe 'Proximity Loader', ->
 
-    LISTENER = '#js-card-holder'
-
     describe 'Object', ->
       it 'is defined', ->
         expect(ProximityLoader).toBeDefined()
