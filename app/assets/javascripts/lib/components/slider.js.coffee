@@ -56,13 +56,13 @@ define ['jquery'], ($) ->
       if @$legacy.length is 0
         require ['pointer','touchwipe'], =>
           # Swiping navigation.
-          @$el.touchwipe =>
+          @$el.touchwipe
             wipeLeft: =>
               @_nextSlide()
             wipeRight: =>
               @_previousSlide()
-            min_move_x: 20
-            min_move_y: 20
+            min_move_x: 100
+            min_move_y: 100
             preventDefaultEvents: true
 
     # Private
