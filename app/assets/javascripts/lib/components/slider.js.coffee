@@ -21,34 +21,39 @@ define ['jquery'], ($) ->
     # slides_container: {string} selector for the element containing the slides
     constructor: (args) ->
       $.extend config, args
+
       @current_slide = 1
       @$el = $(config.el)
       @slides = config.slides
       @slides_container = @$el.find(config.slides_container)
+      @$slider_controls = $('<div class="slider__controls"></div>')
+      @$next = $('<a href="#" class="slider__control slider__control--next">1 of '+@$el.find(@slides).length+'</a>')
+      @$prev = $('<a href="#" class="slider__control slider__control--prev">1 of '+@$el.find(@slides).length+'</a>')
+      @$legacy = $('html.ie7, html.ie8, body.browserIE7, body.browserIE8')
+
       @init() unless @$el.length is 0
+
       # Polyfill for resizer in IE7/8
-      $('html.ie7, html.ie8, body.browserIE7, body.browserIE8').find('.js-resizer').on 'click', ->
+      @$legacy.find('.js-resizer').on 'click', ->
         $('input[name="'+$(this).attr('for')+'"]').toggleClass('is-checked')
 
     init: ->
-      @slides_container.append('<div class="slider__controls"></div>')
-      @$el.find('.slider__controls')
-        .append('<a href="#" class="slider__control slider__control--next">1 of '+$(@slides).length+'</a>')
-        .append('<a href="#" class="slider__control slider__control--prev">1 of '+$(@slides).length+'</a>')
+      @$slider_controls.append(@$next).append(@$prev)
+      @slides_container.append(@$slider_controls)
 
       if _has3d()
         @slides_container.addClass('supports-3d')
 
       @_setupSlideClasses()
 
-      $('.slider__control--next').on 'click', =>
+      @$next.on 'click', =>
         @_nextSlide()
         return false
-      $('.slider__control--prev').on 'click', =>
+      @$prev.on 'click', =>
         @_previousSlide()
         return false
 
-      if $('html.ie7, html.ie8, body.browserIE7, body.browserIE8').length is 0
+      if @$legacy.length is 0
         require ['pointer','touchwipe'], =>
           # Swiping navigation.
           @$el.touchwipe =>
@@ -63,8 +68,8 @@ define ['jquery'], ($) ->
     # Private
 
     _nextSlide: ->
-      slides = $(@slides)
-      current = $(@slides+'.is-current')
+      slides = @$el.find(@slides)
+      current = @$el.find(@slides+'.is-current')
       index = slides.index(current) + 1 # +1 since .index is zero based.
 
       @_resetSlideClasses()
@@ -74,26 +79,26 @@ define ['jquery'], ($) ->
         @_setupSlideClasses()
       else if index is slides.length - 1
         current.addClass('is-prev').next().addClass('is-current')
-        $(@slides+':first').addClass('is-next')
+        @$el.find(@slides+':first').addClass('is-next')
       else
         current.addClass('is-prev').next().addClass('is-current').next().addClass('is-next')
 
       @_updateCount()
       
     _previousSlide: ->
-      slides = $(@slides)
-      current = $(@slides+'.is-current')
+      slides = @$el.find(@slides)
+      current = @$el.find(@slides+'.is-current')
       index = slides.index(current) + 1 # +1 since .index is zero based.
 
       @_resetSlideClasses()
 
       # Wrap around if at the beginning
       if index is 1
-        $(@slides+':last').addClass('is-current').prev().addClass('is-prev')
-        $(@slides+':first').addClass('is-next')
+        @$el.find(@slides+':last').addClass('is-current').prev().addClass('is-prev')
+        @$el.find(@slides+':first').addClass('is-next')
       else if index is 2
         current.addClass('is-next').prev().addClass('is-current')
-        $(@slides+':last').addClass('is-prev')
+        @$el.find(@slides+':last').addClass('is-prev')
       else
         current.addClass('is-next').prev().addClass('is-current').prev().addClass('is-prev')
 
@@ -101,16 +106,16 @@ define ['jquery'], ($) ->
 
     _updateCount: ->
       current = $('.slider__control--next').html()
-      index = $(@slides).index($(@slides+'.is-current')) + 1
+      index = @$el.find(@slides).index(@$el.find(@slides+'.is-current')) + 1
 
       $('.slider__control--next, .slider__control--prev').html(current.replace(/(^[0-9]+)/, index))
 
     _setupSlideClasses: ->
-      $(@slides+':first').addClass('is-current').next().addClass('is-next')
-      $(@slides+':last').addClass('is-prev')
+      @$el.find(@slides+':first').addClass('is-current').next().addClass('is-next')
+      @$el.find(@slides+':last').addClass('is-prev')
 
     _resetSlideClasses: ->
-      $(@slides+'.is-current, '+@slides+'.is-next, '+@slides+'.is-prev').removeClass('is-current is-next is-prev')
+      @$el.find(@slides+'.is-current, '+@slides+'.is-next, '+@slides+'.is-prev').removeClass('is-current is-next is-prev')
 
     _has3d = ->
       el = document.createElement("p")
