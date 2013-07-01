@@ -58,41 +58,77 @@
   @extend %regular-type-size
   margin-bottom: 10px
   overflow: hidden
-  padding: 20px 15px
   width: 798px
+  img
+    max-width: 100%
+    margin-bottom: 10px
+
+.stack__article__inner
+  padding: 0 25px
 
 .stack__article__header
   border-bottom: 1px solid $ruled-separator
   margin-bottom: 20px
+  padding: 20px 0
 
-.stack__article__ad
-  @extend %tiny-type
-  color: #b6b6b6
-  text-align: center
+.stack__article__content
+  margin-bottom: 50px
+
+.col--mpu
+  width: 300px
+
+.col--intro
+  width: 448px
+
+// -----------------------------------------------------------------------------
+// Social Footer
+// -----------------------------------------------------------------------------
+
+.sharing
+  @extend %clearfix
+  border-top: 1px solid $ruled-separator
+  padding: 20px 0
+
+.sharing__label
+  @extend %small-type
   text-transform: uppercase
-
-.stack__article__heading
-  @extend %benton-book
-  @include font-size(32)
-  color: $header-blue
-  line-height: 1
-  margin-bottom: 10px
-
-.stack__article__content__leadin
-  position: relative
-  @extend %serif
-  @extend %smooth-text
-  @include font-size(17)
-  color: $dark-blue-gray
-  line-height: 20px
-
-.stack__article_content_subheading
-  @include font-size(18)
-  @extend %smooth-text
-  color: #023f87
   font-weight: bold
-  margin-bottom: 10px
+  color: $title
+  line-height: 22px
 
+.icon--print
+  @extend %left-icon
+  @extend %left-icon--hidden-text
+  @extend %icon--print-before
+  display: block
+  width: 20px
+  margin-left: 15px
+  text-align: left
+  color: $title
+  &:before
+    font-size: 34px
+    line-height: 18px
+
+.icon--email
+  @extend %left-icon
+  @extend %left-icon--hidden-text
+  @extend %icon--email-before
+  display: block
+  width: 20px
+  margin-left: 15px
+  text-align: left
+  color: $title
+  &:before
+    font-size: 34px
+    line-height: 18px
+
+.facebook-like
+  margin-left: 10px
+  min-width: 90px
+
+.tweet-button
+  margin-left: 10px
+  max-width: 103px
 
 // -----------------------------------------------------------------------------
 // Article Breadcrumbs
@@ -100,12 +136,10 @@
 
 .stack__breadcrumbs + .stack__article
   position: relative
-  top: -40px
+  top: -20px
 
 .stack__breadcrumb
-  @extend %benton-book
   @extend %four-pixel-rounded
-  @include font-size(32)
   +background-gradient($startColor: rgb(255,255,255), $endColor: rgb(239,239,239))
   +transition(all, 0.2, ease)
   color: #d2ddeb
@@ -114,6 +148,7 @@
   position: relative
   text-decoration: none
   top: -20px
+  margin-bottom: 0
 
   .js-hover &:hover
     color: $header-blue
