@@ -42,11 +42,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
         @_block()
         @_reset()
 
-      $(LISTENER).on ':cards/received', (e, data) =>
-        @_unblock()
-        if data.pagination.total is 0 or data.pagination.current is data.pagination.total then @_hide() else @_show()
-
-      $(LISTENER).on ':cards/append/received', (e, data) =>
+      $(LISTENER).on ':cards/received :cards/append/received :page/received', (e, data) =>
         @_unblock()
         if data.pagination.total is 0 or data.pagination.current is data.pagination.total then @_hide() else @_show()
 
