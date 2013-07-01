@@ -164,6 +164,10 @@ body
 
 .row__inner--footer
   border-top: 1px solid #d6dedf
+  .responsive &
+    padding: 10px
+    +respond-to(wide-view)
+      padding: 0
 
 // ----------------------------------------------------------------------------
 // 
@@ -173,6 +177,10 @@ body
 
 .row--sitemap
   margin-bottom: 30px
+  .responsive &
+    margin-bottom: 0
+    +respond-to(wide-view)
+      margin-bottom: 30px
 
 .row--sitemap__inner
   @extend %small-type
@@ -192,6 +200,25 @@ body
 
 .row--footer--about
   @extend %small-type
+  .responsive &
+    .row__inner--footer
+      border-top: none
+      padding: 0
+      +respond-to(wide-view)
+        border-top: 1px solid #d6dedf
+        padding: 10px
+
+.row--footer--about__logo
+  .responsive &
+    display: block
+    margin-bottom: 20px
+    +respond-to(wide-view)
+      display: inline-block
+      margin-bottom: 0
+
+.row--footer--social__logo
+  .responsive &
+    display: inline-block
 
 
 // ----------------------------------------------------------------------------
@@ -202,7 +229,10 @@ body
 
 .row--smallprint__inner
   padding: 20px 0
-
+  .responsive &
+    padding-top: 20px
+    +respond-to(wide-view)
+      padding: 20px 0
 
 // ----------------------------------------------------------------------------
 // 

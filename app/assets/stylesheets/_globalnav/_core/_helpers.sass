@@ -19,7 +19,6 @@
 .split--right__inner
   text-align: left
 
-
 // Inline and stacked navs
 
 .nav--inline, .wv--nav--inline
@@ -42,9 +41,11 @@
 // Toggles a stacked nav to an inline nav for wider screens
 .responsive
   .wv--nav--inline
+    display: block
     > .nav__item
       display: block
     +respond-to(wide-view)
+      display: inline-block
       > .nav__item
         vertical-align: top
         display: inline-block
@@ -52,10 +53,38 @@
         *display: inline
 
 // Hides for wider screens
-.responsive .wv-hidden
+.responsive .wv--hidden
   +respond-to(wide-view)
     display: none
 
+// Show for wider screens
+.responsive .wv--inline-block
+  display: none
+  +respond-to(wide-view)
+    display: inline-block
+
+.responsive .wv--block
+  dislay: none
+  +respond-to(wide-view)
+    display: block
+
+
+.wv--split--left
+  float: left
+  .responsive &
+    float: none
+    +respond-to(wide-view)
+      float: left
+
+.wv--split--right
+  float: right
+  text-align: right
+  .responsive &
+    float: none
+    text-align: left
+    +respond-to(wide-view)
+      float: right
+      text-align: right
 
 // ----------------------------------------------------------------------------
 // 

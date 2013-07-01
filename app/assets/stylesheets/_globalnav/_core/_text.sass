@@ -51,5 +51,11 @@
   line-height: 1.5em
   color: $body-copy
   margin-bottom: 0
+  .responsive &
+    width: 100%
+    text-align: center
+    +respond-to(wide-view)
+      width: 60%
+      text-align: left
 
 

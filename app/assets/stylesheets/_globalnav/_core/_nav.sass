@@ -38,6 +38,7 @@
     position: static
     height: auto
     overflow: visible
+    max-height: none
 
 .nav__item--primary
   padding: 20px 4px
@@ -264,6 +265,16 @@ a.nav__item--breadcrumbs
   margin-left: 15px
   padding: 26px 0
   color: $header-gray
+  .responsive &
+    padding: 14px 0 14px 10px
+    margin-left: 0
+    border-bottom: 1px solid #d6dedf
+    font-weight: bold
+    +respond-to(wide-view)
+      padding: 26px 0
+      margin-left: 15px
+      border-bottom: none
+      font-weight: normal
 
 
 // ----------------------------------------------------------------------------
@@ -272,10 +283,24 @@ a.nav__item--breadcrumbs
 // 
 // ----------------------------------------------------------------------------
 
+.responsive
+  .nav--social
+    padding: 0 10px
+    +respond-to(wide-view)
+      padding: 0
+  .nav--social__inner
+    float: right
+    +respond-to(wide-view)
+      float: none
+
 .title--social
   @extend %regular-type-size
   padding: 25px 0
   margin-right: 10px
+  .responsive &
+    display: none
+    +respond-to(wide-view)
+      display: inline-block
   .ie7 &
     display: none
 
@@ -285,6 +310,15 @@ a.nav__item--breadcrumbs
   @extend %left-icon--hidden-text
   color: $header-gray
   margin: 16px 0 17px
+  width: 32px
+  height: 32px
+  .responsive &
+    width: 26px
+    margin: 19px 0 17px
+    +respond-to(400)
+      width: 32px
+    +respond-to(wide-view)
+      margin: 16px 0 17px
   &:before
     top: 0
     line-height: 24px

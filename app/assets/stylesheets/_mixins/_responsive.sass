@@ -9,6 +9,13 @@ $ie: false !default
     @else
       @content
       
+  @if $breakpoint == 400
+    @if $ie == false
+      @media only screen and (min-width : 400px)
+        @content
+    @else
+      @content
+
   @if $breakpoint == 2
     @if $ie == false
       @media only screen and (min-width : 480px)

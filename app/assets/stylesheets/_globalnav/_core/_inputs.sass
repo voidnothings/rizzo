@@ -128,6 +128,14 @@ input, textarea
 //
 // -----------------------------------------------------------------------------
 
+.form--language
+  .responsive &
+    text-align: center
+    label
+      text-align: left
+    +respond-to(wide-view)
+      text-align: left
+
 .form--language__label
   margin-right: 10px
   line-height: 30px
@@ -165,6 +173,12 @@ input, textarea
 
 .newsletter--footer
   @extend %regular-type-size
+  .responsive &
+    margin-bottom: 20px
+    width: 90%
+    +respond-to(wide-view)
+      margin-bottom: 0
+      width: 100%
 
 .newsletter--placeholder
   position: static

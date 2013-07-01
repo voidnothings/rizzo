@@ -120,6 +120,16 @@
 .col--footer--last
   float: right
   width: 240px
+  .responsive &
+    float: none
+    width: auto
+    border-bottom: 1px solid #d6dedf
+    padding-left: 10px
+    +respond-to(wide-view)
+      float: right
+      width: 240px
+      border: none
+      padding: none
 
 .ie7, .ie8
   .col--footer--last
