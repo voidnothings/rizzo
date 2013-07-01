@@ -1,0 +1,88 @@
+// -----------------------------------------------------------------------------
+// Slider Style Gallery
+// Note: the height/width for the slider, and the position of the controls needs
+//       to be defined wherever it's implemented.
+// -----------------------------------------------------------------------------
+
+$slideOffset: -85px
+$slideHoverOffset: -20px
+$slidePadding: 32px
+$slideArrowSpacing: 25px
+$slideHoverArrowSpacing: 5px
+
+.slider__container
+  overflow: hidden
+  position: relative
+  -ms-scroll-chaining: none
+
+.slider__slide
+  +transition(all,0.25,linear)
+  display: none
+  position: absolute
+  top: 0
+  &.is-prev, &.is-current, &.is-next
+    display: block
+  &.is-prev
+    left: -100%
+    .supports-3d &
+      left: auto
+      +transform(translate3d(-99.9%, 0, 0))
+  &.is-current
+    left: 0
+    .supports-3d &
+      left: auto
+      +transform(translate3d(0, 0, 0))
+  &.is-next
+    left: 100%
+    .supports-3d &
+      left: auto
+      +transform(translate3d(99.9%, 0, 0))
+
+.slider__controls
+  @extend %clearfix
+  @extend %transition--base
+  position: absolute
+  width: 100%
+
+.slider__control
+  @extend %regular-type-size
+  @extend %transition--base
+  +border-radius(23)
+  background: black
+  background: rgba(0,0,0,0.6)
+  color: white
+  font-weight: bold
+  line-height: 1.66em
+  opacity: 0.8
+  padding: 13px 16px
+  position: absolute
+  &:hover
+    opacity: 1
+    text-decoration: none
+  &:before, &:after
+    @extend %transition--base
+    +font-size(32)
+    display: inline-block
+    font-weight: normal
+    vertical-align: top
+
+.slider__control--prev
+  @extend %chevron-left-after
+  left: $slideOffset
+  padding-left: $slidePadding
+  &:after
+    padding-left: $slideHoverPadding
+  &:hover
+    left: $slideHoverOffset
+    &:after
+      padding-left: $slideHoverArrowSpacing
+.slider__control--next
+  @extend %chevron-right-before
+  right: $slideOffset
+  padding-right: $slidePadding
+  &:before
+    padding-right: $slideHoverPadding
+  &:hover
+    right: $slideHoverOffset
+    &:before
+      padding-right: $slideHoverArrowSpacing
