@@ -1,0 +1,82 @@
+// -----------------------------------------------------------------------------
+// Slider Style Gallery
+// Note: the height/width for the slider, and the position of the controls needs
+//       to be defined wherever it's implemented.
+// -----------------------------------------------------------------------------
+
+.js-slides-container
+  overflow: hidden
+  position: relative
+  -ms-scroll-chaining: none
+.js-slide
+  +transition(all,0.25,linear)
+  display: none
+  position: absolute
+  top: 0
+  &.is-prev, &.is-current, &.is-next
+    display: block
+  &.is-prev
+    left: -100%
+    .supports-3d &
+      left: auto
+      +transform(translate3d(-99.9%, 0, 0))
+  &.is-current
+    left: 0
+    .supports-3d &
+      left: auto
+      +transform(translate3d(0, 0, 0))
+  &.is-next
+    left: 100%
+    .supports-3d &
+      left: auto
+      +transform(translate3d(99.9%, 0, 0))
+
+.js-slider-controls
+  @extend %clearfix
+  @extend %transition--base
+  position: absolute
+  width: 100%
+
+.js-slider-control
+  @extend %transition--base
+  +border-radius(23)
+  background: black
+  background: rgba(0,0,0,0.6)
+  color: white
+  font-size: 14px
+  font-weight: bold
+  line-height: 1.66em
+  opacity: 0.8
+  padding: 13px 16px
+  position: absolute
+
+  &:hover
+    opacity: 1
+    text-decoration: none
+  &:before, &:after
+    @extend %transition--base
+    display: inline-block
+    font-size: 32px
+    font-weight: normal
+    vertical-align: top
+
+.js-slider-prev
+  @extend %chevron-left-after
+  left: -85px
+  padding-left: 32px
+  &:after
+    padding-left: 25px
+  &:hover
+    left: -20px
+    &:after
+      padding-left: 5px
+.js-slider-next
+  @extend %chevron-right-before
+  right: -85px
+  padding-right: 32px
+  &:before
+    padding-right: 25px
+  &:hover
+    right: -20px
+    &:before
+      padding-right: 5px
