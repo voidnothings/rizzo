@@ -4,11 +4,18 @@
 //       to be defined wherever it's implemented.
 // -----------------------------------------------------------------------------
 
-.slider--container
+$slideOffset: -85px
+$slideHoverOffset: -20px
+$slidePadding: 32px
+$slideArrowSpacing: 25px
+$slideHoverArrowSpacing: 5px
+
+.slider__container
   overflow: hidden
   position: relative
   -ms-scroll-chaining: none
-.slider--slide
+
+.slider__slide
   +transition(all,0.25,linear)
   display: none
   position: absolute
@@ -31,13 +38,13 @@
       left: auto
       +transform(translate3d(99.9%, 0, 0))
 
-.slider--controls
+.slider__controls
   @extend %clearfix
   @extend %transition--base
   position: absolute
   width: 100%
 
-.slider--control
+.slider__control
   @extend %regular-type-size
   @extend %transition--base
   +border-radius(23)
@@ -49,7 +56,6 @@
   opacity: 0.8
   padding: 13px 16px
   position: absolute
-
   &:hover
     opacity: 1
     text-decoration: none
@@ -60,12 +66,7 @@
     font-weight: normal
     vertical-align: top
 
-$slideOffset: -85px
-$slideHoverOffset: -20px
-$slidePadding: 32px
-$slideArrowSpacing: 25px
-$slideHoverArrowSpacing: 5px
-.slider--control-prev
+.slider__control--prev
   @extend %chevron-left-after
   left: $slideOffset
   padding-left: $slidePadding
@@ -75,7 +76,7 @@ $slideHoverArrowSpacing: 5px
     left: $slideHoverOffset
     &:after
       padding-left: $slideHoverArrowSpacing
-.slider--control-next
+.slider__control--next
   @extend %chevron-right-before
   right: $slideOffset
   padding-right: $slidePadding
