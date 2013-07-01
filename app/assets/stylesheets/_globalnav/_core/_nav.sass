@@ -378,4 +378,19 @@ a.nav__item--breadcrumbs
     color: $header-gray
 
 
+// Override some of the default accordion styles
 
+
+.col--footer, .col--footer--last
+  .accordion__target--mid
+    max-height: none
+    .responsive &
+      max-height: 40px
+      +respond-to(wide-view)
+        max-height: none
+  .accordion__title
+    display: none
+    .responsive &
+      display: block
+      +respond-to(wide-view)
+        display: none

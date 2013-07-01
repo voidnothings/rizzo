@@ -53,20 +53,27 @@
         *display: inline
 
 // Hides for wider screens
-.responsive .wv--hidden
-  +respond-to(wide-view)
-    display: none
+.wv--hidden
+  display: none
+  .responsive &
+    display: inline-block
+    +respond-to(wide-view)
+      display: none
 
 // Show for wider screens
-.responsive .wv--inline-block
-  display: none
-  +respond-to(wide-view)
-    display: inline-block
+.wv--inline-block
+  @extend %inline-block
+  .responsive &
+    display: none
+    +respond-to(wide-view)
+      display: inline-block
 
-.responsive .wv--block
-  dislay: none
-  +respond-to(wide-view)
-    display: block
+.wv--block
+  display: block
+  .responsive &
+    display: none
+    +respond-to(wide-view)
+      display: block
 
 
 .wv--split--left
