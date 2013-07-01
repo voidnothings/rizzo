@@ -12,8 +12,8 @@ define ['jquery'], ($) ->
 
     # Default config
     config =
-      slides: ".js-slide"
-      slides_container: ".js-slides-container"
+      slides: ".slider--slide"
+      slides_container: ".slider--container"
 
     # @params {}
     # $el: {string} selector for parent element
@@ -31,20 +31,20 @@ define ['jquery'], ($) ->
         $('input[name="'+$(this).attr('for')+'"]').toggleClass('is-checked')
 
     init: ->
-      @slides_container.append('<div class="js-slider-controls"></div>')
-      @$el.find('.js-slider-controls')
-        .append('<a href="#" class="js-slider-next js-slider-control">1 of '+$(@slides).length+'</a>')
-        .append('<a href="#" class="js-slider-prev js-slider-control">1 of '+$(@slides).length+'</a>')
+      @slides_container.append('<div class="slider--controls"></div>')
+      @$el.find('.slider--controls')
+        .append('<a href="#" class="slider--control slider--control-next">1 of '+$(@slides).length+'</a>')
+        .append('<a href="#" class="slider--control slider--control-prev">1 of '+$(@slides).length+'</a>')
 
       if _has3d()
         @slides_container.addClass('supports-3d')
 
       @_setupSlideClasses()
 
-      $('.js-slider-next').on 'click', =>
+      $('.slider--control-next').on 'click', =>
         @_nextSlide()
         return false
-      $('.js-slider-prev').on 'click', =>
+      $('.slider--control-prev').on 'click', =>
         @_previousSlide()
         return false
 
@@ -100,10 +100,10 @@ define ['jquery'], ($) ->
       @_updateCount()
 
     _updateCount: ->
-      current = $('.js-slider-next').html()
+      current = $('.slider--control-next').html()
       index = $(@slides).index($(@slides+'.is-current')) + 1
 
-      $('.js-slider-next, .js-slider-prev').html(current.replace(/(^[0-9]+)/, index))
+      $('.slider--control-next, .slider--control-prev').html(current.replace(/(^[0-9]+)/, index))
 
     _setupSlideClasses: ->
       $(@slides+':first').addClass('is-current').next().addClass('is-next')
