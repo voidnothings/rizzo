@@ -239,12 +239,13 @@
 // -----------------------------------------------------------------------------
 .media-gallery
   @extend %transition--base
+  position: relative
   width: 427px
   ~ .single-page__aside
     top: -316px
-  .media-gallery--container, .js-slides-container
+  .media-gallery--container, .slider__container
     height: 241px
-  .js-slider-controls
+  .slider__controls
     top: 95px
 
 .media-gallery--full
@@ -253,9 +254,9 @@
   &:checked, &.is-checked
     ~ .media-gallery
       width: 748px
-      .media-gallery--container, .js-slides-container
+      .media-gallery--container, .slider__container
         height: 422px
-      .js-slider-controls
+      .slider__controls
         top: 186px
     ~ .single-page__aside
       top: 0
