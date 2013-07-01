@@ -238,74 +238,55 @@
 // Media gallery - named such so as to avoid clashing with the Hotels .gallery
 // -----------------------------------------------------------------------------
 .media-gallery
-  overflow: hidden
-  position: relative
+  @extend %transition--base
+  width: 427px
+  ~ .single-page__aside
+    top: -316px
+  .media-gallery--container, .js-slides-container
+    height: 241px
+  .js-slider-controls
+    top: 95px
+
+.media-gallery--full
+  display: none
+  // .is-checked is an ie7/8 fallback
+  &:checked, &.is-checked
+    ~ .media-gallery
+      width: 748px
+      .media-gallery--container, .js-slides-container
+        height: 422px
+      .js-slider-controls
+        top: 186px
+    ~ .single-page__aside
+      top: 0
+
+.media-gallery--resizer
+  @extend %transition--base
+  background: black
+  background: rgba(0,0,0,0.6)
+  cursor: pointer
+  display: block
+  height: 40px
+  opacity: 0.3
+  position: absolute
+  right: 0
+  top: 0
+  width: 40px
+  z-index: 2
+
+  &:hover
+    opacity: 1
 
 .media-gallery--container
   @extend %transition--base
   overflow: hidden
-  .media-gallery &
-    height: 290px
-    width: 427px
-  .media-gallery--showcase &
-    height: 422px
-    width: 748px
 
-.media-gallery, .media-gallery__nav
+.media-gallery__img
+  max-height: 100%
+  max-width: 100%
+
+.media-gallery
   @extend %clearfix
-
-.media-gallery__nav
-  @extend %transition--base
-  position: absolute
-  width: 100%
-
-  .media-gallery &
-    top: 135px
-  // .media-gallery--showcase &
-  //   top: 
-
-.media-gallery__nav--item
-  @extend %transition--base
-  +border-radius(23)
-  background: black
-  background: rgba(0,0,0,0.6)
-  color: white
-  font-size: 14px
-  font-weight: bold
-  opacity: 0.8
-  padding: 13px 16px
-  position: absolute
-
-  &:hover
-    opacity: 1
-    text-decoration: none
-  &:before, &:after
-    @extend %transition--base
-    display: inline-block
-    font-size: 32px
-    font-weight: normal
-    vertical-align: top
-
-.media-gallery__nav--prev
-  @extend %chevron-left-after
-  left: -62px
-  padding-left: 32px
-  &:after
-    padding-left: 10px
-  &:hover
-    left: -20px
-    &:after
-      padding-left: 0
-.media-gallery__nav--next
-  @extend %chevron-right-before
-  right: -62px
-  padding-right: 32px
-  &:before
-    padding-right: 10px
-  &:hover
-    right: -20px
-    &:before
-      padding-right: 0
 
 .media-gallery__tabs--tab
   +css-arrow-central(top, $width: 10px, $arrowOffset: 17px)
