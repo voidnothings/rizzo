@@ -37,7 +37,7 @@ define ['jquery'], ($) ->
         .append('<a href="#" class="js-slider-prev js-slider-control">1 of '+$(@slides).length+'</a>')
 
       if _has3d()
-        @slides_container.addClass('supports-transform')
+        @slides_container.addClass('supports-3d')
 
       @_setupSlideClasses()
 
