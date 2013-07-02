@@ -67,6 +67,20 @@ input, textarea
       width: auto
       margin: 13px 0 12px
 
+.search--primary--mobile
+  display: none
+  .responsive &
+    display: block
+    +respond-to(wide-view)
+      display: none
+
+.search--primary--wv
+  @extend %inline-block
+  .responsive &
+    display: none
+    +respond-to(wide-view)
+      display: inline-block
+
 .search__input--primary
   @extend %transition--base
   background: transparent
