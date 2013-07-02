@@ -1,37 +1,37 @@
-$ie: false !default
+$is-ie: false !default
 
 @mixin respond-to($breakpoint: 1)
 
   @if $breakpoint == 1
-    @if $ie == false
+    @if $is-ie == false
       @media only screen and (min-width : 320px)
         @content
     @else
       @content
       
   @if $breakpoint == 400
-    @if $ie == false
+    @if $is-ie == false
       @media only screen and (min-width : 400px)
         @content
     @else
       @content
 
   @if $breakpoint == 2
-    @if $ie == false
+    @if $is-ie == false
       @media only screen and (min-width : 480px)
         @content
     @else
       @content
       
   @if $breakpoint == 3
-    @if $ie == false
+    @if $is-ie == false
       @media only screen and (min-width : 768px)
         @content
     @else
       @content
 
   @if $breakpoint == wide-view
-    @if $ie == false
+    @if $is-ie == false
       @media only screen and (min-width : 990px)
         @content
     @else
