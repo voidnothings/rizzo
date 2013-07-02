@@ -144,14 +144,14 @@ body
   .js-hover &:hover
     max-width: none
 
-// // ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 // 
 // Row Container
 // 
 // ----------------------------------------------------------------------------
 
 .row--content
-  background-color: $body-background
+  // background-color: $body-background
   padding-top: 25px
   margin-bottom: 40px
 
@@ -240,16 +240,18 @@ body
 // 
 // ----------------------------------------------------------------------------
 
-.wrap--footer
-  background-color: $body-background
+// .wrap--footer
+  // background-color: $body-background
 
 .wrap--footer-push
-  background-color: $body-background
+  // background-color: $body-background
   min-height: 100%
   height: auto !important
   height: 100%
   margin: 0
   margin-bottom: -501px
+  position: relative
+  z-index: 2 // Ensure that any drop down menus sit on the top of the footer
 
 .row--footer-push
   height: 501px
