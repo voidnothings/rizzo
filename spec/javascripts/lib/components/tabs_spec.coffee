@@ -13,6 +13,10 @@ require ['public/assets/javascripts/lib/components/tabs.js'], (Tabs) ->
         loadFixtures('tabs.html')
         myTabs = new Tabs('#myTestTabs', 0)
 
+      it 'initializes with the first tab being active', ->
+        expect($('#myTestTabs').find('#label1')).toHaveClass('is-active')
+        expect($('#myTestTabs').find('#test1')).toHaveClass('is-active')
+
       it 'opens tab 1', ->
         runs ->
           $('#myTestTabs').find('#label1').trigger('click')
@@ -20,18 +24,6 @@ require ['public/assets/javascripts/lib/components/tabs.js'], (Tabs) ->
         runs ->
           expect($('#myTestTabs').find('#label1')).toHaveClass('is-active')
           expect($('#myTestTabs').find('#test1')).toHaveClass('is-active')
-          expect($('#myTestTabs').find('#label2')).not.toHaveClass('is-active')
-          expect($('#myTestTabs').find('#test2')).not.toHaveClass('is-active')
-
-      it 'closes tab 1', ->
-        $('#myTestTabs').find('#test1').addClass('is-active')
-        $('#myTestTabs').find('#label1').addClass('is-active')
-        runs ->
-          $('#myTestTabs').find('#label1').trigger('click')
-        waits(waitTime)
-        runs ->
-          expect($('#myTestTabs').find('#label1')).not.toHaveClass('is-active')
-          expect($('#myTestTabs').find('#test1')).not.toHaveClass('is-active')
           expect($('#myTestTabs').find('#label2')).not.toHaveClass('is-active')
           expect($('#myTestTabs').find('#test2')).not.toHaveClass('is-active')
 
@@ -47,7 +39,7 @@ require ['public/assets/javascripts/lib/components/tabs.js'], (Tabs) ->
           expect($('#myTestTabs').find('#test1')).not.toHaveClass('is-active')
         , waitTime
  
-      it 'switches to tab 1 when it is already is-active', ->
+      it 'switches to tab 1 when it is already active', ->
         runs ->
           myTabs = new Tabs('#myTestTabs', 0)
           $('#myTestTabs').find('#test1').addClass('is-active')
