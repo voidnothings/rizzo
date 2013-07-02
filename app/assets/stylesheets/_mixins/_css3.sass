@@ -84,8 +84,6 @@
   -o-transition:      $property #{$duration + s} $style
   transition:         $property #{$duration + s} $style
 
-
-
 @mixin multiple-transitions($transition1, $transition2: null, $transition3: null, $transition4: null, $transition5: null)
   -webkit-transition: $transition1, $transition2, $transition3, $transition4, $transition5
   -moz-transition:    $transition1, $transition2, $transition3, $transition4, $transition5
@@ -128,3 +126,10 @@
   -moz-user-select: none
   -ms-user-select: none
   user-select: none
+
+@mixin transform($transform)
+  -webkit-transform: $transform
+  -moz-transform:    $transform
+  -ms-transform:     $transform
+  -o-transform:      $transform
+  transform:         $transform
