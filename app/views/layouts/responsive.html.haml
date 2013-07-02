@@ -8,7 +8,7 @@
   %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
 %body.responsive
   .wrap--footer-push
-    = render 'layouts/core/responsive_master_head', :user_nav => defined?(user_nav) ? user_nav : true
+    = render 'layouts/core/snippets/responsive_header', :user_nav => defined?(user_nav) ? user_nav : true
     .row.row--content#js-row--content
       .row__inner.row__inner--content
         = yield
