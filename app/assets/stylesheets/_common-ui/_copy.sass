@@ -2,15 +2,17 @@
 .copy--freight
   @extend %lp-font-stack
 
+// Type treatment within body text
+
 .copy--title
   +font-size(32)
   color: $header-blue
   letter-spacing: -0.05em
   line-height: 1.5em
   margin-bottom: 0.8em
-
+  
 .copy--subtitle
-  +font-size(16)
+  @extend %large-type
   font-weight: bold
   color: $header-blue
   text-transform: uppercase
@@ -18,13 +20,18 @@
   margin: 1.8em 0 0.9em
 
 .copy--feature
-  +font-size(20)
+  @extend %section-heading-size-type
   color: $body-copy
   line-height: 1.5em
   em
     font-style: normal
 
 .copy--body
-  +font-size(15)
+  @extend %larger-type
   color: $body-copy
   line-height: 1.66em
+  color: $body-copy
+
+.copy--caption
+  @extend %small-type
+  font-style: italic
