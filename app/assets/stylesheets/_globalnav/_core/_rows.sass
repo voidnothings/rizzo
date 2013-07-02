@@ -50,6 +50,10 @@ body
   background-color: $feature
   overflow: hidden
   color: $highlight
+  .responsive &
+    text-align: center
+    +respond-to(wide-view)
+      text-align: left
   .split--left
     max-width: 75%
 
@@ -60,6 +64,12 @@ body
     color: $highlight
     text-decoration: underline
     font-weight: bold
+
+  .cookie-buttons
+    .responsive &
+      text-align: center
+      +respond-to(wide-view)
+        text-align: right
 
   .btn--gray
     margin-left: 10px
@@ -111,7 +121,7 @@ body
   padding-left: 20px
   padding-right: 20px
   .responsive &
-    min-width: auto
+    min-width: 0
 
 // ----------------------------------------------------------------------------
 // 
@@ -122,6 +132,10 @@ body
 .row--primary
   background-color: $primary-nav
   height: 55px
+  .responsive &
+    position: relative
+    +respond-to(wide-view)
+      position: static
   .ie7 &
     // Make sure that top nav dropdowns always stay on top
     z-index: 2
@@ -240,18 +254,12 @@ body
 // 
 // ----------------------------------------------------------------------------
 
-// .wrap--footer
-  // background-color: $body-background
-
 .wrap--footer-push
-  // background-color: $body-background
   min-height: 100%
   height: auto !important
   height: 100%
   margin: 0
   margin-bottom: -501px
-  position: relative
-  z-index: 2 // Ensure that any drop down menus sit on the top of the footer
 
 .row--footer-push
   height: 501px
