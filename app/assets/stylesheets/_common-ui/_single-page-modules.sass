@@ -282,6 +282,10 @@
 .media-gallery--container
   @extend %transition--base
   overflow: hidden
+  position: relative
+
+  &.is-loading:after
+    top: 120px
 
 .media-gallery__img
   max-height: 100%
@@ -289,6 +293,17 @@
 
 .media-gallery
   @extend %clearfix
+
+.media-gallery__tab--content
+  @extend %transition--base
+  position: absolute
+  left: 0
+  opacity: 0
+  top: 0
+  z-index: -1
+  &.is-active
+    opacity: 1
+    z-index: 1
 
 .media-gallery__tabs--tab
   +css-arrow-central(top, $width: 10px, $arrowOffset: 17px)
@@ -302,6 +317,7 @@
   padding: 0 10px
   position: relative
   text-transform: uppercase
+  z-index: 2
   &:after
     display: none
     font-size: 32px
