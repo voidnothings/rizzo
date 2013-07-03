@@ -240,12 +240,14 @@
 .media-gallery
   @extend %transition--base
   position: relative
-  width: 427px
   ~ .single-page__aside
     top: -316px
-  .media-gallery--container, .slider__container
+  .media-gallery--container, .media-gallery__tab--content
+    @extend %clearfix
     @extend %transition--base
     height: 241px
+    width: 427px
+    z-index: 0
   .slider__controls
     top: 95px
 
@@ -254,9 +256,9 @@
   // .is-checked is an ie7/8 fallback
   &:checked, &.is-checked
     ~ .media-gallery
-      width: 748px
-      .media-gallery--container, .slider__container
+      .media-gallery--container, .media-gallery__tab--content
         height: 422px
+        width: 748px
       .slider__controls
         top: 186px
     ~ .single-page__aside
