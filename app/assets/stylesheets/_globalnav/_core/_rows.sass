@@ -251,6 +251,22 @@ body
     +respond-to(wide-view)
       padding: 20px 0
 
+.text--legal
+  @extend %tiny-type
+  width: 60%
+  line-height: 1.5em
+  color: $body-copy
+  margin-bottom: 0
+  .responsive &
+    width: 100%
+    text-align: center
+    +respond-to(wide-view)
+      width: 60%
+      text-align: left
+
+
+
+
 // ----------------------------------------------------------------------------
 // 
 // Sticky footer

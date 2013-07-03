@@ -110,6 +110,34 @@
     .js-hover &:hover
       color: #fff
 
+// Place title is a wrapper to allow us to show very long place names on hover
+.place-title
+  @extend %extra-large-type
+  @extend %truncate-text
+  @extend %left-icon
+  @extend %icon--location-flag-before
+  margin-right: 20px
+  // Fix the text-overflow bug in firefox to avoid the final letter being clipped
+  padding-right: 2px
+  padding-left: 22px
+  &:before
+    top: 0
+    font-size: 28px
+    line-height: 16px
+
+.place-title-heading
+  @extend %benton-regular
+  letter-spacing: -0.1em
+  color: $dark-blue-gray
+  line-height: 26px
+  &:hover
+    text-decoration: none
+
+.place-title__parent
+  @extend %benton-book
+  color: $dark-blue-gray
+  &:hover
+    text-decoration: none
 
 // ----------------------------------------------------------------------------
 // 
@@ -366,6 +394,36 @@ a.nav__item--breadcrumbs
 // 
 // ----------------------------------------------------------------------------
 
+.col--footer,
+.col--footer--last
+  .responsive &
+    float: none
+    border-bottom: 1px solid #d6dedf
+    padding-left: 10px
+    +respond-to(wide-view)
+      border: none
+      padding: 0
+
+.col--footer
+  float: left
+  margin: 0 46px 15px 0
+  .responsive &
+    margin: 0
+    +respond-to(wide-view)
+      float: left
+      margin: 0 46px 15px 0
+
+.col--footer--last
+  float: right
+  width: 240px
+  .responsive &
+    width: auto
+    +respond-to(wide-view)
+      float: right
+      width: 240px
+  .ie7 &, .ie8 &
+    width: 232px
+
 .nav__item--footer
   line-height: 18px
   .responsive &
@@ -382,9 +440,22 @@ a.nav__item--breadcrumbs
   .js-hover &:hover
     color: $header-gray
 
+.title--list--footer
+  @extend %small-type
+  display: block
+  color: $title-footer--darker
+  margin-bottom: 15px
+  .responsive &
+    padding: 14px 0
+    display: inline-block
+    margin: 0
+    +respond-to(wide-view)
+      padding: 0
+      display: block
+      margin-bottom: 15px
+
 
 // Override some of the default accordion styles
-
 
 .col--footer, .col--footer--last
   .accordion__target--mid
