@@ -27,7 +27,7 @@ define ['jquery'], ($) ->
         Tabs::_closeTabs()
 
         _openNewTab(tabLabel, tab)
-        e.preventDefault()
+        false
 
       config.tabsContainer.removeClass('is-loading')
       $(config.tabLabels.filter(':first').addClass('is-active').attr('href')).addClass('is-active')
