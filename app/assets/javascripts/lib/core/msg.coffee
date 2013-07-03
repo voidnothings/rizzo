@@ -11,7 +11,7 @@ define ['jquery'], ($)->
       @add(@build(@args.content))
 
     build: () ->
-      @msg = "<div class='row row--fluid #{@args.style}'><div class='split--left cookie-msg'>#{@args.content}</div><div class='split--right'>#{@userOptions(@args.userOptions)}</div></div>"
+      @msg = "<div class='row row--fluid #{@args.style}'><div class='wv--split--left cookie-msg'>#{@args.content}</div><div class='wv--split--right cookie-buttons'>#{@userOptions(@args.userOptions)}</div></div>"
       
     userOptions: (options, output="")->
       output += "<a class='btn--regular btn--green btn--accept js-close-msg'>No worries</a>" unless options.close is false
