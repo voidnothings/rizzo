@@ -135,7 +135,7 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
         expect(lm._block).toHaveBeenCalled()
 
 
-    describe 'on page received', ->
+    describe 'on cards received', ->
       beforeEach ->
         loadFixtures('load_more.html')
         window.lm = new LoadMore({el: '.js-pagination'})
@@ -159,6 +159,29 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
         $(LISTENER).trigger(':cards/received', stub_final_page)
         expect(lm._hide).toHaveBeenCalled()
 
+    describe 'on page received', ->
+      beforeEach ->
+        loadFixtures('load_more.html')
+        window.lm = new LoadMore({el: '.js-pagination'})
+        spyOn(lm, "_unblock")
+        spyOn(lm, "_show")
+        spyOn(lm, "_hide")
+
+      it 'enables the pagination', ->
+        $(LISTENER).trigger(':page/received', stub)
+        expect(lm._unblock).toHaveBeenCalled()
+
+      it 'shows the pagination', ->
+        $(LISTENER).trigger(':page/received', stub)
+        expect(lm._show).toHaveBeenCalled()
+
+      it 'hides the pagination if the total pages is 0', ->
+        $(LISTENER).trigger(':page/received', stub_single)
+        expect(lm._hide).toHaveBeenCalled()
+
+      it 'hides the pagination if we are on the final page', ->
+        $(LISTENER).trigger(':page/received', stub_final_page)
+        expect(lm._hide).toHaveBeenCalled()
 
     describe 'on page/append/received', ->
       beforeEach ->

@@ -13,3 +13,6 @@ Gemfile.lock
 spec/reports
 spec/javascripts/generated/*
 public/
+.plato
+.grunt
+node_modules/
