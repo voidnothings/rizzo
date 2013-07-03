@@ -1,20 +1,11 @@
 // -----------------------------------------------------------------------------
-// These objects are typically used on lists but can be extend by any elements
-// via the .item class
-// -----------------------------------------------------------------------------
-
-
-%no-list-style
-  list-style: none
-
-// -----------------------------------------------------------------------------
 // Stacked navigation
 //
 // This object throws any list or list of links into a stack of elements
 // -----------------------------------------------------------------------------
 
 %stacked-nav
-  @extend %no-list-style
+  list-style: none
   .obj-list__item
     display: block
 
