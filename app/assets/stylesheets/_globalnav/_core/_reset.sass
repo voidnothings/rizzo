@@ -89,7 +89,7 @@ html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,a, abb
   padding: 0
 
 nav ul
-  @extend %no-list-style
+  list-style: none
 
 a > img 
   display: block
@@ -100,6 +100,13 @@ h1,h2,h3,h4,h5,h6
 
 fieldset
   border: none
+
+// ----------------------------------------------------------------------------
+// 
+// Remove iOs default styles
+//
+// ----------------------------------------------------------------------------
+
 
 input[type=text], input[type=email], input[type=search], input[type=submit]
   @extend %webkit-appearance-reset
