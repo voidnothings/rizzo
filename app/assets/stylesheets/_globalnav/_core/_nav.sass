@@ -24,21 +24,22 @@
 .nav__item--primary, .nav__item--user
   @extend %nav__item--look
 
-.responsive .m-hidden-menu
-  @extend %transition--base
-  background: $nav-search-bck
-  position: absolute
-  top: 55px
-  left: 0
-  right: 0
-  max-height: 0
-  overflow: hidden
-  +respond-to(wide-view)
-    background: none
-    position: static
-    height: auto
-    overflow: visible
-    max-height: none
+.m-hidden-menu
+  .responsive &
+    @extend %transition--base
+    background: $nav-search-bck
+    position: absolute
+    top: 55px
+    left: 0
+    right: 0
+    max-height: 0
+    overflow: hidden
+    +respond-to(wide-view)
+      background: none
+      position: static
+      height: auto
+      overflow: visible
+      max-height: none
 
 .nav__item--primary
   padding: 20px 4px
