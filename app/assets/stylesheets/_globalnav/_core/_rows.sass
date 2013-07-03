@@ -135,8 +135,8 @@ body
   .responsive &
     position: relative
     z-index: 2
-    +respond-to(wide-view)
-      position: static
+  .homepage &
+    background: none
   .ie7 &
     // Make sure that top nav dropdowns always stay on top
     z-index: 2
@@ -166,9 +166,11 @@ body
 // ----------------------------------------------------------------------------
 
 .row--content
-  // background-color: $body-background
   padding-top: 25px
   margin-bottom: 40px
+  .homepage &
+    padding-top: 0
+    margin-top: -55px
 
 
 // ----------------------------------------------------------------------------
