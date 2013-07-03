@@ -1,13 +1,14 @@
 GIT
+  remote: git@github.com:lonelyplanet/avocado.git
+  revision: e454d34f9ff31f571417eb6a33e87ed08a2e0b5a
+  specs:
+    avocado (0.0.31)
+
+GIT
   remote: git@github.com:lonelyplanet/beaker.git
   revision: aa47d049651be8e0da69cdec3d9b82599f0f6cd4
   specs:
     beaker (0.1.0)
-
-PATH
-  remote: /home/dave/dev/avocado
-  specs:
-    avocado (0.0.31)
 
 GEM
   remote: https://rubygems.org/
