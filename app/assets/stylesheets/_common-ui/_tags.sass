@@ -79,11 +79,12 @@
   +card-tag-curl-top($yella, $bookable-ribbon)
 
 .card__tag__inner--price
+  @extend %subpixel-text
   @extend %card__tag__container--top
   background-color: $yella
   color: $body
   overflow: hidden
-  padding: 8px 10px
+  padding: 6px 8px
 
 .card__tag__price--non-bookable
   @extend %benton-regular
@@ -93,6 +94,7 @@
   padding: 4px 10px
 
 .card__tag__price--price
+  line-height: 0.8em
   @extend %heading-size-type
   display: block
 

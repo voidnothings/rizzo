@@ -53,13 +53,13 @@
 
 .group__title--aside
   @extend %small-type
-  font-weight: bold
-  color: $nav-search-btn-hover
   @extend %uppercase
+  color: $nav-search-btn-hover
   display: block
+  font-weight: bold
+  letter-spacing: 0.1em
   line-height: 1.3em
   padding: 13px 15px
-
 
 // ---------------------------------------
 // Nav item 
@@ -72,8 +72,8 @@
   @extend %regular-type
   color: $body-copy
   display: block
-  line-height: 1.5em
-  padding: 12px 40px 12px 15px
+  line-height: 1.2em
+  padding: 12px 30px 12px 15px
   position: relative
   text-decoration: none
   .js-hover &:hover
@@ -82,9 +82,10 @@
     text-decoration: none
   &:before
     @extend %huge-type
-    color: $body-copy
-    padding-right: 5px
-    vertical-align: sub
+    color: $body
+    position: absolute
+    top: 9px
+    left: 12px
 
 .nav__item--current--stack
   font-weight: 700
@@ -98,33 +99,42 @@
 
 .nav__item--chevron
   @extend %chevron-right-after
-  padding-right: 35px
+  padding-right: 25px
   position: relative
   &:after
     @extend %absolute-right
     font-weight: 400
     pointer-events: none
-    font-size: 20px
-    right: 15px
-    top: 30%
+    font-size: 16px
+    right: 12px
+    top: 11px
+
+%nav__item--icon-before
+  padding-left: 35px
 
 .nav__item--stack-activities
   @extend %icon-image-poi-activity-before
+  @extend %nav__item--icon-before
 
 .nav__item--stack-entertainment
   @extend %icon-image-poi-entertainment-before
+  @extend %nav__item--icon-before
 
 .nav__item--stack-restaurants
   @extend %icon-image-poi-restaurant-before
+  @extend %nav__item--icon-before
 
 .nav__item--stack-shopping
   @extend %icon-image-poi-shopping-before
+  @extend %nav__item--icon-before
 
 .nav__item--stack-sights
   @extend %icon-image-poi-sight-before
+  @extend %nav__item--icon-before
 
 .nav__item--stack-tours
   @extend %icon-image-poi-tour-before
+  @extend %nav__item--icon-before
 
 
   
@@ -137,11 +147,12 @@
   border-top: 1px solid $subdued
 
 .facet--inline-count
-  font-weight: normal
+  @extend %small-type
   color: #8fa1a4
+  display: inline-block
+  font-weight: normal
   padding-left: 2px
   word-spacing: -2px
-  display: inline-block
   &:after
     content: ')'
   &:before

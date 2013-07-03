@@ -16,6 +16,7 @@
 .card__property-type,
 .card__context
   @extend %irregular-type
+  color: $body
   display: block
   margin-bottom: 2px
   font-style: italic
@@ -30,12 +31,19 @@
     +font-size(19)
 
 .card__locale
-  @extend %serif
   @extend %small-type
+  @extend %left-icon
+  @extend %local-marker-before
+  @extend %uppercase
   color: $body-copy
-  font-style: italic
   line-height: 14px
-  margin-bottom: 12px
+  margin-bottom: 10px
+  padding-left: 15px
+  &:before
+    font-size: 22px
+    left: -1px
+
+
 
 .card__description
   @extend %irregular-type
