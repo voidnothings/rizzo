@@ -286,8 +286,10 @@
   overflow: hidden
   position: relative
 
-  &.is-loading:after
-    top: 120px
+  &.is-loading, .is-loading
+    height: 100%
+    &:after
+      top: 50%
 
 .media-gallery__img
   max-height: 100%
