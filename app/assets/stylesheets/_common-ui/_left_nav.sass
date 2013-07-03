@@ -92,13 +92,7 @@
     +border-radius-each(4,0,0,4)
     border-width: 1px 0 1px 1px
     right: 4px
-    width: 158px  
-
-  .aside &
-    &:before
-      width: 17px
-    &:after
-      width: 148px
+    width: 148px
 
 .group__title--aside
   @extend %smooth-text
@@ -126,10 +120,11 @@
   padding: 12px 40px 12px 15px
   position: relative
   text-decoration: none
+  &:hover
+    text-decoration: none
   .js-hover &:hover
     background-color: $nav-bg--hover
     cursor: pointer
-    text-decoration: none
   &:before
     @extend %benton-regular
     @extend %huge-type
