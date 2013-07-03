@@ -24,7 +24,9 @@ define ['jquery'], ($) ->
       config.tabs.on 'click', '.js-tab-trigger', (e) ->
         tabLabel = $(@)
         tab = $(tabLabel.attr('href'))
-        Tabs::_closeTabs()
+        
+        config.tabLabels.each ->
+          config.tabsContainer.find('.is-active').removeClass('is-active')
 
         _openNewTab(tabLabel, tab)
         false
@@ -53,10 +55,6 @@ define ['jquery'], ($) ->
           config.tabsContainer.css('opacity', '1')
           activeTimeout = null
         , config.animationDelay
-
-    _closeTabs : ->
-      config.tabLabels.each ->
-        config.tabsContainer.find('.is-active').removeClass('is-active')
     
     _tabsAreHidden = ->
       if config.tabsContainer.is(':hidden') then true else false
