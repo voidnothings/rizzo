@@ -27,7 +27,7 @@ require ['public/assets/javascripts/lib/components/place_list.js'], (PlaceList) 
       beforeEach ->
         loadFixtures('places_list.html')
         window.placesList = new PlaceList(config)
-        spyOn(placesList, "getParams").andReturn("?foo=bar")
+        spyOn(placesList, "getParams").andReturn("foo=bar")
         placesList._update()
 
       it 'updates the descendant item hrefs', ->
