@@ -2,6 +2,7 @@ paths:
   gpt: "//www.googletagservices.com/tag/js/gpt"
   jplugs: "jquery/plugins"
   jquery: "jquery/jquery-1.7.2.min"
+  sailthru: "sailthru/v1"
 
 modules:
   - name: 'app_core'
