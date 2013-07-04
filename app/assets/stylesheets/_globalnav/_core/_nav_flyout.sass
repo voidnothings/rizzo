@@ -14,9 +14,14 @@ $submenu__arrow--width:  10px
 .nav__submenu__trigger
   cursor: pointer
   position: relative
-  .js-hover &:hover
+  &:hover
     .nav__submenu
       display: block
+  .responsive &:hover
+    .nav__submenu
+      display: none
+      +respond-to(wide-view)
+        display: block
 
 // padding around the submenu gives the submenu dropdown more area to hover over
 .nav__submenu
@@ -55,7 +60,7 @@ $submenu__arrow--width:  10px
   border-color: $green
   border-style: solid
   border-width: 1px 0
-  .js-hover &:hover
+  &:hover
     background-color: $nav-submenu-hover
     border-color: $nav-submenu-hover-border
 
