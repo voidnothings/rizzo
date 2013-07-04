@@ -13,7 +13,7 @@ define [], () ->
       window.location.pathname
 
     getParams: ->
-      window.location.search
+      window.location.search.replace(/^\?/, '')
 
     getHash: ->
       window.location.hash
