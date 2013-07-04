@@ -111,6 +111,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
     # If navigating to a subsection we pass in the new document root
     _createRequestUrl: (rootUrl) ->
       documentRoot = rootUrl or @getDocumentRoot()
+      documentRoot = documentRoot.replace(/\/$/, '')
       documentRoot + ".json?" + @_serializeState()
 
     # If navigating to a subsection we pass in the new document root
