@@ -2,7 +2,7 @@ define [], () ->
 
   class PageState
 
-    augmentedUrls: /(.*)(?=\/rated$|\/apartments$|\/hostels-and-budget-hotels$|\/guesthouses$|\?)/
+    augmentedUrls: /(.*)(?=\/rated$|\/apartments$|\/hostels-and-budget-hotels$|\/guesthouses$)/
     checkFilters: /filters/
     checkSearch: /search/
 
@@ -25,7 +25,7 @@ define [], () ->
       window.location.hash = hash
 
     getDocumentRoot: ->
-      url = @getSlug() + @getParams()
+      url = @getSlug()
       url = if @augmentedUrls.test(url) then url.match(@augmentedUrls)[1] else url
 
     hasFiltered: ->
