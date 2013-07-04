@@ -75,19 +75,18 @@
 // -----------------------------------------------------------------------------
 
 .card__tag--price
-  @extend %benton-book
   +card-tag-curl-top($yella, $bookable-ribbon)
 
 .card__tag__inner--price
   @extend %subpixel-text
   @extend %card__tag__container--top
+  @extend %ie8-font-color
   background-color: $yella
   color: $body
   overflow: hidden
   padding: 6px 8px
 
 .card__tag__price--non-bookable
-  @extend %benton-regular
   +multiple-text-shadow(-1px -1px 1px rgba(0, 0, 0, 0.25), 1px 1px 1px rgba(255,255,255,0.8))
   color: #dad01a
   font-size: 50px

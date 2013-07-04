@@ -24,16 +24,16 @@
   @extend %clearfix
 
 .tab__header
-  +vertically-center(36)
   +border-radius(4)
-  @extend %standard-shadow
+  +vertically-center(36)
   @extend %inline-block
-  position: relative
   @extend %link-without-underline
+  @extend %standard-shadow
   background: #fff
   color: $body-copy
-  padding: 0 6px 0 8px
   margin: 0 8px 10px 0
+  padding: 0 6px 0 8px
+  position: relative
   &.is-active
     @extend %active-background
     font-weight: bold
