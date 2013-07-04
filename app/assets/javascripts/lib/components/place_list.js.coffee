@@ -28,5 +28,5 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
       newParams = @getParams()
       for item in @$list
         link = item.href.split('?')[0]
-        item.href = (link + newParams)
+        item.href = (link + '?' + newParams)
 
