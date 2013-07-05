@@ -84,6 +84,13 @@
   -o-transition:      $property #{$duration + s} $style
   transition:         $property #{$duration + s} $style
 
+@mixin transition-delay($delay)
+  -webkit-transition-delay: #{$delay + s}
+  -moz-transition-delay:    #{$delay + s}
+  -ms-transition-delay:     #{$delay + s}
+  -o-transition-delay:      #{$delay + s}
+  transition-delay:         #{$delay + s}
+
 @mixin multiple-transitions($transition1, $transition2: null, $transition3: null, $transition4: null, $transition5: null)
   -webkit-transition: $transition1, $transition2, $transition3, $transition4, $transition5
   -moz-transition:    $transition1, $transition2, $transition3, $transition4, $transition5
@@ -133,3 +140,9 @@
   -ms-transform:     $transform
   -o-transform:      $transform
   transform:         $transform
+
+@mixin perspective($perspective)
+  -webkit-perspective: $perspective
+  -moz-perspective:    $perspective
+  -ms-perspective:     $perspective
+  perspective:         $perspective
