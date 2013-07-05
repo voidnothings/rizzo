@@ -39,6 +39,13 @@ define ['jquery','lib/utils/css_helper'], ($, CssHelper) ->
         center: new google.maps.LatLng(@args.latitude, @args.longitude)
         mapTypeId: google.maps.MapTypeId.ROADMAP
 
+      if @args.minimalUI
+        opts.mapTypeControl = false
+        opts.panControl = false
+        opts.streetViewControl = false
+        opts.zoomControlOptions =
+          style: google.maps.ZoomControlStyle.SMALL
+
       target = $(@args.target).get()[0]
       @map = new google.maps.Map(target, opts)
       pinkParksStyles = [
