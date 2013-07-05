@@ -58,6 +58,28 @@ input, textarea
   background-color: $nav-search-bck
   overflow: hidden
   margin: 13px 0 12px
+  .responsive &
+    background-color: white
+    width: 75%
+    margin: 13px auto 12px
+    +respond-to(wide-view)
+      background-color: $nav-search-bck
+      width: auto
+      margin: 13px 0 12px
+
+.search--primary--mobile
+  display: none
+  .responsive &
+    display: block
+    +respond-to(wide-view)
+      display: none
+
+.search--primary--wv
+  @extend %inline-block
+  .responsive &
+    display: none
+    +respond-to(wide-view)
+      display: inline-block
 
 .search__input--primary
   @extend %transition--base
@@ -70,9 +92,19 @@ input, textarea
   width: 170px
   &:focus
     @extend %background-white
-    @include box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.2), true)
+    +box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.2), true)
     color: $nav-search-bck-focus
     width: 210px
+  .responsive &
+    width: 80%
+    &:focus
+      width: 80%
+      box-shadow: none
+    +respond-to(wide-view)
+      width: 170px
+      &:focus
+        width: 210px
+        +box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.2), true)
 
   .ie8 &
     line-height: 16px
@@ -86,8 +118,12 @@ input, textarea
   height: 30px
   padding: 0
   vertical-align: top
-  .js-hover &:hover
+  &:hover
     background-color: $nav-search-btn-hover
+  .responsive &
+    float: right
+    +respond-to(wide-view)
+      float: none
 
 .search__button--icon
   @extend %sprite-core
@@ -105,6 +141,14 @@ input, textarea
 // Footer: Language Selection
 //
 // -----------------------------------------------------------------------------
+
+.form--language
+  .responsive &
+    text-align: center
+    label
+      text-align: left
+    +respond-to(wide-view)
+      text-align: left
 
 .form--language__label
   margin-right: 10px
@@ -143,11 +187,18 @@ input, textarea
 
 .newsletter--footer
   @extend %regular-type-size
+  .responsive &
+    margin-bottom: 20px
+    width: 90%
+    +respond-to(wide-view)
+      margin-bottom: 0
+      width: 100%
 
 .newsletter--placeholder
   position: static
   display: block
   margin-bottom: 5px
+  font-weight: bold
 
 .input--small--newsletter
   @extend %input--regular

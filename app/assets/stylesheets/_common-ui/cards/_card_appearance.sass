@@ -16,6 +16,8 @@
 .card__property-type,
 .card__context
   @extend %irregular-type
+  @extend %ie8-font-color
+  color: $body
   display: block
   margin-bottom: 2px
   font-style: italic
@@ -30,20 +32,30 @@
     +font-size(19)
 
 .card__locale
-  @extend %serif
   @extend %small-type
+  @extend %left-icon
+  @extend %local-marker-before
+  @extend %uppercase
+  @extend %ie8-font-color
   color: $body-copy
-  font-style: italic
   line-height: 14px
-  margin-bottom: 12px
+  margin-bottom: 10px
+  padding-left: 15px
+  &:before
+    font-size: 22px
+    left: -1px
+
+
 
 .card__description
   @extend %irregular-type
+  @extend %ie8-font-color
   color: $body-copy
   line-height: 14px
 
 .card__list
   @extend %irregular-type
+  @extend %ie8-font-color
   color: $body-copy
   list-style: circle inside
 
@@ -93,6 +105,7 @@
 
 .destination__item-count
   @extend %irregular-type
+  @extend %ie8-font-color
   color: $body
   margin-right: 5px
 

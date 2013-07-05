@@ -4,8 +4,8 @@
 
 
 .filters__item
-  @extend %no-list-style
   @extend %clearfix
+  list-style: none
   input[type="checkbox"]
     @extend %visually-hide
     // Show the checkbox for ie7 where we don't have pseudo elements
@@ -26,6 +26,7 @@
 .filters__label--checkbox
   &.active
     font-weight: bold
+    color: $title
 
 .filters__disclaimer
   @extend %small-type
@@ -39,11 +40,13 @@
 
 .filters__label--checkbox
   @extend %regular-type-size
+  @extend %ie8-font-color
   color: $body
   display: block
   line-height: 1.4em
   padding: 0 10px 0 25px
   &.active
+    color: $title
     font-weight: bold
 
 .filters__item
