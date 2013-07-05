@@ -69,7 +69,9 @@
 .hero__author
   position: absolute
   bottom: 10px
+  left: 20px
   +respond-to(wide-view)
+    left: auto
     right: 40px
     bottom: 40px
 
@@ -81,18 +83,26 @@
   font-weight: bold
 
 .hero__author__image
-  +border-radius(100)
   cursor: pointer
+  display: inline-block
+  > img
+    +border-radius(100)
+
+.hero__author__details
+  display: inline-block
+  vertical-align: top
+  text-align: left
+  margin-left: 10px
+  margin-top: 5px
+  +respond-to(wide-view)
+    display: block
+    text-align: center
 
 .hero--story
   left: 100%
 
 .hero--story__text
-  background: grey
-  background: rgba(0,0,0,0.4)
-  padding: 20px
   color: white
-
 
 // Toggle between the search and photo story panels
 #hero-swipe:checked
@@ -101,3 +111,18 @@
   & ~ .hero--story
     left: 0
 
+.modal--panel
+  position: relative
+  background: grey
+  background: rgba(0,0,0,0.4)
+  padding: 20px
+
+.modal--close
+  +border-radius(20)
+  cursor: pointer
+  position: absolute
+  top: -12px
+  right: -12px
+  width: 30px
+  height: 30px
+  background-color: black
