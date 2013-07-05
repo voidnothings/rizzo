@@ -237,55 +237,71 @@
 // -----------------------------------------------------------------------------
 // Media gallery - named such so as to avoid clashing with the Hotels .gallery
 // -----------------------------------------------------------------------------
+%media-gallery-transition
+  +transition(all, 0.5, ease)
 .media-gallery
   @extend %transition--base
   position: relative
   ~ .single-page__aside
+    @extend %media-gallery-transition
     top: -316px
   .media-gallery--container, .media-gallery__tab--content
     @extend %clearfix
-    @extend %transition--base
+    @extend %media-gallery-transition
     height: 241px
     width: 427px
     z-index: 0
   .slider__controls
+    @extend %media-gallery-transition
     top: 95px
 
+// This is all in a mixin because IE7/8 don't work when the :checked, and .is-checked selectors
+// are on the same line below (because IE7/8 don't understand :checked, they discard the entire rule)
+@mixin media-gallery-full
+  ~ .media-gallery
+    .media-gallery--container, .media-gallery__tab--content
+      height: 422px
+      width: 748px
+    .slider__controls
+      top: 186px
+    .media-gallery__poi-list
+      @extend %opaque
+      +transform(rotateY(0deg) translateX(0px) translateZ(0px))
+      +transition(all, 0.5, cubic-bezier(0.075, 0.820, 0.165, 1.000))
+      +transition-delay(1)
+      right: 12px
+      z-index: 1
+  ~ .single-page__aside
+    top: 0
+
 .media-gallery--full
-  display: none
+  @extend %visually-hide
   // .is-checked is an ie7/8 fallback
-  &:checked, &.is-checked
-    ~ .media-gallery
-      .media-gallery--container, .media-gallery__tab--content
-        height: 422px
-        width: 748px
-      .slider__controls
-        top: 186px
-    ~ .single-page__aside
-      top: 0
+  &:checked
+    +media-gallery-full()
+  &.is-checked
+    +media-gallery-full()
+    
 
 .media-gallery--resizer
   @extend %transition--base
   background: $gallery-tab-background
   background: rgba(0,0,0,0.6)
+  bottom: 0
   cursor: pointer
   display: block
   height: 40px
   opacity: 0.3
   position: absolute
   right: 0
-  top: 0
   width: 40px
   z-index: 2
-
   &:hover
-    opacity: 1
+    @extend %opaque
 
 .media-gallery--container
-  @extend %transition--base
   overflow: hidden
   position: relative
-
   &.is-loading, .is-loading
     height: 100%
     &:after
@@ -294,19 +310,23 @@
 .media-gallery__img
   max-height: 100%
   max-width: 100%
+.media-gallery__map
+  height: 100%
+  width: 100%
 
 .media-gallery
   @extend %clearfix
 
 .media-gallery__tab--content
-  @extend %transition--base
+  @extend %media-gallery-transition
+  @extend %invisible
+  +perspective(600)
   position: absolute
   left: 0
-  opacity: 0
   top: 0
   z-index: -1
   &.is-active
-    opacity: 1
+    @extend %opaque
     z-index: 1
 
 .media-gallery__tabs--tab
@@ -350,3 +370,39 @@
   @extend %local-marker-before
   &:before
     letter-spacing: 0
+
+.media-gallery__poi-list
+  @extend %four-pixel-rounded
+  @extend %invisible
+  @extend %media-gallery-transition
+  +transform(rotateY(70deg) translateX(100px) translateZ(-250px))
+  background: white
+  height: 380px
+  padding: 6px 6px 6px 0
+  position: absolute
+  right: -420px
+  top: 12px
+  width: 294px
+  z-index: -1
+
+  .nearby-pois
+    height: 100%
+    overflow: auto
+    &::-webkit-scrollbar
+      width: 4px
+    &::-webkit-scrollbar-thumb
+      +border-radius(2)
+      background: $highlight
+    &::-webkit-scrollbar-track
+      background: none
+
+  .obj-list__item
+    border-top: 1px solid $subdued-highlight
+    margin-bottom: 0
+    padding: 10px 20px 15px 43px
+
+    &:first-child
+      border-top: none
+    &:before
+      left: 13px
+      top: 10px
