@@ -43,7 +43,7 @@ define ['jquery'], ($) ->
         tabLabel.addClass('is-active')
 
         config.tabsContainer.find('.js-tab-panel').removeClass('is-active')
-        if _tabsAreHidden() then config.tabsContainer.removeClass('is-hidden')
+        if config.tabsContainer.is(':hidden') then config.tabsContainer.removeClass('is-hidden')
       
         # Get padding (jquery box sizing bug - http://bugs.jquery.com/ticket/10413)
         padding = (parseInt(tab.css('padding'), 10) * 2)
@@ -55,6 +55,3 @@ define ['jquery'], ($) ->
           config.tabsContainer.css('opacity', '1')
           activeTimeout = null
         , config.animationDelay
-    
-    _tabsAreHidden = ->
-      if config.tabsContainer.is(':hidden') then true else false
