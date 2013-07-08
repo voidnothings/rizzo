@@ -46,7 +46,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
     append: (data, analytics) =>
       @_updateOffset(data.pagination) if data.pagination and data.pagination.page_offsets
       @_removePageParam() # All other requests display the first page
-      @_navigate(@_createUrl())
+      @_replaceUrl(@_createUrl())
       @trigger(':cards/append/received', [data, @state, analytics])
 
     newPage: (data, analytics) =>
@@ -129,9 +129,18 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
       else
         @setUrl(url) 
 
-    _setState: (url) ->
+    _replaceUrl: (url, callback) ->
+      if (@_supportsHistory() or @_supportsHash())
+        @_setState(url, true)
+      else
+        @setUrl(url)
+
+    _setState: (url, replaceState=false) ->
       if @_supportsHistory()
-        window.history.pushState({}, null, url)
+        if replaceState
+          window.history.replaceState({}, null, url)
+        else
+          window.history.pushState({}, null, url)
       else
         # Ensure we don't trigger a refresh
         @allowHistoryNav = false
