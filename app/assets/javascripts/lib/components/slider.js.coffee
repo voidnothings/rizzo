@@ -26,7 +26,7 @@ define ['jquery'], ($) ->
       @$el = $(config.el)
       @slides = config.slides
       @slides_container = @$el.find(config.slides_container)
-      @$slider_controls = $('<div class="slider__controls"></div>')
+      @$slider_controls = $('<div class="slider__controls no-print"></div>')
       @$next = $('<a href="#" class="slider__control slider__control--next">1 of '+@$el.find(@slides).length+'</a>')
       @$prev = $('<a href="#" class="slider__control slider__control--prev">1 of '+@$el.find(@slides).length+'</a>')
       @$legacy = $('html.ie7, html.ie8, body.browserIE7, body.browserIE8')
