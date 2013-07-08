@@ -21,22 +21,24 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
     @lodgingMap: null
     @nearbyThingsToDo: null
     @currentPOI: null
+    @config: {}
 
     @loadLib: ->
-      # pointer to google-maps callback, not possible inside the regular closure environment
-      lp.MapManager = MapManager
-
       unless @lodgingMap
+        # pointer to google-maps callback, not possible inside the regular closure environment
+        lp.MapManager = MapManager
+
         script = document.createElement("script")
         script.type = "text/javascript"
         script.src = "http://maps.googleapis.com/maps/api/js?v=2&sensor=false&callback=lp.MapManager.initMap"
         document.body.appendChild(script)
 
 
-    @initMap: ()=>
+    @initMap: =>
       args = lp.lodging.map
       args.listener = @
       args.target = '#js-map-canvas'
+      $.extend args, @config
       @lodgingMap = new LodgingMap(args)
 
       unless lp.lodging.map.genericCoordinates
@@ -46,6 +48,7 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
           @lodgingMap.initMapPOIs(pois)
           @initNearbyThingsToDo(pois)
         )
+      $(args.target).removeClass('is-loading')
 
     @getNearbyPOIs: (callback) ->
       if lp.lodging.map.nearby_api_endpoint
@@ -91,5 +94,20 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
       data.restaurants = _.filter(data.restaurants, (restaurant) -> restaurant.properties.uri)
       data
 
-    constructor: ->
-      MapManager.loadLib()
+    constructor: (config) ->
+      $.extend MapManager.config, config
+
+      if config and config.loadSelector
+        $(config.loadSelector).one(config.loadEventType, MapManager.loadLib)
+      else
+        MapManager.loadLib()
+
+      if config and config.centerTrigger
+        $(config.centerTrigger).on 'click', =>
+          map = MapManager.lodgingMap.map
+          # Grab the center *before* any resize (since that would change the center)
+          center = map.getCenter()
+          setTimeout ->
+            google.maps.event.trigger(map, "resize")
+            map.panTo(center)
+          , config.centerDelay || 0
