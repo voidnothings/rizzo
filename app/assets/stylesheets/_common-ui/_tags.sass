@@ -8,7 +8,7 @@
 
 
 // -----------------------------------------------------------------------------
-// Container for top hanging tags
+// Container for multiple top hanging tags
 // -----------------------------------------------------------------------------
 
 .card__tags
@@ -17,37 +17,38 @@
   z-index: 5
   top: -3px
 
+
 // -----------------------------------------------------------------------------
 // Base classes for hanging tags used on cards
 // -----------------------------------------------------------------------------
 
-%card__tag
+%tag
   @extend %benton-regular
   &:before,
   &:after
     @extend %empty-abs-generated-content
 
-%card__tag__container--top
+%tag--top
   border-bottom-left-radius: 4px
   border-bottom-right-radius: 4px
   border-top-right-radius: 4px
 
-%card__tag__container--left
+%tag--side
   border-top-left-radius: 4px
   border-top-right-radius: 4px
   border-bottom-right-radius: 4px
 
 
 // -----------------------------------------------------------------------------
-// Top-hanging card tag (default is top hanging)
+// Top-hanging tag (default is top hanging)
 // -----------------------------------------------------------------------------
 
-.card__tag
-  @extend %card__tag
+.tag
+  @extend %tag
   @extend %extra-small-type
-  position: relative
   float: right
   margin-left: 4px
+  position: relative
   text-align: center
 
 
@@ -55,55 +56,50 @@
 // Side-hanging card tag
 // -----------------------------------------------------------------------------
 
-.card__tag--horizontal
-  @extend %card__tag
+.tag--horizontal
+  @extend %tag
+  @extend %tag--side
   @extend %small-type
-  @extend %card__tag__container--left
-  +card-tag-curl-left($side-tag, $side-tag-curl)
-  position: absolute
+  +tag-curl-left($side-tag, $side-tag-curl)
   background: $side-tag
   color: #fff
   font-weight: bold
   left: -4px
   letter-spacing: -1px
   padding: 10px
+  position: absolute
   text-transform: uppercase
   top: 12px
   z-index: 1
+
 
 // -----------------------------------------------------------------------------
 // Price tag
 // -----------------------------------------------------------------------------
 
-.card__tag--price
-  +card-tag-curl-top($yella, $bookable-ribbon)
+.tag--price
+  +tag-curl-top($yella, $bookable-ribbon)
 
-.card__tag__inner--price
-  @extend %card__tag__container--top
+.tag--price__inner
+  @extend %tag--top
   background-color: $yella
   color: $body
   overflow: hidden
   padding-top: 6px
 
-.card__tag__price--non-bookable
-  +multiple-text-shadow(-1px -1px 1px rgba(0, 0, 0, 0.25), 1px 1px 1px rgba(255,255,255,0.8))
-  color: #dad01a
-  font-size: 50px
-  padding: 4px 10px
-
-.card__tag__price--price
+.tag--price__amount
   @extend %section-heading-size-type
   display: block
   padding: 0 8px 6px 8px
 
-.card__tag__price--curr
+.tag--price__currency
   @extend %extra-small-type
   line-height: 0
   position: relative
   top: -0.45em
   word-spacing: -2px
 
-.card__tag__price--original
+.tag--price__original
   @extend %extra-small-type
   background: $dark-blue-gray
   color: #fff
@@ -112,17 +108,50 @@
   padding: 4px 0
   text-decoration: line-through
 
+.tag--non-bookable
+  @extend %tag--top
+  +tag-curl-top($yella, $bookable-ribbon)
+  +multiple-text-shadow(-1px -1px 1px rgba(0, 0, 0, 0.25), 1px 1px 1px rgba(255,255,255,0.8))
+  background-color: $yella
+  color: #dad06b
+  font-size: 50px
+  padding: 4px 10px
+
 
 // -----------------------------------------------------------------------------
 // Badge tag
 // -----------------------------------------------------------------------------
 
-.card__tag--badge
-  @extend %card__tag__container--top
-  +card-tag-curl-top($header-blue, $feature-text)
+.tag--badge
+  @extend %inline-block
+  +tag-curl-top($header-blue, $feature-text)
   background-color: $header-blue
   color: #fff
-  padding: 8px 6px
+
+.tag--lp-reviewed
+  @extend %tag--top
+
+.tag--top-choice
+  border-top-right-radius: 4px
+
+.tag--badge__content
+  @extend %left-icon
+  @extend %left-icon--hidden-text
+  width: 35px
+
+  .tag--lp-reviewed &
+    @extend %lp-review-bubble-before
+    height: 35px
+    &:before
+      font-size: 38px
+      line-height: 12px
+
+  .tag--top-choice &
+    @extend %top-choice-before
+    height: 45px
+    &:before
+      font-size: 46px
+      line-height: 25px
 
 
 // -----------------------------------------------------------------------------
@@ -166,5 +195,5 @@
   padding-top: 2px
 
 .price-tag__curr
-  @extend .card__tag__price--curr
+  @extend .tag--price__currency
   font-size: 0.65em
