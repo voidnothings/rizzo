@@ -138,20 +138,28 @@
   @extend %left-icon
   @extend %left-icon--hidden-text
   width: 35px
+  &:before
+    line-height: 15px
 
   .tag--lp-reviewed &
     @extend %lp-review-bubble-before
     height: 35px
     &:before
       font-size: 38px
-      line-height: 12px
+      height: 18px
+      left: 6px
+      top: 9px
+      width: 20px
 
   .tag--top-choice &
     @extend %top-choice-before
     height: 45px
     &:before
       font-size: 46px
-      line-height: 25px
+      height: 18px
+      left: 4px
+      top: 13px
+      width: 26px
 
 
 // -----------------------------------------------------------------------------
