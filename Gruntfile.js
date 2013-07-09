@@ -11,7 +11,7 @@ module.exports = function(grunt) {
           {
             "expand": true,
             "cwd": "./app/assets/javascripts/lib",
-            "src": ["**/*.coffee"],
+            "src": ["**/*.coffee", "**/**/*.coffee"],
             "dest": "./public/assets/javascripts/lib",
             "ext": ".js"
           },
@@ -34,22 +34,22 @@ module.exports = function(grunt) {
     },
     jasmine: {
       avocado: {
-        src: ['lib/analytics/analytics.js'],
+        src: ['./public/assets/javascripts/lib/analytics/*.js'],
         options: {
           helpers: './spec/javascripts/helpers/**/*.js',
           host: 'http://localhost:8888/',
-          specs: 'public/assets/javascripts/spec/analytics/analytics_spec.js',
+          specs: './public/assets/javascripts/spec/**/*.js',
           template: require('grunt-template-jasmine-requirejs'),
           templateOptions: {
             requireConfig: {
-              baseUrl: '.',
+              baseUrl: './public/assets/javascripts/',
               paths: {
-                jquery: "vendor/assets/javascripts/jquery/jquery-1.7.2.min",
-                lib: 'public/assets/javascripts/lib',
-                handlebars: 'vendor/assets/javascripts/handlebars',
-                underscore: 'vendor/assets/javascripts/underscore',
-                jplugs: "vendor/assets/javascripts/jquery/plugins",
-                s_code: "vendor/assets/javascripts/omniture/s_code"
+                jquery: "./vendor/assets/javascripts/jquery/jquery-1.7.2.min",
+                handlebars: './vendor/assets/javascripts/handlebars',
+                underscore: './vendor/assets/javascripts/underscore',
+                jplugs: "./vendor/assets/javascripts/jquery/plugins",
+                s_code: "./vendor/assets/javascripts/omniture/s_code",
+                gpt: "http://www.googletagservices.com/tag/js/gpt"
               }
             }
           }
@@ -75,6 +75,9 @@ module.exports = function(grunt) {
     shell: {
       openPlato: {
         command: 'open .plato/index.html'
+      },
+      clean: {
+        command: 'rm -rf public/assets'
       }
     }
   });
@@ -89,9 +92,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
 
   // Tasks
-  grunt.registerTask('default', ['coffee', 'connect', 'jasmine']);
+  grunt.registerTask('default', ['shell:clean', 'coffee', 'connect', 'jasmine']);
   grunt.registerTask('test', ['connect', 'jasmine']);
-  grunt.registerTask('dev', ['coffee', 'connect', 'jasmine', 'echoJasmineUrl', 'watch']);
-  grunt.registerTask('report', ['coffee', 'plato', 'shell:openPlato']);
+  grunt.registerTask('dev', ['shell:clean', 'coffee', 'connect', 'jasmine', 'echoJasmineUrl', 'watch']);
+  grunt.registerTask('report', ['shell:clean', 'coffee', 'plato', 'shell:openPlato']);
 
 };
