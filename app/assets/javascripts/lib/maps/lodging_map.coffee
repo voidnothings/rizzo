@@ -29,6 +29,9 @@ define ['jquery','lib/utils/css_helper'], ($, CssHelper) ->
  
   class LodgingMap
 
+    markerDelay = 0
+    markerDelayReset = false
+
     constructor: (@args={})->
       @prepare()
       @markerImageFor('sight', 'small')
@@ -62,6 +65,7 @@ define ['jquery','lib/utils/css_helper'], ($, CssHelper) ->
 
     setLodgingMarker: ->
       opts =
+        animation: google.maps.Animation.DROP
         position: new google.maps.LatLng(@args.latitude, @args.longitude)
         map: @map
         title: @args.title
@@ -71,6 +75,7 @@ define ['jquery','lib/utils/css_helper'], ($, CssHelper) ->
 
     drawNearbyPOI: (poi) ->
       opts =
+        animation: google.maps.Animation.DROP
         position: new google.maps.LatLng(poi.geometry.coordinates[1], poi.geometry.coordinates[0])
         map: @map
         title: poi.properties.title
@@ -120,9 +125,18 @@ define ['jquery','lib/utils/css_helper'], ($, CssHelper) ->
     initMapPOIs: (data)->
       @markers ?= {}
       for poi in @allPOIs(data)
-        marker = @drawNearbyPOI(poi)
-        @addClickListener(marker)
-        @markers[poi.properties.id] = marker
+        # Need this `do` so that `poi` is scoped within the for loop.
+        do (poi) =>
+          setTimeout =>
+            marker = @drawNearbyPOI(poi)
+            @addClickListener(marker)
+            @markers[poi.properties.id] = marker
+          , markerDelay
+          clearTimeout(markerDelayReset) if markerDelayReset
+          markerDelayReset = setTimeout ->
+            markerDelay = 0
+          , 150
+          markerDelay += 100
 
     allPOIs: (data)->
       _.flatten(_.values(data))
