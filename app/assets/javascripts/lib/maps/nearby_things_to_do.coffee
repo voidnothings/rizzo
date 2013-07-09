@@ -19,7 +19,7 @@
 #
 
 
-define ['jquery','handlebars','underscore'], ($) ->
+define ['jquery','handlebars','underscore', 'polyfills/scrollIntoViewIfNeeded'], ($) ->
 
   class NearbyThingsToDo
 
@@ -55,7 +55,8 @@ define ['jquery','handlebars','underscore'], ($) ->
 
     highlightPOI: (poi_id)->
       @container.find('li[data-poi-id]').removeClass('nearby-pois__poi--highlighted')
-      @container.find("li[data-poi-id=#{poi_id}]").addClass('nearby-pois__poi--highlighted')
+      el = @container.find("li[data-poi-id=#{poi_id}]").addClass('nearby-pois__poi--highlighted')
+      el[0].scrollIntoViewIfNeeded(true, true)
 
     resetPOIs: ->
       @container.find('li[data-poi-id]').removeClass('nearby-pois__poi--highlighted')
