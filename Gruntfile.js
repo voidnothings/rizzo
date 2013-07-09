@@ -94,7 +94,6 @@ module.exports = function(grunt) {
 
   // Tasks
   grunt.registerTask('default', ['shell:clean', 'coffee', 'connect', 'jasmine']);
-  grunt.registerTask('test', ['connect', 'jasmine']);
   grunt.registerTask('dev', ['shell:clean', 'coffee', 'connect', 'jasmine', 'echoJasmineUrl', 'watch']);
   grunt.registerTask('report', ['shell:clean', 'coffee', 'plato', 'shell:openPlato']);
 
