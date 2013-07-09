@@ -34,7 +34,7 @@ module.exports = function(grunt) {
     },
     jasmine: {
       avocado: {
-        src: ['./public/assets/javascripts/lib/analytics/*.js'],
+        src: ['./public/assets/javascripts/lib/**/*.js'],
         options: {
           helpers: './spec/javascripts/helpers/**/*.js',
           host: 'http://localhost:8888/',
@@ -42,10 +42,11 @@ module.exports = function(grunt) {
           template: require('grunt-template-jasmine-requirejs'),
           templateOptions: {
             requireConfig: {
-              baseUrl: './public/assets/javascripts/',
+              baseUrl: './',
               paths: {
                 jquery: "./vendor/assets/javascripts/jquery/jquery-1.7.2.min",
                 handlebars: './vendor/assets/javascripts/handlebars',
+                lib: "./public/assets/javascripts/lib",
                 underscore: './vendor/assets/javascripts/underscore',
                 jplugs: "./vendor/assets/javascripts/jquery/plugins",
                 s_code: "./vendor/assets/javascripts/omniture/s_code",
