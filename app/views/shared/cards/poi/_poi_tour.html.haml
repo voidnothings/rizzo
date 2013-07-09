@@ -1,0 +1,20 @@
+%article.card.card--single.card--poi.card--poi--tour{class: stack_item.image_url ? 'card--small-image card--extended-content' : 'card--no-image' }
+  %a.link--wrapper(href="/the-netherlands/amsterdam/hotels/cocomama")
+    - if stack_item.image_url
+      %figure.card__hero.obj-media__img
+        = image_tag('tour.jpg', class: 'portrait card__image')
+    %section.card__content.obj-media__body
+      %span.card__context
+        Tour
+      %h1.card__name.js-card-name
+        6-Day Tour to Bariloche and the Lake District
+      %p.card__tour-duration
+        8 Hours
+      %p.card__description
+        Discover the city of Buenos Aires and the beautiful landscape of
+        Argentina's Patagonia region on a 6-day tour.
+      %p.card__feedback
+        %span.card__feedback__approval
+          89%
+        %span.card__feedback__comments
+          23

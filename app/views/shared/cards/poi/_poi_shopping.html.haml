@@ -1,0 +1,15 @@
+%article.card.card--single.card--poi.card--poi--shopping{class: stack_item.image_url ? 'card--small-image card--extended-content' : 'card--no-image' }
+  %a.link--wrapper(href="/the-netherlands/amsterdam/hotels/cocomama")
+    - if stack_item.image_url
+      %figure.card__hero.obj-media__img
+        = image_tag('shopping.jpg', class: 'portrait card__image')
+    %section.card__content.obj-media__body
+      %span.card__context
+        Shopping
+      %h1.card__name.js-card-name
+        El Ateneo Grand Splendid
+      %p.card__description
+        Though part of the El Ateneo chain, this is no ordinary bookstore –
+        the Grand Splendid occupies a fabulous antique cinema and theater
+        where Carlos Gardel, Argentina’s iconic tango legend, crooned on
+        stage to an adoring crowd.

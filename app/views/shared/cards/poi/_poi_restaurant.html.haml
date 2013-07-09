@@ -1,0 +1,14 @@
+%article.card.card--single.card--poi.card--poi--restaurant{class: stack_item.image_url ? 'card--small-image card--extended-content' : 'card--no-image' }
+  %a.link--wrapper(href="/the-netherlands/amsterdam/hotels/cocomama")
+    - if stack_item.image_url
+      %figure.card__hero.obj-media__img
+        = image_tag('restaurant.jpg', class: 'portrait card__image')
+    %section.card__content.obj-media__body
+      %span.card__context
+        Restaurant
+      %h1.card__name.js-card-name
+        Cabaña Las Lilas
+      %p.card__description
+        Porteños are evenly split as to whether this famous eatery is
+        a fantastically overpriced display of hubris or an upmarket
+        example of parrilla perfection.
