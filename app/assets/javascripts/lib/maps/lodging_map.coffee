@@ -63,15 +63,31 @@ define ['jquery','lib/utils/css_helper'], ($, CssHelper) ->
       ]
       @map.setOptions({styles: pinkParksStyles})
 
-    setLodgingMarker: ->
+    setLodgingMarker: () ->
       opts =
-        animation: google.maps.Animation.DROP
         position: new google.maps.LatLng(@args.latitude, @args.longitude)
         map: @map
         title: @args.title
         optimized: @args.optimized
-        icon: @markerImageFor('hotel', 'large')
+      
+      unless @args.lodgingLocation
+        opts.icon = @markerImageFor('hotel', 'large')
+        opts.animation = google.maps.Animation.DROP
+      else
+        opts.icon = @markerImageFor('location-marker', 'dot')
+
       marker = new google.maps.Marker(opts)
+
+      if @args.lodgingLocation
+        ib = new InfoBox
+          alignBottom: true
+          boxStyle:
+            width: "auto"
+          closeBoxURL: ''
+          content: '<div class="infobox--location"><p class="section-title info-list--icon info-list--location">Location</p><p class="copy--body">'+@args.lodgingLocation+'<span class="infobox__interesting-places"> &middot; <label class="infobox__interesting-places--link js-resizer" for="js-resize">interesting places nearby</label></span></p></div>'
+          maxWidth: 0
+          zIndex: 50
+        ib.open(@map, marker)
 
     drawNearbyPOI: (poi) ->
       opts =

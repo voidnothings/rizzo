@@ -37,19 +37,20 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
 
 
     @initMap: =>
-      args = lp.lodging.map
-      args.listener = @
-      $.extend args, @config
-      @lodgingMap = new LodgingMap(args)
+      require ['maps_infobox'], =>
+        args = lp.lodging.map
+        args.listener = @
+        $.extend args, @config
+        @lodgingMap = new LodgingMap(args)
 
-      unless lp.lodging.map.genericCoordinates
-        @lodgingMap.setLodgingMarker()
-        @getNearbyPOIs((data) =>
-          pois = @parsePOIData(@_sanitizeData(data))
-          @lodgingMap.initMapPOIs(pois)
-          @initNearbyThingsToDo(pois)
-        )
-      $(@config.target).removeClass('is-loading')
+        unless lp.lodging.map.genericCoordinates
+          @lodgingMap.setLodgingMarker()
+          @getNearbyPOIs((data) =>
+            pois = @parsePOIData(@_sanitizeData(data))
+            @lodgingMap.initMapPOIs(pois)
+            @initNearbyThingsToDo(pois)
+          )
+        $(@config.target).removeClass('is-loading')
 
     @getNearbyPOIs: (callback) ->
       if lp.lodging.map.nearby_api_endpoint
@@ -105,7 +106,7 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
 
       if config and config.centerTrigger
         
-        $(config.centerTrigger).on 'click', =>
+        $(document).on 'change', config.centerTrigger, =>
           map = MapManager.lodgingMap.map
 
           overlay = new google.maps.OverlayView()
