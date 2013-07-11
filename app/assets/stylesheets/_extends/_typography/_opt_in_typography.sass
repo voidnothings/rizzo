@@ -13,7 +13,6 @@
 // Body copy - applied to article content etc.
 
 %body-copy
-  @extend %smooth-text
   line-height: 1.4
   color: $body-copy
   .title, 
@@ -38,14 +37,13 @@
 
 %feature-copy
   .title
-    @extend %benton-regular
     @extend %card-header-size
+    font-weight: bold
     color: $header-blue
     margin-bottom: 18px
   p
     @extend %large-type
     @extend %serif
-    @extend %smooth-text
     color: $header-gray
     line-height: 1.3
 
@@ -56,7 +54,6 @@
   color: $body-copy
   .error__title
     @extend %error-heading-size-type
-    @extend %smooth-text
     margin-bottom: 10px
   .error__copy
     @extend %regular-type-size

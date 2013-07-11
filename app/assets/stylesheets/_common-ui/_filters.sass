@@ -22,15 +22,14 @@
 
 .filters__label--checkbox
   cursor: pointer
-  @extend %smooth-text
 
 .filters__label--checkbox
   &.active
     font-weight: bold
+    color: $title
 
 .filters__disclaimer
   @extend %small-type
-  @extend %smooth-text
   color: $highlight-highlight
   line-height: 1.5em
   list-style: none
@@ -40,12 +39,14 @@
   padding: 10px 0px
 
 .filters__label--checkbox
-  @extend %irregular-type
+  @extend %regular-type-size
+  @extend %ie8-font-color
   color: $body
   display: block
-  line-height: 1.5em
+  line-height: 1.4em
   padding: 0 10px 0 25px
   &.active
+    color: $title
     font-weight: bold
 
 .filters__item
@@ -61,7 +62,7 @@
     width: 11px
     height: 11px
     border: 1px solid #d9e3e6
-    top: 2px
+    top: 3px
     left: 0
   &.active
     &:before

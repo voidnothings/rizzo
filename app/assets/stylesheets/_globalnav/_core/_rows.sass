@@ -46,6 +46,7 @@ body
 .row--cookie-compliance
   @extend %smooth-text
   @extend %small-type
+  @extend %lp-font-stack
   line-height: 1.2
   background-color: $feature
   overflow: hidden
@@ -200,7 +201,7 @@ body
       margin-bottom: 30px
 
 .row--sitemap__inner
-  @extend %small-type
+  @extend %irregular-type
   padding-top: 20px
   .responsive &
     padding: 0
@@ -216,7 +217,7 @@ body
 // ----------------------------------------------------------------------------
 
 .row--footer--about
-  @extend %small-type
+  @extend %irregular-type
   .responsive &
     .row__inner--footer
       border-top: none
@@ -272,6 +273,10 @@ body
 // Sticky footer
 // 
 // ----------------------------------------------------------------------------
+
+.wrap--footer
+  @extend %lp-font-stack
+  @extend %subpixel-text
 
 .wrap--footer-push
   min-height: 100%

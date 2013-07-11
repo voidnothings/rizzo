@@ -23,7 +23,6 @@
 // -----------------------------------------------------------------------------
 
 %tag
-  @extend %benton-regular
   &:before,
   &:after
     @extend %empty-abs-generated-content
@@ -63,7 +62,6 @@
   +tag-curl-left($side-tag, $side-tag-curl)
   background: $side-tag
   color: #fff
-  font-weight: bold
   left: -4px
   letter-spacing: -1px
   padding: 10px
@@ -81,22 +79,23 @@
   +tag-curl-top($yella, $bookable-ribbon)
 
 .tag--price__inner
-  @extend %tag--top
+  @extend %subpixel-text
+  @extend %ie8-font-color
   background-color: $yella
   color: $body
   overflow: hidden
-  padding-top: 6px
+  padding: 6px 8px
 
 .tag--price__amount
-  @extend %section-heading-size-type
+  @extend %heading-size-type
   display: block
-  padding: 0 8px 6px 8px
+  line-height: 0.8em
 
 .tag--price__currency
-  @extend %extra-small-type
+  font-size: 0.65em
   line-height: 0
   position: relative
-  top: -0.45em
+  top: -0.2em
   word-spacing: -2px
 
 .tag--price__original
@@ -104,7 +103,6 @@
   background: $dark-blue-gray
   color: #fff
   display: block
-  font-weight: bold
   padding: 4px 0
   text-decoration: line-through
 
@@ -179,7 +177,6 @@
 // -----------------------------------------------------------------------------
 
 .price-tag
-  @extend %benton-book
   position: absolute
   min-width: 60px
   right: 5px
@@ -203,7 +200,6 @@
   padding: 8px 10px
 
 .price-tag__inner--non-bookable
-  @extend %benton-regular
   +multiple-text-shadow(-1px -1px 1px rgba(0, 0, 0, 0.25), 1px 1px 1px rgba(255,255,255,0.8))
   color: #dad01a
   font-size: 50px
@@ -217,3 +213,19 @@
 .price-tag__curr
   @extend .tag--price__currency
   font-size: 0.65em
+
+.rooms,
+.card--hotel
+  .price-tag__price
+    font-weight: bold
+    line-height: 1em
+    padding: 0 0 2px 0
+
+  .card__tag__price--curr
+    @extend %irregular-type
+    top: -2px
+    word-spacing: 0px
+
+  .price-tag__inner    
+    padding: 8px 10px
+    // font-weight: bold

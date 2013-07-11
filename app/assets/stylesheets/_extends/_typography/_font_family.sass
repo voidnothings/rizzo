@@ -1,16 +1,7 @@
-%benton-regular
-  font-family: 'bentonsansregular'
+%lp-font-stack
+  font-family: 'freight', 'Helvetica Neue', Arial, Helvetica, sans-serif
   font-style: normal
   font-weight: 400
-  letter-spacing: -0.05em
-  -webkit-font-smoothing: antialiased
-  font-smoothing: antialiased
-
-%benton-book
-  font-family: 'bentonsansbook'
-  font-style: normal
-  font-weight: 400
-  letter-spacing: -0.05em
   -webkit-font-smoothing: antialiased
   font-smoothing: antialiased
 
@@ -19,3 +10,17 @@
 
 %serif
   font-family: Georgia, serif
+
+%ie8-full-font-smoothing
+  @extend %ie8-font-smoothing
+  @extend %ie8-font-color
+
+%ie8-font-smoothing
+  .ie8 &
+    a, p, h1, h2, h3, h4, h5, h6, label, input, li, dd, dt, span, div, section, article, nav, header, footer  
+      filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src=/assets/1x1.png,sizingMethod=crop)
+      zoom: 1
+
+%ie8-font-color
+  .ie8 &
+    color: #000

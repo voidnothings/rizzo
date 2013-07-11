@@ -15,37 +15,47 @@
 
 .card__property-type,
 .card__context
-  @extend %small-type
+  @extend %irregular-type
+  @extend %ie8-font-color
+  color: $body
   display: block
   margin-bottom: 2px
+  font-style: italic
 
 .card__name
-  @extend %large-type
+  +font-size(22)
   +word-break()
-  font-weight: bold
-  line-height: 17px
+  
   margin-bottom: 12px
 
   .card--standard-image &
     +font-size(19)
 
 .card__locale
-  @extend %serif
   @extend %small-type
+  @extend %left-icon
+  @extend %local-marker-before
+  @extend %uppercase
+  @extend %ie8-font-color
   color: $body-copy
-  font-style: italic
   line-height: 14px
-  margin-bottom: 12px
+  margin-bottom: 10px
+  padding-left: 15px
+  &:before
+    font-size: 22px
+    left: -1px
+
+
 
 .card__description
-  @extend %smooth-text
   @extend %irregular-type
+  @extend %ie8-font-color
   color: $body-copy
   line-height: 14px
 
 .card__list
-  @extend %smooth-text
   @extend %irregular-type
+  @extend %ie8-font-color
   color: $body-copy
   list-style: circle inside
 
@@ -55,6 +65,7 @@
   margin-bottom: 15px
   &:hover
     text-decoration: none
+
 
 // -----------------------------------------------------------------------------
 // Card Footer
@@ -67,9 +78,15 @@
   bottom: 0
   color: $body-copy
   left: 0
-  padding: 8px $card-content-padding $card-content-padding
+  line-height: 12px
+  padding: 8px
   right: 0
   z-index: 3
+
+  .btn--bookable
+    @extend %irregular-type
+    display: block
+    padding: 10px 12px
 
   // fade to white at the top of the footer when extended content
   .card--extended-content &
@@ -81,12 +98,16 @@
       right: 0
       top: -$card-content-padding
 
+
+// -----------------------------------------------------------------------------
+// Card Footer Items
+// -----------------------------------------------------------------------------
+
 .destination__item-count
   @extend %irregular-type
+  @extend %ie8-font-color
   color: $body
   margin-right: 5px
-  &:before
-    @extend %benton-regular
 
 .destination__item-count--sights
   @extend %icon-image-poi-sight-before
@@ -104,35 +125,8 @@
 // -----------------------------------------------------------------------------
 
 .card--poi--hotel
-  border-bottom: 2px solid $hotels-poi
-
-  .card__content
-    height: $card-grid-height - $default-card-top-padding - $card-content-padding - 2px // account for border
-
   &.card--small-image
-    border: 0
-
     .card__content
-      padding: $card-hotel-content-padding
       height: ($card-grid-height - $small-card-image-height - (2 * $card-hotel-content-padding) )
-
-  .card__footer
-    padding: 8px
-
-  .btn--bookable
-    @extend %irregular-type
-    padding: 10px 12px
-    width: auto
-
-  .badge--lp-reviewed
-    left: 8px
-    height: 23px
-
-  .badge--top-choice
-    height: 24px
-    left: 38px
-
-.without-hotel-badges
-  .card--poi--hotel.card--small-image
-    &:before
-      content: none
+      margin-bottom: $card-hotel-content-padding
+      padding: $card-hotel-content-padding $card-hotel-content-padding 0 $card-hotel-content-padding

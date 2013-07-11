@@ -8,6 +8,7 @@
 .pickadate__calendar--wrap
   +transition()
   @extend %four-pixel-rounded
+  @extend %ie8-font-color
   @extend %body-copy
   top: .5em
   background: #fff
@@ -33,7 +34,8 @@
 
 .pickadate__month,
 .pickadate__year
-  @extend %large-type
+  @extend %extra-large-type
+  @extend %ie8-font-color
   color: $header-gray
   font-weight: bold
 
@@ -42,7 +44,8 @@
 
 .pickadate__month--prev,
 .pickadate__month--next
-  color: $body-copy
+  @extend %ie8-font-color
+  color: $body
   position: absolute
   top: 0
   width: 25px
@@ -72,17 +75,17 @@
   width: 100%
 
 .pickadate__weekday
-  @extend %extra-small-type
-  @extend %smooth-text
-  color: $body-copy
+  @extend %regular-type
+  color: $body
   font-weight: normal
 
 .pickadate__day
   +border-radius(30)
   @extend %irregular-type
-  @extend %smooth-text
+  @extend %helvetica-neue
   @extend %inline-block
-  color: $body-copy
+  @extend %ie8-font-color
+  color: $body 
   font-weight: bold
   width: 26px
   height: 26px
@@ -100,6 +103,7 @@
 .pickadate__day--outfocus,
 .pickadate__day--disabled
   border: none
+  color: $body-highlight
 
 .pickadate__day--disabled
   opacity: 0.5

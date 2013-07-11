@@ -25,23 +25,25 @@
     min-height: 60px
     padding-left: 73px
 
+
 .card--full-page__header
   margin-bottom: 20px
   border-bottom: 1px solid $ruled-separator
   padding-bottom: 20px
+  @extend %freight-book
 
 .card--full-page__title
-  @extend %benton-book
   @extend %card-header-size
   color: $header-blue
   margin-bottom: 5px
 
+.card--full-page__link
+  font-weight: bold
 
 .card--full-page__subtitle
-  @extend %larger-type
+  @extend %large-type
   @extend %inline-block
   @extend %body-copy
-  @extend %smooth-text
   @extend %vertically-centered-dot-after
   @extend %reset-line-height
   &:last:after
@@ -92,6 +94,7 @@
 .sharing__label
   @extend %small-type
   text-transform: uppercase
+>>>>>>> master
   font-weight: bold
   color: $title
   line-height: 22px

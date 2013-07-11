@@ -3,17 +3,19 @@
 // -----------------------------------------------------------------------------
 
 .card__item-count
-  @extend %benton-regular
+  +font-size(20)
   @extend %no-line-height
   position: absolute
   color: #fff
-  font-size: 20px
   left: 10px
-  top: 20px
+  top: 15px
   z-index: 5
 
   &:before
-    font-size: 35px
+    +font-size(35)
+    position: relative
+    top: 3px
+
 
   .card--collection--hotels &
     @extend %icon-image-poi-hotel-before
@@ -42,8 +44,8 @@
 // -----------------------------------------------------------------------------
 
 .card--media__badge
-  @extend %benton-regular
   @extend %no-line-height
+  @extend %ie8-font-color
   color: #fff
   font-size: 69px
   left: 75px
@@ -65,7 +67,7 @@
 
 %card-icon
   &:before
-    @extend %benton-regular
+    @extend %freight-book
     @extend %no-line-height
     cursor: pointer
     font-size: 69px
@@ -138,3 +140,13 @@
   &:before
     color: $need-to-know-info
     font-size: 50px
+
+
+// -----------------------------------------------------------------------------
+// Badge opt-out
+// -----------------------------------------------------------------------------
+
+.without-hotel-badges
+  .card--poi--hotel.card--small-image
+    &:before
+      content: none

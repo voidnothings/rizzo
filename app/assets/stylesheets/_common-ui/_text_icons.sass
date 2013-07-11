@@ -1,0 +1,20 @@
+// -----------------------------------------------------------------------------
+// Text sections with left hand icons
+// -----------------------------------------------------------------------------
+
+.card__tour-duration
+  @extend %left-icon-text
+  @extend %tour-duration-before
+  color: $body-copy
+  margin-bottom: 12px
+  &:before
+    font-size: 30px
+    line-height: 15px
+
+.card__feedback__approval
+  @extend %approval-before
+  @extend %left-icon-text
+
+.card__feedback__comments
+  @extend %comments-before
+  @extend %left-icon-text
