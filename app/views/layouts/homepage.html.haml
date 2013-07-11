@@ -9,7 +9,7 @@
 %body.responsive.homepage
   .wrap--footer-push
     = render 'layouts/core/snippets/responsive_header', user_nav: defined?(user_nav) ? user_nav : true, homepage: true
-    .row.row--content#js-row--content
+    .row.row--content.copy--freight#js-row--content
       = yield
       .row--footer-push
 
