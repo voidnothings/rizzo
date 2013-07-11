@@ -104,6 +104,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
 
     _removePageParam: ->
       delete(@state.page)
+      delete(@state.nearby_offset)
 
     _serializeState: ->
       $.param(@state)

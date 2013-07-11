@@ -120,6 +120,11 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
         total: 10
         current: 10
 
+    stub_has_more =
+      pagination:
+        has_more: true
+        total: 0
+
     describe 'on cards request', ->
       beforeEach ->
         loadFixtures('load_more.html')
@@ -158,6 +163,11 @@ require ['public/assets/javascripts/lib/components/load_more.js'], (LoadMore) ->
       it 'hides the pagination if we are on the final page', ->
         $(LISTENER).trigger(':cards/received', stub_final_page)
         expect(lm._hide).toHaveBeenCalled()
+
+      it 'shows the pagination if has_more is true', ->
+        $(LISTENER).trigger(':cards/received', stub_has_more)
+        expect(lm._show).toHaveBeenCalled()
+
 
     describe 'on page received', ->
       beforeEach ->

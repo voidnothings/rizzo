@@ -20,9 +20,11 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
         title: 'Show more'
         idleTitle: 'Loading ...'
         visible: true
+        pageParams: {}
 
       $.extend @config, args
       @currentPage = 1
+      @pageParams = @config.pageParams
       @pageOffsets = '0'
       @$el = $(@config.el)
       @init() unless @$el.length is 0
@@ -44,7 +46,8 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
 
       $(LISTENER).on ':cards/received :cards/append/received :page/received', (e, data) =>
         @_unblock()
-        if data.pagination.total is 0 or data.pagination.current is data.pagination.total then @_hide() else @_show()
+        if !data.pagination.has_more and (data.pagination.total is 0 or data.pagination.current is data.pagination.total) then @_hide() else @_show()
+        @pageParams = data.pagination.params if data.pagination.params
 
     # Publish
     broadcast: ->
@@ -82,5 +85,6 @@ define ['jquery','lib/extends/events'], ($, EventEmitter ) ->
       @$btn.removeClass('loading disabled').text(@config.title)
 
     _serialize: ->
-      if @currentPage > 1 then {page: @currentPage} else {}
+      params = if @currentPage > 1 then {page: @currentPage} else {}
+      $.extend(params, @pageParams)
 
