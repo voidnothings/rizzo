@@ -10,7 +10,7 @@
             %span.js-price
               = stack_item.prices[currency.to_s].ceil
           - if stack_item.on_sale?
-            %span.tag--price__original
+            %span.tag--price__original<
               = raw(currency.to_symbol)
               = stack_item.retail_prices[currency.to_s].ceil
     - if stack_item.topchoice
