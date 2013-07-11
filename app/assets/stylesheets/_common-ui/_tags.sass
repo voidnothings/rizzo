@@ -79,17 +79,19 @@
   +tag-curl-top($yella, $bookable-ribbon)
 
 .tag--price__inner
+  @extend %tag--top
   @extend %subpixel-text
   @extend %ie8-font-color
   background-color: $yella
   color: $body
+  padding-top: 6px
   overflow: hidden
-  padding: 6px 8px
 
 .tag--price__amount
   @extend %heading-size-type
   display: block
   line-height: 0.8em
+  padding: 0 8px 6px 8px
 
 .tag--price__currency
   font-size: 0.65em
@@ -135,6 +137,7 @@
 .tag--badge__content
   @extend %left-icon
   @extend %left-icon--hidden-text
+  display: block
   &:before
     line-height: 15px
 
