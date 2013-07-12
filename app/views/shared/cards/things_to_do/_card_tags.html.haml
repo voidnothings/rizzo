@@ -3,17 +3,21 @@
     - if stack_item.prices
       .tag.tag--price
         .tag--price__inner
-          from
-          %span.tag--price__amount
-            %span.tag--price__currency
-              = raw(currency.to_symbol)
-            %span.js-price
-              = stack_item.prices[currency.to_s].ceil
+          .tag--price__values
+            from
+            .tag--price__amount<
+              %span.tag--price__currency
+                = raw(currency.to_symbol)
+              %span.js-price
+                = stack_item.prices[currency.to_s].ceil
           - if stack_item.on_sale?
-            %span.tag--price__original<
+            .tag--price__original<
               = raw(currency.to_symbol)
               = stack_item.retail_prices[currency.to_s].ceil
     - if stack_item.topchoice
       .tag.tag--badge.tag--top-choice
         %span.tag--badge__content
           Top Choice
+
+
+
