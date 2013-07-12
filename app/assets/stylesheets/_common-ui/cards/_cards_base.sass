@@ -36,7 +36,7 @@ $image-only-padding:           7px
   // apply hover state only to cards in the results area
   .results &
     .js-hover &:hover
-      +box-shadow(2, 2, 2, 0, rgba(3, 46, 92, 0.15))
+      +box-shadow(0, 2, 2, 0, rgba(3, 46, 92, 0.10))
 
   // hide the content area for image-only cards when it's not hovered over
   &.card--image-only
@@ -141,7 +141,7 @@ $image-only-padding:           7px
   height: $card-grid-height
 
   .card__content
-    +transition(height, 0.3, ease)
+    +transition(height, 0.5, ease)
     background: #fff
     bottom: 0
     left: 0
@@ -159,9 +159,10 @@ $image-only-padding:           7px
       right: 0
       bottom: 0
 
+  // Remove the white to transparent gradient on hover
   &:hover
     .card__content
-      height: $card-grid-height - ( 2*$card-hotel-content-padding) - 45px !important // important until hotel image padding is the same...
+      height: $card-grid-height - ( 2*$card-hotel-content-padding) - 225px !important // important until hotel image padding is the same...
 
       &:after
         content: none
@@ -169,3 +170,12 @@ $image-only-padding:           7px
     .card__footer
       &:after
         content: none
+
+  &.card--small-image
+    
+    .card__content
+      +transition(height, 0.3, ease)
+  
+    &:hover
+      .card__content
+        height: $card-grid-height - ( 2*$card-hotel-content-padding) - 45px !important // important until hotel image padding is the same...

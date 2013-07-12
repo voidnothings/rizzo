@@ -21,6 +21,8 @@
   display: block
   margin-bottom: 2px
   font-style: italic
+  .card--full-image &
+    color: white
 
   .card--full-image &
     color: #fff
@@ -32,6 +34,9 @@
 
   .card--standard-image &
     +font-size(19)
+
+  .card--full-image &
+    margin-bottom: 0
 
 .card__locale
   @extend %small-type
@@ -81,7 +86,7 @@
   color: $body-copy
   left: 0
   line-height: 12px
-  padding: 8px
+  padding: 6px 15px 10px
   right: 0
   z-index: 3
 
@@ -110,15 +115,22 @@
   @extend %ie8-font-color
   color: $body
   margin-right: 5px
+  padding-left: 20px
+  &:before
+    top: 0
 
 .destination__item-count--sights
+  @extend %left-icon
   @extend %icon-image-poi-sight-before
   &:before
+    line-height: 16px
     font-size: 25px
 
 .destination__item-count--lodgings
+  @extend %left-icon
   @extend %icon-image-poi-hotel-before
   &:before
+    line-height: 10px
     font-size: 30px
 
 

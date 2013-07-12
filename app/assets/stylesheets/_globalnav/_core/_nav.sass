@@ -99,7 +99,7 @@
   @extend %regular-type-size
 
 .nav__item--secondary
-  padding: 7px 8px 6px
+  padding: 6px 8px
   &, &:active
     color: $nav-secondary-type
   &:hover
@@ -107,7 +107,6 @@
   &.current
     @extend %active-background
     @extend %four-pixel-rounded
-    font-weight: bold
     &:hover
       color: #fff
 
@@ -124,10 +123,10 @@
   &:before
     top: 0
     font-size: 28px
-    line-height: 16px
+    line-height: 22px
 
 .place-title-heading
-  letter-spacing: -0.1em
+  font-weight: bold
   color: $dark-blue-gray
   line-height: 26px
   &:hover
@@ -254,7 +253,6 @@
 .nav__item--breadcrumbs
   @extend %left-icon
   @extend %chevron-right-before
-  @extend %irregular-type
   padding: 19px 8px 19px 20px
   color: $header-gray
   &:before
@@ -302,7 +300,6 @@ a.nav__item--breadcrumbs
     padding: 14px 0 14px 10px
     margin-left: 0
     border-bottom: 1px solid #d6dedf
-    font-weight: bold
     +respond-to(wide-view)
       padding: 26px 0
       margin-left: 15px
@@ -396,33 +393,43 @@ a.nav__item--breadcrumbs
 
 .col--footer,
 .col--footer--last
+  @extend %smooth-text
   .responsive &
     float: none
     border-bottom: 1px solid #d6dedf
-    padding-left: 10px
     +respond-to(wide-view)
       border: none
       padding: 0
 
 .col--footer
   float: left
-  margin: 0 46px 15px 0
+  margin: 0 35px 15px 0
   .responsive &
     margin: 0
+    padding-left: 10px
     +respond-to(wide-view)
       float: left
-      margin: 0 46px 15px 0
+      margin: 0 35px 15px 0
+
 
 .col--footer--last
   float: right
   width: 240px
   .responsive &
     width: auto
+    padding: 0 10px
     +respond-to(wide-view)
       float: right
       width: 240px
+      padding: 0
   .ie7 &, .ie8 &
     width: 232px
+
+  .btn--regular
+    .responsive &
+      width: 100%
+      +respond-to(wide-view)
+        width: auto
 
 .nav__item--footer
   line-height: 18px
@@ -440,9 +447,13 @@ a.nav__item--breadcrumbs
   .js-hover &:hover
     color: $header-gray
 
+.title--footer
+  font-weight: bold
+
+
 .title--list--footer
-  @extend %small-type
   display: block
+  font-weight: bold
   color: $title-footer--darker
   margin-bottom: 15px
   .responsive &
