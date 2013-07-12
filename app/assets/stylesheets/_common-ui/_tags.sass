@@ -82,16 +82,18 @@
   @extend %tag--top
   @extend %subpixel-text
   @extend %ie8-font-color
-  background-color: $yella
   color: $body
-  padding-top: 6px
   overflow: hidden
+
+.tag--price__values
+  background-color: $yella
+  padding: 6px 8px
 
 .tag--price__amount
   @extend %heading-size-type
   display: block
   line-height: 0.8em
-  padding: 0 8px 6px 8px
+  margin-bottom: 3px
 
 .tag--price__currency
   font-size: 0.65em
@@ -101,11 +103,10 @@
   word-spacing: -2px
 
 .tag--price__original
-  @extend %extra-small-type
+  @extend %regular-type-size
   background: $dark-blue-gray
   color: #fff
-  display: block
-  padding: 4px 0
+  padding: 2px 0
   text-decoration: line-through
 
 .tag--non-bookable
