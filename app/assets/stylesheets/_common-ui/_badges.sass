@@ -12,7 +12,7 @@
 // Badges
 // -----------------------------------------------------------------------------
 
-%card-badge
+%badge
   @extend %left-icon
   @extend %left-icon--hidden-text
   @extend %inline-block
@@ -22,14 +22,14 @@
     color: $lpblue
 
 .badge--lp-reviewed
-  @extend %card-badge
+  @extend %badge
   @extend %lp-review-bubble-before
   &:before
     font-size: 46px
     line-height: 12px
 
 .badge--top-choice
-  @extend %card-badge
+  @extend %badge
   @extend %top-choice-before
   width: 33px
   &:before
@@ -45,39 +45,3 @@
   font-weight: bold
   padding: 2px 5px
   text-transform: uppercase
-
-
-%badge--card
-  @extend %left-icon
-  @extend %left-icon--hidden-text
-  @extend %inline-block
-  &:before
-    color: #fff
-
-.card__badge--lp-reviewed
-  @extend %badge--card
-  @extend %lp-review-bubble-before
-  height: 18px
-  width: 22px
-  &:before
-    font-size: 38px
-    line-height: 16px
-
-.card__badge--top-choice
-  @extend %badge--card
-  @extend %top-choice-before
-  height: 20px
-  width: 28px
-  &:before
-    font-size: 46px
-    line-height: 14px
-
-.badge--included
-  @extend %four-pixel-rounded
-  @extend %inline-block
-  @extend %tiny-type
-  font-weight: bold
-  color: #fff
-  padding: 2px 5px
-  text-transform: uppercase
-  background-color: $validation-true
