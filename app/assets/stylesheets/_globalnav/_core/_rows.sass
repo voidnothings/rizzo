@@ -196,7 +196,6 @@ body
       margin-bottom: 30px
 
 .row--sitemap__inner
-  @extend %irregular-type
   padding-top: 20px
   .responsive &
     padding: 0
@@ -212,7 +211,7 @@ body
 // ----------------------------------------------------------------------------
 
 .row--footer--about
-  @extend %irregular-type
+  @extend %smooth-text
   .responsive &
     .row__inner--footer
       border-top: none
@@ -248,7 +247,7 @@ body
       padding: 20px 0
 
 .text--legal
-  @extend %tiny-type
+  +font-size(11)
   width: 60%
   line-height: 1.5em
   color: $body-copy
