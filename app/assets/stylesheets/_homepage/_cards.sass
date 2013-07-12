@@ -1,7 +1,7 @@
 .overthrow-enabled
-.overthrow
-  overflow: auto
-  -webkit-overflow-scrolling: touch
+  .overthrow
+    overflow: auto
+    -webkit-overflow-scrolling: touch
 
 
 .row--cards__inner
@@ -10,3 +10,6 @@
   height: $card-grid-height
   +respond-to(wide-view)
     height: (2 * $card-grid-height)
+
+  > .card:last-child
+    margin-right: 50px
