@@ -9,4 +9,6 @@
       %span.card__context
         Collection
       %h2.card__name.js-card-name
-        #{stack_item.title} in #{place}
+        #{stack_item.title}
+        - if defined? place
+          in #{place}
