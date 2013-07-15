@@ -85,6 +85,7 @@ define ['jquery','lib/utils/css_helper'], ($, CssHelper) ->
             width: "auto"
           closeBoxURL: ''
           content: '<div class="infobox--location"><p class="section-title info-list--icon info-list--location">Location</p><p class="copy--body">'+@args.lodgingLocation+'<span class="infobox__interesting-places"> &middot; <label class="infobox__interesting-places--link js-resizer" for="js-resize">interesting places nearby</label></span></p></div>'
+          disableAutoPan: true
           maxWidth: 0
           zIndex: 50
         ib.open(@map, marker)
