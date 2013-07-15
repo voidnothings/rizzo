@@ -5,7 +5,11 @@
 <!--[if gt IE 9]><!--><html class='no-js' lang="en"><!--<![endif]-->
 %head
   = render 'layouts/core/head'
-  %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
+  - if cookies[:_fullsite] == "true"
+    %meta{name:"viewport", content:"width=1024"}
+  - else
+    %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
+
 %body.responsive.homepage
   .wrap--footer-push
     = render 'layouts/core/snippets/responsive_header', user_nav: defined?(user_nav) ? user_nav : true, homepage: true
@@ -15,6 +19,9 @@
 
   .wrap--footer
     = render 'layouts/core/responsive_footer'
+    - if cookies[:_fullsite] != "true"
+      = render 'layouts/mobile/view_full_site'
+
   .js-config.is-hidden
     = render 'layouts/core/snippets/fs_init'
     = js_configuration
