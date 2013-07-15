@@ -8,7 +8,7 @@
 
 
 // -----------------------------------------------------------------------------
-// Container for top hanging tags
+// Container for multiple top hanging tags
 // -----------------------------------------------------------------------------
 
 .card__tags
@@ -17,36 +17,37 @@
   z-index: 5
   top: -3px
 
+
 // -----------------------------------------------------------------------------
 // Base classes for hanging tags used on cards
 // -----------------------------------------------------------------------------
 
-%card__tag
+%tag
   &:before,
   &:after
     @extend %empty-abs-generated-content
 
-%card__tag__container--top
+%tag--top
   border-bottom-left-radius: 4px
   border-bottom-right-radius: 4px
   border-top-right-radius: 4px
 
-%card__tag__container--left
+%tag--side
   border-top-left-radius: 4px
   border-top-right-radius: 4px
   border-bottom-right-radius: 4px
 
 
 // -----------------------------------------------------------------------------
-// Top-hanging card tag (default is top hanging)
+// Top-hanging tag (default is top hanging)
 // -----------------------------------------------------------------------------
 
-.card__tag
-  @extend %card__tag
+.tag
+  @extend %tag
   @extend %extra-small-type
-  position: relative
   float: right
   margin-left: 4px
+  position: relative
   text-align: center
 
 
@@ -54,17 +55,17 @@
 // Side-hanging card tag
 // -----------------------------------------------------------------------------
 
-.card__tag--horizontal
-  @extend %card__tag
+.tag--horizontal
+  @extend %tag
+  @extend %tag--side
   @extend %small-type
-  @extend %card__tag__container--left
-  +card-tag-curl-left($side-tag, $side-tag-curl)
-  position: absolute
+  +tag-curl-left($side-tag, $side-tag-curl)
   background: $side-tag
   color: #fff
   left: -4px
-  letter-spacing: -1px
-  padding: 10px
+  position: absolute
+  font-weight: bold
+  padding: 6px 10px
   text-transform: uppercase
   top: 12px
   z-index: 1
@@ -74,56 +75,106 @@
 // Price tag
 // -----------------------------------------------------------------------------
 
-.card__tag--price
-  +card-tag-curl-top($yella, $bookable-ribbon)
+.tag--price
+  +tag-curl-top($yella, $bookable-ribbon)
 
-.card__tag__inner--price
+.tag--price__inner
+  @extend %tag--top
   @extend %subpixel-text
-  @extend %card__tag__container--top
   @extend %ie8-font-color
-  background-color: $yella
   color: $body
   overflow: hidden
+
+.tag--price__values
+  background-color: $yella
   padding: 6px 8px
 
-.card__tag__price--non-bookable
-  +multiple-text-shadow(-1px -1px 1px rgba(0, 0, 0, 0.25), 1px 1px 1px rgba(255,255,255,0.8))
-  color: #dad01a
-  font-size: 50px
-  padding: 4px 10px
-
-.card__tag__price--price
-  line-height: 0.8em
+.tag--price__amount
   @extend %heading-size-type
   display: block
+  line-height: 0.8em
+  margin-bottom: 3px
 
-.card__tag__price--curr
+.tag--price__currency
   font-size: 0.65em
   line-height: 0
   position: relative
   top: -0.2em
   word-spacing: -2px
 
-.card__tag__price--discount
-  @extend %extra-small-type
-  background: #2f4662
+.tag--price__original
+  @extend %regular-type-size
+  background: $dark-blue-gray
   color: #fff
-  display: block
-  padding: 4px 0
+  padding: 2px 0
   text-decoration: line-through
+
+.tag--non-bookable
+  @extend %tag--top
+  +tag-curl-top($yella, $bookable-ribbon)
+  +multiple-text-shadow(-1px -1px 1px rgba(0, 0, 0, 0.25), 1px 1px 1px rgba(255,255,255,0.8))
+  background-color: $yella
+  color: #dad06b
+  font-size: 50px
+  padding: 4px 10px
 
 
 // -----------------------------------------------------------------------------
 // Badge tag
 // -----------------------------------------------------------------------------
 
-.card__tag--badge
-  @extend %card__tag__container--top
-  +card-tag-curl-top(#1a65c0, #032e5c)
-  background-color: #1a65c0
+.tag--badge
+  @extend %inline-block
+  +tag-curl-top($header-blue, $feature-text)
+  background-color: $header-blue
   color: #fff
-  padding: 8px 6px
 
+.tag--lp-reviewed
+  @extend %tag--top
+
+.tag--top-choice
+  border-top-right-radius: 4px
+
+.tag--badge__content
+  @extend %left-icon
+  @extend %left-icon--hidden-text
+  display: block
+  &:before
+    line-height: 15px
+
+  .tag--lp-reviewed &
+    @extend %lp-review-bubble-before
+    height: 34px
+    width: 33px
+    &:before
+      font-size: 38px
+      height: 18px
+      left: 5px
+      top: 9px
+      width: 20px
+
+  .tag--top-choice &
+    @extend %top-choice-before
+    height: 40px
+    width: 34px
+    &:before
+      font-size: 46px
+      height: 18px
+      left: 3px
+      top: 13px
+      width: 26px
+    &:after
+      @extend %empty-abs-generated-content
+      background: url(image_path("lodgings-spt.png")) -71px -3px no-repeat
+      bottom: -9px
+      height: 9px
+      left: 0
+      width: 34px
+      +retinafy()
+        background: url(image_path("lodgings-spt-2x.png"))
+        background-position: top right
+        background-size: $lodgings-sprite-size
+      
 
 // -----------------------------------------------------------------------------
 // Old-skool Price tag
@@ -164,7 +215,7 @@
   padding-top: 2px
 
 .price-tag__curr
-  @extend .card__tag__price--curr
+  @extend .tag--price__currency
   font-size: 0.65em
 
 .rooms,
