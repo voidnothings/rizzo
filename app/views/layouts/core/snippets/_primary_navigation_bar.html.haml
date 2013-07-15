@@ -1,13 +1,13 @@
 .row.row--fluid.row--primary.row--core#js-primary-nav
 
   .split--left.wv--nav--inline
-    - unless defined? homepage
+    - unless homepage
       %a.media--lp-logo(href='http://www.lonelyplanet.com')
     %label{for: 'nav--primary--trigger', class: 'nav--primary--trigger wv--hidden'} &#57346;
     %input{type: "checkbox", id: 'nav--primary--trigger', class: "is-hidden"}
     .wv--nav--inline.nav__item.nav--primary.m-hidden-menu
 
-      - if defined? responsive
+      - if responsive
         -# This form is only visible on mobile, and not at all on the homepage
         - unless homepage
           %form.search--primary.search--primary--mobile{:action => host_with_subdomain_and_path("www", "searchResult"), :method => "get" }
@@ -40,8 +40,8 @@
     %input{type: "checkbox", id: 'nav--user--trigger', class: "is-hidden"}
     .wv--nav--inline.m-hidden-menu.split--right__inner
 
-      -# This form is only visible on wide screens
-      - unless defined? homepage
+      -# This form is only visible on wide screenspath: '/Users/Ian/development/lp/online/avocado'#
+      - unless homepage
         %form.search--primary.search--primary-wv.js-nav-search.wv--inline-block{:action => host_with_subdomain_and_path("www", "searchResult"), :method => "get" }
           %label.accessibility(for='search-q') Search
           %input.search__input.search__input--primary.js-primary-search(type="search" id="search" maxlength="2048" name="q" value="" autocomplete="off" tabindex="1")>
