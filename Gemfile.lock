@@ -1,12 +1,12 @@
 GIT
   remote: git@github.com:lonelyplanet/avocado.git
-  revision: e454d34f9ff31f571417eb6a33e87ed08a2e0b5a
+  revision: 7782c42858543ebc8dc481349ad86191159210f3
   specs:
     avocado (0.0.31)
 
 GIT
   remote: git@github.com:lonelyplanet/beaker.git
-  revision: 570dfec1c4bf68f247822cdf9e52e783122db0af
+  revision: 69dfccb9749d05cd14d5665a53024be7718dc004
   specs:
     beaker (0.1.0)
 
@@ -154,7 +154,7 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     raindrops (0.11.0)
-    rake (10.0.4)
+    rake (10.1.0)
     rb-fsevent (0.9.3)
     rb-inotify (0.9.0)
       ffi (>= 0.5.0)
