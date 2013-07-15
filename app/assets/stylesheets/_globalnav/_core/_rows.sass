@@ -1,16 +1,19 @@
 // ----------------------------------------------------------------------------
 // 
 // Body
-
+// 
 // The below two lines fix the background colours not stretching the
 // full page width on a small screen size
 // 
+// Homepage is removed from this hack because it interferes with overflow-x
 // ----------------------------------------------------------------------------
 
 body
   background-color: $body-background
   display: table
   min-width: 100%
+  &.homepage
+    display: block
 
 // Freight is applied to the main content row of the page
 .copy--freight
@@ -35,6 +38,12 @@ body
     width: auto
     +respond-to(wide-view)
       width: 1000px
+
+.row--core
+  @extend %helvetica-neue
+
+.row--text-centered
+  text-align: center
 
 // ----------------------------------------------------------------------------
 // 
@@ -182,8 +191,10 @@ body
 .row__inner--footer
   border-top: 1px solid #d6dedf
   .responsive &
+    border: none
     padding: 10px
     +respond-to(wide-view)
+      border-top: 1px solid #d6dedf
       padding: 0
 
 // ----------------------------------------------------------------------------
@@ -263,7 +274,8 @@ body
       width: 60%
       text-align: left
 
-
+.link--view-full-site
+  padding-bottom: 20px
 
 
 // ----------------------------------------------------------------------------
