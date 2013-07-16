@@ -12,6 +12,8 @@
 
 .heading--boxed
   @extend %inline-block // ensure the border doesn't stretch full width
+  @extend %border-box // ensure on small screens that even with the padding it won't touch the edge
+  max-width: 90%
   +font-size(24)
   position: relative
   text-transform: uppercase
