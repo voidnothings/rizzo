@@ -1,38 +1,57 @@
+.row--travel-services
+  border-bottom: 1px solid #c5d6d9
+
 .tabs-content--homepage
-  height: 610px
+  height: 530px
   +transition(opacity, 0.3, ease)
+  +respond-to(wide-view)
+    height: 610px
 
 .tab--homepage
   height: 500px
-  padding-top: 110px
+  padding-top: 30px
   display: none
   &.is-active
     display: block
+  +respond-to(wide-view)
+    padding-top: 110px
 
 .tab--homepage--shop
   background: #444 url("#{image_path('section3/books3000.jpg')}") center center no-repeat
   background-size: cover
 
 .tab--homepage__strapline
-  +font-size(37)
+  +font-size(24)
   color: white
   margin-bottom: 25px
+  +respond-to(wide-view)
+    +font-size(37)
 
 .tab--homepage__heading
   color: white
   margin-bottom: 20px
 
 .tab--button
-  +font-size(18)
+  +font-size(14)
+  +transition(all, 0.3, ease)
   color: $new-header-grey
   width: 25%
+  height: 66px
   float: left
-  padding: 25px 0
   text-align: center
+  line-height: 1.2
+  display: table
+  > span
+    display: table-cell
+    vertical-align: middle
   &.is-active
     background: $new-header-grey
     color: white
     font-weight: bold
   &:hover
-    background: $header-gray
     text-decoration: none
+    background: #c5d6d9
+  +respond-to(wide-view)
+    +font-size(18)
+    &:hover
+      
