@@ -28,7 +28,7 @@ define ['jquery'], ($) ->
         $el = @$el.find(el)
         elems.push({
           $el: $el
-          top: $el.offset().top
+          top: parseInt($el.offset().top, 10)
           threshold: $el.data('threshold')
         })
       elems
