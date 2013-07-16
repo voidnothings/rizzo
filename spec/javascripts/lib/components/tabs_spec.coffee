@@ -11,7 +11,7 @@ require ['public/assets/javascripts/lib/components/tabs.js'], (Tabs) ->
     describe 'Functionality', ->
       beforeEach ->
         loadFixtures('tabs.html')
-        myTabs = new Tabs('#myTestTabs', 0)
+        myTabs = new Tabs({selector: '#myTestTabs', delay: 0, autoHeight: false})
 
       it 'initializes with the first tab being active', ->
         expect($('#myTestTabs').find('#label1')).toHaveClass('is-active')
