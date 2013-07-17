@@ -4,5 +4,5 @@
 
   for (i = 0; i < len; i++) {
     uncommented = images[i].innerHTML.replace('<!--', '').replace('-->', '');
-    img.parentNode.innerHTML = uncommented;
+    images[i].parentNode.innerHTML = uncommented;
   }
