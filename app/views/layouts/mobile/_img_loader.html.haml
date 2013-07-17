@@ -1,0 +1,8 @@
+:javascript
+  var images = document.querySelectorAll('[data-img]'),
+      len = images.length;
+
+  for (i = 0; i < len; i++) {
+    uncommented = images[i].innerHTML.replace('<!--', '').replace('-->', '');
+    img.parentNode.innerHTML = uncommented;
+  }

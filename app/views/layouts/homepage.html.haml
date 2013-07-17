@@ -23,6 +23,7 @@
       = render 'layouts/mobile/view_full_site'
 
   .js-config.is-hidden
+    = render 'layouts/mobile/img_loader'
     = render 'layouts/core/snippets/fs_init'
     = js_configuration
     - unless Rails.env.production?
