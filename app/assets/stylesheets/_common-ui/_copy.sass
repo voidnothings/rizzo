@@ -1,3 +1,35 @@
+// Headings
+
+.heading--title
+  +font-size(32)
+  @extend %benton-book
+  color: $header-blue
+  letter-spacing: -0.05em
+
+.heading--subtitle
+  @extend %regular-type-size
+  @extend %benton-book
+
+.heading--boxed
+  @extend %inline-block // ensure the border doesn't stretch full width
+  +font-size(24)
+  position: relative
+  text-transform: uppercase
+  color: $new-header-grey
+  padding: 15px
+  font-weight: bold
+  border: 1px solid #a6acb1
+  > span
+    +font-size(14)
+    position: absolute
+    top: -6px
+    left: 50%
+    // Define these on a per-case basis. e.g.
+    // background: $body-background
+    // width: 30%
+    // margin-left: -15%
+
+
 // Type treatment within body text
 .copy--title
   +font-size(32)
@@ -12,6 +44,9 @@
   text-transform: uppercase
   letter-spacing: 0.2em
   margin: 1.8em 0 0.9em
+
+.copy--lowercase
+  text-transform: none
 
 .copy--feature
   @extend %section-heading-size-type
