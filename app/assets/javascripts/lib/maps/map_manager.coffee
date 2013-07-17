@@ -47,6 +47,7 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
           @lodgingMap.setLodgingMarker()
           @getNearbyPOIs((data) =>
             pois = @parsePOIData(@_sanitizeData(data))
+            $('#js-nearby-pois, .infobox__interesting-places').removeClass('is-hidden')
             @lodgingMap.initMapPOIs(pois)
             @initNearbyThingsToDo(pois)
           )
