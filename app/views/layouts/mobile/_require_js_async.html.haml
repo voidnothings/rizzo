@@ -1,0 +1,19 @@
+:javascript
+  if (window.lp && window.lp.enhanced) {
+    (function(d, s, id) {
+      var fjs, js;  
+      fjs = d.getElementsByTagName(s)[0];
+      js = d.createElement(s);
+      js.id = id;
+      js.async = true;
+      js.src = "assets/requirejs/require.js";
+      if (document.documentElement.clientWidth < 990 && 
+        document.documentElement.className.indexOf('ie') == -1) {
+        main = "#{asset_path('app_homepage_mobile')}";
+      } else {
+        main = "#{asset_path('app_homepage')}";
+      }
+      js.setAttribute("data-main", main);
+      return fjs.parentNode.insertBefore(js, fjs);
+    })(document, 'script');
+  }
