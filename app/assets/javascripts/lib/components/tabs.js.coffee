@@ -1,6 +1,7 @@
 # 
 # Params: @args {
-#   selector: parent element
+#   selector: {string} parent element,
+#   delay: {number} timeout between switching slides,
 # }
 # 
 
@@ -14,20 +15,16 @@ define ['jquery'], ($) ->
     activeTimeout = null
 
 
-    constructor: (selector, delay, autoHeight) ->
-      config.tabs = $(selector)
+    constructor: (args) ->
+
+      config.tabs = $(args.selector)
       config.tabsContainer = config.tabs.find('.js-tabs-content')
       config.tabLabels = config.tabs.find('.js-tab-trigger')
-      config.animationDelay = delay
-      config.autoHeight = autoHeight?
+      config.animationDelay = args.delay
 
       config.tabs.on 'click', '.js-tab-trigger', (e) ->
         tabLabel = $(@)
         tab = $(tabLabel.attr('href'))
-        
-        config.tabLabels.each ->
-          config.tabsContainer.find('.is-active').removeClass('is-active')
-
         _openNewTab(tabLabel, tab)
         false
 
@@ -39,16 +36,10 @@ define ['jquery'], ($) ->
 
     _openNewTab = (tabLabel, tab) ->
       unless tab.hasClass('is-active')
+        
+        config.tabsContainer.find('.is-active').removeClass('is-active')
         config.tabLabels.removeClass('is-active')
         tabLabel.addClass('is-active')
-
-        config.tabsContainer.find('.js-tab-panel').removeClass('is-active')
-        if config.tabsContainer.is(':hidden') then config.tabsContainer.removeClass('is-hidden')
-      
-        # Get padding (jquery box sizing bug - http://bugs.jquery.com/ticket/10413)
-        padding = (parseInt(tab.css('padding'), 10) * 2)
-        unless config.autoHeight
-          config.tabsContainer.css('height', (tab.children().outerHeight() + padding))
 
         activeTimeout = setTimeout ->
           config.tabsContainer.find(tab).addClass('is-active')

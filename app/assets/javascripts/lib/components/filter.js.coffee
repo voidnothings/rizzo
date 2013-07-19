@@ -41,10 +41,13 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
       # Listen to filter cards that exist outside of the component
       $(LISTENER).on 'click', '.js-stack-card-filter', (e) =>
         e.preventDefault()
-        filters = $(e.currentTarget).find('[data-filter]').data('filter')
+        $this = $(e.currentTarget)
+        filters = $this.find('[data-filter]').data('filter')
         @_set(filters, true)
-        @trigger(':cards/request', [@_serialize(), {callback: "trackFilter"}])
-
+        @config = 
+          callback: "trackFilter", 
+          stack: $this.find('[data-filter]').data("stack-kind") or ""
+        @trigger(':cards/request', [@_serialize(), @config])
 
     # Private area
 

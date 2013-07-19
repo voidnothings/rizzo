@@ -10,7 +10,6 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter ) ->
     # el: {string} selector for parent element
     # list: {string} delimited list of child selectors
     constructor: (args={}) ->
-
       @config =
         analytics:
           callback: "trackStack"
@@ -31,7 +30,7 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter ) ->
         $this = $(e.currentTarget)
         @_select($this)
         @config.analytics.url = $this.attr('href')
-        @config.analytics.stack = $this.data("card-kind") or ""
+        @config.analytics.stack = $this.data("item-kind") or ""
         @trigger(':page/request', [{url: @config.analytics.url}, @config.analytics])
 
     
