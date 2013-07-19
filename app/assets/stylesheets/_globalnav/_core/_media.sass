@@ -11,15 +11,15 @@
   height: 41px
   margin: 7px 10px 0 0
   width: 83px
-  .responsive .row--core &
-    position: absolute
-    left: 50%
-    margin-left: -41px
-    +respond-to(wide-view)
-      position: static
-      margin-left: 0
+  vertical-align: top
   .ie7 &
     float: left
+  .responsive &.logo--header
+    @extend %transition--nav
+    position: absolute
+    top: 0
+    left: 20px
+    z-index: 5
 
 
 .media--lp-logo--dark
