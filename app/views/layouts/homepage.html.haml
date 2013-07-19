@@ -14,7 +14,6 @@
   = render 'layouts/mobile/require_js_async'
 
 %body.responsive.homepage
-
   = render 'layouts/core/snippets/responsive_header', user_nav: defined?(user_nav) ? user_nav : true, homepage: true
   .row.row--content.copy--freight#js-row--content
     = yield
