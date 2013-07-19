@@ -9,7 +9,6 @@ $responsive-nav-width: 280px
 // The container for our off-screen navigation
 .nav-container
   @extend %clearfix
-  width: 90%
   .responsive &
     +box-shadow(16, 4, 20, -6, rgba(0, 0, 0, 0.2), true)
     @extend %transition--nav
@@ -44,6 +43,7 @@ $responsive-nav-width: 280px
     cursor: pointer
     z-index: 1
     &:before
+      // This is the hamburger icon in gradient form, needs some design tweaking
       +background-gradient-with-stops(top, white, white 20%, $nav-search-bck 20%, $nav-search-bck 40%, white 40%, white 60%, $nav-search-bck 60%, $nav-search-bck 80%, white 80%, white 100%)
       @extend %empty-abs-generated-content
       left: 10%

@@ -136,6 +136,7 @@ body
 // Row Faux Banner
 // 
 // When we use the offscreen nav we need to fake a 55px blue bar at the top
+// because the logo and nav are no longer part of the same node
 // ----------------------------------------------------------------------------
 
 .row--faux-banner
@@ -149,7 +150,6 @@ body
     display: none
 
 
-
 // ----------------------------------------------------------------------------
 // 
 // Row primary
@@ -159,16 +159,12 @@ body
 .row--primary
   background-color: $primary-nav
   height: 55px
+  z-index: 2
+  position: relative
   .responsive &
-    position: relative
     +respond-to(wide-view)
-      z-index: 2
   .homepage &
     background: none
-  .ie7 &
-    // Make sure that top nav dropdowns always stay on top
-    z-index: 2
-    position: relative
 
 
 // ----------------------------------------------------------------------------
@@ -264,7 +260,6 @@ body
 .row--footer--social__logo
   .responsive &
     display: inline-block
-    
 
 
 // ----------------------------------------------------------------------------
