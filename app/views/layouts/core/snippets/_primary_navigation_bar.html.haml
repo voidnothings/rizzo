@@ -4,8 +4,11 @@
 %input{type: "checkbox", id: 'nav--primary--trigger', class: "is-hidden"}
 %label{for: 'nav--primary--trigger', class: 'nav--primary--trigger'}
 
-
-%a.media--lp-logo.logo--header(href='http://www.lonelyplanet.com')
+- if homepage
+  .logo--header
+    %a.media--lp-logo(href='http://www.lonelyplanet.com')
+- else
+  %a.media--lp-logo.logo--header(href='http://www.lonelyplanet.com')
 
 .nav-container.m-hidden-menu
 
