@@ -25,11 +25,18 @@ $responsive-nav-width: 280px
     background: $offscreen-nav-background
     z-index: 1
     +respond-to(wide-view)
+      box-shadow: none
       position: static
       width: 100%
       background: $primary-nav
       overflow: visible
       height: 55px
+  .homepage &
+    +respond-to(wide-view)
+      background: none
+      position: relative
+      right: auto
+
 
 // The button to activate the global nav
 .nav--primary__trigger
@@ -72,7 +79,7 @@ $responsive-nav-width: 280px
   left: -$responsive-nav-width
 
 // Move the logo (it sits outside our main content area)
-#nav--primary__trigger:checked ~ .media--lp-logo
+#nav--primary__trigger:checked ~ .logo--header
   left: -$responsive-nav-width
 
 // Move the footer (it sits outside our main content area)
