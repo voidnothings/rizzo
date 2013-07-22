@@ -23,7 +23,7 @@ $responsive-nav-width: 280px
     width: $responsive-nav-width
     height: 100%
     background: $offscreen-nav-background
-    z-index: 1
+    z-index: 2
     +respond-to(wide-view)
       box-shadow: none
       position: static
@@ -37,6 +37,13 @@ $responsive-nav-width: 280px
       position: relative
       right: auto
 
+.nav--offscreen__title
+  +font-size(18)
+  @extend %inline-block
+  vertical-align: top
+  line-height: 36px
+  color: white
+  font-weight: bold
 
 // The button to activate the global nav
 .nav--primary__trigger
