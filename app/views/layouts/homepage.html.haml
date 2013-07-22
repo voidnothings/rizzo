@@ -13,12 +13,12 @@
   = render 'layouts/mobile/require_js_config'
   = render 'layouts/mobile/require_js_async'
 
-%body.responsive.homepage
+%body.responsive.homepage.copy--freight
   .wrapper
     = render 'layouts/core/snippets/accessibility'
     = render 'layouts/core/snippets/primary_navigation_bar', user_nav: true, responsive: true, homepage: true
 
-    .row.row--content.copy--freight#js-row--content
+    .row.row--content#js-row--content
       = yield
 
     .wrap--footer
