@@ -19,7 +19,7 @@
     = yield
 
   .wrap--footer
-    = render 'layouts/core/responsive_footer'
+    = render 'layouts/core/snippets/body_footer', responsive: true
     - if cookies[:_fullsite] != "true"
       = render 'layouts/mobile/view_full_site'
 
