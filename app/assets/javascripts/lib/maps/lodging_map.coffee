@@ -139,16 +139,19 @@ define ['jquery','lib/utils/css_helper'], ($, CssHelper) ->
       for poi in @allPOIs(data)
         # Need this `do` so that `poi` is scoped within the for loop.
         do (poi) =>
-          setTimeout =>
-            marker = @drawNearbyPOI(poi)
-            @addClickListener(marker)
-            @markers[poi.properties.id] = marker
-          , markerDelay
-          clearTimeout(markerDelayReset) if markerDelayReset
-          markerDelayReset = setTimeout ->
-            markerDelay = 0
-          , 150
-          markerDelay += 100
+          @addPOI(poi)
+
+    addPOI: (poi) ->
+      setTimeout =>
+        marker = @drawNearbyPOI(poi)
+        @addClickListener(marker)
+        @markers[poi.properties.id] = marker
+      , markerDelay
+      clearTimeout(markerDelayReset) if markerDelayReset
+      markerDelayReset = setTimeout ->
+        markerDelay = 0
+      , 150
+      markerDelay += 100
 
     allPOIs: (data)->
       _.flatten(_.values(data))

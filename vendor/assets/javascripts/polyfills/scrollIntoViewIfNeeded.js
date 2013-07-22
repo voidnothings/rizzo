@@ -1,3 +1,4 @@
+// Taken from https://gist.github.com/hsablonniere/2581101
 if (!Element.prototype.scrollIntoViewIfNeeded) {
   Element.prototype.scrollIntoViewIfNeeded = function (centerIfNeeded, bubbleUp, parent) {
     centerIfNeeded = arguments.length === 0 ? true : !!centerIfNeeded;
