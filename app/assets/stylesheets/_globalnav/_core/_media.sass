@@ -4,6 +4,15 @@
 // 
 // ----------------------------------------------------------------------------
 
+.logo--header
+  @extend %transition--nav
+  background-color: #20518A
+  padding: 20px
+  position: absolute
+  top: 0
+  left: 20px
+  z-index: 2
+
 .media--lp-logo
   @extend %sprite-core
   @extend %inline-block
@@ -12,14 +21,13 @@
   margin: 7px 10px 0 0
   width: 83px
   vertical-align: top
+  z-index: 1
   .ie7 &
     float: left
-  &.logo--header
-    @extend %transition--nav
-    position: absolute
-    top: 0
-    left: 20px
+  .homepage &
+    margin: 0
 
+.media--lp-logo-background
 
 .media--lp-logo--dark
   background-position: 0 -42px
