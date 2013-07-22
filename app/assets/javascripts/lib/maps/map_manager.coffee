@@ -21,7 +21,9 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
     @lodgingMap: null
     @nearbyThingsToDo: null
     @currentPOI: null
-    @config: {}
+    @config: {
+      target: '#js-map-canvas'
+    }
 
     @loadLib: ->
       unless @lodgingMap
@@ -35,20 +37,21 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
 
 
     @initMap: =>
-      args = lp.lodging.map
-      args.listener = @
-      args.target = '#js-map-canvas'
-      $.extend args, @config
-      @lodgingMap = new LodgingMap(args)
+      require ['maps_infobox'], =>
+        args = lp.lodging.map
+        args.listener = @
+        $.extend args, @config
+        @lodgingMap = new LodgingMap(args)
 
-      unless lp.lodging.map.genericCoordinates
-        @lodgingMap.setLodgingMarker()
-        @getNearbyPOIs((data) =>
-          pois = @parsePOIData(@_sanitizeData(data))
-          @lodgingMap.initMapPOIs(pois)
-          @initNearbyThingsToDo(pois)
-        )
-      $(args.target).removeClass('is-loading')
+        unless lp.lodging.map.genericCoordinates
+          @lodgingMap.setLodgingMarker()
+          @getNearbyPOIs((data) =>
+            pois = @parsePOIData(@_sanitizeData(data))
+            $('#js-nearby-pois, .infobox__interesting-places').removeClass('is-hidden')
+            @lodgingMap.initMapPOIs(pois)
+            @initNearbyThingsToDo(pois)
+          )
+        $(@config.target).removeClass('is-loading')
 
     @getNearbyPOIs: (callback) ->
       if lp.lodging.map.nearby_api_endpoint
@@ -103,11 +106,24 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
         MapManager.loadLib()
 
       if config and config.centerTrigger
-        $(config.centerTrigger).on 'click', =>
+        
+        $(document).on 'change', config.centerTrigger, =>
           map = MapManager.lodgingMap.map
-          # Grab the center *before* any resize (since that would change the center)
-          center = map.getCenter()
+
+          overlay = new google.maps.OverlayView()
+          overlay.draw = ->
+          overlay.setMap map
+
           setTimeout ->
+            oldCenter = map.getCenter()
             google.maps.event.trigger(map, "resize")
-            map.panTo(center)
+            newCenter = map.getCenter()
+
+            projection = overlay.getProjection()
+            oldCenterPoint = projection.fromLatLngToDivPixel(oldCenter)
+            newCenterPoint = projection.fromLatLngToDivPixel(newCenter)
+
+            # Move the y axis by the difference between the old and new center points.
+            newCenterPoint.y -= newCenterPoint.y - oldCenterPoint.y
+            map.panTo(projection.fromDivPixelToLatLng(newCenterPoint))
           , config.centerDelay || 0
