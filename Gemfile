@@ -15,7 +15,7 @@ gem 'airbrake'
 
 group :assets do 
   gem 'avocado', git: 'git@github.com:lonelyplanet/avocado.git'
-  gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git'
+  gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git', branch: 'if_offscreen_nav'
 end
 
 group :test do 
@@ -33,4 +33,9 @@ group :test do
 
   gem 'guard-cucumber'
   gem 'rb-fsevent', '~> 0.9.1'
+end
+
+group :production do
+  gem "lograge"
+  gem "logstash-event"
 end
