@@ -15,9 +15,11 @@
 // ----------------------------------------------------------------------------
 
 .nav--primary
+  // Move the nav to the right of the absolutely positioned logo
+  margin-left: 117px
   .responsive &
+    margin-left: 0
     +respond-to(wide-view)
-      // Move the nav to the right of the absolutely positioned logo
       margin-left: 117px
 
 %nav__item--look

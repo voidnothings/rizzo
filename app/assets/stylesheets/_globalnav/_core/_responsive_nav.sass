@@ -9,6 +9,10 @@ $responsive-nav-width: 280px
 // The container for our off-screen navigation
 .nav-container
   @extend %clearfix
+  width: 100%
+  background: $primary-nav
+  overflow: visible
+  height: 55px
   .responsive &
     +box-shadow(16, 4, 20, -6, rgba(0, 0, 0, 0.2), true)
     @extend %transition--nav
