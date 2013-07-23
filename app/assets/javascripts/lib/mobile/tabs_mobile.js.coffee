@@ -5,10 +5,9 @@
 # }
 # 
 
-define [], ->
+define ['jquerymin'], ($)->
  
   class Tabs
-
     config = {
       animationDelay: 300
     }
@@ -22,12 +21,13 @@ define [], ->
       config.tabLabels = config.tabs.getElementsByClassName('js-tab-trigger')
       config.animationDelay = args.delay
 
-      config.tabs.addEventListener 'click', (e) ->
+      config.tabs.on 'click', (e) ->
         e.preventDefault()
-        tabLabel = e.target.parentNode
+        tabLabel = e.target
+        tabLabel = if (_hasClass(tabLabel, "js-tab-trigger")) then e.target else e.target.parentNode
         tab = document.getElementById(tabLabel.hash.substr(1))
         _openNewTab(tabLabel, tab)
-        false
+      , false
 
       config.tabsContainer.classList.remove('is-loading')
       firstElement = config.tabLabels[0]
@@ -37,9 +37,11 @@ define [], ->
 
     # Private Functions
 
-    _openNewTab = (tabLabel, tab) ->
+    _hasClass = (element, klass) ->
+      if ((" " + element.className + " ").replace(/[\n\t]/g, " ").indexOf(klass) > -1) then true else false
 
-      unless ((" " + tab.className + " ").replace(/[\n\t]/g, " ").indexOf('is-active') > -1)
+    _openNewTab = (tabLabel, tab) ->
+      unless _hasClass(tab, "is-active")
 
         config.tabsContainer.getElementsByClassName('is-active')[0].classList.remove('is-active')
         for label in config.tabLabels
