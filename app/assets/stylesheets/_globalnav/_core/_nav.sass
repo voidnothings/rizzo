@@ -8,12 +8,19 @@
   &:hover, &:active, &.current
     text-decoration: none
 
-
 // ----------------------------------------------------------------------------
 // 
 // primary-nav
 // 
 // ----------------------------------------------------------------------------
+
+.nav--primary
+  // Move the nav to the right of the absolutely positioned logo
+  margin-left: 117px
+  .responsive &
+    margin-left: 0
+    +respond-to(wide-view)
+      margin-left: 117px
 
 %nav__item--look
   &, &:active
@@ -24,69 +31,42 @@
 .nav__item--primary, .nav__item--user
   @extend %nav__item--look
 
-.m-hidden-menu
-  .responsive &
-    @extend %transition--base
-    background: $nav-search-bck
-    position: absolute
-    top: 55px
-    left: 0
-    right: 0
-    max-height: 0
-    overflow: hidden
-    +respond-to(wide-view)
-      background: none
-      position: static
-      height: auto
-      overflow: visible
-      max-height: none
-
 .nav__item--primary
   padding: 20px 4px
   .responsive &
     padding: 15px 10px
+    border-bottom: 1px solid $offscreen-nav-border
+    padding-left: 50px
+    position: relative
+    &:hover
+      background-color: $offscreen-nav-item-hover
+      &:before
+        border-right: 1px solid $offscreen-nav-border-hover
+    &:before
+      @extend %empty-abs-generated-content
+      width: 40px
+      border-right: 1px solid $offscreen-nav-border
+      display: block
+      left: 0
+      top: 0
+      height: 44px
     +respond-to(wide-view)
       padding: 20px 4px
+      border: none
       &:hover
-        background-color: none
+        background: none
+        &:before
+          border: none
+      &:before
+        width: 0
+        border: none
   .homepage &, .homepage & > .nav__item
     @extend %smooth-text
     color: white
 
-
-.nav--primary--trigger,
-.nav--user--trigger
-  @extend %lp-font-stack
-  display: none
-  color: white
-  text-align: center
-  +font-size(34)
-  .responsive &
-    display: block
-    width: 40px
-    height: 35px
-    background-color: $nav-search-bck
-    position: absolute
-    top: 10px
-    cursor: pointer
-
-.nav--primary--trigger
-  left: 10px
-
-.nav--user--trigger
-  right: 10px
-
-#nav--primary--trigger + .m-hidden-menu,
-#nav--user--trigger + .m-hidden-menu
+.nav--user
   +respond-to(wide-view)
-    display: inline-block
-
-#nav--primary--trigger:checked + .m-hidden-menu
-  max-height: 400px
-#nav--user--trigger:checked + .m-hidden-menu
-  max-height: 400px
-
-
+    margin-right: 20px
 
 // ----------------------------------------------------------------------------
 // 
@@ -109,7 +89,7 @@
     @extend %active-background
     @extend %four-pixel-rounded
     &:hover
-      color: #fff
+      color: white
 
 // Place title is a wrapper to allow us to show very long place names on hover
 .place-title
@@ -148,11 +128,10 @@
   position: relative
   margin-left: 15px
   padding: 17px 8px 16px
-  .responsive &
-    margin-left: 0
+  .responsive .wv--nav--inline > &.nav__item
+    display: none
     +respond-to(wide-view)
-      margin-left: 15px
-      padding: 17px 8px 16px
+      display: inline-block
 
 .user-basket__items
   @extend %absolute-left
@@ -167,24 +146,15 @@
   font-weight: bold
   font-size: 10px
   .responsive &
-    +font-size(13)
-    position: static
-    background: none
-    color: white
-    box-shadow: none
-    &:before
-      content: '('
-    &:after
-      content: ')'
+    display: none
     +respond-to(wide-view)
       +box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.5))
+      display: inline-block
       font-size: 10px
       color: $basket-item-type
       background-color: $basket-item
       position: absolute
       left: 0
-      &:before, &:after
-        content: ''
 
 
 
@@ -194,6 +164,7 @@
   margin-top: 10px
   padding-right: 25px
   &:after
+    @extend %lp-font-stack
     font-size: 20px
     line-height: 29px
     right: 0
@@ -300,7 +271,7 @@ a.nav__item--breadcrumbs
   .responsive &
     padding: 14px 0 14px 10px
     margin-left: 0
-    border-bottom: 1px solid #d6dedf
+    border-bottom: 1px solid $responsive-footer-border
     +respond-to(wide-view)
       padding: 26px 0
       margin-left: 15px
@@ -339,6 +310,7 @@ a.nav__item--breadcrumbs
   +border-radius(16)
   @extend %left-icon
   @extend %left-icon--hidden-text
+  @extend %lp-font-stack
   color: $header-gray
   margin: 16px 0 17px
   width: 32px
@@ -397,32 +369,35 @@ a.nav__item--breadcrumbs
   @extend %smooth-text
   .responsive &
     float: none
-    border-bottom: 1px solid #d6dedf
+    border-bottom: 1px solid $responsive-footer-border
     +respond-to(wide-view)
       border: none
       padding: 0
 
 .col--footer
   float: left
-  margin: 0 35px 15px 0
+  margin: 0 30px 15px 0
   .responsive &
     margin: 0
     padding-left: 10px
     +respond-to(wide-view)
       float: left
-      margin: 0 35px 15px 0
+      margin: 0 30px 15px 0
 
 
 .col--footer--last
   float: right
   width: 240px
+  margin-right: 10px
   .responsive &
     width: auto
     padding: 0 10px
+    margin-right: 0
     +respond-to(wide-view)
       float: right
       width: 240px
       padding: 0
+      margin-right: 10px
   .ie7 &, .ie8 &
     width: 232px
 

@@ -45,7 +45,7 @@
   background:           linear-gradient($direction, $startColor, $endColor)
 
 
-@mixin background-gradient-with-stops($direction: top, $startColor: #3C3C3C, $stop2: #999999 100%, $stop3: false, $stop4: false, $stop5: false)
+@mixin background-gradient-with-stops($direction: top, $startColor: #3C3C3C, $stop2: #999999 100%, $stop3: false, $stop4: false, $stop5: false, $stop6: false, $stop7: false, $stop8: false, $stop9: false, $stop10: false, $stop11: false, $stop12: false)
   $params: $startColor 0%, $stop2
   @if $stop3 != false
     $params: $startColor 0%, $stop2, $stop3
@@ -53,6 +53,20 @@
       $params: $startColor 0%, $stop2, $stop3, $stop4
       @if $stop5 != false
         $params: $startColor 0%, $stop2, $stop3, $stop4, $stop5
+        @if $stop6 != false
+          $params: $startColor 0%, $stop2, $stop3, $stop4, $stop5, $stop6
+          @if $stop7 != false
+            $params: $startColor 0%, $stop2, $stop3, $stop4, $stop5, $stop6, $stop7
+            @if $stop8 != false
+              $params: $startColor 0%, $stop2, $stop3, $stop4, $stop5, $stop6, $stop7, $stop8
+              @if $stop9 != false
+                $params: $startColor 0%, $stop2, $stop3, $stop4, $stop5, $stop6, $stop7, $stop8, $stop9
+                @if $stop10 != false
+                  $params: $startColor 0%, $stop2, $stop3, $stop4, $stop5, $stop6, $stop7, $stop8, $stop9, $stop10
+                  @if $stop11 != false
+                    $params: $startColor 0%, $stop2, $stop3, $stop4, $stop5, $stop6, $stop7, $stop8, $stop9, $stop10, $stop11
+                    @if $stop12 != false
+                      $params: $startColor 0%, $stop2, $stop3, $stop4, $stop5, $stop6, $stop7, $stop8, $stop9, $stop10, $stop11, $stop12
   background:   -webkit-linear-gradient($direction, $params)
   background:      -moz-linear-gradient($direction, $params)
   background:       -ms-linear-gradient($direction, $params)
