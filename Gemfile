@@ -15,7 +15,7 @@ gem 'airbrake'
 
 group :assets do 
   gem 'avocado', git: 'git@github.com:lonelyplanet/avocado.git'
-  gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git', branch: 'if_offscreen_nav'
+  gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git'
 end
 
 group :test do 

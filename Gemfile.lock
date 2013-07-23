@@ -6,8 +6,7 @@ GIT
 
 GIT
   remote: git@github.com:lonelyplanet/beaker.git
-  revision: 1e14c68cded1efd65bffc1b8dc46086b9778fa2b
-  branch: if_offscreen_nav
+  revision: c429cab39bdbe503d388319a03a7a012efe4e7b8
   specs:
     beaker (0.1.0)
 
