@@ -29,6 +29,9 @@ define ['jquery','lib/utils/css_helper'], ($, CssHelper) ->
  
   class LodgingMap
 
+    markerDelay = 0
+    markerDelayReset = false
+
     constructor: (@args={})->
       @prepare()
       @markerImageFor('sight', 'small')
@@ -48,20 +51,43 @@ define ['jquery','lib/utils/css_helper'], ($, CssHelper) ->
 
       target = $(@args.target).get()[0]
       @map = new google.maps.Map(target, opts)
-      pinkParksStyles = [{"featureType": "water", "elementType": "geometry", "stylers": [{ "color": "#cbdae7" } ] },{"featureType": "road.arterial", "elementType": "geometry.fill", "stylers": [{ "color": "#ffffff" } ] },{"featureType": "road.arterial", "elementType": "geometry.stroke", "stylers": [{ "visibility": "off" } ] },{"featureType": "road", "elementType": "labels.text.stroke", "stylers": [{ "color": "#ffffff" } ] },{"featureType": "poi.park", "elementType": "geometry.fill", "stylers": [{ "color": "#c8e6aa" } ] },{"featureType": "landscape.man_made", "elementType": "geometry.fill", "stylers": [{ "color": "#eff1f3" } ] },{"featureType": "road.local", "elementType": "geometry.stroke", "stylers": [{ "visibility": "off" } ] },{"featureType": "road.local", "elementType": "labels", "stylers": [{ "visibility": "off" } ] },{"featureType": "poi.school", "elementType": "geometry", "stylers": [{ "color": "#dfdad3" } ] },{"featureType": "poi.medical", "elementType": "geometry", "stylers": [{ "color": "#fa5e5b" }, { "saturation": -44 }, { "lightness": 25 } ] },{"featureType": "road.highway", "elementType": "geometry.fill", "stylers": [{ "color": "#16c98d" } ] },{"featureType": "road.highway", "elementType": "geometry.stroke", "stylers": [{ "visibility": "off" } ] } ]
+      pinkParksStyles = [{"featureType": "water","elementType": "geometry","stylers": [{ "color": "#cbdae7" }]},{"featureType": "road.arterial","elementType": "geometry.fill","stylers": [{ "color": "#ffffff" }]},{"featureType": "road.arterial","elementType": "geometry.stroke","stylers": [{ "visibility": "off" }]},{"featureType": "road","elementType": "labels.text.stroke","stylers": [{ "color": "#ffffff" }]},{"featureType": "poi.park","elementType": "geometry.fill","stylers": [{ "color": "#c8e6aa" }]},{"featureType": "landscape.man_made","elementType": "geometry.fill","stylers": [{ "color": "#eff1f3" }]},{"featureType": "road.local","elementType": "geometry.stroke","stylers": [{ "visibility": "off" }]},{"featureType": "road.local","elementType": "labels","stylers": [{ "visibility": "off" }]},{"featureType": "poi.school","elementType": "geometry","stylers": [{ "color": "#dfdad3" }]},{"featureType": "poi.medical","elementType": "geometry","stylers": [{ "color": "#fa5e5b" },{ "saturation": -44 },{ "lightness": 25 }]},{"featureType": "road.highway","elementType": "geometry.fill","stylers": [{ "color": "#16c98d" }]},{"featureType": "road.highway","elementType": "geometry.stroke","stylers": [{ "visibility": "off" }]}]
       @map.setOptions({styles: pinkParksStyles})
 
-    setLodgingMarker: ->
+    setLodgingMarker: () ->
       opts =
         position: new google.maps.LatLng(@args.latitude, @args.longitude)
         map: @map
         title: @args.title
         optimized: @args.optimized
-        icon: @markerImageFor('hotel', 'large')
+      
+      unless @args.lodgingLocation
+        opts.icon = @markerImageFor('hotel', 'large')
+        opts.animation = google.maps.Animation.DROP
+      else
+        opts.icon = @markerImageFor('location-marker', 'dot')
+
       marker = new google.maps.Marker(opts)
+
+      if @args.lodgingLocation
+        ib = new InfoBox
+          alignBottom: true
+          boxStyle:
+            maxWidth: 350
+            textOverflow: "ellipsis"
+            whiteSpace: "nowrap"
+            width: "auto"
+          closeBoxURL: ''
+          content: '<div class="infobox--location"><p class="section-title info-list--icon info-list--location">Location</p><p class="copy--body">'+@args.lodgingLocation+'<span class="infobox__interesting-places is-hidden"> &middot; <label class="infobox__link--interesting-places js-resizer" for="js-resize">interesting places nearby</label></span></p></div>'
+          disableAutoPan: true
+          maxWidth: 350
+          zIndex: 50
+        
+        ib.open(@map, marker)
 
     drawNearbyPOI: (poi) ->
       opts =
+        animation: google.maps.Animation.DROP
         position: new google.maps.LatLng(poi.geometry.coordinates[1], poi.geometry.coordinates[0])
         map: @map
         title: poi.properties.title
@@ -111,9 +137,21 @@ define ['jquery','lib/utils/css_helper'], ($, CssHelper) ->
     initMapPOIs: (data)->
       @markers ?= {}
       for poi in @allPOIs(data)
+        # Need this `do` so that `poi` is scoped within the for loop.
+        do (poi) =>
+          @addPOI(poi)
+
+    addPOI: (poi) ->
+      setTimeout =>
         marker = @drawNearbyPOI(poi)
         @addClickListener(marker)
         @markers[poi.properties.id] = marker
+      , markerDelay
+      clearTimeout(markerDelayReset) if markerDelayReset
+      markerDelayReset = setTimeout ->
+        markerDelay = 0
+      , 150
+      markerDelay += 100
 
     allPOIs: (data)->
       _.flatten(_.values(data))
