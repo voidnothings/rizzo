@@ -38,20 +38,21 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
 
     @initMap: =>
       require ['maps_infobox'], =>
-        args = lp.lodging.map
-        args.listener = @
-        $.extend args, @config
-        @lodgingMap = new LodgingMap(args)
+        if lp.lodging
+          args = lp.lodging.map
+          args.listener = @
+          $.extend args, @config
+          @lodgingMap = new LodgingMap(args)
 
-        unless lp.lodging.map.genericCoordinates
-          @lodgingMap.setLodgingMarker()
-          @getNearbyPOIs((data) =>
-            pois = @parsePOIData(@_sanitizeData(data))
-            $('#js-nearby-pois, .infobox__interesting-places').removeClass('is-hidden')
-            @lodgingMap.initMapPOIs(pois)
-            @initNearbyThingsToDo(pois)
-          )
-        $(@config.target).removeClass('is-loading')
+          unless lp.lodging.map.genericCoordinates
+            @lodgingMap.setLodgingMarker()
+            @getNearbyPOIs((data) =>
+              pois = @parsePOIData(@_sanitizeData(data))
+              $('#js-nearby-pois, .infobox__interesting-places').removeClass('is-hidden')
+              @lodgingMap.initMapPOIs(pois)
+              @initNearbyThingsToDo(pois)
+            )
+          $(@config.target).removeClass('is-loading')
 
     @getNearbyPOIs: (callback) ->
       if lp.lodging.map.nearby_api_endpoint
