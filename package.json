@@ -1,0 +1,16 @@
+{
+  "name": "beaker",
+  "version": "0.2.0",
+  "private": true,
+  "dependencies": {
+    "bower": "latest",
+    "sass": "latest"
+  },
+  "devDependencies": {
+    "grunt": "0.4.1",
+    "grunt-shell": "latest",
+    "grunt-contrib-connect": "0.3.0",
+    "grunt-grunticon": "latest",
+    "grunt-svgmin": "~0.2.0"
+  }
+}
