@@ -22,7 +22,7 @@ $responsive-nav-width: 280px
     right: -$responsive-nav-width
     width: $responsive-nav-width
     height: 100%
-    background: #1C3043
+    background: $offscreen-nav-background
     z-index: 1
     +respond-to(wide-view)
       position: static
@@ -32,7 +32,7 @@ $responsive-nav-width: 280px
       height: 55px
 
 // The button to activate the global nav
-.nav--primary--trigger
+.nav--primary__trigger
   display: none
   .responsive &
     @extend %transition--nav
@@ -60,21 +60,21 @@ $responsive-nav-width: 280px
 // On click..
 
 // Move the button
-#nav--primary--trigger:checked + .nav--primary--trigger
+#nav--primary__trigger:checked + .nav--primary__trigger
   right: 10px + $responsive-nav-width
 
 // Move the nav onto the screen
-#nav--primary--trigger:checked ~ .m-hidden-menu
+#nav--primary__trigger:checked ~ .m-hidden-menu
   right: 0
 
 // Move our main content to the left so it looks like the nav is pushing it off screen
-#nav--primary--trigger:checked ~ .row--content
+#nav--primary__trigger:checked ~ .row--content
   left: -$responsive-nav-width
 
 // Move the logo (it sits outside our main content area)
-#nav--primary--trigger:checked ~ .media--lp-logo
+#nav--primary__trigger:checked ~ .media--lp-logo
   left: -$responsive-nav-width
 
 // Move the footer (it sits outside our main content area)
-#nav--primary--trigger:checked ~ .wrap--footer
+#nav--primary__trigger:checked ~ .wrap--footer
   left: -$responsive-nav-width

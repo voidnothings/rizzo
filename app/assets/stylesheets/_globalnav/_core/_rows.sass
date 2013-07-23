@@ -208,12 +208,12 @@ body
 // ----------------------------------------------------------------------------
 
 .row__inner--footer
-  border-top: 1px solid #d6dedf
+  border-top: 1px solid $responsive-footer-border
   .responsive &
     border: none
     padding: 10px
     +respond-to(wide-view)
-      border-top: 1px solid #d6dedf
+      border-top: 1px solid $responsive-footer-border
       padding: 0
 
 // ----------------------------------------------------------------------------
@@ -251,7 +251,7 @@ body
       border-top: none
       padding: 0
       +respond-to(wide-view)
-        border-top: 1px solid #d6dedf
+        border-top: 1px solid $responsive-footer-border
         padding: 0 10px
 
 .row--footer--about__logo

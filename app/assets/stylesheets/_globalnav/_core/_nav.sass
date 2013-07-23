@@ -35,17 +35,17 @@
   padding: 20px 4px
   .responsive &
     padding: 15px 10px
-    border-bottom: 1px solid #23394B
+    border-bottom: 1px solid $offscreen-nav-border
     padding-left: 50px
     position: relative
     &:hover
-      background-color: #2670AA
+      background-color: $offscreen-nav-item-hover
       &:before
-        border-right: 1px solid #508DBB
+        border-right: 1px solid $offscreen-nav-border-hover
     &:before
       @extend %empty-abs-generated-content
       width: 40px
-      border-right: 1px solid #23394B
+      border-right: 1px solid $offscreen-nav-border
       display: block
       left: 0
       top: 0
@@ -89,7 +89,7 @@
     @extend %active-background
     @extend %four-pixel-rounded
     &:hover
-      color: #fff
+      color: white
 
 // Place title is a wrapper to allow us to show very long place names on hover
 .place-title
@@ -271,7 +271,7 @@ a.nav__item--breadcrumbs
   .responsive &
     padding: 14px 0 14px 10px
     margin-left: 0
-    border-bottom: 1px solid #d6dedf
+    border-bottom: 1px solid $responsive-footer-border
     +respond-to(wide-view)
       padding: 26px 0
       margin-left: 15px
@@ -368,7 +368,7 @@ a.nav__item--breadcrumbs
   @extend %smooth-text
   .responsive &
     float: none
-    border-bottom: 1px solid #d6dedf
+    border-bottom: 1px solid $responsive-footer-border
     +respond-to(wide-view)
       border: none
       padding: 0
