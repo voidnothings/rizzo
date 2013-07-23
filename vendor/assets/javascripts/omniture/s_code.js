@@ -111,7 +111,8 @@
     }
     }
 
-    if(s.channel.toLowerCase() == "thorntree"){
+    // 2013-06-23 Fixed `toLowercase() on undefined` bug when channel isn't defined.
+    if(s.channel && s.channel.toLowerCase() == "thorntree"){
       // Populate content type variables
       if(!s.prop7){
       s.prop7 = s.prop1;
