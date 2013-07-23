@@ -3,3 +3,5 @@
 pkg/*
 .sass-cache/*
 .DS_Store
+.grunt
+node_modules/
