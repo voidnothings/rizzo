@@ -5,7 +5,7 @@
 # }
 # 
 
-define ['jquerymin'], ($)->
+define ['jsmin'], ($)->
  
   class Tabs
     config = {
@@ -20,7 +20,6 @@ define ['jquerymin'], ($)->
       config.tabsContainer = config.tabs.getElementsByClassName('js-tabs-content')[0]
       config.tabLabels = config.tabs.getElementsByClassName('js-tab-trigger')
       config.animationDelay = args.delay
-
       config.tabs.on 'click', (e) ->
         e.preventDefault()
         tabLabel = e.target

@@ -1,5 +1,5 @@
 /*globals Node:true, NodeList:true*/
-$ = (function (document, window, $) {
+$$ = (function (document, window, $$) {
   // Node covers all elements, but also the document objects
   var node = Node.prototype,
       nodeList = NodeList.prototype,
@@ -49,7 +49,7 @@ $ = (function (document, window, $) {
     return this;
   };
 
-  $ = function (s) {
+  $$ = function (s) {
     // querySelectorAll requires a string with a length
     // otherwise it throws an exception
     var r = document.querySelectorAll(s || '☺'),
@@ -60,10 +60,14 @@ $ = (function (document, window, $) {
     return length == 1 ? r[0] : r;
   };
 
-  // $.on and $.trigger allow for pub/sub type global
+  // $$.on and $$.trigger allow for pub/sub type global
   // custom events.
-  $.on = node.on.bind(dummy);
-  $[trigger] = node[trigger].bind(dummy);
+  $$.on = node.on.bind(dummy);
+  $$[trigger] = node[trigger].bind(dummy);
 
-  return $;
+  if ( typeof define === "function") {
+    define( "jsmin", [], function () { return $$; } );
+  }
+
+  return $$;
 })(document, this);
