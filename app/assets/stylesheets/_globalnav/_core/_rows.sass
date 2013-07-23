@@ -195,6 +195,9 @@ body
 .row--content
   padding-top: 25px
   margin-bottom: 40px
+  // Ensure that nav dropdowns sit above any content
+  position: relative
+  z-index: 1
   .responsive &
     @extend %transition--nav
     position: relative
