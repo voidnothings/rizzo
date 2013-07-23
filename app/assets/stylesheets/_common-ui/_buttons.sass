@@ -14,6 +14,58 @@
 // Buttons
 // -----------------------------------------------------------------------------
 
+// start of button code ripped from waldorf
+
+.btn
+  +border-radius(4)
+  @extend %large-type
+  @extend %base-button
+  @extend %smooth-text
+  @extend %freight-book
+  @extend %ie8-font-color
+  background: white
+  color: $body
+  cursor: pointer
+  font-weight: 700
+  padding: 10px 12px
+  &.disabled
+    background-color: $subdued
+    &:hover
+      background-color: $subdued  
+
+.full-width
+  width: 100%
+
+
+.btn--load
+  background-color: $body
+  color: white
+  &:hover
+    background: $body-highlight
+  &.disabled
+    color: $body
+    
+.btn--action
+  background-color: $green
+  color: white
+  &:hover
+    background-color: $green-highlight
+
+.btn--submit
+  @extend %lp-font-stack
+  background-color: $yella 
+  color: $body
+  &:hover
+    background-color: $yella-highlight
+
+.btn--function
+  background-color: $lpblue
+  color: white
+  &:hover
+    background-color: $lpblue-highlight
+
+// start of button code ripped from waldorf
+
 .btn--bookable
   @extend %base-button
   @extend %larger-type
