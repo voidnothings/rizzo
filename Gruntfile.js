@@ -91,8 +91,6 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.loadTasks('grunt-tasks');
-
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
