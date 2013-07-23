@@ -32,6 +32,11 @@ module.exports = function(grunt) {
         }
       }
     },
+    open: {
+      jasmine: {
+        path: "http://127.0.0.1:8888/_SpecRunner.html"
+      }
+    },
     jasmine: {
       avocado: {
         src: ['./public/assets/javascripts/lib/**/*.js'],
@@ -45,11 +50,14 @@ module.exports = function(grunt) {
               baseUrl: './',
               paths: {
                 jquery: "./vendor/assets/javascripts/jquery/jquery-1.7.2.min",
+                jsmin: "./vendor/assets/javascripts/jsmin",
+                polyfills: "./vendor/assets/javascripts/polyfills",
                 handlebars: './vendor/assets/javascripts/handlebars',
                 lib: "./public/assets/javascripts/lib",
                 underscore: './vendor/assets/javascripts/underscore',
                 jplugs: "./vendor/assets/javascripts/jquery/plugins",
                 s_code: "./vendor/assets/javascripts/omniture/s_code",
+                maps_infobox: "./vendor/assets/javascripts/google-maps-infobox",
                 gpt: "http://www.googletagservices.com/tag/js/gpt"
               }
             }
@@ -91,10 +99,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-plato');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-open');
 
   // Tasks
   grunt.registerTask('default', ['shell:clean', 'coffee', 'connect', 'jasmine']);
-  grunt.registerTask('dev', ['shell:clean', 'coffee', 'connect', 'jasmine', 'echoJasmineUrl', 'watch']);
+  grunt.registerTask('dev', ['connect', 'open:jasmine', 'jasmine', 'watch']);
+  grunt.registerTask('wip', ['jasmine:avocado:build', 'connect:server:keepalive']);
   grunt.registerTask('report', ['shell:clean', 'coffee', 'plato', 'shell:openPlato']);
 
 };

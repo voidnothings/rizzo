@@ -18,6 +18,7 @@
     "grunt-contrib-watch": "0.4.4",
     "grunt-istanbul-coverage": "latest",
     "grunt-template-jasmine-requirejs": "latest",
-    "grunt-plato": "latest"
+    "grunt-plato": "latest",
+    "grunt-open": "~0.2.1"
   }
 }

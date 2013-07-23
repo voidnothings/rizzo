@@ -19,7 +19,7 @@ require ['public/assets/javascripts/lib/mobile/tabs_mobile.js'], (Tabs) ->
 
       it 'opens tab 2', ->
         runs ->
-          document.getElementById('label2').click()
+          document.getElementById('label2').trigger('click')
         waits(waitTime)
         runs ->
           expect($('#myTestTabs').find('#label1')).not.toHaveClass('is-active')
@@ -29,7 +29,7 @@ require ['public/assets/javascripts/lib/mobile/tabs_mobile.js'], (Tabs) ->
  
       it 'switches to tab 1 when it is already active', ->
         runs ->
-          document.getElementById('label1').click()
+          document.getElementById('label1').trigger('click')
         waits(waitTime)
         runs ->
           expect($('#myTestTabs').find('#label1')).toHaveClass('is-active')
