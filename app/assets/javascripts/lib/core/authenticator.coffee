@@ -56,7 +56,7 @@ define ['jquery'], ($)->
         {title: 'Sign-Out', uri: "#{@options.signOutUrl}", style:"nav-user-options__item--signout js-user-signout" }
       ]
       optionElements =  ("<a class='nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
-      userMenu = "<div class='nav__submenu nav__submenu--user'><div class='nav--stacked nav__submenu__content nav__submenu__content--user nav-user-options js-user-options'><div class='nav__submenu__item nav__submenu__title'>#{@lpUserName}</div>#{optionElements}</div></div>"
+      userMenu = "<span class='wv--hidden nav--offscreen__title'>#{@lpUserName}</span><div class='nav__submenu nav__submenu--user'><div class='nav--stacked nav__submenu__content nav__submenu__content--user nav-user-options js-user-options'><div class='nav__submenu__item nav__submenu__title'>#{@lpUserName}</div>#{optionElements}</div></div>"
     
     signInUrl:->
       "https://secure.lonelyplanet.com/sign-in/login?service=#{escape(window.location)}"
@@ -70,26 +70,7 @@ define ['jquery'], ($)->
       @userState = @userSignedIn()
       if(@userState is not prevState)
         @signonWidget()
-#      @showMessageCount()
 
-#   commented out just in case this functionality is to be resurrected
-
-#    showMessageCount: ->
-#      @updateMessageCount()
-
-#    updateMessageCount: ->
-#      if (@lpUserName and (@lpUserName isnt '') and (@lpUserName isnt 'undefined'))
-#        url = "#{@options.membersUrl}/#{@lpUserName}/messages/count?callback=?"
-#        $.getJSON(url, (data)=>@messageCountCallBack(data))
-
-#    messageCountCallBack: (data={unread_count:0})->
-#      @setLocalData('lp-unread-msg', data.unread_count)
-#      @setLocalData('lp-sent-msg', data.sent_count)
-#      @setLocalData('lp-received-msg', data.received_count)
-#      if data.unread_count > 0
-#        user_msg_el = "<span class='nav-user-options__item__float js-user-msg-unread'>#{data.unread_count}</span>"
-#        $('a.js-user-msg').append(user_msg_el)
-    
     bindEvents: ->
       $('#unread').click(()-> e.preventDefault(); window.location = "#{options.membersUrl}/#{@lpUserName}/messages")
 
