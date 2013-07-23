@@ -2,10 +2,11 @@
 // Tour Itinerary
 // -----------------------------------------------------------------------------
 
-.tour-itinerary--title
-  font-weight: bold
-.tour-itinerary .copy--body
-  margin: 20px 0
+.tour-itinerary
+  .tour-itinerary__title
+    font-weight: bold
+  .copy--body
+    margin: 20px 0
 
 // -----------------------------------------------------------------------------
 // Booking Panel (normally as an aside)
@@ -16,16 +17,7 @@
   padding: 20px
   position: relative
 
-  .card__tag__inner--price
-    padding-top: 10px
-  .card__tag__price--curr
-    font-size: 18px
-    word-spacing: -5px
-  .card__tag__price--price
-    font-size: 30px
-    margin-bottom: 10px
-
-.booking-panel--logo
+.booking-panel__logo
   margin-bottom: 20px
 
 // -----------------------------------------------------------------------------
@@ -36,7 +28,7 @@
   background: $secondary-content-bg
   padding: 20px
   .section-glossary .section-title
-    font-size: 14px
+    @extend %regular-type-size
     margin: 20px 0 5px
 
 // -----------------------------------------------------------------------------
@@ -45,7 +37,7 @@
 
 .info-list
   .section-title
-    font-size: 15px
+    @extend %larger-type
     font-weight: bold
     margin-bottom: 10px
 
@@ -53,54 +45,25 @@
     margin-bottom: 20px
     margin-left: 27px
 
-.info-list--icon
-  @extend %left-icon-text
-
-  &:before
-    font-size: 2em
-    font-weight: normal
-    margin-right: 0.2em
-    line-height: 20px
-  &.info-list--info:before
-    font-weight: bold
-    line-height: 0.9em
-    margin-left: 0.1em
-  &.info-list--cross, &.info-list--info, &.info-list--tick
+  .icon-list--icon
     &:before
-      font-size: 18px
-      margin-right: 0.4em
-  &.info-list--cross, &.info-list--tick
-    &:before
-      margin-left: 0.2em
-      margin-right: 0.5em
-
-.info-list--clock
-  @extend %icon--clock-before
-
-.info-list--cross
-  @extend %cross-icon-before
-
-.info-list--departs-from
-  @extend %icon--arrow-right-before
-
-.info-list--duration
-  @extend %tour-duration-before
-
-.info-list--info
-  &:before
-    content: "@"
-
-.info-list--location
-  @extend %local-marker-before
-
-.info-list--returns-to
-  @extend %icon--arrow-left-before
-
-.info-list--tick
-  @extend %tick-icon-before
-
-.info-list--underground
-  @extend %icon--underground-before
+      @extend %huge-type
+      color: $lpblue
+      font-weight: normal
+      margin-right: 0.2em
+      line-height: 20px
+    &.icon-list--info:before
+      font-weight: bold
+      line-height: 0.9em
+      margin-left: 0.1em
+    &.icon-list--cross, &.icon-list--info, &.icon-list--tick
+      &:before
+        @extend %extra-large-type
+        margin-right: 0.4em
+    &.icon-list--cross, &.icon-list--tick
+      &:before
+        margin-left: 0.2em
+        margin-right: 0.5em
 
 
 // -----------------------------------------------------------------------------
@@ -120,7 +83,7 @@
     + .meta-info--item-subtitle
       margin-top: 14px
 
-.meta-info--column
+.meta-info__column
   float: left
   margin: 0 8px
   min-height: 60px
@@ -129,22 +92,18 @@
   &:first-child
     margin-left: 0
 
-.meta-info--item
-  float: left
-  width: 33.33%
-
-.meta-info--item-title
-  font-size: 11px
+.meta-info__item-title
+  @extend %extra-small-type
   font-weight: bold
   margin-bottom: 13px
   text-transform: uppercase
 
-.meta-info--item-subtitle
-  font-size: 11px
+.meta-info__item-subtitle
+  @extend %extra-small-type
   font-weight: normal
   margin-top: 10px
 
-.meta-info--item-content
+.meta-info__item-content
   font-size: 22px
   font-weight: bold
 
@@ -193,7 +152,7 @@
 .special-offer
   @extend %four-pixel-rounded
   background: $red
-  color: white
+  color: #fff
   display: inline-block
   font-size: 11px
   font-weight: bold
@@ -203,15 +162,14 @@
 // -----------------------------------------------------------------------------
 // Media gallery - named such so as to avoid clashing with the Hotels .gallery
 // -----------------------------------------------------------------------------
-%media-gallery-transition
-  +transition(all, 0.5, ease)
 .media-gallery
+  @extend %clearfix
   @extend %transition--base
   position: relative
   ~ .single-page__aside
     @extend %media-gallery-transition
     top: -316px
-  .media-gallery--container, .media-gallery__tab--content
+  .media-gallery__container, .media-gallery__tab--content
     @extend %clearfix
     @extend %media-gallery-transition
     height: 241px
@@ -225,7 +183,7 @@
 // are on the same line below (because IE7/8 don't understand :checked, they discard the entire rule)
 @mixin media-gallery-full
   ~ .media-gallery
-    .media-gallery--container, .media-gallery__tab--content
+    .media-gallery__container, .media-gallery__tab--content
       height: 422px
       width: 748px
     .slider__controls
@@ -239,7 +197,7 @@
       z-index: 1
     .infobox__interesting-places
       display: none
-    .media-gallery--resizer
+    .media-gallery__resizer
       @extend %contract-arrows-before
   ~ .single-page__aside
     top: 0
@@ -253,7 +211,7 @@
     +media-gallery-full()
     
 
-.media-gallery--resizer
+.media-gallery__resizer
   @extend %transition--base
   @extend %expand-arrows-before
   background: $gallery-tab-background
@@ -270,12 +228,12 @@
   &:hover
     @extend %opaque
   &:before
-    color: white
-    font-size: 40px
+    +font-size(40)
+    color: #fff
     line-height: 32px
     margin-left: 10px
 
-.media-gallery--container
+.media-gallery__container
   overflow: hidden
   position: relative
   &.is-loading, .is-loading
@@ -290,9 +248,6 @@
   height: 100%
   width: 100%
 
-.media-gallery
-  @extend %clearfix
-
 .media-gallery__tab--content
   @extend %media-gallery-transition
   @extend %invisible
@@ -306,12 +261,12 @@
     z-index: 1
 
 .media-gallery__tabs--tab
+  @extend %small-type
   +css-arrow-central(top, $width: 10px, $arrowOffset: 17px)
   background: $gallery-tab-background
   color: #fff
   display: block
   float: left
-  font-size: 12px
   height: 40px
   line-height: 30px
   padding: 0 10px
@@ -319,13 +274,13 @@
   text-transform: uppercase
   z-index: 2
   &:after
+    +font-size(32)
     display: none
-    font-size: 32px
     position: absolute
     top: -23px
   &:before
+    +font-size(28)
     display: inline-block
-    font-size: 28px
     letter-spacing: 2px
     position: relative
     top: 1px
@@ -352,7 +307,7 @@
   @extend %invisible
   @extend %media-gallery-transition
   +transform(rotateY(70deg) translateX(100px) translateZ(-250px))
-  background: white
+  background: #fff
   height: 380px
   padding: 6px 6px 6px 0
   position: absolute
@@ -391,7 +346,7 @@
   @extend %standard-shadow
   +box-shadow(0, 1, 1, 2, $new-header-grey-shadow)
   +css-arrow-central(bottom, $width: 10px, $arrowOffset: 17px)
-  background: white
+  background: #fff
   bottom: 20px
   left: -51%
   max-width: 350px
@@ -399,13 +354,13 @@
   position: relative
 
   &:after
+    +font-size(38)
     bottom: -22px
-    color: white
-    font-size: 38px
+    color: #fff
     position: absolute
 
   .section-title
-    font-size: 15px
+    @extend %larger-type
     font-weight: bold
     margin-bottom: 0
     &:before
@@ -418,7 +373,7 @@
     margin-bottom: 0
     margin-left: 18px
 
-.infobox__interesting-places--link
+.infobox__link--interesting-places
   color: $lpblue
   cursor: pointer
   font-style: italic
