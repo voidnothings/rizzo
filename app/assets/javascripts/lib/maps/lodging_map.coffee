@@ -78,7 +78,7 @@ define ['jquery','lib/utils/css_helper'], ($, CssHelper) ->
             whiteSpace: "nowrap"
             width: "auto"
           closeBoxURL: ''
-          content: '<div class="infobox--location"><p class="section-title info-list--icon info-list--location">Location</p><p class="copy--body">'+@args.lodgingLocation+'<span class="infobox__interesting-places is-hidden"> &middot; <label class="infobox__interesting-places--link js-resizer" for="js-resize">interesting places nearby</label></span></p></div>'
+          content: '<div class="infobox--location"><p class="section-title info-list--icon info-list--location">Location</p><p class="copy--body">'+@args.lodgingLocation+'<span class="infobox__interesting-places is-hidden"> &middot; <label class="infobox__link--interesting-places js-resizer" for="js-resize">interesting places nearby</label></span></p></div>'
           disableAutoPan: true
           maxWidth: 350
           zIndex: 50
