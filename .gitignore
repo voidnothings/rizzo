@@ -18,4 +18,5 @@ tmp
 .DS_Store
 log/*
 .rvmrc
+node_modules/
 .sass-cache/*
