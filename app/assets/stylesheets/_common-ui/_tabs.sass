@@ -1,110 +1,53 @@
-// Tabs
-// 
-// 
-// .tab__header             - Closed tab
-// .tab__header.is-active   - Open tab
-// 
-// Styleguide 1.10
-
-// -----------------------------------------------------------------------------
-// Tabs Component
-// 
-// Sample haml:
-// .tabs
-//   .tabs__header
-//     .tab__header.js-tab-trigger
-//     .tab__header.js-tab-trigger
-//     .tab__header.js-tab-trigger
-//   .tabs__content
-//     .tab__panel.js-tab-panel
-//     .tab__panel.js-tab-panel
-//     .tab__panel.js-tab-panel
-// -----------------------------------------------------------------------------
-.tabs
-  @extend %clearfix
-
-.tab__header
-  +border-radius(4)
-  +vertically-center(36)
-  @extend %inline-block
-  @extend %link-without-underline
-  @extend %standard-shadow
-  background: #fff
-  color: $body-copy
-  margin: 0 8px 10px 0
-  padding: 0 6px 0 8px
-  position: relative
+.tab__content
+  @extend %media-gallery-transition
+  @extend %invisible
+  +perspective(600)
+  position: absolute
+  left: 0
+  top: 0
+  z-index: -1
   &.is-active
-    @extend %active-background
-    font-weight: bold
+    @extend %opaque
+    z-index: 1
 
-.tabs__content
-  +multiple-transitions(height 0.3s ease-in-out, opacity 0.3s ease)
-  @extend %clearfix
-  @extend %standard-shadow
+.tab
+  @extend %small-type
+  +css-arrow-central(top, $width: 10px, $arrowOffset: 17px)
+  background: $gallery-tab-background
+  color: #fff
+  display: block
+  float: left
+  height: 40px
+  line-height: 30px
+  padding: 0 10px
   position: relative
-  margin-bottom: 10px
-  opacity: 1
-  clear: both
-  background-color: #fff
-
-
-.tab__panel
-  @extend %box-off-double
-  display: none
-  position: relative
-  &.is-active
-    display: block
-  .no-js &:target
-    display: block
-
-// -----------------------------------------------------------------------------
-// Dates and Filters tabs
-// -----------------------------------------------------------------------------
-
-%tab__header__icon
-  @extend %inline-block
-  @extend %left-icon
-  &:before
-    color: $soft-gray
-    line-height: 32px
-  .is-active &, &.is-active
-    &:before
-      color: $active--subdued
-
-%tabs-chevron-icon
-  @extend %chevron-down-after
-  @extend %right-icon
-  padding-right: 21px
+  text-transform: uppercase
+  z-index: 2
   &:after
-    line-height: 1
-    top: 5px
-    font-size: 20px
-    color: $soft-gray
-  .is-active &, &.is-active
-    @extend %chevron-up-after
-    &:after
-      color: $active--subdued
-
-.tab__header__start-date
-  @extend %tab__header__icon
-  @extend %date-icon-before
-  padding-left: 25px
+    +font-size(32)
+    display: none
+    position: absolute
+    top: -23px
   &:before
-    font-size: 32px
+    +font-size(28)
+    display: inline-block
+    letter-spacing: 2px
+    position: relative
+    top: 1px
+  &:hover, &.is-active
+    background: $red
+    text-decoration: none
+  &.is-active:after
+    color: $red
+    display: block
 
-.tab__header__end-date
-  @extend %tab__header__icon
-  @extend %tabs-chevron-icon
-  @extend %icon--arrow-right-before
-  padding-left: 20px
-  &:before
-    font-size: 28px
+.tab--photos
+  @extend %icon-gallery-before
 
-.tab__header__filters
-  @extend %tab__header__icon
-  @extend %tabs-chevron-icon
-  @extend %filter-icon-before
-  padding-left: 21px
+.tab--videos
+  @extend %icon-video-before
+
+.tab--map
+  @extend %local-marker-before
   &:before
-    font-size: 22px
+    letter-spacing: 0

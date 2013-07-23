@@ -27,9 +27,10 @@
 .details-panel
   background: $secondary-content-bg
   padding: 20px
-  .section-glossary .section-title
-    @extend %regular-type-size
-    margin: 20px 0 5px
+  .section-glossary
+    .section-title
+      @extend %regular-type-size
+      margin: 20px 0 5px
 
 // -----------------------------------------------------------------------------
 // Information List
@@ -130,6 +131,8 @@
 
 // -----------------------------------------------------------------------------
 // Tag list
+//  Not currently used, but kept as it may be required at some point.
+//  See: https://github.com/lonelyplanet/beaker/pull/55#pullrequestreviewcomment-5322910
 // -----------------------------------------------------------------------------
 
 .tag-list
@@ -169,7 +172,7 @@
   ~ .single-page__aside
     @extend %media-gallery-transition
     top: -316px
-  .media-gallery__container, .media-gallery__tab--content
+  .media-gallery__container, .tab__content
     @extend %clearfix
     @extend %media-gallery-transition
     height: 241px
@@ -183,7 +186,7 @@
 // are on the same line below (because IE7/8 don't understand :checked, they discard the entire rule)
 @mixin media-gallery-full
   ~ .media-gallery
-    .media-gallery__container, .media-gallery__tab--content
+    .media-gallery__container, .tab__content
       height: 422px
       width: 748px
     .slider__controls
@@ -247,60 +250,6 @@
 .media-gallery__map
   height: 100%
   width: 100%
-
-.media-gallery__tab--content
-  @extend %media-gallery-transition
-  @extend %invisible
-  +perspective(600)
-  position: absolute
-  left: 0
-  top: 0
-  z-index: -1
-  &.is-active
-    @extend %opaque
-    z-index: 1
-
-.media-gallery__tabs--tab
-  @extend %small-type
-  +css-arrow-central(top, $width: 10px, $arrowOffset: 17px)
-  background: $gallery-tab-background
-  color: #fff
-  display: block
-  float: left
-  height: 40px
-  line-height: 30px
-  padding: 0 10px
-  position: relative
-  text-transform: uppercase
-  z-index: 2
-  &:after
-    +font-size(32)
-    display: none
-    position: absolute
-    top: -23px
-  &:before
-    +font-size(28)
-    display: inline-block
-    letter-spacing: 2px
-    position: relative
-    top: 1px
-  &:hover, &.is-active
-    background: $red
-    text-decoration: none
-  &.is-active:after
-    color: $red
-    display: block
-
-.media-gallery__tabs--tab-photos
-  @extend %icon-gallery-before
-
-.media-gallery__tabs--tab-videos
-  @extend %icon-video-before
-
-.media-gallery__tabs--tab-map
-  @extend %local-marker-before
-  &:before
-    letter-spacing: 0
 
 .media-gallery__poi-list
   @extend %four-pixel-rounded
