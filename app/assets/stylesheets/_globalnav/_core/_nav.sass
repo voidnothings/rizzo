@@ -173,11 +173,15 @@
     margin-top: 0
     background-color: $offscreen-nav-user-background
     height: 50px
+    &:after
+      content: ''
     +respond-to(wide-view)
       content: "\e014"
       margin-top: 10px
       background: none
       height: auto
+      &:after
+        content: "\e014"
 
   &:after
     @extend %lp-font-stack
