@@ -1,0 +1,23 @@
+{
+  "name": "flamsteed",
+  "main": "lib/javascripts/flamsteed.js",
+  "ignore": [
+    "grunt-tasks",
+    "node_modules",
+    "public",
+    "spec",
+    ".bowerrc",
+    ".gitignore",
+    "Gruntfile.js",
+    "TODO"
+  ],
+  "homepage": "https://github.com/lonelyplanet/flamsteed",
+  "_release": "a29f855016",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "a29f8550167882631bbc61a510aed5843e6e0662"
+  },
+  "_source": "git://github.com/lonelyplanet/flamsteed.git",
+  "_target": "*"
+}
