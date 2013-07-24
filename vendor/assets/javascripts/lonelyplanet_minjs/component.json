@@ -1,13 +1,17 @@
 {
-  "name": "min.js",
-  "version": "0.0.3",
-  "author": "Remy Sharp",
+  "name": "lonelyplanet_minjs",
+  "version": "0.1.0",
+  "author": {
+    "name": "Remy Sharp"
+  },
   "description": "Super minimal selector and event library.",
   "homepage": "https://github.com/remy/min.js",
   "main": "./dist/$.js",
   "readme": "./README.md",
   "repository": {
     "type": "git",
-    "url": "git://github.com/remy/min.js.git"
-  }
+    "url": "git://github.com/lonelyplanet/min.js.git"
+  },
+  "gitHead": "6e929808cd25c6fa7e4c6ef1b58b4092aee0028f",
+  "_id": "min.js@0.0.3"
 }

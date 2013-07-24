@@ -1,7 +1,7 @@
 require.config({
   paths:{
     jquery: "vendor/assets/javascripts/jquery/jquery-1.7.2.min",
-    jsmin: "vendor/assets/javascripts/jsmin",
+    jsmin: "vendor/assets/javascripts/lonelyplanet_jsmin/dist/$.js",
     lib: 'public/assets/javascripts/lib',
     handlebars: 'vendor/assets/javascripts/handlebars',
     underscore: 'vendor/assets/javascripts/underscore',
