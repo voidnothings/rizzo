@@ -1,0 +1,6 @@
+define [], ->
+
+  class AutoComplete
+
+    constructor: ->
+    
