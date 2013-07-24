@@ -53,7 +53,7 @@ define ['jquery'], ($) ->
         @_previousSlide()
         return false
 
-      if @$legacy.length is 0
+      if @$legacy.length is 0 && !!window.addEventListener
         require ['pointer','touchwipe'], =>
           # Swiping navigation.
           @$el.touchwipe
