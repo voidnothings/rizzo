@@ -39,6 +39,8 @@ body
 
 .row--core
   @extend %helvetica-neue
+  .homepage &
+    @extend %lp-font-stack
 
 .row--text-centered
   text-align: center
@@ -193,12 +195,16 @@ body
 .row--content
   padding-top: 25px
   margin-bottom: 40px
+  // Ensure that nav dropdowns sit above any content
+  position: relative
+  z-index: 1
   .responsive &
     @extend %transition--nav
     position: relative
   .homepage &
     padding-top: 0
-    margin-top: -55px
+    +respond-to(wide-view)
+      margin-top: -55px
 
 
 // ----------------------------------------------------------------------------

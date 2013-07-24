@@ -21,6 +21,9 @@
     margin-left: 0
     +respond-to(wide-view)
       margin-left: 117px
+  .homepage &
+    +respond-to(wide-view)
+      margin-left: 157px
 
 %nav__item--look
   &, &:active
@@ -163,6 +166,18 @@
   @extend %chevron-down-after
   margin-top: 10px
   padding-right: 25px
+  // Can't extend this as usual, because it lies within a mq
+  .responsive &
+    padding-bottom: 10px
+    border-bottom: 1px solid #23394B
+    &:after
+      content: ''
+    +respond-to(wide-view)
+      padding-bottom: 0
+      border-bottom: none
+      &:after
+        content: "\e014"
+
   &:after
     @extend %lp-font-stack
     font-size: 20px
@@ -175,11 +190,22 @@
   border: 2px solid $user-border
   height: 30px
   width: 30px
+  .responsive &
+    border: none
+    margin: 3px 14px 0 5px
+    +respond-to(wide-view)
+      border: 2px solid $user-border
+      margin: 0
 
 .nav__submenu--user
   width: 165px
   right: -10px
   left: auto
+  .responsive &
+    display: none
+    +respond-to(wide-view)
+      &:hover
+        display: block
 
 .nav__submenu__content--user
   &:before
@@ -294,6 +320,8 @@ a.nav__item--breadcrumbs
     float: right
     +respond-to(wide-view)
       float: none
+    .base &
+      display: none
 
 .title--social
   @extend %regular-type-size
@@ -316,7 +344,7 @@ a.nav__item--breadcrumbs
   width: 32px
   height: 32px
   .responsive &
-    width: 26px
+    width: 24px
     margin: 19px 0 17px
     +respond-to(400)
       width: 32px

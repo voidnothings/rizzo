@@ -1,11 +1,13 @@
 .hero
   width: 100%
   height: 510px
-  background: 50% 50% url("#{image_path('france.jpg')}") no-repeat
-  background-size: cover
   position: relative
   text-align: center
   color: white
+  background: #2D5082
+  .enhanced &
+    background: 50% 50% url("#{image_path('france.jpg')}") no-repeat
+    background-size: cover
   +respond-to(medium-view)
     height: 640px
   +respond-to(wide-view)
@@ -40,8 +42,12 @@
   height: 260px
   text-align: center
   max-width: 500px
-  padding-top: 20%
+  padding-top: 45%
   margin: 0 auto
+  +respond-to(medium-view)
+    padding-top: 30%
+  +respond-to(wide-view)
+    padding-top: 20%
 
 .hero__logo
   margin-bottom: 50px
