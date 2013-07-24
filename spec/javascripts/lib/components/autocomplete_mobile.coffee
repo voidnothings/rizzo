@@ -2,95 +2,45 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
 
   describe 'AutoComplete', ->
 
+    SUCCESS =
+      results: [
+        {
+          title: "London"
+          uri: "/london"
+          type: "place"
+        }
+        {
+          title: "Paris"
+          uri: "/paris"
+          type: "place"
+        }
+      ]
+
     describe 'Object', ->
       it 'is defined', ->
         expect(AutoComplete).toBeDefined()
 
-    describe 'Initialising', ->
+    describe 'whether the search threshold has been reached', ->
       beforeEach ->
-        loadFixtures('section_toggle.html')
-        spyOn(SectionToggle.prototype, "init")
+        @myAutoComplete = new AutoComplete({selector: 'my_search'})
+        spyOn @myAutoComplete, "_searchFor"
 
-    #   it 'has default options', ->
-    #     window.SectionToggle = new SectionToggle()
-    #     expect(window.SectionToggle.config).toBeDefined()
+      it 'makes a request when enough characters have been entered', ->
+        minimumSearch = 'abc'
+        @myAutoComplete._change minimumSearch
+        expect(@myAutoComplete._searchFor).toHaveBeenCalledWith(minimumSearch)
 
-    #   it 'initialises when the parent element exists', ->
-    #     window.SectionToggle = new SectionToggle()
-    #     expect(window.SectionToggle.init).toHaveBeenCalled()
+      it "doesn't make a request when not enough characters have been entered", ->
+        @myAutoComplete._change 'ab'
+        expect(@myAutoComplete._searchFor).not.toHaveBeenCalled()
 
-    #   it 'does not initialise if the parent element does not exist', ->
-    #     window.SectionToggle = new SectionToggle({selector: '.my-missing-section'})
-    #     expect(window.SectionToggle.init).not.toHaveBeenCalled()
+    # TODO: test that the XHR calls _updateUI with the results 
 
+    describe 'when search results are returned', ->
+      beforeEach ->
+        @myAutoComplete = new AutoComplete({selector: 'my_search'})
+        @myAutoComplete._updateUI SUCCESS.results
 
-    # describe 'When the total height of the area is smaller than the max height', ->
-    #   beforeEach ->
-    #     loadFixtures('section_toggle.html')
-    #     spyOn(SectionToggle.prototype, "getFullHeight").andReturn(50)
-    #     spyOn(SectionToggle.prototype, "addHandler")
-    #     spyOn(SectionToggle.prototype, "setWrapperState")
-    #     window.SectionToggle = new SectionToggle({maxHeight: 100})
+      it 'updates the UI with results when search results are not empty'
 
-    #   it 'keeps the toggle area open and does not have a toggle button', ->
-    #     expect(window.SectionToggle.addHandler).not.toHaveBeenCalled()
-    #     expect(window.SectionToggle.setWrapperState).not.toHaveBeenCalled()
-    #     expect(window.SectionToggle.$el).toHaveClass('is-open')
-    #     expect(window.SectionToggle.$el.find('.btn--read-more').length).toBe(0)
-
-
-    # describe 'When the total height of the area is larger than the max height', ->
-    #   beforeEach ->
-    #     loadFixtures('section_toggle.html')
-    #     spyOn(SectionToggle.prototype, "getFullHeight").andReturn(150)
-
-    #   it 'appends a block-style toggle button by default', ->
-    #     window.SectionToggle = new SectionToggle({maxHeight: 100})
-    #     expect(window.SectionToggle.$el.find('.btn--read-more').length).toBe(1)
-    #     expect(window.SectionToggle.wrapper).toHaveClass('read-more-block')
-
-    #   it 'appends a shadow block-style toggle button when requested', ->
-    #     window.SectionToggle = new SectionToggle({maxHeight: 100, shadow: true})
-    #     expect(window.SectionToggle.$el.find('.read-more__handler').length).toBe(1)
-    #     expect(window.SectionToggle.$el.find('.btn--read-more').length).toBe(1)
-    #     expect(window.SectionToggle.wrapper).toHaveClass('read-more-block')
-
-    #   it 'appends an inline-style toggle button when requested', ->
-    #     window.SectionToggle = new SectionToggle({maxHeight: 100, style: 'inline'})
-    #     expect(window.SectionToggle.$el.find('.btn--read-more').length).toBe(1)
-    #     expect(window.SectionToggle.wrapper).toHaveClass('read-more-inline')
-
-    #   it 'closes toggle area by default', ->
-    #     window.SectionToggle = new SectionToggle({maxHeight: 100})
-    #     expect(window.SectionToggle.wrapper.css('maxHeight')).toEqual('100px')
-    #     expect(window.SectionToggle.$el).toHaveClass('is-closed')
-    #     expect(window.SectionToggle.handler.text()).toBe('Read More')
-
-
-    # describe 'When the Read More button is clicked while closed', ->
-    #   beforeEach ->
-    #     loadFixtures('section_toggle.html')
-    #     spyOn(SectionToggle.prototype, "getFullHeight").andReturn(150)
-    #     window.SectionToggle = new SectionToggle({maxHeight: 100})
-    #     window.SectionToggle.transitionEnabled = false # to execute toggleClasses immediately
-    #     window.SectionToggle.$el.find('.btn--read-more').click()
-
-    #   it 'opens the toggle area when the toggle button is clicked', ->
-    #     expect(window.SectionToggle.$el).toHaveClass('is-open')
-    #     expect(window.SectionToggle.wrapper.css('maxHeight')).toEqual('150px')
-    #     expect(window.SectionToggle.handler.text()).toBe('Read Less')
-
-
-    # describe 'When the Read More button is clicked while open', ->
-    #   beforeEach ->
-    #     loadFixtures('section_toggle.html')
-    #     spyOn(SectionToggle.prototype, "getFullHeight").andReturn(150)
-    #     window.SectionToggle = new SectionToggle({maxHeight: 100})
-    #     window.SectionToggle.transitionEnabled = false # to execute toggleClasses immediately
-    #     window.SectionToggle.$el.find('.btn--read-more').click()
-    #     window.SectionToggle.$el.find('.btn--read-more').click()
-
-    #   it 'opens the toggle area when the toggle button is clicked', ->
-    #     expect(window.SectionToggle.$el).toHaveClass('is-closed')
-    #     expect(window.SectionToggle.wrapper.css('maxHeight')).toEqual('100px')
-    #     expect(window.SectionToggle.handler.text()).toBe('Read More')
+      it 'displays nothing when search results are not empty'
