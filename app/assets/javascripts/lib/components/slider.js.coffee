@@ -53,17 +53,17 @@ define ['jquery'], ($) ->
         @_previousSlide()
         return false
 
-      if @$legacy.length is 0 && !!window.addEventListener
-        require ['pointer','touchwipe'], =>
-          # Swiping navigation.
-          @$el.touchwipe
-            wipeLeft: =>
-              @_nextSlide()
-            wipeRight: =>
-              @_previousSlide()
-            min_move_x: 100
-            min_move_y: 100
-            preventDefaultEvents: true
+      # if @$legacy.length is 0 && !!window.addEventListener
+      #   require ['pointer','touchwipe'], =>
+      #     # Swiping navigation.
+      #     @$el.touchwipe
+      #       wipeLeft: =>
+      #         @_nextSlide()
+      #       wipeRight: =>
+      #         @_previousSlide()
+      #       min_move_x: 100
+      #       min_move_y: 100
+      #       preventDefaultEvents: true
 
     # Private
 
