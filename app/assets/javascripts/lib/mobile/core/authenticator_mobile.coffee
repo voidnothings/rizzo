@@ -54,7 +54,7 @@ define ['jsmin'], ($)->
       @$el.classList.remove('is-signed-in')
       signedInElems = $('a.js-user-join, a.js-user-signin, div.js-user-box')
       for i in signedInElems
-        signedInElems[i].remove()
+        i.remove()
 
     userOptionsMenu: ->
       userOptions = [
@@ -74,7 +74,7 @@ define ['jsmin'], ($)->
       "#{@options.membersUrl}/#{@lpUserName}/mugshot/small"
 
     update: ->
-      @setLocalData("lp-uname", window.lpLoggedInUsername)
+      @setLocalData("lp-uname", "ianfeather")
       prevState = @userState
       @userState = @userSignedIn()
       if(@userState is not prevState)

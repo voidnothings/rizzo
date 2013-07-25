@@ -1,25 +1,15 @@
 {
   "name": "flamsteed",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "lib/javascripts/flamsteed.js",
   "ignore": [
-    "grunt-tasks",
-    "node_modules",
-    "public",
-    "spec",
-    ".bowerrc",
-    ".gitignore",
-    "Gruntfile.js",
-    "TODO"
-  ],
-  "gitHead": "a29f8550167882631bbc61a510aed5843e6e0662",
-  "readme": "# flamsteed.js\n\nflamsteed.js is a tiny, speedy, and modular client-side event logger.\nRUM is built-in.\n\n### Usage\n\n    // setup\n    var fs = new _FS({\n      url: \"http://f.example.com\"  \n    });\n    \n    // log something happened\n    fs.log({\n        d: \"data\"\n    });\n    \n    // log something happened and when it happened\n    fs.time({\n        d: \"event\"\n    });\n    \nflamsteed buffers logged events. The buffer is only flushed back to the\nserver (and logged events are sent) when:\n\n* buffer size greater or equal to `log_min_size` and `max_log_interval` has passed\n* buffer size greater or equal to `log_max_size`\n* `unload` event is triggered when the visitor navigates away from\n  the page\n\nWhen flamsteed first initializes, it generates a `uuid`. The `uuid` is\nsent back with every bunch of events, so it can be used to identify\nall the events associated with a particular page impression.\n\nEach payload flushed back to the server looks like this:\n\n    {\n      u: \"b57deb09-c6f5-4e0b-99a9-e0618d3b5711\",\n      t: 1354880453288,\n      d: [\n        { some: \"data\" },\n        { other: \"event\", t: 132 },\n        // snip\n      ]\n    }\n    \n### Options\n\n* `debug`: print to console events logged and flushed\n* `events`: array of events to log immediately\n* `log_max_interval`: polling interval\n* `log_min_size`: smallest number of unsent logged events to send\n* `log_max_size`: threshold of number of unsent logged events to trigger immediately sending\n* `strategy`: either `\"ajax\"` (send data as JSON via Ajax POST) or\n  `\"pixel\"` (send data serialized as URL params in GET to tracking pixel)\n* `url`: url of AJAX endpoint or tracking pixel\n\n### RUM (real user-monitoring)\n\nRUM and `fs.time` is only available in browsers that are `windows.performance.timing`-capable.\n\n#### Built-in timing\n\nIf the browser has\n[navigation timing capability](https://developer.mozilla.org/en-US/docs/Navigation_timing),\nflamsteed will automatically collect and send performance data from\ntwo sources:\n\n* `window.performance.timing`\n* `chrome.loadTimes` (if available) (TODO: blocked by https://code.google.com/p/chromium/issues/detail?id=160547)\n\nEmpty timings (values equal to 0) are not sent. There will be empty\ntimings, for example, if the visitor leaves before `onload` has fired.\n\nTo save space, timings are sent relative to `navigationStart`.\n\n#### Custom \"business\" timing\n\nThe point at which the page is usuable or ready might not line up exactly within any of the\nbuilt-in timings. For example, you might have a whole bunch of\ncomponents, widgets, or ads lazy-loaded after `domComplete`, but\nyou're specifically interested in one of them (e.g. timeline for\nFacebook).\n\nflamsteed lets you time custom events, relative to the \n`window.performance.timing.navigationStart` timestamp.\n\n    fs.time({\n        some: \"data\"\n    });\n\nNB: This is only as\naccurate and precise as the JS clock, which is not always accurate or\nprecise. So flamsteed will discard timings that are less than 0, and\nit's advisable that you treat custom timings as benchmarks not true,\naccurate values.\n\n### Goals\n\n* speedy\n* tiny\n* modular\n\n*Broad browser compatibility is not a current goal.*\n\n### Compatibility\n\n* FFX 7+\n* Chrome 7+\n* IE 9+\n* Opera 11.6+, Safari 5.x+ (No RUM)\n\n## Development\n\nFirst of all, make sure you follow [this guide](http://gruntjs.com/getting-started) and have the grunt cli installed, then:\n\n    $ npm install\n    \nOne-shot test run:\n\n    $ grunt\n\nContinuous testing:\n\n    $ grunt dev\n\n## Related projects\n\n* [boomerang](http://lognormal.github.com/boomerang/doc/)\n* [piwik](http://piwik.org/)\n* [snowplow](snowplowanalytics.com)\n",
-  "readmeFilename": "README.md",
-  "_id": "flamsteed@0.0.1",
-  "description": "flamsteed.js is a tiny, speedy, and modular client-side event logger. RUM is built-in.",
-  "commit": "a29f8550167882631bbc61a510aed5843e6e0662",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/lonelyplanet/flamsteed.git"
-  }
+  	"grunt-tasks",
+  	"node_modules",
+  	"public",
+  	"spec",
+  	".bowerrc",
+  	".gitignore",
+  	"Gruntfile.js",
+  	"TODO"
+  ]
 }
