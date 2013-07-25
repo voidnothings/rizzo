@@ -41,16 +41,16 @@ module.exports = function(grunt) {
       avocado: {
         src: ['./public/assets/javascripts/lib/**/*.js'],
         options: {
-          helpers: './spec/javascripts/helpers/**/*.js',
+          helpers: ['./spec/javascripts/helpers/**/*.js', './vendor/assets/javascripts/jquery/jquery-1.7.2.min'],
           host: 'http://localhost:8888/',
-          specs: './public/assets/javascripts/spec/**/*.js',
+          specs: './public/assets/javascripts/spec/mobile/*.js',
           template: require('grunt-template-jasmine-requirejs'),
           templateOptions: {
             requireConfig: {
               baseUrl: './',
               paths: {
                 jquery: "./vendor/assets/javascripts/jquery/jquery-1.7.2.min",
-                jsmin: "./vendor/assets/javascripts/jsmin",
+                jsmin: "./vendor/assets/javascripts/lonelyplanet_minjs/dist/$",
                 polyfills: "./vendor/assets/javascripts/polyfills",
                 handlebars: './vendor/assets/javascripts/handlebars',
                 lib: "./public/assets/javascripts/lib",
@@ -102,7 +102,7 @@ module.exports = function(grunt) {
   // Tasks
   grunt.registerTask('default', ['shell:clean', 'coffee', 'connect', 'jasmine']);
   grunt.registerTask('dev', ['connect', 'open:jasmine', 'jasmine', 'watch']);
-  grunt.registerTask('wip', ['jasmine:avocado:build', 'connect:server:keepalive']);
+  grunt.registerTask('wip', ['jasmine:avocado:build', 'open:jasmine', 'connect:server:keepalive']);
   grunt.registerTask('report', ['shell:clean', 'coffee', 'plato', 'shell:openPlato']);
 
 };
