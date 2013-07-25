@@ -11,4 +11,8 @@ define [], ->
     _searchFor:  ->
 
 
-    _updateUI: ->
+    _updateUI: (results) ->
+      @_createListItem menuItem for menuItem in results
+      
+
+    _createListItem: ->

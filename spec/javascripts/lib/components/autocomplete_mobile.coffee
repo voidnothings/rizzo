@@ -12,7 +12,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
         {
           title: "Paris"
           uri: "/paris"
-          type: "place"
+          type: "hotel"
         }
       ]
 
@@ -34,13 +34,18 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
         @myAutoComplete._change 'ab'
         expect(@myAutoComplete._searchFor).not.toHaveBeenCalled()
 
-    # TODO: test that the XHR calls _updateUI with the results 
+    # TODO: test that the XHR calls _updateUI with the results
 
-    describe 'when search results are returned', ->
+    describe 'updates the UI when search results are returned', ->
       beforeEach ->
         @myAutoComplete = new AutoComplete({selector: 'my_search'})
+        spyOn @myAutoComplete, '_createListItem'
+
+      it 'creates a list item for each result', ->
         @myAutoComplete._updateUI SUCCESS.results
+        # expect(@myAutoComplete._createListItem).toHaveBeenCalledWith(SUCCESS.results)
+        expect(@myAutoComplete._createListItem.callCount).toBe(2)
 
-      it 'updates the UI with results when search results are not empty'
-
-      it 'displays nothing when search results are not empty'
+      it 'displays nothing when search results are not empty', -> 
+        @myAutoComplete._updateUI []
+        expect(@myAutoComplete._createListItem.callCount).toBe(0)
