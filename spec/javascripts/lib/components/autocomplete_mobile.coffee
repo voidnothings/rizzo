@@ -16,6 +16,9 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
         }
       ]
 
+    SEARCH_TERM = 'London'
+    ANCHORTEXT = "<span>London</span>"
+
     describe 'Object', ->
       it 'is defined', ->
         expect(AutoComplete).toBeDefined()
@@ -36,16 +39,86 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
 
     # TODO: test that the XHR calls _updateUI with the results
 
-    describe 'updates the UI when search results are returned', ->
-      beforeEach ->
-        @myAutoComplete = new AutoComplete({selector: 'my_search'})
-        spyOn @myAutoComplete, '_createListItem'
+    describe 'updating the UI when search results are returned', ->
 
-      it 'creates a list item for each result', ->
-        @myAutoComplete._updateUI SUCCESS.results
-        # expect(@myAutoComplete._createListItem).toHaveBeenCalledWith(SUCCESS.results)
-        expect(@myAutoComplete._createListItem.callCount).toBe(2)
+      describe 'creating a list item for each result item', ->
+        beforeEach ->
+          @myAutoComplete = new AutoComplete({selector: 'my_search'})
+        
+        it 'should create a list item for each result', ->
+          spyOn @myAutoComplete, '_createListItem'
+          @myAutoComplete._updateUI SUCCESS.results
+          expect(@myAutoComplete._createListItem.callCount).toBe(2)
 
-      it 'displays nothing when search results are not empty', -> 
-        @myAutoComplete._updateUI []
-        expect(@myAutoComplete._createListItem.callCount).toBe(0)
+        it 'should create no list items when search results are empty', -> 
+          spyOn @myAutoComplete, '_createListItem'
+          @myAutoComplete._updateUI []
+          expect(@myAutoComplete._createListItem.callCount).toBe(0)
+
+        it 'should create a list item with an anchor as its only child', ->
+          spyOn(@myAutoComplete, "_createAnchor").andCallThrough()
+          listItem = @myAutoComplete._createListItem SEARCH_TERM, SUCCESS.results[0]
+
+          expect(@myAutoComplete._createAnchor).toHaveBeenCalledWith(SEARCH_TERM, SUCCESS.results[0])
+          expect(@myAutoComplete._createAnchor.callCount).toBe(1)
+          expect(listItem.tagName).toBe('LI')
+          expect(listItem.childNodes.length).toBe(1)
+
+      describe 'creating an anchor item', ->
+        beforeEach ->
+          @myAutoComplete = new AutoComplete({selector: 'my_search'})
+
+        it 'should create an anchor item', ->
+          spyOn(@myAutoComplete, "_createAnchorText").andCallThrough()
+          @myAutoComplete._createAnchor SEARCH_TERM, SUCCESS.results[0]
+
+          expect(@myAutoComplete._createAnchorText).toHaveBeenCalledWith(SEARCH_TERM, SUCCESS.results[0].title)
+
+        it 'should create an anchor item with the item details', ->
+          listItem = @myAutoComplete._createAnchor SEARCH_TERM, SUCCESS.results[0]
+
+          expect(listItem.tagName).toBe('A')
+          expect(listItem.getAttribute('href')).toEqual (SUCCESS.results[0].uri)
+          expect(listItem.getAttribute('class')).toBe("item__result--#{SUCCESS.results[0].type}")
+          expect(listItem.childNodes.length).toBe(1)
+          expect(listItem.textContent).toBe(SUCCESS.results[0].title)
+
+      describe 'highlighting the search term', ->
+        beforeEach ->
+          @myAutoComplete = new AutoComplete({selector: 'my_search'})
+
+        it 'should highlight the search text at the start of a title', ->
+          title = @myAutoComplete._createAnchorText 'London', 'London Central'
+
+          expect(title.childNodes.length).toBe(2)
+          expect(title.firstChild.tagName).toBe('SPAN')
+          expect(title.firstChild.textContent).toBe('London')
+          expect(title.lastChild.nodeType).toBe(3)
+          expect(title.lastChild.textContent).toBe(' Central')
+
+        it 'should highlight the search text at the end of a title', ->
+          title = @myAutoComplete._createAnchorText 'London', 'Central London'
+
+          expect(title.childNodes.length).toBe(2)
+          expect(title.firstChild.nodeType).toBe(3)
+          expect(title.firstChild.textContent).toBe('Central ')
+          expect(title.lastChild.tagName).toBe('SPAN')
+          expect(title.lastChild.textContent).toBe('London')
+
+        it 'should highlight the search text in the middle of a title', ->
+          title = @myAutoComplete._createAnchorText 'London', 'Central London, Somewhere'
+
+          expect(title.childNodes.length).toBe(3)
+          expect(title.childNodes[0].nodeType).toBe(3)
+          expect(title.childNodes[0].textContent).toBe('Central ')
+          expect(title.childNodes[1].tagName).toBe('SPAN')
+          expect(title.childNodes[1].textContent).toBe('London')
+          expect(title.childNodes[2].nodeType).toBe(3)
+          expect(title.childNodes[2].textContent).toBe(', Somewhere')
+
+        it 'should highlight the search text if it exactly matches a title', ->
+          title = @myAutoComplete._createAnchorText 'London', 'London'
+
+          expect(title.childNodes.length).toBe(1)
+          expect(title.childNodes[0].tagName).toBe('SPAN')
+          expect(title.childNodes[0].textContent).toBe('London')
