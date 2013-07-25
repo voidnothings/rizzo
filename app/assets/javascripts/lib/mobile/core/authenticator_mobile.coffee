@@ -74,7 +74,7 @@ define ['jsmin'], ($)->
       "#{@options.membersUrl}/#{@lpUserName}/mugshot/small"
 
     update: ->
-      @setLocalData("lp-uname", "ianfeather")
+      @setLocalData("lp-uname", window.lpLoggedInUsername)
       prevState = @userState
       @userState = @userSignedIn()
       if(@userState is not prevState)
