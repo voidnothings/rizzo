@@ -3,6 +3,10 @@ define [], ->
   class AutoComplete
 
     constructor: (args={}) ->
+      @el = document.getElementById(args.id)
+      @init() if @el
+
+    init: ->
 
     _change: (searchString) ->
       if searchString && searchString.length >= 3
@@ -12,7 +16,7 @@ define [], ->
     _searchFor:  ->
 
     _updateUI: (results) ->
-      @_createListItem item for item in results
+      items = @_createListItem item for item in results
 
     _createListItem: (searchString, item) ->
       anchor = @_createAnchor searchString, item

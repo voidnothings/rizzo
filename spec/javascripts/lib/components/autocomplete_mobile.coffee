@@ -17,11 +17,19 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
       ]
 
     SEARCH_TERM = 'London'
-    ANCHORTEXT = "<span>London</span>"
 
     describe 'Object', ->
       it 'is defined', ->
         expect(AutoComplete).toBeDefined()
+
+    describe 'Initialisation', ->
+      it 'the input element exists', ->
+        spyOn AutoComplete.prototype, "init"
+        loadFixtures('autocomplete_mobile.html')
+
+        @myAutoComplete = new AutoComplete({id: 'my_search'})
+        expect(AutoComplete.prototype.init).toHaveBeenCalled()
+        expect(@myAutoComplete.el).not.toBeNull()
 
     describe 'whether the search threshold has been reached', ->
       beforeEach ->
@@ -88,37 +96,37 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
           @myAutoComplete = new AutoComplete({selector: 'my_search'})
 
         it 'should highlight the search text at the start of a title', ->
-          title = @myAutoComplete._createAnchorText 'London', 'London Central'
+          title = @myAutoComplete._createAnchorText SEARCH_TERM, 'London Central'
 
           expect(title.childNodes.length).toBe(2)
           expect(title.firstChild.tagName).toBe('SPAN')
-          expect(title.firstChild.textContent).toBe('London')
+          expect(title.firstChild.textContent).toBe(SEARCH_TERM)
           expect(title.lastChild.nodeType).toBe(3)
           expect(title.lastChild.textContent).toBe(' Central')
 
         it 'should highlight the search text at the end of a title', ->
-          title = @myAutoComplete._createAnchorText 'London', 'Central London'
+          title = @myAutoComplete._createAnchorText SEARCH_TERM, 'Central London'
 
           expect(title.childNodes.length).toBe(2)
           expect(title.firstChild.nodeType).toBe(3)
           expect(title.firstChild.textContent).toBe('Central ')
           expect(title.lastChild.tagName).toBe('SPAN')
-          expect(title.lastChild.textContent).toBe('London')
+          expect(title.lastChild.textContent).toBe(SEARCH_TERM)
 
         it 'should highlight the search text in the middle of a title', ->
-          title = @myAutoComplete._createAnchorText 'London', 'Central London, Somewhere'
+          title = @myAutoComplete._createAnchorText SEARCH_TERM, 'Central London, Somewhere'
 
           expect(title.childNodes.length).toBe(3)
           expect(title.childNodes[0].nodeType).toBe(3)
           expect(title.childNodes[0].textContent).toBe('Central ')
           expect(title.childNodes[1].tagName).toBe('SPAN')
-          expect(title.childNodes[1].textContent).toBe('London')
+          expect(title.childNodes[1].textContent).toBe(SEARCH_TERM)
           expect(title.childNodes[2].nodeType).toBe(3)
           expect(title.childNodes[2].textContent).toBe(', Somewhere')
 
         it 'should highlight the search text if it exactly matches a title', ->
-          title = @myAutoComplete._createAnchorText 'London', 'London'
+          title = @myAutoComplete._createAnchorText SEARCH_TERM, SEARCH_TERM
 
           expect(title.childNodes.length).toBe(1)
           expect(title.childNodes[0].tagName).toBe('SPAN')
-          expect(title.childNodes[0].textContent).toBe('London')
+          expect(title.childNodes[0].textContent).toBe(SEARCH_TERM)
