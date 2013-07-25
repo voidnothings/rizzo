@@ -2,16 +2,20 @@ define ['jsmin'], ($)->
 
   class Authenticator
 
-    @version = '0.0.13'
+    @version = '0.0.1'
     
     constructor: () ->
       @options = @createUrls(@getDomain())
-      @userState = @userSignedIn()
-      @el = $('.js-user-nav')
-      @signonWidget()
+      @$el = $('.js-user-nav')
+      unless @$el.length is 0
+        @userState = @userSignedIn()
+        @signonWidget()
     
     getDomain: ->
       if window.location.hostname is "www.lpstaging.com" then "lpstaging.com" else "lonelyplanet.com"
+
+    getLocation: ->
+      window.location
 
     createUrls: (baseDomain)->
       forumPostsUrlTemplate: "//www.#{baseDomain}/thorntree/profile.jspa?username=[USERNAME]"
@@ -34,21 +38,20 @@ define ['jsmin'], ($)->
       @emptyUserNav()
       joinElement = "<a class='nav__item nav__item--primary js-user-join js-nav-item' href='#{@options.registerLink}'>Join</a>"
       signinElement = "<a class='nav__item nav__item--primary js-user-signin js-nav-item' href='#{@signInUrl()}'>Sign-In</a>"
-      @el.innerHTML += signinElement + joinElement
+      @$el.innerHTML += signinElement + joinElement
 
     showUserBox: ->
       @emptyUserNav()
-      @el.classList.add('is-signed-in')
+      @$el.classList.add('is-signed-in')
       userBoxElement = document.createElement('div')
-      userBoxElement.classList.add('nav__item', 'nav__item--user', 'user-box', 'js-user-box', 'nav__submenu__trigger')
+      userBoxElement.className = 'nav__item nav__item--user user-box js-user-box nav__submenu__trigger';
       userImage = "<img class='user-box__img js-box-handler' src='#{@userAvatar()}'/>"
       userMenu = @userOptionsMenu()
       userBoxElement.innerHTML = userImage + userMenu
-      @el.appendChild(userBoxElement)
-      
+      @$el.appendChild(userBoxElement)
 
     emptyUserNav: -> 
-      @el.classList.remove('is-signed-in')
+      @$el.classList.remove('is-signed-in')
       signedInElems = $('a.js-user-join, a.js-user-signin, div.js-user-box')
       for i in signedInElems
         signedInElems[i].remove()
@@ -65,7 +68,7 @@ define ['jsmin'], ($)->
       userMenu = "<span class='wv--hidden nav--offscreen__title'>#{@lpUserName}</span><div class='nav__submenu nav__submenu--user'><div class='nav--stacked nav__submenu__content nav__submenu__content--user nav-user-options js-user-options'><div class='nav__submenu__item nav__submenu__title'>#{@lpUserName}</div>#{optionElements}</div></div>"
     
     signInUrl:->
-      "https://secure.lonelyplanet.com/sign-in/login?service=#{escape(window.location)}"
+      "https://secure.lonelyplanet.com/sign-in/login?service=#{escape(@getLocation())}"
     
     userAvatar: ->
       "#{@options.membersUrl}/#{@lpUserName}/mugshot/small"

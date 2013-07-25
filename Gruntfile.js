@@ -41,9 +41,9 @@ module.exports = function(grunt) {
       avocado: {
         src: ['./public/assets/javascripts/lib/**/*.js'],
         options: {
-          helpers: ['./spec/javascripts/helpers/**/*.js', './vendor/assets/javascripts/jquery/jquery-1.7.2.min'],
+          helpers: ['./spec/javascripts/helpers/**/*.js', './vendor/assets/javascripts/jquery/jquery-1.7.2.min.js'],
           host: 'http://localhost:8888/',
-          specs: './public/assets/javascripts/spec/mobile/*.js',
+          specs: './public/assets/javascripts/spec/**/*.js',
           template: require('grunt-template-jasmine-requirejs'),
           templateOptions: {
             requireConfig: {
@@ -68,7 +68,7 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: ['app/assets/javascripts/lib/**/*.coffee', 'spec/javascripts/lib/**/*.coffee'],
-        tasks: ['coffee', 'jasmine'],
+        tasks: ['shell:clean', 'coffee', 'jasmine'],
         options: {
           nospawn: true
         }

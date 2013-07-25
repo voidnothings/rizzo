@@ -8,9 +8,9 @@ require ['public/assets/javascripts/lib/mobile/core/shopping_cart_mobile.js'], (
 
     describe 'An empty basket', ->
       beforeEach ->
-        loadFixtures('userBox.html')
         cart = new ShoppingCart()
         spyOn(cart, "_getShopCookie").andReturn('')
+        loadFixtures('userBox.html')
         cart.constructor()
 
       it 'does not add any items count to the page', ->
@@ -18,9 +18,9 @@ require ['public/assets/javascripts/lib/mobile/core/shopping_cart_mobile.js'], (
 
     describe 'A basket with one item', ->
       beforeEach ->
-        loadFixtures('userBox.html')
         cart = new ShoppingCart()
         spyOn(cart, "_getShopCookie").andReturn({"A":["5904"]})
+        loadFixtures('userBox.html')
         cart.constructor()
 
       it 'adds an items count to the page', ->
@@ -34,9 +34,9 @@ require ['public/assets/javascripts/lib/mobile/core/shopping_cart_mobile.js'], (
 
     describe 'A basket with five items', ->
       beforeEach ->
-        loadFixtures('userBox.html')
         cart = new ShoppingCart()
         spyOn(cart, "_getShopCookie").andReturn({"D": "FOO", "A":["1", "2", "3", "4", "5"]})
+        loadFixtures('userBox.html')
         cart.constructor()
 
       it 'and the item count is 5', ->
