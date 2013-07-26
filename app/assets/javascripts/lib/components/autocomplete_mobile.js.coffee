@@ -23,7 +23,6 @@ define [], ->
       resultItems = (@_createListItem item for item in results)
       list = document.createElement 'UL'
       list.appendChild listItem for listItem in resultItems
-      console.log list
       list
 
     _createListItem: (item) ->
