@@ -50,6 +50,10 @@
 // 
 // Styleguide 2.1
 
+.grid-wrapper
+  > [class*="col--"]
+    @extend %grid-column
+
 .grid-wrapper--10
   @extend %grid-wrapper-10
   > [class*="col--"]

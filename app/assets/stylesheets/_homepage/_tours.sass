@@ -1,0 +1,28 @@
+.tab--homepage--tours
+  background: white
+  padding-top: 10px
+  +respond-to(medium-view)
+    background: white url("#{image_path('section3/tours.jpg')}") center center no-repeat
+    background-size: cover
+
+
+.col--region
+  padding-right: 2px
+
+.row--highlight
+  padding: 25px 0
+  margin-left: -30px
+  margin-right: -30px
+  background: $nav-bg--hover
+  border-top: 1px solid $ruled-separator
+  border-bottom: 1px solid $ruled-separator
+
+.radio-group
+  @extend %inline-block
+  margin-right: 30px
+  input
+    width: auto
+    height: auto
+    margin-right: 5px
+    &:checked + label
+      font-weight: bold
