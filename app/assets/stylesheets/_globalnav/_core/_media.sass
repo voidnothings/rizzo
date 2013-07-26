@@ -4,6 +4,18 @@
 // 
 // ----------------------------------------------------------------------------
 
+.logo--header
+  @extend %transition--nav
+  position: absolute
+  top: 0
+  left: 20px
+  z-index: 2
+  .homepage &
+    background-color: #20518A
+    padding: 20px
+    .media--lp-logo
+      margin: 0
+
 .media--lp-logo
   @extend %sprite-core
   @extend %inline-block
@@ -11,16 +23,10 @@
   height: 41px
   margin: 7px 10px 0 0
   width: 83px
-  .responsive .row--core &
-    position: absolute
-    left: 50%
-    margin-left: -41px
-    +respond-to(wide-view)
-      position: static
-      margin-left: 0
+  vertical-align: top
+  z-index: 1
   .ie7 &
     float: left
-
 
 .media--lp-logo--dark
   background-position: 0 -42px

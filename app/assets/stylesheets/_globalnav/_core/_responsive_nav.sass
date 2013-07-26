@@ -1,0 +1,99 @@
+$responsive-nav-width: 280px
+
+// Create a page wrapper so that we don't show a scrollbar
+.wrapper
+  position: relative
+  overflow: hidden
+  width: 100%
+
+// The container for our off-screen navigation
+.nav-container
+  @extend %clearfix
+  width: 100%
+  background: $primary-nav
+  overflow: visible
+  height: 55px
+  .responsive &
+    +box-shadow(16, 4, 20, -6, rgba(0, 0, 0, 0.2), true)
+    @extend %transition--nav
+    position: absolute
+    overflow: hidden
+    top: 0
+    right: -$responsive-nav-width
+    width: $responsive-nav-width
+    height: 100%
+    z-index: 2
+    background: $offscreen-nav-background
+    +respond-to(wide-view)
+      box-shadow: none
+      position: static
+      width: 100%
+      background: $primary-nav
+      overflow: visible
+      height: 55px
+  .homepage &
+    +respond-to(wide-view)
+      background: none
+      position: relative
+      right: auto
+
+.nav--offscreen__title
+  display: none
+  .responsive &
+    +font-size(20)
+    +vertically-center(50)
+    @extend %inline-block
+    vertical-align: top
+    color: white
+    font-weight: bold
+    text-indent: 10px
+    +respond-to(wide-view)
+      display: none
+
+// The button to activate the global nav
+.nav--primary__trigger
+  display: none
+  .responsive &
+    @extend %transition--nav
+    top: 10px
+    right: 10px
+    color: white
+    display: block
+    width: 40px
+    height: 35px
+    background-color: $nav-search-bck
+    position: absolute
+    cursor: pointer
+    z-index: 2
+    &:before
+      // This is the hamburger icon in gradient form, needs some design tweaking
+      +background-gradient-with-stops(top, white, white 20%, $nav-search-bck 20%, $nav-search-bck 40%, white 40%, white 60%, $nav-search-bck 60%, $nav-search-bck 80%, white 80%, white 100%)
+      @extend %empty-abs-generated-content
+      left: 10%
+      top: 20%
+      bottom: 20%
+      width: 80%
+    +respond-to(wide-view)
+      display: none
+
+// On click..
+
+// Move the button
+#nav--primary__trigger:checked + .nav--primary__trigger
+  right: 10px + $responsive-nav-width
+
+// Move the nav onto the screen
+#nav--primary__trigger:checked ~ .m-hidden-menu
+  right: 0
+
+// Move our main content to the left so it looks like the nav is pushing it off screen
+#nav--primary__trigger:checked ~ .row--content
+  left: -$responsive-nav-width
+
+// Move the logo (it sits outside our main content area)
+#nav--primary__trigger:checked ~ .logo--header
+  left: -$responsive-nav-width
+
+// Move the footer (it sits outside our main content area)
+#nav--primary__trigger:checked ~ .wrap--footer
+  left: -$responsive-nav-width

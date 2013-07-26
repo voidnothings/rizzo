@@ -94,36 +94,38 @@
 .sharing__label
   @extend %small-type
   text-transform: uppercase
->>>>>>> master
   font-weight: bold
   color: $title
   line-height: 22px
 
-.icon--print
+.sharing__icon
   @extend %left-icon
   @extend %left-icon--hidden-text
-  @extend %icon--print-before
-  display: block
-  width: 20px
-  margin-left: 15px
-  text-align: left
   color: $title
+  display: inline-block
+  margin-left: 15px
+  margin-top: -9px
+  height: 24px
+  text-align: left
+  width: 20px
+  &:hover
+    text-decoration: none
   &:before
+    vertical-align: middle
     font-size: 34px
-    line-height: 18px
 
+  .tooltip
+    color: white
+    left: -63%
+    text-indent: 0
+    &:after
+      color: $new-header-grey
+      left: 53%
+
+.icon--print
+  @extend %icon--print-before
 .icon--email
-  @extend %left-icon
-  @extend %left-icon--hidden-text
   @extend %icon--email-before
-  display: block
-  width: 20px
-  margin-left: 15px
-  text-align: left
-  color: $title
-  &:before
-    font-size: 34px
-    line-height: 18px
 
 .facebook-like
   margin-left: 10px

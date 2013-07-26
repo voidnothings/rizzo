@@ -36,11 +36,11 @@ body
   @extend %regular-width
   .responsive &
     width: auto
-    +respond-to(wide-view)
-      width: 1000px
 
 .row--core
   @extend %helvetica-neue
+  .homepage &
+    @extend %lp-font-stack
 
 .row--text-centered
   text-align: center
@@ -132,6 +132,29 @@ body
   .responsive &
     min-width: 0
 
+
+// ----------------------------------------------------------------------------
+// 
+// Row Faux Banner
+// 
+// When we use the offscreen nav we need to fake a 55px blue bar at the top
+// because the logo and nav are no longer part of the same node
+// ----------------------------------------------------------------------------
+
+.row--faux-banner
+  display: none
+  .responsive &
+    display: block
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    background-color: $primary-nav
+    height: 55px
+    +respond-to(wide-view)
+      display: none
+
+
 // ----------------------------------------------------------------------------
 // 
 // Row primary
@@ -139,17 +162,12 @@ body
 // ----------------------------------------------------------------------------
 
 .row--primary
-  background-color: $primary-nav
-  height: 55px
+  z-index: 2
+  position: relative
   .responsive &
-    position: relative
-    z-index: 2
+    position: static
   .homepage &
     background: none
-  .ie7 &
-    // Make sure that top nav dropdowns always stay on top
-    z-index: 2
-    position: relative
 
 
 // ----------------------------------------------------------------------------
@@ -177,9 +195,16 @@ body
 .row--content
   padding-top: 25px
   margin-bottom: 40px
+  // Ensure that nav dropdowns sit above any content
+  position: relative
+  z-index: 1
+  .responsive &
+    @extend %transition--nav
+    position: relative
   .homepage &
     padding-top: 0
-    margin-top: -55px
+    +respond-to(wide-view)
+      margin-top: -55px
 
 
 // ----------------------------------------------------------------------------
@@ -189,12 +214,12 @@ body
 // ----------------------------------------------------------------------------
 
 .row__inner--footer
-  border-top: 1px solid #d6dedf
+  border-top: 1px solid $responsive-footer-border
   .responsive &
     border: none
     padding: 10px
     +respond-to(wide-view)
-      border-top: 1px solid #d6dedf
+      border-top: 1px solid $responsive-footer-border
       padding: 0
 
 // ----------------------------------------------------------------------------
@@ -232,16 +257,12 @@ body
       border-top: none
       padding: 0
       +respond-to(wide-view)
-        border-top: 1px solid #d6dedf
-        padding: 10px
+        border-top: 1px solid $responsive-footer-border
+        padding: 0 10px
 
 .row--footer--about__logo
   .responsive &
-    display: block
     margin-bottom: 20px
-    +respond-to(wide-view)
-      display: inline-block
-      margin-bottom: 0
 
 .row--footer--social__logo
   .responsive &
@@ -255,11 +276,11 @@ body
 // ----------------------------------------------------------------------------
 
 .row--smallprint__inner
-  padding: 20px 0
+  padding: 20px 10px
   .responsive &
     padding-top: 20px
     +respond-to(wide-view)
-      padding: 20px 0
+      padding: 20px 10px
 
 .text--legal
   +font-size(11)
@@ -287,6 +308,8 @@ body
 .wrap--footer
   @extend %lp-font-stack
   @extend %subpixel-text
+  @extend %transition--nav
+  position: relative
 
 .wrap--footer-push
   min-height: 100%

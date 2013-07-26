@@ -10,6 +10,8 @@
   left: 10px
   top: 15px
   z-index: 5
+  // Stop clipping in IE
+  height: 30px
 
   &:before
     +font-size(35)
@@ -67,7 +69,7 @@
 
 %card-icon
   &:before
-    @extend %freight-book
+    @extend %lp-font-stack
     @extend %no-line-height
     cursor: pointer
     font-size: 69px

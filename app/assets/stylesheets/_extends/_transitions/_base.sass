@@ -1,5 +1,8 @@
 %transition--base
-  -webkit-transition: all .2s ease
-  transition: all .2s ease
+  +transition(all, 0.2, ease)
 
+%media-gallery-transition
+  +transition(all, 0.5, ease)
 
+%transition--nav
+  +transition(all, 0.4, ease-in-out)
