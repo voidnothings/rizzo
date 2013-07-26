@@ -16,6 +16,9 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
         }
       ]
 
+    EMPTY_RESULTS =
+      results: []
+
     SEARCH_TERM = 'London'
 
     describe 'Object', ->
@@ -57,6 +60,17 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
         expect($('#search_results ul').length).toBe(1)
         expect($('#search_results ul li').length).toBe(2)
 
+      it 'should replace the existing search results when called a second time', ->
+        loadFixtures('autocomplete_mobile.html')
+        @myAutoComplete = new AutoComplete({id: 'my_search'})
+        @myAutoComplete.searchString = SEARCH_TERM
+
+        @myAutoComplete._updateUI SEARCH_RESULTS
+        @myAutoComplete._updateUI EMPTY_RESULTS
+
+        expect($('#search_results ul').length).toBe(1)
+        expect($('#search_results ul li').length).toBe(0)
+
       describe 'creating a list of items to be added to the UI', ->
         beforeEach ->
           @myAutoComplete = new AutoComplete({id: 'my_search'})
@@ -66,6 +80,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
           list = @myAutoComplete._createList SEARCH_RESULTS.results
 
           expect(list.tagName).toBe('UL')
+          expect(list.getAttribute('id')).toBe('autocomplete__results')
           expect(list.childNodes.length).toBe(2)
 
         it 'should create an unordered list no items when the results list is empty', -> 
@@ -94,13 +109,21 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
 
           expect(listItem.tagName).toBe('A')
           expect(listItem.getAttribute('href')).toEqual(SEARCH_RESULTS.results[0].uri)
-          expect(listItem.getAttribute('class')).toBe("item__result--#{SEARCH_RESULTS.results[0].type}")
+          expect(listItem.getAttribute('class')).toBe("autocomplete__result--#{SEARCH_RESULTS.results[0].type}")
           expect(listItem.childNodes.length).toBe(1)
           expect(listItem.textContent).toBe(SEARCH_RESULTS.results[0].title)
 
       describe 'highlighting the search term', ->
         beforeEach ->
           @myAutoComplete = new AutoComplete({id: 'my_search'})
+
+        it 'should wrap a span around the search term with the specified class name', ->
+          title = @myAutoComplete._createAnchorText SEARCH_TERM, SEARCH_TERM
+          titleSpan = title.childNodes[0]
+
+          expect(titleSpan).toBe('SPAN')
+          expect(titleSpan.getAttribute('class')).toBe('autocomplete__result--highlight')
+          expect(title.firstChild.textContent).toBe(SEARCH_TERM)
 
         it 'should highlight the search text at the start of a title', ->
           title = @myAutoComplete._createAnchorText SEARCH_TERM, 'London Central'
