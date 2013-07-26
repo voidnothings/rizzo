@@ -2,7 +2,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
 
   describe 'AutoComplete', ->
 
-    SUCCESS =
+    SUCCESS_RESULT =
       results: [
         {
           title: "London"
@@ -31,6 +31,14 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
         expect(AutoComplete.prototype.init).toHaveBeenCalled()
         expect(@myAutoComplete.el).not.toBeNull()
 
+      # it 'fires the change function when the event has been triggered', ->
+      #   loadFixtures('autocomplete_mobile.html')
+      #   @myAutoComplete = new AutoComplete({id: 'my_search'})
+      #   spyOn @myAutoComplete, '_change'
+      #   # $(@myAutoComplete.el).trigger('change', 'abc')
+
+      #   expect(@myAutoComplete._change).toHaveBeenCalled()
+
     describe 'whether the search threshold has been reached', ->
       beforeEach ->
         @myAutoComplete = new AutoComplete({selector: 'my_search'})
@@ -49,14 +57,21 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
 
     describe 'updating the UI when search results are returned', ->
 
-      describe 'creating a list item for each result item', ->
+      describe 'creating a list of items', ->
         beforeEach ->
           @myAutoComplete = new AutoComplete({selector: 'my_search'})
+          @myAutoComplete.searchString = SEARCH_TERM
         
+        it 'should create an unordered list', ->
+          spyOn @myAutoComplete, '_createList'
+          @myAutoComplete._updateUI SUCCESS_RESULT.results
+          expect(@myAutoComplete._createList.callCount).toBe(1)
+
         it 'should create a list item for each result', ->
-          spyOn @myAutoComplete, '_createListItem'
-          @myAutoComplete._updateUI SUCCESS.results
-          expect(@myAutoComplete._createListItem.callCount).toBe(2)
+          list = @myAutoComplete._createList SUCCESS_RESULT.results
+
+          expect(list.tagName).toBe('UL')
+          expect(list.childNodes.length).toBe(2)
 
         it 'should create no list items when search results are empty', -> 
           spyOn @myAutoComplete, '_createListItem'
@@ -65,9 +80,10 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
 
         it 'should create a list item with an anchor as its only child', ->
           spyOn(@myAutoComplete, "_createAnchor").andCallThrough()
-          listItem = @myAutoComplete._createListItem SEARCH_TERM, SUCCESS.results[0]
+          @myAutoComplete.searchString = SEARCH_TERM
+          listItem = @myAutoComplete._createListItem SUCCESS_RESULT.results[0]
 
-          expect(@myAutoComplete._createAnchor).toHaveBeenCalledWith(SEARCH_TERM, SUCCESS.results[0])
+          expect(@myAutoComplete._createAnchor).toHaveBeenCalledWith(SUCCESS_RESULT.results[0])
           expect(@myAutoComplete._createAnchor.callCount).toBe(1)
           expect(listItem.tagName).toBe('LI')
           expect(listItem.childNodes.length).toBe(1)
@@ -75,21 +91,22 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
       describe 'creating an anchor item', ->
         beforeEach ->
           @myAutoComplete = new AutoComplete({selector: 'my_search'})
+          @myAutoComplete.searchString = SEARCH_TERM
 
         it 'should create an anchor item', ->
           spyOn(@myAutoComplete, "_createAnchorText").andCallThrough()
-          @myAutoComplete._createAnchor SEARCH_TERM, SUCCESS.results[0]
+          @myAutoComplete._createAnchor SUCCESS_RESULT.results[0]
 
-          expect(@myAutoComplete._createAnchorText).toHaveBeenCalledWith(SEARCH_TERM, SUCCESS.results[0].title)
+          expect(@myAutoComplete._createAnchorText).toHaveBeenCalledWith(SEARCH_TERM, SUCCESS_RESULT.results[0].title)
 
         it 'should create an anchor item with the item details', ->
-          listItem = @myAutoComplete._createAnchor SEARCH_TERM, SUCCESS.results[0]
+          listItem = @myAutoComplete._createAnchor SUCCESS_RESULT.results[0]
 
           expect(listItem.tagName).toBe('A')
-          expect(listItem.getAttribute('href')).toEqual (SUCCESS.results[0].uri)
-          expect(listItem.getAttribute('class')).toBe("item__result--#{SUCCESS.results[0].type}")
+          expect(listItem.getAttribute('href')).toEqual (SUCCESS_RESULT.results[0].uri)
+          expect(listItem.getAttribute('class')).toBe("item__result--#{SUCCESS_RESULT.results[0].type}")
           expect(listItem.childNodes.length).toBe(1)
-          expect(listItem.textContent).toBe(SUCCESS.results[0].title)
+          expect(listItem.textContent).toBe(SUCCESS_RESULT.results[0].title)
 
       describe 'highlighting the search term', ->
         beforeEach ->
@@ -130,3 +147,10 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
           expect(title.childNodes.length).toBe(1)
           expect(title.childNodes[0].tagName).toBe('SPAN')
           expect(title.childNodes[0].textContent).toBe(SEARCH_TERM)
+
+        it 'should not highlight anything if the search text is not found', ->
+          title = @myAutoComplete._createAnchorText 'Nowhere', 'London Central'
+
+          expect(title.childNodes.length).toBe(1)
+          expect(title.childNodes[0].nodeType).toBe(3)
+          expect(title.childNodes[0].textContent).toBe('London Central')
