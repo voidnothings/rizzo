@@ -16,11 +16,13 @@ define [], ->
 
     _searchFor:  ->
 
-    _updateUI: (results) ->
-      listFragment = @_createList results
+    _updateUI: (searchResults) ->
+      listFragment = @_createList searchResults.results
+      @el.parentNode.appendChild listFragment
 
     _createList: (results) ->
       resultItems = (@_createListItem item for item in results)
+      console.log resultItems
       list = document.createElement 'UL'
       list.appendChild listItem for listItem in resultItems
       list

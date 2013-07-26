@@ -2,7 +2,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
 
   describe 'AutoComplete', ->
 
-    SUCCESS_RESULT =
+    SEARCH_RESULTS =
       results: [
         {
           title: "London"
@@ -33,7 +33,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
 
     describe 'whether the search threshold has been reached', ->
       beforeEach ->
-        @myAutoComplete = new AutoComplete({selector: 'my_search'})
+        @myAutoComplete = new AutoComplete({id: 'my_search'})
         spyOn @myAutoComplete, "_searchFor"
 
       it 'makes a request when enough characters have been entered', ->
@@ -45,17 +45,25 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
         @myAutoComplete._change 'ab'
         expect(@myAutoComplete._searchFor).not.toHaveBeenCalled()
 
-    # TODO: test that the XHR calls _updateUI with the results
-
     describe 'updating the UI when search results are returned', ->
+
+      it 'should add a list of highlighted search results to the page', ->
+        loadFixtures('autocomplete_mobile.html')
+        @myAutoComplete = new AutoComplete({id: 'my_search'})
+        @myAutoComplete.searchString = SEARCH_TERM
+
+        @myAutoComplete._updateUI SEARCH_RESULTS
+
+        expect($('#search_results ul').length).toBe(1)
+        expect($('#search_results ul li').length).toBe(2)
 
       describe 'creating a list of items to be added to the UI', ->
         beforeEach ->
-          @myAutoComplete = new AutoComplete({selector: 'my_search'})
+          @myAutoComplete = new AutoComplete({id: 'my_search'})
           @myAutoComplete.searchString = SEARCH_TERM
         
         it 'should create an unordered list with an item for each result', ->
-          list = @myAutoComplete._createList SUCCESS_RESULT.results
+          list = @myAutoComplete._createList SEARCH_RESULTS.results
 
           expect(list.tagName).toBe('UL')
           expect(list.childNodes.length).toBe(2)
@@ -66,11 +74,11 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
 
       describe 'creating a list item', ->
         beforeEach ->
-          @myAutoComplete = new AutoComplete({selector: 'my_search'})
+          @myAutoComplete = new AutoComplete({id: 'my_search'})
           @myAutoComplete.searchString = SEARCH_TERM
 
         it 'should create a list item with an anchor as its only child', ->
-          listItem = @myAutoComplete._createListItem SUCCESS_RESULT.results[0]
+          listItem = @myAutoComplete._createListItem SEARCH_RESULTS.results[0]
 
           expect(listItem.tagName).toBe('LI')
           expect(listItem.childNodes.length).toBe(1)
@@ -78,21 +86,21 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
 
       describe 'creating an anchor item', ->
         beforeEach ->
-          @myAutoComplete = new AutoComplete({selector: 'my_search'})
+          @myAutoComplete = new AutoComplete({id: 'my_search'})
           @myAutoComplete.searchString = SEARCH_TERM
 
         it 'should create an anchor item with the item details', ->
-          listItem = @myAutoComplete._createAnchor SUCCESS_RESULT.results[0]
+          listItem = @myAutoComplete._createAnchor SEARCH_RESULTS.results[0]
 
           expect(listItem.tagName).toBe('A')
-          expect(listItem.getAttribute('href')).toEqual(SUCCESS_RESULT.results[0].uri)
-          expect(listItem.getAttribute('class')).toBe("item__result--#{SUCCESS_RESULT.results[0].type}")
+          expect(listItem.getAttribute('href')).toEqual(SEARCH_RESULTS.results[0].uri)
+          expect(listItem.getAttribute('class')).toBe("item__result--#{SEARCH_RESULTS.results[0].type}")
           expect(listItem.childNodes.length).toBe(1)
-          expect(listItem.textContent).toBe(SUCCESS_RESULT.results[0].title)
+          expect(listItem.textContent).toBe(SEARCH_RESULTS.results[0].title)
 
       describe 'highlighting the search term', ->
         beforeEach ->
-          @myAutoComplete = new AutoComplete({selector: 'my_search'})
+          @myAutoComplete = new AutoComplete({id: 'my_search'})
 
         it 'should highlight the search text at the start of a title', ->
           title = @myAutoComplete._createAnchorText SEARCH_TERM, 'London Central'
