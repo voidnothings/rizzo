@@ -20,12 +20,10 @@ define ['jsmin'], ($)->
       config.tabsContainer = config.tabs.getElementsByClassName('js-tabs-content')[0]
       config.tabLabels = config.tabs.getElementsByClassName('js-tab-trigger')
       config.animationDelay = args.delay
-      config.tabs.on 'click', (e) ->
+      config.tabLabels.on 'click', (e) ->
         e.preventDefault()
-        tabLabel = e.target
-        tabLabel = if (_hasClass(tabLabel, "js-tab-trigger")) then e.target else e.target.parentNode
-        tab = document.getElementById(tabLabel.hash.substr(1))
-        _openNewTab(tabLabel, tab)
+        tab = document.getElementById(this.hash.substr(1))
+        _openNewTab(this, tab)
       , false
 
       config.tabsContainer.classList.remove('is-loading')
