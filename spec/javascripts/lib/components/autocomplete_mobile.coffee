@@ -117,53 +117,69 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
         beforeEach ->
           @myAutoComplete = new AutoComplete({id: 'my_search'})
 
-        it 'should wrap a span around the search term with the specified class name', ->
-          title = @myAutoComplete._createAnchorText SEARCH_TERM, SEARCH_TERM
-          titleSpan = title.childNodes[0]
-
-          expect(titleSpan).toBe('SPAN')
-          expect(titleSpan.getAttribute('class')).toBe('autocomplete__result--highlight')
-          expect(title.firstChild.textContent).toBe(SEARCH_TERM)
-
         it 'should highlight the search text at the start of a title', ->
-          title = @myAutoComplete._createAnchorText SEARCH_TERM, 'London Central'
+          testSearchTerm = 'Lond'
 
-          expect(title.childNodes.length).toBe(2)
-          expect(title.firstChild.tagName).toBe('SPAN')
-          expect(title.firstChild.textContent).toBe(SEARCH_TERM)
-          expect(title.lastChild.nodeType).toBe(3)
-          expect(title.lastChild.textContent).toBe(' Central')
+          @myAutoComplete.searchString = testSearchTerm
+          anchor = @myAutoComplete._createAnchor SEARCH_RESULTS.results[0]
+          anchorTerm = anchor.childNodes[0]
+          anchorRemainder = anchor.childNodes[1]
+
+          expect(anchorTerm.tagName).toBe('SPAN')
+          expect(anchorTerm.getAttribute('class')).toBe('autocomplete__result--highlight')
+          expect(anchorTerm.textContent).toBe(testSearchTerm)
+
+          expect(anchorRemainder.nodeType).toBe(3)
+          expect(anchorRemainder.textContent).toBe('on')
 
         it 'should highlight the search text at the end of a title', ->
-          title = @myAutoComplete._createAnchorText SEARCH_TERM, 'Central London'
+          testSearchTerm = 'don'
 
-          expect(title.childNodes.length).toBe(2)
-          expect(title.firstChild.nodeType).toBe(3)
-          expect(title.firstChild.textContent).toBe('Central ')
-          expect(title.lastChild.tagName).toBe('SPAN')
-          expect(title.lastChild.textContent).toBe(SEARCH_TERM)
+          @myAutoComplete.searchString = testSearchTerm
+          anchor = @myAutoComplete._createAnchor SEARCH_RESULTS.results[0]
+          anchorRemainder = anchor.childNodes[0]
+          anchorTerm = anchor.childNodes[1]
+
+          expect(anchorRemainder.nodeType).toBe(3)
+          expect(anchorRemainder.textContent).toBe('Lon')
+
+          expect(anchorTerm.tagName).toBe('SPAN')
+          expect(anchorTerm.getAttribute('class')).toBe('autocomplete__result--highlight')
+          expect(anchorTerm.textContent).toBe(testSearchTerm)
+
 
         it 'should highlight the search text in the middle of a title', ->
-          title = @myAutoComplete._createAnchorText SEARCH_TERM, 'Central London, Somewhere'
+          testSearchTerm = 'ond'
 
-          expect(title.childNodes.length).toBe(3)
-          expect(title.childNodes[0].nodeType).toBe(3)
-          expect(title.childNodes[0].textContent).toBe('Central ')
-          expect(title.childNodes[1].tagName).toBe('SPAN')
-          expect(title.childNodes[1].textContent).toBe(SEARCH_TERM)
-          expect(title.childNodes[2].nodeType).toBe(3)
-          expect(title.childNodes[2].textContent).toBe(', Somewhere')
+          @myAutoComplete.searchString = testSearchTerm
+          anchor = @myAutoComplete._createAnchor SEARCH_RESULTS.results[0]
+          anchorRemainderStart = anchor.childNodes[0]
+          anchorTerm = anchor.childNodes[1]
+          anchorRemainderEnd = anchor.childNodes[2]
+
+          expect(anchorRemainderStart.nodeType).toBe(3)
+          expect(anchorRemainderStart.textContent).toBe('L')
+
+          expect(anchorTerm.tagName).toBe('SPAN')
+          expect(anchorTerm.getAttribute('class')).toBe('autocomplete__result--highlight')
+          expect(anchorTerm.textContent).toBe(testSearchTerm)
+
+          expect(anchorRemainderEnd.nodeType).toBe(3)
+          expect(anchorRemainderEnd.textContent).toBe('on')
 
         it 'should highlight the search text if it exactly matches a title', ->
-          title = @myAutoComplete._createAnchorText SEARCH_TERM, SEARCH_TERM
+          @myAutoComplete.searchString = SEARCH_TERM
+          anchor = @myAutoComplete._createAnchor SEARCH_RESULTS.results[0]
+          anchorTerm = anchor.childNodes[0]
 
-          expect(title.childNodes.length).toBe(1)
-          expect(title.childNodes[0].tagName).toBe('SPAN')
-          expect(title.childNodes[0].textContent).toBe(SEARCH_TERM)
+          expect(anchorTerm.tagName).toBe('SPAN')
+          expect(anchorTerm.getAttribute('class')).toBe('autocomplete__result--highlight')
+          expect(anchorTerm.textContent).toBe(SEARCH_TERM)
 
         it 'should not highlight anything if the search text is not found', ->
-          title = @myAutoComplete._createAnchorText 'Nowhere', 'London Central'
+          @myAutoComplete.searchString = SEARCH_TERM
+          anchor = @myAutoComplete._createAnchor SEARCH_RESULTS.results[1]
+          anchorText = anchor.childNodes[0]
 
-          expect(title.childNodes.length).toBe(1)
-          expect(title.childNodes[0].nodeType).toBe(3)
-          expect(title.childNodes[0].textContent).toBe('London Central')
+          expect(anchorText.nodeType).toBe(3)
+          expect(anchorText.textContent).toBe('Paris')

@@ -10,13 +10,22 @@ define [], ->
       @el.addEventListener 'change', @_change, false
       @resultsElt = document.getElementById 'autocomplete__results'
 
-    _change: (searchString) ->
-      if searchString && searchString.length >= 3
-        @searchString = searchString
-        @_searchFor @searchString
+    _change: (evt) ->
+
+      if searchTerm && searchTerm.length >= 3
+        @searchTerm = searchTerm
+        @_searchFor @searchTerm
 
     _searchFor:  ->
       # do xhr and call _updateUI with results once complete
+      self = @
+      myRequest = new XMLHttpRequest()
+      myRequest.addEventListener 'readystatechange', ->
+        if myRequest.readyState == 4
+          if myRequest.status == 200
+            console.log 'worked'
+
+      myRequest.open 'get', "/search/#{@searchTerm}?scope=homepage"
 
     _updateUI: (searchResults) ->
       resultsList = @_createList searchResults.results
@@ -24,7 +33,6 @@ define [], ->
 
     _createList: (results) ->
       resultItems = (@_createListItem item for item in results)
-      console.log resultItems
       list = document.createElement 'UL'
       list.setAttribute 'id', 'autocomplete__results'
       list.appendChild listItem for listItem in resultItems
@@ -40,35 +48,5 @@ define [], ->
       anchor = document.createElement 'A'
       anchor.setAttribute 'href', item.uri
       anchor.setAttribute 'class', "autocomplete__result--#{item.type}"
-      titleNode = @_createAnchorText @searchString, item.title
-      anchor.appendChild titleNode
+      anchor.innerHTML = item.title.replace @searchTerm, "<span class='autocomplete__result--highlight'>#{@searchTerm}</span>"
       anchor
-
-    _createAnchorText: (searchString, title) ->
-      # this is probly going to be easier to do using innerHTML and a string replace, tbh
-      start = title.indexOf(searchString)
-      node = document.createDocumentFragment()
-
-      if start >= 0
-        end = start + searchString.length
-
-        # create a plain text node of any text before the search term
-        @_appendTextNode node, title.substring(0, start) if start > 0
-
-        # create a span around the search term
-        span = document.createElement 'SPAN'
-        span.setAttribute 'class', 'autocomplete__result--highlight'
-        span.appendChild document.createTextNode(searchString)
-        node.appendChild span
-
-        # create a plain text node of any text after the search term
-        @_appendTextNode node, title.substring(end, title.length) if end < title.length
-      else
-        @_appendTextNode node, title
-
-      node
-
-    _appendTextNode: (node, text) ->
-      textNode = document.createTextNode text
-      node.appendChild textNode
-      node
