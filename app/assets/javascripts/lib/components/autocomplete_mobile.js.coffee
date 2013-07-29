@@ -7,15 +7,11 @@ define [], ->
       @init() if @el
 
     init: ->
-      @el.addEventListener 'input', @_input, false
+      @el.addEventListener 'input', (e) =>
+        e.stopPropagation()
+        @_searchFor e.currentTarget.value
+      , false
       @resultsElt = document.getElementById 'autocomplete__results'
-
-    _input: (evt) ->
-      evt.stopPropogation()
-      console.log evt
-      console.log evt.currentTarget
-      console.log evt.currentTarget.value
-      @_searchFor evt.currentTarget.value
 
     _searchFor: (searchTerm)  ->
       if searchTerm && searchTerm.length >= 3
@@ -23,16 +19,14 @@ define [], ->
         @_doRequest @searchTerm
 
     _doRequest: ->
-      # do xhr and call _updateUI with results once complete
-      self = @
       myRequest = new XMLHttpRequest()
-      myRequest.addEventListener 'readystatechange', ->
+      myRequest.addEventListener 'readystatechange', =>
         if myRequest.readyState == 4
           if myRequest.status == 200
-            console.log 'worked'
-            self._updateUI json.parse myRequest.responseText
+            @_updateUI JSON.parse myRequest.responseText
 
       myRequest.open 'get', "/search/#{@searchTerm}?scope=homepage"
+      myRequest.send()
 
     _updateUI: (searchResults) ->
       resultsList = @_createList searchResults.results
