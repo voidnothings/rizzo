@@ -2,22 +2,20 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
 
   describe 'AutoComplete', ->
 
-    SEARCH_RESULTS =
-      results: [
-        {
-          title: "London"
-          uri: "/london"
-          type: "place"
-        }
-        {
-          title: "Paris"
-          uri: "/paris"
-          type: "hotel"
-        }
-      ]
+    SEARCH_RESULTS = [
+      {
+        title: "London"
+        uri: "/london"
+        type: "place"
+      }
+      {
+        title: "Paris"
+        uri: "/paris"
+        type: "hotel"
+      }
+    ]
 
-    EMPTY_RESULTS =
-      results: []
+    EMPTY_RESULTS = []
 
     SEARCH_TERM = 'London'
 
@@ -84,7 +82,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
           @myAutoComplete.searchTerm = SEARCH_TERM
         
         it 'should create an unordered list with an item for each result', ->
-          list = @myAutoComplete._createList SEARCH_RESULTS.results
+          list = @myAutoComplete._createList SEARCH_RESULTS
 
           expect(list.tagName).toBe('UL')
           expect(list.getAttribute('id')).toBe('autocomplete__results')
@@ -100,7 +98,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
           @myAutoComplete.searchTerm = SEARCH_TERM
 
         it 'should create a list item with an anchor as its only child', ->
-          listItem = @myAutoComplete._createListItem SEARCH_RESULTS.results[0]
+          listItem = @myAutoComplete._createListItem SEARCH_RESULTS[0]
 
           expect(listItem.tagName).toBe('LI')
           expect(listItem.childNodes.length).toBe(1)
@@ -112,13 +110,13 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
           @myAutoComplete.searchTerm = SEARCH_TERM
 
         it 'should create an anchor item with the item details', ->
-          listItem = @myAutoComplete._createAnchor SEARCH_RESULTS.results[0]
+          listItem = @myAutoComplete._createAnchor SEARCH_RESULTS[0]
 
           expect(listItem.tagName).toBe('A')
-          expect(listItem.getAttribute('href')).toEqual(SEARCH_RESULTS.results[0].uri)
-          expect(listItem.getAttribute('class')).toBe("autocomplete__result--#{SEARCH_RESULTS.results[0].type}")
+          expect(listItem.getAttribute('href')).toEqual(SEARCH_RESULTS[0].uri)
+          expect(listItem.getAttribute('class')).toBe("autocomplete__result--#{SEARCH_RESULTS[0].type}")
           expect(listItem.childNodes.length).toBe(1)
-          expect(listItem.textContent).toBe(SEARCH_RESULTS.results[0].title)
+          expect(listItem.textContent).toBe(SEARCH_RESULTS[0].title)
 
       describe 'highlighting the search term', ->
         beforeEach ->
@@ -128,7 +126,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
           testSearchTerm = 'Lond'
 
           @myAutoComplete.searchTerm = testSearchTerm
-          anchor = @myAutoComplete._createAnchor SEARCH_RESULTS.results[0]
+          anchor = @myAutoComplete._createAnchor SEARCH_RESULTS[0]
           anchorTerm = anchor.childNodes[0]
           anchorRemainder = anchor.childNodes[1]
 
@@ -143,7 +141,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
           testSearchTerm = 'don'
 
           @myAutoComplete.searchTerm = testSearchTerm
-          anchor = @myAutoComplete._createAnchor SEARCH_RESULTS.results[0]
+          anchor = @myAutoComplete._createAnchor SEARCH_RESULTS[0]
           anchorRemainder = anchor.childNodes[0]
           anchorTerm = anchor.childNodes[1]
 
@@ -159,7 +157,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
           testSearchTerm = 'ond'
 
           @myAutoComplete.searchTerm = testSearchTerm
-          anchor = @myAutoComplete._createAnchor SEARCH_RESULTS.results[0]
+          anchor = @myAutoComplete._createAnchor SEARCH_RESULTS[0]
           anchorRemainderStart = anchor.childNodes[0]
           anchorTerm = anchor.childNodes[1]
           anchorRemainderEnd = anchor.childNodes[2]
@@ -176,7 +174,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
 
         it 'should highlight the search text if it exactly matches a title', ->
           @myAutoComplete.searchTerm = SEARCH_TERM
-          anchor = @myAutoComplete._createAnchor SEARCH_RESULTS.results[0]
+          anchor = @myAutoComplete._createAnchor SEARCH_RESULTS[0]
           anchorTerm = anchor.childNodes[0]
 
           expect(anchorTerm.tagName).toBe('SPAN')
@@ -185,7 +183,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
 
         it 'should not highlight anything if the search text is not found', ->
           @myAutoComplete.searchTerm = SEARCH_TERM
-          anchor = @myAutoComplete._createAnchor SEARCH_RESULTS.results[1]
+          anchor = @myAutoComplete._createAnchor SEARCH_RESULTS[1]
           anchorText = anchor.childNodes[0]
 
           expect(anchorText.nodeType).toBe(3)
