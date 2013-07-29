@@ -14,8 +14,8 @@
 // ----------------------------------------------------------------------------
 
 input, textarea
+  @extend %lp-font-stack
   @extend %border-box
-  @extend %helvetica-neue
   @extend %no-border
   outline: 0
 
@@ -28,6 +28,14 @@ input, textarea
 
 .input--regular
   @extend %input--regular
+
+.input--regular--dark
+  @extend %four-pixel-rounded
+  border: none
+  background-color: $nav-bg--hover
+  color: $new-header-grey
+  +placeholder
+    color: $body-copy
 
 .input--submit
   @extend %larger-type
@@ -46,6 +54,34 @@ input, textarea
   +placeholder()
     color: $placeholder-copy
 
+// IE Friendly placeholders
+.input--placeholder
+  @if $is-ie == false
+    @extend %visually-hide
+  @else
+    margin: 5px 0
+    display: block
+
+// ----------------------------------------------------------------------------
+//
+// Grouped inputs
+//
+// Sometimes inputs are grouped in pairs and their appearance is modified
+// ----------------------------------------------------------------------------
+
+.input--grouped--top
+  +border-radius-each(4, 4, 0, 0)
+
+.input--grouped--bottom
+  +border-radius-each(0,0, 4, 4)
+  margin-top: 1px
+
+.input--grouped--left
+  +border-radius-each(4, 0, 0, 4)
+
+.input--grouped--right
+  +border-radius-each(0,4, 4, 0)
+  margin-left: 1px
 
 // ----------------------------------------------------------------------------
 //

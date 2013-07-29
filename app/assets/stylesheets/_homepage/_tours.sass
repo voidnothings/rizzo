@@ -1,0 +1,38 @@
+.tab--homepage--tours
+  background: #5278A2
+  padding-top: 10px
+  +respond-to(medium-view)
+    background: #5278A2 url("#{image_path('section3/tours.jpg')}") center center no-repeat
+    background-size: cover
+
+.col--region
+  padding-right: 2px
+
+.row--highlight
+  padding: 15px 0
+  margin-left: -30px
+  margin-right: -30px
+  background: $nav-bg--hover
+  border-top: 1px solid $ruled-separator
+  border-bottom: 1px solid $ruled-separator
+  +respond-at(350)
+    padding: 25px 0
+
+.radio-group
+  @extend %inline-block
+  margin-right: 10px
+  +respond-at(415)
+    margin-right: 30px
+  input
+    width: auto
+    height: auto
+    margin-right: 5px
+    &:checked + label
+      font-weight: bold
+
+// Toggle between sightseeing/adventure tours
+.js-row-toggle
+  display: none
+
+input[type=radio]:checked + .js-row-toggle
+  display: block
