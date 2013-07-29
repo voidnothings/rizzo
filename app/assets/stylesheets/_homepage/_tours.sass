@@ -1,10 +1,9 @@
 .tab--homepage--tours
-  background: white
+  background: #5278A2
   padding-top: 10px
   +respond-to(medium-view)
-    background: white url("#{image_path('section3/tours.jpg')}") center center no-repeat
+    background: #5278A2 url("#{image_path('section3/tours.jpg')}") center center no-repeat
     background-size: cover
-
 
 .col--region
   padding-right: 2px
@@ -20,9 +19,19 @@
 .radio-group
   @extend %inline-block
   margin-right: 30px
+  margin-bottom: 10px
+  +respond-to(340)
+    margin-bottom: 0
   input
     width: auto
     height: auto
     margin-right: 5px
     &:checked + label
       font-weight: bold
+
+// Toggle between sightseeing/adventure tours
+.js-row-toggle
+  display: none
+
+input[type=radio]:checked + .js-row-toggle
+  display: block
