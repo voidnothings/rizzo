@@ -37,23 +37,22 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
     describe 'whether the search threshold has been reached', ->
       beforeEach ->
         @myAutoComplete = new AutoComplete({id: 'my_search'})
-        spyOn @myAutoComplete, "_searchFor"
+        spyOn @myAutoComplete, "_doRequest"
 
       it 'makes a request when enough characters have been entered', ->
         minimumSearch = 'abc'
-        @myAutoComplete._change minimumSearch
-        expect(@myAutoComplete._searchFor).toHaveBeenCalledWith(minimumSearch)
+        @myAutoComplete._searchFor minimumSearch
+        expect(@myAutoComplete._doRequest).toHaveBeenCalledWith(minimumSearch)
 
       it "doesn't make a request when not enough characters have been entered", ->
-        @myAutoComplete._change 'ab'
-        expect(@myAutoComplete._searchFor).not.toHaveBeenCalled()
+        @myAutoComplete._searchFor 'ab'
+        expect(@myAutoComplete._doRequest).not.toHaveBeenCalled()
 
     describe 'updating the UI when search results are returned', ->
-
       it 'should add a list of highlighted search results to the page', ->
         loadFixtures('autocomplete_mobile.html')
         @myAutoComplete = new AutoComplete({id: 'my_search'})
-        @myAutoComplete.searchString = SEARCH_TERM
+        @myAutoComplete.searchTerm = SEARCH_TERM
 
         @myAutoComplete._updateUI SEARCH_RESULTS
 
@@ -63,7 +62,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
       it 'should replace the existing search results when called a second time', ->
         loadFixtures('autocomplete_mobile.html')
         @myAutoComplete = new AutoComplete({id: 'my_search'})
-        @myAutoComplete.searchString = SEARCH_TERM
+        @myAutoComplete.searchTerm = SEARCH_TERM
 
         @myAutoComplete._updateUI SEARCH_RESULTS
         @myAutoComplete._updateUI EMPTY_RESULTS
@@ -74,7 +73,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
       describe 'creating a list of items to be added to the UI', ->
         beforeEach ->
           @myAutoComplete = new AutoComplete({id: 'my_search'})
-          @myAutoComplete.searchString = SEARCH_TERM
+          @myAutoComplete.searchTerm = SEARCH_TERM
         
         it 'should create an unordered list with an item for each result', ->
           list = @myAutoComplete._createList SEARCH_RESULTS.results
@@ -90,7 +89,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
       describe 'creating a list item', ->
         beforeEach ->
           @myAutoComplete = new AutoComplete({id: 'my_search'})
-          @myAutoComplete.searchString = SEARCH_TERM
+          @myAutoComplete.searchTerm = SEARCH_TERM
 
         it 'should create a list item with an anchor as its only child', ->
           listItem = @myAutoComplete._createListItem SEARCH_RESULTS.results[0]
@@ -102,7 +101,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
       describe 'creating an anchor item', ->
         beforeEach ->
           @myAutoComplete = new AutoComplete({id: 'my_search'})
-          @myAutoComplete.searchString = SEARCH_TERM
+          @myAutoComplete.searchTerm = SEARCH_TERM
 
         it 'should create an anchor item with the item details', ->
           listItem = @myAutoComplete._createAnchor SEARCH_RESULTS.results[0]
@@ -120,7 +119,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
         it 'should highlight the search text at the start of a title', ->
           testSearchTerm = 'Lond'
 
-          @myAutoComplete.searchString = testSearchTerm
+          @myAutoComplete.searchTerm = testSearchTerm
           anchor = @myAutoComplete._createAnchor SEARCH_RESULTS.results[0]
           anchorTerm = anchor.childNodes[0]
           anchorRemainder = anchor.childNodes[1]
@@ -135,7 +134,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
         it 'should highlight the search text at the end of a title', ->
           testSearchTerm = 'don'
 
-          @myAutoComplete.searchString = testSearchTerm
+          @myAutoComplete.searchTerm = testSearchTerm
           anchor = @myAutoComplete._createAnchor SEARCH_RESULTS.results[0]
           anchorRemainder = anchor.childNodes[0]
           anchorTerm = anchor.childNodes[1]
@@ -151,7 +150,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
         it 'should highlight the search text in the middle of a title', ->
           testSearchTerm = 'ond'
 
-          @myAutoComplete.searchString = testSearchTerm
+          @myAutoComplete.searchTerm = testSearchTerm
           anchor = @myAutoComplete._createAnchor SEARCH_RESULTS.results[0]
           anchorRemainderStart = anchor.childNodes[0]
           anchorTerm = anchor.childNodes[1]
@@ -168,7 +167,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
           expect(anchorRemainderEnd.textContent).toBe('on')
 
         it 'should highlight the search text if it exactly matches a title', ->
-          @myAutoComplete.searchString = SEARCH_TERM
+          @myAutoComplete.searchTerm = SEARCH_TERM
           anchor = @myAutoComplete._createAnchor SEARCH_RESULTS.results[0]
           anchorTerm = anchor.childNodes[0]
 
@@ -177,7 +176,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
           expect(anchorTerm.textContent).toBe(SEARCH_TERM)
 
         it 'should not highlight anything if the search text is not found', ->
-          @myAutoComplete.searchString = SEARCH_TERM
+          @myAutoComplete.searchTerm = SEARCH_TERM
           anchor = @myAutoComplete._createAnchor SEARCH_RESULTS.results[1]
           anchorText = anchor.childNodes[0]
 
