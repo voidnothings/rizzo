@@ -37,23 +37,27 @@
 .nav__item--primary
   padding: 20px 4px
   .responsive &
-    padding: 15px 10px
+    +font-size(18)
+    padding: 17px 10px
     border-bottom: 1px solid $offscreen-nav-border
-    padding-left: 50px
+    padding-left: 60px
     position: relative
     &:hover
       background-color: $offscreen-nav-item-hover
       &:before
         border-right: 1px solid $offscreen-nav-border-hover
+        color: $offscreen-nav-border-hover
     &:before
       @extend %empty-abs-generated-content
-      width: 40px
+      width: 50px
       border-right: 1px solid $offscreen-nav-border
       display: block
       left: 0
       top: 0
-      height: 44px
+      height: 100%
+      color: $offscreen-nav-border
     +respond-to(wide-view)
+      +font-size(14)
       padding: 20px 4px
       border: none
       &:hover
@@ -159,20 +163,23 @@
       position: absolute
       left: 0
 
-
-
 .user-box
   @extend %right-icon
   margin-top: 10px
   padding-right: 25px
   // Can't extend this as usual, because it lies within a mq
   .responsive &
-    padding-bottom: 10px
-    border-bottom: 1px solid #23394B
+    margin-top: 0
+    background-color: $offscreen-nav-user-background
+    height: 50px
+    &:after
+      content: ''
     +respond-to(wide-view)
-      content: "\e014"
-      padding-bottom: 0
-      border-bottom: none
+      margin-top: 10px
+      background: none
+      height: auto
+      &:after
+        content: "\e014"
 
   &:after
     @extend %lp-font-stack
@@ -187,11 +194,15 @@
   height: 30px
   width: 30px
   .responsive &
+    +border-radius(0)
     border: none
-    margin: 3px 14px 0 5px
+    height: 50px
+    width: 50px
     +respond-to(wide-view)
+      +border-radius(4)
       border: 2px solid $user-border
-      margin: 0
+      height: 30px
+      width: 30px
 
 .nav__submenu--user
   width: 165px

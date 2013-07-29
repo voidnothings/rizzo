@@ -2,45 +2,56 @@
 // CSS Arrow
 // -----------------------------------------------------------------------------
 
-@mixin css-arrow($side: top, $width: 10px, $color: $bookable, $offset: 0)
-  @extend %empty-abs-generated-content
-  height: 0
-  width: 0
-  border: $width solid transparent
+@mixin css-arrow($side: top, $width: 10px, $size: 28px, $offset: 0, $arrowOffset: 28px)
+  color: inherit
   @if $side == top
-    bottom: 100%
-    left: $offset
-    border-bottom-color: $color
+    @extend %curly-arrow-top-after
+    &:after
+      bottom: auto
+      left: $offset
+      top: -$arrowOffset
   @if $side == right
-    left: 100%
-    top: $offset
-    border-left-color: $color
+    @extend %curly-arrow-right-after
+    &:after
+      left: auto
+      right: -$arrowOffset
+      top: $offset
   @if $side == bottom
-    top: 100%
-    left: $offset
-    border-top-color: $color
+    @extend %curly-arrow-bottom-after
+    &:after
+      bottom: -$arrowOffset
+      left: $offset
+      top: auto
   @if $side == left
-    right: 100%
-    top: $offset
-    border-right-color: $color
+    @extend %curly-arrow-left-after
+    &:after
+      left: -$arrowOffset
+      right: auto
+      top: $offset
+
+  &:after
+    font-family: freight
+    font-size: $size
 
 // -----------------------------------------------------------------------------
 // Centralised CSS Arrow
 // -----------------------------------------------------------------------------
 
-@mixin css-arrow-central($side: top, $width: 10px, $color: $bookable, $offset: 0)
-  @include css-arrow($side, $width, $color, $offset)
+@mixin css-arrow-central($side: top, $width: 10px, $size: 28px, $offset: 0, $arrowOffset: 28px)
+  @include css-arrow($side, $width, $size, $offset, $arrowOffset)
   @if $side == top
-    left: 50%
-    margin-left: -($width)
+    &:after
+      left: 50%
+      margin-left: -($width)
   @if $side == bottom
-    left: 50%
-    margin-left: -($width)
+    &:after
+      left: 50%
+      margin-left: -($width)
   @if $side == right
-    top: 50%
-    margin-top: -($width)
+    &:after
+      top: 50%
+      margin-top: -($width)
   @if $side == left
-    top: 50%
-    margin-top: -($width)
-
-
+    &:after
+      top: 50%
+      margin-top: -($width)

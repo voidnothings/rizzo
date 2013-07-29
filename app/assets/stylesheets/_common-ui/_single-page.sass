@@ -1,0 +1,116 @@
+// -----------------------------------------------------------------------------
+// 
+//  Single-page module
+// 
+// -----------------------------------------------------------------------------
+
+.single-page
+  @extend %grid-wrapper-20
+  color: $body-copy
+  position: relative
+
+  .copy--title
+    margin: 0
+  .section-subtitle
+    font-weight: bold
+
+  .map, .media-gallery
+    margin-bottom: 35px
+
+  .icon-list
+    @extend %extra-large-type
+  .icon-list--icon
+    margin-bottom: 15px
+    &:before
+      color: $green
+      margin-right: 10px
+
+  .sharing
+    clear: left
+
+  .tag
+    @extend %regular-type-size
+  .tag--price__amount
+    font-size: 30px
+    line-height: 0.6em
+    margin-bottom: 12px
+
+.single-page--container
+  @extend %clearfix
+  @extend %four-pixel-rounded
+  padding: 25px
+
+.single-page__header
+  border-bottom: 1px solid $ruled-separator
+  margin-bottom: 20px
+  padding-bottom: 20px
+
+.single-page__footer
+  @extend %clearfix
+  clear: left
+  color: $new-header-grey
+  margin-top: 20px
+  padding-top: 20px
+
+  .section-subtitle
+    @extend %small-type
+    text-transform: uppercase
+  .share-this
+    float: left
+  .send-this
+    float: right
+
+.single-page--related-list
+  .section-title
+    @extend %larger-type
+    font-weight: bold
+    margin-left: 10px
+    margin-top: 30px
+
+.single-page__breadcrumb
+  @extend %local-marker-before
+  line-height: 25px
+  position: relative
+  text-transform: uppercase
+
+  &:before
+    +font-size(35)
+    position: relative
+    top: 4px
+
+.single-page__breadcrumb--activities:before
+  color: $orange
+
+.single-page__breadcrumb--tours:before
+  color: $teal
+
+.single-page__breadcrumb--sights:before
+  color: $red
+
+.single-page__breadcrumb--type
+  font-weight: bold
+
+.single-page__content
+  @extend %grid-column
+  margin-right: 20px
+  width: 626px
+  .card--single + .stack &
+    width: 427px
+
+  .section-title
+    color: $body-copy
+    margin-bottom: 25px
+  .section-subtitle
+    color: $header-blue
+    margin-bottom: 20px
+    margin-top: 35px
+    text-transform: uppercase
+
+.single-page__aside
+  @extend %grid-column
+  @extend %transition--base
+  position: relative
+  width: 300px
+
+  .booking-panel + .details-panel
+    border-top: 1px solid $ruled-separator

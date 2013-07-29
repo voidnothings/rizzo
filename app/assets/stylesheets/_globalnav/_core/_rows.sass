@@ -195,6 +195,9 @@ body
 .row--content
   padding-top: 25px
   margin-bottom: 40px
+  // Ensure that nav dropdowns sit above any content
+  position: relative
+  z-index: 1
   .responsive &
     @extend %transition--nav
     position: relative
@@ -313,7 +316,4 @@ body
   height: auto !important
   height: 100%
   margin: 0
-  margin-bottom: -501px
 
-.row--footer-push
-  height: 501px
