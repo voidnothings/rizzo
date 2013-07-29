@@ -26,11 +26,14 @@ define [], ->
             @_updateUI JSON.parse myRequest.responseText
 
       myRequest.open 'get', "/search/#{@searchTerm}?scope=homepage"
+      myRequest.setRequestHeader 'Accept', 'application/json'
       myRequest.send()
 
     _updateUI: (searchResults) ->
-      resultsList = @_createList searchResults.results
-      @el.parentNode.replaceChild resultsList, document.getElementById 'autocomplete__results'
+      resultsList = @_createList searchResults
+      old = document.getElementById('autocomplete__results')
+      console.log old, resultsList
+      @el.parentNode.replaceChild resultsList, old
 
     _createList: (results) ->
       resultItems = (@_createListItem item for item in results)
@@ -49,5 +52,5 @@ define [], ->
       anchor = document.createElement 'A'
       anchor.setAttribute 'href', item.uri
       anchor.setAttribute 'class', "autocomplete__result--#{item.type}"
-      anchor.innerHTML = item.title.replace @searchTerm, "<span class='autocomplete__result--highlight'>#{@searchTerm}</span>"
+      anchor.innerHTML = item.title.replace @searchTerm, "<span class='autocomplete__result--highlight'>#{@searchTerm}</span>", "gi"
       anchor
