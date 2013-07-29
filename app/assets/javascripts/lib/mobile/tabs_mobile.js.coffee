@@ -40,7 +40,9 @@ define ['jsmin'], ($)->
     _openNewTab = (tabLabel, tab) ->
       unless _hasClass(tab, "is-active")
 
-        config.tabsContainer.getElementsByClassName('is-active')[0].classList.remove('is-active')
+        for child in config.tabsContainer.children
+          child.classList.remove('is-active')
+
         for label in config.tabLabels
           label.classList.remove('is-active')
         

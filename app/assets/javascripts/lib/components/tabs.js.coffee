@@ -37,7 +37,7 @@ define ['jquery'], ($) ->
     _openNewTab = (tabLabel, tab) ->
       unless tab.hasClass('is-active')
         
-        config.tabsContainer.find('.is-active').removeClass('is-active')
+        config.tabsContainer.children('.is-active').removeClass('is-active')
         config.tabLabels.removeClass('is-active')
         tabLabel.addClass('is-active')
 
