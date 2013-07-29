@@ -36,6 +36,8 @@ body
   @extend %regular-width
   .responsive &
     width: auto
+    +respond-to(wide-view)
+      max-width: 1000px
 
 .row--core
   @extend %helvetica-neue

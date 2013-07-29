@@ -19,13 +19,8 @@ $tab-height--wide: 610px
     display: block
   +respond-to(wide-view)
     height: $tab-height--wide
-  .form-row
-    @extend %clearfix
-    margin-bottom: 15px
-  ::-webkit-calendar-picker-indicator
-    display: none
-  ::-webkit-inner-spin-button
-    display: none
+
+
 
 .tab--homepage__inner
   @extend %four-pixel-rounded
@@ -49,16 +44,18 @@ $tab-height--wide: 610px
 .tab--homepage__strapline
   +font-size(30)
   color: white
-  margin-bottom: 25px
+  margin: 0 auto 25px
+  width: 90%
   +respond-to(wide-view)
     +font-size(37)
 
 .tab__image-strapline
-  text-align: center
-  position: absolute
-  right: 55%
-  top: 40%
-  width: 300px
+  +respond-to(medium-view)
+    text-align: center
+    position: absolute
+    right: 55%
+    top: 40%
+    width: 300px
 
 .tab--homepage__heading
   color: white
@@ -68,6 +65,7 @@ $tab-height--wide: 610px
   +font-size(14)
   +transition(all, 0.3, ease)
   color: $new-header-grey
+  background: white
   width: 20%
   height: 66px
   float: left
