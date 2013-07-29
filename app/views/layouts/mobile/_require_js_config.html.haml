@@ -2,6 +2,7 @@
   var require = {
     baseUrl: '/assets',
     paths: {
+      jquery: "jquery/jquery-1.7.2.min",
       jplugs: "/assets/jquery/plugins",
       jsmin: "/assets/lonelyplanet_minjs/dist/$",
       s_code: "./vendor/assets/javascripts/omniture/s_code",
@@ -9,9 +10,3 @@
       sailthru: "/assets/sailthru/v1"
     }
   };
-  if (document.documentElement.clientWidth < 990 && 
-    document.documentElement.className.indexOf('ie') == -1) {
-    require.paths.jquery = "jquery/jquery-1.7.2.min";
-  } else {
-    require.paths.jquery = "jquery/jquery-1.7.2.min";
-  }
