@@ -26,13 +26,21 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
         expect(AutoComplete).toBeDefined()
 
     describe 'Initialisation', ->
-      it 'the input element exists', ->
+      it 'should initialise if the input element exists', ->
         spyOn AutoComplete.prototype, "init"
         loadFixtures('autocomplete_mobile.html')
 
         @myAutoComplete = new AutoComplete({id: 'my_search'})
         expect(AutoComplete.prototype.init).toHaveBeenCalled()
         expect(@myAutoComplete.el).not.toBeNull()
+
+      it 'should not initialise if the input element does not to exist', ->
+        spyOn AutoComplete.prototype, "init"
+        loadFixtures('autocomplete_mobile.html')
+
+        @myAutoComplete = new AutoComplete({id: 'not_my_search'})
+        expect(AutoComplete.prototype.init).not.toHaveBeenCalled()
+        expect(@myAutoComplete.el).toBeNull()
 
     describe 'whether the search threshold has been reached', ->
       beforeEach ->
