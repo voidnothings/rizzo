@@ -64,3 +64,10 @@ $is-ie: false !default
   @if $breakpoint == max990
     @media only screen and (max-width : 990px)
       @content
+
+@mixin respond-at($screen-width)
+  @if $is-ie == false
+    @media only screen and (min-width : #{$screen-width}px)
+      @content
+  @else
+    @content

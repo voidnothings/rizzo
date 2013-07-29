@@ -1,0 +1,18 @@
+.tab--homepage--hotels
+  background: #5278A2
+  padding-top: 10px
+  +respond-to(medium-view)
+    background: #5278A2 url("#{image_path('section3/hotels.jpg')}") center center no-repeat
+    background-size: cover
+
+  .copy--title
+    margin-bottom: 0
+    +font-size(26)
+    +respond-to(medium-view)
+      +font-size(32)
+
+  .form-row
+    margin-bottom: 10px
+    +respond-to(wide-view)
+      margin-bottom: 20px
+

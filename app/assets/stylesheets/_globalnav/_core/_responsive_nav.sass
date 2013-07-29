@@ -8,6 +8,7 @@ $responsive-nav-width: 280px
 
 // The container for our off-screen navigation
 .nav-container
+  +hardware-acceleration()
   @extend %clearfix
   width: 100%
   background: $primary-nav
