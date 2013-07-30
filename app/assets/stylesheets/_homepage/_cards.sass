@@ -13,5 +13,10 @@
   +respond-to(wide-view)
     height: (2 * $card-grid-height)
 
-  > .card:last-child
+.row--cards__group
+  width: 808px
+  float: left
+  +respond-to(wide-view)
+    width: 404px
+  &:last-child
     margin-right: 50px
