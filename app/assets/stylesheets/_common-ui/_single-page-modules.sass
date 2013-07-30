@@ -169,15 +169,21 @@
   @extend %clearfix
   @extend %transition--base
   position: relative
-  ~ .single-page__aside
+  &.has-tabs ~ .single-page__aside
     @extend %media-gallery-transition
     top: -316px
+  ~ .single-page__aside
+    @extend %media-gallery-transition
+    top: -276px
   .media-gallery__container, .tab__content
     @extend %clearfix
     @extend %media-gallery-transition
     height: 241px
     width: 427px
     z-index: 0
+
+    &.is-active
+      z-index: 1
   .slider__controls
     @extend %media-gallery-transition
     top: 95px
@@ -237,6 +243,7 @@
     margin-left: 10px
 
 .media-gallery__container
+  +perspective(600)
   overflow: hidden
   position: relative
   &.is-loading, .is-loading
