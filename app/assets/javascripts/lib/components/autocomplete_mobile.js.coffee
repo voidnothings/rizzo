@@ -37,6 +37,7 @@ define [], ->
       resultItems = (@_createListItem item for item in results)
       list = document.createElement 'UL'
       list.setAttribute 'id', 'autocomplete__results'
+      list.setAttribute 'class', 'autocomplete__results'
       list.appendChild listItem for listItem in resultItems
       list
 
@@ -47,8 +48,9 @@ define [], ->
       listItem
 
     _createAnchor: (item) ->
+      regex = new RegExp @searchTerm, 'ig'
       anchor = document.createElement 'A'
       anchor.setAttribute 'href', item.uri
       anchor.setAttribute 'class', "autocomplete__result autocomplete__result--#{item.type}"
-      anchor.innerHTML = item.title.replace @searchTerm, "<span class='autocomplete__result--highlight'>#{@searchTerm}</span>", "gi"
+      anchor.innerHTML = item.title.replace regex, "<span class='autocomplete__result--highlight'>$&</span>"
       anchor
