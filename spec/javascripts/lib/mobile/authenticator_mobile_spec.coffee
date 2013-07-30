@@ -112,10 +112,6 @@ require ['public/assets/javascripts/lib/mobile/core/authenticator_mobile'], (Aut
            expect($('a.js-user-settings')).toExist()
            expect($('a.js-user-settings').text()).toBe('Settings')
 
-        # it 'has a user-messages link', ->
-        #    expect($('a.js-user-msg')).toExist()
-        #    expect($('a.js-user-msg').text()).toBe('Messages')
-
         it 'has a user-forum-activity link', ->
            expect($('a.js-user-forum')).toExist()
            expect($('a.js-user-forum').text()).toBe('Forum Activity')

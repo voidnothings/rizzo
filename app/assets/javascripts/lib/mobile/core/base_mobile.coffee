@@ -26,8 +26,6 @@ define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shoppin
     addNavTracking: ->
       $('#js-primary-nav').on 'click', ->
         if e.target.hasClass('js-nav-item') then window.s.linkstacker(e.target.innerText)
-
-      $('#js-primary-nav').on 'click', ->
         if e.target.hasClass('js-nav-cart') then window.s.linkstacker("shopping-cart")
 
       $('#js-primary-nav').on 'submit', ->
