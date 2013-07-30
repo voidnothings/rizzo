@@ -1,3 +1,25 @@
+# AutoComplete
+# Add an handler button to control the h-visible-size of an element
+#
+# TODO: - there's a bug with accented characters, they aren't being highlighted
+#         (http://instanceof.me/post/17455522476/accent-folding-javascript as a possible solution)
+#       - possibly cancel an existing XHR if typing continues and the last one hasn't returned yet
+#       - might be better to attach to the form instead of the input
+#       - pass an argument for the search scope
+#       - put the classes into a config object
+#
+# Arguments:
+#   _args (A hash containing)
+#     id    : [string] The target element
+#
+# Example:
+#  args =
+#    id: 'my_search'
+#  new AutoComplete(args)
+#
+# Dependencies:
+#   None
+
 define [], ->
 
   class AutoComplete
