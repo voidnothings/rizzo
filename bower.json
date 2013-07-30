@@ -1,6 +1,7 @@
 {
 	"name": "avocado",
   "dependencies": {
-    "flamsteed": "latest"
+    "flamsteed": "latest",
+    "lonelyplanet_minjs": "latest"
   }
 }

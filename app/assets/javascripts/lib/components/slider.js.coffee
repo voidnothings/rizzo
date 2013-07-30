@@ -41,9 +41,6 @@ define ['jquery'], ($) ->
       @$slider_controls.append(@$next).append(@$prev)
       @slides_container.append(@$slider_controls)
 
-      if _has3d()
-        @slides_container.addClass('supports-3d')
-
       @_setupSlideClasses()
 
       @$next.on 'click', =>
@@ -53,17 +50,17 @@ define ['jquery'], ($) ->
         @_previousSlide()
         return false
 
-      if @$legacy.length is 0
-        require ['pointer','touchwipe'], =>
-          # Swiping navigation.
-          @$el.touchwipe
-            wipeLeft: =>
-              @_nextSlide()
-            wipeRight: =>
-              @_previousSlide()
-            min_move_x: 100
-            min_move_y: 100
-            preventDefaultEvents: true
+      # if @$legacy.length is 0 && !!window.addEventListener
+      #   require ['pointer','touchwipe'], =>
+      #     # Swiping navigation.
+      #     @$el.touchwipe
+      #       wipeLeft: =>
+      #         @_nextSlide()
+      #       wipeRight: =>
+      #         @_previousSlide()
+      #       min_move_x: 100
+      #       min_move_y: 100
+      #       preventDefaultEvents: true
 
     # Private
 
@@ -116,22 +113,3 @@ define ['jquery'], ($) ->
 
     _resetSlideClasses: ->
       @$el.find(@slides+'.is-current, '+@slides+'.is-next, '+@slides+'.is-prev').removeClass('is-current is-next is-prev')
-
-    _has3d = ->
-      el = document.createElement("p")
-      has3d = undefined
-      transforms =
-        webkitTransform: "-webkit-transform"
-        OTransform: "-o-transform"
-        msTransform: "-ms-transform"
-        MozTransform: "-moz-transform"
-        transform: "transform"
-      
-      # Add it to the body to get the computed style.
-      document.body.insertBefore el, null
-      for t of transforms
-        if el.style[t] isnt `undefined`
-          el.style[t] = "translate3d(1px,1px,1px)"
-          has3d = window.getComputedStyle(el).getPropertyValue(transforms[t])
-      document.body.removeChild el
-      has3d isnt `undefined` and has3d.length > 0 and has3d isnt "none"
