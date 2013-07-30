@@ -5,7 +5,8 @@
 #         (http://instanceof.me/post/17455522476/accent-folding-javascript as a possible solution)
 #       - possibly cancel an existing XHR if typing continues and the last one hasn't returned yet
 #       - might be better to attach to the form instead of the input
-#       - pass an argument for the search scope
+#       - pass an argument for the search endpoint
+#       - pass an argument for the search scope (this may be redundant because of the last point)
 #       - put the classes into a config object
 #
 # Arguments:
@@ -34,11 +35,15 @@ define [], ->
         @_searchFor e.currentTarget.value
       , false
       @resultsElt = document.getElementById 'autocomplete__results'
+      @dirtyList = false
 
     _searchFor: (searchTerm)  ->
       if searchTerm && searchTerm.length >= 3
         @searchTerm = searchTerm
         @_doRequest @searchTerm
+      else if @dirtyList
+        @_updateUI []
+        @dirtyList = false
 
     _doRequest: ->
       myRequest = new XMLHttpRequest()
@@ -54,6 +59,7 @@ define [], ->
     _updateUI: (searchResults) ->
       resultsList = @_createList searchResults
       @el.parentNode.replaceChild resultsList, document.getElementById('autocomplete__results')
+      @dirtyList = true
 
     _createList: (results) ->
       resultItems = (@_createListItem item for item in results)

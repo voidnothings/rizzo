@@ -40,37 +40,58 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
         expect(AutoComplete.prototype.init).not.toHaveBeenCalled()
         expect(@myAutoComplete.el).toBeNull()
 
-    describe 'whether the search threshold has been reached', ->
+    describe 'updating the UI when text has been entered in the search field', ->
       beforeEach ->
+        loadFixtures('autocomplete_mobile.html')
         @myAutoComplete = new AutoComplete({id: 'my_search'})
         spyOn @myAutoComplete, "_doRequest"
+        spyOn @myAutoComplete, "_updateUI"
 
-      it 'makes a request when enough characters have been entered', ->
-        minimumSearch = 'abc'
-        @myAutoComplete._searchFor minimumSearch
-        expect(@myAutoComplete._doRequest).toHaveBeenCalledWith(minimumSearch)
+      describe 'when enough characters have been entered to search for', ->
+        it 'makes a request when the list is clean', ->
+          minimumSearch = 'abc'
 
-      it "doesn't make a request when not enough characters have been entered", ->
-        @myAutoComplete._searchFor 'ab'
-        expect(@myAutoComplete._doRequest).not.toHaveBeenCalled()
+          @myAutoComplete.dirtyList = false
+          @myAutoComplete._searchFor minimumSearch
+          expect(@myAutoComplete._doRequest).toHaveBeenCalledWith(minimumSearch)
+
+        it 'makes a request when the list is dirty', ->
+          minimumSearch = 'abc'
+
+          @myAutoComplete.dirtyList = true
+          @myAutoComplete._searchFor minimumSearch
+          expect(@myAutoComplete._doRequest).toHaveBeenCalledWith(minimumSearch)
+
+      describe 'when not enough characters have been entered to search for', ->
+        it 'does not make a request when the list is clean', ->
+          @myAutoComplete.dirtyList = false
+
+          @myAutoComplete._searchFor 'ab'
+          expect(@myAutoComplete._doRequest).not.toHaveBeenCalled()
+          expect(@myAutoComplete._updateUI).not.toHaveBeenCalled()
+          expect(@myAutoComplete.dirtyList).toBe(false)
+
+        it 'clears the current list when the list is dirty', ->
+          @myAutoComplete.dirtyList = true
+
+          @myAutoComplete._searchFor 'ab'
+          expect(@myAutoComplete._doRequest).not.toHaveBeenCalled()
+          expect(@myAutoComplete._updateUI).toHaveBeenCalledWith([])
+          expect(@myAutoComplete.dirtyList).toBe(false)
 
     describe 'updating the UI when search results are returned', ->
-      it 'should add a list of highlighted search results to the page', ->
+      beforeEach ->
         loadFixtures('autocomplete_mobile.html')
         @myAutoComplete = new AutoComplete({id: 'my_search'})
         @myAutoComplete.searchTerm = SEARCH_TERM
-
         @myAutoComplete._updateUI SEARCH_RESULTS
 
+      it 'should add a list of highlighted search results to the page', ->
+        expect(@myAutoComplete.dirtyList).toBe(true)
         expect($('#search_results ul').length).toBe(1)
         expect($('#search_results ul li').length).toBe(2)
 
       it 'should replace the existing search results when called a second time', ->
-        loadFixtures('autocomplete_mobile.html')
-        @myAutoComplete = new AutoComplete({id: 'my_search'})
-        @myAutoComplete.searchTerm = SEARCH_TERM
-
-        @myAutoComplete._updateUI SEARCH_RESULTS
         @myAutoComplete._updateUI EMPTY_RESULTS
 
         expect($('#search_results ul').length).toBe(1)
@@ -80,7 +101,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
         beforeEach ->
           @myAutoComplete = new AutoComplete({id: 'my_search'})
           @myAutoComplete.searchTerm = SEARCH_TERM
-        
+
         it 'should create an unordered list with an item for each result', ->
           list = @myAutoComplete._createList SEARCH_RESULTS
 
@@ -153,7 +174,6 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
           expect(anchorTerm.tagName).toBe('SPAN')
           expect(anchorTerm.getAttribute('class')).toBe('autocomplete__result--highlight')
           expect(anchorTerm.textContent).toBe(testSearchTerm)
-
 
         it 'should highlight the search text in the middle of a title', ->
           testSearchTerm = 'ond'
