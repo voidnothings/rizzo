@@ -136,7 +136,7 @@ define ['jquery','lib/utils/css_helper'], ($, CssHelper) ->
 
     initMapPOIs: (data)->
       @markers ?= {}
-      for poi in @allPOIs(data)
+      for poi in @flatten(data)
         # Need this `do` so that `poi` is scoped within the for loop.
         do (poi) =>
           @addPOI(poi)
@@ -153,8 +153,14 @@ define ['jquery','lib/utils/css_helper'], ($, CssHelper) ->
       , 150
       markerDelay += 100
 
-    allPOIs: (data)->
-      _.flatten(_.values(data))
+    flatten: (obj)->
+      flat = []
+      for prop of obj
+        if ($.isArray(obj[prop]))
+          $.merge(flat, @flatten(obj[prop]))
+        else
+          flat.push(obj[prop])
+      flat
 
     addClickListener: (marker)->
       # own function so marker in closure
