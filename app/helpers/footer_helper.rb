@@ -41,8 +41,8 @@ module FooterHelper
       {:title=>'Family travel', :url=>'family-travel'},
       {:title=>'Honeymoons', :url=>'honeymoons'},
       {:title=>'Photography', :url=>'photography'},
-      {:title=>'Road Trips', :url=>'road-trips'},
-      {:title=>'Value Travel', :url=>'value-travel'},
+      {:title=>'Road trips', :url=>'road-trips'},
+      {:title=>'Value travel', :url=>'value-travel'},
       {:title=>'Wildlife', :url=>'wildlife'},
       {:title=>'World food', :url=>'world-food'}
     ]
