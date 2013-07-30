@@ -52,7 +52,6 @@ module.exports = function(grunt) {
                 jquery: "./vendor/assets/javascripts/jquery/jquery-1.7.2.min",
                 jsmin: "./vendor/assets/javascripts/jsmin",
                 polyfills: "./vendor/assets/javascripts/polyfills",
-                handlebars: './vendor/assets/javascripts/handlebars',
                 lib: "./public/assets/javascripts/lib",
                 underscore: './vendor/assets/javascripts/underscore',
                 jplugs: "./vendor/assets/javascripts/jquery/plugins",

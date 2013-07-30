@@ -9,8 +9,6 @@
 #
 # Dependencies:
 #   Jquery
-#   Handlebars
-#   Underscore
 #
 # Example:
 #   var nearbyThingsToDo = new window.lp.NearbyThingsToDo(target: '#nearby_list', pois: pois);
@@ -19,7 +17,7 @@
 #
 
 
-define ['jquery','handlebars','underscore', 'polyfills/scrollIntoViewIfNeeded'], ($) ->
+define ['jquery', 'polyfills/scrollIntoViewIfNeeded'], ($) ->
 
   class NearbyThingsToDo
 
@@ -29,24 +27,22 @@ define ['jquery','handlebars','underscore', 'polyfills/scrollIntoViewIfNeeded'],
     prepare: ->
       @container = $('<div>').addClass('nearby-pois')
       $(@args.target).append(@container)
-      templ = "
-        {{#with properties}}
-        <li class='obj-list__item nearby-pois__poi icon--poi--{{../category}}' data-poi-id='{{id}}'>
-          <a href='{{uri}}' class='label'>{{title}}</a>
-          <div class='nearby-pois__poi__description'>{{{description}}}</div>
-        </li>
-        {{/with}}
-      "
-      @listItemTemplate = Handlebars.compile(templ)
 
     render: ->
       @container.empty()
       list = $('<ul>').addClass('nearby-pois__list')
-      list.append(@listItemTemplate(activity)) for activity in @args.pois.sights_or_activities
-      list.append(@listItemTemplate(@args.pois.entertainment)) if @args.pois.entertainment.length isnt 0
-      list.append(@listItemTemplate(@args.pois.restaurant)) if @args.pois.restaurant.length isnt 0
+      list.append(@renderPOI(activity)) for activity in @args.pois.sights_or_activities
+      list.append(@renderPOI(@args.pois.entertainment)) if @args.pois.entertainment
+      list.append(@renderPOI(@args.pois.restaurant)) if @args.pois.restaurant
+
       @container.append(list)
       @bindOnPOISelection()
+
+    renderPOI: (activity) ->
+      poi = activity.properties
+      li = $('<li class="obj-list__item nearby-pois__poi icon--poi--'+activity.category+'" data-poi-id="'+poi.id+'" />')
+      li.append('<a href="'+poi.uri+'" class="label">'+poi.title+'</a>')
+      li.append('<div class="nearby-pois__poi__description">'+poi.description+'</div>')
 
     bindOnPOISelection: ->
       @container.find('li').on 'click', (e)=>
@@ -60,5 +56,3 @@ define ['jquery','handlebars','underscore', 'polyfills/scrollIntoViewIfNeeded'],
 
     resetPOIs: ->
       @container.find('li[data-poi-id]').removeClass('nearby-pois__poi--highlighted')
-
-

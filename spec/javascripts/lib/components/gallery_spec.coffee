@@ -15,7 +15,6 @@ require ['public/assets/javascripts/lib/components/gallery.js'], (Gallery) ->
 
         it 'has all the dependencies defined', ->
           expect($).toBeDefined()
-          expect(Handlebars).toBeDefined()
           
         it 'has default slide template for stage section', ->
           expect(Gallery.options.stageTemplate).toBeDefined()
