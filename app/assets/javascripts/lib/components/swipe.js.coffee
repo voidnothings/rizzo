@@ -13,7 +13,7 @@
 #     loaderStyle : [string] A style to be applied on the loader element wrapper.
 #     speed       : [number] The speed between transition.
 #     start       : [bool]   Controls the automatic swipe start (default is true)
-#     template    : [string] The slide template to be rendered in each slide (handlebars template).
+#     template    : [string] The slide template to be rendered in each slide.
 #     transform   : [string] Transition mode between slides, can be 'translateX' or 'opacity'
 #     width       : [number] Width of the slides container (default is Auto)
 #
@@ -44,13 +44,13 @@
 #
 # Dependencies:
 #   Jquery
-#   Handlebars (for templating)
+#   Underscore
 #
 # 
 
 
 
-define ['jquery','underscore','handlebars'], ($,_) ->
+define ['jquery','underscore'], ($,_) ->
 
   class Swipe
 
@@ -73,7 +73,6 @@ define ['jquery','underscore','handlebars'], ($,_) ->
 
     constructor: (@args)->
       $.extend Swipe.options, @args
-      @template = Handlebars.compile(@args.template)
       @target = @args.target
       @index = @args.index || 0
       @prepare()
@@ -109,9 +108,8 @@ define ['jquery','underscore','handlebars'], ($,_) ->
       @place_holder = $('<div>').addClass('lp-swipe-ctrl-ctr').append(@container)
       @element.append(@place_holder)
 
-      @elements = (@template(d) for d in @args.data)
-      for tempEl in @elements
-        item = $('<li>').append(tempEl)
+      for data in @args.data
+        item = $('<li>').append(@args.template.replace(/\{\{src}}/g, data.src).replace(/\{\{thumb}}/g, data.thumb))
         if @args.transform is 'translateX' then item.css({float: 'left'}) else item.css({position: 'absolute', top: 0})
         @container.append(item)
 

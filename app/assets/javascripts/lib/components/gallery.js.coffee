@@ -9,8 +9,8 @@
 #     style              : [string]   A style to apply to the main gallery component (defaults to 'lp-gallery-box').
 #     preload            : [number]   The number of slides to preload (defaults to 3).
 #     data               : [array]    An array of hashes with the src and thumb for each asset.
-#     stageTemplate      : [string]   The stage slide template (handlebars template).
-#     thumbsTemplate     : [string]   The thumbs slide template (handlebars template).
+#     stageTemplate      : [string]   The stage slide template.
+#     thumbsTemplate     : [string]   The thumbs slide template.
 #     stageSlidesPerSet  : [function] The number of slides per set on stage (should return a number).
 #     thumbsSlidesPerSet : [function] The number of slides per set on thumbs (should return a number).
 #
@@ -75,11 +75,10 @@ define ['jquery','lib/components/swipe'], ($, Swipe) ->
       @btn_close = $(toolbar)
 
     populateStage:() ->
-      template = @args.stageTemplate
       options =
         target: '#lp-gallery'
         handlers: true
-        template: template
+        template: @args.stageTemplate
         slidesPerSet: @args.stageSlidesPerSet
         speed: 400
         index: @args.index
@@ -111,11 +110,10 @@ define ['jquery','lib/components/swipe'], ($, Swipe) ->
       @thumb.slideToSet(_i)
 
     populateThumbs: ->
-      template = @args.thumbTemplate
       options =
         target: '#lp-gallery'
         handlers: true
-        template: template
+        template: @args.thumbTemplate
         slidesPerSet: @args.thumbsSlidesPerSet
         width: @args.width
         speed: 400

@@ -41,7 +41,7 @@ module.exports = function(grunt) {
       avocado: {
         src: ['./public/assets/javascripts/lib/**/*.js'],
         options: {
-          helpers: './spec/javascripts/helpers/**/*.js',
+          helpers: ['./spec/javascripts/helpers/**/*.js', './vendor/assets/javascripts/jquery/jquery-1.7.2.min.js'],
           host: 'http://localhost:8888/',
           specs: './public/assets/javascripts/spec/**/*.js',
           template: require('grunt-template-jasmine-requirejs'),
@@ -50,9 +50,8 @@ module.exports = function(grunt) {
               baseUrl: './',
               paths: {
                 jquery: "./vendor/assets/javascripts/jquery/jquery-1.7.2.min",
-                jsmin: "./vendor/assets/javascripts/jsmin",
+                jsmin: "./vendor/assets/javascripts/lonelyplanet_minjs/dist/$",
                 polyfills: "./vendor/assets/javascripts/polyfills",
-                handlebars: './vendor/assets/javascripts/handlebars',
                 lib: "./public/assets/javascripts/lib",
                 underscore: './vendor/assets/javascripts/underscore',
                 jplugs: "./vendor/assets/javascripts/jquery/plugins",
@@ -68,7 +67,7 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: ['app/assets/javascripts/lib/**/*.coffee', 'spec/javascripts/lib/**/*.coffee'],
-        tasks: ['coffee', 'jasmine'],
+        tasks: ['shell:clean', 'coffee', 'jasmine'],
         options: {
           nospawn: true
         }
@@ -102,7 +101,7 @@ module.exports = function(grunt) {
   // Tasks
   grunt.registerTask('default', ['shell:clean', 'coffee', 'connect', 'jasmine']);
   grunt.registerTask('dev', ['connect', 'open:jasmine', 'jasmine', 'watch']);
-  grunt.registerTask('wip', ['jasmine:avocado:build', 'connect:server:keepalive']);
+  grunt.registerTask('wip', ['jasmine:avocado:build', 'open:jasmine', 'connect:server:keepalive']);
   grunt.registerTask('report', ['shell:clean', 'coffee', 'plato', 'shell:openPlato']);
 
 };
