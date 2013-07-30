@@ -111,12 +111,14 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
 
         it 'should create an anchor item with the item details', ->
           listItem = @myAutoComplete._createAnchor SEARCH_RESULTS[0]
+          $listItem = $(listItem)
 
           expect(listItem.tagName).toBe('A')
           expect(listItem.getAttribute('href')).toEqual(SEARCH_RESULTS[0].uri)
-          expect(listItem.getAttribute('class')).toBe("autocomplete__result--#{SEARCH_RESULTS[0].type}")
           expect(listItem.childNodes.length).toBe(1)
           expect(listItem.textContent).toBe(SEARCH_RESULTS[0].title)
+          expect($listItem.hasClass("autocomplete__result")).toBe(true)
+          expect($listItem.hasClass("autocomplete__result--#{SEARCH_RESULTS[0].type}")).toBe(true)
 
       describe 'highlighting the search term', ->
         beforeEach ->

@@ -31,9 +31,7 @@ define [], ->
 
     _updateUI: (searchResults) ->
       resultsList = @_createList searchResults
-      old = document.getElementById('autocomplete__results')
-      console.log old, resultsList
-      @el.parentNode.replaceChild resultsList, old
+      @el.parentNode.replaceChild resultsList, document.getElementById('autocomplete__results')
 
     _createList: (results) ->
       resultItems = (@_createListItem item for item in results)
@@ -51,6 +49,6 @@ define [], ->
     _createAnchor: (item) ->
       anchor = document.createElement 'A'
       anchor.setAttribute 'href', item.uri
-      anchor.setAttribute 'class', "autocomplete__result--#{item.type}"
+      anchor.setAttribute 'class', "autocomplete__result autocomplete__result--#{item.type}"
       anchor.innerHTML = item.title.replace @searchTerm, "<span class='autocomplete__result--highlight'>#{@searchTerm}</span>", "gi"
       anchor
