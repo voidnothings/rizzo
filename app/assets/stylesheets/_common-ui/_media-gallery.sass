@@ -5,10 +5,10 @@
   @extend %clearfix
   @extend %transition--base
   position: relative
-  &.has-tabs ~ .detail-page__aside
+  &.has-tabs ~ .card--page__aside
     @extend %media-gallery-transition
     top: -316px
-  ~ .detail-page__aside
+  ~ .card--page__aside
     @extend %media-gallery-transition
     top: -276px
   .media-gallery__container, .tab__content
@@ -44,7 +44,7 @@
       display: none
     .media-gallery__resizer
       @extend %contract-arrows-before
-  ~ .detail-page__aside
+  ~ .card--page__aside
     top: 0
 
 .media-gallery--full
