@@ -1,4 +1,4 @@
-require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
+require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
 
   describe 'AutoComplete', ->
 
