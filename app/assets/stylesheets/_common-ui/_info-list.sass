@@ -1,0 +1,33 @@
+// -----------------------------------------------------------------------------
+// Information List
+// -----------------------------------------------------------------------------
+
+.info-list
+  .section-title
+    @extend %larger-type
+    font-weight: bold
+    margin-bottom: 10px
+
+  .copy--body
+    margin-bottom: 20px
+    margin-left: 27px
+
+  .icon-list--icon
+    &:before
+      @extend %huge-type
+      color: $lpblue
+      font-weight: normal
+      margin-right: 0.2em
+      line-height: 20px
+    &.icon-list--info:before
+      font-weight: bold
+      line-height: 0.9em
+      margin-left: 0.1em
+    &.icon-list--cross, &.icon-list--info, &.icon-list--tick
+      &:before
+        @extend %extra-large-type
+        margin-right: 0.4em
+    &.icon-list--cross, &.icon-list--tick
+      &:before
+        margin-left: 0.2em
+        margin-right: 0.5em

@@ -1,10 +1,10 @@
 // -----------------------------------------------------------------------------
 // 
-//  Single-page module
+//  Detail page module
 // 
 // -----------------------------------------------------------------------------
 
-.single-page
+.detail-page
   @extend %grid-wrapper-20
   color: $body-copy
   position: relative
@@ -35,17 +35,17 @@
     line-height: 0.6em
     margin-bottom: 12px
 
-.single-page--container
+.detail-page--container
   @extend %clearfix
   @extend %four-pixel-rounded
   padding: 25px
 
-.single-page__header
+.detail-page__header
   border-bottom: 1px solid $ruled-separator
   margin-bottom: 20px
   padding-bottom: 20px
 
-.single-page__footer
+.detail-page__footer
   @extend %clearfix
   clear: left
   color: $new-header-grey
@@ -60,14 +60,14 @@
   .send-this
     float: right
 
-.single-page--related-list
+.detail-page--related-list
   .section-title
     @extend %larger-type
     font-weight: bold
     margin-left: 10px
     margin-top: 30px
 
-.single-page__breadcrumb
+.detail-page__breadcrumb
   @extend %local-marker-before
   line-height: 25px
   position: relative
@@ -78,19 +78,19 @@
     position: relative
     top: 4px
 
-.single-page__breadcrumb--activities:before
+.detail-page__breadcrumb--activities:before
   color: $orange
 
-.single-page__breadcrumb--tours:before
+.detail-page__breadcrumb--tours:before
   color: $teal
 
-.single-page__breadcrumb--sights:before
+.detail-page__breadcrumb--sights:before
   color: $red
 
-.single-page__breadcrumb--type
+.detail-page__breadcrumb--type
   font-weight: bold
 
-.single-page__content
+.detail-page__content
   @extend %grid-column
   margin-right: 20px
   width: 626px
@@ -106,7 +106,7 @@
     margin-top: 35px
     text-transform: uppercase
 
-.single-page__aside
+.detail-page__aside
   @extend %grid-column
   @extend %transition--base
   position: relative
