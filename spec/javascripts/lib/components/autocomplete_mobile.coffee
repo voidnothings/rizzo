@@ -2,6 +2,9 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
 
   describe 'AutoComplete', ->
 
+    SEARCH_TERM = 'London'
+    TEXT_NODE = 3
+    EMPTY_RESULTS = []
     SEARCH_RESULTS = [
       {
         title: "London"
@@ -15,27 +18,21 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
       }
     ]
 
-    EMPTY_RESULTS = []
-
-    SEARCH_TERM = 'London'
-
     describe 'Object', ->
       it 'is defined', ->
         expect(AutoComplete).toBeDefined()
 
     describe 'Initialisation', ->
-      it 'should initialise if the input element exists', ->
+      beforeEach ->
         spyOn AutoComplete.prototype, "init"
         loadFixtures('autocomplete_mobile.html')
-
+        
+      it 'should initialise if the input element exists', ->
         @myAutoComplete = new AutoComplete({id: 'my_search'})
         expect(AutoComplete.prototype.init).toHaveBeenCalled()
         expect(@myAutoComplete.el).not.toBeNull()
 
       it 'should not initialise if the input element does not to exist', ->
-        spyOn AutoComplete.prototype, "init"
-        loadFixtures('autocomplete_mobile.html')
-
         @myAutoComplete = new AutoComplete({id: 'not_my_search'})
         expect(AutoComplete.prototype.init).not.toHaveBeenCalled()
         expect(@myAutoComplete.el).toBeNull()
@@ -51,43 +48,42 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
         it 'makes a request when the list is clean', ->
           minimumSearch = 'abc'
 
-          @myAutoComplete.dirtyList = false
+          @myAutoComplete.showingList = false
           @myAutoComplete._searchFor minimumSearch
           expect(@myAutoComplete._doRequest).toHaveBeenCalledWith(minimumSearch)
 
-        it 'makes a request when the list is dirty', ->
+        it 'makes a request when the list is populated', ->
           minimumSearch = 'abc'
 
-          @myAutoComplete.dirtyList = true
+          @myAutoComplete.showingList = true
           @myAutoComplete._searchFor minimumSearch
           expect(@myAutoComplete._doRequest).toHaveBeenCalledWith(minimumSearch)
 
       describe 'when not enough characters have been entered to search for', ->
-        it 'does not make a request when the list is clean', ->
-          @myAutoComplete.dirtyList = false
+        it 'does not make a request when the list is empty', ->
+          @myAutoComplete.showingList = false
 
           @myAutoComplete._searchFor 'ab'
           expect(@myAutoComplete._doRequest).not.toHaveBeenCalled()
           expect(@myAutoComplete._updateUI).not.toHaveBeenCalled()
-          expect(@myAutoComplete.dirtyList).toBe(false)
+          expect(@myAutoComplete.showingList).toBe(false)
 
-        it 'clears the current list when the list is dirty', ->
-          @myAutoComplete.dirtyList = true
+        it 'clears the current list when the list is populated', ->
+          @myAutoComplete.showingList = true
 
           @myAutoComplete._searchFor 'ab'
           expect(@myAutoComplete._doRequest).not.toHaveBeenCalled()
-          expect(@myAutoComplete._updateUI).toHaveBeenCalledWith([])
-          expect(@myAutoComplete.dirtyList).toBe(false)
+          expect(@myAutoComplete._updateUI).toHaveBeenCalledWith(EMPTY_RESULTS)
+          expect(@myAutoComplete.showingList).toBe(false)
 
     describe 'updating the UI when search results are returned', ->
       beforeEach ->
         loadFixtures('autocomplete_mobile.html')
         @myAutoComplete = new AutoComplete({id: 'my_search'})
-        @myAutoComplete.searchTerm = SEARCH_TERM
         @myAutoComplete._updateUI SEARCH_RESULTS
 
       it 'should add a list of highlighted search results to the page', ->
-        expect(@myAutoComplete.dirtyList).toBe(true)
+        expect(@myAutoComplete.showingList).toBe(true)
         expect($('#search_results ul').length).toBe(1)
         expect($('#search_results ul li').length).toBe(2)
 
@@ -110,7 +106,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
           expect(list.childNodes.length).toBe(2)
 
         it 'should create an unordered list no items when the results list is empty', -> 
-          list = @myAutoComplete._createList []
+          list = @myAutoComplete._createList EMPTY_RESULTS
           expect(list.childNodes.length).toBe(0)
 
       describe 'creating a list item', ->
@@ -138,8 +134,8 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
           expect(listItem.getAttribute('href')).toEqual(SEARCH_RESULTS[0].uri)
           expect(listItem.childNodes.length).toBe(1)
           expect(listItem.textContent).toBe(SEARCH_RESULTS[0].title)
-          expect($listItem.hasClass("autocomplete__result")).toBe(true)
-          expect($listItem.hasClass("autocomplete__result--#{SEARCH_RESULTS[0].type}")).toBe(true)
+          expect($listItem).toHaveClass("autocomplete__result")
+          expect($listItem).toHaveClass("autocomplete__result--#{SEARCH_RESULTS[0].type}")
 
       describe 'highlighting the search term', ->
         beforeEach ->
@@ -157,7 +153,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
           expect(anchorTerm.getAttribute('class')).toBe('autocomplete__result--highlight')
           expect(anchorTerm.textContent).toBe(testSearchTerm)
 
-          expect(anchorRemainder.nodeType).toBe(3)
+          expect(anchorRemainder.nodeType).toBe(TEXT_NODE)
           expect(anchorRemainder.textContent).toBe('on')
 
         it 'should highlight the search text at the end of a title', ->
@@ -168,7 +164,7 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
           anchorRemainder = anchor.childNodes[0]
           anchorTerm = anchor.childNodes[1]
 
-          expect(anchorRemainder.nodeType).toBe(3)
+          expect(anchorRemainder.nodeType).toBe(TEXT_NODE)
           expect(anchorRemainder.textContent).toBe('Lon')
 
           expect(anchorTerm.tagName).toBe('SPAN')
@@ -184,14 +180,14 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
           anchorTerm = anchor.childNodes[1]
           anchorRemainderEnd = anchor.childNodes[2]
 
-          expect(anchorRemainderStart.nodeType).toBe(3)
+          expect(anchorRemainderStart.nodeType).toBe(TEXT_NODE)
           expect(anchorRemainderStart.textContent).toBe('L')
 
           expect(anchorTerm.tagName).toBe('SPAN')
           expect(anchorTerm.getAttribute('class')).toBe('autocomplete__result--highlight')
           expect(anchorTerm.textContent).toBe(testSearchTerm)
 
-          expect(anchorRemainderEnd.nodeType).toBe(3)
+          expect(anchorRemainderEnd.nodeType).toBe(TEXT_NODE)
           expect(anchorRemainderEnd.textContent).toBe('on')
 
         it 'should highlight the search text if it exactly matches a title', ->
@@ -208,5 +204,5 @@ require ['lib/components/autocomplete_mobile'], (AutoComplete) ->
           anchor = @myAutoComplete._createAnchor SEARCH_RESULTS[1]
           anchorText = anchor.childNodes[0]
 
-          expect(anchorText.nodeType).toBe(3)
+          expect(anchorText.nodeType).toBe(TEXT_NODE)
           expect(anchorText.textContent).toBe('Paris')

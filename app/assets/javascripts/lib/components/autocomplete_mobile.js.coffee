@@ -1,5 +1,4 @@
 # AutoComplete
-# Add an handler button to control the h-visible-size of an element
 #
 # TODO: - there's a bug with accented characters, they aren't being highlighted
 #         (http://instanceof.me/post/17455522476/accent-folding-javascript as a possible solution)
@@ -8,9 +7,11 @@
 #       - pass an argument for the search endpoint
 #       - pass an argument for the search scope (this may be redundant because of the last point)
 #       - put the classes into a config object
+#       - throttle the number of times the query is sent
+#       - abstract the XHR code to a separate library
 #
 # Arguments:
-#   _args (A hash containing)
+#   _args (An object containing)
 #     id    : [string] The target element
 #
 # Example:
@@ -25,25 +26,24 @@ define [], ->
 
   class AutoComplete
 
-    constructor: (args={}) ->
+    constructor: (args) ->
       @el = document.getElementById(args.id)
       @init() if @el
 
     init: ->
       @el.addEventListener 'input', (e) =>
-        e.stopPropagation()
         @_searchFor e.currentTarget.value
       , false
       @resultsElt = document.getElementById 'autocomplete__results'
-      @dirtyList = false
+      @showingList = false
 
     _searchFor: (searchTerm)  ->
       if searchTerm && searchTerm.length >= 3
         @searchTerm = searchTerm
         @_doRequest @searchTerm
-      else if @dirtyList
+      else if @showingList
         @_updateUI []
-        @dirtyList = false
+        @showingList = false
 
     _doRequest: ->
       myRequest = new XMLHttpRequest()
@@ -59,13 +59,13 @@ define [], ->
     _updateUI: (searchResults) ->
       resultsList = @_createList searchResults
       @el.parentNode.replaceChild resultsList, document.getElementById('autocomplete__results')
-      @dirtyList = true
+      @showingList = true
 
     _createList: (results) ->
       resultItems = (@_createListItem item for item in results)
       list = document.createElement 'UL'
-      list.setAttribute 'id', 'autocomplete__results'
-      list.setAttribute 'class', 'autocomplete__results'
+      list.id = 'autocomplete__results'
+      list.className = 'autocomplete__results'
       list.appendChild listItem for listItem in resultItems
       list
 
@@ -76,9 +76,13 @@ define [], ->
       listItem
 
     _createAnchor: (item) ->
-      regex = new RegExp @searchTerm, 'ig'
       anchor = document.createElement 'A'
-      anchor.setAttribute 'href', item.uri
-      anchor.setAttribute 'class', "autocomplete__result autocomplete__result--#{item.type}"
-      anchor.innerHTML = item.title.replace regex, "<span class='autocomplete__result--highlight'>$&</span>"
+      anchor.href = item.uri
+      anchor.className = "autocomplete__result autocomplete__result--#{item.type}"
+
+      if @searchTerm
+        regex = new RegExp @searchTerm, 'ig'
+        anchor.innerHTML = item.title.replace regex, "<span class='autocomplete__result--highlight'>$&</span>"
+      else
+        anchor.innerHTML = item.title
       anchor
