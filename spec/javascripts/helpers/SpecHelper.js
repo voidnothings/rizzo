@@ -3,7 +3,6 @@ require.config({
     jquery: "vendor/assets/javascripts/jquery/jquery-1.7.2.min",
     jsmin: "vendor/assets/javascripts/lonelyplanet_minjs/dist/$.js",
     lib: 'public/assets/javascripts/lib',
-    underscore: 'vendor/assets/javascripts/underscore',
     jplugs: "vendor/assets/javascripts/jquery/plugins",
     pointer: "vendor/assets/javascripts/pointer",
     touchwipe: "vendor/assets/javascripts/jquery.touchwipe.1.1.1",

@@ -44,13 +44,12 @@
 #
 # Dependencies:
 #   Jquery
-#   Underscore
 #
 # 
 
 
 
-define ['jquery','underscore'], ($,_) ->
+define ['jquery'], ($) ->
 
   class Swipe
 
@@ -153,8 +152,12 @@ define ['jquery','underscore'], ($,_) ->
       @transform(parseInt(_index/@slides_per_view))
 
     getSlidesWidth: ->
+      totalWidth = 0
       slidesWidth = ($(s).width() for s in @slides)
-      _.reduce(slidesWidth, (x,y) -> x + y )
+      for width in slidesWidth
+        totalWidth+= parseInt(width, 10)
+
+      totalWidth
 
     transform: (_index, duration = @args.speed)->
       if @args.transform is 'translateX' then @slide(_index, duration) else @fade(_index, duration)
@@ -218,8 +221,7 @@ define ['jquery','underscore'], ($,_) ->
     start: ->
       @transform(@index, 0)
       if @args.delay
-        _func = _.bind((-> @next()), @)
-        @interval = setInterval(_func, @args.delay)
+        @interval = setInterval(@next, @args.delay)
       else
         @interval = 0
       @updateControls(0) if @args.controls
@@ -304,7 +306,10 @@ define ['jquery','underscore'], ($,_) ->
       @ctrl_view = $('<ul>').addClass('ctrl_view')
       @ctrl_view.append($('<li>').attr({'data-index': i})) for i in [0...@max_index]
       @element.append(@ctrl_view)
-      ctrl_view_width = _.reduce(($(d).width() for d in @ctrl_view.children('li')), (x,y) -> x + y )
+      ctrl_view_width = 0
+      for d in @ctrl_view.children('li')
+        ctrl_view_width += parseInt($(d).width(), 10)
+
       @ctrl_view.css({'width': ctrl_view_width + (@max_index * 4)})
 
     updateControls: (index)->

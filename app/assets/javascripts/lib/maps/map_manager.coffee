@@ -14,7 +14,7 @@
 # }
 #
 
-define ['jquery','underscore','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, _, LodgingMap, NearbyThingsToDo) ->
+define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, LodgingMap, NearbyThingsToDo) ->
 
   class MapManager
     @version: '0.0.11'
@@ -63,7 +63,7 @@ define ['jquery','underscore','lib/maps/lodging_map','lib/maps/nearby_things_to_
       pois = {}
       sight.category = 'sight' for sight in data.sights
       activity.category = 'activity' for activity in data.activities
-      pois.sights_or_activities = _.sortBy(data.activities.concat(data.sights || []),
+      pois.sights_or_activities = @_sortBy(data.activities.concat(data.sights || []),
                                            (poi)-> -poi.properties.rating)[0..2]
       ents = data['entertainment-nightlife']
       pois.entertainment = (if ents.length isnt 0 then ents[0] else [])
@@ -92,11 +92,55 @@ define ['jquery','underscore','lib/maps/lodging_map','lib/maps/nearby_things_to_
         @nearbyThingsToDo.highlightPOI(poi_id)
 
     @_sanitizeData: (data) ->
-      data.activities = _.filter(data.activities, (activity) -> activity.properties.uri)
-      data.sights = _.filter(data.sights, (sight) -> sight.properties.uri)
-      data['entertainment-nightlife'] = _.filter(data['entertainment-nightlife'], (ent) -> ent.properties.uri)
-      data.restaurants = _.filter(data.restaurants, (restaurant) -> restaurant.properties.uri)
+      data.activities = @_filter(data.activities, (activity) -> activity.properties.uri)
+      data.sights = @_filter(data.sights, (sight) -> sight.properties.uri)
+      data['entertainment-nightlife'] = @_filter(data['entertainment-nightlife'], (ent) -> ent.properties.uri)
+      data.restaurants = @_filter(data.restaurants, (restaurant) -> restaurant.properties.uri)
       data
+
+    #===== Nicked from UnderscoreJS v1.5.1 =====#
+    @_map = (obj, iterator, context) ->
+      results = []
+      return results  unless obj?
+      return obj.map(iterator, context)  if Array.prototype.map and obj.map is Array.prototype.map
+      each obj, (value, index, list) ->
+        results.push iterator.call(context, value, index, list)
+
+      results
+
+    @_pluck = (obj, key) ->
+      @_map obj, (value) ->
+        value[key]
+
+    @_sortBy = (obj, value, context) ->
+      iterator = @_lookupIterator(value)
+      @_pluck @_map(obj, (value, index, list) ->
+        value: value
+        index: index
+        criteria: iterator.call(context, value, index, list)
+      ).sort((left, right) ->
+        a = left.criteria
+        b = right.criteria
+        if a isnt b
+          return 1  if a > b or a is undefined
+          return -1  if a < b or b is undefined
+        (if left.index < right.index then -1 else 1)
+      ), "value"
+
+    @_lookupIterator = (value) ->
+      (if $.isFunction(value) then value else (obj) ->
+        obj[value]
+      )
+
+    @_filter = (obj, iterator, context) ->
+      results = []
+      return results  unless obj?
+      return obj.filter(iterator, context)  if Array.prototype.filter and obj.filter is Array.prototype.filter
+      each obj, (value, index, list) ->
+        results.push value  if iterator.call(context, value, index, list)
+
+      results
+    #===== End UnderscoreJS thievery =====#
 
     constructor: (config) ->
       $.extend MapManager.config, config

@@ -53,7 +53,6 @@ module.exports = function(grunt) {
                 jsmin: "./vendor/assets/javascripts/lonelyplanet_minjs/dist/$",
                 polyfills: "./vendor/assets/javascripts/polyfills",
                 lib: "./public/assets/javascripts/lib",
-                underscore: './vendor/assets/javascripts/underscore',
                 jplugs: "./vendor/assets/javascripts/jquery/plugins",
                 s_code: "./vendor/assets/javascripts/omniture/s_code",
                 maps_infobox: "./vendor/assets/javascripts/google-maps-infobox",
