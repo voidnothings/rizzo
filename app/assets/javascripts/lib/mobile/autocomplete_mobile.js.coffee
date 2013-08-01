@@ -3,7 +3,6 @@
 # TODO: - there's a bug with accented characters, they aren't being highlighted
 #         (http://instanceof.me/post/17455522476/accent-folding-javascript as a possible solution)
 #       - possibly cancel an existing XHR if typing continues and the last one hasn't returned yet
-#       - might be better to attach to the form instead of the input
 #       - pass an argument for the search endpoint
 #       - pass an argument for the search scope (this may be redundant because of the last point)
 #       - put the classes into a config object
@@ -12,7 +11,7 @@
 #
 # Arguments:
 #   _args (An object containing)
-#     id    : [string] The target element
+#     id    : [string] The target form element
 #
 # Example:
 #  args =
@@ -28,13 +27,15 @@ define [], ->
 
     constructor: (args) ->
       @el = document.getElementById(args.id)
-      @init() if @el
+      if @el
+        @inputElt = @el.getElementsByTagName('input')[0]
+      @init() if @el and @inputElt
 
     init: ->
-      @el.addEventListener 'input', (e) =>
+      @resultsElt = @el.getElementsByTagName('ul')
+      @inputElt.addEventListener 'input', (e) =>
         @_searchFor e.currentTarget.value
       , false
-      @resultsElt = document.getElementById 'autocomplete__results'
       @showingList = false
 
     _searchFor: (searchTerm)  ->
@@ -58,7 +59,7 @@ define [], ->
 
     _updateUI: (searchResults) ->
       resultsList = @_createList searchResults
-      @el.parentNode.replaceChild resultsList, document.getElementById('autocomplete__results')
+      @el.replaceChild resultsList, @resultsElt[0]
       @showingList = true
 
     _createList: (results) ->

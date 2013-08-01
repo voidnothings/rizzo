@@ -27,12 +27,13 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
         spyOn AutoComplete.prototype, "init"
         loadFixtures('autocomplete_mobile.html')
         
-      it 'should initialise if the input element exists', ->
+      it 'should initialise if the autocomplete elements exist', ->
         @myAutoComplete = new AutoComplete({id: 'my_search'})
+        expect(@myAutoComplete.el).toBeDefined()
+        expect(@myAutoComplete.inputElt).toBeDefined()
         expect(AutoComplete.prototype.init).toHaveBeenCalled()
-        expect(@myAutoComplete.el).not.toBeNull()
 
-      it 'should not initialise if the input element does not to exist', ->
+      it 'should not initialise if the input element does not exist', ->
         @myAutoComplete = new AutoComplete({id: 'not_my_search'})
         expect(AutoComplete.prototype.init).not.toHaveBeenCalled()
         expect(@myAutoComplete.el).toBeNull()
@@ -84,14 +85,12 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
 
       it 'should add a list of highlighted search results to the page', ->
         expect(@myAutoComplete.showingList).toBe(true)
-        expect($('#search_results ul').length).toBe(1)
-        expect($('#search_results ul li').length).toBe(2)
+        expect($('#my_search ul li').length).toBe(2)
 
       it 'should replace the existing search results when called a second time', ->
         @myAutoComplete._updateUI EMPTY_RESULTS
 
-        expect($('#search_results ul').length).toBe(1)
-        expect($('#search_results ul li').length).toBe(0)
+        expect($('#my_search ul li').length).toBe(0)
 
       describe 'creating a list of items to be added to the UI', ->
         beforeEach ->
