@@ -1,0 +1,39 @@
+.autocomplete__results
+  @extend %heading-size-type
+  margin-top: 10px
+  text-align: left
+
+.autocomplete__result
+  @extend %left-icon
+  color: #fff
+  display: block
+  padding: 5px 10px 5px 45px
+  &:before
+    +font-size(50)
+    line-height: 0
+    top: 10px
+    left: 10px
+
+.autocomplete__result--place
+  @extend %local-marker-before
+
+.autocomplete__result--hotel
+  @extend %icon-image-poi-hotel-before
+
+.autocomplete__result--flight
+  @extend %icon--flights-before
+
+.autocomplete__result--article
+  @extend %icon-poi-article-before
+
+// TODO: possibly to be broken into different categories
+// .autocomplete__result--thing-to-do
+
+// TODO: icon to come
+// .autocomplete__result--publication
+
+// TODO: icon to be determined
+// .autocomplete__result--other
+
+.autocomplete__result--highlight
+  font-weight: bold

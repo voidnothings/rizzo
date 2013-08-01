@@ -1,0 +1,20 @@
+// -----------------------------------------------------------------------------
+// Ranking bar
+// -----------------------------------------------------------------------------
+
+.ranking-bar
+  background: $subdued
+  height: 10px
+  &:before
+    @extend %empty-generated-content
+    height: 100%
+
+@for $i from 1 through 5
+  .ranking-bar--#{$i}:before
+    width: 20% * $i
+    @if $i == 1 or $i == 2
+      background: $green
+    @if $i == 3 or $i == 4
+      background: $orange
+    @if $i == 5
+      background: $red

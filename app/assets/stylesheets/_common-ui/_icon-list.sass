@@ -5,37 +5,56 @@
 .icon-list
   list-style: none
 
-.icon-list--icon
+.icon-list__icon
   @extend %left-icon-text
+  
+  &:before
+    @extend %huge-type
+    color: $lpblue
+    font-weight: normal
+    margin-right: 0.2em
+    line-height: 20px
+  &.icon-list__info:before
+    font-weight: bold
+    line-height: 0.9em
+    margin-left: 0.1em
+  &.icon-list__cross, &.icon-list__info, &.icon-list__tick
+    &:before
+      @extend %extra-large-type
+      margin-right: 0.4em
+  &.icon-list__cross, &.icon-list__tick
+    &:before
+      margin-left: 0.2em
+      margin-right: 0.5em
 
-.icon-list--tick
+.icon-list__tick
   @extend %tick-icon-before
 
-.icon-list--clock
+.icon-list__clock
   @extend %icon--clock-before
 
-.icon-list--cross
+.icon-list__cross
   @extend %cross-icon-before
 
-.icon-list--departs-from
+.icon-list__departs-from
   @extend %icon--arrow-right-before
 
-.icon-list--duration
+.icon-list__duration
   @extend %tour-duration-before
 
-.icon-list--info
+.icon-list__info
   &:before
     content: "@"
 
-.icon-list--location
+.icon-list__location
   @extend %local-marker-before
 
-.icon-list--returns-to
+.icon-list__returns-to
   @extend %icon--arrow-left-before
 
-.icon-list--tick
+.icon-list__tick
   @extend %tick-icon-before
 
-.icon-list--underground
+.icon-list__underground
   @extend %icon--underground-before
  
