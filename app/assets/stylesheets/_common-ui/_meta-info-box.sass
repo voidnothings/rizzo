@@ -1,0 +1,40 @@
+// -----------------------------------------------------------------------------
+// Meta Info Box
+// -----------------------------------------------------------------------------
+
+.meta-info
+  @extend %clearfix
+  @extend %four-pixel-rounded
+  background: #FFF
+  list-style: none
+  margin-bottom: 20px
+  padding: 22px 0 22px 22px
+
+  .ranking-bar
+    margin-top: 21px
+    + .meta-info--item-subtitle
+      margin-top: 14px
+
+.meta-info__column
+  float: left
+  margin: 0 8px
+  min-height: 60px
+  text-align: center
+  width: 60px
+  &:first-child
+    margin-left: 0
+
+.meta-info__item-title
+  @extend %extra-small-type
+  font-weight: bold
+  margin-bottom: 13px
+  text-transform: uppercase
+
+.meta-info__item-subtitle
+  @extend %extra-small-type
+  font-weight: normal
+  margin-top: 10px
+
+.meta-info__item-content
+  font-size: 22px
+  font-weight: bold
