@@ -5,8 +5,11 @@
 // -----------------------------------------------------------------------------
 
 .card--page
+  @extend %clearfix
+  @extend %four-pixel-rounded
   @extend %grid-wrapper-20
   color: $body-copy
+  padding: 25px
   position: relative
 
   .copy--title
@@ -34,11 +37,6 @@
     font-size: 30px
     line-height: 0.6em
     margin-bottom: 12px
-
-.card--page__container
-  @extend %clearfix
-  @extend %four-pixel-rounded
-  padding: 25px
 
 .card--page__header
   border-bottom: 1px solid $ruled-separator
