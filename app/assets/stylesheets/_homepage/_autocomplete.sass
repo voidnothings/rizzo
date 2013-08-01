@@ -8,7 +8,7 @@
   display: block
   padding: 5px 10px 5px 45px
   &:before
-    +font-size(50)
+    +font-size(45)
     line-height: 0
     top: 10px
     left: 10px
@@ -25,14 +25,17 @@
 .autocomplete__result--article
   @extend %icon-poi-article-before
 
-// TODO: possibly to be broken into different categories
-// .autocomplete__result--thing-to-do
+.autocomplete__result--sight
+  @extend %icon-image-poi-sight-before
+
+.autocomplete__result--activity
+  @extend %icon-image-poi-activity-before
+
+.autocomplete__result--tour
+  @extend %icon-image-poi-tour-before
 
 // TODO: icon to come
 // .autocomplete__result--publication
-
-// TODO: icon to be determined
-// .autocomplete__result--other
 
 .autocomplete__result--highlight
   font-weight: bold
