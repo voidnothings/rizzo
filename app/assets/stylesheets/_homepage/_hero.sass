@@ -62,12 +62,25 @@
 .hero__search
   @extend %inline-block
   overflow: hidden
+  text-align: left
   width: 85%
 
 .hero__search__input
   height: 45px
   padding: 0 20px
   width: 100%
+
+.hero__search__submit
+  @extend %base-button
+  @extend %larger-type
+  background: $header-blue
+  border: none
+  color: #fff
+  display: none
+  padding: 15px
+
+  .results-displayed &
+    display: block
 
 .hero__author
   position: absolute
