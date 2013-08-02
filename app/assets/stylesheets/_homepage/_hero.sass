@@ -65,21 +65,24 @@
   width: 85%
 
 .hero__search__input__wrapper
-  @extend %right-icon
-  @extend %hourglass-icon-after
-  &:after
-    +font-size(40)
-    color: #d4e0e3
-    line-height: 0
-    right: 17px
-    top: 17px
+  position: relative
+
+.hero__search__submit--field
+  position: absolute
+  color: #d4e0e3
+  width: 45px
+  height: 45px
+  border: 0
+  background: transparent
+  right: 0
+  top: 0
 
 .hero__search__input
   height: 45px
-  padding-left: 20px
+  padding: 0 50px 0 20px
   width: 100%
 
-.hero__search__submit
+.hero__search__submit--results
   @extend %base-button
   @extend %larger-type
   background: $header-blue
