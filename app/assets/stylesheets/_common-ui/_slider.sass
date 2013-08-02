@@ -25,7 +25,6 @@ $slideHoverArrowSpacing: 5px
     display: block
   &.is-prev
     left: -100%
-    z-index: 2
     .supports-3d &
       left: auto
       +transform(translate3d(-99.9%, 0, 0))
@@ -36,17 +35,21 @@ $slideHoverArrowSpacing: 5px
       left: auto
       +transform(translate3d(0, 0, 0))
   &.is-next
-    z-index: 1
     left: 100%
     .supports-3d &
       left: auto
       +transform(translate3d(99.9%, 0, 0))
+  &.js-bottom-layer
+    z-index: 1
+  &.js-middle-layer
+    z-index: 2
 
 .slider__controls
   @extend %clearfix
   @extend %transition--base
   position: absolute
   width: 100%
+  z-index: 4
 
 .slider__control
   @extend %regular-type-size
