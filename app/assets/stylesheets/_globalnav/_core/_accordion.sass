@@ -88,9 +88,10 @@
   // Let's take the closest unicode character we have (non-freight)
   .base &:after
     content: '\2335'
-  // Then enhance if we have the font
+  // Then remove it if we have svg
   .enhanced &:after
-    content: "\e014"
+    content: ""
+    background-position: top right
   .col--footer &:after
     color: $header-dark-gray
 

@@ -20,8 +20,6 @@ $tab-height--wide: 610px
   +respond-to(wide-view)
     height: $tab-height--wide
 
-
-
 .tab--homepage__inner
   @extend %four-pixel-rounded
   background: white
@@ -72,17 +70,24 @@ $tab-height--wide: 610px
   text-align: center
   line-height: 1.2
   display: table
-  > span
-    display: table-cell
-    vertical-align: middle
   &.is-active
     background: $new-header-grey
     color: white
     font-weight: bold
   &:hover
     text-decoration: none
-    background: #c5d6d9
   +respond-to(wide-view)
     +font-size(18)
+
+.tab--button__inner
+  display: table-cell
+  vertical-align: middle
+  > span
+    position: relative
+    &:before
+      @extend %empty-abs-generated-content
+      background-size: 100%
+      left: -40px
     &:hover
-      
+      &:before
+        +filter(brightness(0.8))

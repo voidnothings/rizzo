@@ -37,6 +37,13 @@
     font-size: 20px
     line-height: 28px
     padding-left: 5px
+  .base 
+    &:after
+      content: '\2335'
+  .enhanced &
+    &:after
+      content: ''
+      background-position: 10px 15px
 
 .dropdown__select
   +appearance(menulist-button)
