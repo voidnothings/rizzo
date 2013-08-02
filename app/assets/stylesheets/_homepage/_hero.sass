@@ -35,7 +35,6 @@
 .hero__panel
   +transition(all, .4, ease-in-out)
   position: absolute
-  top: 0
   width: 100%
   height: inherit
 
@@ -122,31 +121,48 @@
     display: block
     text-align: center
 
-.hero--story
-  left: 100%
+.hero__author__story
+  position: absolute
+  text-align: left
+  left: 20px
+  bottom: 100px
+  padding: 15px
+  right: 20px
+  max-width: 290px
+  +respond-to(wide-view)
+    padding: 30px
+    bottom: 180px
+    left: auto
+    right: 40px
+    width: 290px
+  .feature
+    text-transform: uppercase
+    color: $new-header-grey
+    font-weight: bold
+    margin-bottom: 20px
+  .btn--function
+    +font-size(14)
+    padding: 12px 15px
+    margin-right: 10px
+    font-weight: bold
+    +respond-to(wide-view)
+      padding: 12px 30px
+  .btn--close
+    +font-size(14)
+    font-weight: bold
+    padding: 12px 15px
+    +respond-to(wide-view)
+      padding: 12px 30px
 
 .hero--story__text
-  color: white
+  margin-bottom: 35px
+
+.hero__panel--story
+  top: 100%
 
 // Toggle between the search and photo story panels
 #hero-swipe:checked
-  & ~ .hero--search
-    right: 100%
-  & ~ .hero--story
-    left: 0
-
-.modal--panel
-  position: relative
-  background: grey
-  background: rgba(0,0,0,0.4)
-  padding: 20px
-
-.modal--close
-  +border-radius(20)
-  cursor: pointer
-  position: absolute
-  top: -12px
-  right: -12px
-  width: 30px
-  height: 30px
-  background-color: black
+  & ~ .hero__panel--search
+    bottom: 100%
+  & ~ .hero__panel--story
+    top: 0
