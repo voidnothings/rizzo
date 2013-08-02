@@ -3,17 +3,16 @@
 # TODO: - there's a bug with accented characters, they aren't being highlighted
 #         (http://instanceof.me/post/17455522476/accent-folding-javascript as a possible solution)
 #       - possibly cancel an existing XHR if typing continues and the last one hasn't returned yet
-#       - pass an argument for the search endpoint
-#       - pass an argument for the search scope (this may be redundant because of the last point)
 #       - put the classes into a config object
 #       - throttle the number of times the query is sent
 #       - abstract the XHR code to a separate library
 #
 # Arguments:
 #   _args (An object containing)
-#     id    : [string] The target form element
-#     uri   : [string] The search endpoint
-#     scope : [string] An optional value to specify the scope of the search
+#     id        : [string] The target form element
+#     uri       : [string] The search endpoint
+#     listOnly  : [boolean] (Optional) Flag whether to only show the list of results
+#     scope     : [string] (Optional) Value to specify as the scope of the search
 #
 # Example:
 #  args =
@@ -33,25 +32,35 @@ define [], ->
     constructor: (@args) ->
       @el = document.getElementById(args.id)
       if @el
-        @inputElt = @el.getElementsByTagName('input')[0]
+        @inputElt = @el.getElementsByClassName('js-autocomplete-input')[0]
       @init() if @el and @inputElt
 
     init: ->
       @resultsElt = @el.getElementsByTagName('ul')
+      @responseMap = @args.responseMap
+      @_addListHandler() unless @args.listOnly
       @inputElt.addEventListener 'input', (e) =>
         @_searchFor e.currentTarget.value
       , false
       @showingList = false
       @el.classList.remove 'results-displayed'
 
+    _addListHandler: ->
+      @el.addEventListener 'click', (e) =>
+        if e.target.tagName == 'A'
+          e.preventDefault()
+          @_enterTargetValue e.target.textContent
+
+    _enterTargetValue: (text) ->
+      @inputElt.value = text
+      @_emptyList()
+
     _searchFor: (searchTerm)  ->
       if searchTerm && searchTerm.length >= 3
         @searchTerm = searchTerm
         @_doRequest @searchTerm
       else if @showingList
-        @_updateUI []
-        @showingList = false
-        @el.classList.remove 'results-displayed'
+        @_emptyList()
 
     _doRequest: ->
       myRequest = new XMLHttpRequest()
@@ -61,7 +70,7 @@ define [], ->
             @_updateUI JSON.parse myRequest.responseText
 
       myRequest.open 'get', @_generateURI(@args.uri, @args.scope)
-      myRequest.setRequestHeader 'Accept', 'application/json'
+      myRequest.setRequestHeader 'Accept', '*/*'
       myRequest.send()
 
     _generateURI: (searchURI, scope) ->
@@ -69,9 +78,14 @@ define [], ->
       uri += "?scope=#{scope}" if scope
       uri
 
+    _emptyList: ->
+      @_updateUI []
+      @showingList = false
+      @el.classList.remove 'results-displayed'
+
     _updateUI: (searchResults) ->
       resultsList = @_createList searchResults
-      @el.replaceChild resultsList, @resultsElt[0]
+      @resultsElt[0].parentNode.replaceChild resultsList, @resultsElt[0]
       @showingList = true
       @el.classList.add 'results-displayed'
 
@@ -91,12 +105,12 @@ define [], ->
 
     _createAnchor: (item) ->
       anchor = document.createElement 'A'
-      anchor.href = item.uri
-      anchor.className = "autocomplete__result icon-list--#{item.type}"
+      anchor.href = item[@responseMap.uri]
+      anchor.className = "autocomplete__result icon-list--#{item[@responseMap.type]}"
 
       if @searchTerm
         regex = new RegExp @searchTerm, 'ig'
-        anchor.innerHTML = item.title.replace regex, "<span class='autocomplete__result--highlight'>$&</span>"
+        anchor.innerHTML = item[@responseMap.title].replace regex, "<span class='autocomplete__result--highlight'>$&</span>"
       else
-        anchor.innerHTML = item.title
+        anchor.innerHTML = item[@responseMap.title]
       anchor

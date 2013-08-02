@@ -38,6 +38,33 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
         expect(AutoComplete.prototype.init).not.toHaveBeenCalled()
         expect(@myAutoComplete.el).toBeNull()
 
+    describe 'event handlers', ->
+      beforeEach ->
+        loadFixtures('autocomplete_mobile.html')
+        spyOn AutoComplete.prototype, '_addListHandler'
+
+      it 'should add an event handler for clicking on a list item by default', ->
+        @myAutoComplete = new AutoComplete({id: 'my_search'})
+
+        expect(AutoComplete.prototype._addListHandler).toHaveBeenCalled()
+
+      it 'should not add an event handler for clicking on a list item if specified listOnly', ->
+        @myAutoComplete = new AutoComplete({id: 'my_search', listOnly: true})
+
+        expect(AutoComplete.prototype._addListHandler).not.toHaveBeenCalled()
+
+    describe 'selecting a list item', ->
+      beforeEach ->
+        loadFixtures('autocomplete_mobile.html')
+        @myAutoComplete = new AutoComplete({id: 'my_search'})
+        spyOn @myAutoComplete, '_emptyList'
+
+      it 'copies the text value to the input field and empties the list', ->
+        @myAutoComplete._enterTargetValue 'Example text'
+        expect(@myAutoComplete.inputElt.value).toBe('Example text')
+        expect(@myAutoComplete._emptyList).toHaveBeenCalled()
+
+
     describe 'updating the UI when text has been entered in the search field', ->
       beforeEach ->
         loadFixtures('autocomplete_mobile.html')
@@ -78,7 +105,6 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
           expect(@myAutoComplete._doRequest).not.toHaveBeenCalled()
           expect(@myAutoComplete._updateUI).toHaveBeenCalledWith(EMPTY_RESULTS)
           expect(@myAutoComplete.showingList).toBe(false)
-
 
     describe 'generating the search URI', ->
       beforeEach ->
