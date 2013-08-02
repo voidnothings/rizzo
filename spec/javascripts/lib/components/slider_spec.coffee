@@ -107,9 +107,12 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
 
       it ' goes to the third slide', ->
         slider._goToSlide(3)
-        expect($('.slider__slide').eq(2)).toHaveClass('is-current')
-        expect($('.slider__slide').eq(3)).toHaveClass('is-next')
-        expect($('.slider__slide').eq(1)).toHaveClass('is-prev')
+
+        setTimeout ->
+          expect($('.slider__slide').eq(2)).toHaveClass('is-current')
+          expect($('.slider__slide').eq(3)).toHaveClass('is-next')
+          expect($('.slider__slide').eq(1)).toHaveClass('is-prev')
+        , 1250 # Slightly above the combined duration of all the animations in the _goToSlide function
 
   
     describe 'events:', ->
@@ -117,8 +120,8 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
       beforeEach ->
         loadFixtures('slider.html')
         window.slider = new Slider(config)
-        spyOn(slider, '_nextSlide');
-        spyOn(slider, '_previousSlide');
+        spyOn(slider, '_nextSlide')
+        spyOn(slider, '_previousSlide')
 
       it 'next link triggers _nextSlide', ->
         $('.slider__control--next').trigger('click')
