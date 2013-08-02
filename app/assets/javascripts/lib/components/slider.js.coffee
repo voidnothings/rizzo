@@ -79,6 +79,10 @@ define ['jquery'], ($) ->
         @$el.find(@slides+':first').addClass('is-next')
       else
         current.addClass('is-prev').next().addClass('is-current').next().addClass('is-next')
+      
+      # This is to help with the slide stack order which is different depending on the direction of slide movement.
+      $(@slides+'.is-next').addClass('js-bottom-layer')
+      $(@slides+'.is-prev').addClass('js-middle-layer')
 
       @_updateCount()
       
@@ -99,18 +103,21 @@ define ['jquery'], ($) ->
       else
         current.addClass('is-next').prev().addClass('is-current').prev().addClass('is-prev')
 
+      # This is to help with the slide stack order which is different depending on the direction of slide movement.
+      $(@slides+'.is-prev').addClass('js-bottom-layer')
+      $(@slides+'.is-next').addClass('js-middle-layer')
+
       @_updateCount()
 
     _goToSlide: (index) ->
       slides = @$el.find(@slides)
       @_resetSlideClasses()
       index = index-1 # zero base
-      slides.eq(index).addClass('is-current')
       slides.eq(index-1).addClass('is-prev')
       slides.eq(index+1).addClass('is-next')
+      slides.eq(index).addClass('is-current')
 
       @_updateCount()
-
 
 
     _updateCount: ->
@@ -124,4 +131,7 @@ define ['jquery'], ($) ->
       @$el.find(@slides+':last').addClass('is-prev')
 
     _resetSlideClasses: ->
-      @$el.find(@slides+'.is-current, '+@slides+'.is-next, '+@slides+'.is-prev').removeClass('is-current is-next is-prev')
+      classes = ['is-current', 'is-next', 'is-prev', 'js-bottom-layer', 'js-middle-layer']
+
+      for name in classes
+        @$el.find(@slides+'.'+name).removeClass(name)
