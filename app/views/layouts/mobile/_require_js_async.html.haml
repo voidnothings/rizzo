@@ -6,12 +6,12 @@
       js = d.createElement(s);
       js.id = id;
       js.async = true;
-      js.src = "assets/requirejs/require.js";
+      js.src = "#{asset_path('requirejs/require.js')}";
       if (document.documentElement.clientWidth < 990 && 
         document.documentElement.className.indexOf('ie') == -1) {
-        main = "#{asset_path('app_homepage_mobile')}";
+        main = "#{asset_path('app_homepage_mobile.js')}";
       } else {
-        main = "#{asset_path('app_homepage')}";
+        main = "#{asset_path('app_homepage.js')}";
       }
       js.setAttribute("data-main", main);
       return fjs.parentNode.insertBefore(js, fjs);
