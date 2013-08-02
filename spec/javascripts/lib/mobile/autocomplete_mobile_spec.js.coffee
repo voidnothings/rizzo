@@ -65,6 +65,7 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
           @myAutoComplete.showingList = false
 
           @myAutoComplete._searchFor 'ab'
+          expect(@myAutoComplete.el).not.toHaveClass('results-displayed')
           expect(@myAutoComplete._doRequest).not.toHaveBeenCalled()
           expect(@myAutoComplete._updateUI).not.toHaveBeenCalled()
           expect(@myAutoComplete.showingList).toBe(false)
@@ -73,9 +74,28 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
           @myAutoComplete.showingList = true
 
           @myAutoComplete._searchFor 'ab'
+          expect(@myAutoComplete.el).not.toHaveClass('results-displayed')
           expect(@myAutoComplete._doRequest).not.toHaveBeenCalled()
           expect(@myAutoComplete._updateUI).toHaveBeenCalledWith(EMPTY_RESULTS)
           expect(@myAutoComplete.showingList).toBe(false)
+
+
+    describe 'generating the search URI', ->
+      beforeEach ->
+        @testUri = '/testSearch/'
+        @testScope = 'testScope'
+        @myAutoComplete = new AutoComplete({id: 'my_search'})
+        @myAutoComplete.searchTerm = 'abcdefg'
+
+      it 'should return a URI that begins with the specified URI', ->
+        myUri = @myAutoComplete._generateURI @testUri
+
+        expect(myUri).toBe(@testUri+@myAutoComplete.searchTerm)
+
+      it 'should return a URI that begins with the specified scope', ->
+        myUri = @myAutoComplete._generateURI @testUri, @testScope
+
+        expect(myUri).toBe(@testUri+@myAutoComplete.searchTerm+'?scope='+@testScope)
 
     describe 'updating the UI when search results are returned', ->
       beforeEach ->
@@ -85,6 +105,7 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
 
       it 'should add a list of highlighted search results to the page', ->
         expect(@myAutoComplete.showingList).toBe(true)
+        expect(@myAutoComplete.el).toHaveClass('results-displayed')
         expect($('#my_search ul li').length).toBe(2)
 
       it 'should replace the existing search results when called a second time', ->
@@ -134,7 +155,7 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
           expect(listItem.childNodes.length).toBe(1)
           expect(listItem.textContent).toBe(SEARCH_RESULTS[0].title)
           expect($listItem).toHaveClass("autocomplete__result")
-          expect($listItem).toHaveClass("autocomplete__result--#{SEARCH_RESULTS[0].type}")
+          expect($listItem).toHaveClass("icon-list--#{SEARCH_RESULTS[0].type}")
 
       describe 'highlighting the search term', ->
         beforeEach ->

@@ -12,10 +12,15 @@
 # Arguments:
 #   _args (An object containing)
 #     id    : [string] The target form element
+#     uri   : [string] The search endpoint
+#     scope : [string] An optional value to specify the scope of the search
 #
 # Example:
 #  args =
 #    id: 'my_search'
+#    uri: '/search'
+#    scope: 'homepage'
+#  
 #  new AutoComplete(args)
 #
 # Dependencies:
@@ -25,7 +30,7 @@ define [], ->
 
   class AutoComplete
 
-    constructor: (args) ->
+    constructor: (@args) ->
       @el = document.getElementById(args.id)
       if @el
         @inputElt = @el.getElementsByTagName('input')[0]
@@ -37,6 +42,7 @@ define [], ->
         @_searchFor e.currentTarget.value
       , false
       @showingList = false
+      @el.classList.remove 'results-displayed'
 
     _searchFor: (searchTerm)  ->
       if searchTerm && searchTerm.length >= 3
@@ -45,6 +51,7 @@ define [], ->
       else if @showingList
         @_updateUI []
         @showingList = false
+        @el.classList.remove 'results-displayed'
 
     _doRequest: ->
       myRequest = new XMLHttpRequest()
@@ -53,14 +60,20 @@ define [], ->
           if myRequest.status == 200
             @_updateUI JSON.parse myRequest.responseText
 
-      myRequest.open 'get', "/search/#{@searchTerm}?scope=homepage"
+      myRequest.open 'get', @_generateURI(@args.uri, @args.scope)
       myRequest.setRequestHeader 'Accept', 'application/json'
       myRequest.send()
+
+    _generateURI: (searchURI, scope) ->
+      uri = "#{searchURI}#{@searchTerm}"
+      uri += "?scope=#{scope}" if scope
+      uri
 
     _updateUI: (searchResults) ->
       resultsList = @_createList searchResults
       @el.replaceChild resultsList, @resultsElt[0]
       @showingList = true
+      @el.classList.add 'results-displayed'
 
     _createList: (results) ->
       resultItems = (@_createListItem item for item in results)
@@ -79,7 +92,7 @@ define [], ->
     _createAnchor: (item) ->
       anchor = document.createElement 'A'
       anchor.href = item.uri
-      anchor.className = "autocomplete__result autocomplete__result--#{item.type}"
+      anchor.className = "autocomplete__result icon-list--#{item.type}"
 
       if @searchTerm
         regex = new RegExp @searchTerm, 'ig'
