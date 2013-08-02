@@ -110,11 +110,18 @@
 
 .hero__author__story
   position: absolute
-  right: 40px
-  bottom: 180px
-  padding: 30px
-  width: 290px
   text-align: left
+  left: 20px
+  bottom: 100px
+  padding: 15px
+  right: 20px
+  max-width: 290px
+  +respond-to(wide-view)
+    padding: 30px
+    bottom: 180px
+    left: auto
+    right: 40px
+    width: 290px
   .feature
     text-transform: uppercase
     color: $new-header-grey
@@ -122,11 +129,17 @@
     margin-bottom: 20px
   .btn--function
     +font-size(14)
+    padding: 12px 15px
     margin-right: 10px
     font-weight: bold
+    +respond-to(wide-view)
+      padding: 12px 30px
   .btn--close
     +font-size(14)
     font-weight: bold
+    padding: 12px 15px
+    +respond-to(wide-view)
+      padding: 12px 30px
 
 .hero--story__text
   margin-bottom: 35px

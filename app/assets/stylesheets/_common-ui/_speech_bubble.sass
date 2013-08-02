@@ -1,6 +1,8 @@
 .speech-bubble
-  +css-arrow(bottom, 10px, 48px, 68%, 28px)
+  +css-arrow(bottom, 10px, 48px, 8%, 28px)
   @extend %four-pixel-rounded
+  +respond-to(wide-view)
+    +css-arrow(bottom, 10px, 48px, 68%, 28px)
   &:after
     @extend %empty-abs-generated-content
 
