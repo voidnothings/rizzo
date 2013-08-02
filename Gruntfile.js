@@ -8,10 +8,13 @@ module.exports = function(grunt) {
     grunticon: {
       myIcons: {
         options: {
-          src: "app/assets/images/",
-          dest: "app/assets/stylesheets/_icons",
+          src: "./app/assets/images/src",
+          dest: "./app/assets/stylesheets/_icons",
           cssprefix: "icon--",
-          defaultWidth: "32px"
+          defaultWidth: "32px",
+          customSelectors: {
+            "sprite-11": ".icon--sprite-11--before:before"
+          }
         }
       }
     },
@@ -27,12 +30,20 @@ module.exports = function(grunt) {
         files: [
           {
             "expand": true,
-            "cwd": "./app/assets/images",
+            "cwd": "./app/assets/images/src",
             "src": ["*.svg"],
-            "dest": "./app/assets/images",
+            "dest": "./app/assets/images/src",
             "ext": ".svg"
           }
         ]
+      }
+    },
+    shell: {
+      clean: {
+        command: "rm -rf app/assets/images/png"
+      },
+      move: {
+        command: "mv app/assets/stylesheets/_icons/png app/assets/images"
       }
     }
   });
@@ -42,6 +53,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-svgmin');
 
   // Tasks
-  grunt.registerTask('default', ['svgmin', 'grunticon']);
+  grunt.registerTask('default', ['svgmin', 'grunticon', 'shell:clean', 'shell:move']);
 
 };
