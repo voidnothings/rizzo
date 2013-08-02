@@ -101,6 +101,18 @@ define ['jquery'], ($) ->
 
       @_updateCount()
 
+    _goToSlide: (index) ->
+      slides = @$el.find(@slides)
+      @_resetSlideClasses()
+      index = index-1 # zero base
+      slides.eq(index).addClass('is-current')
+      slides.eq(index-1).addClass('is-prev')
+      slides.eq(index+1).addClass('is-next')
+
+      @_updateCount()
+
+
+
     _updateCount: ->
       current = $('.slider__control--next').html()
       index = @$el.find(@slides).index(@$el.find(@slides+'.is-current')) + 1

@@ -59,46 +59,58 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
 
       it 'goes to the next slide (first -> second)', ->
         slider._nextSlide()
-        expect($('.slider__slide').eq(0).is('.is-prev')).toBe(true)
-        expect($('.slider__slide').eq(1).is('.is-current')).toBe(true)
-        expect($('.slider__slide').eq(2).is('.is-next')).toBe(true)
+        expect($('.slider__slide').eq(0)).toHaveClass('is-prev')
+        expect($('.slider__slide').eq(1)).toHaveClass('is-current')
+        expect($('.slider__slide').eq(2)).toHaveClass('is-next')
 
       it 'goes to the previous slide (third -> second)', ->
         slider._nextSlide()
         slider._nextSlide()
         slider._previousSlide()
-        expect($('.slider__slide').eq(0).is('.is-prev')).toBe(true)
-        expect($('.slider__slide').eq(1).is('.is-current')).toBe(true)
-        expect($('.slider__slide').eq(2).is('.is-next')).toBe(true)
+        expect($('.slider__slide').eq(0)).toHaveClass('is-prev')
+        expect($('.slider__slide').eq(1)).toHaveClass('is-current')
+        expect($('.slider__slide').eq(2)).toHaveClass('is-next')
 
       it 'wraps "is-prev" to end (second -> first)', ->
         slider._nextSlide()
         slider._previousSlide()
-        expect($('.slider__slide').eq(4).is('.is-prev')).toBe(true)
-        expect($('.slider__slide').eq(0).is('.is-current')).toBe(true)
-        expect($('.slider__slide').eq(1).is('.is-next')).toBe(true)
+        expect($('.slider__slide').eq(4)).toHaveClass('is-prev')
+        expect($('.slider__slide').eq(0)).toHaveClass('is-current')
+        expect($('.slider__slide').eq(1)).toHaveClass('is-next')
 
       it 'wraps "is-next" to beginning (second last -> last)', ->
         slider._nextSlide() # 2
         slider._nextSlide() # 3
         slider._nextSlide() # 4
         slider._nextSlide() # 5
-        expect($('.slider__slide').eq(3).is('.is-prev')).toBe(true)
-        expect($('.slider__slide').eq(4).is('.is-current')).toBe(true)
-        expect($('.slider__slide').eq(0).is('.is-next')).toBe(true)
+        expect($('.slider__slide').eq(3)).toHaveClass('is-prev')
+        expect($('.slider__slide').eq(4)).toHaveClass('is-current')
+        expect($('.slider__slide').eq(0)).toHaveClass('is-next')
 
       it 'wraps "is-current" to end (first -> last)', ->
         slider._previousSlide()
-        expect($('.slider__slide').eq(3).is('.is-prev')).toBe(true)
-        expect($('.slider__slide').eq(4).is('.is-current')).toBe(true)
-        expect($('.slider__slide').eq(0).is('.is-next')).toBe(true)
+        expect($('.slider__slide').eq(3)).toHaveClass('is-prev')
+        expect($('.slider__slide').eq(4)).toHaveClass('is-current')
+        expect($('.slider__slide').eq(0)).toHaveClass('is-next')
 
       it 'wraps "is-current" from end to beginning (last -> first)', ->
         slider._previousSlide()
         slider._nextSlide()
-        expect($('.slider__slide').eq(4).is('.is-prev')).toBe(true)
-        expect($('.slider__slide').eq(0).is('.is-current')).toBe(true)
-        expect($('.slider__slide').eq(1).is('.is-next')).toBe(true)
+        expect($('.slider__slide').eq(4)).toHaveClass('is-prev')
+        expect($('.slider__slide').eq(0)).toHaveClass('is-current')
+        expect($('.slider__slide').eq(1)).toHaveClass('is-next')
+
+    describe 'going to a particular slide', ->
+      beforeEach ->
+        loadFixtures('slider.html')
+        window.slider = new Slider(config)
+
+      it ' goes to the third slide', ->
+        slider._goToSlide(3)
+        expect($('.slider__slide').eq(2)).toHaveClass('is-current')
+        expect($('.slider__slide').eq(3)).toHaveClass('is-next')
+        expect($('.slider__slide').eq(1)).toHaveClass('is-prev')
+
   
     describe 'events:', ->
 
