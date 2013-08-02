@@ -79,7 +79,7 @@ define ['jquery'], ($) ->
         @$el.find(@slides+':first').addClass('is-next')
       else
         current.addClass('is-prev').next().addClass('is-current').next().addClass('is-next')
-      
+
       # This is to help with the slide stack order which is different depending on the direction of slide movement.
       $(@slides+'.is-next').addClass('js-bottom-layer')
       $(@slides+'.is-prev').addClass('js-middle-layer')
@@ -111,13 +111,40 @@ define ['jquery'], ($) ->
 
     _goToSlide: (index) ->
       slides = @$el.find(@slides)
-      @_resetSlideClasses()
+      current = @$el.find(@slides+'.is-current')
       index = index-1 # zero base
-      slides.eq(index-1).addClass('is-prev')
-      slides.eq(index+1).addClass('is-next')
-      slides.eq(index).addClass('is-current')
+      
+      return false if current[0] is slides.eq(index)[0]
 
-      @_updateCount()
+      # Remove the positioning for what's currently the previous slide. Recalced later.
+      $(@slides+'.is-prev').removeClass('is-prev')
+
+      # First, the slide we're trying to go to must become the Next slide in the order.
+      $(@slides+'.is-next').removeClass('is-next')
+      slides.eq(index).addClass('is-next')
+
+      # Give the above change time to take effect since it needs to finish getting to the 'next' position before moving to 'current'.
+      setTimeout =>
+        @_resetSlideClasses()
+
+        # Transition the slides now.
+        current.addClass('is-prev js-middle-layer')
+        slides.eq(index).addClass('is-current')
+
+        # Wait for that transition to finish, then reset the prev and next ones *around the current slide*
+        setTimeout =>
+          current.removeClass('is-prev js-middle-layer')
+
+          # Use modulus to wrap around to the beginning if at the end, but in all other cases, carry on as normal.
+          slides.eq((index+1) % slides.length).addClass('is-next js-bottom-layer')
+          if (index-1 < 0)
+            slides.eq(slides.length-1).addClass('is-prev js-bottom-layer')
+          else
+            slides.eq(index-1).addClass('is-prev js-bottom-layer')
+
+          @_updateCount()
+        , 500
+      , 500
 
 
     _updateCount: ->
