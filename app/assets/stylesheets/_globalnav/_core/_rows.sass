@@ -107,15 +107,29 @@ body
 // ----------------------------------------------------------------------------
 
 .row--leaderboard
+  +transition(all, 0.5, ease)
   background-color: $row-leader
   overflow: hidden
   padding: 16px 0
   height: 96px
 
+  &.is-closed
+    height: 0
+    padding: 0
+
+  .homepage &
+    background-color: white
+
   // This can be removed when switching to the new DFP server
   .ad-leaderboard__inner
     height: 90px
     width: 728px
+
+    .homepage &
+      border: none
+
+      &:after
+        background-position: -106px 4px
 
   > .row__inner
     display: table
