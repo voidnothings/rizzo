@@ -27,6 +27,7 @@ define ['jquery'], ($) ->
       @slides = config.slides
       @slides_container = @$el.find(config.slides_container)
       @$slider_controls = $('<div class="slider__controls no-print"></div>')
+      @$slider_pagination = $('<div class="slider__pagination no-print"></div>')
       @$next = $('<a href="#" class="slider__control slider__control--next">1 of '+@$el.find(@slides).length+'</a>')
       @$prev = $('<a href="#" class="slider__control slider__control--prev">1 of '+@$el.find(@slides).length+'</a>')
       @$legacy = $('html.ie7, html.ie8, body.browserIE7, body.browserIE8')
@@ -40,6 +41,17 @@ define ['jquery'], ($) ->
     init: ->
       @$slider_controls.append(@$next).append(@$prev)
       @slides_container.append(@$slider_controls)
+
+      i=1
+      while i <= $(@slides).length
+        do (i) =>
+          $slideLink = $('<a href="#" class="slider__pagination--link">'+i+'</a>')
+          $slideLink.on 'click', =>
+            @_goToSlide(i)
+            return false
+          @$slider_pagination.append($slideLink);
+        i++
+      @slides_container.after(@$slider_pagination)
 
       @_setupSlideClasses()
 
