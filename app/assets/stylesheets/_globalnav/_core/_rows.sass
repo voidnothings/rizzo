@@ -107,10 +107,15 @@ body
 // ----------------------------------------------------------------------------
 
 .row--leaderboard
+  +transition(all, 0.5, ease)
   background-color: $row-leader
   overflow: hidden
   padding: 16px 0
   height: 96px
+
+  &.is-closed
+    height: 0
+    padding: 0
 
   .homepage &
     background-color: white
