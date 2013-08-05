@@ -82,10 +82,12 @@
   +perspective()
   overflow: hidden
   position: relative
-  &.is-loading, .is-loading
+  .is-loading
     height: 100%
     &:after
       top: 50%
+  &.is-loading:after
+    top: 50%
 
 .media-gallery__img
   max-height: 100%
