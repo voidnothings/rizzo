@@ -95,3 +95,22 @@ $slideHoverArrowSpacing: 5px
     right: $slideHoverOffset
     &:before
       padding-right: $slideHoverArrowSpacing
+
+.slider__pagination
+  bottom: 0
+  display: inline-block
+  margin: 25px auto 0
+  text-align: center
+  width: 100%
+
+.slider__pagination--link
+  @extend %image-replacement
+  +border-radius(3.5)
+  background: $highlight
+  display: inline-block
+  height: 7px
+  margin: 0 4px
+  width: 7px
+
+  &:hover
+    background: $lpblue
