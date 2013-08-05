@@ -165,28 +165,33 @@
 
 .user-box
   @extend %right-icon
+  @extend %chevron-down-after
   margin-top: 10px
   padding-right: 25px
-  // Can't extend this as usual, because it lies within a mq
-  .responsive &
-    margin-top: 0
-    background-color: $offscreen-nav-user-background
-    height: 50px
-    &:after
-      content: ''
-    +respond-to(wide-view)
-      margin-top: 10px
-      background: none
-      height: auto
-      &:after
-        content: "\e014"
-
   &:after
     @extend %lp-font-stack
     font-size: 20px
     line-height: 29px
     right: 0
     top: 0
+
+  .responsive &
+    margin-top: 0
+    height: 50px
+    &:after
+      content: ''
+      background-size: 100%
+      background-position: center
+      top: 10px
+    +respond-to(max990)
+      background: $offscreen-nav-user-background
+      &:after
+        background: none
+    +respond-to(wide-view)
+      margin-top: 10px
+      height: auto
+      
+
 
 .user-box__img
   @extend %four-pixel-rounded

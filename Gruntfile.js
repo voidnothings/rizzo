@@ -9,9 +9,10 @@ module.exports = function(grunt) {
       myIcons: {
         options: {
           src: "./app/assets/images/src",
-          dest: "./app/assets/stylesheets/_icons",
+          dest: "./app/assets/stylesheets/icons",
           cssprefix: "icon--",
           defaultWidth: "32px",
+          pseudoElems: true,
           customSelectors: {
             "sprite-11": ".icon--sprite-11--before:before"
           }
@@ -43,7 +44,7 @@ module.exports = function(grunt) {
         command: "rm -rf app/assets/images/png"
       },
       move: {
-        command: "mv app/assets/stylesheets/_icons/png app/assets/images"
+        command: "mv app/assets/stylesheets/icons/png app/assets/images"
       }
     }
   });
