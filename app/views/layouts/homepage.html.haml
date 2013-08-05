@@ -14,7 +14,6 @@
   = render 'layouts/mobile/detect_touch'
   = render 'layouts/mobile/require_js_config'
   = render 'layouts/mobile/require_js_async'
-  = render 'layouts/mobile/img_loader'
 
 %body.responsive.homepage.copy--freight
   .wrapper
@@ -30,6 +29,7 @@
         = render 'layouts/mobile/view_full_site'
 
     .js-config.is-hidden
+      = render 'layouts/mobile/img_loader'
       = render 'layouts/core/snippets/fs_init'
       - unless cookies[:_lpfont] == "true"
         = render 'layouts/mobile/fonts_async'
