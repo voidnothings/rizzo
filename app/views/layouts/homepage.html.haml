@@ -2,7 +2,7 @@
 <!--[if IE 7]><html class="no-js ie7" lang="en"><![endif]-->
 <!--[if IE 8]><html class="no-js ie8" lang="en"><![endif]-->
 <!--[if IE 9]><html class="no-js ie9" lang="en"><![endif]-->
-<!--[if gt IE 9]><!--><html class="no-js base touch #{cookies[:_font] == 'true' ? 'freight' : ''}" lang="en"><!--<![endif]-->
+<!--[if gt IE 9]><!--><html class="no-js base touch #{cookies[:_lpfont] == 'true' ? 'freight' : ''}" lang="en"><!--<![endif]-->
 %head
   = render 'layouts/core/head', responsive: true, homepage: true
   - if cookies[:_fullsite] == "true"
@@ -31,7 +31,7 @@
 
     .js-config.is-hidden
       = render 'layouts/core/snippets/fs_init'
-      - unless cookies[:_font] == "true"
+      - unless cookies[:_lpfont] == "true"
         = render 'layouts/mobile/fonts_async'
       = js_configuration
       - unless Rails.env.production?
