@@ -1,12 +1,22 @@
+.icon--arrow-down--white, .icon--arrow-down--white--before:before, .icon--arrow-down--white--after:after { background-image: url(png/arrow-down--white.png); background-repeat: no-repeat; }
+
+.icon--arrow-up--green, .icon--arrow-up--green--before:before, .icon--arrow-up--green--after:after { background-image: url(png/arrow-up--green.png); background-repeat: no-repeat; }
+
 .icon--article--white, .icon--article--white--before:before, .icon--article--white--after:after { background-image: url(png/article--white.png); background-repeat: no-repeat; }
 
 .icon--camera--white, .icon--camera--white--before:before, .icon--camera--white--after:after { background-image: url(png/camera--white.png); background-repeat: no-repeat; }
 
+.icon--camera-inline--grey, .icon--camera-inline--grey--before:before, .icon--camera-inline--grey--after:after { background-image: url(png/camera-inline--grey.png); background-repeat: no-repeat; }
+
 .icon--chevron-down--grey, .icon--chevron-down--grey--before:before, .icon--chevron-down--grey--after:after { background-image: url(png/chevron-down--grey.png); background-repeat: no-repeat; }
+
+.icon--chevron-down--white, .icon--chevron-down--white--before:before, .icon--chevron-down--white--after:after { background-image: url(png/chevron-down--white.png); background-repeat: no-repeat; }
 
 .icon--chevron-up--grey, .icon--chevron-up--grey--before:before, .icon--chevron-up--grey--after:after { background-image: url(png/chevron-up--grey.png); background-repeat: no-repeat; }
 
 .icon--chevron-up--white, .icon--chevron-up--white--before:before, .icon--chevron-up--white--after:after { background-image: url(png/chevron-up--white.png); background-repeat: no-repeat; }
+
+.icon--close--white, .icon--close--white--before:before, .icon--close--white--after:after { background-image: url(png/close--white.png); background-repeat: no-repeat; }
 
 .icon--compass--grey, .icon--compass--grey--before:before, .icon--compass--grey--after:after { background-image: url(png/compass--grey.png); background-repeat: no-repeat; }
 
@@ -18,11 +28,15 @@
 
 .icon--google-plus--grey, .icon--google-plus--grey--before:before, .icon--google-plus--grey--after:after { background-image: url(png/google-plus--grey.png); background-repeat: no-repeat; }
 
+.icon--hambuger--white, .icon--hambuger--white--before:before, .icon--hambuger--white--after:after { background-image: url(png/hambuger--white.png); background-repeat: no-repeat; }
+
 .icon--home--white, .icon--home--white--before:before, .icon--home--white--after:after { background-image: url(png/home--white.png); background-repeat: no-repeat; }
 
 .icon--hotels--grey, .icon--hotels--grey--before:before, .icon--hotels--grey--after:after { background-image: url(png/hotels--grey.png); background-repeat: no-repeat; }
 
 .icon--hotels--white, .icon--hotels--white--before:before, .icon--hotels--white--after:after { background-image: url(png/hotels--white.png); background-repeat: no-repeat; }
+
+.icon--insurance-umbrella-inline--grey, .icon--insurance-umbrella-inline--grey--before:before, .icon--insurance-umbrella-inline--grey--after:after { background-image: url(png/insurance-umbrella-inline--grey.png); background-repeat: no-repeat; }
 
 .icon--logo--grey, .icon--logo--grey--before:before, .icon--logo--grey--after:after { background-image: url(png/logo--grey.png); background-repeat: no-repeat; }
 
@@ -32,11 +46,17 @@
 
 .icon--magazine--white, .icon--magazine--white--before:before, .icon--magazine--white--after:after { background-image: url(png/magazine--white.png); background-repeat: no-repeat; }
 
+.icon--pin--grey, .icon--pin--grey--before:before, .icon--pin--grey--after:after { background-image: url(png/pin--grey.png); background-repeat: no-repeat; }
+
+.icon--pin-inline--grey, .icon--pin-inline--grey--before:before, .icon--pin-inline--grey--after:after { background-image: url(png/pin-inline--grey.png); background-repeat: no-repeat; }
+
 .icon--pinterest--grey, .icon--pinterest--grey--before:before, .icon--pinterest--grey--after:after { background-image: url(png/pinterest--grey.png); background-repeat: no-repeat; }
 
 .icon--plane--grey, .icon--plane--grey--before:before, .icon--plane--grey--after:after { background-image: url(png/plane--grey.png); background-repeat: no-repeat; }
 
 .icon--plane--white, .icon--plane--white--before:before, .icon--plane--white--after:after { background-image: url(png/plane--white.png); background-repeat: no-repeat; }
+
+.icon--plane-inline--grey, .icon--plane-inline--grey--before:before, .icon--plane-inline--grey--after:after { background-image: url(png/plane-inline--grey.png); background-repeat: no-repeat; }
 
 .icon--plane-trail--grey, .icon--plane-trail--grey--before:before, .icon--plane-trail--grey--after:after { background-image: url(png/plane-trail--grey.png); background-repeat: no-repeat; }
 
@@ -49,6 +69,12 @@
 .icon--shop-basket--grey, .icon--shop-basket--grey--before:before, .icon--shop-basket--grey--after:after { background-image: url(png/shop-basket--grey.png); background-repeat: no-repeat; }
 
 .icon--shop-basket--white, .icon--shop-basket--white--before:before, .icon--shop-basket--white--after:after { background-image: url(png/shop-basket--white.png); background-repeat: no-repeat; }
+
+.icon--shop-basket-inline--grey, .icon--shop-basket-inline--grey--before:before, .icon--shop-basket-inline--grey--after:after { background-image: url(png/shop-basket-inline--grey.png); background-repeat: no-repeat; }
+
+.icon--signout-inline--grey, .icon--signout-inline--grey--before:before, .icon--signout-inline--grey--after:after { background-image: url(png/signout-inline--grey.png); background-repeat: no-repeat; }
+
+.icon--speech-bubble-inline--grey, .icon--speech-bubble-inline--grey--before:before, .icon--speech-bubble-inline--grey--after:after { background-image: url(png/speech-bubble-inline--grey.png); background-repeat: no-repeat; }
 
 .icon--twitter--grey, .icon--twitter--grey--before:before, .icon--twitter--grey--after:after { background-image: url(png/twitter--grey.png); background-repeat: no-repeat; }
 
