@@ -2,9 +2,9 @@
 <!--[if IE 7]><html class="no-js ie7" lang="en"><![endif]-->
 <!--[if IE 8]><html class="no-js ie8" lang="en"><![endif]-->
 <!--[if IE 9]><html class="no-js ie9" lang="en"><![endif]-->
-<!--[if gt IE 9]><!--><html class='no-js base touch' lang="en"><!--<![endif]-->
+<!--[if gt IE 9]><!--><html class="no-js base touch #{cookies[:_font] == 'true' ? 'freight' : ''}" lang="en"><!--<![endif]-->
 %head
-  = render 'layouts/core/head', responsive: true
+  = render 'layouts/core/head', responsive: true, homepage: true
   - if cookies[:_fullsite] == "true"
     %meta{name:"viewport", content:"width=1024"}
   - else
@@ -14,6 +14,7 @@
   = render 'layouts/mobile/detect_touch'
   = render 'layouts/mobile/require_js_config'
   = render 'layouts/mobile/require_js_async'
+  = render 'layouts/mobile/img_loader'
 
 %body.responsive.homepage.copy--freight
   .wrapper
@@ -29,8 +30,9 @@
         = render 'layouts/mobile/view_full_site'
 
     .js-config.is-hidden
-      = render 'layouts/mobile/img_loader'
       = render 'layouts/core/snippets/fs_init'
+      - unless cookies[:_font] == "true"
+        = render 'layouts/mobile/fonts_async'
       = js_configuration
       - unless Rails.env.production?
         :javascript
