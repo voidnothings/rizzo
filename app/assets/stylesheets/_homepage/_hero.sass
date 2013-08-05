@@ -6,7 +6,9 @@
   color: white
   background: #2D5082
   .enhanced &
-    background: 50% 50% url("#{image_path('france.jpg')}") no-repeat
+    +responsive-image('homepage/hero/wyoming', 'jpg')
+    background-position: 50% 50% 
+    background-repeat: no-repeat
     background-size: cover
   +respond-to(medium-view)
     height: 640px
