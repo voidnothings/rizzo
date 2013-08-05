@@ -61,9 +61,9 @@ define ['jquery', 'gpt'], ->
           else if /adsense/i.test(type)
             # Note: we're using the old, non DFP way of calling adsense ads. Ideally once we figure out how to serve these through DFP, this can be ditched in favour of the below commented out code.
             continue
-          else if /oneByOne/.test(type)
+          else if /oneByOne/i.test(type)
             toPoll[newId] = adManager.checkOneByOne
-          else if /trafficDriver/.test(type)
+          else if /(leaderboard|trafficDriver)/i.test(type)
             toPoll[newId] = adManager.showAd
 
           adUnit = googletag.defineSlot("/"+unit.join("/"), adSize, newId).addService(pubAds)
@@ -159,7 +159,7 @@ define ['jquery', 'gpt'], ->
 
     showAd : (adEl, iframe) ->
       if adEl.style.display isnt 'none'
-        $(adEl).closest('.js-card').removeClass('is-closed')
+        $(adEl).closest('.is-closed').removeClass('is-closed')
 
     setupInterstitial : (adEl, iframe) ->
       adLink = $(iframe).contents().find('#ad-link')
