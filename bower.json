@@ -2,6 +2,7 @@
 	"name": "avocado",
   "dependencies": {
     "flamsteed": "latest",
-    "lonelyplanet_minjs": "latest"
+    "lonelyplanet_minjs": "latest",
+    "fastclick": "latest"
   }
 }
