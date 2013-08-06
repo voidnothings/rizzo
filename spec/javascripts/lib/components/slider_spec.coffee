@@ -113,7 +113,7 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
           expect($('.slider__slide').eq(2)).toHaveClass('is-current')
           expect($('.slider__slide').eq(3)).toHaveClass('is-next')
           expect($('.slider__slide').eq(1)).toHaveClass('is-prev')
-        , 1250 # Slightly above the combined duration of all the animations in the _goToSlide function
+        , 0
 
   
     describe 'events:', ->
