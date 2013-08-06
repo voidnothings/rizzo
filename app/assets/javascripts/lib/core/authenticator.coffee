@@ -39,7 +39,7 @@ define ['jquery'], ($)->
     showUserBox: ->
       @emptyUserNav()
       @el.addClass('is-signed-in')
-      userBoxElement = "<div class='nav__item nav__item--user user-box js-user-box nav__submenu__trigger'><img class='user-box__img js-box-handler' src='#{@userAvatar()}'/></div>"
+      userBoxElement = "<div class='nav__item nav__item--user user-box js-user-box nav__submenu__trigger icon--chevron-down--white--after'><img class='user-box__img js-box-handler' src='#{@userAvatar()}'/></div>"
       @el.append(userBoxElement)
       $('.js-user-box').append(@userOptionsMenu())
 
