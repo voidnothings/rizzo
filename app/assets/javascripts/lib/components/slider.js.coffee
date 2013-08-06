@@ -12,6 +12,7 @@ define ['jquery'], ($) ->
 
     # Default config
     config =
+      animateDelay: 500
       slides: ".slider__slide"
       slides_container: ".slider__container"
 
@@ -167,8 +168,8 @@ define ['jquery'], ($) ->
             slides.eq(index-1).addClass('is-prev js-bottom-layer')
 
           @_updateCount()
-        , 500
-      , 500
+        , config.animateDelay
+      , config.animateDelay
 
 
     _updateCount: ->

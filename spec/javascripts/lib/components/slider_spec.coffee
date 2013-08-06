@@ -5,6 +5,7 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
     LISTENER = '#js-slider'
 
     config =
+      animateDelay: 0
       el: "#js-slider"
 
     params =
