@@ -58,42 +58,6 @@
   +respond-to(wide-view)
     +font-size(55)
 
-.hero__search
-  @extend %inline-block
-  overflow: hidden
-  text-align: left
-  width: 85%
-
-.hero__search__input__wrapper
-  position: relative
-
-.hero__search__submit--field
-  position: absolute
-  color: #d4e0e3
-  width: 45px
-  height: 45px
-  border: 0
-  background: transparent
-  right: 0
-  top: 0
-
-.hero__search__input
-  height: 45px
-  padding: 0 50px 0 20px
-  width: 100%
-
-.hero__search__submit--results
-  @extend %base-button
-  @extend %larger-type
-  background: $header-blue
-  border: none
-  color: #fff
-  display: none
-  padding: 15px
-
-  .results-displayed &
-    display: block
-
 .hero__author
   position: absolute
   bottom: 10px
@@ -179,3 +143,45 @@
     bottom: 100%
   & ~ .hero__panel--story
     top: 0
+
+
+
+// hero autocomplete
+
+.hero__search
+  @extend %inline-block
+  overflow: hidden
+  text-align: left
+  width: 85%
+
+.hero__search__input__wrapper
+  position: relative
+
+.hero__search__input
+  height: 45px
+  padding: 0 50px 0 20px
+  width: 100%
+
+// hero search submit buttons
+.hero__search__submit--field
+  background: transparent
+  border: 0
+  color: #d4e0e3
+  cursor: pointer
+  height: 45px
+  position: absolute
+  right: 0
+  top: 0
+  width: 45px
+
+.hero__search__submit--results
+  @extend %base-button
+  @extend %larger-type
+  background: $header-blue
+  border: none
+  color: #fff
+  display: none
+  padding: 15px
+
+  .results-displayed &
+    display: block
