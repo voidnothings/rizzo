@@ -45,6 +45,12 @@ $slideHoverArrowSpacing: 5px
   &.js-middle-layer
     z-index: 2
 
+.slider__controls-container
+  position: relative
+  &:hover
+    .slider__controls
+      opacity: 1
+
 .slider__controls
   @extend %clearfix
   @extend %transition--base
