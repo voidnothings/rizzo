@@ -40,7 +40,7 @@ define ['jsmin'], ($)->
       signOutLink = document.createElement('a')
       signOutLink.href = @options.signOutUrl
       signOutLink.textContent = "Sign out"
-      signOutLink.className = "icon--signout-inline--grey--before nav__item nav__item--primary"
+      signOutLink.className = "icon--signout-inline--grey--before nav__item nav__item--primary wv--hidden"
       primaryNav.appendChild(signOutLink)
 
     showLoginAndRegister: ()->
