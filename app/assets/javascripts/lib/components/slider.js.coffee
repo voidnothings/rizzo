@@ -12,6 +12,7 @@ define ['jquery'], ($) ->
 
     # Default config
     config =
+      animateDelay: 500
       slides: ".slider__slide"
       slides_container: ".slider__container"
 
@@ -27,9 +28,14 @@ define ['jquery'], ($) ->
       @slides = config.slides
       @slides_container = @$el.find(config.slides_container)
       @$slider_controls = $('<div class="slider__controls no-print"></div>')
+      @$slider_pagination = $('<div class="slider__pagination no-print"></div>')
       @$next = $('<a href="#" class="slider__control slider__control--next">1 of '+@$el.find(@slides).length+'</a>')
       @$prev = $('<a href="#" class="slider__control slider__control--prev">1 of '+@$el.find(@slides).length+'</a>')
       @$legacy = $('html.ie7, html.ie8, body.browserIE7, body.browserIE8')
+
+      @$slider_controls_container = $('.slider__controls-container')
+      if @$slider_controls_container.length is 0
+        @$slider_controls_container = @slides_container.addClass('slider__controls-container')
 
       @init() unless @$el.length is 0
 
@@ -39,7 +45,26 @@ define ['jquery'], ($) ->
 
     init: ->
       @$slider_controls.append(@$next).append(@$prev)
-      @slides_container.append(@$slider_controls)
+      @$slider_controls_container.append(@$slider_controls)
+
+      i=1
+      while i <= $(@slides).length
+        do (i) =>
+          $slideLink = $('<a href="#" class="slider__pagination--link">'+i+'</a>')
+
+          if i is 1
+            $slideLink.addClass('is-active')
+
+          $slideLink.on 'click', (e) =>
+            $('.slider__pagination--link.is-active').removeClass('is-active')
+            $('.slider__pagination--link').eq(i-1).addClass('is-active')
+
+            @_goToSlide(i)
+            e.preventDefault()
+          @$slider_pagination.append($slideLink);
+        i++
+
+      @$slider_controls_container.append(@$slider_pagination)
 
       @_setupSlideClasses()
 
@@ -80,6 +105,10 @@ define ['jquery'], ($) ->
       else
         current.addClass('is-prev').next().addClass('is-current').next().addClass('is-next')
 
+      # This is to help with the slide stack order which is different depending on the direction of slide movement.
+      $(@slides+'.is-next').addClass('js-bottom-layer')
+      $(@slides+'.is-prev').addClass('js-middle-layer')
+
       @_updateCount()
       
     _previousSlide: ->
@@ -99,7 +128,49 @@ define ['jquery'], ($) ->
       else
         current.addClass('is-next').prev().addClass('is-current').prev().addClass('is-prev')
 
+      # This is to help with the slide stack order which is different depending on the direction of slide movement.
+      $(@slides+'.is-prev').addClass('js-bottom-layer')
+      $(@slides+'.is-next').addClass('js-middle-layer')
+
       @_updateCount()
+
+    _goToSlide: (index) ->
+      slides = @$el.find(@slides)
+      current = @$el.find(@slides+'.is-current')
+      index = index-1 # zero base
+      
+      return false if current[0] is slides.eq(index)[0]
+
+      # Remove the positioning for what's currently the previous slide. Recalced later.
+      $(@slides+'.is-prev').removeClass('is-prev')
+
+      # First, the slide we're trying to go to must become the Next slide in the order.
+      $(@slides+'.is-next').removeClass('is-next')
+      slides.eq(index).addClass('is-next')
+
+      # Give the above change time to take effect since it needs to finish getting to the 'next' position before moving to 'current'.
+      setTimeout =>
+        @_resetSlideClasses()
+
+        # Transition the slides now.
+        current.addClass('is-prev js-middle-layer')
+        slides.eq(index).addClass('is-current')
+
+        # Wait for that transition to finish, then reset the prev and next ones *around the current slide*
+        setTimeout =>
+          current.removeClass('is-prev js-middle-layer')
+
+          # Use modulus to wrap around to the beginning if at the end, but in all other cases, carry on as normal.
+          slides.eq((index+1) % slides.length).addClass('is-next js-bottom-layer')
+          if (index-1 < 0)
+            slides.eq(slides.length-1).addClass('is-prev js-bottom-layer')
+          else
+            slides.eq(index-1).addClass('is-prev js-bottom-layer')
+
+          @_updateCount()
+        , config.animateDelay
+      , config.animateDelay
+
 
     _updateCount: ->
       current = $('.slider__control--next').html()
@@ -107,9 +178,20 @@ define ['jquery'], ($) ->
 
       $('.slider__control--next, .slider__control--prev').html(current.replace(/(^[0-9]+)/, index))
 
+      $('.slider__pagination--link.is-active').removeClass('is-active')
+      $('.slider__pagination--link').eq(index-1).addClass('is-active')
+
     _setupSlideClasses: ->
       @$el.find(@slides+':first').addClass('is-current').next().addClass('is-next')
       @$el.find(@slides+':last').addClass('is-prev')
 
+      # Give the user a visual cue that there are controls before fading them out.
+      setTimeout =>
+        @$slider_controls.addClass('is-faded-out')
+      , 1000
+
     _resetSlideClasses: ->
-      @$el.find(@slides+'.is-current, '+@slides+'.is-next, '+@slides+'.is-prev').removeClass('is-current is-next is-prev')
+      classes = ['is-current', 'is-next', 'is-prev', 'js-bottom-layer', 'js-middle-layer']
+
+      for name in classes
+        @$el.find(@slides+'.'+name).removeClass(name)
