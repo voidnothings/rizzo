@@ -1,51 +1,26 @@
-.icon--camera--white, .icon--camera--white--before:before, .icon--camera--white--after,
-.icon--camera--grey, .icon--camera--grey--before:before, .icon--camera--grey--after
-  width: 40px
-  height: 31px
+@mixin icon-dimensions($name, $width, $height)
+  .icon--#{$name}--white, .icon--#{$name}--white--before:before, .icon--#{$name}--white--after:after,
+  .icon--#{$name}--grey, .icon--#{$name}--grey--before:before, .icon--#{$name}--grey--after:after
+    height: $height + "px"
+    width: $width + "px"
 
-.icon--article--white, .icon--article--white--before:before, .icon--article--white--after,
-.icon--article--grey, .icon--article--grey--before:before, .icon--article--grey--after
-  width: 17px
-  height: 23px
+@mixin icon-bg-dimensions($name, $size)
+  .icon--#{$name}--white, .icon--#{$name}--white--before:before, .icon--#{$name}--white--after:after,
+  .icon--#{$name}--grey, .icon--#{$name}--grey--before:before, .icon--#{$name}--grey--after:after
+    background-size: $size
 
-.icon--magazine--white, .icon--magazine--white--before:before, .icon--magazine--white--after:after,
-.icon--magazine--grey, .icon--magazine--grey--before:before, .icon--magazine--grey--after:after
-  width: 25px
-  height: 25px
++icon-dimensions('camera', 40, 31)
++icon-dimensions('article', 17, 23)
++icon-dimensions('magazine', 25, 25)
++icon-dimensions('plane', 21, 25)
++icon-dimensions('shop-basket', 25, 25)
++icon-dimensions('hotels', 23, 25)
++icon-dimensions('compass', 23, 25)
++icon-dimensions('chevron-down', 12, 15)
++icon-dimensions('arrow-down', 25, 25)
++icon-dimensions('arrow-up', 25, 25)
 
-.icon--plane--white, .icon--plane--white--before:before, .icon--plane--white--after:after,
-.icon--plane--grey, .icon--plane--grey--before:before, .icon--plane--grey--after:after
-  width: 21px
-  height: 25px
-
-.icon--shop-basket--white, .icon--shop-basket--white--before:before, .icon--shop-basket--white--after:after,
-.icon--shop-basket--grey, .icon--shop-basket--grey--before:before, .icon--shop-basket--grey--after:after
-  width: 25px
-  height: 25px
-
-.icon--hotels--white, .icon--hotels--white--before:before, .icon--hotels--white--after:after,
-.icon--hotels--grey, .icon--hotels--grey--before:before, .icon--hotels--grey--after:after
-  width: 23px
-  height: 25px
-
-.icon--compass--white, .icon--compass--white--before:before, .icon--compass--white--after:after,
-.icon--compass--grey, .icon--compass--grey--before:before, .icon--compass--grey--after:after
-  width: 23px
-  height: 25px
-
-.icon--chevron-down--white, .icon--chevron-down--white--before:before, .icon--chevron-down--white--after:after,
-.icon--chevron-down--grey, .icon--chevron-down--grey--before:before, .icon--chevron-down--grey--after:after
-  width: 12px
-  height: 15px
-
-.icon--arrow-down--white, .icon--arrow-down--white--before:before, .icon--arrow-down--white--after:after,
-.icon--arrow-up--green, .icon--arrow-up--green--before:before, .icon--arrow-up--green--after:after
-  width: 25px
-  height: 25px
-  background-size: 100%
-
-.icon--pin--grey, .icon--pin--grey--after:after, .icon--pin--grey--before:before
-  background-size: 13px
-
-.icon--close--white, .icon--close--white--after:after, .icon--close--white--before:before
-  background-size: 11px
++icon-bg-dimensions('arrow-up', 100%)
++icon-bg-dimensions('arrow-down', 100%)
++icon-bg-dimensions('pin-grey', 13px)
++icon-bg-dimensions('close-white', 11px)
