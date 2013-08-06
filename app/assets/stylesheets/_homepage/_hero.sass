@@ -22,7 +22,7 @@
   position: relative
   width: 100%
   +respond-to(wide-view)
-    top: -60px // Move the mask behind the nav which is now
+    top: -60px // Move the mask behind the nav which is now transparent
 
 .hero__overlay
   +transition(all, .5, ease-out)
@@ -36,6 +36,7 @@
 
 .hero__panel
   +transition(all, .4, ease-in-out)
+  +hardware-acceleration()
   position: absolute
   width: 100%
   height: inherit
