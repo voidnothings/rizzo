@@ -32,6 +32,10 @@ define ['jquery'], ($) ->
       @$prev = $('<a href="#" class="slider__control slider__control--prev">1 of '+@$el.find(@slides).length+'</a>')
       @$legacy = $('html.ie7, html.ie8, body.browserIE7, body.browserIE8')
 
+      @$slider_controls_container = $('.slider__controls-container')
+      if @$slider_controls_container.length is 0
+        @$slider_controls_container = @slides_container.addClass('slider__controls-container')
+
       @init() unless @$el.length is 0
 
       # Polyfill for resizer in IE7/8
@@ -40,18 +44,26 @@ define ['jquery'], ($) ->
 
     init: ->
       @$slider_controls.append(@$next).append(@$prev)
-      @slides_container.append(@$slider_controls)
+      @$slider_controls_container.append(@$slider_controls)
 
       i=1
       while i <= $(@slides).length
         do (i) =>
           $slideLink = $('<a href="#" class="slider__pagination--link">'+i+'</a>')
-          $slideLink.on 'click', =>
+
+          if i is 1
+            $slideLink.addClass('is-active')
+
+          $slideLink.on 'click', (e) =>
+            $('.slider__pagination--link.is-active').removeClass('is-active')
+            $('.slider__pagination--link').eq(i-1).addClass('is-active')
+
             @_goToSlide(i)
-            return false
+            e.preventDefault()
           @$slider_pagination.append($slideLink);
         i++
-      @slides_container.after(@$slider_pagination)
+
+      @$slider_controls_container.append(@$slider_pagination)
 
       @_setupSlideClasses()
 
@@ -165,9 +177,17 @@ define ['jquery'], ($) ->
 
       $('.slider__control--next, .slider__control--prev').html(current.replace(/(^[0-9]+)/, index))
 
+      $('.slider__pagination--link.is-active').removeClass('is-active')
+      $('.slider__pagination--link').eq(index-1).addClass('is-active')
+
     _setupSlideClasses: ->
       @$el.find(@slides+':first').addClass('is-current').next().addClass('is-next')
       @$el.find(@slides+':last').addClass('is-prev')
+
+      # Give the user a visual cue that there are controls before fading them out.
+      setTimeout =>
+        @$slider_controls.addClass('is-faded-out')
+      , 1000
 
     _resetSlideClasses: ->
       classes = ['is-current', 'is-next', 'is-prev', 'js-bottom-layer', 'js-middle-layer']
