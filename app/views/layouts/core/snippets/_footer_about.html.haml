@@ -9,7 +9,7 @@
 
     .wv--split--right
       .nav--inline.nav--social.split--right__inner
-        - if defined? responsive
+        - if responsive
           %a.wv--hidden.row--footer--social__logo.media--lp-logo.media--lp-logo--dark(href='http://www.lonelyplanet.com')
         .title--footer.title--social.nav__item Follow us
         .nav--social__inner.nav__item
@@ -29,7 +29,7 @@
         Lonely Planet. All rights reserved. No part of this site may be reproduced without our written permission.
         - if responsive && cookies[:_fullsite] != "true"
           = render 'layouts/mobile/view_full_site'
-    
+
     - if language_select
       .wv--split--right
         %form.split--right__inner.nav--inline#js-language.form--language(action="http://www.lonelyplanet.com/international")
