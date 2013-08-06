@@ -31,8 +31,17 @@ define ['jsmin'], ($)->
     signonWidget: ->
       if @userState is true
         @showUserBox()
+        @addSignOutLink()
       else
         @showLoginAndRegister()
+
+    addSignOutLink: ->
+      primaryNav = document.getElementById('js-nav--primary')
+      signOutLink = document.createElement('a')
+      signOutLink.href = @options.signOutUrl
+      signOutLink.textContent = "Sign out"
+      signOutLink.className = "icon--signout-inline--grey--before nav__item nav__item--primary--signout--mobile"
+      primaryNav.appendChild(signOutLink)
 
     showLoginAndRegister: ()->
       @emptyUserNav()
