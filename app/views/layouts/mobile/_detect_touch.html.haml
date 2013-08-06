@@ -4,7 +4,16 @@
       (function(H){H.className=H.className.replace(/\btouch\b/,'no-touch')})(document.documentElement);
       window.lp = window.lp || {};
       window.lp.touch = false;
-      document.removeEventListener('mousemove', removeTouch);
+
+      if (document.removeEventListener) {
+      	document.removeEventListener('mousemove', removeTouch);
+      } else {
+      	document.detachEvent('onmousemove', removeTouch);
+      }
     };
-    document.addEventListener('mousemove', removeTouch, false);
+    if (document.addEventListener) {
+    	document.addEventListener('mousemove', removeTouch, false);
+    } else {
+    	document.attachEvent('onmousemove', removeTouch);
+    }
   })()
