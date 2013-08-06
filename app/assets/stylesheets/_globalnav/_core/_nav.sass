@@ -73,6 +73,9 @@
   .homepage &, .homepage & > .nav__item
     @extend %smooth-text
     color: white
+  .nav__item--primary--signout--mobile
+    +respond-to(wide-view)
+      display: none
 
 .nav--user
   +respond-to(wide-view)
