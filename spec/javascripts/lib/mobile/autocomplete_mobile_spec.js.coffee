@@ -44,10 +44,9 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
         spyOn AutoComplete.prototype, "init"
         loadFixtures('autocomplete_mobile.html')
         
-      it 'should initialise if the autocomplete elements exist', ->
+      it 'should initialise if the element exists', ->
         @myAutoComplete = new AutoComplete({id: 'my_search'})
         expect(@myAutoComplete.el).toBeDefined()
-        expect(@myAutoComplete.inputElt).toBeDefined()
         expect(AutoComplete.prototype.init).toHaveBeenCalled()
 
       it 'should not initialise if the input element does not exist', ->
@@ -55,31 +54,91 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
         expect(AutoComplete.prototype.init).not.toHaveBeenCalled()
         expect(@myAutoComplete.el).toBeNull()
 
-    describe 'event handlers', ->
+    describe 'keypress actions', ->
+      beforeEach ->
+        @myAutoComplete = new AutoComplete({id: 'my_search'})
+        spyOn @myAutoComplete, '_highlightDown'
+        spyOn @myAutoComplete, '_highlightUp'
+        spyOn @myAutoComplete, '_selectHighlighted'
+        spyOn @myAutoComplete, '_removeResults'
+        @eventSpy = new jasmine.createSpy()
+
+      it 'calls highlight down on a down arrow key', ->
+        @myAutoComplete._handleKeypress {keyCode: 40, preventDefault: @eventSpy} # down arrow keycode
+
+        expect(@eventSpy).toHaveBeenCalled()
+        expect(@myAutoComplete._highlightDown).toHaveBeenCalled()
+
+      it 'calls highlight up on an up arrow key', ->
+        @myAutoComplete._handleKeypress {keyCode: 38, preventDefault: @eventSpy} # down arrow keycode
+
+        expect(@eventSpy).toHaveBeenCalled()
+        expect(@myAutoComplete._highlightUp).toHaveBeenCalled()
+
+      it 'calls to remove list when ESC key pressed', ->
+        @myAutoComplete._handleKeypress {keyCode: 27, preventDefault: @eventSpy} # down arrow keycode
+
+        expect(@eventSpy).not.toHaveBeenCalled()
+        expect(@myAutoComplete._removeResults).toHaveBeenCalled()
+
+      it 'selects the currently selected item when enter key pressed and cancels event', ->
+        @myAutoComplete._handleKeypress {keyCode: 13, preventDefault: @eventSpy} # down arrow keycode
+
+        expect(@eventSpy).toHaveBeenCalled()
+        expect(@myAutoComplete._selectHighlighted).toHaveBeenCalled()
+
+      it 'selects the currently selected item when enter key pressed and keeps event bubbling when in list mode', ->
+        @myAutoComplete.args.listOnly = true
+        @myAutoComplete._handleKeypress {keyCode: 13, preventDefault: @eventSpy} # down arrow keycode
+
+        expect(@eventSpy).not.toHaveBeenCalled()
+        expect(@myAutoComplete._selectHighlighted).toHaveBeenCalled()
+
+    describe 'navigating list with keys', ->
       beforeEach ->
         loadFixtures('autocomplete_mobile.html')
-        spyOn AutoComplete.prototype, '_addListHandler'
-
-      it 'should add an event handler for clicking on a list item by default', ->
         @myAutoComplete = new AutoComplete({id: 'my_search'})
+        @myAutoComplete._updateUI SEARCH_RESULTS
 
-        expect(AutoComplete.prototype._addListHandler).toHaveBeenCalled()
+      it 'should not highlight any items by default', ->
+        expect(@myAutoComplete.currentHighlight).not.toBeDefined()
+        expect($('#search_results .autocomplete__active').length).toBe(0)
 
-      it 'should not add an event handler for clicking on a list item if specified listOnly', ->
-        @myAutoComplete = new AutoComplete({id: 'my_search', listOnly: true})
+      it 'should highlight the first item when pressing down arrow', ->
+        @myAutoComplete._highlightDown()
 
-        expect(AutoComplete.prototype._addListHandler).not.toHaveBeenCalled()
+        expect(@myAutoComplete.currentHighlight).toBe(0)
+        expect($('#search_results .autocomplete__active').length).toBe(1)
 
-    describe 'selecting a list item', ->
-      beforeEach ->
-        loadFixtures('autocomplete_mobile.html')
-        @myAutoComplete = new AutoComplete({id: 'my_search'})
-        spyOn @myAutoComplete, '_emptyList'
 
-      it 'copies the text value to the input field and empties the list', ->
-        @myAutoComplete._enterTargetValue 'Example text'
-        expect(@myAutoComplete.inputElt.value).toBe('Example text')
-        expect(@myAutoComplete._emptyList).toHaveBeenCalled()
+      it 'should highlight the last item when pressing up arrow', ->
+        @myAutoComplete._highlightUp()
+
+        expect(@myAutoComplete.currentHighlight).toBe(1)
+        expect($('#search_results .autocomplete__active').length).toBe(1)
+
+      it 'should not go up beyond the start of the list', ->
+        @myAutoComplete._highlightUp()
+        @myAutoComplete._highlightUp()
+        @myAutoComplete._highlightUp()
+
+        expect(@myAutoComplete.currentHighlight).toBe(0)
+        expect($('#search_results .autocomplete__active').length).toBe(1)
+
+      it 'should not go down beyond the end of the list', ->
+        @myAutoComplete._highlightDown()
+        @myAutoComplete._highlightDown()
+        @myAutoComplete._highlightDown()
+
+        expect(@myAutoComplete.currentHighlight).toBe(1)
+        expect($('#search_results .autocomplete__active').length).toBe(1)
+
+      it 'should select enter the text of the currently selected item in the input element', ->
+        @myAutoComplete._highlightDown() # select first item
+        @myAutoComplete._selectHighlighted()
+
+        expect(@myAutoComplete.el.value).toBe('London')
+        expect($('#search_results ul').length).toBe(0)
 
 
     describe 'updating the UI when text has been entered in the search field', ->
@@ -87,7 +146,7 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
         loadFixtures('autocomplete_mobile.html')
         @myAutoComplete = new AutoComplete({id: 'my_search'})
         spyOn @myAutoComplete, "_doRequest"
-        spyOn @myAutoComplete, "_updateUI"
+        spyOn @myAutoComplete, "_removeResults"
 
       describe 'when enough characters have been entered to search for', ->
         it 'makes a request when the list is clean', ->
@@ -111,8 +170,7 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
           @myAutoComplete._searchFor 'ab'
           expect(@myAutoComplete.el).not.toHaveClass('results-displayed')
           expect(@myAutoComplete._doRequest).not.toHaveBeenCalled()
-          expect(@myAutoComplete._updateUI).not.toHaveBeenCalled()
-          expect(@myAutoComplete.showingList).toBe(false)
+          expect(@myAutoComplete._removeResults).not.toHaveBeenCalled()
 
         it 'clears the current list when the list is populated', ->
           @myAutoComplete.showingList = true
@@ -120,8 +178,7 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
           @myAutoComplete._searchFor 'ab'
           expect(@myAutoComplete.el).not.toHaveClass('results-displayed')
           expect(@myAutoComplete._doRequest).not.toHaveBeenCalled()
-          expect(@myAutoComplete._updateUI).toHaveBeenCalledWith(EMPTY_RESULTS)
-          expect(@myAutoComplete.showingList).toBe(false)
+          expect(@myAutoComplete._removeResults).toHaveBeenCalled()
 
     describe 'generating the search URI', ->
       beforeEach ->
@@ -140,6 +197,18 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
 
         expect(myUri).toBe(@testUri+@myAutoComplete.searchTerm+'?scope='+@testScope)
 
+    describe 'removing search results from the page', ->
+      beforeEach ->
+        loadFixtures('autocomplete_mobile.html')
+        @myAutoComplete = new AutoComplete({id: 'my_search'})
+
+      it 'should remove the search results list from the page', ->
+        @myAutoComplete._updateUI SEARCH_RESULTS
+        @myAutoComplete._removeResults()
+
+        expect($('#search_results ul').length).toBe(0)
+        expect(@myAutoComplete.showingList).toBe(false)
+
     describe 'updating the UI when search results are returned', ->
       beforeEach ->
         loadFixtures('autocomplete_mobile.html')
@@ -148,13 +217,14 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
 
       it 'should add a list of highlighted search results to the page', ->
         expect(@myAutoComplete.showingList).toBe(true)
-        expect(@myAutoComplete.el).toHaveClass('results-displayed')
-        expect($('#my_search ul li').length).toBe(2)
+        expect(@myAutoComplete.currentHighlighted).not.toBeDefined()
+        expect($('#search_results ul li').length).toBe(2)
 
       it 'should replace the existing search results when called a second time', ->
-        @myAutoComplete._updateUI EMPTY_RESULTS
+        @myAutoComplete._updateUI [SEARCH_RESULTS[1]]
 
-        expect($('#my_search ul li').length).toBe(0)
+        expect(@myAutoComplete.currentHighlighted).not.toBeDefined()
+        expect($('#search_results ul li').length).toBe(1)
 
       describe 'creating a list of items to be added to the UI', ->
         beforeEach ->
@@ -165,7 +235,7 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
           list = @myAutoComplete._createList SEARCH_RESULTS
 
           expect(list.tagName).toBe('UL')
-          expect(list.getAttribute('id')).toBe('autocomplete__results')
+          expect(list.className).toBe('autocomplete__results')
           expect(list.childNodes.length).toBe(2)
 
         it 'should create an unordered list no items when the results list is empty', -> 
@@ -189,7 +259,7 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
           @myAutoComplete = new AutoComplete({id: 'my_search'})
           @myAutoComplete.searchTerm = SEARCH_TERM
 
-        it 'should create an anchor item with the item details', ->
+        it 'should create an anchor item with all item details', ->
           listItem = @myAutoComplete._createAnchor SEARCH_RESULTS[0]
           $listItem = $(listItem)
 
@@ -198,7 +268,35 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
           expect(listItem.childNodes.length).toBe(1)
           expect(listItem.textContent).toBe(SEARCH_RESULTS[0].title)
           expect($listItem).toHaveClass("autocomplete__result")
-          expect($listItem).toHaveClass("icon-list--#{SEARCH_RESULTS[0].type}")
+          expect($listItem).toHaveClass("autocomplete__result__type")
+          expect($listItem).toHaveClass("autocomplete__result__type--#{SEARCH_RESULTS[0].type}")
+
+        it 'should create an anchor item without href if not specified', ->
+          delete @myAutoComplete.responseMap.uri
+
+          listItem = @myAutoComplete._createAnchor SEARCH_RESULTS[0]
+          $listItem = $(listItem)
+
+          expect(listItem.tagName).toBe('A')
+          expect(listItem.getAttribute('href')).toEqual('#')
+          expect(listItem.childNodes.length).toBe(1)
+          expect(listItem.textContent).toBe(SEARCH_RESULTS[0].title)
+          expect($listItem).toHaveClass("autocomplete__result")
+          expect($listItem).toHaveClass("autocomplete__result__type")
+          expect($listItem).toHaveClass("autocomplete__result__type--#{SEARCH_RESULTS[0].type}")
+
+        it 'should create an anchor item without result type classes if not specified', ->
+          delete @myAutoComplete.responseMap.type
+
+          listItem = @myAutoComplete._createAnchor SEARCH_RESULTS[0]
+          $listItem = $(listItem)
+
+          expect(listItem.tagName).toBe('A')
+          expect(listItem.getAttribute('href')).toEqual('#')
+          expect(listItem.childNodes.length).toBe(1)
+          expect(listItem.textContent).toBe(SEARCH_RESULTS[0].title)
+          expect($listItem).toHaveClass("autocomplete__result")
+          expect($listItem).not.toHaveClass("autocomplete__result__type")
 
       describe 'highlighting the search term', ->
         beforeEach ->
@@ -207,65 +305,29 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
         it 'should highlight the search text at the start of a title', ->
           testSearchTerm = 'Lond'
 
-          @myAutoComplete.searchTerm = testSearchTerm
-          anchor = @myAutoComplete._createAnchor SEARCH_RESULTS[0]
-          anchorTerm = anchor.childNodes[0]
-          anchorRemainder = anchor.childNodes[1]
-
-          expect(anchorTerm.tagName).toBe('SPAN')
-          expect(anchorTerm.getAttribute('class')).toBe('autocomplete__result--highlight')
-          expect(anchorTerm.textContent).toBe(testSearchTerm)
-
-          expect(anchorRemainder.nodeType).toBe(TEXT_NODE)
-          expect(anchorRemainder.textContent).toBe('on')
+          highlightedText = @myAutoComplete._highlightText SEARCH_RESULTS[0].title, testSearchTerm
+          expect(highlightedText).toBe('<b>Lond</b>on')
 
         it 'should highlight the search text at the end of a title', ->
           testSearchTerm = 'don'
 
-          @myAutoComplete.searchTerm = testSearchTerm
-          anchor = @myAutoComplete._createAnchor SEARCH_RESULTS[0]
-          anchorRemainder = anchor.childNodes[0]
-          anchorTerm = anchor.childNodes[1]
-
-          expect(anchorRemainder.nodeType).toBe(TEXT_NODE)
-          expect(anchorRemainder.textContent).toBe('Lon')
-
-          expect(anchorTerm.tagName).toBe('SPAN')
-          expect(anchorTerm.getAttribute('class')).toBe('autocomplete__result--highlight')
-          expect(anchorTerm.textContent).toBe(testSearchTerm)
+          highlightedText = @myAutoComplete._highlightText SEARCH_RESULTS[0].title, testSearchTerm
+          expect(highlightedText).toBe('Lon<b>don</b>')
 
         it 'should highlight the search text in the middle of a title', ->
           testSearchTerm = 'ond'
 
-          @myAutoComplete.searchTerm = testSearchTerm
-          anchor = @myAutoComplete._createAnchor SEARCH_RESULTS[0]
-          anchorRemainderStart = anchor.childNodes[0]
-          anchorTerm = anchor.childNodes[1]
-          anchorRemainderEnd = anchor.childNodes[2]
-
-          expect(anchorRemainderStart.nodeType).toBe(TEXT_NODE)
-          expect(anchorRemainderStart.textContent).toBe('L')
-
-          expect(anchorTerm.tagName).toBe('SPAN')
-          expect(anchorTerm.getAttribute('class')).toBe('autocomplete__result--highlight')
-          expect(anchorTerm.textContent).toBe(testSearchTerm)
-
-          expect(anchorRemainderEnd.nodeType).toBe(TEXT_NODE)
-          expect(anchorRemainderEnd.textContent).toBe('on')
+          highlightedText = @myAutoComplete._highlightText SEARCH_RESULTS[0].title, testSearchTerm
+          expect(highlightedText).toBe('L<b>ond</b>on')
 
         it 'should highlight the search text if it exactly matches a title', ->
-          @myAutoComplete.searchTerm = SEARCH_TERM
-          anchor = @myAutoComplete._createAnchor SEARCH_RESULTS[0]
-          anchorTerm = anchor.childNodes[0]
+          testSearchTerm = 'London'
 
-          expect(anchorTerm.tagName).toBe('SPAN')
-          expect(anchorTerm.getAttribute('class')).toBe('autocomplete__result--highlight')
-          expect(anchorTerm.textContent).toBe(SEARCH_TERM)
+          highlightedText = @myAutoComplete._highlightText SEARCH_RESULTS[0].title, testSearchTerm
+          expect(highlightedText).toBe('<b>London</b>')
 
         it 'should not highlight anything if the search text is not found', ->
-          @myAutoComplete.searchTerm = SEARCH_TERM
-          anchor = @myAutoComplete._createAnchor SEARCH_RESULTS[1]
-          anchorText = anchor.childNodes[0]
+          testSearchTerm = 'London'
 
-          expect(anchorText.nodeType).toBe(TEXT_NODE)
-          expect(anchorText.textContent).toBe('Paris')
+          highlightedText = @myAutoComplete._highlightText SEARCH_RESULTS[1].title, testSearchTerm
+          expect(highlightedText).toBe('Paris')

@@ -34,7 +34,6 @@ define [], ->
       uri: 'uri'
 
     constructor: (@args) ->
-      alert 'started'
       @el = document.getElementById(args.id)
       @init() if @el
 
@@ -65,7 +64,6 @@ define [], ->
             @_removeResults()
 
     _handleKeypress: (e) ->
-      console.log e
       if e.keyCode == 40 # down arrow
         e.preventDefault()
         @_highlightDown()
@@ -108,8 +106,7 @@ define [], ->
       results[oldActive].classList.remove 'autocomplete__active' if oldActive >= 0 and oldActive != newActive
 
     _selectHighlighted: ->
-      text = @resultsList.childNodes[@currentHighlight].textContent
-      @el.value = text
+      @el.value = @resultsList.childNodes[@currentHighlight].textContent
       @_removeResults()
 
     _searchFor: (searchTerm)  ->
@@ -156,7 +153,6 @@ define [], ->
     _createList: (results) ->
       resultItems = (@_createListItem item for item in results)
       list = document.createElement 'UL'
-      list.id = 'autocomplete__results'
       list.className = 'autocomplete__results'
       list.appendChild listItem for listItem in resultItems
       list
