@@ -9,6 +9,9 @@ $tab-height--wide: 610px
   +transition(opacity, 0.3, ease)
   +respond-to(wide-view)
     height: $tab-height--wide
+  .dropdown__value
+    &:after
+      top: 20px
 
 .tab--homepage
   +box-sizing()
@@ -102,9 +105,18 @@ $tab-height--wide: 610px
   display: block
   +respond-to(medium-view)
     position: relative
-    top: 2px
+    top: 3px
     margin: 0
     display: inline-block
+    &.icon--hotels--grey,
+    &.icon--hotels--white,
+    &.icon--magazine--grey,
+    &.icon--magazine--white
+      top: 4px
+    &.icon--compass--grey,
+    &.icon--compass--white
+      top: 1px
+
 
 .icon--active
   display: none
