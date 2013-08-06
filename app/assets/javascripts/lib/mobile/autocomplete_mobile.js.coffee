@@ -4,7 +4,6 @@
 #         (http://instanceof.me/post/17455522476/accent-folding-javascript as a possible solution)
 #       - possibly cancel an existing XHR if typing continues and the last one hasn't returned yet
 #       - put the classes into a config object
-#       - throttle the number of times the query is sent
 #       - abstract the XHR code to a separate library
 #
 # Arguments:
@@ -29,38 +28,96 @@ define [], ->
 
   class AutoComplete
 
+    DEFAULT_MAP = 
+      title: 'title',
+      type: 'type',
+      uri: 'uri'
+
     constructor: (@args) ->
       @el = document.getElementById(args.id)
-      if @el
-        @inputElt = @el.getElementsByClassName('js-autocomplete-input')[0]
-      @init() if @el and @inputElt
+      @init() if @el
 
     init: ->
-      @resultsElt = @el.getElementsByTagName('ul')
-      @responseMap = @args.responseMap
-      @_addListHandler() unless @args.listOnly
-      @inputElt.addEventListener 'input', (e) =>
+      if @args.responseMap
+        @responseMap = @args.responseMap
+      else
+        @responseMap = DEFAULT_MAP
+
+      @_addEventHandlers()
+      @showingList = false
+      @throttled = false
+
+    _addEventHandlers: ->
+      @el.addEventListener 'input', (e) =>
         @_searchFor e.currentTarget.value
       , false
-      @showingList = false
-      @el.classList.remove 'results-displayed'
 
-    _addListHandler: ->
-      @el.addEventListener 'click', (e) =>
-        if e.target.tagName == 'A'
-          e.preventDefault()
-          @_enterTargetValue e.target.textContent
+      @el.addEventListener 'keypress', (e) =>
+        if @showingList
+          @_handleKeypress e
 
-    _enterTargetValue: (text) ->
-      @inputElt.value = text
-      @_emptyList()
+      # this needs to be fixed - doesn't pick up span click
+      @el.parentNode.addEventListener 'click', (e) =>
+        if e.target.tagName == 'LI'
+          @el.value = e.target.textContent
+          @_removeResults()
+
+    _handleKeypress: (e) ->
+      if e.keyCode == 40 # down arrow
+        e.preventDefault()
+        @_highlightDown()
+      if e.keyCode == 38 # up arrow
+        e.preventDefault()
+        @_highlightUp()
+      if e.keyCode == 13 # enter
+        e.preventDefault() unless @args.listOnly
+        @_selectHighlighted()
+      if e.keyCode == 27
+        @_removeResults()
+
+    _highlightDown: ->
+      if @currentHighlight >= 0
+        @_updateHighlight @currentHighlight+1, @currentHighlight
+      else
+        @currentHighlight = 0
+        @_updateHighlight @currentHighlight
+
+    _highlightUp: ->
+      resultsLength = @resultsList.childNodes.length
+
+      if @currentHighlight < resultsLength
+        @_updateHighlight @currentHighlight-1, @currentHighlight
+      else
+        @currentHighlight = resultsLength-1
+        @_updateHighlight @currentHighlight
+
+    _updateHighlight: (newActive, oldActive) ->
+      results = @resultsList.childNodes
+
+      if newActive >= results.length
+        newActive = results.length-1
+
+      if newActive < 0
+        newActive = 0
+
+      @currentHighlight = newActive
+      results[newActive].classList.add 'autocomplete__active'
+      results[oldActive].classList.remove 'autocomplete__active' if oldActive >= 0 and oldActive != newActive
+
+    _selectHighlighted: ->
+      text = @resultsList.childNodes[@currentHighlight].textContent
+      @el.value = text
+      @_removeResults()
 
     _searchFor: (searchTerm)  ->
       if searchTerm && searchTerm.length >= 3
         @searchTerm = searchTerm
-        @_doRequest @searchTerm
+
+        if not @throttled
+          @_doRequest @searchTerm
+
       else if @showingList
-        @_emptyList()
+        @_removeResults()
 
     _doRequest: ->
       myRequest = new XMLHttpRequest()
@@ -72,22 +129,28 @@ define [], ->
       myRequest.open 'get', @_generateURI(@args.uri, @args.scope)
       myRequest.setRequestHeader 'Accept', '*/*'
       myRequest.send()
+      @throttled = true
+      window.setTimeout =>
+        @throttled = false
+      , 200
 
     _generateURI: (searchURI, scope) ->
       uri = "#{searchURI}#{@searchTerm}"
       uri += "?scope=#{scope}" if scope
       uri
 
-    _emptyList: ->
-      @_updateUI []
+    _removeResults: ->
+      @el.parentNode.removeChild @resultsList
       @showingList = false
-      @el.classList.remove 'results-displayed'
 
     _updateUI: (searchResults) ->
-      resultsList = @_createList searchResults
-      @resultsElt[0].parentNode.replaceChild resultsList, @resultsElt[0]
+      if @showingList
+        @el.parentNode.removeChild @resultsList
+
+      @resultsList = @_createList searchResults
+      @el.parentNode.insertBefore @resultsList, @el.nextSibling # aka insertAfter
       @showingList = true
-      @el.classList.add 'results-displayed'
+      @currentHighlight = undefined
 
     _createList: (results) ->
       resultItems = (@_createListItem item for item in results)
@@ -98,19 +161,30 @@ define [], ->
       list
 
     _createListItem: (item) ->
-      anchor = @_createAnchor item
       listItem = document.createElement 'LI'
-      listItem.appendChild anchor
+      listItem.className = 'autocomplete__result'
+
+      if @responseMap.type
+        listItem.classList.add 'autocomplete_result__type'
+        listItem.classList.add "autocomplete__result__type--#{item[@responseMap.type]}"
+
+      if @responseMap.uri
+        listItem.appendChild @_createAnchor(item)
+      else
+        listItem.innerHTML = @_highlightText item[@responseMap.title], @searchTerm
+
       listItem
 
     _createAnchor: (item) ->
       anchor = document.createElement 'A'
       anchor.href = item[@responseMap.uri]
-      anchor.className = "autocomplete__result icon-list--#{item[@responseMap.type]}"
 
       if @searchTerm
-        regex = new RegExp @searchTerm, 'ig'
-        anchor.innerHTML = item[@responseMap.title].replace regex, "<span class='autocomplete__result--highlight'>$&</span>"
+        anchor.innerHTML = @_highlightText item[@responseMap.title], @searchTerm
       else
         anchor.innerHTML = item[@responseMap.title]
       anchor
+
+    _highlightText: (text, term) ->
+      regex = new RegExp term, 'ig'
+      text.replace regex, "<span class='autocomplete__result--highlight'>$&</span>"

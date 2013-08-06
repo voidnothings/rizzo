@@ -17,6 +17,23 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
         type: "hotel"
       }
     ]
+    MAPPED_RESULTS = [
+      {
+        name: "London"
+        location: "/london"
+        category: "place"
+      }
+      {
+        name: "Paris"
+        location: "/paris"
+        category: "hotel"
+      }
+    ]
+    RESULT_MAP = [
+      title: 'name',
+      uri: 'location',
+      type: 'category'
+    ]
 
     describe 'Object', ->
       it 'is defined', ->
