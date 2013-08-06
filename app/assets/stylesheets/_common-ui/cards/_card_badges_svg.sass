@@ -1,0 +1,101 @@
+// -----------------------------------------------------------------------------
+// Card item counts
+// -----------------------------------------------------------------------------
+
+.card__item-count
+  +font-size(20)
+  @extend %no-line-height
+  position: absolute
+  color: #fff
+  left: 10px
+  top: 15px
+  z-index: 5
+  // Stop clipping in IE
+  height: 30px
+
+  &:before
+    +font-size(35)
+    position: relative
+    top: 3px
+
+
+  .card--collection--hotels &
+    @extend %icon-image-poi-hotel-before
+
+  .card--link--activities &
+    @extend %icon-image-poi-activity-before
+
+  .card--link--entertainment &
+    @extend %icon-image-poi-entertainment-before
+
+  .card--link--restaurants &
+    @extend %icon-image-poi-restaurant-before
+
+  .card--link--shopping &
+    @extend %icon-image-poi-shopping-before
+
+  .card--link--sights &
+    @extend %icon-image-poi-sight-before
+
+  .card--link--tours &
+    @extend %icon-image-poi-tour-before
+
+
+// -----------------------------------------------------------------------------
+// Media card badges
+// -----------------------------------------------------------------------------
+
+.card--media__badge
+  +filter(drop-shadow(0 0 5px rgba(0,0,0,0.5)))
+  left: 75px
+  position: absolute
+  top: 80px
+  z-index: 5
+
+
+// -----------------------------------------------------------------------------
+// POI card badges
+// -----------------------------------------------------------------------------
+
+.card--poi
+  &:before
+    @extend %empty-abs-generated-content
+    +filter(drop-shadow(0 0 5px rgba(0,0,0,0.5)))
+    cursor: pointer
+    left: 10px
+    pointer-events: none
+    top: 25px
+    z-index: 3
+
+  &.card--small-image
+    &:before
+      top: 15px
+
+
+// -----------------------------------------------------------------------------
+// Other card badges
+// -----------------------------------------------------------------------------
+
+.card--destination
+  &.card--no-image
+    @extend %card-icon
+    @extend %local-marker-before
+    &:before
+      color: #10d6c6
+
+.card--info
+  @extend %card-icon
+  @extend %icon-poi-info-before
+  &:before
+    color: $need-to-know-info
+    +font-size(50)
+
+
+// -----------------------------------------------------------------------------
+// Badge opt-out
+// -----------------------------------------------------------------------------
+
+.without-hotel-badges
+  .card--poi--hotel.card--small-image
+    &:before
+      content: none

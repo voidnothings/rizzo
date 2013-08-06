@@ -1,0 +1,26 @@
+@mixin icon-dimensions($name, $width, $height)
+  .icon--#{$name}--white, .icon--#{$name}--white--before:before, .icon--#{$name}--white--after:after,
+  .icon--#{$name}--grey, .icon--#{$name}--grey--before:before, .icon--#{$name}--grey--after:after
+    height: $height + px
+    width: $width + px
+
+@mixin icon-bg-dimensions($name, $size)
+  .icon--#{$name}--white, .icon--#{$name}--white--before:before, .icon--#{$name}--white--after:after,
+  .icon--#{$name}--grey, .icon--#{$name}--grey--before:before, .icon--#{$name}--grey--after:after
+    background-size: $size
+
++icon-dimensions('camera', 40, 31)
++icon-dimensions('article', 17, 23)
++icon-dimensions('magazine', 25, 25)
++icon-dimensions('plane', 21, 25)
++icon-dimensions('shop-basket', 25, 25)
++icon-dimensions('hotels', 23, 25)
++icon-dimensions('compass', 23, 25)
++icon-dimensions('chevron-down', 12, 15)
++icon-dimensions('arrow-down', 25, 25)
++icon-dimensions('arrow-up', 25, 25)
+
++icon-bg-dimensions('arrow-up', 100%)
++icon-bg-dimensions('arrow-down', 100%)
++icon-bg-dimensions('pin-grey', 13px)
++icon-bg-dimensions('close-white', 11px)

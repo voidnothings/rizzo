@@ -6,7 +6,9 @@
   color: white
   background: #2D5082
   .enhanced &
-    background: 50% 50% url("#{image_path('france.jpg')}") no-repeat
+    +responsive-image('homepage/hero/wyoming', 'jpg')
+    background-position: 50% 50% 
+    background-repeat: no-repeat
     background-size: cover
   +respond-to(medium-view)
     height: 640px
@@ -20,7 +22,7 @@
   position: relative
   width: 100%
   +respond-to(wide-view)
-    top: -55px // Move the mask behind the nav which is now
+    top: -60px // Move the mask behind the nav which is now transparent
 
 .hero__overlay
   +transition(all, .5, ease-out)
@@ -34,6 +36,7 @@
 
 .hero__panel
   +transition(all, .4, ease-in-out)
+  +hardware-acceleration()
   position: absolute
   width: 100%
   height: inherit
@@ -58,10 +61,20 @@
   +respond-to(wide-view)
     +font-size(55)
 
+.speech-bubble
+  @extend %four-pixel-rounded
+  &:after
+    @extend %empty-abs-generated-content
+    top: 100%
+    left: 7%
+    +respond-to(wide-view)
+      left: 71%
+
 .hero__author
   position: absolute
   bottom: 10px
   left: 20px
+  z-index: 2
   +respond-to(wide-view)
     left: auto
     right: 40px
@@ -119,17 +132,19 @@
     margin-bottom: 20px
   .btn--function
     +font-size(14)
-    padding: 12px 15px
+    padding: 12px 15px 12px 30px
     margin-right: 10px
     font-weight: bold
+    background-position: 10px center
     +respond-to(wide-view)
-      padding: 12px 30px
+      padding: 12px 15px 12px 35px
   .btn--close
     +font-size(14)
     font-weight: bold
-    padding: 12px 15px
+    padding: 12px 15px 12px 30px
+    background-position: 10px center
     +respond-to(wide-view)
-      padding: 12px 30px
+      padding: 12px 15px 12px 35px
 
 .hero--story__text
   margin-bottom: 35px
