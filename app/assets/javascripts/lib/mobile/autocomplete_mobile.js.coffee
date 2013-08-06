@@ -34,6 +34,7 @@ define [], ->
       uri: 'uri'
 
     constructor: (@args) ->
+      alert 'started'
       @el = document.getElementById(args.id)
       @init() if @el
 
@@ -52,17 +53,19 @@ define [], ->
         @_searchFor e.currentTarget.value
       , false
 
-      @el.addEventListener 'keypress', (e) =>
+      @el.addEventListener 'keydown', (e) =>
         if @showingList
           @_handleKeypress e
 
-      # this needs to be fixed - doesn't pick up span click
       @el.parentNode.addEventListener 'click', (e) =>
-        if e.target.tagName == 'LI'
-          @el.value = e.target.textContent
-          @_removeResults()
+        if e.target.tagName == 'A'
+          if e.target.getAttribute('href') == '#'
+            e.preventDefault()
+            @el.value = e.target.textContent
+            @_removeResults()
 
     _handleKeypress: (e) ->
+      console.log e
       if e.keyCode == 40 # down arrow
         e.preventDefault()
         @_highlightDown()
@@ -112,27 +115,25 @@ define [], ->
     _searchFor: (searchTerm)  ->
       if searchTerm && searchTerm.length >= 3
         @searchTerm = searchTerm
-
-        if not @throttled
-          @_doRequest @searchTerm
-
+        @_doRequest @searchTerm
       else if @showingList
         @_removeResults()
 
     _doRequest: ->
-      myRequest = new XMLHttpRequest()
-      myRequest.addEventListener 'readystatechange', =>
-        if myRequest.readyState == 4
-          if myRequest.status == 200
-            @_updateUI JSON.parse myRequest.responseText
+      if not @throttled
+        myRequest = new XMLHttpRequest()
+        myRequest.addEventListener 'readystatechange', =>
+          if myRequest.readyState == 4
+            if myRequest.status == 200
+              @_updateUI JSON.parse myRequest.responseText
 
-      myRequest.open 'get', @_generateURI(@args.uri, @args.scope)
-      myRequest.setRequestHeader 'Accept', '*/*'
-      myRequest.send()
-      @throttled = true
-      window.setTimeout =>
-        @throttled = false
-      , 200
+        myRequest.open 'get', @_generateURI(@args.uri, @args.scope)
+        myRequest.setRequestHeader 'Accept', '*/*'
+        myRequest.send()
+        @throttled = true
+        window.setTimeout =>
+          @throttled = false
+        , 200
 
     _generateURI: (searchURI, scope) ->
       uri = "#{searchURI}#{@searchTerm}"
@@ -140,7 +141,7 @@ define [], ->
       uri
 
     _removeResults: ->
-      @el.parentNode.removeChild @resultsList
+      @el.parentNode.removeChild @resultsList if @resultsList
       @showingList = false
 
     _updateUI: (searchResults) ->
@@ -162,22 +163,17 @@ define [], ->
 
     _createListItem: (item) ->
       listItem = document.createElement 'LI'
-      listItem.className = 'autocomplete__result'
-
-      if @responseMap.type
-        listItem.classList.add 'autocomplete_result__type'
-        listItem.classList.add "autocomplete__result__type--#{item[@responseMap.type]}"
-
-      if @responseMap.uri
-        listItem.appendChild @_createAnchor(item)
-      else
-        listItem.innerHTML = @_highlightText item[@responseMap.title], @searchTerm
-
+      listItem.appendChild @_createAnchor(item)
       listItem
 
     _createAnchor: (item) ->
       anchor = document.createElement 'A'
-      anchor.href = item[@responseMap.uri]
+      anchor.href = if @responseMap.uri then item[@responseMap.uri] else '#'
+      anchor.className = 'autocomplete__result'
+
+      if @responseMap.type
+        anchor.classList.add 'autocomplete__result__type'
+        anchor.classList.add "autocomplete__result__type--#{item[@responseMap.type]}"
 
       if @searchTerm
         anchor.innerHTML = @_highlightText item[@responseMap.title], @searchTerm
@@ -187,4 +183,4 @@ define [], ->
 
     _highlightText: (text, term) ->
       regex = new RegExp term, 'ig'
-      text.replace regex, "<span class='autocomplete__result--highlight'>$&</span>"
+      text.replace regex, "<b>$&</b>"
