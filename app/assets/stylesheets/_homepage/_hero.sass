@@ -71,10 +71,14 @@
       left: 71%
 
 .hero__author
+  +transition(transform, .3, ease-out)
+  -webkit-transition: -webkit-transform 0.3s ease-out // eww eww eww
   position: absolute
   bottom: 10px
   left: 20px
   z-index: 2
+  .hero-search-results-displayed &
+    +transform(translateY(100px))
   +respond-to(wide-view)
     left: auto
     right: 40px
