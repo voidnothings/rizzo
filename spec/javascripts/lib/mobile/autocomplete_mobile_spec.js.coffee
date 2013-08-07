@@ -140,7 +140,6 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
         expect(@myAutoComplete.el.value).toBe('London')
         expect($('#search_results ul').length).toBe(0)
 
-
     describe 'updating the UI when text has been entered in the search field', ->
       beforeEach ->
         loadFixtures('autocomplete_mobile.html')
@@ -237,6 +236,14 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
           expect(list.tagName).toBe('UL')
           expect(list.className).toBe('autocomplete__results')
           expect(list.childNodes.length).toBe(2)
+
+        it 'should create an unordered list with a specified number of search results', ->
+          @myAutoComplete.args.results = 1
+          list = @myAutoComplete._createList SEARCH_RESULTS
+
+          expect(list.tagName).toBe('UL')
+          expect(list.className).toBe('autocomplete__results')
+          expect(list.childNodes.length).toBe(1)
 
         it 'should create an unordered list no items when the results list is empty', -> 
           list = @myAutoComplete._createList EMPTY_RESULTS

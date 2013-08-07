@@ -155,6 +155,7 @@ define [], ->
 
     _createList: (results) ->
       resultItems = (@_createListItem item for item in results)
+      resultItems.splice(0, @args.results) if @args.results
       list = document.createElement 'UL'
       list.className = 'autocomplete__results'
       list.appendChild listItem for listItem in resultItems
