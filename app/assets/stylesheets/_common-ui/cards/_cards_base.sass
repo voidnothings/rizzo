@@ -22,6 +22,10 @@ $card-content-padding:        15px
 $card-hotel-content-padding:  13px
 $image-only-padding:           7px
 
+// Homepage
+$mobile-card-grid-height:           296px
+$mobile-card-grid-half-height:      143px
+$mobile-standard-card-image-height: 192px
 
 // -----------------------------------------------------------------------------
 // Card Base
@@ -51,9 +55,19 @@ $image-only-padding:           7px
   height: $standard-card-image-height
   overflow: hidden
   position: relative
+  .homepage &
+    height: $mobile-standard-card-image-height
+    +respond-to(medium-view)
+      height: $standard-card-image-height
 
   .card__image
     height: 100%
+    .homepage &
+      width: 100%
+      height: auto
+      +respond-to(medium-view)
+        height: 100%
+        width: auto
 
   // darken the image when card is hovered over
   .js-hover .card:hover &
@@ -70,10 +84,18 @@ $image-only-padding:           7px
 
   .card--full-image &
     height: $card-grid-height
+    .homepage &
+      height: $mobile-card-grid-height
+      +respond-to(medium-view)
+        height: $card-grid-height
 
   .card--image-only &
     height: $card-grid-half-height - (2 * $image-only-padding)
     margin: $image-only-padding
+    .homepage &
+      height: $mobile-card-grid-half-height - (2 * $image-only-padding)
+      +respond-to(medium-view)
+        height: $card-grid-half-height - (2 * $image-only-padding)
 
 .card__hero__overlay
   height: $standard-card-image-height
@@ -140,6 +162,10 @@ $image-only-padding:           7px
 .card--extended-content, 
 .card--extended-content--half
   height: $card-grid-height
+  .homepage &
+    height: $mobile-card-grid-height
+    +respond-to(medium-view)
+      height: $card-grid-height
 
   .card__content
     background: #fff
