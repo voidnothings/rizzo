@@ -2,7 +2,10 @@
   background: #5278A2
   padding-top: 10px
   +respond-to(medium-view)
-    background: #5278A2 url("#{image_path('section3/hotels.jpg')}") center center no-repeat
+    background-color: #5278A2
+    +responsive-image('homepage/bookings/hotels','jpg')
+    background-position: center center
+    background-repeat: no-repeat
     background-size: cover
 
   .copy--title
