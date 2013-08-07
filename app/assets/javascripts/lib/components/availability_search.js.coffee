@@ -20,7 +20,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
     init: ->
       @$form = @$el.find('form')
       @$submit ?= @$form.find('#js-booking-submit')
-      formDatePicker = new AvailabilityDatepicker(@$el)
+      formDatePicker = new AvailabilityDatepicker( target: @$el )
       guestSelect =  new SelectManager('.js-guest-select') 
       currencySelect = new SelectManager('.js-currency-select') 
       @listen()
