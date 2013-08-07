@@ -72,7 +72,6 @@
 
 .hero__author
   +transition(all, .3, ease-out)
-  // -webkit-transition: -webkit-transform 0.3s ease-out // eww eww eww
   position: absolute
   bottom: 10px
   left: 20px
@@ -83,6 +82,8 @@
     left: auto
     right: 40px
     bottom: 40px
+    .hero-search-results-displayed &
+      +transform(none)
 
 .hero__author__text
   +font-size(12)
@@ -247,5 +248,6 @@
   display: none
   padding: 15px
 
-  .results-displayed &
-    display: block
+  +respond-to(wide-view)
+    .hero-search-results-displayed &
+      display: block
