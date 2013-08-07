@@ -71,8 +71,11 @@ define [], ->
         e.preventDefault()
         @_highlightUp()
       if e.keyCode == 13 # enter
-        e.preventDefault() unless @args.listOnly
-        @_selectHighlighted()
+        if @args.listOnly
+          location.href = e.target.childNodes[0].href
+        else
+          e.preventDefault()
+          @_selectHighlighted()
       if e.keyCode == 27
         @_removeResults()
 
