@@ -28,6 +28,8 @@
           has3d = window.getComputedStyle(el).getPropertyValue(transforms[t])
       document.body.removeChild el
       has3d isnt `undefined` and has3d.length > 0 and has3d isnt "none"
+    'placeholder': ->
+      "placeholder" of document.createElement("input")
 
   for feature of features
     if features[feature]()
