@@ -11,9 +11,11 @@
     %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
   = render 'layouts/mobile/cut_the_mustard'
   = render 'layouts/mobile/grunticon'
-  = render 'layouts/mobile/detect_touch'
   = render 'layouts/mobile/require_js_config'
   = render 'layouts/mobile/require_js_async'
+  <!--[if gt IE 8]><!--> 
+  = render 'layouts/mobile/detect_touch' 
+  <![endif]-->
 
 %body.responsive.homepage.copy--freight
   .wrapper
@@ -29,8 +31,12 @@
     .js-config.is-hidden
       = render 'layouts/mobile/img_loader'
       = render 'layouts/core/snippets/fs_init'
+      
       - unless cookies[:_lpfont] == "true"
+        <!--[if gt IE 8]><!--> 
         = render 'layouts/mobile/fonts_async'
+        <![endif]-->
+
       = js_configuration
       - unless Rails.env.production?
         :javascript
