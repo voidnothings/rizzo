@@ -1,21 +1,23 @@
 :javascript
-  if (window.lp && window.lp.enhanced) {
-    (function(d, s, id) {
-      var fjs, js;  
-      fjs = d.getElementsByTagName(s)[0];
-      js = d.createElement(s);
-      js.id = id;
-      js.async = true;
-      js.src = "#{asset_path('requirejs/require.js')}";
-      if (document.documentElement.clientWidth < 990 && 
-        document.documentElement.className.indexOf('ie') == -1) {
-        main = "#{asset_path('app_homepage_mobile.js')}";
-        window.lp = window.lp || {}
-        window.lp.isMobile = true;
-      } else {
-        main = "#{asset_path('app_homepage.js')}";
-      }
-      js.setAttribute("data-main", main);
-      return fjs.parentNode.insertBefore(js, fjs);
-    })(document, 'script');
-  }
+  (function(d, s, id) {
+    var fjs, js, ie;
+    fjs = d.getElementsByTagName(s)[0];
+    js = d.createElement(s);
+    js.id = id;
+    js.async = true;
+    js.src = "#{asset_path('requirejs/require.js')}";
+    ie = document.documentElement.className.match(/ie([0-9]+)/);
+
+    if (document.documentElement.clientWidth < 990 && !ie) {
+      main = "#{asset_path('app_homepage_mobile.js')}";
+      window.lp = window.lp || {}
+      window.lp.isMobile = true;
+    } else if (window.lp && window.lp.enhanced || ie) {
+      main = "#{asset_path('app_homepage.js')}";
+    } else {
+      // Return false here rather than breaking the functionality of the site entirely.
+      return false;
+    }
+    js.setAttribute("data-main", main);
+    return fjs.parentNode.insertBefore(js, fjs);
+  })(document, 'script');
