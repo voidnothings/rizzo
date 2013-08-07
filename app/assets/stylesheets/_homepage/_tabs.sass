@@ -36,7 +36,9 @@ $tab-height--wide: 610px
     margin: 0
 
 .tab--homepage--shop
-  background: #444 url("#{image_path('section3/books3000.jpg')}") center center no-repeat
+  +responsive-image('homepage/bookings/shop','jpg')
+  background-position: center center
+  background-repeat: no-repeat
   background-size: cover
   padding-top: 60px
   +respond-to(wide-view)
@@ -73,6 +75,7 @@ $tab-height--wide: 610px
   text-align: center
   line-height: 1.2
   display: table
+
   &.is-active
     background: $new-header-grey
     color: white
@@ -83,12 +86,13 @@ $tab-height--wide: 610px
     +font-size(18)
 
 .tab--button__inner
+  @extend %transition--base
   display: table-cell
   vertical-align: middle
   text-align: center
+  opacity: 0.6
   &:hover
-    .icon--default
-      +filter(brightness(0.8))
+    opacity: 1
 
 .tab--button__text
   vertical-align: middle

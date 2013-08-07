@@ -1,5 +1,7 @@
 .tab--homepage--magazine
-  background: #444 url("#{image_path('section3/magazine.jpg')}") center center no-repeat
+  +responsive-image('homepage/bookings/magazine','jpg')
+  background-position: center center
+  background-repeat: no-repeat
   background-size: cover
   padding-top: 60px
   +respond-to(wide-view)
