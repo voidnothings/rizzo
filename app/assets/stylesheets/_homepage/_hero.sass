@@ -23,16 +23,19 @@
   width: 100%
   +respond-to(wide-view)
     top: -60px // Move the mask behind the nav which is now transparent
+  &.is-focused
+    .hero__overlay
+      background: rgba(0,0,0,0.5)
+    .hero__search
+      width: 90%
 
 .hero__overlay
-  +transition(all, .5, ease-out)
+  +transition(all, .3, ease-out)
   position: absolute
   top: 0
   background-color: rgba(0,0,0,0.2)
   width: 100%
   height: inherit
-  &.has-focus
-    background: rgba(0,0,0,0.6)
 
 .hero__panel
   +transition(all, .4, ease-in-out)
@@ -56,15 +59,17 @@
   margin-bottom: 50px
 
 .hero__strapline
-  +font-size(45)
-  margin-bottom: 30px
+  +font-size(40)
+  width: 90%
+  margin: 0 auto 30px
   +respond-to(wide-view)
     +font-size(55)
 
 .hero__search
+  +transition(all, .3, ease-out)
   @extend %inline-block
   overflow: hidden
-  width: 85%
+  width: 80%
 
 .hero__search__input
   height: 45px
