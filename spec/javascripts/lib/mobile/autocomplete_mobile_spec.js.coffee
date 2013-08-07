@@ -54,46 +54,6 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
         expect(AutoComplete.prototype.init).not.toHaveBeenCalled()
         expect(@myAutoComplete.el).toBeNull()
 
-    describe 'keypress actions', ->
-      beforeEach ->
-        @myAutoComplete = new AutoComplete({id: 'my_search'})
-        spyOn @myAutoComplete, '_highlightDown'
-        spyOn @myAutoComplete, '_highlightUp'
-        spyOn @myAutoComplete, '_selectHighlighted'
-        spyOn @myAutoComplete, '_removeResults'
-        @eventSpy = new jasmine.createSpy()
-
-      it 'calls highlight down on a down arrow key', ->
-        @myAutoComplete._handleKeypress {keyCode: 40, preventDefault: @eventSpy} # down arrow keycode
-
-        expect(@eventSpy).toHaveBeenCalled()
-        expect(@myAutoComplete._highlightDown).toHaveBeenCalled()
-
-      it 'calls highlight up on an up arrow key', ->
-        @myAutoComplete._handleKeypress {keyCode: 38, preventDefault: @eventSpy} # down arrow keycode
-
-        expect(@eventSpy).toHaveBeenCalled()
-        expect(@myAutoComplete._highlightUp).toHaveBeenCalled()
-
-      it 'calls to remove list when ESC key pressed', ->
-        @myAutoComplete._handleKeypress {keyCode: 27, preventDefault: @eventSpy} # down arrow keycode
-
-        expect(@eventSpy).not.toHaveBeenCalled()
-        expect(@myAutoComplete._removeResults).toHaveBeenCalled()
-
-      it 'selects the currently selected item when enter key pressed and cancels event', ->
-        @myAutoComplete._handleKeypress {keyCode: 13, preventDefault: @eventSpy} # down arrow keycode
-
-        expect(@eventSpy).toHaveBeenCalled()
-        expect(@myAutoComplete._selectHighlighted).toHaveBeenCalled()
-
-      it 'selects the currently selected item when enter key pressed and keeps event bubbling when in list mode', ->
-        @myAutoComplete.args.listOnly = true
-        @myAutoComplete._handleKeypress {keyCode: 13, preventDefault: @eventSpy} # down arrow keycode
-
-        expect(@eventSpy).not.toHaveBeenCalled()
-        expect(@myAutoComplete._selectHighlighted).toHaveBeenCalled()
-
     describe 'navigating list with keys', ->
       beforeEach ->
         loadFixtures('autocomplete_mobile.html')
