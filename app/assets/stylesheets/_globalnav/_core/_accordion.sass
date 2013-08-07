@@ -85,6 +85,9 @@
     position: absolute
     right: 12px
     top: 17px
+  .homepage &
+    &:after
+      right: 17px
   // Let's take the closest unicode character we have (non-freight)
   .base &:after
     content: '\2335'
@@ -92,8 +95,9 @@
   .enhanced &:after
     content: ""
     background-position: top right
-  .col--footer &:after
-    color: $header-dark-gray
+  .col--footer &
+    &:after
+      color: $header-dark-gray
 
 .ie7, .ie8
   .accordion__title
