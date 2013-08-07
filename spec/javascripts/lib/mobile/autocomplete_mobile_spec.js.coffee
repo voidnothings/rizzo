@@ -168,11 +168,22 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
         expect($('#search_results ul').length).toBe(0)
         expect(@myAutoComplete.showingList).toBe(false)
 
+      it 'should remove the search showing class from the body', ->
+        @myAutoComplete._updateUI SEARCH_RESULTS
+        @myAutoComplete._removeResults()
+
+        expect($('body')).not.toHaveClass('hero-search-results-displayed')
+
     describe 'updating the UI when search results are returned', ->
       beforeEach ->
         loadFixtures('autocomplete_mobile.html')
         @myAutoComplete = new AutoComplete({id: 'my_search'})
         @myAutoComplete._updateUI SEARCH_RESULTS
+
+      it 'should add a class to the document body when search results are displayed', ->
+        expect(@myAutoComplete.showingList).toBe(true)
+        expect(@myAutoComplete.currentHighlighted).not.toBeDefined()
+        expect($('body')).toHaveClass('hero-search-results-displayed')
 
       it 'should add a list of highlighted search results to the page', ->
         expect(@myAutoComplete.showingList).toBe(true)

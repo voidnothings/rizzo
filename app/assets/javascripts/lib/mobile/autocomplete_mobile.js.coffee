@@ -142,6 +142,7 @@ define [], ->
 
     _removeResults: ->
       @el.parentNode.removeChild @resultsList if @resultsList
+      document.body.classList.remove 'hero-search-results-displayed'
       @showingList = false
 
     _updateUI: (searchResults) ->
@@ -152,6 +153,7 @@ define [], ->
       @el.parentNode.insertBefore @resultsList, @el.nextSibling # aka insertAfter
       @showingList = true
       @currentHighlight = undefined
+      document.body.classList.add 'hero-search-results-displayed'
 
     _createList: (results) ->
       resultItems = (@_createListItem item for item in results)
