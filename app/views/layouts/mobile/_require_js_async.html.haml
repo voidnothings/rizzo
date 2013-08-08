@@ -9,9 +9,10 @@
     ie = document.documentElement.className.match(/ie([0-9]+)/);
 
     if (document.documentElement.clientWidth < 1025 && !ie) {
-      main = "#{asset_path('app_homepage_mobile.js')}";
       window.lp = window.lp || {}
       window.lp.isMobile = true;
+      
+      main = "#{asset_path('app_homepage_mobile.js')}";
     } else if (window.lp && window.lp.enhanced || ie) {
       main = "#{asset_path('app_homepage.js')}";
     } else {
