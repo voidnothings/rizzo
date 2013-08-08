@@ -26,6 +26,11 @@ define ['jquery'], ($) ->
       @current_slide = 1
       @$el = $(config.el)
       @slides = config.slides
+
+      if $(@slides).length < 2
+        $(@slides).addClass('is-current')
+        return false
+
       @slides_container = @$el.find(config.slides_container)
       @$slider_controls = $('<div class="slider__controls no-print"></div>')
       @$slider_pagination = $('<div class="slider__pagination no-print"></div>')
