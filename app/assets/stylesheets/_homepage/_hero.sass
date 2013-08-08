@@ -5,11 +5,13 @@
   text-align: center
   color: white
   background: #2D5082
-  .enhanced &
+  background-position: 50% 50% 
+  background-repeat: no-repeat
+  background-size: cover
+  .enhanced &, .ie9 &
     +responsive-image('homepage/hero/wyoming', 'jpg')
-    background-position: 50% 50% 
-    background-repeat: no-repeat
-    background-size: cover
+  .ie7 &, .ie8 &
+    background-image: url(#{image_path('homepage/hero/wyoming_1671.jpg')})
   +respond-to(medium-view)
     height: 640px
   +respond-to(wide-view)
@@ -43,6 +45,8 @@
   position: absolute
   width: 100%
   height: inherit
+  .ie7 &
+    position: static
 
 .hero__inner
   height: 260px
@@ -54,6 +58,9 @@
     padding-top: 40%
   +respond-to(medium-view)
     padding-top: 250px
+  .ie7 &
+    width: 500px
+    zoom: 1
 
 .hero__logo
   margin-bottom: 50px

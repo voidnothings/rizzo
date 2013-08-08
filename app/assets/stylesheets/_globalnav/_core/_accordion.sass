@@ -51,8 +51,9 @@
       .base &:after
         content: '\22c0'
       // Then enhance if we have the font
-      .enhanced &:after
+      .enhanced &:after, .ie8.home &:after
         content: ""
+
 
 
 .accordion__target
@@ -92,7 +93,7 @@
   .base &:after
     content: '\2335'
   // Then remove it if we have svg
-  .enhanced &:after
+  .enhanced &:after, .ie8.home &:after
     content: ""
     background-position: top right
   .col--footer &

@@ -11,11 +11,16 @@
   .form-row
     @extend %clearfix
     margin-bottom: 20px
+    @if $is-ie == true
+      margin-bottom: 10px
     &:last-of-type
       margin-bottom: 0
+
   
   .input--text
     padding-left: 10px
+    .ie8 &, .ie9 &
+      border: 1px solid #96A0A6
 
   .input--search
     padding-right: 10px
@@ -55,14 +60,22 @@
 .date-group
   @extend %media
   margin-bottom: 0
-
+  
 .date-group__label
   +font-size(15)
   +vertically-center(40)
   display: block
+  position: absolute
   +respond-at(415)
     +font-size(18)
     +vertically-center(45)
+  .supports-placeholder &
+    display: none
+  + .date-group__container .input--datepicker
+    padding-left: 105px
+    .supports-placeholder &
+      padding-left: 10px
+
 
 .date-group__container
   input
