@@ -52,7 +52,6 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
       it 'should not initialise if the input element does not exist', ->
         @myAutoComplete = new AutoComplete({id: 'not_my_search'})
         expect(AutoComplete.prototype.init).not.toHaveBeenCalled()
-        expect(@myAutoComplete.$el).toBeNull()
 
     describe 'navigating list with keys', ->
       beforeEach ->

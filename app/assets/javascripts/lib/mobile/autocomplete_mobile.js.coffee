@@ -24,7 +24,7 @@
 # Dependencies:
 #   None
 
-required = if lp.isMobile then 'jsmin' else 'jquery'
+required = if window.lp.isMobile then 'jsmin' else 'jquery'
 
 define [required], ($) ->
 
@@ -37,7 +37,7 @@ define [required], ($) ->
 
     constructor: (@args) ->
       @$el = $("##{@args.id}")
-      @init() if @$el
+      @init() unless @$el.length is 0
 
     init: ->
       if @args.responseMap
@@ -118,22 +118,22 @@ define [required], ($) ->
         newActive = 0
 
       @currentHighlight = newActive
-      results[oldActive].className = '' if oldActive # >= 0 and oldActive != newActive
+      results[oldActive].className = '' if oldActive >= 0 and oldActive != newActive
       results[newActive].className = 'autocomplete__active'
 
     _selectHighlighted: ->
       @$el.value = @resultsList.childNodes[@currentHighlight].textContent
       @_removeResults()
 
-    _hideList: ->
-      body = document.body
-      body.classList.remove 'hero-search-results-displayed'
-      body.classList.add 'hero-search-results-hidden'
+    # _hideList: ->
+    #   body = $('body')
+    #   body.removeClass 'hero-search-results-displayed'
+    #   body.addClass 'hero-search-results-hidden'
 
-    _unhideList: ->
-      body = document.body
-      body.classList.remove 'hero-search-results-hidden'
-      body.classList.add 'hero-search-results-displayed'
+    # _unhideList: ->
+    #   body = $('body')
+    #   body.removeClass 'hero-search-results-hidden'
+    #   body.addClass 'hero-search-results-displayed'
 
     _searchFor: (searchTerm)  ->
       if searchTerm && searchTerm.length >= 3
