@@ -78,9 +78,21 @@
   &:after
     @extend %empty-abs-generated-content
     top: 100%
-    left: 7%
-    +respond-to(wide-view)
-      left: 71%
+    left: 12px
+    +respond-to(medium-view)
+      left: 34%
+    +respond-to(1250)
+      left: 72%
+
+.speech-bubble--scroll
+  overflow-y: scroll
+  -webkit-overflow-scrolling: touch
+  height: 230px
+  padding: 15px
+  +respond-to(medium-view)
+    padding: 0
+    height: auto
+    overflow: visible
 
 .hero__author
   +transition(all, .3, ease-out)
@@ -90,16 +102,20 @@
   z-index: 2
   .hero-search-results-displayed &
     +transform(translateY(100px))
-  +respond-to(wide-view)
+
+  +respond-to(medium-view)
     left: auto
     right: 20px
     bottom: 20px
-  +respond-to(1250)
-    left: auto
-    right: 40px
-    bottom: 40px
+
+  +respond-to(wide-view)
     .hero-search-results-displayed &
       +transform(none)
+
+  +respond-to(1250)
+    left: auto
+    right: 30px
+    bottom: 30px
 
 .hero__author__text
   +font-size(12)
@@ -108,7 +124,7 @@
   letter-spacing: 0
   display: block
   margin: 0 5px 5px 0
-  +respond-to(wide-view)
+  +respond-to(1250)
     display: inline-block
 
 .hero__author__heading
@@ -121,6 +137,11 @@
   display: inline-block
   > img
     +border-radius(100)
+    width: 50px
+    height: 50px
+    +respond-to(1250)
+      width: 75px
+      height: 75px
 
 .hero__author__details
   display: inline-block
@@ -128,25 +149,30 @@
   text-align: left
   margin-left: 10px
   margin-top: 5px
-  +respond-to(wide-view)
+  +respond-to(1250)
     display: block
     text-align: center
+    
+.hero__author__story--buttons
+  padding: 15px
+  +respond-to(medium-view)
+    padding: 0
 
 .hero__author__story
   position: absolute
   text-align: left
-  left: 20px
-  bottom: 100px
-  padding: 15px
-  right: 20px
-  width: 314px
+  bottom: 80px
+  padding: 0
+  left: auto
+  margin: 0 20px
   
-  +respond-to(wide-view)
+  +respond-to(medium-view)
     padding: 30px
-    bottom: 180px
+    bottom: 90px
     left: auto
     right: 20px
     width: 270px
+    margin: 0
   
   +respond-to(1250)
     padding: 30px
@@ -154,30 +180,37 @@
     left: auto
     right: 40px
     width: 270px
-  
-  .feature
-    text-transform: uppercase
-    color: $new-header-grey
-    font-weight: bold
-    margin-bottom: 20px
+    margin: 0
+    
   .btn--function
     +font-size(14)
     padding: 12px 15px 12px 30px
     margin-right: 10px
     font-weight: bold
     background-position: 10px center
-    +respond-to(wide-view)
-      padding: 12px 15px 12px 35px
+    +respond-to(medium-view)
+      padding: 12px 18px 12px 38px
+      background-position: 18px center
   .btn--close
     +font-size(14)
     font-weight: bold
-    padding: 12px 25px 12px 40px
+    padding: 12px 15px 12px 30px
     background-position: 10px center
-    +respond-to(wide-view)
-      padding: 12px 25px 12px 40px
+    +respond-to(medium-view)
+      padding: 12px 18px 12px 38px
+      background-position: 18px center
+
+.feature:first-letter
+  float: left
+  font-size: 50px
+  line-height: 40px
+  padding-top: 6px
+  padding-right: 6px
+  font-family: Georgia
+  color: $header-blue
 
 .hero--story__text
-  margin-bottom: 35px
+  margin-bottom: 20px
 
 .hero__panel--story
   top: 100%
