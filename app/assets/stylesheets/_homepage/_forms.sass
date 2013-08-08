@@ -55,22 +55,18 @@
 .date-group
   @extend %media
   margin-bottom: 0
-  .obj-media__img
-    float: none
-    position: absolute
-  .obj-media__body
-    overflow: visible
-
+  
 .date-group__label
   +font-size(15)
   +vertically-center(40)
   display: block
+  position: absolute
   +respond-at(415)
     +font-size(18)
     +vertically-center(45)
   .supports-placeholder &
     display: none
-  + .obj-media__body .input--datepicker
+  + .date-group__container .input--datepicker
     padding-left: 105px
     .supports-placeholder &
       padding-left: 10px
