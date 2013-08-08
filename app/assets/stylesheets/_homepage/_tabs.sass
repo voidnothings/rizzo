@@ -80,6 +80,8 @@ $tab-height--wide: 610px
     background: $new-header-grey
     color: white
     font-weight: bold
+    .tab--button__inner
+      opacity: 1
   &:hover
     text-decoration: none
   +respond-to(wide-view)
@@ -109,16 +111,14 @@ $tab-height--wide: 610px
   display: block
   +respond-to(medium-view)
     position: relative
-    top: 3px
+    
     margin: 0
     display: inline-block
-    &.icon--hotels--grey,
-    &.icon--hotels--white,
-    &.icon--magazine--grey,
-    &.icon--magazine--white
+    &.icon--flights--grey,
+    &.icon--flights--white 
       top: 4px
-    &.icon--compass--grey,
-    &.icon--compass--white
+    &.icon--tours--grey,
+    &.icon--tours--white
       top: 1px
 
 
