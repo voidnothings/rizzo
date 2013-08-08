@@ -72,6 +72,7 @@
         border: none
   .homepage &, .homepage & > .nav__item
     @extend %smooth-text
+    font-weight: 700
     color: white
   .nav__item--primary--signout--mobile
     +respond-to(wide-view)
@@ -214,6 +215,8 @@
       border: 2px solid $user-border
       height: 30px
       width: 30px
+  .homepage &
+    border-color: white
 
 .nav__submenu--user
   width: 165px

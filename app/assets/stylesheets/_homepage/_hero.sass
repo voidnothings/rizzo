@@ -12,9 +12,10 @@
     +responsive-image('homepage/hero/wyoming', 'jpg')
   .ie7 &, .ie8 &
     background-image: url(#{image_path('homepage/hero/wyoming_1671.jpg')})
+
   +respond-to(medium-view)
     height: 640px
-  +respond-to(wide-view)
+  +respond-to(1250)
     height: 800px
 
 .hero__mask
@@ -32,7 +33,7 @@
       width: 90%
 
 .hero__overlay
-  +transition(all, .3, ease-out)
+  +transition(all, .3, $ease-cubic-out)
   position: absolute
   top: 0
   background-color: rgba(0,0,0,0.2)
@@ -40,7 +41,7 @@
   height: inherit
 
 .hero__panel
-  +transition(all, .4, ease-in-out)
+  +transition(all, .4, $ease-cubic-out)
   +hardware-acceleration()
   position: absolute
   width: 100%
@@ -73,7 +74,7 @@
     +font-size(55)
 
 .hero__search
-  +transition(all, .3, ease-out)
+  +transition(all, .3, $ease-cubic-out)
   @extend %inline-block
   overflow: hidden
   width: 80%
@@ -98,6 +99,10 @@
   left: 20px
   z-index: 2
   +respond-to(wide-view)
+    left: auto
+    right: 20px
+    bottom: 20px
+  +respond-to(1250)
     left: auto
     right: 40px
     bottom: 40px
@@ -140,13 +145,22 @@
   bottom: 100px
   padding: 15px
   right: 20px
-  max-width: 290px
+  width: 314px
+  
   +respond-to(wide-view)
     padding: 30px
     bottom: 180px
     left: auto
+    right: 20px
+    width: 270px
+  
+  +respond-to(1250)
+    padding: 30px
+    bottom: 180px
+    left: auto
     right: 40px
-    width: 290px
+    width: 270px
+  
   .feature
     text-transform: uppercase
     color: $new-header-grey
@@ -163,16 +177,17 @@
   .btn--close
     +font-size(14)
     font-weight: bold
-    padding: 12px 15px 12px 30px
+    padding: 12px 25px 12px 40px
     background-position: 10px center
     +respond-to(wide-view)
-      padding: 12px 15px 12px 35px
+      padding: 12px 25px 12px 40px
 
 .hero--story__text
   margin-bottom: 35px
 
 .hero__panel--story
   top: 100%
+  
 
 // Toggle between the search and photo story panels
 #hero-swipe:checked
@@ -180,3 +195,5 @@
     bottom: 100%
   & ~ .hero__panel--story
     top: 0
+  & ~ .hero__overlay
+    background-color: rgba(0,0,0,0)
