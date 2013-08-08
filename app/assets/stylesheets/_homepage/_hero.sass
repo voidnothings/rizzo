@@ -8,9 +8,9 @@
   background-position: 50% 50% 
   background-repeat: no-repeat
   background-size: cover
-  .enhanced &
+  .enhanced &, .ie9 &
     +responsive-image('homepage/hero/wyoming', 'jpg')
-  @if $is-ie == true
+  .ie7 &, .ie8 &
     background-image: url(#{image_path('homepage/hero/wyoming_1671.jpg')})
   +respond-to(medium-view)
     height: 640px
