@@ -199,8 +199,7 @@ define [required], ($) ->
       anchor.className = 'autocomplete__result'
 
       if @responseMap.type
-        anchor.addClass 'autocomplete__result__type'
-        anchor.addClass "autocomplete__result__type--#{item[@responseMap.type]}"
+        anchor.className += " autocomplete__result__type autocomplete__result__type--#{item[@responseMap.type]}"
 
       if @searchTerm
         anchor.innerHTML = @_highlightText item[@responseMap.title], @searchTerm
