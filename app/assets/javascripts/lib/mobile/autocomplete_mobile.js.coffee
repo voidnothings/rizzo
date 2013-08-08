@@ -125,15 +125,15 @@ define [required], ($) ->
       @$el.value = @resultsList.childNodes[@currentHighlight].textContent
       @_removeResults()
 
-    _hideList: ->
-      body = document.body
-      body.classList.remove 'hero-search-results-displayed'
-      body.classList.add 'hero-search-results-hidden'
+    # _hideList: ->
+    #   body = $('body')
+    #   body.removeClass 'hero-search-results-displayed'
+    #   body.addClass 'hero-search-results-hidden'
 
-    _unhideList: ->
-      body = document.body
-      body.classList.remove 'hero-search-results-hidden'
-      body.classList.add 'hero-search-results-displayed'
+    # _unhideList: ->
+    #   body = $('body')
+    #   body.removeClass 'hero-search-results-hidden'
+    #   body.addClass 'hero-search-results-displayed'
 
     _searchFor: (searchTerm)  ->
       if searchTerm && searchTerm.length >= 3
@@ -199,7 +199,8 @@ define [required], ($) ->
       anchor.className = 'autocomplete__result'
 
       if @responseMap.type
-        anchor.className += " autocomplete__result__type autocomplete__result__type--#{item[@responseMap.type]}"
+        anchor.addClass 'autocomplete__result__type'
+        anchor.addClass "autocomplete__result__type--#{item[@responseMap.type]}"
 
       if @searchTerm
         anchor.innerHTML = @_highlightText item[@responseMap.title], @searchTerm
