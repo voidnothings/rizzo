@@ -1,5 +1,6 @@
 $tab-height: 425px
-$tab-height--wide: 610px
+$tab-height--1250: 610px
+$tab-height--wide: 510px
 
 .row--travel-services
   border-bottom: 1px solid $highlight
@@ -9,6 +10,8 @@ $tab-height--wide: 610px
   +transition(opacity, 0.3, ease)
   +respond-to(wide-view)
     height: $tab-height--wide
+  +respond-to(1250)
+    height: $tab-height--1250
   .dropdown__value
     &:after
       top: 2px
@@ -22,6 +25,9 @@ $tab-height--wide: 610px
     display: block
   +respond-to(wide-view)
     height: $tab-height--wide
+  +respond-to(1250)
+    height: $tab-height--1250
+
 
 .tab--homepage__inner
   @extend %four-pixel-rounded
@@ -32,6 +38,11 @@ $tab-height--wide: 610px
   +respond-to(wide-view)
     position: relative
     left: 50%
+    top: 10%
+    margin: 0
+  +respond-to(1250)
+    position: relative
+    left: 50%
     top: 15%
     margin: 0
 
@@ -40,19 +51,21 @@ $tab-height--wide: 610px
   background-position: center center
   background-repeat: no-repeat
   background-size: cover
-  padding-top: 60px
+  padding-top: 40px
   +respond-to(wide-view)
-    padding-top: 110px
+    padding-top: 70px
+  +respond-to(1250)
+    padding-top: 90px
   .ie8 &
     background-color: white
 
 .tab--homepage__strapline
   +font-size(30)
   color: white
-  margin: 0 auto 25px
+  margin: 0 auto 20px
   width: 90%
   +respond-to(wide-view)
-    +font-size(37)
+    +font-size(36)
 
 .tab__image-strapline
   +respond-to(medium-view)
@@ -61,6 +74,8 @@ $tab-height--wide: 610px
     right: 55%
     top: 40%
     width: 300px
+  +respond-to(medium-view)
+    top: 37%
 
 .tab--homepage__heading
   color: white
@@ -138,3 +153,11 @@ $tab-height--wide: 610px
 .icon--default
   .is-active &
     display: none
+    
+.row--travel-services .heading--boxed
+  color: white
+  font-size: 16px
+  border-color: white
+  padding: 4px 10px
+  border: 2px solid white
+  margin-bottom: 10px
