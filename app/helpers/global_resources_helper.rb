@@ -42,10 +42,10 @@ module GlobalResourcesHelper
         uri: 'http://www.lonelyplanet.com/hotels/',
         icon_class: 'icon--flights-line--grey--before',
         submenu: [
-          {title:'Hotels', uri:'http://www.lonelyplanet.com/hotels', style:'hotels'},
-          {title:'Flights', uri:'http://www.lonelyplanet.com/flights/', style:'flights'},
-          {title:'Adventure tours', uri:'http://www.lonelyplanet.com/adventure-tours/', style:'adventure-tours'},
-          {title:'Sightseeing tours', uri:'http://www.lonelyplanet.com/sightseeing-tours/', style:'sightseeing-tours'}
+          {title:'Hotels', uri:'http://www.lonelyplanet.com/hotels', style:'hotels', icon_class: 'icon--hotels--white--before'},
+          {title:'Flights', uri:'http://www.lonelyplanet.com/flights/', style:'flights', icon_class: 'icon--flights--white--before'},
+          {title:'Adventure tours', uri:'http://www.lonelyplanet.com/adventure-tours/', style:'adventure-tours', icon_class: 'icon--tours--white--before'},
+          {title:'Sightseeing tours', uri:'http://www.lonelyplanet.com/sightseeing-tours/', style:'sightseeing-tours', icon_class: 'icon--running--white--before'}
         ]
       },
       {title:'Insurance', uri: "http://www.lonelyplanet.com/travel-insurance", icon_class: 'icon--insurance-line--grey--before'}
