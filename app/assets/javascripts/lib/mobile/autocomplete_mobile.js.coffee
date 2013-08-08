@@ -115,25 +115,25 @@ define [], ->
     _searchFor: (searchTerm)  ->
       if searchTerm && searchTerm.length >= 3
         @searchTerm = searchTerm
-        @_doRequest @searchTerm
+        if not @throttled
+          @_doRequest @searchTerm
       else if @showingList
         @_removeResults()
 
     _doRequest: ->
-      if not @throttled
-        myRequest = new XMLHttpRequest()
-        myRequest.addEventListener 'readystatechange', =>
-          if myRequest.readyState == 4
-            if myRequest.status == 200
-              @_updateUI JSON.parse myRequest.responseText
+      myRequest = new XMLHttpRequest()
+      myRequest.addEventListener 'readystatechange', =>
+        if myRequest.readyState == 4
+          if myRequest.status == 200
+            @_updateUI JSON.parse myRequest.responseText
 
-        myRequest.open 'get', @_generateURI(@args.uri, @args.scope)
-        myRequest.setRequestHeader 'Accept', '*/*'
-        myRequest.send()
-        @throttled = true
-        window.setTimeout =>
-          @throttled = false
-        , 200
+      myRequest.open 'get', @_generateURI(@args.uri, @args.scope)
+      myRequest.setRequestHeader 'Accept', '*/*'
+      myRequest.send()
+      @throttled = true
+      window.setTimeout =>
+        @throttled = false
+      , 200
 
     _generateURI: (searchURI, scope) ->
       uri = "#{searchURI}#{@searchTerm}"

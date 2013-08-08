@@ -139,6 +139,20 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
           expect(@myAutoComplete._doRequest).not.toHaveBeenCalled()
           expect(@myAutoComplete._removeResults).toHaveBeenCalled()
 
+      describe 'search throttling', ->
+        it 'makes a request when not throttled', ->
+          expect(@myAutoComplete.throttled).toBe(false)
+          @myAutoComplete._searchFor 'abc'
+
+          expect(@myAutoComplete._doRequest).toHaveBeenCalled()
+
+        it 'does not make a request when throttled', ->
+          @myAutoComplete.throttled = true
+          @myAutoComplete._searchFor 'abc'
+
+          expect(@myAutoComplete._doRequest).not.toHaveBeenCalled()
+
+
     describe 'generating the search URI', ->
       beforeEach ->
         @testUri = '/testSearch/'
