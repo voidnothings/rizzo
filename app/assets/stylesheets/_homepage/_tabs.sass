@@ -3,15 +3,23 @@ $tab-height--wide: 610px
 
 .row--travel-services
   border-bottom: 1px solid $highlight
+  .ie8 &
+    border: none
 
 .tabs-content--homepage
   height: $tab-height
   +transition(opacity, 0.3, ease)
   +respond-to(wide-view)
     height: $tab-height--wide
+  .ie8 &
+    width: 1100px
+    margin: 0 auto
+    height: $tab-height
+    
   .dropdown__value
     &:after
       top: 2px
+
 
 .tab--homepage
   +box-sizing()
@@ -22,6 +30,8 @@ $tab-height--wide: 610px
     display: block
   +respond-to(wide-view)
     height: $tab-height--wide
+  .ie8 &
+    height: $tab-height
 
 .tab--homepage__inner
   @extend %four-pixel-rounded
@@ -34,6 +44,9 @@ $tab-height--wide: 610px
     left: 50%
     top: 15%
     margin: 0
+  .ie8 &
+    padding: 10px 30px
+    top: 10px
 
 .tab--homepage--shop
   +responsive-image('homepage/bookings/shop','jpg')
@@ -45,6 +58,7 @@ $tab-height--wide: 610px
     padding-top: 110px
   .ie8 &
     background-color: white
+    padding-top: 50px
 
 .tab--homepage__strapline
   +font-size(30)
@@ -65,6 +79,11 @@ $tab-height--wide: 610px
 .tab--homepage__heading
   color: white
   margin-bottom: 20px
+
+.tab--buttons
+  .ie8 &
+    width: 1100px
+    margin: 0 auto
 
 .tab--button
   +font-size(14)
