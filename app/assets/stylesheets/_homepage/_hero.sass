@@ -12,6 +12,7 @@
     +responsive-image('homepage/hero/wyoming', 'jpg')
   @if $is-ie == true
     background-image: url(#{image_path('homepage/hero/wyoming_1671.jpg')})
+
   +respond-to(medium-view)
     height: 640px
   +respond-to(wide-view)
@@ -146,7 +147,7 @@
     bottom: 180px
     left: auto
     right: 40px
-    width: 290px
+    width: 270px
   .feature
     text-transform: uppercase
     color: $new-header-grey
@@ -163,10 +164,11 @@
   .btn--close
     +font-size(14)
     font-weight: bold
-    padding: 12px 15px 12px 30px
+    padding: 12px 25px 12px 40px
     background-position: 10px center
     +respond-to(wide-view)
       padding: 12px 15px 12px 35px
+      padding: 12px 25px 12px 40px
 
 .hero--story__text
   margin-bottom: 35px
