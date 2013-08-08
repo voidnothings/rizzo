@@ -3,7 +3,6 @@ $tab-height--wide: 510px
 $tab-height--1250: 610px
 
 .row--travel-services
-  //border-bottom: 1px solid $highlight
   .ie8 &
     border: none
 
@@ -62,23 +61,18 @@ $tab-height--1250: 610px
     padding: 10px 30px
     top: 10px
 
-.tab--homepage--flights .tab--homepage__inner    
-  +respond-to(medium-view)
-    top: 33px
-  +respond-to(1250)
-    top: 83px
+  .tab--homepage--flights &,
+  .tab--homepage--hotels &
+    +respond-to(medium-view)
+      top: 33px
+    +respond-to(1250)
+      top: 83px
 
-.tab--homepage--hotels .tab--homepage__inner    
-  +respond-to(medium-view)
-    top: 33px
-  +respond-to(1250)
-    top: 83px
-
-.tab--homepage--tours .tab--homepage__inner    
-  +respond-to(medium-view)
-    top: 52px
-  +respond-to(1250)
-    top: 102px
+  .tab--homepage--tours &
+    +respond-to(medium-view)
+      top: 52px
+    +respond-to(1250)
+      top: 102px
 
 
 .tab--homepage--shop
@@ -204,7 +198,7 @@ $tab-height--1250: 610px
 
 .row--travel-services .heading--boxed
   color: white
-  font-size: 12px
+  +font-size(12)
   border-color: white
   padding: 4px 10px
   border: 2px solid white

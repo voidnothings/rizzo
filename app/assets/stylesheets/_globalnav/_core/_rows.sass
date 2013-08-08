@@ -119,22 +119,20 @@ body
 
   .homepage &
     background-color: white
-    +respond-to(medium-view)
+    +respond-to(wide-view)
       height: 92px
       padding: 25px 0
 
   // This can be removed when switching to the new DFP server
   .ad-leaderboard__inner
     .homepage &
-      border: none
+      border: 1px solid $subdued
       &:after
         background-position: -106px 4px
 
   > .row__inner
     display: table
 
-.homepage .ad-leaderboard__inner
-  border: 1px solid $subdued
 
 
 // ----------------------------------------------------------------------------

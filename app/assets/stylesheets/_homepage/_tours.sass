@@ -6,20 +6,18 @@
   border-bottom: 1px solid $subdued
   +respond-to(medium-view)
     border-bottom: none
-    background-color: #142b44
+    background-color: $tab-background
     +responsive-image('homepage/bookings/tours','jpg')
     background-position: center center
     background-repeat: no-repeat
     background-size: cover
     
-.tab--homepage--tours .tab--homepage__inner
-  
-
-    .copy--body
-      .input-placeholder
-        display: none
-        .ie8 &
-          display: inline
+.tab--homepage--tours
+  .copy--body
+    .input-placeholder
+      display: none
+      .ie8 &
+        display: inline
 
 .col--region
   padding-right: 2px
