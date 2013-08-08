@@ -65,6 +65,25 @@ $$ = (function (document, window, $$) {
     return this;
   };
 
+  node.parent = function() {
+    return this.parentNode;
+  };
+
+  node.after = function(el) {
+    if ( this.parentNode ) {
+      this.parentNode.insertBefore( el, this.nextSibling );
+    }
+
+    return this;
+  };
+  node.before = function(el) {
+    if ( this.parentNode ) {
+      this.parentNode.insertBefore( el, this );
+    }
+
+    return this;
+  };
+
   // we save a few bytes (but none really in compression)
   // by using [trigger] - really it's for consistency in the
   // source code.
