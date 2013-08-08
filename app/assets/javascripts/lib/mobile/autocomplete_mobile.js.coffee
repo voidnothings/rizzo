@@ -65,12 +65,15 @@ define [required], ($) ->
       #   if @showingList
       #     @_unhideList()
 
-      @$el.parentNode.addEventListener 'click', (e) =>
+      @$el.parent().on 'click', (e) =>
         if e.target.tagName == 'A'
           # only set the input element value if the link goes nowhere
           if e.target.getAttribute('href') == '#'
             e.preventDefault()
-            @$el.value = e.target.textContent
+            if lp.isMobile
+              @$el.value = e.target.textContent
+            else
+              @$el[0].value = e.target.textContent
             @_removeResults()
 
     _handleKeypress: (e) ->
