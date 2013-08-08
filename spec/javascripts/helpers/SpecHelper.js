@@ -1,3 +1,6 @@
+window.lp = {};
+lp.isMobile = false;
+
 require.config({
   paths:{
     jquery: "vendor/assets/javascripts/jquery/jquery-1.7.2.min",

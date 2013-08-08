@@ -24,7 +24,7 @@
 # Dependencies:
 #   None
 
-required = if lp.isMobile then 'jsmin' else 'jquery'
+required = if window.lp.isMobile then 'jsmin' else 'jquery'
 
 define [required], ($) ->
 
