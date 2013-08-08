@@ -8,6 +8,12 @@
     background-repeat: no-repeat
     background-size: cover
 
+    .copy--body
+      .input-placeholder
+        display: none
+        .ie8 &
+          display: inline
+
 .col--region
   padding-right: 2px
 
@@ -20,6 +26,8 @@
   border-bottom: 1px solid $ruled-separator
   +respond-at(350)
     padding: 25px 0
+  .ie8 &
+    display: none
 
 .radio-group
   @extend %inline-block
@@ -36,6 +44,10 @@
 // Toggle between sightseeing/adventure tours
 .js-row-toggle
   display: none
+  .ie8 &
+    display: block
 
 input[type=radio]:checked + .js-row-toggle
+  display: block
+input[type=radio].is-checked + .js-row-toggle
   display: block
