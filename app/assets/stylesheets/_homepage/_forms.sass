@@ -58,14 +58,22 @@
 .date-group
   @extend %media
   margin-bottom: 0
-
+  
 .date-group__label
   +font-size(15)
   +vertically-center(40)
   display: block
+  position: absolute
   +respond-at(415)
     +font-size(18)
     +vertically-center(45)
+  .supports-placeholder &
+    display: none
+  + .date-group__container .input--datepicker
+    padding-left: 105px
+    .supports-placeholder &
+      padding-left: 10px
+
 
 .date-group__container
   input
