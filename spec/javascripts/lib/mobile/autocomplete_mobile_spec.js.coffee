@@ -46,13 +46,13 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
         
       it 'should initialise if the element exists', ->
         @myAutoComplete = new AutoComplete({id: 'my_search'})
-        expect(@myAutoComplete.el).toBeDefined()
+        expect(@myAutoComplete.$el).toBeDefined()
         expect(AutoComplete.prototype.init).toHaveBeenCalled()
 
       it 'should not initialise if the input element does not exist', ->
         @myAutoComplete = new AutoComplete({id: 'not_my_search'})
         expect(AutoComplete.prototype.init).not.toHaveBeenCalled()
-        expect(@myAutoComplete.el).toBeNull()
+        expect(@myAutoComplete.$el).toBeNull()
 
     describe 'navigating list with keys', ->
       beforeEach ->
@@ -97,7 +97,7 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
         @myAutoComplete._highlightDown() # select first item
         @myAutoComplete._selectHighlighted()
 
-        expect(@myAutoComplete.el.value).toBe('London')
+        expect(@myAutoComplete.$el.value).toBe('London')
         expect($('#search_results ul').length).toBe(0)
 
     describe 'updating the UI when text has been entered in the search field', ->

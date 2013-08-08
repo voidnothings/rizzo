@@ -24,7 +24,9 @@
 # Dependencies:
 #   None
 
-define [], ->
+required = if lp.isMobile then 'jsmin' else 'jquery'
+
+define ['jsmin'], ($) ->
 
   class AutoComplete
 
@@ -34,8 +36,8 @@ define [], ->
       uri: 'uri'
 
     constructor: (@args) ->
-      @el = document.getElementById(args.id)
-      @init() if @el
+      @$el = $("##{@args.id}")
+      @init() if @$el
 
     init: ->
       if @args.responseMap
@@ -48,28 +50,28 @@ define [], ->
       @throttled = false
 
     _addEventHandlers: ->
-      @el.addEventListener 'input', (e) =>
+      @$el.on 'input', (e) =>
         @_searchFor e.currentTarget.value
-      , false
 
-      @el.addEventListener 'keydown', (e) =>
+      @$el.on 'keydown', (e) =>
         if @showingList
           @_handleKeypress e
 
-      @el.addEventListener 'blur', =>
-        if @showingList
-          @_hideList()
+      # @$el.on 'blur', =>
+      #   if @showingList
+      #     @_hideList()
 
-      @el.addEventListener 'focus', =>
-        if @showingList
-          @_unhideList()
+      # @$el.on 'focus', =>
+      #   if @showingList
+      #     @_unhideList()
 
-      @el.parentNode.addEventListener 'click', (e) =>
-        if e.target.tagName == 'A'
-          if e.target.getAttribute('href') == '#'
-            e.preventDefault()
-            @el.value = e.target.textContent
-            @_removeResults()
+      # @$el.parentNode.addEventListener 'click', (e) =>
+      #   if e.target.tagName == 'A'
+      #     # only set the input element value if the link goes nowhere
+      #     if e.target.getAttribute('href') == '#'
+      #       e.preventDefault()
+      #       @$el.value = e.target.textContent
+      #       @_removeResults()
 
     _handleKeypress: (e) ->
       if e.keyCode == 40 # down arrow
@@ -113,11 +115,11 @@ define [], ->
         newActive = 0
 
       @currentHighlight = newActive
-      results[newActive].classList.add 'autocomplete__active'
-      results[oldActive].classList.remove 'autocomplete__active' if oldActive >= 0 and oldActive != newActive
+      results[oldActive].className = '' if oldActive # >= 0 and oldActive != newActive
+      results[newActive].className = 'autocomplete__active'
 
     _selectHighlighted: ->
-      @el.value = @resultsList.childNodes[@currentHighlight].textContent
+      @$el.value = @resultsList.childNodes[@currentHighlight].textContent
       @_removeResults()
 
     _hideList: ->
@@ -159,19 +161,21 @@ define [], ->
       uri
 
     _removeResults: ->
-      @el.parentNode.removeChild @resultsList if @resultsList
-      document.body.classList.remove 'hero-search-results-displayed'
+      results = $('.autocomplete__results')
+      @showingList = false
+      results.remove() if results
+      $('body').removeClass 'hero-search-results-displayed'
       @showingList = false
 
     _updateUI: (searchResults) ->
       if @showingList
-        @el.parentNode.removeChild @resultsList
+        @_removeResults()
 
       @resultsList = @_createList searchResults
-      @el.parentNode.insertBefore @resultsList, @el.nextSibling # aka insertAfter
+      @$el.after @resultsList # aka insertAfter
       @showingList = true
       @currentHighlight = undefined
-      document.body.classList.add 'hero-search-results-displayed'
+      $('body').addClass 'hero-search-results-displayed'
 
     _createList: (results) ->
       resultItems = (@_createListItem item for item in results)
@@ -179,6 +183,7 @@ define [], ->
       list = document.createElement 'UL'
       list.className = 'autocomplete__results'
       list.appendChild listItem for listItem in resultItems
+      $(list) if not lp.isMobile
       list
 
     _createListItem: (item) ->
@@ -192,8 +197,7 @@ define [], ->
       anchor.className = 'autocomplete__result'
 
       if @responseMap.type
-        anchor.classList.add 'autocomplete__result__type'
-        anchor.classList.add "autocomplete__result__type--#{item[@responseMap.type]}"
+        anchor.className += " autocomplete__result__type autocomplete__result__type--#{item[@responseMap.type]}"
 
       if @searchTerm
         anchor.innerHTML = @_highlightText item[@responseMap.title], @searchTerm
