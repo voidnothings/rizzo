@@ -70,10 +70,13 @@
       &:before
         width: 0
         border: none
+
   .homepage &, .homepage & > .nav__item
     @extend %smooth-text
-    font-weight: 700
     color: white
+    +respond-to(wide-view)
+      font-weight: bold
+
   .nav__item--primary--signout--mobile
     +respond-to(wide-view)
       display: none
@@ -249,6 +252,12 @@
       font-size: 34px
       top: 0
       left: 10px
+    .homepage &:before
+      content: ""
+      background-size: 100%
+      background-position: center
+      height: 100%
+      width: 22px
 
 .nav__submenu__item--flights
   @extend %icon--flights-before

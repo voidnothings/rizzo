@@ -87,6 +87,14 @@ $slideHoverArrowSpacing: 0.357em
 
   .homepage &
     font-size: 28px
+    &:after, &:before
+      content: ""
+      width: 40px
+      height: 100%
+      top: 0
+      background-size: 100%
+      background-position: center center
+      margin-top: 0
 
 .slider__control--prev
   @extend %chevron-left-after
@@ -96,6 +104,8 @@ $slideHoverArrowSpacing: 0.357em
     right: $chevronOffset
   &:hover
     left: $slideHoverOffset
+  
+
 .slider__control--next
   @extend %chevron-right-before
   right: $slideOffset
@@ -104,6 +114,7 @@ $slideHoverArrowSpacing: 0.357em
     left: $chevronOffset
   &:hover
     right: $slideHoverOffset
+  
 
 .slider__pagination
   bottom: 0
