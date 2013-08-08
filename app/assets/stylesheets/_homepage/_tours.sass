@@ -1,18 +1,23 @@
 .tab--homepage--tours
-  background: #5278A2
+  background: white
   padding-top: 10px
+  width: 100%
+  height: 100%
+  border-bottom: 1px solid $subdued
   +respond-to(medium-view)
-    background-color: #5278A2
+    border-bottom: none
+    background-color: $tab-background
     +responsive-image('homepage/bookings/tours','jpg')
     background-position: center center
     background-repeat: no-repeat
     background-size: cover
-
-    .copy--body
-      .input-placeholder
-        display: none
-        .ie8 &
-          display: inline
+    
+.tab--homepage--tours
+  .copy--body
+    .input-placeholder
+      display: none
+      .ie8 &
+        display: inline
 
 .col--region
   padding-right: 2px
