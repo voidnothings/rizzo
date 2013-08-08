@@ -65,13 +65,13 @@ define [required], ($) ->
       #   if @showingList
       #     @_unhideList()
 
-      # @$el.parentNode.addEventListener 'click', (e) =>
-      #   if e.target.tagName == 'A'
-      #     # only set the input element value if the link goes nowhere
-      #     if e.target.getAttribute('href') == '#'
-      #       e.preventDefault()
-      #       @$el.value = e.target.textContent
-      #       @_removeResults()
+      @$el.parentNode.addEventListener 'click', (e) =>
+        if e.target.tagName == 'A'
+          # only set the input element value if the link goes nowhere
+          if e.target.getAttribute('href') == '#'
+            e.preventDefault()
+            @$el.value = e.target.textContent
+            @_removeResults()
 
     _handleKeypress: (e) ->
       if e.keyCode == 40 # down arrow
