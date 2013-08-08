@@ -56,6 +56,14 @@ define [], ->
         if @showingList
           @_handleKeypress e
 
+      @el.addEventListener 'blur', =>
+        if @showingList
+          @_hideList()
+
+      @el.addEventListener 'focus', =>
+        if @showingList
+          @_unhideList()
+
       @el.parentNode.addEventListener 'click', (e) =>
         if e.target.tagName == 'A'
           if e.target.getAttribute('href') == '#'
@@ -111,6 +119,16 @@ define [], ->
     _selectHighlighted: ->
       @el.value = @resultsList.childNodes[@currentHighlight].textContent
       @_removeResults()
+
+    _hideList: ->
+      body = document.body
+      body.classList.remove 'hero-search-results-displayed'
+      body.classList.add 'hero-search-results-hidden'
+
+    _unhideList: ->
+      body = document.body
+      body.classList.remove 'hero-search-results-hidden'
+      body.classList.add 'hero-search-results-displayed'
 
     _searchFor: (searchTerm)  ->
       if searchTerm && searchTerm.length >= 3
