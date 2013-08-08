@@ -58,7 +58,7 @@ $$ = (function (document, window, $$) {
   };
   nodeList.removeClass = function(_class) {
     this[forEach](function(el) {
-      this.removeClass(_class);
+      el.removeClass(_class);
     });
 
     return this;
