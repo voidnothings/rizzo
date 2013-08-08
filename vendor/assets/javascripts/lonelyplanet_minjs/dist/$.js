@@ -38,7 +38,7 @@ $$ = (function (document, window, $$) {
   };
 
   node.addClass = function(_class) {
-    if (this.className.indexOf(_class) !== -1) {
+    if (this.className.indexOf(_class) === -1) {
       this.className += ' '+_class;
     }
     return this;
