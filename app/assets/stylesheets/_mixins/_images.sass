@@ -9,6 +9,8 @@
       // Default is the smallest
       @if $index == 1
         background-image: url("#{image_path('#{$path}_#{nth($sizes, 1)}.#{$extension}')}")
+        +retinafy()
+          background-image: url("#{image_path('#{$path}_#{nth($sizes, 2)}.#{$extension}')}")
       @else
         // Set the min-width to the width below the current image size
         @media only screen and (min-width: nth($sizes, $index - 1) + px)

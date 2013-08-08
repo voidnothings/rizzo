@@ -8,6 +8,12 @@
     background-repeat: no-repeat
     background-size: cover
 
+  @if $is-ie == true
+    .tab--homepage__inner
+      padding-top: 10px
+      padding-bottom: 10px
+
+
   .copy--title
     margin-bottom: 0
     +font-size(26)
@@ -18,4 +24,6 @@
     margin-bottom: 10px
     +respond-to(wide-view)
       margin-bottom: 20px
+    @if $is-ie == true
+      margin-bottom: 10px
 

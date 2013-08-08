@@ -464,6 +464,8 @@ a.nav__item--breadcrumbs
     +respond-to(wide-view)
       float: left
       margin: 0 30px 15px 0
+    @if $is-ie == true
+      margin: 0 20px 15px 0
 
 
 .col--footer--last
@@ -479,8 +481,8 @@ a.nav__item--breadcrumbs
       width: 240px
       padding: 0
       margin-right: 10px
-  .ie7 &, .ie8 &
-    width: 232px
+    @if $is-ie == true
+      width: 200px
 
   .btn--regular
     .responsive &
