@@ -240,7 +240,7 @@ define ['jquery', 'gpt'], ->
 
             window.clearInterval poll
 
-            if not adManager.firstLoaded and window.fs
+            if not adManager.firstLoaded and window.lp and lp.fs and lp.fs.time
               window.lp.fs.time(
                 'e':'/destination/ad/first'
               )

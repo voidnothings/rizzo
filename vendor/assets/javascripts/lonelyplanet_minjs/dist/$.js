@@ -38,7 +38,7 @@ $$ = (function (document, window, $$) {
   };
 
   node.addClass = function(_class) {
-    if (this.className.indexOf(_class) !== -1) {
+    if (this.className.indexOf(_class) === -1) {
       this.className += ' '+_class;
     }
     return this;
@@ -52,7 +52,7 @@ $$ = (function (document, window, $$) {
 
   node.removeClass = function(_class) {
     var reg = new RegExp(' ?'+_class+' ?', 'g');
-    this.className.replace(reg, '');
+    this.className = this.className.replace(reg, '');
 
     return this;
   };
