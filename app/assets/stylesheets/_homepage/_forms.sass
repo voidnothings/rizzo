@@ -11,8 +11,11 @@
   .form-row
     @extend %clearfix
     margin-bottom: 20px
+    @if $is-ie == true
+      margin-bottom: 10px
     &:last-of-type
       margin-bottom: 0
+
   
   .input--text
     padding-left: 10px

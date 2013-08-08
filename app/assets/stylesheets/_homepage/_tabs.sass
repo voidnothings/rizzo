@@ -43,6 +43,8 @@ $tab-height--wide: 610px
   padding-top: 60px
   +respond-to(wide-view)
     padding-top: 110px
+  .ie8 &
+    background-color: white
 
 .tab--homepage__strapline
   +font-size(30)
@@ -75,11 +77,15 @@ $tab-height--wide: 610px
   text-align: center
   line-height: 1.2
   display: table
+  .ie7 &
+    width: 19%
 
   &.is-active
     background: $new-header-grey
     color: white
     font-weight: bold
+    .tab--button__inner
+      opacity: 1
   &:hover
     text-decoration: none
   +respond-to(wide-view)
@@ -93,6 +99,8 @@ $tab-height--wide: 610px
   opacity: 0.6
   &:hover
     opacity: 1
+  .ie7 &
+    padding-top: 20px
 
 .tab--button__text
   vertical-align: middle
@@ -109,16 +117,14 @@ $tab-height--wide: 610px
   display: block
   +respond-to(medium-view)
     position: relative
-    top: 3px
+    
     margin: 0
     display: inline-block
-    &.icon--hotels--grey,
-    &.icon--hotels--white,
-    &.icon--magazine--grey,
-    &.icon--magazine--white
+    &.icon--flights--grey,
+    &.icon--flights--white 
       top: 4px
-    &.icon--compass--grey,
-    &.icon--compass--white
+    &.icon--tours--grey,
+    &.icon--tours--white
       top: 1px
 
 
