@@ -253,39 +253,45 @@
 
   .autocomplete__result
     @extend %left-icon
-    color: #fff
     padding-left: 45px
     &:hover
       text-decoration: underline
       background: transparent
-
-  .autocomplete__result__type
     &:before
-      +font-size(45)
-      line-height: 0
-      top: 15px
-      left: 10px !important
+      content: ""
+      background-size: 100%
+      width: 30px
+      height: 100%
+      background: center
 
-  .autocomplete__result__type--place
-    @extend %local-marker-before
+  // .autocomplete__result__type
+  //   &:before
+  //     +font-size(45)
+  //     line-height: 0
+  //     top: 0
+  //     left: 10px !important
+  //     content: ""
 
-  .autocomplete__result__type--hotel
-    @extend %icon-image-poi-hotel-before
+  // .autocomplete__result__type--place
+  //   @extend %local-marker-before
 
-  .autocomplete__result__type--flight
-    @extend %icon--flights-before
+  // .autocomplete__result__type--hotel
+  //   @extend %icon-image-poi-hotel-before
 
-  .autocomplete__result__type--article
-    @extend %icon-poi-article-before
+  // .autocomplete__result__type--flight
+  //   @extend %icon--flights-before
 
-  .autocomplete__result__type--sight
-    @extend %icon-image-poi-sight-before
+  // .autocomplete__result__type--article
+  //   @extend %icon-poi-article-before
 
-  .autocomplete__result__type--activity
-    @extend %icon-image-poi-activity-before
+  // .autocomplete__result__type--sight
+  //   @extend %icon-image-poi-sight-before
 
-  .autocomplete__result__type--tour
-    @extend %icon-image-poi-tour-before
+  // .autocomplete__result__type--activity
+  //   @extend %icon-image-poi-activity-before
+
+  // .autocomplete__result__type--tour
+  //   @extend %icon-image-poi-tour-before
 
 .hero__search__input
   +font-size(26)
