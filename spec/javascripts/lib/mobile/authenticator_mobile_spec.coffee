@@ -38,21 +38,11 @@ require ['public/assets/javascripts/lib/mobile/core/authenticator_mobile'], (Aut
           expect(@auth.userState).toBe(false)
           expect($('.js-user-nav')).not.toHaveClass('is-logged')
 
-        it 'sees a sign-in link', ->
-          expect($('a.js-user-signin')).toExist()
-
         it 'sees a register link', ->
           expect($('a.js-user-join')).toExist()
 
         it 'has a user join url', ->
-          expect($('a.js-user-join').attr('href')).toBe(@auth.options.registerLink)
-
-        it 'has a sign-in url', ->
-          expect($('a.js-user-signin').attr('href')).toBe(@auth.signInUrl())
-
-        it 'has a sign-in url with the current service uri', ->  
-          expect(@auth.signInUrl()).toMatch(/\?service/)
-          expect(@auth.signInUrl()).toMatch(/foo/)
+          expect($('a.js-user-join').attr('href')).toBe(@auth.signInUrl())
 
 
     describe 'logged-in', ->
