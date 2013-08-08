@@ -37,7 +37,7 @@ define [required], ($) ->
 
     constructor: (@args) ->
       @$el = $("##{@args.id}")
-      @init() if @$el
+      @init() unless @$el.length is 0
 
     init: ->
       if @args.responseMap
@@ -118,7 +118,7 @@ define [required], ($) ->
         newActive = 0
 
       @currentHighlight = newActive
-      results[oldActive].className = '' if oldActive # >= 0 and oldActive != newActive
+      results[oldActive].className = '' if oldActive >= 0 and oldActive != newActive
       results[newActive].className = 'autocomplete__active'
 
     _selectHighlighted: ->
