@@ -72,6 +72,8 @@
 
 .icon--rss--grey, .icon--rss--grey--before:before, .icon--rss--grey--after:after { background-image: url(png/rss--grey.png); background-repeat: no-repeat; }
 
+.icon--running--white, .icon--running--white--before:before, .icon--running--white--after:after { background-image: url(png/running--white.png); background-repeat: no-repeat; }
+
 .icon--search-glass--white, .icon--search-glass--white--before:before, .icon--search-glass--white--after:after { background-image: url(png/search-glass--white.png); background-repeat: no-repeat; }
 
 .icon--shop-basket--grey, .icon--shop-basket--grey--before:before, .icon--shop-basket--grey--after:after { background-image: url(png/shop-basket--grey.png); background-repeat: no-repeat; }
@@ -90,11 +92,11 @@
 
 .icon--thorntree-line--grey, .icon--thorntree-line--grey--before:before, .icon--thorntree-line--grey--after:after { background-image: url(png/thorntree-line--grey.png); background-repeat: no-repeat; }
 
-.icon--tours--grey-41, .icon--tours--grey-41--before:before, .icon--tours--grey-41--after:after { background-image: url(png/tours--grey-41.png); background-repeat: no-repeat; }
-
 .icon--tours--grey, .icon--tours--grey--before:before, .icon--tours--grey--after:after { background-image: url(png/tours--grey.png); background-repeat: no-repeat; }
 
 .icon--tours--white, .icon--tours--white--before:before, .icon--tours--white--after:after { background-image: url(png/tours--white.png); background-repeat: no-repeat; }
+
+.icon--trail--grey, .icon--trail--grey--before:before, .icon--trail--grey--after:after { background-image: url(png/trail--grey.png); background-repeat: no-repeat; }
 
 .icon--twitter--grey, .icon--twitter--grey--before:before, .icon--twitter--grey--after:after { background-image: url(png/twitter--grey.png); background-repeat: no-repeat; }
 

@@ -55,10 +55,19 @@ $submenu__arrow--width:  10px
       background-size: 100%
       width: 25px
       height: 25px
+    &.nav__submenu__content--user:after
+      left: 73%
+
+  .ie8.home &
+    &:after
+      top: -7px
 
 .nav__submenu__item
   color: #fff
   padding: 12px
+
+.homepage .nav__submenu__item
+  font-weight: 700
 
 .nav__submenu__title
   @extend %large-type

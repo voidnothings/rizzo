@@ -13,7 +13,6 @@
       padding-top: 10px
       padding-bottom: 10px
 
-
   .copy--title
     margin-bottom: 0
     +font-size(26)
@@ -32,4 +31,8 @@
     margin-bottom: 5px
     font-weight: bold
     .supports-placeholder &
+      display: none
+
+  input[type=date]
+    .ie8 &
       display: none
