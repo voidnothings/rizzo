@@ -40,14 +40,14 @@ define ['jsmin'], ($)->
       signOutLink = document.createElement('a')
       signOutLink.href = @options.signOutUrl
       signOutLink.textContent = "Sign out"
-      signOutLink.className = "icon--signout-inline--grey--before nav__item nav__item--primary--signout--mobile"
+      signOutLink.className = "icon--signout-line--grey--before nav__item nav__item--primary--signout--mobile"
       primaryNav.appendChild(signOutLink)
 
     showLoginAndRegister: ()->
+      # For the mobile version we will combine them into one link
       @emptyUserNav()
-      joinElement = "<a class='nav__item nav__item--primary js-user-join js-nav-item' href='#{@options.registerLink}'>Join</a>"
-      signinElement = "<a class='nav__item nav__item--primary js-user-signin js-nav-item' href='#{@signInUrl()}'>Sign-In</a>"
-      @$el.innerHTML += signinElement + joinElement
+      joinElement = "<a class='icon--signin-inline--grey--before nav__item nav__item--primary js-user-join js-nav-item' href=" + @signInUrl() + ">Join / Sign-In</a>"
+      @$el.innerHTML += joinElement
 
     showUserBox: ->
       @emptyUserNav()

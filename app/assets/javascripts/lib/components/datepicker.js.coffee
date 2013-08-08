@@ -11,10 +11,20 @@ define ['jquery', 'jplugs/pickadate.legacy'], ($) ->
 
   class AvailabilityDatepicker
  
-    constructor: (@target, @callbacks = {}) ->
+    config =
+      callbacks: {}
+      startSelector: "#js-av-start"
+      endSelector: "#js-av-end"
+
+    # Opts can contain the following:
+    # target (required) The selector for the containing element (or the element itself)
+    # callbacks (optional) Object containing the onDateSelect callback
+    constructor: (opts) ->
+      $.extend config, opts
+      
       self = @
-      @in_date =  $(@target).find("#js-av-start")
-      @out_date = $(@target).find("#js-av-end")
+      @in_date =  $(config.target).find(config.startSelector)
+      @out_date = $(config.target).find(config.endSelector)
       @in_label = $('.js-av-start-label')
       @out_label = $('.js-av-end-label')
       @firstTime = if (@in_date.val() is ''  or @in_date.val() is undefined) then true else false
@@ -52,8 +62,8 @@ define ['jquery', 'jplugs/pickadate.legacy'], ($) ->
 
       @firstTime = false
       
-      if @callbacks.onDateSelect
-        @callbacks.onDateSelect(date, type)
+      if config.callbacks.onDateSelect
+        config.callbacks.onDateSelect(date, type)
 
     inValue: ->
       new Date($(@in_date).data('pickadate').getDate('yyyy/mm/dd'))
