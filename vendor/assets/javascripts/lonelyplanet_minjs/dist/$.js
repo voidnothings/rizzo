@@ -53,7 +53,7 @@ $$ = (function (document, window, $$) {
 
   node.removeClass = function(_class) {
     var reg = new RegExp(' ?'+_class+' ?', 'g');
-    this.className.replace(reg, '');
+    this.className = this.className.replace(reg, '');
 
     return this;
   };
