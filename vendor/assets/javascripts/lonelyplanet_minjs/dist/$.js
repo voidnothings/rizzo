@@ -29,6 +29,42 @@ $$ = (function (document, window, $$) {
     return this;
   };
 
+  node.remove = function() {
+    this.parentNode.removeChild(this);
+  };
+  nodeList.remove = function() {
+    this[forEach](function (el) {
+      el.parentNode.removeChild(el);
+    });
+  };
+
+  node.addClass = function(_class) {
+    if (this.className.indexOf(_class) !== -1) {
+      this.className += ' '+_class;
+    }
+    return this;
+  };
+  nodeList.addClass = function(_class) {
+    this[forEach](function(el) {
+      this.addClass(_class);
+    });
+    return this;
+  };
+
+  node.removeClass = function(_class) {
+    var reg = new RegExp(' ?'+_class+' ?', 'g');
+    this.className.replace(reg, '');
+
+    return this;
+  };
+  nodeList.removeClass = function(_class) {
+    this[forEach](function(el) {
+      this.removeClass(_class);
+    });
+
+    return this;
+  };
+
   // we save a few bytes (but none really in compression)
   // by using [trigger] - really it's for consistency in the
   // source code.
