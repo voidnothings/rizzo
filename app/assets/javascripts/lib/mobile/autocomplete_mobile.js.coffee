@@ -26,7 +26,7 @@
 
 required = if lp.isMobile then 'jsmin' else 'jquery'
 
-define ['jsmin'], ($) ->
+define [required], ($) ->
 
   class AutoComplete
 
@@ -183,7 +183,6 @@ define ['jsmin'], ($) ->
       list = document.createElement 'UL'
       list.className = 'autocomplete__results'
       list.appendChild listItem for listItem in resultItems
-      $(list) if not lp.isMobile
       list
 
     _createListItem: (item) ->
