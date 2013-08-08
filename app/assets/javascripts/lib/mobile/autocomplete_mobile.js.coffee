@@ -35,6 +35,14 @@ define [required], ($) ->
       type: 'type',
       uri: 'uri'
 
+    ICON_MAP = 
+      place: "destination"
+      hotel: "hotels"
+      tour: "tours"
+      activity: "running"
+      flight: "flights"
+      guides: "magazine"
+
     constructor: (@args) ->
       @$el = $("##{@args.id}")
       @init() unless @$el.length is 0
@@ -199,7 +207,7 @@ define [required], ($) ->
       anchor.className = 'autocomplete__result'
 
       if @responseMap.type
-        anchor.className += " autocomplete__result__type autocomplete__result__type--#{item[@responseMap.type]}"
+        anchor.className += " autocomplete__result__type icon--#{ICON_MAP[item[@responseMap.type]]}--white--before"
 
       if @searchTerm
         anchor.innerHTML = @_highlightText item[@responseMap.title], @searchTerm
