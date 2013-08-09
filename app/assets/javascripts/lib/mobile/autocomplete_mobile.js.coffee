@@ -30,10 +30,13 @@ define [required], ($) ->
 
   class AutoComplete
 
-    DEFAULT_MAP = 
-      title: 'title',
-      type: 'type',
-      uri: 'uri'
+    CONFIG = {
+      map: {
+        title: 'title',
+        type: 'type',
+        uri: 'uri'
+      }
+    }
 
     constructor: (@args) ->
       @$el = $("##{@args.id}")
@@ -43,7 +46,7 @@ define [required], ($) ->
       if @args.responseMap
         @responseMap = @args.responseMap
       else
-        @responseMap = DEFAULT_MAP
+        @responseMap = CONFIG.map
 
       @_addEventHandlers()
       @showingList = false
