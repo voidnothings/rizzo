@@ -10,6 +10,7 @@ $slideHoverOffset: -0.714em
 $slidePadding: 2.857em
 $slideArrowSpacing: 1.786em
 $slideHoverArrowSpacing: 0.357em
+$slideOffsetHome: -4.5em
 
 .slider__container
   height: 100%
@@ -86,7 +87,7 @@ $slideHoverArrowSpacing: 0.357em
     vertical-align: top
 
   .homepage &
-    font-size: 28px
+    font-size: 24px
     &:after, &:before
       content: ""
       width: 40px
@@ -98,8 +99,12 @@ $slideHoverArrowSpacing: 0.357em
 
 .slider__control--prev
   @extend %chevron-left-after
-  left: $slideOffset
+  left: $slideOffsetHome
   padding-right: $slidePadding
+  
+  .homepage &
+    left: $slideOffsetHome
+    
   &:after
     right: $chevronOffset
   &:hover
@@ -110,6 +115,10 @@ $slideHoverArrowSpacing: 0.357em
   @extend %chevron-right-before
   right: $slideOffset
   padding-left: $slidePadding
+  
+  .homepage &
+    right: $slideOffsetHome
+  
   &:before
     left: $chevronOffset
   &:hover
