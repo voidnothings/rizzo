@@ -41,6 +41,7 @@ define ['jquery'], ($) ->
       @$slider_controls_container = $('.slider__controls-container')
       if @$slider_controls_container.length is 0
         @$slider_controls_container = @slides_container.addClass('slider__controls-container')
+      @$slider_controls_container.addClass('at-beginning')
 
       @init() unless @$el.length is 0
 
@@ -179,7 +180,15 @@ define ['jquery'], ($) ->
 
     _updateCount: ->
       current = $('.slider__control--next').html()
-      index = @$el.find(@slides).index(@$el.find(@slides+'.is-current')) + 1
+      $slides = @$el.find(@slides)
+      index = $slides.index(@$el.find(@slides+'.is-current')) + 1
+      
+      @$slider_controls_container.removeClass('at-beginning at-end')
+      if index is 1
+        @$slider_controls_container.addClass('at-beginning')
+      else if index is $slides.length
+        @$slider_controls_container.addClass('at-end')
+      
 
       $('.slider__control--next, .slider__control--prev').html(current.replace(/(^[0-9]+)/, index))
 
