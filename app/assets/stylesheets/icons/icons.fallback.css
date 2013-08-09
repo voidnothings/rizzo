@@ -82,6 +82,8 @@
 
 .icon--shop-basket-line--grey, .icon--shop-basket-line--grey--before:before, .icon--shop-basket-line--grey--after:after { background-image: url(png/shop-basket-line--grey.png); background-repeat: no-repeat; }
 
+.icon--sights--white, .icon--sights--white--before:before, .icon--sights--white--after:after { background-image: url(png/sights--white.png); background-repeat: no-repeat; }
+
 .icon--signin-line--grey, .icon--signin-line--grey--before:before, .icon--signin-line--grey--after:after { background-image: url(png/signin-line--grey.png); background-repeat: no-repeat; }
 
 .icon--signout-line--grey, .icon--signout-line--grey--before:before, .icon--signout-line--grey--after:after { background-image: url(png/signout-line--grey.png); background-repeat: no-repeat; }
