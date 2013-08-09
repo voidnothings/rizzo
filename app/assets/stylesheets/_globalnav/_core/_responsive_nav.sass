@@ -56,6 +56,7 @@ $responsive-nav-width: 240px
 .nav--primary__trigger
   display: none
   .responsive &
+    @extend .icon--hambuger--white
     @extend %transition--nav
     top: 10px
     right: 10px
@@ -68,7 +69,8 @@ $responsive-nav-width: 240px
     z-index: 2
     &:before
       // This is the hamburger icon in gradient form, needs some design tweaking
-      +background-gradient-with-stops(top, white, white 20%, transparent 20%, transparent 40%, white 40%, white 60%, transparent 60%, transparent 80%, white 80%, white 100%)
+      //+background-gradient-with-stops(top, white, white 20%, transparent 20%, transparent 40%, white 40%, white 60%, transparent 60%, transparent 80%, white 80%, white 100%)
+      @extend .icon--hambuger--white
       @extend %empty-abs-generated-content
       left: 10%
       top: 20%
