@@ -4,6 +4,8 @@
 
 .icon--article--white, .icon--article--white--before:before, .icon--article--white--after:after { background-image: url(png/article--white.png); background-repeat: no-repeat; }
 
+.icon--calendar--grey, .icon--calendar--grey--before:before, .icon--calendar--grey--after:after { background-image: url(png/calendar--grey.png); background-repeat: no-repeat; }
+
 .icon--calendar-grey, .icon--calendar-grey--before:before, .icon--calendar-grey--after:after { background-image: url(png/calendar-grey.png); background-repeat: no-repeat; }
 
 .icon--camera--white, .icon--camera--white--before:before, .icon--camera--white--after:after { background-image: url(png/camera--white.png); background-repeat: no-repeat; }
@@ -46,7 +48,7 @@
 
 .icon--google-plus--grey, .icon--google-plus--grey--before:before, .icon--google-plus--grey--after:after { background-image: url(png/google-plus--grey.png); background-repeat: no-repeat; }
 
-.icon--hambuger--white, .icon--hambuger--white--before:before, .icon--hambuger--white--after:after { background-image: url(png/hambuger--white.png); background-repeat: no-repeat; }
+.icon--hamburger--white, .icon--hamburger--white--before:before, .icon--hamburger--white--after:after { background-image: url(png/hamburger--white.png); background-repeat: no-repeat; }
 
 .icon--home--white, .icon--home--white--before:before, .icon--home--white--after:after { background-image: url(png/home--white.png); background-repeat: no-repeat; }
 
