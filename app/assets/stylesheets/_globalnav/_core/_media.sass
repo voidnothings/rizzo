@@ -12,7 +12,9 @@
   z-index: 2
   .homepage &
     background-color: #1d508d
-    padding: 20px
+    padding: 10px 15px
+    +respond-to(medium-view)
+      padding: 20px
     .media--lp-logo
       margin: 0
 
@@ -61,6 +63,8 @@
   margin-right: 5px
   vertical-align: middle
   width: 24px
+  .homepage &
+    background-position: -23px -127px    
   .responsive &
     text-indent: 0
     width: auto

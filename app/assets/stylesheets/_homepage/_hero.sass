@@ -1,6 +1,6 @@
 .hero
   width: 100%
-  height: 510px
+  height: 375px
   position: relative
   text-align: center
   color: white
@@ -53,15 +53,17 @@
   height: 260px
   text-align: center
   max-width: 500px
-  padding-top: 50%
+  padding-top: 120px
   margin: 0 auto
   +respond-to(400)
-    padding-top: 40%
+    padding-top: 120px
   +respond-to(medium-view)
     padding-top: 250px
   .ie7 &
     width: 500px
     zoom: 1
+  +respond-to(1250)
+    padding-top: 320px
 
 .hero__logo
   margin-bottom: 50px
@@ -69,9 +71,9 @@
 .hero__strapline
   +font-size(40)
   width: 90%
-  margin: 0 auto 30px
-  +respond-to(wide-view)
-    +font-size(55)
+  margin: 0 auto 20px
+  +respond-to(medium-view)
+    +font-size(52)
 
 .speech-bubble
   @extend %four-pixel-rounded
@@ -87,7 +89,7 @@
 .speech-bubble--scroll
   overflow-y: scroll
   -webkit-overflow-scrolling: touch
-  height: 230px
+  height: 95px
   padding: 15px
   +respond-to(medium-view)
     padding: 0
@@ -97,7 +99,7 @@
 .hero__author
   +transition(all, .3, ease-out)
   position: absolute
-  bottom: 10px
+  bottom: 20px
   left: 20px
   z-index: 2
   .hero-search-results-displayed &
@@ -231,7 +233,9 @@
   @extend %inline-block
   overflow: hidden
   text-align: left
-  width: 80%
+  width: 85%
+  +respond-to(medium-view)
+    width: 70%
 
 .hero__search__wrapper
   position: relative
@@ -295,10 +299,11 @@
   //   @extend %icon-image-poi-tour-before
 
 .hero__search__input
-  +font-size(26)
+  +font-size(24)
+  line-height: 22px
   color: $body-copy
   height: 45px
-  padding: 0 50px 0 20px
+  padding: 0 50px 0 10px
   width: 100%
 
 // hero search submit buttons

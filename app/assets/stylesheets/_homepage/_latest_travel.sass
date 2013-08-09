@@ -1,5 +1,7 @@
 .row--heading
-  margin: 70px 0 40px
+  margin: 20px 0 20px
+  +respond-to(medium-view)
+    margin: 40px 0 40px
 
 .heading--latest-travel
   background: $body-background
@@ -8,3 +10,8 @@
   
 .row--latest-travel .tab--homepage__strapline
   color: $new-header-grey
+
+.icon--trail--grey  
+  margin: 0 auto 5px auto
+  +respond-to(medium-view)
+    margin: 0 auto 15px auto
