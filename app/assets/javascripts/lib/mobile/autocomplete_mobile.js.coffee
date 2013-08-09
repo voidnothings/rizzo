@@ -40,8 +40,8 @@ define [required], ($) ->
       hotel: "hotels"
       tour: "tours"
       activity: "running"
-      flight: "flights"
-      guides: "magazine"
+      sight: "sights"
+      publication: "magazine"
 
     constructor: (@args) ->
       @$el = $("##{@args.id}")
