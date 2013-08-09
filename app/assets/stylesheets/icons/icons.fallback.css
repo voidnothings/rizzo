@@ -4,6 +4,8 @@
 
 .icon--article--white, .icon--article--white--before:before, .icon--article--white--after:after { background-image: url(png/article--white.png); background-repeat: no-repeat; }
 
+.icon--calendar-grey, .icon--calendar-grey--before:before, .icon--calendar-grey--after:after { background-image: url(png/calendar-grey.png); background-repeat: no-repeat; }
+
 .icon--camera--white, .icon--camera--white--before:before, .icon--camera--white--after:after { background-image: url(png/camera--white.png); background-repeat: no-repeat; }
 
 .icon--chevron-down--grey, .icon--chevron-down--grey--before:before, .icon--chevron-down--grey--after:after { background-image: url(png/chevron-down--grey.png); background-repeat: no-repeat; }
@@ -66,6 +68,8 @@
 
 .icon--pinterest--grey, .icon--pinterest--grey--before:before, .icon--pinterest--grey--after:after { background-image: url(png/pinterest--grey.png); background-repeat: no-repeat; }
 
+.icon--place--white, .icon--place--white--before:before, .icon--place--white--after:after { background-image: url(png/place--white.png); background-repeat: no-repeat; }
+
 .icon--plane-left--grey, .icon--plane-left--grey--before:before, .icon--plane-left--grey--after:after { background-image: url(png/plane-left--grey.png); background-repeat: no-repeat; }
 
 .icon--plane-right--grey, .icon--plane-right--grey--before:before, .icon--plane-right--grey--after:after { background-image: url(png/plane-right--grey.png); background-repeat: no-repeat; }
@@ -73,6 +77,8 @@
 .icon--rss--grey, .icon--rss--grey--before:before, .icon--rss--grey--after:after { background-image: url(png/rss--grey.png); background-repeat: no-repeat; }
 
 .icon--running--white, .icon--running--white--before:before, .icon--running--white--after:after { background-image: url(png/running--white.png); background-repeat: no-repeat; }
+
+.icon--search-glass--grey, .icon--search-glass--grey--before:before, .icon--search-glass--grey--after:after { background-image: url(png/search-glass--grey.png); background-repeat: no-repeat; }
 
 .icon--search-glass--white, .icon--search-glass--white--before:before, .icon--search-glass--white--after:after { background-image: url(png/search-glass--white.png); background-repeat: no-repeat; }
 
