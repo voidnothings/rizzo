@@ -32,10 +32,10 @@
       = render 'layouts/mobile/img_loader'
       = render 'layouts/core/snippets/fs_init'
       
-      - unless cookies[:_lpfont] == "true"
-        <!--[if gt IE 8]><!--> 
-        = render 'layouts/mobile/fonts_async'
-        <![endif]-->
+      / - unless cookies[:_lpfont] == "true"
+      /   <!--[if gt IE 8]><!--> 
+      /   = render 'layouts/mobile/fonts_async'
+      /   <![endif]-->
 
       = js_configuration
       - unless Rails.env.production?
