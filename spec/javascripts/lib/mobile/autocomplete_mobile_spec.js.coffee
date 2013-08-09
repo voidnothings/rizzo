@@ -227,7 +227,7 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
           expect(list.tagName).toBe('UL')
           expect(list.className).toBe('autocomplete__results')
           expect(list.childNodes.length).toBe(1)
-          expect(listItem.textContent).toBe(SEARCH_RESULTS[0].title)
+          expect(list.textContent).toBe(SEARCH_RESULTS[0].title)
 
         it 'should create an unordered list no items when the results list is empty', -> 
           list = @myAutoComplete._createList EMPTY_RESULTS
