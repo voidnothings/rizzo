@@ -126,6 +126,10 @@ $mobile-standard-card-image-height: 192px
 
   .card--small-image &
     height: ($card-grid-height - $small-card-image-height - (2 * $card-content-padding) )
+    .homepage &
+      height: ($mobile-card-grid-height - $small-card-image-height - (2 * $card-content-padding) )
+      +respond-to(medium-view)
+        height: ($card-grid-height - $small-card-image-height - (2 * $card-content-padding) )
 
   .card--full-image &
     +background-gradient($startColor: rgba(0,0,0,0), $endColor: rgba(0,0,0,0.75))
@@ -201,6 +205,12 @@ $mobile-standard-card-image-height: 192px
   &:hover
     .card__content
       height: $card-grid-height - ( 2*$card-hotel-content-padding) - 45px !important // important until hotel image padding is the same...
+  .homepage &:hover
+    .card__content
+      height: $mobile-card-grid-height - ( 2*$card-hotel-content-padding) - 45px !important
+      +respond-to(medium-view)
+        height: $card-grid-height - ( 2*$card-hotel-content-padding) - 45px !important
+          
 
 .card--extended-content--half
   .card__content

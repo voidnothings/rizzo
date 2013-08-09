@@ -1,8 +1,12 @@
 .tab--homepage--hotels
-  background: #5278A2
+  background: white
   padding-top: 10px
+  width: 100%
+  height: 100%
+  border-bottom: 1px solid $subdued
   +respond-to(medium-view)
-    background-color: #5278A2
+    border-bottom: none
+    background-color: $tab-background
     +responsive-image('homepage/bookings/hotels','jpg')
     background-position: center center
     background-repeat: no-repeat
@@ -15,9 +19,6 @@
 
   .copy--title
     margin-bottom: 0
-    +font-size(26)
-    +respond-to(medium-view)
-      +font-size(32)
 
   .form-row
     margin-bottom: 10px

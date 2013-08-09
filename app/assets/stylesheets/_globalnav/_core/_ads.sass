@@ -50,6 +50,9 @@
       .ie7 &, .ie8 &
         display: none
 
+  .homepage &
+    width: 320px
+
 .ad-trafficDriver, .ad-sponsorTile, .ad-mpu, .ad-doubleMpu
   &.card__content
     @extend %block-center
@@ -79,6 +82,16 @@
 .ad-mpu.card__content
   @extend %ad-mpu
   margin-bottom: 15px
+  .homepage &
+    +box-sizing()
+    margin-bottom: 0
+    height: 296px
+    width: 310px
+    padding: 30px 0 0
+    +respond-to(medium-view)
+      margin-bottom: 15px
+      padding-top: 60px
+      height: 304px
 
 .results .card
   &.card--ad
