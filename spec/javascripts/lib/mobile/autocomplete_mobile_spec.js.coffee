@@ -259,7 +259,7 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
           expect(listItem.textContent).toBe(SEARCH_RESULTS[0].title)
           expect($listItem).toHaveClass("autocomplete__result")
           expect($listItem).toHaveClass("autocomplete__result__type")
-          expect($listItem).toHaveClass("autocomplete__result__type--#{SEARCH_RESULTS[0].type}")
+          expect($listItem).toHaveClass("icon--#{SEARCH_RESULTS[0].type}--white--before")
 
         it 'should create an anchor item without href if not specified', ->
           delete @myAutoComplete.responseMap.uri
@@ -273,7 +273,7 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
           expect(listItem.textContent).toBe(SEARCH_RESULTS[0].title)
           expect($listItem).toHaveClass("autocomplete__result")
           expect($listItem).toHaveClass("autocomplete__result__type")
-          expect($listItem).toHaveClass("autocomplete__result__type--#{SEARCH_RESULTS[0].type}")
+          expect($listItem).toHaveClass("icon--#{SEARCH_RESULTS[0].type}--white--before")
 
         it 'should create an anchor item without result type classes if not specified', ->
           delete @myAutoComplete.responseMap.type
