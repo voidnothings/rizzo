@@ -31,6 +31,7 @@ define [required], ($) ->
   class AutoComplete
 
     CONFIG = {
+      threshold: 3,
       map: {
         title: 'title',
         type: 'type',
@@ -128,7 +129,10 @@ define [required], ($) ->
       results[newActive].className = 'autocomplete__active'
 
     _selectHighlighted: ->
-      @_setValue @resultsList.childNodes[@currentHighlight].textContent
+      currentItem = @resultsList.childNodes[@currentHighlight]
+      @_setValue currentItem.textContent
+      if @responseMap.slug
+        document.getElementById('hotel-search-slug').value = currentItem.getAttribute('data-slug')
       @_removeResults()
 
     # _hideList: ->
@@ -142,7 +146,7 @@ define [required], ($) ->
     #   body.addClass 'hero-search-results-displayed'
 
     _searchFor: (searchTerm)  ->
-      if searchTerm && searchTerm.length >= 3
+      if searchTerm && searchTerm.length >= CONFIG.threshold
         @searchTerm = searchTerm
         if not @throttled
           @_doRequest @searchTerm
@@ -197,6 +201,8 @@ define [required], ($) ->
     _createListItem: (item) ->
       listItem = document.createElement 'LI'
       listItem.appendChild @_createAnchor(item)
+      if @responseMap.slug
+        listItem.setAttribute 'data-slug', item.slug
       listItem
 
     _createAnchor: (item) ->
