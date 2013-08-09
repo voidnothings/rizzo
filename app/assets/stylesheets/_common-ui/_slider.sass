@@ -27,17 +27,19 @@ $slideHoverArrowSpacing: 0.357em
     display: block
   &.is-prev
     left: -100%
+    z-index: 1
     .supports-3d &
       left: auto
       +transform(translate3d(-99.9%, 0, 0))
   &.is-current
     left: 0
-    z-index: 3
+    z-index: 5
     .supports-3d &
       left: auto
       +transform(translate3d(0, 0, 0))
   &.is-next
     left: 100%
+    z-index: 1
     .supports-3d &
       left: auto
       +transform(translate3d(99.9%, 0, 0))
@@ -57,7 +59,7 @@ $slideHoverArrowSpacing: 0.357em
   @extend %transition--base
   position: absolute
   width: 100%
-  z-index: 4
+  z-index: 6
 
   .homepage &
     top: 350px
@@ -104,6 +106,8 @@ $slideHoverArrowSpacing: 0.357em
     right: $chevronOffset
   &:hover
     left: $slideHoverOffset
+  .at-beginning &
+    opacity: 0
   
 
 .slider__control--next
@@ -114,6 +118,8 @@ $slideHoverArrowSpacing: 0.357em
     left: $chevronOffset
   &:hover
     right: $slideHoverOffset
+  .at-end &
+    opacity: 0
   
 
 .slider__pagination
