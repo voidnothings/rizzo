@@ -27,17 +27,19 @@ $slideHoverArrowSpacing: 0.357em
     display: block
   &.is-prev
     left: -100%
+    z-index: 1
     .supports-3d &
       left: auto
       +transform(translate3d(-99.9%, 0, 0))
   &.is-current
     left: 0
-    z-index: 3
+    z-index: 5
     .supports-3d &
       left: auto
       +transform(translate3d(0, 0, 0))
   &.is-next
     left: 100%
+    z-index: 1
     .supports-3d &
       left: auto
       +transform(translate3d(99.9%, 0, 0))
