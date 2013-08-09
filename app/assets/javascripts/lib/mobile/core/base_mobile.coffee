@@ -24,20 +24,20 @@ define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shoppin
         document.getElementById('js-language').submit()
 
     addNavTracking: ->
-      $('#js-primary-nav').on 'click', ->
+      $('#js-primary-nav').on 'click', (e)->
         if e.target.hasClass('js-nav-item') then window.s.linkstacker(e.target.innerText)
         if e.target.hasClass('js-nav-cart') then window.s.linkstacker("shopping-cart")
 
-      $('#js-primary-nav').on 'submit', ->
+      $('#js-primary-nav').on 'submit', (e)->
         if e.target.hasClass('js-nav-search') then window.s.linkstacker("search")
 
-      $('#js-secondary-nav').on 'click', ->
+      $('#js-secondary-nav').on 'click', (e)->
         if e.target.hasClass('js-nav-item') then window.s.linkstacker(e.target.innerText + "-sub")
 
-      $('#js-breadcrumbs').on 'click', ->
+      $('#js-breadcrumbs').on 'click', (e)->
         if e.target.hasClass('js-nav-item') then window.s.linkstacker("breadcrumbs")
 
-      $('#js-footer-nav').on 'click', ->
+      $('#js-footer-nav').on 'click', (e)->
         if e.target.hasClass('js-nav-item') then window.s.linkstacker("footer")
 
     scrollPerf: ->
