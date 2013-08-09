@@ -30,10 +30,13 @@ define [required], ($) ->
 
   class AutoComplete
 
-    DEFAULT_MAP = 
-      title: 'title',
-      type: 'type',
-      uri: 'uri'
+    CONFIG = {
+      map: {
+        title: 'title',
+        type: 'type',
+        uri: 'uri'
+      }
+    }
 
     constructor: (@args) ->
       @$el = $("##{@args.id}")
@@ -43,7 +46,7 @@ define [required], ($) ->
       if @args.responseMap
         @responseMap = @args.responseMap
       else
-        @responseMap = DEFAULT_MAP
+        @responseMap = CONFIG.map
 
       @_addEventHandlers()
       @showingList = false
@@ -70,11 +73,14 @@ define [required], ($) ->
           # only set the input element value if the link goes nowhere
           if e.target.getAttribute('href') == '#'
             e.preventDefault()
-            if lp.isMobile
-              @$el.value = e.target.textContent
-            else
-              @$el[0].value = e.target.textContent
+            @_setValue e.target.textContent
             @_removeResults()
+
+    _setValue: (text) ->
+      if lp.isMobile
+        @$el.value = text
+      else
+        @$el[0].value = text
 
     _handleKeypress: (e) ->
       if e.keyCode == 40 # down arrow
@@ -85,7 +91,7 @@ define [required], ($) ->
         @_highlightUp()
       if e.keyCode == 13 # enter
         if @args.listOnly
-          location.href = e.target.childNodes[0].href
+          location.href = @resultsList.childNodes[@currentHighlight].firstChild.href # aaargh!!!
         else
           e.preventDefault()
           @_selectHighlighted()
@@ -122,7 +128,7 @@ define [required], ($) ->
       results[newActive].className = 'autocomplete__active'
 
     _selectHighlighted: ->
-      @$el.value = @resultsList.childNodes[@currentHighlight].textContent
+      @_setValue @resultsList.childNodes[@currentHighlight].textContent
       @_removeResults()
 
     # _hideList: ->
