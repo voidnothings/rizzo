@@ -51,18 +51,42 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
 
     describe 'Initialisation', ->
       beforeEach ->
-        loadFixtures('autocomplete_mobile.html')
+        loadFixtures 'autocomplete_mobile.html'
         spyOn AutoComplete.prototype, "_init"
-        
+
       it 'should initialise if the element exists', ->
-        @myAutoComplete = new AutoComplete({id: 'my_search'})
+        @myAutoComplete = new AutoComplete {id: 'my_search', uri: '/search'}
 
         expect(@myAutoComplete.$el).toBeDefined()
         expect(AutoComplete.prototype._init).toHaveBeenCalled()
 
       it 'should not initialise if the input element does not exist', ->
-        @myAutoComplete = new AutoComplete({id: 'not_my_search'})
+        @myAutoComplete = new AutoComplete {id: 'not_my_search', uri: '/search'}
+
         expect(AutoComplete.prototype._init).not.toHaveBeenCalled()
+
+       it 'should not initialise if element ID argument is not supplied', ->
+        @myAutoComplete = new AutoComplete {id: 'not_my_search', uri: '/search'}
+
+        expect(AutoComplete.prototype._init).not.toHaveBeenCalled()
+
+    describe 'Configuration', ->
+      beforeEach ->
+        loadFixtures 'autocomplete_mobile.html'
+        @myAutoComplete = new AutoComplete {id: 'my_search'}
+
+        it 'should '
+
+
+
+
+
+
+
+
+
+
+
 
     # describe 'navigating list with keys', ->
     #   beforeEach ->
