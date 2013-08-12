@@ -99,6 +99,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
           expect(@myAutoComplete.results.tagName).toBe('UL')
           expect(@myAutoComplete.results.childNodes.length).toBe(0)
           expect(@myAutoComplete.results.className).toBe('autocomplete__results')
+          expect(@myAutoComplete.results.hovered).not.toBeDefined()
 
         it 'should create the list element with the specified class name', ->
           newConfig = {id: 'my_search', uri: '/search', resultsClass: 'mysearch__results'}
@@ -108,8 +109,65 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
           expect(@myAutoComplete.results.tagName).toBe('UL')
           expect(@myAutoComplete.results.childNodes.length).toBe(0)
           expect(@myAutoComplete.results.className).toBe(newConfig.resultsClass)
+          expect(@myAutoComplete.results.hovered).not.toBeDefined()
 
+    describe 'the results list', ->
+      beforeEach ->
+        loadFixtures 'autocomplete_mobile.html'
+        @myAutoComplete = new AutoComplete DEFAULT_CONFIG
 
+      it 'should add a list hovered property to the component when mouse is over results', ->
+        @myAutoComplete._resultsMouseOver()
+
+        expect(@myAutoComplete.results.hovered).toBe(true)
+
+      it 'should remove a list hovered property from the component when mouse is removed from results', ->
+        @myAutoComplete._resultsMouseOver()
+        @myAutoComplete._resultsMouseOut()
+
+        expect(@myAutoComplete.results.hovered).not.toBeDefined()
+
+    describe 'populating the results list', ->
+
+      describe 'performing a search', ->
+
+        describe 'the search threshold', ->
+          beforeEach ->
+            loadFixtures 'autocomplete_mobile.html'
+
+          it 'should perform a search if the threshold has been reached', ->
+            minimumSearch = 'abc'
+            @myAutoComplete = new AutoComplete DEFAULT_CONFIG
+            spyOn @myAutoComplete, '_makeRequest'
+            @myAutoComplete._searchFor minimumSearch
+
+            expect(@myAutoComplete._makeRequest).toHaveBeenCalledWith(minimumSearch)
+
+          it 'should not perform a search if the threshold has not been reached', ->
+            belowMinimumSearch = 'ab'
+            @myAutoComplete = new AutoComplete DEFAULT_CONFIG
+            spyOn @myAutoComplete, '_makeRequest'
+            @myAutoComplete._searchFor belowMinimumSearch
+
+            expect(@myAutoComplete._makeRequest).not.toHaveBeenCalled()
+
+          describe 'configuring the search threshold', ->
+            beforeEach ->
+              @myAutoComplete = new AutoComplete DEFAULT_CONFIG
+              spyOn @myAutoComplete, '_makeRequest'
+              @myAutoComplete._updateConfig {threshold: 5}
+
+            it 'should perfom a search if the configured threshold has been reached', ->
+              minimumSearch = 'abcde'
+              @myAutoComplete._searchFor minimumSearch
+
+              expect(@myAutoComplete._makeRequest).toHaveBeenCalledWith(minimumSearch)
+
+            it 'should not perfom a search if the configured threshold has not been reached', ->
+              minimumSearch = 'abc'
+              @myAutoComplete._searchFor minimumSearch
+
+              expect(@myAutoComplete._makeRequest).not.toHaveBeenCalled()
 
 
     # describe 'navigating list with keys', ->

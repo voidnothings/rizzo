@@ -28,4 +28,28 @@ define [], () ->
     _buildResults: ->
       results = document.createElement 'UL'
       results.className = CONFIG.resultsClass
+
+      results.addEventListener 'mouseover', =>
+        @_resultsMouseOver()
+      , false
+
+      results.addEventListener 'mouseout', =>
+        @_resultsMouseOut()
+      , false
+
       results
+
+    # event handlers for mouse events
+    _resultsMouseOver: ->
+      @results.hovered = true
+
+    _resultsMouseOut: ->
+      delete @results.hovered
+
+
+
+
+    _searchFor: (searchTerm) ->
+      @_makeRequest searchTerm if searchTerm?.length >= CONFIG.threshold
+
+    _makeRequest: ->
