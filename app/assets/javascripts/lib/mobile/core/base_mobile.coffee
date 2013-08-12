@@ -7,7 +7,7 @@ define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shoppin
       @showUserBasket()
       @initialiseFooterSelects()
       @addNavTracking()
-      @scrollPerf()
+      @scrollPerf() unless window.lp.touch is true
 
 
     authenticateUser: ->
@@ -41,7 +41,6 @@ define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shoppin
         if e.target.hasClass('js-nav-item') then window.s.linkstacker("footer")
 
     scrollPerf: ->
-      # Add this irrespective of browser support so that other hovers can function as normal.
       document.body.classList.add('js-hover')
       enableTimer = false
 
