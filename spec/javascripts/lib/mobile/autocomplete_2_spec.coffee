@@ -88,8 +88,26 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
           expect(config.uri).toBe(newConfig.uri)
           expect(config.parent).toBe(newConfig.parent)
 
+      describe 'setting up the component', ->
+        beforeEach ->
+          loadFixtures 'autocomplete_mobile.html'
 
+        it 'should create the list element and add it as an object property', ->
+          @myAutoComplete = new AutoComplete DEFAULT_CONFIG
 
+          expect(@myAutoComplete.results).toBeDefined()
+          expect(@myAutoComplete.results.tagName).toBe('UL')
+          expect(@myAutoComplete.results.childNodes.length).toBe(0)
+          expect(@myAutoComplete.results.className).toBe('autocomplete__results')
+
+        it 'should create the list element with the specified class name', ->
+          newConfig = {id: 'my_search', uri: '/search', resultsClass: 'mysearch__results'}
+          @myAutoComplete = new AutoComplete newConfig
+
+          expect(@myAutoComplete.results).toBeDefined()
+          expect(@myAutoComplete.results.tagName).toBe('UL')
+          expect(@myAutoComplete.results.childNodes.length).toBe(0)
+          expect(@myAutoComplete.results.className).toBe(newConfig.resultsClass)
 
 
 

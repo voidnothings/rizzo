@@ -4,6 +4,7 @@ define [], () ->
 
     CONFIG =
       threshold: 3,
+      resultsClass: 'autocomplete__results',
       map:
         title: 'title',
         type: 'type',
@@ -15,6 +16,7 @@ define [], () ->
     _init: (args) ->
       CONFIG = @_updateConfig args
       @_addEventHandlers()
+      @results = @_buildResults()
 
     _updateConfig: (args) ->
       newConfig = CONFIG
@@ -22,3 +24,8 @@ define [], () ->
       newConfig
 
     _addEventHandlers: ->
+
+    _buildResults: ->
+      results = document.createElement 'UL'
+      results.className = CONFIG.resultsClass
+      results
