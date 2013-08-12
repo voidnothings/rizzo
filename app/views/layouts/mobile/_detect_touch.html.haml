@@ -1,10 +1,10 @@
 :javascript
   (function(){
+    window.lp = window.lp || {};
+    window.lp.touch = true;
     var removeTouch = function(){
       (function(H){H.className=H.className.replace(/\btouch\b/,'no-touch')})(document.documentElement);
-      window.lp = window.lp || {};
       window.lp.touch = false;
-
       if (document.removeEventListener) {
       	document.removeEventListener('mousemove', removeTouch);
       } else {
