@@ -70,11 +70,14 @@ define [required], ($) ->
       #     @_unhideList()
 
       @$el.parent().on 'click', (e) =>
-        if e.target.tagName == 'A'
+        target = e.target
+        if target.tagName == 'A'
           # only set the input element value if the link goes nowhere
-          if e.target.getAttribute('href') == '#'
+          if target.getAttribute('href') == '#'
             e.preventDefault()
-            @_setValue e.target.textContent
+            @_setValue target.textContent
+            if @responseMap.slug
+              @_setSlug target.parentNode.getAttribute('data-slug')
             @_removeResults()
 
     _setValue: (text) ->
@@ -82,6 +85,9 @@ define [required], ($) ->
         @$el.value = text
       else
         @$el[0].value = text
+
+    _setSlug: (text) ->
+      document.getElementById('hotel-search-slug').value = text
 
     _handleKeypress: (e) ->
       if e.keyCode == 40 # down arrow
@@ -132,7 +138,7 @@ define [required], ($) ->
       currentItem = @resultsList.childNodes[@currentHighlight]
       @_setValue currentItem.textContent
       if @responseMap.slug
-        document.getElementById('hotel-search-slug').value = currentItem.getAttribute('data-slug')
+        @_setSlug currentItem.getAttribute('data-slug')
       @_removeResults()
 
     # _hideList: ->
