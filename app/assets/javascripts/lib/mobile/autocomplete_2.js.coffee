@@ -13,6 +13,12 @@ define [], () ->
       @_init args if args.id and args.uri
 
     _init: (args) ->
-      @_updateConfig args
+      CONFIG = @_updateConfig args
+      @_addEventHandlers()
 
-    _updateConfig: ->
+    _updateConfig: (args) ->
+      newConfig = CONFIG
+      newConfig[key] = value for own key, value of args
+      newConfig
+
+    _addEventHandlers: ->

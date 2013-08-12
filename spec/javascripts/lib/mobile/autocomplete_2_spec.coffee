@@ -5,6 +5,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
     DEFAULT_CONFIG =
       id: 'my_search',
       uri: '/search'
+
     SEARCH_TERM = 'London'
     TEXT_NODE = 3
     EMPTY_RESULTS = []
@@ -57,7 +58,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
       describe 'checking for required arguments', ->
         beforeEach ->
           loadFixtures 'autocomplete_mobile.html'
-          spyOn AutoComplete.prototype, "_init"
+          spyOn(AutoComplete.prototype, "_init").andCallThrough()
 
         it 'should initialise if required arguments are supplied', ->
           @myAutoComplete = new AutoComplete DEFAULT_CONFIG
@@ -74,40 +75,18 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
 
           expect(AutoComplete.prototype._init).not.toHaveBeenCalled()
 
-      describe 'initialising the component', ->
+      describe 'configuring the component', ->
         beforeEach ->
           loadFixtures 'autocomplete_mobile.html'
-
-        it 'should update the configuration of the component', ->
-          spyOn AutoComplete.prototype, "_updateConfig"
           @myAutoComplete = new AutoComplete DEFAULT_CONFIG
 
-          expect(AutoComplete.prototype._updateConfig).toHaveBeenCalledWith(DEFAULT_CONFIG)
+        it 'should return a config object updated with the passed keys', ->
+          newConfig = {uri: '/findme', parent: '.somewhere'}
+          config = @myAutoComplete._updateConfig newConfig
 
-
-      # it 'should initialise if the element exists', ->
-      #   @myAutoComplete = new AutoComplete {gdf: 'my_search', ugdfi: '/search'}
-
-      #   expect(@myAutoComplete.$el).toBeDefined()
-      #   expect(AutoComplete.prototype._init).toHaveBeenCalled()
-
-      # it 'should not initialise if the input element does not exist', ->
-      #   @myAutoComplete = new AutoComplete {id: 'not_my_search', fd: '/search'}
-
-      #   expect(AutoComplete.prototype._init).not.toHaveBeenCalled()
-
-
-    xdescribe 'Configuration', ->
-      beforeEach ->
-        loadFixtures 'autocomplete_mobile.html'
-        @myAutoComplete = new AutoComplete {id: 'my_search'}
-
-        it 'should '
-
-
-
-
-
+          expect(config.id).toBe(DEFAULT_CONFIG.id)
+          expect(config.uri).toBe(newConfig.uri)
+          expect(config.parent).toBe(newConfig.parent)
 
 
 
