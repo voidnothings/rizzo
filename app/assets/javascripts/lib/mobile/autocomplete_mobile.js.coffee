@@ -1,7 +1,7 @@
 # AutoComplete
 #
 # TODO: - there's a bug with accented characters, they aren't being highlighted
-#         (http://instanceof.me/post/17455522476/accent-folding-javascript as a possible solution)
+#         (http://frightanic.com/projects/jquery-highlight/ as an example)
 #       - possibly cancel an existing XHR if typing continues and the last one hasn't returned yet
 #       - put the classes into a config object
 #       - abstract the XHR code to a separate library
