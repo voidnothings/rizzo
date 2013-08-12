@@ -30,10 +30,14 @@ define [required], ($) ->
 
   class AutoComplete
 
-    DEFAULT_MAP = 
-      title: 'title',
-      type: 'type',
-      uri: 'uri'
+    CONFIG = {
+      threshold: 3,
+      map: {
+        title: 'title',
+        type: 'type',
+        uri: 'uri'
+      }
+    }
 
     constructor: (@args) ->
       @$el = $("##{@args.id}")
@@ -43,7 +47,7 @@ define [required], ($) ->
       if @args.responseMap
         @responseMap = @args.responseMap
       else
-        @responseMap = DEFAULT_MAP
+        @responseMap = CONFIG.map
 
       @_addEventHandlers()
       @showingList = false
@@ -66,15 +70,24 @@ define [required], ($) ->
       #     @_unhideList()
 
       @$el.parent().on 'click', (e) =>
-        if e.target.tagName == 'A'
+        target = e.target
+        if target.tagName == 'A'
           # only set the input element value if the link goes nowhere
-          if e.target.getAttribute('href') == '#'
+          if target.getAttribute('href') == '#'
             e.preventDefault()
-            if lp.isMobile
-              @$el.value = e.target.textContent
-            else
-              @$el[0].value = e.target.textContent
+            @_setValue target.textContent
+            if @responseMap.slug
+              @_setSlug target.parentNode.getAttribute('data-slug')
             @_removeResults()
+
+    _setValue: (text) ->
+      if lp.isMobile
+        @$el.value = text
+      else
+        @$el[0].value = text
+
+    _setSlug: (text) ->
+      document.getElementById('hotel-search-slug').value = text
 
     _handleKeypress: (e) ->
       if e.keyCode == 40 # down arrow
@@ -85,7 +98,7 @@ define [required], ($) ->
         @_highlightUp()
       if e.keyCode == 13 # enter
         if @args.listOnly
-          location.href = e.target.childNodes[0].href
+          location.href = @resultsList.childNodes[@currentHighlight].firstChild.href # aaargh!!!
         else
           e.preventDefault()
           @_selectHighlighted()
@@ -122,7 +135,10 @@ define [required], ($) ->
       results[newActive].className = 'autocomplete__active'
 
     _selectHighlighted: ->
-      @$el.value = @resultsList.childNodes[@currentHighlight].textContent
+      currentItem = @resultsList.childNodes[@currentHighlight]
+      @_setValue currentItem.textContent
+      if @responseMap.slug
+        @_setSlug currentItem.getAttribute('data-slug')
       @_removeResults()
 
     # _hideList: ->
@@ -136,7 +152,7 @@ define [required], ($) ->
     #   body.addClass 'hero-search-results-displayed'
 
     _searchFor: (searchTerm)  ->
-      if searchTerm && searchTerm.length >= 3
+      if searchTerm && searchTerm.length >= CONFIG.threshold
         @searchTerm = searchTerm
         if not @throttled
           @_doRequest @searchTerm
@@ -182,7 +198,7 @@ define [required], ($) ->
 
     _createList: (results) ->
       resultItems = (@_createListItem item for item in results)
-      resultItems.splice(0, @args.results) if @args.results
+      resultItems = resultItems.slice(0, @args.results) if @args.results
       list = document.createElement 'UL'
       list.className = 'autocomplete__results'
       list.appendChild listItem for listItem in resultItems
@@ -191,6 +207,8 @@ define [required], ($) ->
     _createListItem: (item) ->
       listItem = document.createElement 'LI'
       listItem.appendChild @_createAnchor(item)
+      if @responseMap.slug
+        listItem.setAttribute 'data-slug', item.slug
       listItem
 
     _createAnchor: (item) ->
