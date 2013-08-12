@@ -53,3 +53,8 @@ define [], () ->
       @_makeRequest searchTerm if searchTerm?.length >= CONFIG.threshold
 
     _makeRequest: ->
+
+    _generateURI: (searchTerm, scope) ->
+      uri = "#{CONFIG.uri}#{searchTerm}"
+      uri += "?scope=#{scope}" if scope
+      uri

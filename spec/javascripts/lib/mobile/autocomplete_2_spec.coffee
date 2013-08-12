@@ -4,7 +4,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
 
     DEFAULT_CONFIG =
       id: 'my_search',
-      uri: '/search'
+      uri: '/search/'
 
     SEARCH_TERM = 'London'
     TEXT_NODE = 3
@@ -132,24 +132,23 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
       describe 'performing a search', ->
 
         describe 'the search threshold', ->
-          beforeEach ->
-            loadFixtures 'autocomplete_mobile.html'
 
-          it 'should perform a search if the threshold has been reached', ->
-            minimumSearch = 'abc'
-            @myAutoComplete = new AutoComplete DEFAULT_CONFIG
-            spyOn @myAutoComplete, '_makeRequest'
-            @myAutoComplete._searchFor minimumSearch
+          describe 'the default search threshold', ->
+            beforeEach ->
+              @myAutoComplete = new AutoComplete DEFAULT_CONFIG
+              spyOn @myAutoComplete, '_makeRequest'
 
-            expect(@myAutoComplete._makeRequest).toHaveBeenCalledWith(minimumSearch)
+            it 'should perform a search if the threshold has been reached', ->
+              minimumSearch = 'abc'
+              @myAutoComplete._searchFor minimumSearch
 
-          it 'should not perform a search if the threshold has not been reached', ->
-            belowMinimumSearch = 'ab'
-            @myAutoComplete = new AutoComplete DEFAULT_CONFIG
-            spyOn @myAutoComplete, '_makeRequest'
-            @myAutoComplete._searchFor belowMinimumSearch
+              expect(@myAutoComplete._makeRequest).toHaveBeenCalledWith(minimumSearch)
 
-            expect(@myAutoComplete._makeRequest).not.toHaveBeenCalled()
+            it 'should not perform a search if the threshold has not been reached', ->
+              belowMinimumSearch = 'ab'
+              @myAutoComplete._searchFor belowMinimumSearch
+
+              expect(@myAutoComplete._makeRequest).not.toHaveBeenCalled()
 
           describe 'configuring the search threshold', ->
             beforeEach ->
@@ -164,10 +163,52 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
               expect(@myAutoComplete._makeRequest).toHaveBeenCalledWith(minimumSearch)
 
             it 'should not perfom a search if the configured threshold has not been reached', ->
-              minimumSearch = 'abc'
+              minimumSearch = 'abcd'
               @myAutoComplete._searchFor minimumSearch
 
               expect(@myAutoComplete._makeRequest).not.toHaveBeenCalled()
+
+        describe 'calling the search endpoint', ->
+
+          describe 'generating the default search endpoint', ->
+            beforeEach ->
+              @myAutoComplete = new AutoComplete DEFAULT_CONFIG
+
+            it 'should generate the full URI for the search endpoint with the search term', ->
+                searchTerm = 'London'
+                generatedURI = @myAutoComplete._generateURI searchTerm
+
+                expect(generatedURI).toBe("#{DEFAULT_CONFIG.uri}#{searchTerm}")
+
+            it 'should generate the full URI for the search endpoint with the search term and scope', ->
+              searchTerm = 'London'
+              scope = 'homepage'
+              generatedURI = @myAutoComplete._generateURI searchTerm, scope
+
+              expect(generatedURI).toBe("#{DEFAULT_CONFIG.uri}#{searchTerm}?scope=#{scope}")
+
+          describe 'configuring the search endpoint', ->
+            beforeEach ->
+              @myAutoComplete = new AutoComplete DEFAULT_CONFIG
+
+            it 'should generate the full URI for the search endpoint with the search term', ->
+                newConfig = {uri: '/mySearch='}
+                searchTerm = 'London'
+                @myAutoComplete._updateConfig newConfig
+                generatedURI = @myAutoComplete._generateURI searchTerm
+
+                expect(generatedURI).toBe("#{newConfig.uri}#{searchTerm}")
+
+            it 'should generate the full URI for the search endpoint with the search term and scope', ->
+              newConfig = {uri: '/mySearch='}
+              searchTerm = 'London'
+              scope = 'homepage'
+              @myAutoComplete._updateConfig newConfig
+              generatedURI = @myAutoComplete._generateURI searchTerm, scope
+
+              expect(generatedURI).toBe("#{newConfig.uri}#{searchTerm}?scope=#{scope}")
+
+        # describe '', ->
 
 
     # describe 'navigating list with keys', ->
