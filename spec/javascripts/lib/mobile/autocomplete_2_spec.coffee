@@ -2,6 +2,9 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
 
   describe 'AutoComplete 2', ->
 
+    DEFAULT_CONFIG =
+      id: 'my_search',
+      uri: '/search'
     SEARCH_TERM = 'London'
     TEXT_NODE = 3
     EMPTY_RESULTS = []
@@ -50,27 +53,51 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
         expect(AutoComplete).toBeDefined()
 
     describe 'Initialisation', ->
-      beforeEach ->
-        loadFixtures 'autocomplete_mobile.html'
-        spyOn AutoComplete.prototype, "_init"
 
-      it 'should initialise if the element exists', ->
-        @myAutoComplete = new AutoComplete {id: 'my_search', uri: '/search'}
+      describe 'checking for required arguments', ->
+        beforeEach ->
+          loadFixtures 'autocomplete_mobile.html'
+          spyOn AutoComplete.prototype, "_init"
 
-        expect(@myAutoComplete.$el).toBeDefined()
-        expect(AutoComplete.prototype._init).toHaveBeenCalled()
+        it 'should initialise if required arguments are supplied', ->
+          @myAutoComplete = new AutoComplete DEFAULT_CONFIG
 
-      it 'should not initialise if the input element does not exist', ->
-        @myAutoComplete = new AutoComplete {id: 'not_my_search', uri: '/search'}
+          expect(AutoComplete.prototype._init).toHaveBeenCalledWith(DEFAULT_CONFIG)
 
-        expect(AutoComplete.prototype._init).not.toHaveBeenCalled()
+        it 'should not initialise if required argument element ID is not supplied', ->
+          @myAutoComplete = new AutoComplete {uri: '/search'}
 
-       it 'should not initialise if element ID argument is not supplied', ->
-        @myAutoComplete = new AutoComplete {id: 'not_my_search', uri: '/search'}
+          expect(AutoComplete.prototype._init).not.toHaveBeenCalled()
 
-        expect(AutoComplete.prototype._init).not.toHaveBeenCalled()
+        it 'should not initialise if required argument URI is not supplied', ->
+          @myAutoComplete = new AutoComplete {id: 'my_search'}
 
-    describe 'Configuration', ->
+          expect(AutoComplete.prototype._init).not.toHaveBeenCalled()
+
+      describe 'initialising the component', ->
+        beforeEach ->
+          loadFixtures 'autocomplete_mobile.html'
+
+        it 'should update the configuration of the component', ->
+          spyOn AutoComplete.prototype, "_updateConfig"
+          @myAutoComplete = new AutoComplete DEFAULT_CONFIG
+
+          expect(AutoComplete.prototype._updateConfig).toHaveBeenCalledWith(DEFAULT_CONFIG)
+
+
+      # it 'should initialise if the element exists', ->
+      #   @myAutoComplete = new AutoComplete {gdf: 'my_search', ugdfi: '/search'}
+
+      #   expect(@myAutoComplete.$el).toBeDefined()
+      #   expect(AutoComplete.prototype._init).toHaveBeenCalled()
+
+      # it 'should not initialise if the input element does not exist', ->
+      #   @myAutoComplete = new AutoComplete {id: 'not_my_search', fd: '/search'}
+
+      #   expect(AutoComplete.prototype._init).not.toHaveBeenCalled()
+
+
+    xdescribe 'Configuration', ->
       beforeEach ->
         loadFixtures 'autocomplete_mobile.html'
         @myAutoComplete = new AutoComplete {id: 'my_search'}

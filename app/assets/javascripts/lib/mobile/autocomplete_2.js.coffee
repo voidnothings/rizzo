@@ -10,7 +10,9 @@ define [], () ->
         uri: 'uri'
 
     constructor: (args) ->
-      @$el = document.getElementById(args.id)
-      @_init() if @$el
+      @_init args if args.id and args.uri
 
-    _init: ->
+    _init: (args) ->
+      @_updateConfig args
+
+    _updateConfig: ->
