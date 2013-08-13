@@ -224,12 +224,14 @@
 // Toggle between the search and photo story panels
 #hero-swipe:checked
   & ~ .hero__panel--search
-    bottom: 100%
+    opacity: 0
   & ~ .hero__panel--story
     top: 0
   & ~ .hero__overlay
     background-color: rgba(0,0,0,0)
 
+
+// Josh did this - probably refactor ;)
 // hero autocomplete
 .hero__search
   +transition(all, .3, $ease-cubic-out)
