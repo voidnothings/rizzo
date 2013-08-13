@@ -33,7 +33,7 @@ define ['jquery'], ($)->
     showLoginAndRegister: ()->
       @emptyUserNav()
       joinElement = "<a class='nav__item nav__item--primary js-user-join js-nav-item' href='#{@options.registerLink}'>Join</a>"
-      signinElement = "<a class='nav__item nav__item--primary js-user-signin js-nav-item' href='#{@signInUrl()}'>Sign-In</a>"
+      signinElement = "<a class='nav__item nav__item--primary js-user-signin js-nav-item' href='#{@signInUrl()}'>Sign in</a>"
       @el.append(signinElement + joinElement)
 
     showUserBox: ->
@@ -49,11 +49,11 @@ define ['jquery'], ($)->
 
     userOptionsMenu: ->
       userOptions = [
-        {title: 'My Profile', uri: "#{@options.membersUrl}", style:"js-user-profile"},
+        {title: 'My profile', uri: "#{@options.membersUrl}", style:"js-user-profile"},
         {title: 'Settings', uri: "#{@options.membersUrl}/#{@lpUserName}/edit",  style:"js-user-settings"},
         {title: 'Messages', uri: "#{@options.messagesUrl}", style:"js-user-msg"},
-        {title: 'Forum Activity', uri: "#{@options.forumPostsUrlTemplate.replace('[USERNAME]', @lpUserName)}", style:"nav-user-options__item--forum js-user-forum" },
-        {title: 'Sign-Out', uri: "#{@options.signOutUrl}", style:"nav-user-options__item--signout js-user-signout" }
+        {title: 'Forum activity', uri: "#{@options.forumPostsUrlTemplate.replace('[USERNAME]', @lpUserName)}", style:"nav-user-options__item--forum js-user-forum" },
+        {title: 'Sign out', uri: "#{@options.signOutUrl}", style:"nav-user-options__item--signout js-user-signout" }
       ]
       optionElements =  ("<a class='nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
       userMenu = "<span class='wv--hidden nav--offscreen__title'>#{@lpUserName}</span><div class='nav__submenu nav__submenu--user'><div class='nav--stacked nav__submenu__content icon--arrow-up--green--after nav__submenu__content--user nav-user-options js-user-options'><div class='nav__submenu__item nav__submenu__title'>#{@lpUserName}</div>#{optionElements}</div></div>"
