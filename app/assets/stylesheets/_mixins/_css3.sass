@@ -4,12 +4,6 @@
 // Vendor prefixes are determined by caniuse.com
 // -----------------------------------------------------------------------------
 
-// Easing variables
-$ease-circ-out  : cubic-bezier(0.075, 0.820, 0.165, 1.000)
-$ease-circ-in   : cubic-bezier(0.600, 0.040, 0.980, 0.335)
-$ease-cubic-out : cubic-bezier(0.215, 0.610, 0.355, 1.000)
-$ease-cubic-in  : cubic-bezier(0.550, 0.055, 0.675, 0.190)
-
 // Styleguide - 4.1 - Mixin - Border Radius
 //
 // $radius - The corner radius
@@ -118,6 +112,13 @@ $ease-cubic-in  : cubic-bezier(0.550, 0.055, 0.675, 0.190)
   -o-transition:      $transition1, $transition2, $transition3, $transition4, $transition5
   transition:         $transition1, $transition2, $transition3, $transition4, $transition5
 
+// For when you need to animate a property that is still prefixed
+@mixin vendor-prefixed-transition($property: all, $duration: 0.5, $style: ease)
+  -webkit-transition: -webkit-#{$property} #{$duration + s} $style
+  -moz-transition:    -moz-#{$property} #{$duration + s} $style
+  -ms-transition:     -ms-#{$property} #{$duration + s} $style
+  -o-transition:      -o-#{$property} #{$duration + s} $style
+  transition:         $property #{$duration + s} $style
 
 @mixin filter($filter1, $filter2: null, $filter3: null, $filter4: null, $filter5: null)
   -webkit-filter: ($filter1 $filter2 $filter3 $filter4 $filter5)
