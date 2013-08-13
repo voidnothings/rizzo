@@ -1,4 +1,4 @@
-$tab-height: 425px
+$tab-height: 375px
 $tab-height--wide: 510px
 $tab-height--1250: 610px
 
@@ -8,6 +8,8 @@ $tab-height--1250: 610px
 
 .tabs-content--homepage
   height: $tab-height
+  position: relative
+  z-index: 1
   +transition(opacity, 0.3, ease)
   +respond-to(medium-view)
     height: $tab-height--wide
@@ -20,15 +22,22 @@ $tab-height--1250: 610px
 
   .dropdown__value
     &:after
-      top: 2px
+      top: 0px
 
 .tab--homepage
+  +transition(all, 1, ease)
   +box-sizing()
   height: $tab-height
-  display: none
-  position: relative
+  display: block
+  left: 0
+  opacity: 0
+  position: absolute
+  top: 0
+  width: 100%
+  z-index: 1
   &.is-active
-    display: block
+    opacity: 1
+    z-index: 2
   +respond-to(medium-view)
     height: $tab-height--wide
   +respond-to(1250)
@@ -41,7 +50,7 @@ $tab-height--1250: 610px
   background: white
   margin: 0 auto
   overflow: hidden
-  padding: 20px 30px 0 30px
+  padding: 20px 20px 0 20px
   +respond-to(medium-view)
     overflow: visible
     position: relative
@@ -106,7 +115,7 @@ $tab-height--1250: 610px
     text-align: center
     position: absolute
     right: 55%
-    top: 37%
+    top: 40%
     width: 300px
 
 .tab--homepage__heading
@@ -114,6 +123,9 @@ $tab-height--1250: 610px
   margin-bottom: 20px
 
 .tab--buttons
+  background-color: white
+  position: relative
+  z-index: 2
   .ie8 &
     width: 1100px
     margin: 0 auto
@@ -207,8 +219,8 @@ $tab-height--1250: 610px
     font-size: 16px
   
 .tab--homepage__inner .copy--title  
-  +font-size(26)
-  line-height: 30px
+  +font-size(24)
+  line-height: 28px
   +respond-to(medium-view)
     +font-size(32)
     line-height: 32px

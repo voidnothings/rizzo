@@ -12,7 +12,9 @@
   z-index: 2
   .homepage &
     background-color: #1d508d
-    padding: 20px
+    padding: 10px 15px
+    +respond-to(medium-view)
+      padding: 20px
     .media--lp-logo
       margin: 0
 
@@ -61,6 +63,8 @@
   margin-right: 5px
   vertical-align: middle
   width: 24px
+  .homepage &
+    background-position: -23px -127px    
   .responsive &
     text-indent: 0
     width: auto
@@ -68,6 +72,9 @@
     +respond-to(wide-view)
       text-indent: -999em
       width: 24px
+      background-position: -23px -127px
+      position: relative
+      top: -4px
       background-image: url(image_path("core/core-sprite-standard.png"))
       +retinafy()
         background-image: url(image_path("core/core-sprite-2x.png"))

@@ -189,7 +189,7 @@ $mobile-standard-card-image-height: 192px
       right: 0
       bottom: 0
 
-  &:hover
+  .js-hover &:hover
     .card__content
       &:after
         content: none
@@ -202,10 +202,10 @@ $mobile-standard-card-image-height: 192px
   .card__content
     +transition(height, 0.5, ease)
   
-  &:hover
+  .js-hover &:hover
     .card__content
       height: $card-grid-height - ( 2*$card-hotel-content-padding) - 45px !important // important until hotel image padding is the same...
-  .homepage &:hover
+  .js-hover.homepage &:hover
     .card__content
       height: $mobile-card-grid-height - ( 2*$card-hotel-content-padding) - 45px !important
       +respond-to(medium-view)
@@ -215,6 +215,6 @@ $mobile-standard-card-image-height: 192px
 .card--extended-content--half
   .card__content
     +transition(height, 0.3, ease)
-  &:hover
+  .js-hover &:hover
     .card__content
       height: $card-grid-height - ( 2*$card-hotel-content-padding) - 225px !important // important until hotel image padding is the same...

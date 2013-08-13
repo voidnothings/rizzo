@@ -10,6 +10,7 @@ $slideHoverOffset: -0.714em
 $slidePadding: 2.857em
 $slideArrowSpacing: 1.786em
 $slideHoverArrowSpacing: 0.357em
+$slideOffsetHome: -4.5em
 
 .slider__container
   height: 100%
@@ -22,22 +23,25 @@ $slideHoverArrowSpacing: 0.357em
   display: none
   position: absolute
   top: 0
+  width: 100%
   z-index: 4
   &.is-prev, &.is-current, &.is-next
     display: block
   &.is-prev
     left: -100%
+    z-index: 1
     .supports-3d &
       left: auto
       +transform(translate3d(-99.9%, 0, 0))
   &.is-current
     left: 0
-    z-index: 3
+    z-index: 5
     .supports-3d &
       left: auto
       +transform(translate3d(0, 0, 0))
   &.is-next
     left: 100%
+    z-index: 1
     .supports-3d &
       left: auto
       +transform(translate3d(99.9%, 0, 0))
@@ -57,7 +61,7 @@ $slideHoverArrowSpacing: 0.357em
   @extend %transition--base
   position: absolute
   width: 100%
-  z-index: 4
+  z-index: 6
 
   .homepage &
     top: 350px
@@ -86,7 +90,7 @@ $slideHoverArrowSpacing: 0.357em
     vertical-align: top
 
   .homepage &
-    font-size: 28px
+    font-size: 24px
     &:after, &:before
       content: ""
       width: 40px
@@ -98,22 +102,34 @@ $slideHoverArrowSpacing: 0.357em
 
 .slider__control--prev
   @extend %chevron-left-after
-  left: $slideOffset
+  left: $slideOffsetHome
   padding-right: $slidePadding
+  
+  .homepage &
+    left: $slideOffsetHome
+    
   &:after
     right: $chevronOffset
   &:hover
     left: $slideHoverOffset
+  .at-beginning &
+    opacity: 0
   
 
 .slider__control--next
   @extend %chevron-right-before
   right: $slideOffset
   padding-left: $slidePadding
+  
+  .homepage &
+    right: $slideOffsetHome
+  
   &:before
     left: $chevronOffset
   &:hover
     right: $slideHoverOffset
+  .at-end &
+    opacity: 0
   
 
 .slider__pagination
@@ -131,6 +147,7 @@ $slideHoverArrowSpacing: 0.357em
   height: 7px
   margin: 0 4px
   width: 7px
+  color: $lpblue
 
   &:hover, &.is-active
-    background: $lpblue
+    background: $linkblue

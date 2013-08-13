@@ -8,10 +8,10 @@
 
 .row--cards__inner
   +transition(left, 0.5, cubic-bezier(0.075, 0.820, 0.165, 1.000))
-  margin: 0 0 20px 10% 
+  margin: 0 0 20px 10px 
   height: $mobile-card-grid-height
   +respond-to(wide-view)
-    height: (2 * $card-grid-height)
+    height: (2 * $card-grid-height + 10)
     margin: 0 auto 20px
 
 .row--cards__group

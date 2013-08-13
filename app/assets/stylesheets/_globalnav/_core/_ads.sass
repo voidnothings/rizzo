@@ -33,6 +33,14 @@
 // 
 // ----------------------------------------------------------------------------
 
+.ad-label
+  @extend %helvetica-neue
+  @extend %tiny-type
+  color: $highlight
+  line-height: 20px
+  text-align: center
+  text-transform: uppercase
+
 .card--ad
   .tag--horizontal
     +transition(opacity, 1, ease)
@@ -51,7 +59,11 @@
         display: none
 
   .homepage &
-    width: 320px
+    width: 300px
+    +respond-to(medium-view)
+      width: 394px
+    .card__content
+      padding-top: 45px
 
 .ad-trafficDriver, .ad-sponsorTile, .ad-mpu, .ad-doubleMpu
   &.card__content
@@ -91,7 +103,7 @@
     +respond-to(medium-view)
       margin-bottom: 15px
       padding-top: 60px
-      height: 304px
+      height: 365px
 
 .results .card
   &.card--ad
