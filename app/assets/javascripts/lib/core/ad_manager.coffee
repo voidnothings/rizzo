@@ -13,8 +13,6 @@ define ['jquery', 'gpt'], ->
     firstLoaded: false
 
     init : () ->
-      # NOTE: The following line is temporary until we switch to the new DFP server.
-      $('body').removeClass('js-ad-manager-tmp').addClass('js-new-ad-manager')
 
       # GPT Boilerplate code
       window.googletag = window.googletag || {}
