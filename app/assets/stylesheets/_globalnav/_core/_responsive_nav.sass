@@ -72,22 +72,11 @@ $responsive-nav-width: 240px
 
 // On click..
 
-// Move the button
-#nav--primary__trigger:checked + .nav--primary__trigger
-  right: 10px + $responsive-nav-width
-
-// Move the nav onto the screen
-#nav--primary__trigger:checked ~ .m-hidden-menu
-  right: 0
-
-// Move our main content to the left so it looks like the nav is pushing it off screen
-#nav--primary__trigger:checked ~ .row--content
-  left: -$responsive-nav-width
-
-// Move the logo (it sits outside our main content area)
-#nav--primary__trigger:checked ~ .logo--header
-  left: -$responsive-nav-width
-
-// Move the footer (it sits outside our main content area)
-#nav--primary__trigger:checked ~ .wrap--footer
-  left: -$responsive-nav-width
+// Move the responsive nav onto the screen
+#nav--primary__trigger
+  &:checked + .nav--primary__trigger,
+  &:checked ~ .m-hidden-menu,
+  &:checked ~ .row--content,
+  &:checked ~ .logo--header,
+  &:checked ~ .wrap--footer
+    +transform(translateX(-$responsive-nav-width))
