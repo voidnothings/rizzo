@@ -32,11 +32,14 @@
       "placeholder" of document.createElement("input")
 
   for feature of features
-    if features[feature]()
-      document.getElementsByTagName('html')[0].className += ' supports-'+feature
-      window.lp = window.lp || {}
-      window.lp.supports = window.lp.supports || {}
-      lp.supports[feature] = true
+    window.lp = window.lp || {}
+    window.lp.supports = window.lp.supports || {}
+    lp.supports[feature] = !!features[feature]()
+
+    if lp.supports[feature]
+      document.documentElement.className += ' supports-'+feature
+    else
+      document.documentElement.className += ' no-'+feature+'-support'
 
   return
 )()
