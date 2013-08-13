@@ -37,9 +37,9 @@
     lp.supports[feature] = !!features[feature]()
 
     if lp.supports[feature]
-      document.getElementsByTagName('html')[0].className += ' supports-'+feature
+      document.documentElement.className += ' supports-'+feature
     else
-      document.getElementsByTagName('html')[0].className += ' no-'+feature+'-support'
+      document.documentElement.className += ' no-'+feature+'-support'
 
   return
 )()
