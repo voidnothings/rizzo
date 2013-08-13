@@ -1,4 +1,4 @@
-%article.card.card--single.card--poi.card--poi--entertainment.js-card.js-single{class: stack_item.image_url ? 'card--small-image card--extended-content' : 'card--no-image' }
+%article.card.card--single.card--poi.card--poi--transport.js-card.js-single{class: stack_item.image_url ? 'card--small-image card--extended-content' : 'card--no-image' }
   %a.link--wrapper(href="/#{stack_item.slug}")
     = render :partial => '/shared/cards/things_to_do/card_tags', :locals => { :stack_item => stack_item }
     - if stack_item.image_url
@@ -6,7 +6,7 @@
         = image_tag(stack_item.image_url, class: 'portrait card__image')
     %section.card__content.obj-media__body
       %span.card__context
-        Entertainment
+        Transport
       %h1.card__name.js-card-name
         = stack_item.name
       %p.card__description
