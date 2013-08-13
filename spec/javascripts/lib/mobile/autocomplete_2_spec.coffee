@@ -175,10 +175,10 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
               @myAutoComplete = new AutoComplete DEFAULT_CONFIG
 
             it 'should generate the full URI for the search endpoint with the search term', ->
-                searchTerm = 'London'
-                generatedURI = @myAutoComplete._generateURI searchTerm
+              searchTerm = 'London'
+              generatedURI = @myAutoComplete._generateURI searchTerm
 
-                expect(generatedURI).toBe("#{DEFAULT_CONFIG.uri}#{searchTerm}")
+              expect(generatedURI).toBe("#{DEFAULT_CONFIG.uri}#{searchTerm}")
 
             it 'should generate the full URI for the search endpoint with the search term and scope', ->
               searchTerm = 'London'
@@ -192,12 +192,12 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
               @myAutoComplete = new AutoComplete DEFAULT_CONFIG
 
             it 'should generate the full URI for the search endpoint with the search term', ->
-                newConfig = {uri: '/mySearch='}
-                searchTerm = 'London'
-                @myAutoComplete._updateConfig newConfig
-                generatedURI = @myAutoComplete._generateURI searchTerm
+              newConfig = {uri: '/mySearch='}
+              searchTerm = 'London'
+              @myAutoComplete._updateConfig newConfig
+              generatedURI = @myAutoComplete._generateURI searchTerm
 
-                expect(generatedURI).toBe("#{newConfig.uri}#{searchTerm}")
+              expect(generatedURI).toBe("#{newConfig.uri}#{searchTerm}")
 
             it 'should generate the full URI for the search endpoint with the search term and scope', ->
               newConfig = {uri: '/mySearch='}
