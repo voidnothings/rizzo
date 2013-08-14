@@ -64,7 +64,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
         it 'should initialise if required arguments are supplied', ->
           myAutoComplete = new AutoComplete DEFAULT_CONFIG
 
-          expect(AutoComplete.prototype._init).toHaveBeenCalledWith(DEFAULT_CONFIG)
+          expect(AutoComplete.prototype._init).toHaveBeenCalledWith DEFAULT_CONFIG
 
         it 'should not initialise if required argument element ID is not supplied', ->
           myAutoComplete = new AutoComplete {uri: '/search'}
@@ -85,9 +85,9 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
           newConfig = {uri: '/findme', parent: '.somewhere'}
           config = myAutoComplete._updateConfig newConfig
 
-          expect(config.id).toBe(DEFAULT_CONFIG.id)
-          expect(config.uri).toBe(newConfig.uri)
-          expect(config.parent).toBe(newConfig.parent)
+          expect(config.id).toBe DEFAULT_CONFIG.id
+          expect(config.uri).toBe newConfig.uri
+          expect(config.parent).toBe newConfig.parent
 
       describe 'setting up the component', ->
         beforeEach ->
@@ -97,20 +97,17 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
           myAutoComplete = new AutoComplete DEFAULT_CONFIG
 
           expect(myAutoComplete.results).toBeDefined()
-          expect(myAutoComplete.results.tagName).toBe('UL')
-          expect(myAutoComplete.results.childNodes.length).toBe(0)
-          expect(myAutoComplete.results.className).toBe('autocomplete__results')
+          expect(myAutoComplete.results.tagName).toBe 'UL'
+          expect(myAutoComplete.results.childNodes.length).toBe 0
+          expect(myAutoComplete.results.className).toBe 'autocomplete__results'
           expect(myAutoComplete.results.hovered).not.toBeDefined()
 
-        # it 'should create the list element with the specified class name', ->
-        #   newConfig = {id: 'my_search', uri: '/search', resultsClass: 'mysearch__results'}
-        #   myAutoComplete = new AutoComplete newConfig
+        it 'should create the list element with the specified class name', ->
+          newConfig = {id: 'my_search', uri: '/search', resultsClass: 'mysearch__results'}
+          myAutoComplete = new AutoComplete newConfig
 
-        #   expect(myAutoComplete.results).toBeDefined()
-        #   expect(myAutoComplete.results.tagName).toBe('UL')
-        #   expect(myAutoComplete.results.childNodes.length).toBe(0)
-        #   expect(myAutoComplete.results.className).toBe(newConfig.resultsClass)
-        #   expect(myAutoComplete.results.hovered).not.toBeDefined()
+          expect(myAutoComplete.results).toBeDefined()
+          expect(myAutoComplete.results.className).toBe newConfig.resultsClass
 
     describe 'the results list', ->
       beforeEach ->
@@ -120,7 +117,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
       it 'should add a list hovered property to the component when mouse is over results', ->
         myAutoComplete._resultsMouseOver()
 
-        expect(myAutoComplete.results.hovered).toBe(true)
+        expect(myAutoComplete.results.hovered).toBe true
 
       it 'should remove a list hovered property from the component when mouse is removed from results', ->
         myAutoComplete._resultsMouseOver()
@@ -143,7 +140,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
               minimumSearch = 'abc'
               myAutoComplete._searchFor minimumSearch
 
-              expect(myAutoComplete._makeRequest).toHaveBeenCalledWith(minimumSearch)
+              expect(myAutoComplete._makeRequest).toHaveBeenCalledWith minimumSearch
 
             it 'should not perform a search if the threshold has not been reached', ->
               belowMinimumSearch = 'ab'
@@ -161,7 +158,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
               minimumSearch = 'abcde'
               myAutoComplete._searchFor minimumSearch
 
-              expect(myAutoComplete._makeRequest).toHaveBeenCalledWith(minimumSearch)
+              expect(myAutoComplete._makeRequest).toHaveBeenCalledWith minimumSearch
 
             it 'should not perfom a search if the configured threshold has not been reached', ->
               minimumSearch = 'abcd'
@@ -179,14 +176,14 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
               searchTerm = 'London'
               generatedURI = myAutoComplete._generateURI searchTerm
 
-              expect(generatedURI).toBe("#{DEFAULT_CONFIG.uri}#{searchTerm}")
+              expect(generatedURI).toBe "#{DEFAULT_CONFIG.uri}#{searchTerm}"
 
             it 'should generate the full URI for the search endpoint with the search term and scope', ->
               searchTerm = 'London'
               scope = 'homepage'
               generatedURI = myAutoComplete._generateURI searchTerm, scope
 
-              expect(generatedURI).toBe("#{DEFAULT_CONFIG.uri}#{searchTerm}?scope=#{scope}")
+              expect(generatedURI).toBe "#{DEFAULT_CONFIG.uri}#{searchTerm}?scope=#{scope}"
 
           describe 'configuring the search endpoint', ->
             beforeEach ->
@@ -198,7 +195,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
               myAutoComplete._updateConfig newConfig
               generatedURI = myAutoComplete._generateURI searchTerm
 
-              expect(generatedURI).toBe("#{newConfig.uri}#{searchTerm}")
+              expect(generatedURI).toBe "#{newConfig.uri}#{searchTerm}"
 
             it 'should generate the full URI for the search endpoint with the search term and scope', ->
               newConfig = {uri: '/mySearch='}
@@ -207,7 +204,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
               myAutoComplete._updateConfig newConfig
               generatedURI = myAutoComplete._generateURI searchTerm, scope
 
-              expect(generatedURI).toBe("#{newConfig.uri}#{searchTerm}?scope=#{scope}")
+              expect(generatedURI).toBe "#{newConfig.uri}#{searchTerm}?scope=#{scope}"
 
         describe 'search throttling', ->
           it 'should do something cool'
@@ -220,7 +217,15 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
         it 'should insert a list item for each result item into the results list element', ->
           myAutoComplete._populateResults SEARCH_RESULTS
 
-          expect(myAutoComplete.results.childNodes.length).toBe(2)
+          results = myAutoComplete.results.childNodes
+
+          expect(myAutoComplete.results.populated).toBe true
+          expect(results.length).toBe SEARCH_RESULTS.length
+          expect(results[0].textContent).toBe SEARCH_RESULTS[0].title
+          expect(results[1].textContent).toBe SEARCH_RESULTS[1].title
+          expect(results[2].textContent).toBe SEARCH_RESULTS[2].title
+
+
 
       xdescribe 'generating the search result items', ->
 
@@ -233,15 +238,14 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
 
             results = myAutoComplete.results.childNodes
 
-            expect(results[0].tagName).toBe('A')
-            expect(results[0].textContent).toBe('London')
+            expect(results[0].tagName).toBe 'A'
+            expect(results[0].textContent).toBe 'London'
 
         describe 'generating a list with text items', ->
 
           beforeEach ->
             basicMap = 
-              title: 'name',
-              type: 'category'
+              title: 'name'
 
             newConfig = {responseMap: basicMap}
 
@@ -253,8 +257,8 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
 
             results = myAutoComplete.results.childNodes
 
-            expect(results[0].tagName).toBe('LI')
-            expect(results[0].textContent).toBe('London')
+            expect(results[0].tagName).toBe 'LI'
+            expect(results[0].textContent).toBe 'London'
 
 
 
@@ -310,35 +314,35 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
           testSearchTerm = 'Lond'
 
           highlightedText = myAutoComplete._highlightText SEARCH_RESULTS[0].title, testSearchTerm
-          expect(highlightedText).toBe('<b>Lond</b>on')
+          expect(highlightedText).toBe '<b>Lond</b>on'
 
         it 'should highlight the search text at the end of a title', ->
           testSearchTerm = 'don'
 
           highlightedText = myAutoComplete._highlightText SEARCH_RESULTS[0].title, testSearchTerm
-          expect(highlightedText).toBe('Lon<b>don</b>')
+          expect(highlightedText).toBe 'Lon<b>don</b>'
 
         it 'should highlight the search text in the middle of a title', ->
           testSearchTerm = 'ond'
 
           highlightedText = myAutoComplete._highlightText SEARCH_RESULTS[0].title, testSearchTerm
-          expect(highlightedText).toBe('L<b>ond</b>on')
+          expect(highlightedText).toBe 'L<b>ond</b>on'
 
         it 'should highlight the search text if it exactly matches a title', ->
           testSearchTerm = 'London'
 
           highlightedText = myAutoComplete._highlightText SEARCH_RESULTS[0].title, testSearchTerm
-          expect(highlightedText).toBe('<b>London</b>')
+          expect(highlightedText).toBe '<b>London</b>'
 
         it 'should highlight the search text multiple times', ->
           testSearchTerm = 'London'
           testTitle = 'Is London really as nice as London?'
 
           highlightedText = myAutoComplete._highlightText testTitle, testSearchTerm
-          expect(highlightedText).toBe('Is <b>London</b> really as nice as <b>London</b>?')
+          expect(highlightedText).toBe 'Is <b>London</b> really as nice as <b>London</b>?'
 
         it 'should not highlight anything if the search text is not found', ->
           testSearchTerm = 'London'
 
           highlightedText = myAutoComplete._highlightText SEARCH_RESULTS[1].title, testSearchTerm
-          expect(highlightedText).toBe('Paris')
+          expect(highlightedText).toBe 'Paris'

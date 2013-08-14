@@ -47,9 +47,6 @@ define [], () ->
     _resultsMouseOut: ->
       delete @results.hovered
 
-
-
-
     _searchFor: (searchTerm) ->
       @_makeRequest searchTerm if searchTerm?.length >= CONFIG.threshold
 
@@ -60,13 +57,9 @@ define [], () ->
       uri += "?scope=#{scope}" if scope
       uri
 
-
-    _populateResults: ->
-      @results.appendChild document.createElement('LI')
-      @results.appendChild document.createElement('LI')
-
-
-
+    _populateResults: (resultItems) ->
+      @results.appendChild(@_createListItem listItem) for listItem in resultItems
+      @results.populated = true
 
     _createListItem: (item, searchTerm) ->
       listItem = document.createElement 'LI'
