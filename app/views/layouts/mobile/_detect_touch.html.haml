@@ -1,9 +1,9 @@
 :javascript
   (function(){
     window.lp = window.lp || {};
-    window.lp.touch = true;
+    window.lp.touch = false;
     if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
-      document.documentElement.className = document.documentElement.className.replace(/\btouch\b/,'no-touch')
-      window.lp.touch = false;
+      document.documentElement.className = document.documentElement.className.replace(/\bno-touch\b/,'touch')
+      window.lp.touch = true;
     }
   })()
