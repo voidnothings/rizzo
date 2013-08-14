@@ -31,8 +31,11 @@
       opacity: 1
     .hero__overlay
       background: rgba(0,0,0,0.5)
+    .hero__search
+      width: 90%
 
 .hero__search
+  @extend %inline-block
   +transition(all, .3, $ease-cubic-out)
   overflow: hidden
   text-align: left
