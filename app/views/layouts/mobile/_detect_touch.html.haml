@@ -1,19 +1,9 @@
 :javascript
   (function(){
     window.lp = window.lp || {};
-    window.lp.touch = true;
-    var removeTouch = function(){
-      (function(H){H.className=H.className.replace(/\btouch\b/,'no-touch')})(document.documentElement);
-      window.lp.touch = false;
-      if (document.removeEventListener) {
-      	document.removeEventListener('mousemove', removeTouch);
-      } else {
-      	document.detachEvent('onmousemove', removeTouch);
-      }
-    };
-    if (document.addEventListener) {
-    	document.addEventListener('mousemove', removeTouch, false);
-    } else {
-    	document.attachEvent('onmousemove', removeTouch);
+    window.lp.touch = false;
+    if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-touch\b/,'touch')
+      window.lp.touch = true;
     }
   })()
