@@ -46,7 +46,7 @@ define ['jsmin'], ($)->
     showLoginAndRegister: ()->
       # For the mobile version we will combine them into one link
       @emptyUserNav()
-      joinElement = "<a class='icon--signin-line--grey--before nav__item nav__item--primary js-user-join js-nav-item' href=" + @signInUrl() + ">Join / Sign-In</a>"
+      joinElement = "<a class='icon--signin-line--grey--before nav__item nav__item--primary js-user-join js-nav-item' href=" + @signInUrl() + ">Join / sign in</a>"
       @$el.innerHTML += joinElement
 
     showUserBox: ->
