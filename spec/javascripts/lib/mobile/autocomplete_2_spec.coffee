@@ -169,6 +169,34 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
 
               expect(myAutoComplete._makeRequest).not.toHaveBeenCalled()
 
+          describe 'searching for a term when results are displayed', ->
+            beforeEach ->
+              loadFixtures 'autocomplete_mobile.html'
+              myAutoComplete = new AutoComplete DEFAULT_CONFIG
+              myAutoComplete._searchFor 'Lon'
+              spyOn myAutoComplete, '_makeRequest'
+
+            it 'should perfom a search if the threshold has been reached', ->
+              minimumSearch = 'Lond'
+              myAutoComplete._searchFor minimumSearch
+
+              expect(myAutoComplete._makeRequest).toHaveBeenCalledWith minimumSearch
+
+            it 'should not perfom a search if the threshold has been reached', ->
+              minimumSearch = 'Lo'
+              myAutoComplete._searchFor minimumSearch
+
+              expect(myAutoComplete._makeRequest).not.toHaveBeenCalled()
+
+            it 'should remove previous results if the threshold has not been reached', ->
+              minimumSearch = 'Lo'
+              spyOn myAutoComplete, '_removeResults'
+              myAutoComplete.results.displayed = true
+              myAutoComplete._searchFor minimumSearch
+
+              expect(myAutoComplete._makeRequest).not.toHaveBeenCalled()
+              expect(myAutoComplete._removeResults).toHaveBeenCalled()
+
         describe 'generating the search URI', ->
 
           describe 'generating the default search endpoint', ->
@@ -231,11 +259,11 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
 
         describe 'adding items to an empty list', ->
           it 'should insert a list item for each result item into the results list element', ->
-            expect(myAutoComplete.results.populated).not.toBeDefined()
+            expect(myAutoComplete.results.displayed).not.toBeDefined()
 
             myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
 
-            expect(myAutoComplete.results.populated).toBe true
+            expect(myAutoComplete.results.displayed).toBe true
 
             results = myAutoComplete.results.childNodes
             expect(results.length).toBe SEARCH_RESULTS.length
@@ -263,8 +291,24 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
 
             results = myAutoComplete.results.childNodes
 
-            expect(myAutoComplete.results.populated).toBe true
+            expect(myAutoComplete.results.displayed).toBe true
             expect(results.length).toBe 1
+            expect(results[0].textContent).toBe newResults[0].title
+
+      describe 'limiting the number of results', ->
+        newConfig = {id: 'my_search', uri: '/search', limit: 2}
+
+        beforeEach ->
+          loadFixtures 'autocomplete_mobile.html'
+          myAutoComplete = new AutoComplete newConfig
+          myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
+          
+        it 'should limited the number of search items generated', ->
+          results = myAutoComplete.results.childNodes
+
+          expect(results.length).toBe 2
+          expect(results[0].textContent).toBe SEARCH_RESULTS[0].title
+          expect(results[1].textContent).toBe SEARCH_RESULTS[1].title
 
       describe 'generating a list item from a result item', ->
         item = null
@@ -337,7 +381,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
             anchor = item.childNodes[0]
             expect(anchor.tagName).toBe 'A'
             expect(anchor.getAttribute('href')).toBe SEARCH_RESULTS[0].uri
-            expect(anchor.className).toBe 'autocomplete__result__link'
+            expect(anchor.className).toBe 'autocomplete__result__link icon--place--white--before'
 
           it 'should contain an anchor tag containing the highlighted search term', ->
             anchor = item.childNodes[0]

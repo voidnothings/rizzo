@@ -36,24 +36,42 @@ define [], () ->
       results.className = @config.resultsClass
 
       results.addEventListener 'mouseover', (e) =>
-        @_resultsMouseOver()
+        @_resultsMouseOver(e.target)
       , false
 
-      results.addEventListener 'mouseout', =>
-        @_resultsMouseOut()
+      results.addEventListener 'mouseout', (e) =>
+        @_resultsMouseOut(e.target)
       , false
 
       results
 
     # event handlers for mouse events
-    _resultsMouseOver: ->
+    _resultsMouseOver: (target) ->
       @results.hovered = true
 
-    _resultsMouseOut: ->
+      until target.tagName is 'LI'
+        target = target.parentNode
+
+      # clear old highlight
+      @_removeClass(@results.highlighted, 'autocomplete__current') if @results.highlighted
+
+      @results.highlighted = target
+      @_highlightCurrent @results.highlighted
+
+    _resultsMouseOut: (target) ->
       delete @results.hovered
 
+      # clear old highlight
+      @_removeClass(@results.highlighted, 'autocomplete__current') if @results.highlighted
+
+    _highlightCurrent: (listItem) ->
+      listItem.className += ' autocomplete__current'
+
     _searchFor: (searchTerm) ->
-      @_makeRequest searchTerm if searchTerm?.length >= @config.threshold
+      if searchTerm?.length >= @config.threshold
+        @_makeRequest searchTerm
+      else if @results.displayed
+        @_removeResults()
 
     _makeRequest: (searchTerm) ->
       myRequest = new XMLHttpRequest()
@@ -72,17 +90,21 @@ define [], () ->
       uri
 
     _populateResults: (resultItems, searchTerm) ->
-      if @results.populated
-        @_emptyResults()
+      @_emptyResults() if @results.displayed
+
+      resultItems = resultItems.slice(0, @config.limit) if @config.limit
 
       @results.appendChild(@_createListItem listItem, searchTerm) for listItem in resultItems
-      @results.populated = true
-      @_appendResults()
+      @_showResults() unless @results.displayed
 
-    _appendResults: ->
+    _showResults: ->
       @el.parentNode.insertBefore @results, @el.nextSibling # insertAfter @el
+      @results.displayed = true
 
-    # _removeResults: ->
+    _removeResults: ->
+      @_emptyResults()
+      @results.parentNode.removeChild @results
+      delete @results.displayed
 
     _emptyResults: ->
       @results.removeChild @results.firstChild while @results.firstChild
@@ -97,7 +119,7 @@ define [], () ->
         anchor = document.createElement 'A'
         anchor.href = item[@config.map.uri]
         anchor.className = @config.resultLinkClass
-
+        anchor.className += " icon--#{item[@config.map.type]}--white--before" if @config.map.type
         anchor.innerHTML = highlightedText
         listItem.appendChild anchor
       else
@@ -108,3 +130,7 @@ define [], () ->
     _highlightText: (text, term) ->
       regex = new RegExp term, 'ig'
       text.replace regex, "<b>$&</b>"
+
+    _removeClass: (item, _class) ->
+      reg = new RegExp(' ?'+_class+' ?', 'g')
+      item.className = item.className.replace(reg, '')
