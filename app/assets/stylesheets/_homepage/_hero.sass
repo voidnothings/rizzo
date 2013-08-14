@@ -31,8 +31,14 @@
       opacity: 1
     .hero__overlay
       background: rgba(0,0,0,0.5)
-    .hero__search
-      width: 90%
+
+.hero__search
+  +transition(all, .3, $ease-cubic-out)
+  overflow: hidden
+  text-align: left
+  width: 85%
+  +respond-to(medium-view)
+    width: 70%
 
 .hero__overlay
   +transition(all, .3, $ease-cubic-out)
@@ -231,16 +237,9 @@
     background-color: rgba(0,0,0,0)
 
 
-// Josh did this - probably refactor ;)
+
 // hero autocomplete
-.hero__search
-  +transition(all, .3, $ease-cubic-out)
-  @extend %inline-block
-  overflow: hidden
-  text-align: left
-  width: 85%
-  +respond-to(medium-view)
-    width: 70%
+
 
 .hero__search__wrapper
   position: relative
