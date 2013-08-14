@@ -217,56 +217,19 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
         it 'should insert a list item for each result item into the results list element', ->
           myAutoComplete._populateResults SEARCH_RESULTS
 
-          results = myAutoComplete.results.childNodes
-
           expect(myAutoComplete.results.populated).toBe true
+
+          results = myAutoComplete.results.childNodes
           expect(results.length).toBe SEARCH_RESULTS.length
           expect(results[0].textContent).toBe SEARCH_RESULTS[0].title
           expect(results[1].textContent).toBe SEARCH_RESULTS[1].title
           expect(results[2].textContent).toBe SEARCH_RESULTS[2].title
 
-
-
-      xdescribe 'generating the search result items', ->
-
-        describe 'generating a list with links items', ->
-          beforeEach ->
-            myAutoComplete = new AutoComplete DEFAULT_CONFIG
-
-          it 'should generate a list item with details matching the search results', ->
-            myAutoComplete._populateResults SEARCH_RESULTS
-
-            results = myAutoComplete.results.childNodes
-
-            expect(results[0].tagName).toBe 'A'
-            expect(results[0].textContent).toBe 'London'
-
-        describe 'generating a list with text items', ->
-
-          beforeEach ->
-            basicMap = 
-              title: 'name'
-
-            newConfig = {responseMap: basicMap}
-
-            myAutoComplete = new AutoComplete DEFAULT_CONFIG
-            myAutoComplete._updateConfig newConfig
-
-          it 'should generate a list item with details matching the search results', ->
-            myAutoComplete._populateResults SEARCH_RESULTS
-
-            results = myAutoComplete.results.childNodes
-
-            expect(results[0].tagName).toBe 'LI'
-            expect(results[0].textContent).toBe 'London'
-
-
-
-      describe 'creating a list item', ->
+      describe 'generating list items from the result items', ->
         item = null
         searchTerm = 'Lon'
   
-        describe 'creating a basic list item', ->
+        describe 'creating a text item', ->
           basicMap = 
             title: 'title'
     
@@ -284,7 +247,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
             expect(item.tagName).toBe 'LI'
             expect(item.innerHTML).toBe '<b>Lon</b>don'
         
-        describe 'creating a list item that has a link inside when a URI is mapped', ->
+        describe 'creating a link item', ->
           basicMap = 
             title: 'title',
             uri: 'uri'
@@ -294,9 +257,11 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
             myAutoComplete._updateConfig {map: basicMap}
             item = myAutoComplete._createListItem SEARCH_RESULTS[0], searchTerm
 
-          it 'should contain an anchor tag with the href set as the search results URI', ->
-            anchor = item.childNodes[0]
+          it 'should return a list item containing an anchor tag', ->
+            expect(item.tagName).toBe 'LI'
+            expect(item.textContent).toBe SEARCH_RESULTS[0].title
 
+            anchor = item.childNodes[0]
             expect(anchor.tagName).toBe 'A'
             expect(anchor.getAttribute('href')).toBe SEARCH_RESULTS[0].uri
 
@@ -311,38 +276,38 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
           myAutoComplete = new AutoComplete DEFAULT_CONFIG
 
         it 'should highlight the search text at the start of a title', ->
-          testSearchTerm = 'Lond'
+          searchTerm = 'Lond'
 
-          highlightedText = myAutoComplete._highlightText SEARCH_RESULTS[0].title, testSearchTerm
+          highlightedText = myAutoComplete._highlightText SEARCH_RESULTS[0].title, searchTerm
           expect(highlightedText).toBe '<b>Lond</b>on'
 
         it 'should highlight the search text at the end of a title', ->
-          testSearchTerm = 'don'
+          searchTerm = 'don'
 
-          highlightedText = myAutoComplete._highlightText SEARCH_RESULTS[0].title, testSearchTerm
+          highlightedText = myAutoComplete._highlightText SEARCH_RESULTS[0].title, searchTerm
           expect(highlightedText).toBe 'Lon<b>don</b>'
 
         it 'should highlight the search text in the middle of a title', ->
-          testSearchTerm = 'ond'
+          searchTerm = 'ond'
 
-          highlightedText = myAutoComplete._highlightText SEARCH_RESULTS[0].title, testSearchTerm
+          highlightedText = myAutoComplete._highlightText SEARCH_RESULTS[0].title, searchTerm
           expect(highlightedText).toBe 'L<b>ond</b>on'
 
         it 'should highlight the search text if it exactly matches a title', ->
-          testSearchTerm = 'London'
+          searchTerm = 'London'
 
-          highlightedText = myAutoComplete._highlightText SEARCH_RESULTS[0].title, testSearchTerm
+          highlightedText = myAutoComplete._highlightText SEARCH_RESULTS[0].title, searchTerm
           expect(highlightedText).toBe '<b>London</b>'
 
         it 'should highlight the search text multiple times', ->
-          testSearchTerm = 'London'
+          searchTerm = 'London'
           testTitle = 'Is London really as nice as London?'
 
-          highlightedText = myAutoComplete._highlightText testTitle, testSearchTerm
+          highlightedText = myAutoComplete._highlightText testTitle, searchTerm
           expect(highlightedText).toBe 'Is <b>London</b> really as nice as <b>London</b>?'
 
         it 'should not highlight anything if the search text is not found', ->
-          testSearchTerm = 'London'
+          searchTerm = 'London'
 
-          highlightedText = myAutoComplete._highlightText SEARCH_RESULTS[1].title, testSearchTerm
+          highlightedText = myAutoComplete._highlightText SEARCH_RESULTS[1].title, searchTerm
           expect(highlightedText).toBe 'Paris'
