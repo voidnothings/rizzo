@@ -41,11 +41,12 @@
     left: 35%
     
   .icon--plane-right--grey
-    -webkit-animation: plane-right 6s infinite 1s
+    .is-active &
+      -webkit-animation: plane-right 6s infinite 1s
     
   .icon--plane-left--grey
-    -webkit-animation: plane-left 6s infinite 1.2s
-    
+    .is-active &
+      -webkit-animation: plane-left 6s infinite 1.2s
 
   .icon--plane-right--grey
     margin-top: 25px
@@ -54,22 +55,22 @@
   0%
   10% 
     top: 0
-    -webkit-transform: translate(50px,0px)
+    +transform(translate(50px,0px))
   10.01%
-    -webkit-transform: translate(-50px,0px)
+    +transform(translate(-50px,0px))
   20%
     top: 0
-    -webkit-transform: translate(0px,0px)
+    +transform(translate(0px,0px))
     
-@-webkit-keyframes plane-left
+@+keyframes plane-left
   0%
   10% 
     top: 0
-    -webkit-transform: translate(-50px,0px)
+    +transform(translate(-50px,0px))
   10.01%
-    -webkit-transform: translate(50px,0px)
+    +transform(translate(50px,0px))
   20%
     top: 0
-    -webkit-transform: translate(0px,0px)
+    +transform(translate(0px,0px))
     
    

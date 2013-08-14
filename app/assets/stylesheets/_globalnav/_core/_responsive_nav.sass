@@ -56,38 +56,27 @@ $responsive-nav-width: 240px
 .nav--primary__trigger
   display: none
   .responsive &
-    @extend .icon--hambuger--white
     @extend %transition--nav
-    top: 20px
+    top: 10px
     right: 15px
     color: white
     display: block
-    width: 40px
-    height: 35px
+    width: 60px
+    height: 45px
     position: absolute
-    cursor: pointer
     z-index: 2
+    background-position: center
+    cursor: pointer
     +respond-to(wide-view)
       display: none
 
 // On click..
 
-// Move the button
-#nav--primary__trigger:checked + .nav--primary__trigger
-  right: 10px + $responsive-nav-width
-
-// Move the nav onto the screen
-#nav--primary__trigger:checked ~ .m-hidden-menu
-  right: 0
-
-// Move our main content to the left so it looks like the nav is pushing it off screen
-#nav--primary__trigger:checked ~ .row--content
-  left: -$responsive-nav-width
-
-// Move the logo (it sits outside our main content area)
-#nav--primary__trigger:checked ~ .logo--header
-  left: -$responsive-nav-width
-
-// Move the footer (it sits outside our main content area)
-#nav--primary__trigger:checked ~ .wrap--footer
-  left: -$responsive-nav-width
+// Move the responsive nav onto the screen
+#nav--primary__trigger
+  &:checked + .nav--primary__trigger,
+  &:checked ~ .m-hidden-menu,
+  &:checked ~ .row--content,
+  &:checked ~ .logo--header,
+  &:checked ~ .wrap--footer
+    +transform(translateX(-$responsive-nav-width))
