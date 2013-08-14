@@ -79,13 +79,14 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
       describe 'configuring the component', ->
         beforeEach ->
           loadFixtures 'autocomplete_mobile.html'
-          myAutoComplete = new AutoComplete DEFAULT_CONFIG
 
         it 'should return a config object updated with the passed keys', ->
-          newConfig = {uri: '/findme', parent: '.somewhere'}
-          config = myAutoComplete._updateConfig newConfig
+          newConfig = {id: 'my_search', uri: '/findme', parent: '.somewhere'}
 
-          expect(config.id).toBe DEFAULT_CONFIG.id
+          myAutoComplete = new AutoComplete newConfig
+          config = myAutoComplete.config
+
+          expect(config.id).toBe newConfig.id
           expect(config.uri).toBe newConfig.uri
           expect(config.parent).toBe newConfig.parent
 
@@ -133,6 +134,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
 
           describe 'the default search threshold', ->
             beforeEach ->
+              loadFixtures 'autocomplete_mobile.html'
               myAutoComplete = new AutoComplete DEFAULT_CONFIG
               spyOn myAutoComplete, '_makeRequest'
 
@@ -150,9 +152,10 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
 
           describe 'configuring the search threshold', ->
             beforeEach ->
-              myAutoComplete = new AutoComplete DEFAULT_CONFIG
+              loadFixtures 'autocomplete_mobile.html'
+              newConfig = {id: 'my_search', uri: '/search', threshold: 5}
+              myAutoComplete = new AutoComplete newConfig
               spyOn myAutoComplete, '_makeRequest'
-              myAutoComplete._updateConfig {threshold: 5}
 
             it 'should perfom a search if the configured threshold has been reached', ->
               minimumSearch = 'abcde'
@@ -170,6 +173,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
 
           describe 'generating the default search endpoint', ->
             beforeEach ->
+              loadFixtures 'autocomplete_mobile.html'
               myAutoComplete = new AutoComplete DEFAULT_CONFIG
 
             it 'should generate the full URI for the search endpoint with the search term', ->
@@ -186,22 +190,21 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
               expect(generatedURI).toBe "#{DEFAULT_CONFIG.uri}#{searchTerm}?scope=#{scope}"
 
           describe 'configuring the search endpoint', ->
+            newConfig = {id: 'my_search', uri: '/mySearch='}
+
             beforeEach ->
-              myAutoComplete = new AutoComplete DEFAULT_CONFIG
+              loadFixtures 'autocomplete_mobile.html'
+              myAutoComplete = new AutoComplete newConfig
 
             it 'should generate the full URI for the search endpoint with the search term', ->
-              newConfig = {uri: '/mySearch='}
               searchTerm = 'London'
-              myAutoComplete._updateConfig newConfig
               generatedURI = myAutoComplete._generateURI searchTerm
 
               expect(generatedURI).toBe "#{newConfig.uri}#{searchTerm}"
 
             it 'should generate the full URI for the search endpoint with the search term and scope', ->
-              newConfig = {uri: '/mySearch='}
               searchTerm = 'London'
               scope = 'homepage'
-              myAutoComplete._updateConfig newConfig
               generatedURI = myAutoComplete._generateURI searchTerm, scope
 
               expect(generatedURI).toBe "#{newConfig.uri}#{searchTerm}?scope=#{scope}"
@@ -210,32 +213,72 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
           it 'should do something cool'
 
 
+
+      describe 'adding the results list to the page', ->
+        beforeEach ->
+          loadFixtures 'autocomplete_mobile.html'
+          myAutoComplete = new AutoComplete DEFAULT_CONFIG
+
+          myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
+
+        it 'should append the populated list to the page', ->
+          expect($('.autocomplete__results').length).toBe 1
+
       describe 'populating the results list', ->
         beforeEach ->
+          loadFixtures 'autocomplete_mobile.html'
           myAutoComplete = new AutoComplete DEFAULT_CONFIG
-  
-        it 'should insert a list item for each result item into the results list element', ->
-          myAutoComplete._populateResults SEARCH_RESULTS
 
-          expect(myAutoComplete.results.populated).toBe true
+        describe 'adding items to an empty list', ->
+          it 'should insert a list item for each result item into the results list element', ->
+            expect(myAutoComplete.results.populated).not.toBeDefined()
 
-          results = myAutoComplete.results.childNodes
-          expect(results.length).toBe SEARCH_RESULTS.length
-          expect(results[0].textContent).toBe SEARCH_RESULTS[0].title
-          expect(results[1].textContent).toBe SEARCH_RESULTS[1].title
-          expect(results[2].textContent).toBe SEARCH_RESULTS[2].title
+            myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
 
-      describe 'generating list items from the result items', ->
+            expect(myAutoComplete.results.populated).toBe true
+
+            results = myAutoComplete.results.childNodes
+            expect(results.length).toBe SEARCH_RESULTS.length
+            expect(results[0].textContent).toBe SEARCH_RESULTS[0].title
+            expect(results[1].textContent).toBe SEARCH_RESULTS[1].title
+            expect(results[2].textContent).toBe SEARCH_RESULTS[2].title
+
+        describe 'adding items to a populated list', ->
+          beforeEach ->
+            myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
+            
+          it 'should remove the previous results from the list', ->
+            spyOn myAutoComplete, '_emptyResults'
+            myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
+
+            expect(myAutoComplete._emptyResults).toHaveBeenCalled()
+
+          it 'should contain the new search results', ->
+            newResults = [
+              title: "Newcastle"
+              uri: "/australia/newcastle"
+              type: "publication"
+            ]
+            myAutoComplete._populateResults newResults, SEARCH_TERM
+
+            results = myAutoComplete.results.childNodes
+
+            expect(myAutoComplete.results.populated).toBe true
+            expect(results.length).toBe 1
+
+      describe 'generating a list item from a result item', ->
         item = null
         searchTerm = 'Lon'
   
         describe 'creating a text item', ->
-          basicMap = 
+          testingMap = 
             title: 'title'
     
+          newConfig = {id: 'my_search', uri: '/search', map: testingMap}
+
           beforeEach ->
-            myAutoComplete = new AutoComplete DEFAULT_CONFIG
-            myAutoComplete._updateConfig {map: basicMap}
+            loadFixtures 'autocomplete_mobile.html'
+            myAutoComplete = new AutoComplete newConfig
             item = myAutoComplete._createListItem SEARCH_RESULTS[0], searchTerm
 
           it 'should return a list item containing the search results title', ->
@@ -247,14 +290,16 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
             expect(item.tagName).toBe 'LI'
             expect(item.innerHTML).toBe '<b>Lon</b>don'
         
-        describe 'creating a link item', ->
-          basicMap = 
+        describe 'creating a basic link item', ->
+          testingMap = 
             title: 'title',
             uri: 'uri'
     
+          newConfig = {id: 'my_search', uri: '/search', map: testingMap}
+    
           beforeEach ->
-            myAutoComplete = new AutoComplete DEFAULT_CONFIG
-            myAutoComplete._updateConfig {map: basicMap}
+            loadFixtures 'autocomplete_mobile.html'
+            myAutoComplete = new AutoComplete newConfig
             item = myAutoComplete._createListItem SEARCH_RESULTS[0], searchTerm
 
           it 'should return a list item containing an anchor tag', ->
@@ -264,6 +309,35 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
             anchor = item.childNodes[0]
             expect(anchor.tagName).toBe 'A'
             expect(anchor.getAttribute('href')).toBe SEARCH_RESULTS[0].uri
+            expect(anchor.className).toBe 'autocomplete__result__link'
+
+          it 'should contain an anchor tag containing the highlighted search term', ->
+            anchor = item.childNodes[0]
+
+            expect(anchor.tagName).toBe 'A'
+            expect(anchor.innerHTML).toBe '<b>Lon</b>don'
+
+        describe 'creating a typed link item', ->
+          testingMap = 
+            title: 'title',
+            uri: 'uri',
+            type: 'type'
+    
+          newConfig = {id: 'my_search', uri: '/search', map: testingMap}
+    
+          beforeEach ->
+            loadFixtures 'autocomplete_mobile.html'
+            myAutoComplete = new AutoComplete newConfig
+            item = myAutoComplete._createListItem SEARCH_RESULTS[0], searchTerm
+
+          it 'should return a list item containing an anchor tag', ->
+            expect(item.tagName).toBe 'LI'
+            expect(item.textContent).toBe SEARCH_RESULTS[0].title
+
+            anchor = item.childNodes[0]
+            expect(anchor.tagName).toBe 'A'
+            expect(anchor.getAttribute('href')).toBe SEARCH_RESULTS[0].uri
+            expect(anchor.className).toBe 'autocomplete__result__link'
 
           it 'should contain an anchor tag containing the highlighted search term', ->
             anchor = item.childNodes[0]
@@ -273,6 +347,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
 
       describe 'highlighting the search term', ->
         beforeEach ->
+          loadFixtures 'autocomplete_mobile.html'
           myAutoComplete = new AutoComplete DEFAULT_CONFIG
 
         it 'should highlight the search text at the start of a title', ->
