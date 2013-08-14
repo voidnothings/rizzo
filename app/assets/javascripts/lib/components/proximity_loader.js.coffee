@@ -33,6 +33,7 @@ define [required], ($) ->
       for el in args.list.split(',')
         $elems = @$el.find(el)
         for $el in $elems
+          $el = if $.fn then $($el) else $el
           elems.push({
             $el: $el
             top: parseInt($el.offset().top, 10)
