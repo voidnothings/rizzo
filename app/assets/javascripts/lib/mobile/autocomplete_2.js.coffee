@@ -14,6 +14,13 @@ define [], () ->
         type: 'type',
         uri: 'uri'
 
+    KEY =
+      tab: 9,
+      enter: 13,
+      esc: 27,
+      up: 38,
+      down: 40
+
     constructor: (args) ->
       @_init args if args.id and args.uri
 
@@ -34,6 +41,9 @@ define [], () ->
       @el.addEventListener 'input', (e) =>
         @_searchFor e.currentTarget.value
 
+      @el.addEventListener 'keypress', (e) =>
+        @_keypressHandler e
+
     _buildResults: ->
       results = document.createElement 'UL'
       @_addClass results, @config.resultsClass
@@ -53,7 +63,25 @@ define [], () ->
 
       results
 
-    # event handlers for mouse events
+
+
+
+    # event handlers
+    _keypressHandler: (e) ->
+      switch e.keyCode
+        when KEY.up, e.shiftKey and KEY.tab
+          e.preventDefault()
+          @_highlightUp()
+        when KEY.down, KEY.tab
+          e.preventDefault()
+          @_highlightDown()
+        when KEY.enter
+          e.preventDefault()
+          @_selectHighlighted()
+        when KEY.esc
+          @el.value == 'hdhfdhd'
+          @_removeResults() if @results.displayed
+
     _resultsClick: (e) ->
       target = e.target
 
@@ -66,13 +94,9 @@ define [], () ->
         e.preventDefault() # just so i can check it
         console.log 'link anchor clicked'
       else if target.tagName == 'LI'
-        # 
-        # @_selectCurrent()
-        console.log 'link item clicked'
+        @_selectCurrent()
 
     _resultsMouseOver: (target) ->
-      @results.hovered = true
-
       until target.tagName is 'LI'
         target = target.parentNode
 
@@ -80,16 +104,46 @@ define [], () ->
       @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
 
       @results.highlighted = target
-      @_highlightCurrent @results.highlighted
+      @_highlightCurrent()
 
-    _resultsMouseOut: () ->
-      delete @results.hovered
-
+    _resultsMouseOut: ->
       # clear old highlight
       @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
 
-    _highlightCurrent: (listItem) ->
-      @_addClass listItem, "#{@config.resultItemHoveredClass}"
+      delete @results.highlighted
+
+    _selectCurrent: ->
+      @el.value = @results.highlighted.textContent
+      @_removeResults()
+
+    _highlightCurrent: ->
+      @_addClass @results.highlighted, "#{@config.resultItemHoveredClass}"
+
+
+
+    # keypress handlers
+    _highlightDown: ->
+      if not @results.highlighted
+        @results.highlighted = @results.firstChild
+      else
+        unless @results.highlighted.nextSibling == null
+          @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
+          @results.highlighted = @results.highlighted.nextSibling 
+      @_highlightCurrent()
+
+    _highlightUp: ->
+      if not @results.highlighted
+        @results.highlighted = @results.lastChild
+      else
+        unless @results.highlighted.previousSibling == null
+          @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
+          @results.highlighted = @results.highlighted.previousSibling 
+      @_highlightCurrent()
+
+
+
+
+
 
     _searchFor: (searchTerm) ->
       if searchTerm?.length >= @config.threshold
@@ -131,6 +185,7 @@ define [], () ->
       @results.parentNode.removeChild @results
       @_removeClass @parentElt, @config.activeClass if @config.parentElt
       delete @results.displayed
+      delete @results.highlighted
 
     _emptyResults: ->
       @results.removeChild @results.firstChild while @results.firstChild
