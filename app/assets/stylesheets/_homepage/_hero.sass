@@ -252,15 +252,8 @@
 .autocomplete__results--hero
   border: 0
 
-
-
 .hero__search
   position: relative
-
-  .autocomplete__active
-    .autocomplete__result
-      text-decoration: underline
-      background: transparent
 
   .autocomplete__results
     background: transparent
@@ -269,11 +262,14 @@
     position: static
     box-shadow: none
 
-    .hero-search-results-hidden &
-      display: none
-
   .autocomplete__result
     padding: 0
+
+  .autocomplete__current
+    background: transparent
+
+  .autocomplete__result__typed
+    @extend %left-icon
 
   .autocomplete__result__link
     color: #fff
@@ -282,7 +278,7 @@
 
     &:hover
       text-decoration: underline
-      background: transparent
+
     &:before
       content: ""
       top: 0
@@ -291,9 +287,6 @@
       height: 100%
       background-position: center
       margin-left: 8px
-
-.autocomplete__result__typed
-  @extend %left-icon
 
 // hero search submit buttons
 .hero__search__submit--field
