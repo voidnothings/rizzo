@@ -36,8 +36,8 @@ define [], () ->
 
     _buildResults: ->
       results = document.createElement 'UL'
-      results.className = @config.resultsClass
-      results.className += " #{@config.resultsClass}--#{@config.classModifier}" if @config.classModifier
+      @_addClass results, @config.resultsClass
+      @_addClass results, " #{@config.resultsClass}--#{@config.classModifier}" if @config.classModifier
 
       results.addEventListener 'click', (e) =>
         @_resultsClick(e)
@@ -89,7 +89,7 @@ define [], () ->
       @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
 
     _highlightCurrent: (listItem) ->
-      listItem.className += " #{@config.resultItemHoveredClass}"
+      @_addClass listItem, " #{@config.resultItemHoveredClass}"
 
     _searchFor: (searchTerm) ->
       if searchTerm?.length >= @config.threshold
@@ -119,7 +119,7 @@ define [], () ->
       resultItems = resultItems.slice(0, @config.limit) if @config.limit
 
       @results.appendChild(@_createListItem listItem, searchTerm) for listItem in resultItems
-      @parentElt.className += " #{@config.activeClass}" if @config.parentElt
+      @_addClass @parentElt, " #{@config.activeClass}" if @config.parentElt
       @_showResults() unless @results.displayed
 
     _showResults: ->
@@ -137,7 +137,7 @@ define [], () ->
 
     _createListItem: (item, searchTerm) ->
       listItem = document.createElement 'LI'
-      listItem.className = @config.resultItemClass
+      @_addClass listItem, @config.resultItemClass
 
       highlightedText = @_highlightText item[@config.map.title], searchTerm
 
@@ -157,6 +157,11 @@ define [], () ->
       regex = new RegExp term, 'ig'
       text.replace regex, "<b>$&</b>"
 
+    # utility functions
+    _addClass: (item, _class) ->
+      if item.className.indexOf _class < 0
+        item.className += " #{_class}"
+
     _removeClass: (item, _class) ->
-      reg = new RegExp(' ?'+_class+' ?', 'g')
-      item.className = item.className.replace(reg, '')
+      reg = new RegExp ' ?'+_class+' ?', 'g'
+      item.className = item.className.replace reg, ''

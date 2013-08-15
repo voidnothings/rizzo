@@ -100,15 +100,15 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
           expect(myAutoComplete.results).toBeDefined()
           expect(myAutoComplete.results.tagName).toBe 'UL'
           expect(myAutoComplete.results.childNodes.length).toBe 0
-          expect(myAutoComplete.results.className).toBe 'autocomplete__results'
           expect(myAutoComplete.results.hovered).not.toBeDefined()
+          expect($(myAutoComplete.results)).toHaveClass 'autocomplete__results'
 
         it 'should create the list element with the specified class name', ->
           newConfig = {id: 'my_search', uri: '/search', resultsClass: 'mysearch__results'}
           myAutoComplete = new AutoComplete newConfig
 
           expect(myAutoComplete.results).toBeDefined()
-          expect(myAutoComplete.results.className).toBe newConfig.resultsClass
+          expect($(myAutoComplete.results)).toHaveClass newConfig.resultsClass
 
         it 'should create the list element with the specified modifier name', ->
           newConfig = {id: 'my_search', uri: '/search', classModifier: 'my-search'}
@@ -366,7 +366,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
           it 'should return a list item containing the search results title', ->
             expect(item.tagName).toBe 'LI'
             expect(item.textContent).toBe SEARCH_RESULTS[0].title
-            expect(item.className).toBe 'autocomplete__result'
+            expect($(item)).toHaveClass 'autocomplete__result'
 
           it 'should highlight the search term', ->
             expect(item.tagName).toBe 'LI'
