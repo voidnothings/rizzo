@@ -1,4 +1,6 @@
-define ['jquery'], ($) ->
+required = if window.lp.isMobile then 'jsmin' else 'jquery'
+
+define [required], ($) ->
  
   class ProximityLoader
 
@@ -6,15 +8,19 @@ define ['jquery'], ($) ->
 
 
     # params
-    # el: 
+    # el: The listening element
     # list: comma delimited list of elements to watch
+    # callback: function to call when criteria is matched
     constructor: (args) ->
+      return false if args.callback is undefined
+      @callback = args.callback
+
       @$el = $(args.el || LISTENER)
       return false if @$el.length is 0
+
       @elems = @_setUpElems(args)
       @_check() # Check on load in case the user refreshes midway down the page
       @_watch()
-
 
 
     # Private
@@ -25,17 +31,21 @@ define ['jquery'], ($) ->
     _setUpElems: (args) ->
       elems = []
       for el in args.list.split(',')
-        $el = @$el.find(el)
-        elems.push({
-          $el: $el
-          top: parseInt($el.offset().top, 10)
-          threshold: $el.data('threshold')
-        })
+        $elems = @$el.find(el)
+        for $el in $elems
+          $el = if $.fn then $($el) else $el
+          elems.push({
+            $el: $el
+            top: parseInt($el.offset().top, 10)
+            threshold: parseInt($el.data('threshold') || 500, 10)
+          })
       elems
-    
+
     _watch: ->
       enableTimer = false
-      $(window).on 'scroll', =>
+      # Only create jquery object if necessary, otherwise we already have the node
+      win = if $.fn then $(window) else window
+      win.on 'scroll', =>
         clearTimeout(enableTimer) if enableTimer
         enableTimer = setTimeout =>
           @_check()
@@ -45,13 +55,5 @@ define ['jquery'], ($) ->
       fold = @_getViewportEdge()
       for el in @elems
         if (el.top - el.threshold) <= fold
-          @_loadScriptFor(el)
+          @callback(el.$el)
 
-    _loadScriptFor: (element) ->
-      scriptPlaceholder = element.$el.find('.js-hidden-script')
-      unless scriptPlaceholder.length is 0
-        commentedScript = scriptPlaceholder.html()
-        # Remove the comments and execute the script
-        script = commentedScript.replace('<!--', '').replace('-->', '')
-        scriptPlaceholder.html(script)
-        

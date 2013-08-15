@@ -129,23 +129,19 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
 
         it 'has a user-profile link', ->
            expect($('a.js-user-profile')).toExist()
-           expect($('a.js-user-profile').text()).toBe('My Profile')
+           expect($('a.js-user-profile').text()).toBe('My profile')
 
         it 'has a user-settings link', ->
            expect($('a.js-user-settings')).toExist()
            expect($('a.js-user-settings').text()).toBe('Settings')
 
-        # it 'has a user-messages link', ->
-        #    expect($('a.js-user-msg')).toExist()
-        #    expect($('a.js-user-msg').text()).toBe('Messages')
-
         it 'has a user-forum-activity link', ->
            expect($('a.js-user-forum')).toExist()
-           expect($('a.js-user-forum').text()).toBe('Forum Activity')
+           expect($('a.js-user-forum').text()).toBe('Forum activity')
 
         it 'has a sign-out link', ->
            expect($('a.js-user-signout')).toExist()
-           expect($('a.js-user-signout').text()).toBe('Sign-Out')
+           expect($('a.js-user-signout').text()).toBe('Sign out')
            expect($('a.js-user-signout').attr('href')).toBe(@auth.options.signOutUrl)
 
 

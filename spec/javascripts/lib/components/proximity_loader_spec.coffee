@@ -2,10 +2,14 @@ require ['public/assets/javascripts/lib/components/proximity_loader.js'], (Proxi
 
   config =
     list: ".js-loader-one, .js-loader-two, .js-loader-three"
+    callback: (elem)->
+      console.log(elem)
 
   config_scoped =
     el: '#js-scoped'
     list: ".js-loader-one, .js-loader-two, .js-loader-three"
+    callback: (elem)->
+      console.log(elem)
 
   describe 'Proximity Loader', ->
 
@@ -48,27 +52,15 @@ require ['public/assets/javascripts/lib/components/proximity_loader.js'], (Proxi
         expect(proximityLoader._check).toHaveBeenCalled()
 
 
-    describe 'Checking if we should load the script', ->
+    describe 'Firing the callback when required', ->
       beforeEach ->
         loadFixtures('proximity_loader.html')
         window.proximityLoader = new ProximityLoader(config)
         spyOn(proximityLoader, "_getViewportEdge").andReturn(150)
-        spyOn(proximityLoader, "_loadScriptFor")
+        spyOn(console, "log")
         proximityLoader._check()
 
-      it 'loads scripts for two out of three elements', ->
-        expect(proximityLoader._loadScriptFor).toHaveBeenCalledWith(proximityLoader.elems[0])
-        expect(proximityLoader._loadScriptFor).toHaveBeenCalledWith(proximityLoader.elems[1])
-        expect(proximityLoader._loadScriptFor).not.toHaveBeenCalledWith(proximityLoader.elems[2])
-
-
-    describe 'Uncommenting the script', ->
-      beforeEach ->
-        window.proximityLoader = new ProximityLoader(config_scoped)
-        spyOn(window.console, "log")
-        # Load the fixtures after initialisation to avoid the first check for scripts
-        loadFixtures('proximity_loader.html')
-        proximityLoader._loadScriptFor({$el: $('#js-scoped').find('.js-loader-one')})
-
-      it 'uncomments the first script', ->
-        expect(window.console.log).toHaveBeenCalledWith("Hidden script")
+      it 'returns positive for two out of three elements', ->
+        expect(console.log).toHaveBeenCalledWith(proximityLoader.elems[0].$el)
+        expect(console.log).toHaveBeenCalledWith(proximityLoader.elems[1].$el)
+        expect(console.log).not.toHaveBeenCalledWith(proximityLoader.elems[2].$el)

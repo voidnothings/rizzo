@@ -38,28 +38,24 @@ $$ = (function (document, window, $$) {
     });
   };
 
-  node.addClass = function(_class) {
-    if (this.className.indexOf(_class) === -1) {
-      this.className += ' '+_class;
-    }
+  node.addClass = function(klass) {
+    this.classList.add(klass)
     return this;
   };
-  nodeList.addClass = function(_class) {
+  nodeList.addClass = function(klass) {
     this[forEach](function(el) {
-      this.addClass(_class);
+      this.addClass(klass);
     });
     return this;
   };
 
-  node.removeClass = function(_class) {
-    var reg = new RegExp(' ?'+_class+' ?', 'g');
-    this.className = this.className.replace(reg, '');
-
+  node.removeClass = function(klass) {
+    this.classList.remove(klass)
     return this;
   };
-  nodeList.removeClass = function(_class) {
+  nodeList.removeClass = function(klass) {
     this[forEach](function(el) {
-      el.removeClass(_class);
+      el.removeClass(klass);
     });
 
     return this;
@@ -113,7 +109,20 @@ $$ = (function (document, window, $$) {
   };
 
   node.hasClass = function (klass) {
-    return ((" " + element.className + " ").replace(/[\n\t]/g, " ").indexOf(klass) > -1) ? true : false;
+    return ((" " + this.className + " ").replace(/[\n\t]/g, " ").indexOf(klass) > -1) ? true : false;
+  }
+
+  node.data = function(identifier){
+    return this.getAttribute("data-" + identifier)
+  }
+
+  node.offset = function() {
+    box = this.getBoundingClientRect();
+    clientLeft = document.body.clientLeft || 0;
+    scrollLeft = window.pageXOffset;
+    clientTop = document.body.clientTop || 0;
+    scrollTop = window.pageYOffset;
+    return {top: box.top  + scrollTop  - clientTop, left: box.left  + scrollLeft  - clientLeft}
   }
 
   // Get a cookie value
