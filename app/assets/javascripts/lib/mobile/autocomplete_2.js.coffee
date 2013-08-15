@@ -163,5 +163,5 @@ define [], () ->
         item.className += " #{_class}"
 
     _removeClass: (item, _class) ->
-      reg = new RegExp ' ?'+_class+' ?', 'g'
+      reg = new RegExp ' ?'+_class, 'g'
       item.className = item.className.replace reg, ''
