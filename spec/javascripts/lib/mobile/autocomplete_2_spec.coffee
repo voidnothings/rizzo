@@ -118,7 +118,6 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
           expect($(myAutoComplete.results)).toHaveClass 'autocomplete__results'
           expect($(myAutoComplete.results)).toHaveClass "autocomplete__results--#{newConfig.classModifier}"
 
-
     describe 'the results list', ->
       beforeEach ->
         loadFixtures 'autocomplete_mobile.html'
@@ -251,17 +250,45 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
         describe 'search throttling', ->
           it 'should do something cool'
 
-
-
       describe 'adding the results list to the page', ->
         beforeEach ->
           loadFixtures 'autocomplete_mobile.html'
+
+        it 'should append the populated list to the page', ->
           myAutoComplete = new AutoComplete DEFAULT_CONFIG
 
           myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
 
-        it 'should append the populated list to the page', ->
           expect($('.autocomplete__results').length).toBe 1
+
+        it 'should add a class to the configured element when results are displayed', ->
+          newConfig = {id: 'my_search', uri: '/search', parentElt: 'search_results'}
+          myAutoComplete = new AutoComplete newConfig
+
+          myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
+
+          expect($("##{newConfig.parentElt}")).toHaveClass 'autocomplete__active'
+
+      describe 'removing the results list from the page', ->
+        beforeEach ->
+          loadFixtures 'autocomplete_mobile.html'
+
+        it 'should remove the results list from the page', ->
+          myAutoComplete = new AutoComplete DEFAULT_CONFIG
+
+          myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
+          myAutoComplete._removeResults()
+
+          expect($('.autocomplete__results').length).toBe 0
+
+        it 'should remove the active class if configured', ->
+          newConfig = {id: 'my_search', uri: '/search', parentElt: 'search_results'}
+          myAutoComplete = new AutoComplete newConfig
+
+          myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
+          myAutoComplete._removeResults()
+
+          expect($("##{newConfig.parentElt}")).not.toHaveClass 'autocomplete__active'
 
       describe 'populating the results list', ->
         beforeEach ->
@@ -395,8 +422,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
             expect($(anchor)).toHaveClass 'autocomplete__result__link'
             expect($(anchor)).toHaveClass 'autocomplete__result__typed'
             expect($(anchor)).toHaveClass "icon--#{SEARCH_RESULTS[0].type}--white--before"
-  
- 
+   
           it 'should contain an anchor tag containing the highlighted search term', ->
             anchor = item.childNodes[0]
 

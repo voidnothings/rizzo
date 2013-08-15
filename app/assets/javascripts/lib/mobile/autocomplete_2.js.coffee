@@ -8,6 +8,7 @@ define [], () ->
       resultItemClass: 'autocomplete__result',
       resultLinkClass: 'autocomplete__result__link',
       resultItemHoveredClass: 'autocomplete__current',
+      activeClass: 'autocomplete__active'
       map:
         title: 'title',
         type: 'type',
@@ -19,6 +20,7 @@ define [], () ->
     _init: (args) ->
       @config = @_updateConfig args
       @el = document.getElementById @config.id
+      @parentElt = document.getElementById @config.parentElt if @config.parentElt
       @_addEventHandlers()
       @results = @_buildResults()
 
@@ -37,6 +39,10 @@ define [], () ->
       results.className = @config.resultsClass
       results.className += " #{@config.resultsClass}--#{@config.classModifier}" if @config.classModifier
 
+      results.addEventListener 'click', (e) =>
+        @_resultsClick(e)
+      , false
+
       results.addEventListener 'mouseover', (e) =>
         @_resultsMouseOver(e.target)
       , false
@@ -48,6 +54,22 @@ define [], () ->
       results
 
     # event handlers for mouse events
+    _resultsClick: (e) ->
+      target = e.target
+
+      # if the target was a b, check its parent
+      target = target.parentNode if target.tagName == 'B'
+
+      # if the real target was an anchor, prevent the event from bubbling so the text isn't selected
+      if target.tagName == 'A'
+        e.stopPropagation()
+        e.preventDefault() # just so i can check it
+        console.log 'link anchor clicked'
+      else if target.tagName == 'LI'
+        # 
+        # @_selectCurrent()
+        console.log 'link item clicked'
+
     _resultsMouseOver: (target) ->
       @results.hovered = true
 
@@ -97,6 +119,7 @@ define [], () ->
       resultItems = resultItems.slice(0, @config.limit) if @config.limit
 
       @results.appendChild(@_createListItem listItem, searchTerm) for listItem in resultItems
+      @parentElt.className += " #{@config.activeClass}" if @config.parentElt
       @_showResults() unless @results.displayed
 
     _showResults: ->
@@ -106,6 +129,7 @@ define [], () ->
     _removeResults: ->
       @_emptyResults()
       @results.parentNode.removeChild @results
+      @_removeClass @parentElt, @config.activeClass if @config.parentElt
       delete @results.displayed
 
     _emptyResults: ->
