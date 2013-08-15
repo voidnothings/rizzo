@@ -37,7 +37,7 @@ define [], () ->
     _buildResults: ->
       results = document.createElement 'UL'
       @_addClass results, @config.resultsClass
-      @_addClass results, " #{@config.resultsClass}--#{@config.classModifier}" if @config.classModifier
+      @_addClass results, "#{@config.resultsClass}--#{@config.classModifier}" if @config.classModifier
 
       results.addEventListener 'click', (e) =>
         @_resultsClick(e)
@@ -89,7 +89,7 @@ define [], () ->
       @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
 
     _highlightCurrent: (listItem) ->
-      @_addClass listItem, " #{@config.resultItemHoveredClass}"
+      @_addClass listItem, "#{@config.resultItemHoveredClass}"
 
     _searchFor: (searchTerm) ->
       if searchTerm?.length >= @config.threshold
@@ -119,7 +119,7 @@ define [], () ->
       resultItems = resultItems.slice(0, @config.limit) if @config.limit
 
       @results.appendChild(@_createListItem listItem, searchTerm) for listItem in resultItems
-      @_addClass @parentElt, " #{@config.activeClass}" if @config.parentElt
+      @_addClass @parentElt, "#{@config.activeClass}" if @config.parentElt
       @_showResults() unless @results.displayed
 
     _showResults: ->
@@ -159,7 +159,7 @@ define [], () ->
 
     # utility functions
     _addClass: (item, _class) ->
-      if item.className.indexOf _class < 0
+      if (item.className.indexOf _class) < 0
         item.className += " #{_class}"
 
     _removeClass: (item, _class) ->
