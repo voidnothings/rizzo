@@ -116,12 +116,14 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
         myAutoComplete = new AutoComplete DEFAULT_CONFIG
 
       it 'should add a list hovered property to the component when mouse is over results', ->
-        myAutoComplete._resultsMouseOver()
+        testElt = document.createElement 'LI'
+        myAutoComplete._resultsMouseOver(testElt)
 
         expect(myAutoComplete.results.hovered).toBe true
 
       it 'should remove a list hovered property from the component when mouse is removed from results', ->
-        myAutoComplete._resultsMouseOver()
+        testElt = document.createElement 'LI'
+        myAutoComplete._resultsMouseOver(testElt)
         myAutoComplete._resultsMouseOut()
 
         expect(myAutoComplete.results.hovered).not.toBeDefined()
@@ -381,8 +383,11 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
             anchor = item.childNodes[0]
             expect(anchor.tagName).toBe 'A'
             expect(anchor.getAttribute('href')).toBe SEARCH_RESULTS[0].uri
-            expect(anchor.className).toBe 'autocomplete__result__link icon--place--white--before'
-
+            expect($(anchor)).toHaveClass 'autocomplete__result__link'
+            expect($(anchor)).toHaveClass 'autocomplete__result__typed'
+            expect($(anchor)).toHaveClass "icon--#{SEARCH_RESULTS[0].type}--white--before"
+  
+ 
           it 'should contain an anchor tag containing the highlighted search term', ->
             anchor = item.childNodes[0]
 

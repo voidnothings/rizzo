@@ -7,6 +7,7 @@ define [], () ->
       resultsClass: 'autocomplete__results',
       resultItemClass: 'autocomplete__result',
       resultLinkClass: 'autocomplete__result__link',
+      resultItemHoveredClass: 'autocomplete__current',
       map:
         title: 'title',
         type: 'type',
@@ -53,19 +54,19 @@ define [], () ->
         target = target.parentNode
 
       # clear old highlight
-      @_removeClass(@results.highlighted, 'autocomplete__current') if @results.highlighted
+      @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
 
       @results.highlighted = target
       @_highlightCurrent @results.highlighted
 
-    _resultsMouseOut: (target) ->
+    _resultsMouseOut: () ->
       delete @results.hovered
 
       # clear old highlight
-      @_removeClass(@results.highlighted, 'autocomplete__current') if @results.highlighted
+      @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
 
     _highlightCurrent: (listItem) ->
-      listItem.className += ' autocomplete__current'
+      listItem.className += " #{@config.resultItemHoveredClass}"
 
     _searchFor: (searchTerm) ->
       if searchTerm?.length >= @config.threshold
@@ -119,7 +120,7 @@ define [], () ->
         anchor = document.createElement 'A'
         anchor.href = item[@config.map.uri]
         anchor.className = @config.resultLinkClass
-        anchor.className += " icon--#{item[@config.map.type]}--white--before" if @config.map.type
+        anchor.className += " autocomplete__result__typed icon--#{item[@config.map.type]}--white--before" if @config.map.type
         anchor.innerHTML = highlightedText
         listItem.appendChild anchor
       else
