@@ -4,10 +4,11 @@
 //       to be defined wherever it's implemented.
 // -----------------------------------------------------------------------------
 
-$chevronOffset: 0.3em
-$slideOffset: -5em
+$chevronOffset: 0.35em
+$slideOffset: -5.4em
 $slideHoverOffset: -0.714em
-$slidePadding: 2.857em
+$slidePadding: 3.357em
+$slideHoverPadding: 2.857em
 $slideArrowSpacing: 1.786em
 $slideHoverArrowSpacing: 0.357em
 $slideOffsetHome: -4.5em
@@ -19,35 +20,38 @@ $slideOffsetHome: -4.5em
   -ms-scroll-chaining: none
 
 .slider__slide
-  +transition(all,0.25,linear)
   display: none
+  left: 0
   position: absolute
   top: 0
   width: 100%
-  z-index: 4
+  +hardware-acceleration()
+  +transition(none)
+
   &.is-prev, &.is-current, &.is-next
     display: block
-  &.is-prev
-    left: -100%
-    z-index: 1
-    .supports-3d &
-      left: auto
-      +transform(translate3d(-99.9%, 0, 0))
+    z-index: 4
+    .is-animating &
+      +transition(all,0.25,ease)
   &.is-current
     left: 0
     z-index: 5
-    .supports-3d &
-      left: auto
-      +transform(translate3d(0, 0, 0))
+  &.is-prev
+    left: -100%
+    z-index: 1
   &.is-next
     left: 100%
     z-index: 1
-    .supports-3d &
-      left: auto
-      +transform(translate3d(99.9%, 0, 0))
-  &.js-bottom-layer
+  // These are duplicate styles to `is-prev` and `is-next`, but need higher priority.
+  &.is-potentially-prev
+    left: -100%
     z-index: 1
-  &.js-middle-layer
+  &.is-potentially-next
+    left: 100%
+    z-index: 1
+  &.is-bottom-layer
+    z-index: 1
+  &.is-middle-layer
     z-index: 2
 
 .slider__controls-container
@@ -74,7 +78,7 @@ $slideOffsetHome: -4.5em
   color: white
   font-weight: bold
   line-height: 1.66em
-  opacity: 0.3
+  opacity: 0.5
   padding: 0.643em 2.286em 0.643em
   position: absolute
   &:hover
@@ -102,7 +106,7 @@ $slideOffsetHome: -4.5em
 
 .slider__control--prev
   @extend %chevron-left-after
-  left: $slideOffsetHome
+  left: $slideOffset
   padding-right: $slidePadding
   
   .homepage &
@@ -112,6 +116,7 @@ $slideOffsetHome: -4.5em
     right: $chevronOffset
   &:hover
     left: $slideHoverOffset
+    padding-right: $slideHoverPadding
   .at-beginning &
     opacity: 0
   
@@ -128,6 +133,7 @@ $slideOffsetHome: -4.5em
     left: $chevronOffset
   &:hover
     right: $slideHoverOffset
+    padding-left: $slideHoverPadding
   .at-end &
     opacity: 0
   
@@ -138,6 +144,7 @@ $slideOffsetHome: -4.5em
   margin: 25px auto 0
   text-align: center
   width: 100%
+  z-index: 6
 
 .slider__pagination--link
   @extend %image-replacement
@@ -145,7 +152,7 @@ $slideOffsetHome: -4.5em
   background: $highlight
   display: inline-block
   height: 7px
-  margin: 0 4px
+  margin: 0 3px
   width: 7px
   color: $lpblue
 
