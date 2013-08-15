@@ -35,6 +35,7 @@ define [], () ->
     _buildResults: ->
       results = document.createElement 'UL'
       results.className = @config.resultsClass
+      results.className += " #{@config.resultsClass}--#{@config.classModifier}" if @config.classModifier
 
       results.addEventListener 'mouseover', (e) =>
         @_resultsMouseOver(e.target)

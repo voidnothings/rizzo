@@ -110,6 +110,15 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
           expect(myAutoComplete.results).toBeDefined()
           expect(myAutoComplete.results.className).toBe newConfig.resultsClass
 
+        it 'should create the list element with the specified modifier name', ->
+          newConfig = {id: 'my_search', uri: '/search', classModifier: 'my-search'}
+          myAutoComplete = new AutoComplete newConfig
+
+          expect(myAutoComplete.results).toBeDefined()
+          expect($(myAutoComplete.results)).toHaveClass 'autocomplete__results'
+          expect($(myAutoComplete.results)).toHaveClass "autocomplete__results--#{newConfig.classModifier}"
+
+
     describe 'the results list', ->
       beforeEach ->
         loadFixtures 'autocomplete_mobile.html'
