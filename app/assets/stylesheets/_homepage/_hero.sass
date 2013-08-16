@@ -265,9 +265,6 @@
   .autocomplete__result
     padding: 0
 
-  .autocomplete__current
-    background: transparent
-
   .autocomplete__result__typed
     @extend %left-icon
 
@@ -275,10 +272,8 @@
     color: #fff
     display: block
     padding: 5px 10px 5px 45px
-
     &:hover
-      text-decoration: underline
-
+      text-decoration: none
     &:before
       content: ""
       top: 0
@@ -287,6 +282,12 @@
       height: 100%
       background-position: center
       margin-left: 8px
+
+  .autocomplete__current
+    background: transparent
+
+    .autocomplete__result__link
+      text-decoration: underline
 
 // hero search submit buttons
 .hero__search__submit--field
