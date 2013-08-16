@@ -17,9 +17,11 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
           height: 580
           width: 854
 
+
     describe 'object', ->
       it 'is defined', ->
         expect(Slider).toBeDefined()
+
 
     describe 'initialising', ->
       beforeEach ->
@@ -29,6 +31,7 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
       it 'does not initialise when the parent element does not exist', ->
         expect(slider.init).not.toHaveBeenCalled()
 
+
     describe 'set up', ->
       beforeEach ->
         loadFixtures('slider.html')
@@ -37,6 +40,12 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
       it 'adds the next/prev links', ->
         expect($('.slider__control--next').length).toBeGreaterThan(0)
         expect($('.slider__control--prev').length).toBeGreaterThan(0)
+
+      it 'adds pagination links for the slides', ->
+        expect($('.slider__pagination').length).toBeGreaterThan(0)
+
+      it 'adds a pagination link for each slide', ->
+        expect($('.slider__pagination--link').length).toEqual($('.slider__slide').length)
 
       it 'adds the `is-current` class to the first slide', ->
         expect($('.slider__slide:first').hasClass('is-current')).toBe(true)
@@ -48,6 +57,20 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
       it 'has the correct slides state', ->
         expect($('.slider__control--next').html()).toBe("1 of 5")
 
+
+    describe 'going to a particular slide', ->
+      loadFixtures('slider.html')
+      window.slider = new Slider(config)
+      slider._goToSlide(3)
+
+      it ' goes to the third slide', ->
+        setTimeout ->
+          expect($('.slider__slide').eq(2)).toHaveClass('is-current')
+          expect($('.slider__slide').eq(3)).toHaveClass('is-next')
+          expect($('.slider__slide').eq(1)).toHaveClass('is-prev')
+        , 0
+
+
     describe 'functionality:', ->
 
       beforeEach ->
@@ -56,7 +79,8 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
 
       it 'updates the slide counter after navigating', ->
         slider._nextSlide()
-        expect($('.slider__control--next').html()).toBe('2 of 5')
+        expect($('.slider__control--next').html()).toBe('3 of 5')
+        expect($('.slider__control--prev').html()).toBe('1 of 5')
 
       it 'goes to the next slide (first -> second)', ->
         slider._nextSlide()
@@ -101,21 +125,16 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
         expect($('.slider__slide').eq(0)).toHaveClass('is-current')
         expect($('.slider__slide').eq(1)).toHaveClass('is-next')
 
-    describe 'going to a particular slide', ->
-      beforeEach ->
-        loadFixtures('slider.html')
-        window.slider = new Slider(config)
+      it 'knows when at the beginning', ->
+        expect($('.slider__container')).toHaveClass('at-beginning')
 
-      it ' goes to the third slide', ->
-        slider._goToSlide(3)
+      it 'knows when at the end', ->
+        slider._nextSlide() # 2
+        slider._nextSlide() # 3
+        slider._nextSlide() # 4
+        slider._nextSlide() # 5
+        expect($('.slider__container')).toHaveClass('at-end')
 
-        setTimeout ->
-          expect($('.slider__slide').eq(2)).toHaveClass('is-current')
-          expect($('.slider__slide').eq(3)).toHaveClass('is-next')
-          expect($('.slider__slide').eq(1)).toHaveClass('is-prev')
-        , 1250
-
-  
     describe 'events:', ->
 
       beforeEach ->
@@ -131,10 +150,5 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
       it 'prev link triggers _previousSlide', ->
         $('.slider__control--prev').trigger('click')
         expect(slider._previousSlide).toHaveBeenCalled()
-      
-      # TODO: Tests for Touch events (particularly swiping).
-      # it 'swiping left triggers _nextSlide', ->
-        
-      # it 'swiping right triggers _previousSlide', ->
 
   # TODO: account for resizing and resize handler.
