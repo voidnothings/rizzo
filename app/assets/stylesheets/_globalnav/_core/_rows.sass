@@ -112,16 +112,16 @@ body
   padding: 16px 0
   min-height: 90px
 
-  &.is-closed
-    height: 0
-    padding: 0
-
   .homepage &
     background-color: white
-    min-height: 0
     +respond-to(wide-view)
       min-height: 92px
       padding: 25px 0
+
+  &.is-closed
+    height: 0
+    padding: 0
+    min-height: 0
 
   // This can be removed when switching to the new DFP server
   .ad-leaderboard__inner
