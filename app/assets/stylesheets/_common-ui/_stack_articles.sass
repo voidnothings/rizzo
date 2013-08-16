@@ -68,6 +68,19 @@
     &.aligncenter
       margin: 20px auto 10px
 
+  .media-gallery__resizer
+    display: none
+  .slider__pagination
+    bottom: 5px
+    display: block
+    position: absolute
+  .slider__pagination--link
+    @extend transition--base
+    background: white
+    opacity: 0.5
+    &.is-active, &:hover
+      opacity: 1
+
 .stack__article__inner
   padding: 0 25px
 
