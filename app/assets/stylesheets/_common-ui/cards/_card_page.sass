@@ -68,33 +68,40 @@
     position: relative
     top: 4px
 
+
+// TODO change these to sprite icons
+
 .card--page__breadcrumb--activity:before
-  color: $activity-poi
+  color: $link-card-shopping
 
 .card--page__breadcrumb--tour:before
-  color: $tour-poi
+  color: $link-card-tours
 
 .card--page__breadcrumb--sight:before
-  color: $sight-poi
+  color: $link-card-lodgings
 
 .card--page__breadcrumb--transport:before
   color: $title
 
 .card--page__breadcrumb--restaurant:before
-  color: $restaurant-poi
+  color: $link-card-entertainment
 
 .card--page__breadcrumb--shopping:before
-  color: $shopping-poi
+  color: $agatha
 
+.card--page__breadcrumb--event:before,
 .card--page__breadcrumb--entertainment:before,
 .card--page__breadcrumb--entertainment-nightlife:before
-  color: $entertainment-poi
+  color: $header-blue
 
 .card--page__breadcrumb--hotel:before
   color: $hotels-poi
 
 .card--page__breadcrumb--type
   font-weight: bold
+
+// end TODO
+
 
 .card--page__content
   @extend %grid-column
