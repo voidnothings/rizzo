@@ -90,12 +90,11 @@ $mobile-standard-card-image-height: 192px
         height: $card-grid-height
 
   .card--image-only &
-    height: $card-grid-half-height - (2 * $image-only-padding)
-    margin: $image-only-padding
+    height: $card-grid-half-height
     .homepage &
-      height: $mobile-card-grid-half-height - (2 * $image-only-padding)
+      height: $mobile-card-grid-half-height
       +respond-to(medium-view)
-        height: $card-grid-half-height - (2 * $image-only-padding)
+        height: $card-grid-half-height
 
 .card__hero__overlay
   height: $standard-card-image-height

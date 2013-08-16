@@ -48,11 +48,11 @@
   @extend %no-line-height
   @extend %ie8-font-color
   color: #fff
-  font-size: 69px
-  left: 75px
+  font-size: 50px
+  left: 15px
   position: absolute
   text-shadow: 0 0 5px rgba(0,0,0,0.75)
-  top: 80px
+  top: 15px
   z-index: 5
 
   .card--gallery &
@@ -70,13 +70,13 @@
   &:before
     content: ''
     position: absolute
-    top: 12px
-    left: 12px
+    top: 15px
+    left: 15px
     background-image: url(image_path("map-markers.png"))
     background-repeat: no-repeat
     width: 24px
     height: 33px
-    z-index: 3
+    z-index: 4
 
 .card--poi--sight:before
   background-position: -11px -61px
@@ -114,18 +114,24 @@
 // -----------------------------------------------------------------------------
 
 .card--destination
-  &.card--no-image
-    @extend %card-icon
-    @extend %local-marker-before
-    &:before
-      color: #10d6c6
-
-.card--info
-  @extend %card-icon
-  @extend %icon-poi-info-before
   &:before
-    color: $need-to-know-info
-    +font-size(50)
+    content: ''
+    position: absolute
+    top: 15px
+    left: 15px
+    background-image: url(image_path("map-markers.png"))
+    background-repeat: no-repeat
+    background-position: -413px -61px
+    width: 24px
+    height: 33px
+    z-index: 4
+
+// .card--info
+//   @extend %card-icon
+//   @extend %icon-poi-info-before
+//   &:before
+//     color: $need-to-know-info
+//     +font-size(50)
 
 
 // -----------------------------------------------------------------------------

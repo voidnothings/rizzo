@@ -110,6 +110,12 @@
       right: 0
       top: -$card-content-padding
 
+  // line above some footers, needs to push fade up a smidge
+  .card--article &,
+  .card--destination &
+    border-top: 1px solid #e3e7e9
+    &:after
+      top: -($card-content-padding + 1)
 
 // -----------------------------------------------------------------------------
 // Card Footer Items
