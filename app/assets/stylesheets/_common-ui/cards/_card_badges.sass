@@ -17,7 +17,7 @@
     background: url(image_path("map-markers.png")) no-repeat
     content: ''
     float: left
-    height: 33px
+    height: 24px
     margin-right: 3px
     width: 24px
     z-index: 4
@@ -37,6 +37,7 @@
   .card--collection--hotels &
     &:before
       background-position: -145px -61px
+      height: 33px
 
   .card--link--restaurants &
     &:before
@@ -65,6 +66,12 @@
   .card--poi--article &
     &:before
       background-position: -502px -61px
+
+// not the prettiest thing in the world...
+.card:hover
+  .card__item-count:before
+    height: 33px
+
 
 // -----------------------------------------------------------------------------
 // Media card badges
