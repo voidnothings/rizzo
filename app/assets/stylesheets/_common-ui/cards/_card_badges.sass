@@ -66,29 +66,32 @@
 // POI card badges
 // -----------------------------------------------------------------------------
 
-.card--poi
+.card--poi,
+.card--destination
   &:before
+    background: url(image_path("map-markers.png")) no-repeat
     content: ''
+    height: 33px
+    left: 15px
     position: absolute
     top: 15px
-    left: 15px
-    background-image: url(image_path("map-markers.png"))
-    background-repeat: no-repeat
     width: 24px
-    height: 33px
     z-index: 4
 
 .card--poi--sight:before
   background-position: -11px -61px
 
-.card--poi--hotel:before
-  background-position: -145px -61px
-
 .card--poi--activity:before
   background-position: -55px -61px
 
-.card--poi--tour:before
-  background-position: -457px -61px
+.card--poi--entertainment:before
+  background-position: -100px -61px
+
+.card--poi--hotel:before
+  background-position: -145px -61px
+
+.card--poi--restaurant:before
+  background-position: -234px -61px
 
 .card--poi--shopping:before
   background-position: -279px -61px
@@ -96,42 +99,17 @@
 .card--poi--event:before
   background-position: -323px -61px
 
-.card--poi--entertainment:before
-  background-position: -100px -61px
-
-.card--poi--restaurant:before
-  background-position: -234px -61px
-
-.card--poi--article:before
-  background-position: -502px -61px
-
 .card--poi--transport:before
   background-position: -368px -61px
 
+.card--destination:before
+  background-position: -413px -61px
 
-// -----------------------------------------------------------------------------
-// Other card badges
-// -----------------------------------------------------------------------------
+.card--poi--tour:before
+  background-position: -457px -61px
 
-.card--destination
-  &:before
-    content: ''
-    position: absolute
-    top: 15px
-    left: 15px
-    background-image: url(image_path("map-markers.png"))
-    background-repeat: no-repeat
-    background-position: -413px -61px
-    width: 24px
-    height: 33px
-    z-index: 4
-
-// .card--info
-//   @extend %card-icon
-//   @extend %icon-poi-info-before
-//   &:before
-//     color: $need-to-know-info
-//     +font-size(50)
+.card--poi--article:before
+  background-position: -502px -61px
 
 
 // -----------------------------------------------------------------------------
