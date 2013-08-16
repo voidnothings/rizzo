@@ -3,42 +3,68 @@
 // -----------------------------------------------------------------------------
 
 .card__item-count
-  +font-size(20)
+  @extend %extra-large-type
   @extend %no-line-height
   position: absolute
   color: #fff
-  left: 10px
+  height: 30px // Stop clipping in IE
+  left: 15px
+  line-height: 20px
   top: 15px
   z-index: 5
-  // Stop clipping in IE
-  height: 30px
 
   &:before
-    +font-size(35)
-    position: relative
-    top: 3px
-
-  .card--collection--hotels &
-    @extend %icon-image-poi-hotel-before
-
-  .card--link--activities &
-    @extend %icon-image-poi-activity-before
-
-  .card--link--entertainment &
-    @extend %icon-image-poi-entertainment-before
-
-  .card--link--restaurants &
-    @extend %icon-image-poi-restaurant-before
-
-  .card--link--shopping &
-    @extend %icon-image-poi-shopping-before
+    background: url(image_path("map-markers.png")) no-repeat
+    content: ''
+    float: left
+    height: 33px
+    margin-right: 3px
+    width: 24px
+    z-index: 4
 
   .card--link--sights &
-    @extend %icon-image-poi-sight-before
+    &:before 
+      background-position: -11px -61px
+
+  .card--link--activities &
+    &:before
+      background-position: -55px -61px
+
+  .card--link--entertainment &
+    &:before
+      background-position: -100px -61px
+
+  .card--collection--hotels &
+    &:before
+      background-position: -145px -61px
+
+  .card--link--restaurants &
+    &:before
+      background-position: -234px -61px
+
+  .card--link--shopping &
+    &:before
+      background-position: -279px -61px
+
+  .card--poi--event &
+    &:before
+      background-position: -323px -61px
+
+  .card--poi--transport &
+    &:before
+      background-position: -368px -61px
+
+  .card--destination &
+    &:before
+      background-position: -413px -61px
 
   .card--link--tours &
-    @extend %icon-image-poi-tour-before
+    &:before
+      background-position: -457px -61px
 
+  .card--poi--article &
+    &:before
+      background-position: -502px -61px
 
 // -----------------------------------------------------------------------------
 // Media card badges
