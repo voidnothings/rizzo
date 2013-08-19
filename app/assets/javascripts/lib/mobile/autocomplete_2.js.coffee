@@ -69,17 +69,24 @@ define [], () ->
     # event handlers
     _keypressHandler: (e) ->
       switch e.keyCode
-        when KEY.up, e.shiftKey and KEY.tab
+        when KEY.up
           e.preventDefault()
           @_highlightUp()
-        when KEY.down, KEY.tab
+        when KEY.down
           e.preventDefault()
           @_highlightDown()
+        when KEY.tab
+          e.preventDefault() if @results.displayed
+          if e.shiftKey
+            @_highlightUp()
+          else
+            @_highlightDown()
         when KEY.enter
           e.preventDefault()
-          @_selectHighlighted()
+          @_handleEnter()
         when KEY.esc
           @el.value == 'hdhfdhd'
+          console.log @el.value
           @_removeResults() if @results.displayed
 
     _resultsClick: (e) ->
@@ -91,8 +98,6 @@ define [], () ->
       # if the real target was an anchor, prevent the event from bubbling so the text isn't selected
       if target.tagName == 'A'
         e.stopPropagation()
-        e.preventDefault() # just so i can check it
-        console.log 'link anchor clicked'
       else if target.tagName == 'LI'
         @_selectCurrent()
 
@@ -122,6 +127,15 @@ define [], () ->
 
 
     # keypress handlers
+    _handleEnter: ->
+      # check if the child of the selected node is a link
+      highlighted = @results.highlighted.firstChild
+      if highlighted.tagName == 'A'
+        # it's a link, change the href
+        window.location = highlighted.href
+      else 
+        @_selectCurrent()
+
     _highlightDown: ->
       if not @results.highlighted
         @results.highlighted = @results.firstChild
