@@ -5,13 +5,18 @@
 // Lodging map pins   
 @mixin lp-map-pins-spt($x:0px,$y:0px, $R:no-repeat, $color: transparent)
   background: url(image_path("map-markers.png")) $R $x $y $color
-//
+
 .block-float
   display: block
   float: left
   background-color: gray
 
-.icon-poi-tiny, .icon-poi-dot
+.icon-poi-dot
+  width: 8px
+  height: 8px
+  @extend .block-float
+
+.icon-poi-tiny
   width: 15px
   height: 21px
   @extend .block-float
@@ -25,10 +30,9 @@
   width: 33px
   height: 46px
   @extend .block-float
-  
 
 .icon-poi-location-marker-dot
-  @include lp-map-pins-spt(-548px, -103px)
+  @include lp-map-pins-spt(-241px, -109px)
 
 // icon poi small
 .icon-poi-sight-tiny
@@ -72,43 +76,43 @@
 
 // icon poi small
 .icon-poi-sight-small
-  @include lp-map-pins-spt(-11px,-61px)
+  @include lp-map-pins-spt(-11px,-62px)
 
 .icon-poi-activity-small
-  @include lp-map-pins-spt(-56px,-61px)
+  @include lp-map-pins-spt(-56px,-62px)
 
 .icon-poi-entertainment-small
-  @include lp-map-pins-spt(-100px,-61px)
+  @include lp-map-pins-spt(-100px,-62px)
 
 .icon-poi-hotel-small
-  @include lp-map-pins-spt(-145px,-61px)
+  @include lp-map-pins-spt(-145px,-62px)
 
 .icon-poi-bar-small
-  @include lp-map-pins-spt(-189px,-61px)
+  @include lp-map-pins-spt(-189px,-62px)
 
 .icon-poi-restaurant-small
-  @include lp-map-pins-spt(-234px,-61px)
+  @include lp-map-pins-spt(-234px,-62px)
 
 .icon-poi-shoping-small
-  @include lp-map-pins-spt(-279px,-61px)
+  @include lp-map-pins-spt(-279px,-62px)
 
 .icon-poi-festival-small
-  @include lp-map-pins-spt(-323px,-61px)
+  @include lp-map-pins-spt(-323px,-62px)
 
 .icon-poi-transport-small
-  @include lp-map-pins-spt(-368px,-61px)
+  @include lp-map-pins-spt(-368px,-62px)
 
 .icon-poi-mark-small
-  @include lp-map-pins-spt(-413px,-61px)
+  @include lp-map-pins-spt(-413px,-62px)
 
 .icon-poi-tour-small
-  @include lp-map-pins-spt(-457px,-61px)
+  @include lp-map-pins-spt(-457px,-62px)
 
 .icon-poi-article-small
-  @include lp-map-pins-spt(-502px,-61px)
+  @include lp-map-pins-spt(-502px,-62px)
 
 .icon-poi-info-small
-  @include lp-map-pins-spt(-547px,-61px)
+  @include lp-map-pins-spt(-547px,-62px)
 
 // icon poi large 
 .icon-poi-sight-large
@@ -118,7 +122,7 @@
   @include lp-map-pins-spt(-51px,-5px)
 
 .icon-poi-entertainment-large
-  @include lp-map-pins-spt(-96px,-5px)
+  @include lp-map-pins-spt(-95px,-5px)
 
 .icon-poi-hotel-large
   @include lp-map-pins-spt(-140px,-5px)
@@ -127,7 +131,7 @@
   @include lp-map-pins-spt(-185px,-5px)
 
 .icon-poi-restaurant-large
-  @include lp-map-pins-spt(-230px,-5px)
+  @include lp-map-pins-spt(-229px,-5px)
 
 .icon-poi-shoping-large
   @include lp-map-pins-spt(-274px,-5px)
@@ -136,16 +140,16 @@
   @include lp-map-pins-spt(-319px,-5px)
 
 .icon-poi-transport-large
-  @include lp-map-pins-spt(-364px,-5px)
+  @include lp-map-pins-spt(-363px,-5px)
 
 .icon-poi-mark-large
-  @include lp-map-pins-spt(-409px,-5px)
+  @include lp-map-pins-spt(-408px,-5px)
 
 .icon-poi-tour-large
-  @include lp-map-pins-spt(-453px,-5px)
+  @include lp-map-pins-spt(-452px,-5px)
 
 .icon-poi-article-large
-  @include lp-map-pins-spt(-498px,-5px)
+  @include lp-map-pins-spt(-497px,-5px)
 
 .icon-poi-info-large
   @include lp-map-pins-spt(-542px,-5px)
