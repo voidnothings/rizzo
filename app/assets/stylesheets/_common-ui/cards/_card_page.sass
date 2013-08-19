@@ -70,18 +70,21 @@
     background: url(image_path("map-markers.png")) no-repeat
     content: ''
     float: left
-    height: 20px
+    height: 21px
     margin-right: 5px
     position: relative
     top: 2px
     width: 15px
     z-index: 4
+    +retinafy()
+      background: url(image_path("map-markers-2x.png")) no-repeat
+      background-size: 579px 130px
 
 .card--page__breadcrumb--sight:before
   background-position: -15px -103px
 
 .card--page__breadcrumb--activity:before
-  background-position: -60px -103px
+  background-position: -59px -103px
 
 .card--page__breadcrumb--tour:before
   background-position: -462px -103px
@@ -94,16 +97,28 @@
   background-position: -149px -103px
 
 .card--page__breadcrumb--restaurant:before
-  background-position: -194px -103px
+  background-position: -193px -103px
 
 .card--page__breadcrumb--shopping:before
   background-position: -283px -103px
 
 .card--page__breadcrumb--event:before
-  background-position: -328px -103px
+  background-position: -327px -103px
 
 .card--page__breadcrumb--transport:before
   background-position: -372px -103px
+
+.card--page__breadcrumb--destination:before
+  background-position: -417px -103px
+
+.card--page__breadcrumb--tour:before
+  background-position: -461px -103px
+
+.card--page__breadcrumb--article:before
+  background-position: -506px -103px
+
+.card--page__breadcrumb--info:before
+  background-position: -551px -103px
 
 .card--page__content
   @extend %grid-column

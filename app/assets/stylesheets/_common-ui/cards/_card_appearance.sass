@@ -46,14 +46,15 @@
   @extend %small-type
   @extend %left-icon
   @extend %local-marker-before
-  @extend %uppercase
-  color: $body-copy
+  color: $new-header-grey
+  font-weight: bold
   line-height: 14px
   margin-bottom: 10px
   padding-left: 15px
   &:before
     font-size: 22px
     left: -1px
+    top: -2px
 
 .card__description
   @extend %irregular-type
@@ -85,7 +86,7 @@
   color: $body-copy
   left: 0
   line-height: 12px
-  padding: 6px 15px 10px
+  padding: 7px
   right: 0
   z-index: 3
 
@@ -117,7 +118,8 @@
 
 .destination__item-count
   @extend %irregular-type
-  color: $body
+  color: $new-header-grey
+  font-weight: bold
   margin-right: 5px
   padding-left: 20px
   &:before
