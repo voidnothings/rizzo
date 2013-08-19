@@ -11,11 +11,11 @@
     document.createElement('hgroup');
 
 :javascript
+  // Setup our namespace
+  window.lp = {};
+
   // Switch no-js class for js
   (function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);
-
-  // Setup our namespace
-  window.lp = {}
 
   // Initialise a flamsteed buffer
   window.lp.fs = {
