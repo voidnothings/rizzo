@@ -12,10 +12,12 @@
     pointer-events: none
     top: 0
     width: $double-card-width
-  .homepage &
-    background-position: -40px 0
+  .homepage &:after
+    width: 100%
+    background-size: 100%
     +respond-to(medium-view)
-      background-position: 0 0
+      background-size: $double-card-width $card-grid-height
+      width: $double-card-width
 
 .card__property-type,
 .card__context
@@ -89,6 +91,8 @@
   padding: 7px
   right: 0
   z-index: 3
+  .homepage &
+    display: none
 
   .btn--bookable
     @extend %irregular-type
