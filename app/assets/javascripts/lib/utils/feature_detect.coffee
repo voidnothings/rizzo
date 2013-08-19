@@ -28,6 +28,8 @@
           has3d = window.getComputedStyle(el).getPropertyValue(transforms[t])
       document.body.removeChild el
       has3d isnt `undefined` and has3d.length > 0 and has3d isnt "none"
+    'cssmasks': ->
+      document.body.style[ '-webkit-mask-repeat' ] isnt undefined
     'placeholder': ->
       "placeholder" of document.createElement("input")
 
