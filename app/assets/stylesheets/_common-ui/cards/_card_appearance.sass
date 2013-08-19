@@ -20,7 +20,6 @@
 .card__property-type,
 .card__context
   @extend %irregular-type
-  @extend %ie8-font-color
   color: $body
   display: block
   margin-bottom: 2px
@@ -48,7 +47,6 @@
   @extend %left-icon
   @extend %local-marker-before
   @extend %uppercase
-  @extend %ie8-font-color
   color: $body-copy
   line-height: 14px
   margin-bottom: 10px
@@ -57,17 +55,13 @@
     font-size: 22px
     left: -1px
 
-
-
 .card__description
   @extend %irregular-type
-  @extend %ie8-font-color
   color: $body-copy
   line-height: 14px
 
 .card__list
   @extend %irregular-type
-  @extend %ie8-font-color
   color: $body-copy
   list-style: circle inside
 
@@ -123,9 +117,7 @@
 
 .destination__item-count
   @extend %irregular-type
-  @extend %ie8-font-color
-  color: $new-header-grey
-  font-weight: bold
+  color: $body
   margin-right: 5px
   padding-left: 20px
   &:before

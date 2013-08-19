@@ -9,6 +9,8 @@
 // we go site wide with delayed font loading
 html
   font: $freight-font-size 'Helvetica Neue', Arial, sans-serif
+  @if $is-ie
+    font: $helvetica-font-size 'Helvetica Neue', Arial, sans-serif
 
 // The homepage base uses helvetica as standard, increase the base font size
 html.no-freight

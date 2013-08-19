@@ -167,3 +167,23 @@
   -moz-perspective:    $perspective
   -ms-perspective:     $perspective
   perspective:         $perspective
+
+@mixin backface-visibility($state:hidden)
+  -webkit-backface-visibility: $state
+  -moz-backface-visibility:    $state
+  -ms-backface-visibility:     $state
+  -o-backface-visibility:      $state
+  backface-visibility:         $state
+
+@mixin keyframes($animation-name)
+  @-webkit-keyframes #{$animation-name}
+    @content
+  @-moz-keyframes #{$animation-name}
+    @content
+  @-ms-keyframes #{$animation-name}
+    @content
+  @-o-keyframes #{$animation-name}
+    @content
+  @keyframes #{$animation-name}
+    @content
+  
