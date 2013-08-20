@@ -5,7 +5,7 @@ $discSize: 12px
   background-position: center center
   display: none
   left: 50%
-  margin-left: -1 * $discSize * 4 // 4 = number of discs
+  margin-left: -#{$discSize * 4} // 4 = number of discs
   margin-top: -10px
   overflow: hidden
   position: absolute
@@ -45,7 +45,7 @@ $discSize: 12px
       @extend %empty-generated-content
       border-radius: $discSize / 2
       height: $discSize
-      margin-top: -1 * $discSize
+      margin-top: -#{$discSize}
       position: relative
       width: $discSize
       +animation(discmove 1.75s infinite)
