@@ -4,14 +4,14 @@
   position: relative
   text-align: center
   color: white
-  background: #2D5082
+  background: $lpblue
   background-position: 50% 50% 
   background-repeat: no-repeat
   background-size: cover
   .enhanced &, .ie9 &
-    +responsive-image('homepage/hero/house', 'jpg')
+    +responsive-image('homepage/hero/alps', 'jpg')
   .ie7 &, .ie8 &
-    background-image: url(#{image_path('homepage/hero/house_1671.jpg')})
+    background-image: url(#{image_path('homepage/hero/alps_1671.jpg')})
 
   +respond-to(medium-view)
     height: 640px
