@@ -3,42 +3,71 @@
 // -----------------------------------------------------------------------------
 
 .card__item-count
-  +font-size(20)
+  @extend %extra-large-type
   @extend %no-line-height
   position: absolute
   color: #fff
-  left: 10px
+  height: 34px // Stop clipping in IE
+  left: 15px
+  line-height: 20px
   top: 15px
   z-index: 5
-  // Stop clipping in IE
-  height: 30px
 
   &:before
-    +font-size(35)
-    position: relative
-    top: 3px
-
-
-  .card--collection--hotels &
-    @extend %icon-image-poi-hotel-before
-
-  .card--link--activities &
-    @extend %icon-image-poi-activity-before
-
-  .card--link--entertainment &
-    @extend %icon-image-poi-entertainment-before
-
-  .card--link--restaurants &
-    @extend %icon-image-poi-restaurant-before
-
-  .card--link--shopping &
-    @extend %icon-image-poi-shopping-before
+    background: url(image_path("map-markers.png")) no-repeat
+    content: ''
+    float: left
+    height: 34px
+    margin-right: 3px
+    width: 24px
+    z-index: 4
+    +retinafy()
+      background-image: url(image_path("map-markers-2x.png"))
+      background-size: $map-markers-sprite-size
 
   .card--link--sights &
-    @extend %icon-image-poi-sight-before
+    &:before 
+      background-position: -11px -61px
+
+  .card--link--activities &
+    &:before
+      background-position: -55px -61px
+
+  .card--link--entertainment &
+    &:before
+      background-position: -100px -61px
+
+  .card--collection--hotels &
+    &:before
+      background-position: -145px -61px
+
+  .card--link--restaurants &
+    &:before
+      background-position: -234px -61px
+
+  .card--link--shopping &
+    &:before
+      background-position: -279px -61px
+
+  .card--poi--event &
+    &:before
+      background-position: -323px -61px
+
+  .card--poi--transport &
+    &:before
+      background-position: -368px -61px
+
+  .card--destination &
+    &:before
+      background-position: -413px -61px
 
   .card--link--tours &
-    @extend %icon-image-poi-tour-before
+    &:before
+      background-position: -457px -61px
+
+  .card--poi--article &
+    &:before
+      background-position: -502px -61px
 
 
 // -----------------------------------------------------------------------------
@@ -47,12 +76,12 @@
 
 .card--media__badge
   @extend %no-line-height
+  +font-size(45)
   color: #fff
-  font-size: 69px
-  left: 75px
+  left: 15px
   position: absolute
   text-shadow: 0 0 5px rgba(0,0,0,0.75)
-  top: 80px
+  top: 15px
   z-index: 5
 
   .card--gallery &
@@ -66,91 +95,60 @@
 // POI card badges
 // -----------------------------------------------------------------------------
 
-%card-icon
-  &:before
-    @extend %lp-font-stack
-    @extend %no-line-height
-    cursor: pointer
-    font-size: 69px
-    left: 10px
-    position: absolute
-    pointer-events: none
-    top: 25px
-    z-index: 3
-
-.card--poi
-  @extend %card-icon
-
-  &.card--small-image
-    &:before
-      color: #fff
-      font-size: 40px
-      text-shadow: 0 0 5px rgba(0,0,0,0.75)
-      top: 20px
-
-.card--poi--hotel
-  +poi-badge(hotel)
-  &:before
-    color: $hotels-poi
-
-.card--poi--sight
-  +poi-badge(sight)
-  &:before
-    color: $sight-poi
-
-.card--poi--activity
-  +poi-badge(activity)
-  &:before
-    color: $activity-poi
-
-.card--poi--tour
-  +poi-badge(tour)
-  &:before
-    color: $tour-poi
-
-.card--poi--shopping
-  +poi-badge(shopping)
-  &:before
-    color: $shopping-poi
-
-.card--poi--entertainment
-  +poi-badge(entertainment)
-  &:before
-    color: $entertainment-poi
-
-.card--poi--restaurant
-  +poi-badge(restaurant)
-  &:before
-    color: $restaurant-poi
-
-.card--poi--article
-  +poi-badge(article)
-  &:before
-    color: $brightgreen
-
-.card--poi--transport
-  +poi-badge(transport)
-  &:before
-    color: $title
-
-
-// -----------------------------------------------------------------------------
-// Other card badges
-// -----------------------------------------------------------------------------
-
+.card--info,
+.card--poi,
 .card--destination
-  &.card--no-image
-    @extend %card-icon
-    @extend %local-marker-before
-    &:before
-      color: #10d6c6
-
-.card--info
-  @extend %card-icon
-  @extend %icon-poi-info-before
   &:before
-    color: $need-to-know-info
-    +font-size(50)
+    background: url(image_path("map-markers.png")) no-repeat
+    content: ''
+    height: 33px
+    left: 15px
+    position: absolute
+    top: 15px
+    width: 24px
+    z-index: 4
+    +retinafy()
+      background-image: url(image_path("map-markers-2x.png"))
+      background-size: $map-markers-sprite-size
+
+.card--poi--sight:before
+  background-position: -11px -62px
+
+.card--poi--activity:before
+  background-position: -55px -62px
+
+.card--poi--entertainment:before
+  background-position: -100px -62px
+
+.card--poi--hotel:before
+  background-position: -145px -62px
+
+.card--poi--bar:before
+  background-position: -189px -62px
+
+.card--poi--restaurant:before
+  background-position: -234px -62px
+
+.card--poi--shopping:before
+  background-position: -279px -62px
+
+.card--poi--event:before
+  background-position: -323px -62px
+
+.card--poi--transport:before
+  background-position: -368px -62px
+
+.card--destination:before
+  background-position: -413px -62px
+
+.card--poi--tour:before
+  background-position: -457px -62px
+
+.card--poi--article:before
+  background-position: -502px -62px
+
+.card--info:before
+  background-position: -547px -62px
 
 
 // -----------------------------------------------------------------------------

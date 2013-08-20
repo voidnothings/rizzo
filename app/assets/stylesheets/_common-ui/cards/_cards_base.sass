@@ -17,7 +17,7 @@ $card-grid-half-height:      185px
 $standard-card-image-height: 275px
 $small-card-image-height:    185px
 
-$default-card-top-padding:    60px
+$default-card-top-padding:    55px
 $card-content-padding:        15px
 $card-hotel-content-padding:  13px
 $image-only-padding:           7px
@@ -90,12 +90,11 @@ $mobile-standard-card-image-height: 192px
         height: $card-grid-height
 
   .card--image-only &
-    height: $card-grid-half-height - (2 * $image-only-padding)
-    margin: $image-only-padding
+    height: $card-grid-half-height
     .homepage &
-      height: $mobile-card-grid-half-height - (2 * $image-only-padding)
+      height: $mobile-card-grid-half-height
       +respond-to(medium-view)
-        height: $card-grid-half-height - (2 * $image-only-padding)
+        height: $card-grid-half-height
 
 .card__hero__overlay
   height: $standard-card-image-height
@@ -145,11 +144,12 @@ $mobile-standard-card-image-height: 192px
   .card--image-only &
     @extend %transition--base
     @extend %subpixel-text
-    bottom: -54px // This accommodates for 3 lines of copy.
+    @extend %section-heading-size-type
+    bottom: -70px // This accommodates for 3 lines of copy.
     color: #fff
     height: auto
     left: 0
-    line-height: 18px
+    line-height: 20px
     margin: 0
     padding: 0 $card-content-padding
     position: absolute
