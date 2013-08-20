@@ -50,15 +50,15 @@ define [], () ->
       @_addClass results, "#{@config.resultsClass}--#{@config.classModifier}" if @config.classModifier
 
       results.addEventListener 'click', (e) =>
-        @_resultsClick(e)
+        @_resultsClick e
       , false
 
       results.addEventListener 'mouseover', (e) =>
-        @_resultsMouseOver(e.target)
+        @_resultsMouseOver e.target
       , false
 
       results.addEventListener 'mouseout', (e) =>
-        @_resultsMouseOut(e.target)
+        @_resultsMouseOut e.target
       , false
 
       results
