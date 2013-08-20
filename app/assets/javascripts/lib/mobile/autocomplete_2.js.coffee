@@ -97,6 +97,7 @@ define [], () ->
       if target.tagName == 'A'
         e.stopPropagation()
       else if target.tagName == 'LI'
+        @results.highlighted = target
         @_selectCurrent()
 
     _resultsMouseOver: (target) ->
