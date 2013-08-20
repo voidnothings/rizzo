@@ -1,8 +1,6 @@
 :javascript
   (function(){
-    if (document.documentElement.className.indexOf('ie8') === -1 
-      && document.documentElement.className.indexOf('ie9') === -1) {
-      
+    if (window.lp.enhanced === true) {
       var xhr = new XMLHttpRequest();
       var cdnPath = "#{font_path('fonts.css')}";
       // Use www to avoid CORS issues
@@ -13,7 +11,7 @@
       xhr.open('GET', newPath);
 
       xhr.onload = function (e) {
-        document.cookie = "_lpfont=true;domain=.lonelyplanet.com;expires=Tue, 19 Jan 2038 03:14:07 GMT"
+        window.localStorage.setItem('_lpfont', 'true')
       };
 
       xhr.send();
