@@ -109,12 +109,14 @@ define [], () ->
       @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
 
       @results.highlighted = target
+      @results.hovered = true
       @_highlightCurrent()
 
     _resultsMouseOut: ->
       # clear old highlight
       @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
 
+      delete @results.hovered
       delete @results.highlighted
 
     _selectCurrent: ->

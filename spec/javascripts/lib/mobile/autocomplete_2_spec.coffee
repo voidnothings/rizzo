@@ -125,6 +125,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
 
       it 'should add a list hovered property to the component when mouse is over results', ->
         testElt = document.createElement 'LI'
+
         myAutoComplete._resultsMouseOver(testElt)
 
         expect(myAutoComplete.results.hovered).toBe true
@@ -289,6 +290,56 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
           myAutoComplete._removeResults()
 
           expect($("##{newConfig.parentElt}")).not.toHaveClass 'autocomplete__active'
+
+      describe 'navigating the list via keyboard', ->
+        beforeEach ->
+          loadFixtures 'autocomplete_mobile.html'
+          myAutoComplete = new AutoComplete DEFAULT_CONFIG
+          myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
+
+        it 'highlights the first item in the list if none selected and down is pressed', ->
+          myAutoComplete._highlightDown()
+
+          expect(myAutoComplete.results.highlighted).toBe myAutoComplete.results.firstChild
+
+        it 'highlights the last item in the list if none selected and up is pressed', ->
+          myAutoComplete._highlightUp()
+
+          expect(myAutoComplete.results.highlighted).toBe myAutoComplete.results.lastChild
+
+        it 'highlights the next item in the list if item selected and down is pressed', ->
+          myAutoComplete.results.highlighted = myAutoComplete.results.firstChild
+          oldSelected = myAutoComplete.results.highlighted
+
+          myAutoComplete._highlightDown()
+
+          expect(myAutoComplete.results.highlighted).toBe oldSelected.nextSibling
+
+        it 'highlights the previous item in the list if item selected and up is pressed', ->
+          myAutoComplete.results.highlighted = myAutoComplete.results.lastChild
+          oldSelected = myAutoComplete.results.highlighted
+
+          myAutoComplete._highlightUp()
+
+          expect(myAutoComplete.results.highlighted).toBe oldSelected.previousSibling
+
+        it 'keeps the first item highlighted if first item selected and up is pressed', ->
+          myAutoComplete.results.highlighted = myAutoComplete.results.firstChild
+          oldSelected = myAutoComplete.results.highlighted
+
+          myAutoComplete._highlightUp()
+
+          expect(myAutoComplete.results.highlighted).toBe oldSelected
+
+        it 'keeps the last item highlighted if last item selected and down is pressed', ->
+          myAutoComplete.results.highlighted = myAutoComplete.results.lastChild
+          oldSelected = myAutoComplete.results.highlighted
+
+          myAutoComplete._highlightDown()
+
+          expect(myAutoComplete.results.highlighted).toBe oldSelected
+
+
 
       describe 'populating the results list', ->
         beforeEach ->
