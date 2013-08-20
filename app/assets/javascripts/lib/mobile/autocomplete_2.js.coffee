@@ -63,9 +63,6 @@ define [], () ->
 
       results
 
-
-
-
     # event handlers
     _keypressHandler: (e) ->
       switch e.keyCode
@@ -82,8 +79,9 @@ define [], () ->
           else
             @_highlightDown()
         when KEY.enter
-          e.preventDefault()
-          @_handleEnter()
+          if @results.highlighted
+            e.preventDefault()
+            @_handleEnter()
         when KEY.esc
           @el.value == 'hdhfdhd'
           console.log @el.value
@@ -121,12 +119,11 @@ define [], () ->
 
     _selectCurrent: ->
       @el.value = @results.highlighted.textContent
+      @config.selectCallback.call @results.highlighted if @config.selectCallback
       @_removeResults()
 
     _highlightCurrent: ->
       @_addClass @results.highlighted, "#{@config.resultItemHoveredClass}"
-
-
 
     # keypress handlers
     _handleEnter: ->
@@ -219,6 +216,9 @@ define [], () ->
         listItem.appendChild anchor
       else
         listItem.innerHTML = highlightedText
+
+      if @config.map.data?
+        listItem.setAttribute("data-#{key}", item[key]) for key in @config.map.data
 
       listItem
 

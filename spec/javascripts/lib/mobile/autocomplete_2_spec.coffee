@@ -270,6 +270,23 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
 
           expect($("##{newConfig.parentElt}")).toHaveClass 'autocomplete__active'
 
+      describe 'selecting a list item', ->
+        beforeEach ->
+          loadFixtures 'autocomplete_mobile.html'
+
+        it 'should execute a callback when selecting an item if supplied', ->
+          callbackSpy = jasmine.createSpy()
+          testingMap =
+            title: 'title'
+          newConfig = {id: 'my_search', uri: '/search', map: testingMap, selectCallback: callbackSpy}
+          myAutoComplete = new AutoComplete newConfig
+          myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
+
+          myAutoComplete._highlightDown()
+          myAutoComplete._handleEnter()
+
+          expect(callbackSpy).toHaveBeenCalled()
+
       describe 'removing the results list from the page', ->
         beforeEach ->
           loadFixtures 'autocomplete_mobile.html'
@@ -372,6 +389,15 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
           loadFixtures 'autocomplete_mobile.html'
           myAutoComplete = new AutoComplete DEFAULT_CONFIG
           myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
+
+
+
+
+
+
+
+
+
 
 
       describe 'populating the results list', ->
@@ -482,6 +508,25 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
 
             expect(anchor.tagName).toBe 'A'
             expect(anchor.innerHTML).toBe '<b>Lon</b>don'
+
+        describe 'creating adding data attributes to a link item', ->
+          testingMap = 
+            title: 'title',
+            data: ['uri', 'type']
+    
+          newConfig = {id: 'my_search', uri: '/search', map: testingMap}
+    
+          beforeEach ->
+            loadFixtures 'autocomplete_mobile.html'
+            myAutoComplete = new AutoComplete newConfig
+            item = myAutoComplete._createListItem SEARCH_RESULTS[0], searchTerm
+
+          it 'should return a basic list item with data attributes', ->
+            expect(item.tagName).toBe 'LI'
+            expect(item.textContent).toBe SEARCH_RESULTS[0].title
+
+            expect(item.getAttribute('data-uri')).toBe SEARCH_RESULTS[0].uri
+            expect(item.getAttribute('data-type')).toBe SEARCH_RESULTS[0].type
 
         describe 'creating a typed link item', ->
           testingMap = 
