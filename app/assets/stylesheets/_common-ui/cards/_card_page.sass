@@ -57,6 +57,9 @@
     margin-left: 10px
     margin-top: 30px
 
+.card--page__breadcrumb--type
+  font-weight: bold
+
 .card--page__breadcrumb
   @extend %local-marker-before
   line-height: 25px
@@ -64,37 +67,58 @@
   text-transform: uppercase
 
   &:before
-    +font-size(35)
+    background: url(image_path("map-markers.png")) no-repeat
+    content: ''
+    float: left
+    height: 21px
+    margin-right: 5px
     position: relative
-    top: 4px
-
-.card--page__breadcrumb--activity:before
-  color: $activity-poi
-
-.card--page__breadcrumb--tour:before
-  color: $tour-poi
+    top: 2px
+    width: 15px
+    z-index: 4
+    +retinafy()
+      background: url(image_path("map-markers-2x.png")) no-repeat
+      background-size: $map-markers-sprite-size
 
 .card--page__breadcrumb--sight:before
-  color: $sight-poi
+  background-position: -15px -103px
 
-.card--page__breadcrumb--transport:before
-  color: $title
+.card--page__breadcrumb--activity:before
+  background-position: -59px -103px
 
-.card--page__breadcrumb--restaurant:before
-  color: $restaurant-poi
-
-.card--page__breadcrumb--shopping:before
-  color: $shopping-poi
+.card--page__breadcrumb--tour:before
+  background-position: -462px -103px
 
 .card--page__breadcrumb--entertainment:before,
 .card--page__breadcrumb--entertainment-nightlife:before
-  color: $entertainment-poi
+  background-position: -104px -103px
 
 .card--page__breadcrumb--hotel:before
-  color: $hotels-poi
+  background-position: -149px -103px
 
-.card--page__breadcrumb--type
-  font-weight: bold
+.card--page__breadcrumb--restaurant:before
+  background-position: -193px -103px
+
+.card--page__breadcrumb--shopping:before
+  background-position: -283px -103px
+
+.card--page__breadcrumb--event:before
+  background-position: -327px -103px
+
+.card--page__breadcrumb--transport:before
+  background-position: -372px -103px
+
+.card--page__breadcrumb--destination:before
+  background-position: -417px -103px
+
+.card--page__breadcrumb--tour:before
+  background-position: -461px -103px
+
+.card--page__breadcrumb--article:before
+  background-position: -506px -103px
+
+.card--page__breadcrumb--info:before
+  background-position: -551px -103px
 
 .card--page__content
   @extend %grid-column

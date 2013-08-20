@@ -4,6 +4,7 @@
 .media-gallery
   @extend %clearfix
   @extend %transition--base
+  margin-bottom: 20px
   position: relative
   &.has-tabs ~ .card--page__aside
     @extend %media-gallery-transition
@@ -25,6 +26,11 @@
     top: 95px
   .slider__pagination
     display: none
+  .slider__container
+    background: $body-background-light
+  .slider__slide
+    background: $body-background-light
+    text-align: center
 
 // This is all in a mixin because IE7/8 don't work when the :checked, and .is-checked selectors
 // are on the same line below (because IE7/8 don't understand :checked, they discard the entire rule)

@@ -2,6 +2,7 @@ $responsive-nav-width: 240px
 
 // Create a page wrapper so that we don't show a scrollbar
 .wrapper
+  +backface-visibility()
   position: relative
   overflow: hidden
   width: 100%
@@ -9,6 +10,7 @@ $responsive-nav-width: 240px
 // The container for our off-screen navigation
 .nav-container
   +hardware-acceleration()
+  +backface-visibility()
   @extend %clearfix
   width: 100%
   background: $primary-nav

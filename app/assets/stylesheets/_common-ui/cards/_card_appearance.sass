@@ -12,15 +12,16 @@
     pointer-events: none
     top: 0
     width: $double-card-width
-  .homepage &
-    background-position: -40px 0
+  .homepage &:after
+    width: 100%
+    background-size: 100%
     +respond-to(medium-view)
-      background-position: 0 0
+      background-size: $double-card-width $card-grid-height
+      width: $double-card-width
 
 .card__property-type,
 .card__context
   @extend %irregular-type
-  @extend %ie8-font-color
   color: $body
   display: block
   margin-bottom: 2px
@@ -47,27 +48,23 @@
   @extend %small-type
   @extend %left-icon
   @extend %local-marker-before
-  @extend %uppercase
-  @extend %ie8-font-color
-  color: $body-copy
+  color: $new-header-grey
+  font-weight: bold
   line-height: 14px
   margin-bottom: 10px
   padding-left: 15px
   &:before
     font-size: 22px
     left: -1px
-
-
+    top: -2px
 
 .card__description
   @extend %irregular-type
-  @extend %ie8-font-color
   color: $body-copy
   line-height: 14px
 
 .card__list
   @extend %irregular-type
-  @extend %ie8-font-color
   color: $body-copy
   list-style: circle inside
 
@@ -91,9 +88,11 @@
   color: $body-copy
   left: 0
   line-height: 12px
-  padding: 6px 15px 10px
+  padding: 7px
   right: 0
   z-index: 3
+  .homepage &
+    display: none
 
   .btn--bookable
     @extend %irregular-type
@@ -110,6 +109,12 @@
       right: 0
       top: -$card-content-padding
 
+  // line above some footers, needs to push fade up a smidge
+  .card--article &,
+  .card--destination &
+    border-top: 1px solid #e3e7e9
+    &:after
+      top: -($card-content-padding + 1)
 
 // -----------------------------------------------------------------------------
 // Card Footer Items
@@ -117,8 +122,8 @@
 
 .destination__item-count
   @extend %irregular-type
-  @extend %ie8-font-color
-  color: $body
+  color: $new-header-grey
+  font-weight: bold
   margin-right: 5px
   padding-left: 20px
   &:before
