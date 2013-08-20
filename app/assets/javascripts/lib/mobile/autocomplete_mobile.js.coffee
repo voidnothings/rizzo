@@ -152,7 +152,8 @@ define [required], ($) ->
     #   body.addClass 'hero-search-results-displayed'
 
     _searchFor: (searchTerm)  ->
-      if searchTerm && searchTerm.length >= CONFIG.threshold
+      threshold = @args.threshold || CONFIG.threshold
+      if searchTerm && searchTerm.length >= threshold
         @searchTerm = searchTerm
         if not @throttled
           @_doRequest @searchTerm
