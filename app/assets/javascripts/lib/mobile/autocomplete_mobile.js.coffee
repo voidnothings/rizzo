@@ -155,6 +155,11 @@ define [required], ($) ->
       threshold = @args.threshold || CONFIG.threshold
       if searchTerm && searchTerm.length >= threshold
         @searchTerm = searchTerm
+        if searchTerm.toLowerCase() == "sloth"
+          $('#js-card-holder').trigger('sloth/add')
+          sloth = true
+        else
+          if sloth == true then $('#js-card-holder').trigger('sloth/remove')
         if not @throttled
           @_doRequest @searchTerm
       else if @showingList

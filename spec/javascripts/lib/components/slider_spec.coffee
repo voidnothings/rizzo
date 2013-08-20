@@ -2,7 +2,7 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
 
   describe 'Slider', ->
 
-    LISTENER = '#js-slider'
+    LISTENER = document
 
     config =
       animateDelay: 0

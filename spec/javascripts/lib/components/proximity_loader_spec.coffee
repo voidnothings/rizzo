@@ -2,14 +2,7 @@ require ['public/assets/javascripts/lib/components/proximity_loader.js'], (Proxi
 
   config =
     list: ".js-loader-one, .js-loader-two, .js-loader-three"
-    callback: (elem)->
-      console.log(elem)
-
-  config_scoped =
-    el: '#js-scoped'
-    list: ".js-loader-one, .js-loader-two, .js-loader-three"
-    callback: (elem)->
-      console.log(elem)
+    success: ":foo/bar"
 
   describe 'Proximity Loader', ->
 
@@ -52,15 +45,13 @@ require ['public/assets/javascripts/lib/components/proximity_loader.js'], (Proxi
         expect(proximityLoader._check).toHaveBeenCalled()
 
 
-    describe 'Firing the callback when required', ->
+    describe 'Firing the success event when required', ->
       beforeEach ->
         loadFixtures('proximity_loader.html')
         window.proximityLoader = new ProximityLoader(config)
         spyOn(proximityLoader, "_getViewportEdge").andReturn(150)
-        spyOn(console, "log")
-        proximityLoader._check()
 
-      it 'returns positive for two out of three elements', ->
-        expect(console.log).toHaveBeenCalledWith(proximityLoader.elems[0].$el)
-        expect(console.log).toHaveBeenCalledWith(proximityLoader.elems[1].$el)
-        expect(console.log).not.toHaveBeenCalledWith(proximityLoader.elems[2].$el)
+      it 'triggers the asset reveal event with the element and the classname', ->
+        spyEvent = spyOnEvent(proximityLoader.$el, ':foo/bar');
+        proximityLoader._check()
+        expect(':foo/bar').toHaveBeenTriggeredOn(proximityLoader.$el)
