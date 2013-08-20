@@ -134,7 +134,7 @@ define [], () ->
       highlighted = @results.highlighted.firstChild
       if highlighted.tagName == 'A'
         # it's a link, change the href
-        window.location = highlighted.href
+        @_navigateTo highlighted.href
       else 
         @_selectCurrent()
 
@@ -156,10 +156,8 @@ define [], () ->
           @results.highlighted = @results.highlighted.previousSibling 
       @_highlightCurrent()
 
-
-
-
-
+    _navigateTo: (location) ->
+      window.location = location
 
     _searchFor: (searchTerm) ->
       if searchTerm?.length >= @config.threshold
