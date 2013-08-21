@@ -11,16 +11,17 @@
 // - Width of a Card defaults to single - override when necessary
 // -----------------------------------------------------------------------------
 
-$card-grid-height:           380px
-$card-grid-half-height:      185px
+$card-grid-height:                  380px
+$card-grid-half-height:             185px
 
-$standard-card-image-height: 275px
-$small-card-image-height:    185px
+$standard-card-image-height:        275px
+$small-card-image-height:           185px
 
-$default-card-top-padding:    55px
-$card-content-padding:        15px
-$card-hotel-content-padding:  13px
-$image-only-padding:           7px
+$default-card-top-padding:          55px
+$image-only-padding:                7px
+
+$card-content-vertical-padding:     13px
+$card-content-horizontal-padding:   15px
 
 // Homepage
 $mobile-card-grid-height:           296px
@@ -114,21 +115,21 @@ $mobile-standard-card-image-height: 192px
 
 .card__content
   color: $new-header-grey
-  height: ($card-grid-height - $standard-card-image-height - (2 * $card-content-padding) )
+  height: ($card-grid-height - $standard-card-image-height - (2 * $card-content-vertical-padding) )
   overflow: hidden
-  margin-bottom: $card-content-padding
-  padding: $card-content-padding $card-content-padding 0 $card-content-padding
+  margin-bottom: $card-content-vertical-padding
+  padding: $card-content-vertical-padding $card-content-horizontal-padding 0 $card-content-horizontal-padding
 
   .card--no-image &
-    height: $card-grid-height - $default-card-top-padding - $card-content-padding
+    height: $card-grid-height - $default-card-top-padding - $card-content-vertical-padding
     padding-top: $default-card-top-padding
 
   .card--small-image &
-    height: ($card-grid-height - $small-card-image-height - (2 * $card-content-padding) )
+    height: ($card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
     .homepage &
-      height: ($mobile-card-grid-height - $small-card-image-height - (2 * $card-content-padding) )
+      height: ($mobile-card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
       +respond-to(medium-view)
-        height: ($card-grid-height - $small-card-image-height - (2 * $card-content-padding) )
+        height: ($card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
 
   .card--full-image &
     +background-gradient($startColor: rgba(0,0,0,0), $endColor: rgba(0,0,0,0.75))
@@ -137,7 +138,7 @@ $mobile-standard-card-image-height: 192px
     height: auto
     left: 0
     margin: 0
-    padding: $card-content-padding
+    padding: $card-content-vertical-padding $card-content-horizontal-padding
     position: absolute
     right: 0
 
@@ -150,7 +151,7 @@ $mobile-standard-card-image-height: 192px
     left: 0
     line-height: 22px
     margin: 0
-    padding: 0 $card-content-padding
+    padding: 0 $card-content-horizontal-padding
     position: absolute
     right: 0
 
@@ -177,13 +178,13 @@ $mobile-standard-card-image-height: 192px
     position: absolute
     right: 0
     z-index: 3
-    padding: $card-content-padding $card-content-padding 0 $card-content-padding
-    margin-bottom: $card-content-padding
+    padding: $card-content-vertical-padding $card-content-horizontal-padding 0 $card-content-horizontal-padding
+    margin-bottom: $card-content-vertical-padding
 
     &:after
       @extend %empty-abs-generated-content
       +background-gradient($startColor: rgba(255,255,255,0), $endColor: rgba(255,255,255,0.9))
-      height: $card-content-padding
+      height: $card-content-vertical-padding
       left: 0
       right: 0
       bottom: 0
@@ -203,16 +204,16 @@ $mobile-standard-card-image-height: 192px
   
   .js-hover &:hover
     .card__content
-      height: $card-grid-height - ( 2*$card-hotel-content-padding) - 42px !important // important until hotel image padding is the same...
+      height: $card-grid-height - ( 2*$card-content-vertical-padding) - 40px
   .js-hover.homepage &:hover
     .card__content
-      height: $mobile-card-grid-height - ( 2*$card-hotel-content-padding) - 42px !important
+      height: $mobile-card-grid-height - ( 2*$card-content-vertical-padding) - 40px
       +respond-to(medium-view)
-        height: $card-grid-height - ( 2*$card-hotel-content-padding) - 42px !important
+        height: $card-grid-height - ( 2*$card-content-vertical-padding) - 40px
 
 .card--extended-content--half
   .card__content
     +transition(height, 0.3, ease)
   .js-hover &:hover
     .card__content
-      height: $card-grid-height - ( 2*$card-hotel-content-padding) - 225px !important // important until hotel image padding is the same...
+      height: $card-grid-height - ( 2*$card-content-vertical-padding) - 225px
