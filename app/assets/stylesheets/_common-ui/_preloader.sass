@@ -1,6 +1,7 @@
 $discSize: 12px
 
 .preloader
+  @extend %transition--base
   background-repeat: no-repeat
   background-position: center center
   display: none
@@ -13,10 +14,10 @@ $discSize: 12px
   z-index: 0
   .is-loading &
     display: block
-  .no-cssmasks-support &
+  .no-3d-support &
     // Put this behind this flag so that we don't get a flash of the fallback
     background-image: url("#{image_path('spinner.gif')}")
-  .supports-cssmasks &
+  .supports-3d &
     background-image: none
 
   .results &
@@ -29,6 +30,7 @@ $discSize: 12px
 
 .preloader__disc
   +hardware-acceleration()
+  background: #dbe6ec
   border-radius: $discSize / 2
   display: block
   float: left
@@ -37,35 +39,44 @@ $discSize: 12px
   overflow: hidden
   width: $discSize
   &:before
-    display: none
-  .supports-cssmasks &
-    background: $subdued-highlight
-    -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC)
-    &:before
-      @extend %empty-generated-content
-      border-radius: $discSize / 2
-      height: $discSize
-      margin-top: -#{$discSize}
-      position: relative
-      width: $discSize
-      +animation(discmove 1.75s infinite)
+    @extend %empty-generated-content
+    border-radius: $discSize / 2
+    height: $discSize
+    margin-top: -#{$discSize}
+    position: relative
+    width: $discSize
+    +animation(discmove 1.75s infinite)
 
-.supports-cssmasks
-  .preloader__disc--blue
-    &:before
-      background: $teal
-  .preloader__disc--red
-    &:before
-      background: $red
-      +animation-delay(0.25s)
-  .preloader__disc--green
-    &:before
-      background: $green
-      +animation-delay(0.5s)
-  .preloader__disc--orange
-    &:before
-      background: $orange
-      +animation-delay(0.75s)
+.preloader__cover
+  height: 36px
+  left: 1px
+  position: absolute
+  top: -10px
+  width: 62px
+  z-index: 10
+  .svg-mask
+    fill: white
+    .media-gallery &
+      fill: $body-background-light
+  .results &
+    left: 13px
+    top: 2px
+
+.preloader__disc--blue
+  &:before
+    background: $teal
+.preloader__disc--red
+  &:before
+    background: $red
+    +animation-delay(0.25s)
+.preloader__disc--green
+  &:before
+    background: $green
+    +animation-delay(0.5s)
+.preloader__disc--orange
+  &:before
+    background: $orange
+    +animation-delay(0.75s)
 
 +keyframes(discmove)
   0%
