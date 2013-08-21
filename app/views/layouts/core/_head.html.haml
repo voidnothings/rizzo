@@ -17,9 +17,9 @@
 = render 'layouts/core/snippets/tynt'
 
 - if homepage
+  = render 'layouts/mobile/cut_the_mustard'
   = smart_stylesheet('common_core_no_font')
-  - if cookies[:_lpfont] == "true"
-    = stylesheet_link_tag "fonts", :media => "all"
+  = render 'layouts/mobile/fonts_loader'
 - else
   = smart_stylesheet('common_core')
 
