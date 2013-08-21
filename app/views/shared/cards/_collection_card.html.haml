@@ -13,9 +13,6 @@
           Collection
       %h2.card__name.js-card-name
         = stack_item.title
-        - unless stack_item.hero
-          - if defined? place
-            in #{place}
       - unless stack_item.hero
         - if stack_item.description.present?
           %p.card__description
