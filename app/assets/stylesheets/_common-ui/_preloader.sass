@@ -17,6 +17,8 @@ $discSize: 12px
   .no-3d-support &
     // Put this behind this flag so that we don't get a flash of the fallback
     background-image: url("#{image_path('spinner.gif')}")
+    .preloader__disc, .preloader__cover
+      visibility: hidden
   .supports-3d &
     background-image: none
 
@@ -29,7 +31,6 @@ $discSize: 12px
     z-index: 4
 
 .preloader__disc
-  +hardware-acceleration()
   background: #dbe6ec
   border-radius: $discSize / 2
   display: block
@@ -38,14 +39,41 @@ $discSize: 12px
   margin: 2px
   overflow: hidden
   width: $discSize
-  &:before
-    @extend %empty-generated-content
-    border-radius: $discSize / 2
-    height: $discSize
-    margin-top: -#{$discSize}
-    position: relative
-    width: $discSize
-    +animation(discmove 1.75s infinite)
+
+.preloader__disc--coloured
+  +hardware-acceleration()
+  border-radius: $discSize / 2
+  height: $discSize
+  margin-top: -#{$discSize}
+  position: relative
+  top: $discSize / 2
+  width: $discSize
+  +animation(discmove 1.75s infinite)
+
+.preloader__disc--blue
+  background: $teal
+.preloader__disc--red
+  background: $red
+  +animation-delay(0.25s)
+.preloader__disc--green
+  background: $green
+  +animation-delay(0.5s)
+.preloader__disc--orange
+  background: $orange
+  +animation-delay(0.75s)
+
++keyframes(discmove)
+  0%
+    +transform(translateY(0px))
+  
+  40%
+    +transform(translateY($discSize))
+  
+  80%
+    +transform(translateY($discSize * 2))
+  
+  100%
+    +transform(translateY($discSize * 2))
 
 .preloader__cover
   height: 36px
@@ -61,32 +89,3 @@ $discSize: 12px
   .results &
     left: 13px
     top: 2px
-
-.preloader__disc--blue
-  &:before
-    background: $teal
-.preloader__disc--red
-  &:before
-    background: $red
-    +animation-delay(0.25s)
-.preloader__disc--green
-  &:before
-    background: $green
-    +animation-delay(0.5s)
-.preloader__disc--orange
-  &:before
-    background: $orange
-    +animation-delay(0.75s)
-
-+keyframes(discmove)
-  0%
-    +transform(translateY(0px))
-  
-  40%
-    +transform(translateY($discSize))
-  
-  80%
-    +transform(translateY($discSize * 2))
-  
-  100%
-    +transform(translateY($discSize * 2))
