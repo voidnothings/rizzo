@@ -5,7 +5,7 @@
 .icon-list
   list-style: none
 
-.icon-list__icon
+.icon-list__item
   @extend %left-icon-text
   
   &:before
@@ -14,67 +14,16 @@
     font-weight: normal
     margin-right: 0.2em
     line-height: 20px
-  &.icon-list__info:before
-    font-weight: bold
-    line-height: 0.9em
-    margin-left: 0.1em
-  &.icon-list__cross, &.icon-list__info, &.icon-list__tick
+
+  &.icon-list__item--cross,
+  &.icon-list__item--tick
     &:before
       @extend %extra-large-type
-      margin-right: 0.4em
-  &.icon-list__cross, &.icon-list__tick
-    &:before
       margin-left: 0.2em
       margin-right: 0.5em
 
-.icon-list__tick
+.icon-list__item--tick
   @extend %tick-icon-before
 
-.icon-list__clock
-  @extend %icon--clock-before
-
-.icon-list__cross
+.icon-list__item--cross
   @extend %cross-icon-before
-
-.icon-list__departs-from
-  @extend %icon--arrow-right-before
-
-.icon-list__duration
-  @extend %tour-duration-before
-
-.icon-list__info
-  &:before
-    content: "@"
-
-.icon-list__location
-  @extend %local-marker-before
-
-.icon-list__returns-to
-  @extend %icon--arrow-left-before
-
-.icon-list__tick
-  @extend %tick-icon-before
-
-.icon-list__underground
-  @extend %icon--underground-before
- 
-.icon-list--place
-  @extend %local-marker-before
-
-.icon-list--hotel
-  @extend %icon-image-poi-hotel-before
-
-.icon-list--flight
-  @extend %icon--flights-before
-
-.icon-list--article
-  @extend %icon-poi-article-before
-
-.icon-list--sight
-  @extend %icon-image-poi-sight-before
-
-.icon-list--activity
-  @extend %icon-image-poi-activity-before
-
-.icon-list--tour
-  @extend %icon-image-poi-tour-before
