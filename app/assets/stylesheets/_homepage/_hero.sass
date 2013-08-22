@@ -12,6 +12,8 @@
     +responsive-image('homepage/hero/alps', 'jpg')
   .ie7 &, .ie8 &
     background-image: url(#{image_path('homepage/hero/alps_1671.jpg')})
+  .slothified &
+    background-image: url(#{image_path('homepage/rainforest.jpg')})
 
   +respond-to(medium-view)
     height: 640px
@@ -42,6 +44,19 @@
   width: 85%
   +respond-to(medium-view)
     width: 70%
+  .slothified &
+    position: relative
+    overflow: visible
+    &:after
+      @extend %empty-abs-generated-content
+      background-image: url("#{image_path('homepage/sloth.png')}")
+      background-repeat: no-repeat
+      width: 100%
+      height: 270px
+      z-index: 5
+      top: -23px
+      right: -40px
+      pointer-events: none
 
 .hero__overlay
   +transition(all, .3, $ease-cubic-out)
@@ -311,17 +326,3 @@
   +respond-to(wide-view)
     .hero-search-results-displayed &
       display: block
-
-.slothified
-  position: relative
-  overflow: visible
-  &:after
-    @extend %empty-abs-generated-content
-    background-image: url("#{image_path('homepage/sloth.png')}")
-    background-repeat: no-repeat
-    width: 100%
-    height: 270px
-    z-index: 5
-    top: -23px
-    right: -40px
-    pointer-events: none
