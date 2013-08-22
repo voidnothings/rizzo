@@ -14,6 +14,16 @@
     background-image: url(#{image_path('homepage/hero/alps_1671.jpg')})
   .slothified &
     background-image: url(#{image_path('homepage/rainforest.jpg')})
+    &:after
+      @extend %empty-abs-generated-content
+      background-image: url("#{image_path('homepage/sloth.png')}")
+      background-repeat: no-repeat
+      width: 100%
+      height: 270px
+      z-index: 5
+      top: -68px
+      left: 70%
+      pointer-events: none
 
   +respond-to(medium-view)
     height: 640px
@@ -49,13 +59,13 @@
     overflow: visible
     &:after
       @extend %empty-abs-generated-content
-      background-image: url("#{image_path('homepage/sloth.png')}")
+      background-image: url("#{image_path('homepage/sloth2.png')}")
       background-repeat: no-repeat
       width: 100%
       height: 270px
       z-index: 5
-      top: -23px
-      right: -40px
+      top: -182px
+      right: -30px
       pointer-events: none
 
 .hero__overlay
@@ -102,6 +112,9 @@
     +font-size(46)
   +respond-to(wide-view)
     +font-size(52)
+  .slothified &
+    position: relative
+    z-index: 10
 
 .speech-bubble
   @extend %four-pixel-rounded
