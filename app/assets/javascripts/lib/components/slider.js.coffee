@@ -99,15 +99,18 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
           @$el.find(@slides).removeClass('is-potentially-next is-potentially-prev')
 
       @$next.on 'click', =>
-        @_loadHiddenContent(@$el.find(@slides)) if config.deferLoading
         @_nextSlide()
         return false
 
       @$prev.on 'click', =>
-        @_loadHiddenContent(@$el.find(@slides)) if config.deferLoading
         @_previousSlide()
         return false
 
+      @$next.on 'mouseenter click', =>
+        @_loadHiddenContent(@$el.find(@slides)) if config.deferLoading
+
+      @$next.on 'mouseenter click', =>
+        @_loadHiddenContent(@$el.find(@slides)) if config.deferLoading
 
 
       # if @$legacy.length is 0 && !!window.addEventListener

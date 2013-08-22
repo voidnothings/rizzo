@@ -11,6 +11,7 @@ define ['jsmin', 'lib/utils/page_state', 'lib/extends/events'], ($, PageState, E
       @$el = $(args.el)
       @$cards = @$el.find('.js-card')
       @_findFirstImages() if @$cards.length > 0
+      @_watchForScroll()
 
 
     # Private Methods
@@ -25,15 +26,23 @@ define ['jsmin', 'lib/utils/page_state', 'lib/extends/events'], ($, PageState, E
         @firstCards.push(@$cards[i])
         width += @$cards[i].getBoundingClientRect().width
         i++
-      @_loadFirstImages(@firstCards, '[data-card-img]')
+      @_loadImages(@firstCards)
 
-
-    _loadFirstImages: (images, klass) ->
-      # Normalise the nodes into one array
+    _flattenNodeList: (images) ->
       nodes = []
       for image in images
         if $(image).hasClass('js-double-image-card')
           nodes.push(image.children[0], image.children[1])
         else
           nodes.push(image)
+      nodes
+
+    _loadImages: (images) ->
+      # Normalise the nodes into one array
+      nodes = @_flattenNodeList(images)
       @trigger(":asset/uncomment", [nodes, '[data-uncomment]'])
+
+    _watchForScroll: ->
+      @$el.on 'scroll', =>
+        @_loadImages(@$cards) unless @allCardsLoaded
+        @allCardsLoaded = true

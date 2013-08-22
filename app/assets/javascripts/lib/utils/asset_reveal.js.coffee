@@ -19,7 +19,8 @@ define [required], ($)->
       @$listener.on ':asset/uncommentScript', (e, elements, klass) =>
         @_uncommentScript(elements, klass)
 
-      @$listener.on ':asset/loadBgImage', (e, elements, klass) =>
+      @$listener.on ':asset/loadBgImage', (e, elements) =>
+        elements = e.data[0] if elements is undefined
         @_loadBgImage(elements)
 
 

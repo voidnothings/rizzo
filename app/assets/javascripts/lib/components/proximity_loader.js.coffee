@@ -53,9 +53,14 @@ define [required, 'lib/extends/events'], ($, EventEmitter) ->
           @_check()
         , 200
 
-    _check: ->
-      fold = @_getViewportEdge()
-      for el in @elems
-        if (el.top - el.threshold) <= fold
-          @trigger(@success, [el.$el, @klass])
-
+    _check: () ->
+      if @elems.length > 0
+        newElems = []
+        fold = @_getViewportEdge()
+        for el in @elems
+          if (el.top - el.threshold) <= fold
+            @trigger(@success, [el.$el, @klass])
+          else
+            newElems.push(el)
+        # Create a new array of elements that have not yet matched
+        @elems = newElems

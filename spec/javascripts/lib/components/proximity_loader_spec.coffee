@@ -53,5 +53,5 @@ require ['public/assets/javascripts/lib/components/proximity_loader.js'], (Proxi
 
       it 'triggers the asset reveal event with the element and the classname', ->
         spyEvent = spyOnEvent(proximityLoader.$el, ':foo/bar');
-        proximityLoader._check()
+        proximityLoader.constructor(config)
         expect(':foo/bar').toHaveBeenTriggeredOn(proximityLoader.$el)
