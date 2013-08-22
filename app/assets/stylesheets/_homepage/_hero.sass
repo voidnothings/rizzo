@@ -311,3 +311,17 @@
   +respond-to(wide-view)
     .hero-search-results-displayed &
       display: block
+
+.slothified
+  position: relative
+  overflow: visible
+  &:after
+    @extend %empty-abs-generated-content
+    background-image: url("#{image_path('homepage/sloth.png')}")
+    background-repeat: no-repeat
+    width: 100%
+    height: 270px
+    z-index: 5
+    top: -23px
+    right: -40px
+    pointer-events: none
