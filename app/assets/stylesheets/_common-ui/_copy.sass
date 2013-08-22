@@ -62,6 +62,15 @@
   line-height: 1.66em
   color: $body-copy
 
+// Used for titles within copy (sub-sections, if you will)
+.copy--body__title
+  @extend %extra-large-type
+  color: $body-copy
+.copy--body__title-link
+  color: $body-copy
+  &:hover
+    color: $lpblue
+
 .copy--caption
   @extend %small-type
   font-style: italic
