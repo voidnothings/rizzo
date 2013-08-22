@@ -112,7 +112,6 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
       @$next.on 'mouseenter click', =>
         @_loadHiddenContent(@$el.find(@slides)) if config.deferLoading
 
-
       # if @$legacy.length is 0 && !!window.addEventListener
       #   require ['pointer','touchwipe'], =>
       #     # Swiping navigation.

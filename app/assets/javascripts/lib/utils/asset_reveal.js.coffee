@@ -32,7 +32,6 @@ define [required], ($)->
     _removeComments: (html) ->
       html.replace("<!--", "").replace("-->", "")
 
-
     _uncomment: (selector, klass = "[data-uncomment]") ->
 
       if window.lp.isMobile
@@ -47,8 +46,6 @@ define [required], ($)->
           $(node).html(inner)
         )
 
-
-
     # Uncommenting a script is a bit trickier if you want that script to be immediately executed
     # Currently only works with jquery (not yet required for mobile)
     _uncommentScript: (selector, klass = "[data-script]") ->
@@ -59,7 +56,6 @@ define [required], ($)->
       for elem in @_normaliseArray(selector)
         $commented = $(elem).find(klass)
         process($commented) if $commented.length isnt 0
-
 
     _loadBgImage: (selector) ->
       $element = $(selector)

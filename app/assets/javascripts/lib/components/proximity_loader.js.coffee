@@ -13,7 +13,7 @@ define [required, 'lib/extends/events'], ($, EventEmitter) ->
     # el: The listening element
     # list: comma delimited list of elements to watch
     # success: event to fire when the criteria is matched
-    # successParams: Custom parameters to pass through with the success event
+    # klass: Custom parameters to pass through with the success event
     constructor: (args) ->
       @success = args.success || ':asset/uncomment'
       @klass = args.klass || ''

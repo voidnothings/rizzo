@@ -26,9 +26,12 @@
 
 required = if window.lp.isMobile then 'jsmin' else 'jquery'
 
-define [required], ($) ->
+define [required, 'lib/extends/events'], ($, EventEmitter) ->
 
   class AutoComplete
+
+    for key, value of EventEmitter
+      @prototype[key] = value
 
     CONFIG = {
       threshold: 3,
@@ -151,19 +154,26 @@ define [required], ($) ->
     #   body.removeClass 'hero-search-results-hidden'
     #   body.addClass 'hero-search-results-displayed'
 
+    _slothify: (searchTerm) ->
+      if searchTerm.toLowerCase() == "sloth"
+        @trigger('sloth/add')
+        @slothified = true
+        console.log('hello')
+      else
+        if @slothified is true
+          $('#js-card-holder').trigger('sloth/remove')
+          @slothified = false
+
     _searchFor: (searchTerm)  ->
       threshold = @args.threshold || CONFIG.threshold
       if searchTerm && searchTerm.length >= threshold
         @searchTerm = searchTerm
-        if searchTerm.toLowerCase() == "sloth"
-          $('#js-card-holder').trigger('sloth/add')
-          sloth = true
-        else
-          if sloth == true then $('#js-card-holder').trigger('sloth/remove')
+        @_slothify(searchTerm)
         if not @throttled
           @_doRequest @searchTerm
       else if @showingList
         @_removeResults()
+        @_slothify(searchTerm)
 
     _doRequest: ->
       myRequest = new XMLHttpRequest()
