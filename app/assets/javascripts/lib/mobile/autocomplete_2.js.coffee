@@ -83,9 +83,7 @@ define [], () ->
             e.preventDefault()
             @_handleEnter()
         when KEY.esc
-          @el.value == 'hdhfdhd'
-          console.log @el.value
-          @_removeResults() if @results.displayed
+          @_handleCancel()
 
     _resultsClick: (e) ->
       target = e.target
@@ -104,17 +102,13 @@ define [], () ->
       until target.tagName is 'LI'
         target = target.parentNode
 
-      # clear old highlight
-      @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
-
+      @_clearHighlight()
       @results.highlighted = target
       @results.hovered = true
       @_highlightCurrent()
 
     _resultsMouseOut: ->
-      # clear old highlight
-      @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
-
+      @_clearHighlight()
       delete @results.hovered
       delete @results.highlighted
 
@@ -126,6 +120,9 @@ define [], () ->
     _highlightCurrent: ->
       @_addClass @results.highlighted, "#{@config.resultItemHoveredClass}"
 
+    _clearHighlight: ->
+      @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
+
     # keypress handlers
     _handleEnter: ->
       # check if the child of the selected node is a link
@@ -135,6 +132,10 @@ define [], () ->
         @_navigateTo highlighted.href
       else 
         @_selectCurrent()
+
+    _handleCancel: ->
+      @el.value = ''
+      @_removeResults() if @results.displayed
 
     _highlightDown: ->
       if not @results.highlighted

@@ -390,15 +390,49 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
           myAutoComplete = new AutoComplete DEFAULT_CONFIG
           myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
 
+        it 'highlights a list item when hovered over', ->
+          targetItem = myAutoComplete.results.childNodes[0]
+          myAutoComplete._resultsMouseOver targetItem
 
+          expect(myAutoComplete.results.highlighted).toBe targetItem
+          expect(myAutoComplete.results.hovered).toBe true
+          expect($(targetItem)).toHaveClass 'autocomplete__current'
 
+        it 'removes highlight from list item when no longer hovered over', ->
+          targetItem = myAutoComplete.results.firstChild
+          myAutoComplete._resultsMouseOver targetItem
+          myAutoComplete._resultsMouseOut()
 
+          expect(myAutoComplete.results.highlighted).not.toBeDefined()
+          expect(myAutoComplete.results.hovered).not.toBeDefined()
+          expect($(targetItem)).not.toHaveClass 'autocomplete__current'
 
+        it 'selects a link list item when clicked', ->
+          fakeEvent =
+            stopPropagation: jasmine.createSpy('stopPropagation'),
+            target: $(myAutoComplete.results.firstChild).find('A')[0]
 
+          myAutoComplete._resultsClick fakeEvent
 
+          expect(fakeEvent.stopPropagation).toHaveBeenCalled()
 
+        it 'selects a link list item when highlighted text is clicked', ->
+          fakeEvent =
+            stopPropagation: jasmine.createSpy('stopPropagation'),
+            target: $(myAutoComplete.results.firstChild).find('B')[0]
 
+          myAutoComplete._resultsClick fakeEvent
 
+          expect(fakeEvent.stopPropagation).toHaveBeenCalled()
+
+        it 'selects a basic list item when clicked', ->
+          fakeEvent =
+            stopPropagation: jasmine.createSpy('stopPropagation'),
+            target: myAutoComplete.results.firstChild
+
+          myAutoComplete._resultsClick fakeEvent
+
+          expect(myAutoComplete.el.value).toBe fakeEvent.target.textContent
 
       describe 'populating the results list', ->
         beforeEach ->
