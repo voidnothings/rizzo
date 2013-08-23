@@ -18,7 +18,7 @@
 #    id: 'my_search'
 #    uri: '/search'
 #    scope: 'homepage'
-#  
+#
 #  new AutoComplete(args)
 #
 # Dependencies:
@@ -158,7 +158,6 @@ define [required, 'lib/extends/events'], ($, EventEmitter) ->
       if searchTerm.toLowerCase() == "sloth"
         @trigger('sloth/add')
         @slothified = true
-        console.log('hello')
       else
         if @slothified is true
           $('#js-card-holder').trigger('sloth/remove')
