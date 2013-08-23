@@ -8,7 +8,8 @@ define [], () ->
       resultItemClass: 'autocomplete__result',
       resultLinkClass: 'autocomplete__result__link',
       resultItemHoveredClass: 'autocomplete__current',
-      activeClass: 'autocomplete__active'
+      activeClass: 'autocomplete__active',
+      throttle: 200
       map:
         title: 'title',
         type: 'type',
@@ -30,6 +31,7 @@ define [], () ->
       @parentElt = document.getElementById @config.parentElt if @config.parentElt
       @_addEventHandlers()
       @results = @_buildResults()
+      @xhr = @_setupXHR()
 
     _updateConfig: (args) ->
       newConfig = {}
@@ -43,6 +45,14 @@ define [], () ->
 
       @el.addEventListener 'keypress', (e) =>
         @_keypressHandler e
+
+    _setupXHR: ->
+      xhr = new XMLHttpRequest()
+      xhr.addEventListener 'readystatechange', =>
+        if @xhr.readyState == 4
+          if @xhr.status == 200
+            @_populateResults JSON.parse(@xhr.responseText), @currentSearch
+      xhr
 
     _buildResults: ->
       results = document.createElement 'UL'
@@ -160,20 +170,30 @@ define [], () ->
 
     _searchFor: (searchTerm) ->
       if searchTerm?.length >= @config.threshold
-        @_makeRequest searchTerm
+        @_doSearch searchTerm unless @throttled
       else if @results.displayed
         @_removeResults()
 
     _makeRequest: (searchTerm) ->
-      myRequest = new XMLHttpRequest()
-      myRequest.addEventListener 'readystatechange', =>
-        if myRequest.readyState == 4
-          if myRequest.status == 200
-            @_populateResults JSON.parse(myRequest.responseText), searchTerm
+      if searchTerm != ''
+        @xhr.open 'get', @_generateURI(searchTerm, @config.scope)
+        @xhr.setRequestHeader 'Accept', '*/*'
+        @xhr.send()
 
-      myRequest.open 'get', @_generateURI(searchTerm, @config.scope)
-      myRequest.setRequestHeader 'Accept', '*/*'
-      myRequest.send()
+    _doSearch: (searchTerm) ->
+      unless @xhr.readyState == 4
+        @xhr.abort()
+
+      @currentSearch = searchTerm
+      @throttled = true
+      setTimeout =>
+        @_throttleTimeout()
+      , @config.throttle
+      @_makeRequest searchTerm
+
+    _throttleTimeout: ->
+      delete @throttled
+      @_doSearch @el.value if @currentSearch != @el.value
 
     _generateURI: (searchTerm, scope) ->
       uri = "#{@config.uri}#{searchTerm}"
