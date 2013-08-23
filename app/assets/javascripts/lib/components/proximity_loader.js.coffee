@@ -28,7 +28,8 @@ define [required, 'lib/extends/events'], ($, EventEmitter) ->
     # Private
 
     _getViewportEdge: ->
-      window.pageYOffset + window.innerHeight
+      scrolled =  if window.pageYOffset then window.pageYOffset else document.documentElement.scrollTop
+      scrolled + document.documentElement.clientHeight
 
     _setUpElems: (args) ->
       elems = []

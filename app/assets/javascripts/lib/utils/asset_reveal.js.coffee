@@ -43,7 +43,7 @@ define [required], ($)->
       else
         $commented = $(selector).find(klass).each( (i, node) =>
           inner = @_removeComments($(node).html())
-          $(node).html(inner)
+          $(node).before(inner).remove()
         )
 
     # Uncommenting a script is a bit trickier if you want that script to be immediately executed
