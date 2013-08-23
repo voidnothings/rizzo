@@ -18,6 +18,9 @@ define [], () ->
     getHash: ->
       window.location.hash
 
+    getViewPort: ->
+      document.documentElement.clientWidth
+
     setUrl: (url) ->
       window.location.replace(url)
 

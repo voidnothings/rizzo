@@ -108,8 +108,16 @@ $$ = (function (document, window, $$) {
     return length == 1 ? r[0] : r;
   };
 
+  nodeList.find = function(klass) {
+    this[forEach](function(el) {
+      el.find(klass);
+    });
+
+    return this;
+  };
+
   node.hasClass = function (klass) {
-    return ((" " + this.className + " ").replace(/[\n\t]/g, " ").indexOf(klass) > -1) ? true : false;
+    return this.classList.contains(klass)
   }
 
   node.data = function(identifier){
@@ -131,6 +139,11 @@ $$ = (function (document, window, $$) {
   }
 
   $$ = function (s) {
+    // If we have a node just return it
+    // to avoid throwing an exception
+    if (s.hasOwnProperty('parentNode')) {
+      return s
+    }
     // querySelectorAll requires a string with a length
     // otherwise it throws an exception
     var r = document.querySelectorAll(s || '☺'),

@@ -1,4 +1,5 @@
-define ['jquery'], ($) ->
+required = if lp.isMobile then 'jsmin' else 'jquery'
+define [required], ($)->
 
   EventEmitter =
 
@@ -10,8 +11,8 @@ define ['jquery'], ($) ->
 
     on: (evt, handler) ->
       @_JQ or @_JQInit()
-      @_JQ.bind(evt, handler)
+      @_JQ.on(evt, handler)
 
     off: (evt, handler) ->
       @_JQ or @_JQInit()
-      @_JQ.unbind(evt, handler)
+      @_JQ.off(evt, handler)

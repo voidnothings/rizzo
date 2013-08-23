@@ -4,9 +4,12 @@
 # 
 # ------------------------------------------------------------------------------
 
-define ['jquery'], ($) ->
+define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
 
   class Slider
+
+    for key, value of EventEmitter
+      @prototype[key] = value
 
     LISTENER = '#js-slider'
 
@@ -15,6 +18,7 @@ define ['jquery'], ($) ->
       animateDelay: 500
       slides: ".slider__slide"
       slides_container: ".slider__container"
+      deferLoading: false
 
     # @params {}
     # $el: {string} selector for parent element
@@ -87,15 +91,26 @@ define ['jquery'], ($) ->
             slides.eq(parseInt($(e.target).html(), 10) - 1).not('.is-current').addClass('is-potentially-next')
           else
             slides.eq(parseInt($(e.target).html(), 10) - 1).not('.is-current').addClass('is-potentially-prev')
+          
+          @_loadHiddenContent(slides) if config.deferLoading
+
+
         'mouseleave': (e) => # out
           @$el.find(@slides).removeClass('is-potentially-next is-potentially-prev')
 
       @$next.on 'click', =>
         @_nextSlide()
         return false
+
       @$prev.on 'click', =>
         @_previousSlide()
         return false
+
+      @$next.on 'mouseenter click', =>
+        @_loadHiddenContent(@$el.find(@slides)) if config.deferLoading
+
+      @$next.on 'mouseenter click', =>
+        @_loadHiddenContent(@$el.find(@slides)) if config.deferLoading
 
       # if @$legacy.length is 0 && !!window.addEventListener
       #   require ['pointer','touchwipe'], =>
@@ -110,6 +125,10 @@ define ['jquery'], ($) ->
       #       preventDefaultEvents: true
 
     # Private
+
+    _loadHiddenContent: (slides) ->
+      @trigger(':asset/uncomment', [slides.slice(1), '[data-uncomment]'])
+      config.deferLoading = false
 
     _nextSlide: ->
       slides = @$el.find(@slides)
