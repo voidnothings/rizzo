@@ -83,11 +83,12 @@ define [], () ->
           e.preventDefault()
           @_highlightDown()
         when KEY.tab
-          e.preventDefault() if @results.displayed
-          if e.shiftKey
-            @_highlightUp()
-          else
-            @_highlightDown()
+          if @results.displayed
+            e.preventDefault()
+            if e.shiftKey
+              @_highlightUp()
+            else
+              @_highlightDown()
         when KEY.enter
           if @results.highlighted
             e.preventDefault()
