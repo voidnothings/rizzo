@@ -33,6 +33,7 @@ $mobile-standard-card-image-height: 192px
 // -----------------------------------------------------------------------------
 
 .card
+  +backface-visibility(hidden)
   @extend %standard-shadow
   background: #fff
   margin-bottom: 10px
@@ -172,6 +173,7 @@ $mobile-standard-card-image-height: 192px
       height: $card-grid-height
 
   .card__content
+    +backface-visibility(hidden)
     background: #fff
     bottom: 0
     left: 0
