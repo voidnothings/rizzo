@@ -12,7 +12,7 @@
 
 .text-icon--info
   &:before
-    @extend %section-heading-size-type
+    +font-size(20)
     content: "@"
     font-weight: bold
 
@@ -43,8 +43,11 @@
 .text-icon--tick
   @extend %tick-icon-before
 
-.text-icon--underground
+.text-icon--tube
   @extend %icon--underground-before
+
+.text-icon--bus
+  @extend %icon-facilities-transport-before
 
 .text-icon--place
   @extend %local-marker-before
