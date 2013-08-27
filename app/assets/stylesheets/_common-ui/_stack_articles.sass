@@ -62,7 +62,7 @@
   width: 798px
   img
     max-width: 100%
-    margin-bottom: 10px
+    margin: 0 auto 10px auto
 
     &.aligncenter
       margin: 20px auto 10px
@@ -80,6 +80,9 @@
     &.is-active, &:hover
       opacity: 1
 
+  .copy--caption
+    text-align: center
+
 .stack__article__inner
   padding: 0 25px
 
@@ -94,6 +97,9 @@
   // TODO: change once we have crazy harry classes on the article content.
   h3, h4, h5, h6
     font-weight: bold
+
+.stack__article__image-container
+  text-align: center
 
 .col--mpu
   +perspective()
