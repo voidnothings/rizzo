@@ -19,7 +19,7 @@ module Rizzo
     config.assets.enabled = true
     config.assets.version = '1.0'
 
-    config.assets.precompile += ['common_core.css', 'common_core_ie.css', 'common_core_overrides.css', 'common_core_overrides_ie.css', 'common_legacy.css', 'common_legacy_ie.css', 'errbit_notifier.js', 'flamsteed.js']
+    config.assets.precompile += ['common_core.css', 'common_core_ie.css', 'common_core_overrides.css', 'common_core_overrides_ie.css', 'common_legacy.css', 'common_legacy_ie.css', 'errbit_notifier.js', 'flamsteed.js', 'omniture/s_code.js']
 
   end
 end

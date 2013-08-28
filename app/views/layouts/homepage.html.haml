@@ -10,7 +10,7 @@
   - else
     %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
   = render 'layouts/mobile/grunticon'
-  <!--[if gt IE 8]><!--> 
+  <!--[if gt IE 8]><!-->
   = render 'layouts/mobile/detect_touch'
   <![endif]-->
   = render 'layouts/mobile/require_js_config'
@@ -31,6 +31,7 @@
       = render 'layouts/mobile/img_loader'
       = render 'layouts/core/snippets/fs_init'
       = render 'layouts/mobile/fonts_async'
+      = render 'layouts/mobile/base_js_async'
 
       = js_configuration
       - unless Rails.env.production?
@@ -43,7 +44,7 @@
         :javascript
           window.lpOffice = true;
       = yield :scripts
-    
+
     %div.ad-oneByOne#js-ad-oneByOne
 
     - if defined? Variant

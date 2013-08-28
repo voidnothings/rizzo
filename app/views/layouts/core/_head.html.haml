@@ -1,7 +1,7 @@
 %link{rel: "dns-prefetch", href:"http://assets.staticlp.com"}
 %meta(charset='utf-8')
 %meta(name="author" content='Lonely Planet')
-%title 
+%title
   = content_for?(:head_title) ? yield(:head_title) : 'Lonely Planet Travel Guides and Travel Information'
 
 %meta(name="fb:app_id" content="111537044496")
@@ -14,7 +14,6 @@
 = csrf_meta_tags
 
 = render 'layouts/core/snippets/head_js'
-= render 'layouts/core/snippets/tynt'
 
 - if homepage
   = render 'layouts/mobile/cut_the_mustard'
@@ -22,9 +21,9 @@
   = render 'layouts/mobile/fonts_loader'
 - else
   = smart_stylesheet('common_core')
+  = render 'layouts/core/snippets/tynt'
 
 = yield :stylesheets
 = yield :place_hotels_link
 
 %link(rel="icon" type="image/gif" href="http://www.lonelyplanet.com/favicon.ico")
-
