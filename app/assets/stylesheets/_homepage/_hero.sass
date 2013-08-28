@@ -4,14 +4,26 @@
   position: relative
   text-align: center
   color: white
-  background: $lpblue
-  background-position: 50% 50% 
+  background: $title
+  background-position: 50% 50%
   background-repeat: no-repeat
   background-size: cover
   .enhanced &, .ie9 &
     +responsive-image('homepage/hero/alps', 'jpg')
   .ie7 &, .ie8 &
     background-image: url(#{image_path('homepage/hero/alps_1671.jpg')})
+  .slothified &
+    background-image: url(#{image_path('homepage/rainforest.jpg')})
+    &:after
+      @extend %empty-abs-generated-content
+      background-image: url("#{image_path('homepage/sloth.png')}")
+      background-repeat: no-repeat
+      width: 100%
+      height: 270px
+      z-index: 5
+      top: -68px
+      left: 70%
+      pointer-events: none
 
   +respond-to(medium-view)
     height: 640px
@@ -42,6 +54,19 @@
   width: 85%
   +respond-to(medium-view)
     width: 70%
+  .slothified &
+    position: relative
+    overflow: visible
+    &:after
+      @extend %empty-abs-generated-content
+      background-image: url("#{image_path('homepage/sloth2.png')}")
+      background-repeat: no-repeat
+      width: 100%
+      height: 270px
+      z-index: 5
+      top: -182px
+      right: -30px
+      pointer-events: none
 
 .hero__overlay
   +transition(all, .3, $ease-cubic-out)
@@ -84,7 +109,12 @@
   width: 90%
   margin: 0 auto 20px
   +respond-to(medium-view)
+    +font-size(46)
+  +respond-to(wide-view)
     +font-size(52)
+  .slothified &
+    position: relative
+    z-index: 10
 
 .speech-bubble
   @extend %four-pixel-rounded
@@ -166,7 +196,7 @@
   +respond-to(1250)
     display: block
     text-align: center
-    
+
 .hero__author__story--buttons
   padding: 15px
   +respond-to(medium-view)
@@ -179,7 +209,7 @@
   padding: 0
   left: auto
   margin: 0 20px
-  
+
   +respond-to(medium-view)
     padding: 30px
     bottom: 90px
@@ -187,7 +217,7 @@
     right: 20px
     width: 270px
     margin: 0
-  
+
   +respond-to(1250)
     padding: 30px
     bottom: 180px
@@ -195,7 +225,7 @@
     right: 40px
     width: 270px
     margin: 0
-    
+
   .btn--function
     +font-size(14)
     padding: 12px 15px 12px 30px
@@ -229,7 +259,7 @@
 
 .hero__panel--story
   top: 100%
-  
+
 
 // Toggle between the search and photo story panels
 #hero-swipe:checked

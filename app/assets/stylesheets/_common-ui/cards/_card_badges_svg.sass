@@ -1,54 +1,17 @@
 // -----------------------------------------------------------------------------
-// Card item counts
-// -----------------------------------------------------------------------------
-
-.card__item-count
-  +font-size(20)
-  @extend %no-line-height
-  position: absolute
-  color: #fff
-  left: 10px
-  top: 15px
-  z-index: 5
-  // Stop clipping in IE
-  height: 30px
-
-  &:before
-    +font-size(35)
-    position: relative
-    top: 3px
-
-
-  .card--collection--hotels &
-    @extend %icon-image-poi-hotel-before
-
-  .card--link--activities &
-    @extend %icon-image-poi-activity-before
-
-  .card--link--entertainment &
-    @extend %icon-image-poi-entertainment-before
-
-  .card--link--restaurants &
-    @extend %icon-image-poi-restaurant-before
-
-  .card--link--shopping &
-    @extend %icon-image-poi-shopping-before
-
-  .card--link--sights &
-    @extend %icon-image-poi-sight-before
-
-  .card--link--tours &
-    @extend %icon-image-poi-tour-before
-
-
-// -----------------------------------------------------------------------------
-// Media card badges
+// Card type Badges
 // -----------------------------------------------------------------------------
 
 .card--media__badge
   +filter(drop-shadow(0 0 5px rgba(0,0,0,0.5)))
-  left: 75px
+  left: 10px
   position: absolute
-  top: 80px
+  top: 10px
   z-index: 5
 
+.icon--article--white--after:after,
+.icon--article--white--before:before
+  @extend %empty-abs-generated-content
+  left: 10px
+  top: 10px
+  z-index: 1

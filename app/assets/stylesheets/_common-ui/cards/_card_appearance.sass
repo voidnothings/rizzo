@@ -36,7 +36,7 @@
   +font-size(22)
   +word-break()
   line-height: 1
-  margin-bottom: 12px
+  margin-bottom: 10px
 
   .card--standard-image &
     +font-size(19)
@@ -75,6 +75,10 @@
   &:hover
     text-decoration: none
 
+.card__tour-duration
+  color: $new-header-grey
+  font-weight: bold
+
 
 // -----------------------------------------------------------------------------
 // Card Footer
@@ -104,53 +108,42 @@
     &:after
       @extend %empty-abs-generated-content
       +background-gradient($startColor: rgba(255,255,255,0), $endColor: rgba(255,255,255,0.9))
-      height: $card-content-padding
+      height: $card-content-vertical-padding
       left: 0
       right: 0
-      top: -$card-content-padding
+      top: -$card-content-vertical-padding
 
   // line above some footers, needs to push fade up a smidge
-  .card--article &,
+  .card--poi--article &,
   .card--destination &
     border-top: 1px solid #e3e7e9
+    padding: 6px 15px 10px 15px
     &:after
-      top: -($card-content-padding + 1)
+      top: -($card-content-vertical-padding + 1)
 
 // -----------------------------------------------------------------------------
 // Card Footer Items
 // -----------------------------------------------------------------------------
 
 .destination__item-count
-  @extend %irregular-type
-  color: $new-header-grey
-  font-weight: bold
+  @extend %small-type
+  color: $body
   margin-right: 5px
-  padding-left: 20px
+  padding-left: 18px
   &:before
+    color: $title
     top: 0
 
 .destination__item-count--sights
   @extend %left-icon
   @extend %icon-image-poi-sight-before
   &:before
-    line-height: 16px
-    font-size: 25px
+    +font-size(23)
+    line-height: 15px
 
 .destination__item-count--lodgings
   @extend %left-icon
   @extend %icon-image-poi-hotel-before
   &:before
-    line-height: 10px
-    font-size: 30px
-
-
-// -----------------------------------------------------------------------------
-// Differences for hotel cards
-// -----------------------------------------------------------------------------
-
-.card--poi--hotel
-  &.card--small-image
-    .card__content
-      height: ($card-grid-height - $small-card-image-height - (2 * $card-hotel-content-padding) )
-      margin-bottom: $card-hotel-content-padding
-      padding: $card-hotel-content-padding $card-hotel-content-padding 0 $card-hotel-content-padding
+    +font-size(27)
+    line-height: 9px
