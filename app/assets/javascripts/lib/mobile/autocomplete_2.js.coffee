@@ -186,10 +186,11 @@ define [], () ->
         @xhr.abort()
 
       @currentSearch = searchTerm
-      @throttled = true
-      setTimeout =>
-        @_throttleTimeout()
-      , @config.throttle
+      if @config.throttle > 0
+        @throttled = true
+        setTimeout =>
+          @_throttleTimeout()
+        , @config.throttle
       @_makeRequest searchTerm
 
     _throttleTimeout: ->

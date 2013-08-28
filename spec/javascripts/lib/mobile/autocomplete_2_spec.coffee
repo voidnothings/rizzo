@@ -182,12 +182,17 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
 
           describe 'searching for a term when results are displayed', ->
             beforeEach ->
+              myAutoComplete = null
               loadFixtures 'autocomplete_mobile.html'
-              myAutoComplete = new AutoComplete DEFAULT_CONFIG
+              newConfig = {id: 'my_search', uri: '/search', throttle: 0}
+              console.log myAutoComplete
+              myAutoComplete = new AutoComplete newConfig
               myAutoComplete._searchFor 'Lon'
+              console.log myAutoComplete
               spyOn myAutoComplete, '_makeRequest'
 
             it 'should perfom a search if the threshold has been reached', ->
+              console.log myAutoComplete
               minimumSearch = 'Lond'
               myAutoComplete._searchFor minimumSearch
 
@@ -249,7 +254,17 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
               expect(generatedURI).toBe "#{newConfig.uri}#{searchTerm}?scope=#{scope}"
 
         describe 'search throttling', ->
-          it 'should do something cool'
+          beforeEach ->
+            loadFixtures 'autocomplete_mobile.html'
+            myAutoComplete = new AutoComplete DEFAULT_CONFIG
+            myAutoComplete._searchFor 'Lon'
+            spyOn myAutoComplete, '_makeRequest'
+
+          it 'should not perfom a search if not enough time has passed between throttle period', ->
+            minimumSearch = 'Lond'
+            myAutoComplete._searchFor minimumSearch
+
+            expect(myAutoComplete._makeRequest).not.toHaveBeenCalled()
 
       describe 'adding the results list to the page', ->
         beforeEach ->
