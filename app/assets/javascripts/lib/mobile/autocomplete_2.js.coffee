@@ -42,6 +42,7 @@ define [], () ->
     _addEventHandlers: ->
       @el.addEventListener 'input', (e) =>
         @_searchFor e.currentTarget.value
+        @config.inputCallback() if @config.inputCallback
 
       @el.addEventListener 'keypress', (e) =>
         @_keypressHandler e
@@ -213,6 +214,7 @@ define [], () ->
     _showResults: ->
       @el.parentNode.insertBefore @results, @el.nextSibling # insertAfter @el
       @results.displayed = true
+      @config.showResultsCallback() if @config.showResultsCallback
 
     _removeResults: ->
       @_emptyResults()
@@ -220,6 +222,7 @@ define [], () ->
       @_removeClass @parentElt, @config.activeClass if @config.parentElt
       delete @results.displayed
       delete @results.highlighted
+      @config.removeResultsCallback() if @config.removeResultsCallback
 
     _emptyResults: ->
       @results.removeChild @results.firstChild while @results.firstChild
