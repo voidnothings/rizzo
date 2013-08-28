@@ -3,7 +3,7 @@
     = render :partial => '/shared/cards/things_to_do/card_tags', :locals => { :stack_item => stack_item }
     - if stack_item.image_url
       %figure.card__hero.obj-media__img
-        = image_tag(stack_item.image_url, class: 'portrait card__image')
+        = image_tag(stack_item.image_url, class: 'card__image')
     %section.card__content.obj-media__body
       %span.card__context
         Transport
