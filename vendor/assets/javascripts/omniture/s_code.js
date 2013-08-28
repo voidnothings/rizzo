@@ -5,7 +5,7 @@
   // parseUri 1.2.2
   // (c) Steven Levithan <stevenlevithan.com>
   // MIT License
-  function parseUri(d){for(var a=parseUri.options,d=a.parser[a.strictMode?"strict":"loose"].exec(d),c={},b=14;b--;)c[a.key[b]]=d[b]||"";c[a.q.name]={};c[a.key[12]].replace(a.q.parser,function(d,b,e){b&&(c[a.q.name][b]=e)});return c} 
+  function parseUri(d){for(var a=parseUri.options,d=a.parser[a.strictMode?"strict":"loose"].exec(d),c={},b=14;b--;)c[a.key[b]]=d[b]||"";c[a.q.name]={};c[a.key[12]].replace(a.q.parser,function(d,b,e){b&&(c[a.q.name][b]=e)});return c}
   parseUri.options={strictMode:!1,key:"source protocol authority userInfo user password host port relative path directory file query anchor".split(" "),q:{name:"queryKey",parser:/(?:^|&)([^&=]*)=?([^&]*)/g},parser:{strict:/^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/,loose:/^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/}};
 
   window.landinguri = parseUri(document.URL);
@@ -44,15 +44,15 @@
       break;
   }
   /* */
-  if(getURLChannel() == "bookings"){ 
+  if(getURLChannel() == "bookings"){
     s_account = "lonelyplanet-bookingservices,lonelyplanet-global";
-  }else if(getURLChannel() == "campaigns" || getURLChannel() == "competitions" || getURLChannel() == "advertorial" ){ 
+  }else if(getURLChannel() == "campaigns" || getURLChannel() == "competitions" || getURLChannel() == "advertorial" ){
     s_account = "lonelyplanetmicrosites,lonelyplanet-global";
-  }else if(getURLChannel() == "groups"){ 
+  }else if(getURLChannel() == "groups"){
     s_account = "lonelyplanet-groups,lonelyplanet-global";
-  }else if(getURLChannel() == "blog"){ 
+  }else if(getURLChannel() == "blog"){
     s_account = "lonelyplanet-blogs,lonelyplanet-global";
-  }else if(getURLChannel() == "hotels"){ 
+  }else if(getURLChannel() == "hotels"){
     s_account = "lonelyplanet-global,lonelyplanet-lphotels";
   } /* */
 
@@ -97,7 +97,7 @@
   function s_postPlugins(s) {
     /* this gets run after standard doPlugins routines */
 
-    if(getURLChannel() == "blog"){ 
+    if(getURLChannel() == "blog"){
       s.channel = "blogs";
       s.eVar2 = s.channel;
 
@@ -181,7 +181,7 @@
       }
 
     if (s.pageName == 'groups : groups message created')
-    { 
+    {
       /* Populate the Create Group Message event */
       if(s.events == null || s.events == "") {
         s.events="event36";
@@ -192,7 +192,7 @@
     }
 
     if (s.pageName == 'groups : groups photo created')
-    { 
+    {
       /* Populate the Create Group Photo event */
       if(s.events == null || s.events == "") {
         s.events="event37";
@@ -292,7 +292,7 @@
 
     /* Global nav linkstacking */
     s.prop70 = s.eVar70 = s.getlinkstack();
-    
+
     if(s.eVar4){
       s.eVar4 = s.eVar4.replace("hh","");
     }
@@ -323,12 +323,12 @@
 
     try { if(typeof(_vis_opt_settings_loaded) == "boolean"){
 
-      var _combination = _vis_opt_readCookie('_vis_opt_exp_'+_vis_opt_experiment_id+'_combi');  
+      var _combination = _vis_opt_readCookie('_vis_opt_exp_'+_vis_opt_experiment_id+'_combi');
       if(typeof(_vis_opt_comb_name[_combination]) != "undefined"){
         s.eVar11= _vis_opt_experiment_id + ':' + _vis_opt_comb_name[_combination]  + ':' + s.eVar4  + ':' + s.eVar5;  }
 
     } } catch(err) { }
-    
+
     adv.doCampaignManagement(ck_exp);
 
   }
@@ -342,7 +342,7 @@
   /* You may insert any plugins you wish to use here.                 */
 
   /*
-   * Plugin: manageQueryParam v1.2 - correct parameters in query string 
+   * Plugin: manageQueryParam v1.2 - correct parameters in query string
    */
   s.manageQueryParam=new Function("p","w","e","u",""
       +"var s=this,x,y,i,qs,qp,qv,f,b;u=u?u:(s.pageURL?s.pageURL:''+s.wd.lo"
@@ -361,7 +361,7 @@
       +"?'+qp}else if(f)qs='?'+f+'&'+qp+b;else if(b)qs='?'+qp+'&'+b;else if"
       +"(qp)qs='?'+qp;return u+qs;");
 
-  /*                                                                  
+  /*
    * Plugin: clickPast - version 1.0
    */
   s.clickPast=new Function("scp","ct_ev","cp_ev","cpc",""
@@ -436,12 +436,12 @@
   s.trackas = function(asobj)
   {
     //default the params if necessary
-    var eventstotrack = [], varstotrack = []; 
+    var eventstotrack = [], varstotrack = [];
     varstotrack.push('events','products');
     asobj.linktracktype = asobj.linktracktype || 'o'; //default to other
     asobj.product_name = asobj.product_name || asobj.type;
     incrementor = "";
-    
+
     if(asobj.type === 'hotel')
     {
       //is hotel - lets set the events
@@ -456,11 +456,11 @@
           eventstotrack.push('event30');
         break;
       }
-      
+
       s.eVar39 = asobj.booking_duration;
       s.eVar61 = asobj.booking_start;
       s.eVar62 = asobj.booking_people;
-      varstotrack.push('eVar39','eVar61','eVar62');         
+      varstotrack.push('eVar39','eVar61','eVar62');
     }
 
     //these items are common to all search types
@@ -469,25 +469,25 @@
     s.eVar5 = asobj.location_city;
     s.eVar38 = asobj.booking_currency;
     varstotrack.push('eVar3', 'eVar4', 'eVar5', 'eVar38');
-    
+
     //now we need to create a link name for the tracklink Function
     linkname = "lp:availability-search:"+asobj.type+":"+asobj.sub_type;
-    
+
     //now setup the actual link tracking
     s.linkTrackVars = varstotrack.join();
     s.linkTrackEvents = s.events = eventstotrack.join();
     //and send the tracking event
     s.tl(this,asobj.linktracktype,linkname);
-    
+
     //so we've set everything and sent the tracking call
     //lets return true so that the system continues to work
-    return true;  
+    return true;
   }
 
   /**************************************
   *
   * Custom Navigation Link Stacking functions is a suite of functions
-  * that processes multiple navigation link clicks into a trackable value 
+  * that processes multiple navigation link clicks into a trackable value
   *   in sitecatalyst
   *
   * @params linkname (the link tracking object)
@@ -505,25 +505,25 @@
       s.expiry=new Date();
       var ct=s.expiry.getTime();  //expiry of cookie
       s.expiry.setTime(ct+ckduration*24*60*60*1000);
-      
+
       if(lastlnk !== linkname){
           curr_lnkstk.push(lastlnk);  //add the last item back if not the same as new item
       }
-      
+
       curr_lnkstk.push(linkname);  //add the new item.
-      
+
       if(curr_lnkstk.length-maxstk > 0){
           strt = curr_lnkstk.length-maxstk;
       }
-      
+
       curr_lnkstk = curr_lnkstk.slice(strt, curr_lnkstk.length);  //only use the latest 5
-      
+
       if(curr_lnkstk[1]){
           lnkstk = curr_lnkstk.join("|");
       }else{
           lnkstk = curr_lnkstk[0];
       }
-      
+
       s.c_w("s_lnkstkr", lnkstk, s.expiry);
       s.c_w("s_trklnkstk", "true", s.expiry);
   }
@@ -537,12 +537,12 @@
   s.getlinkstack = function(){
       //returns the link stack for tracking usage.
       //checks for the send tracking flag and returns the complete stack if found.
-      
+
       if(s.c_r("s_trklnkstk") === "true"){
           s.c_w("s_trklnkstk", "");
           return s.c_r("s_lnkstkr");
       }
-      
+
       return "";
   }
   /**********Campaign management plugin *********************/
@@ -574,14 +574,14 @@
       if(campcode){
           //derive channel from campcode
           var ccparts = [], i=0;
-      
+
       var separators = ["|", "-", "_", ":"];
-      
+
       while(ccparts.length < 2 && i < separators.length){
         ccparts = campcode.toLowerCase().split(separators[i]);
         i++;
       }
-      
+
       if(channels[ccparts[0]]){
               return channels[ccparts[0]];
           }else if(landinguri.queryKey.s_kwcid || landinguri.queryKey.mckv){
@@ -591,7 +591,7 @@
         }else{
           return channels.sem;
         }
-        
+
           }else{
               return channels.other;
           }
@@ -626,13 +626,13 @@
       if(channels[channels.length-1] != channel && (channel !== "direct" || channels.length < 1)){
           channels.push(channel);
       }
-      
+
       var slicestart = 0;
       if(channels.length-5 > 0){
           slicestart = channels.length-5;
       }
-      
-      return channels.slice(slicestart,channels.length).join(">");    
+
+      return channels.slice(slicestart,channels.length).join(">");
   }
 
   adv.saveCampaignData = function(campaign, channel_stk, channel, ck_exp){
@@ -646,7 +646,7 @@
           }
       }
     s.campaign = decodeURIComponent(s.c_r("cam"));
-    
+
     //campaign channel
       var camp_chan_ck = s.c_r("cam_chan") || "";
       if(camp_chan_ck === "direct" || camp_chan_ck === ""){
@@ -657,7 +657,7 @@
           }
       }
     s.eVar58 = s.c_r("cam_chan");
-    
+
       // channel stack
       s.c_w("chan_stk", channel_stk, ck_exp);
   }
@@ -666,9 +666,9 @@
       if(channel == "direct"){
           return s.c_r("cam") || "direct";
       }else{
-          return channel+"_"+refuri.host.replace("www.","");    
+          return channel+"_"+refuri.host.replace("www.","");
       }
-      
+
   }
 
   adv.doCampaignManagement = function(ck_exp){
@@ -690,19 +690,17 @@
         }
       }else{
         s.eVar58 = adv.getCampaignChannel(landinguri, s.campaign, refuri);
-      }        
+      }
       }else{
           //no campaign code
           if(refuri){
               //is a referrer
               s.eVar58 = adv.getCampaignChannel(landinguri, false, refuri);
-              s.campaign = adv.getCampaignCode(refuri, s.eVar58);    
-              
+              s.campaign = adv.getCampaignCode(refuri, s.eVar58);
+
           }else{
               //no referrer
-        console.log('direct');
               s.campaign = s.eVar58 = "direct";
-        console.log(s.campaign);
           }
       }
 
