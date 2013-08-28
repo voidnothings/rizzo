@@ -26,7 +26,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
       @broadcast()
       $(LISTENER).find('.js-card__image').each (i, image) =>
         $image = $(image)
-        if @_isPortrait($image.width(), $image.height()) then $image.addClass('portrait')
+        if @_isPortrait($image.width(), $image.height()) then $image.addClass('is-portrait')
 
 
     # Subscribe
@@ -108,7 +108,7 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
       insertCards = setInterval( =>
         if i isnt cards.length
           $image = $(cards[i]).removeClass('card--invisible').find('.js-card__image')
-          if @_isPortrait($image.width(), $image.height()) then $image.addClass('portrait')
+          if @_isPortrait($image.width(), $image.height()) then $image.addClass('is-portrait')
           i++
         else
           clearInterval insertCards
