@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
-# 
+#
 # Object responsible for cards within the stack
-# 
+#
 # ------------------------------------------------------------------------------
 
 define ['jquery','lib/extends/events'], ($, EventEmitter) ->
@@ -24,6 +24,9 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
     init: ->
       @listen()
       @broadcast()
+      $(LISTENER).find('.js-card__image').each (i, image) =>
+        $image = $(image)
+        if @_isPortrait($image.width(), $image.height()) then $image.addClass('is-portrait')
 
 
     # Subscribe
@@ -94,11 +97,18 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
       @$el.append($cards)
       @_show($cards)
 
+    _isPortrait: (width, height) ->
+      # If the image hasn't loaded yet we can sometimes get false positives
+      # in that case, default to landscape
+      if width and height
+        if height > width then true else false
+
     _show: (cards) ->
       i = 0
-      insertCards = setInterval( ->
+      insertCards = setInterval( =>
         if i isnt cards.length
-          $(cards[i]).removeClass('card--invisible')
+          $image = $(cards[i]).removeClass('card--invisible').find('.js-card__image')
+          if @_isPortrait($image.width(), $image.height()) then $image.addClass('is-portrait')
           i++
         else
           clearInterval insertCards

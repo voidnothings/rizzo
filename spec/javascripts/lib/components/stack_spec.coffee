@@ -1,10 +1,10 @@
 require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
 
   describe 'Stack', ->
-    
+
     LISTENER = '#js-card-holder'
 
-    config = 
+    config =
       list: ".test, .test2, .js-error"
       el: '#js-results'
 
@@ -106,6 +106,16 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
         expect(stack._show).toHaveBeenCalled()
 
 
+    describe 'isPortrait', ->
+      beforeEach ->
+        loadFixtures('stack.html')
+        window.stack = new Stack(config)
+
+      it 'returns true for portrait images', ->
+        expect(stack._isPortrait(100, 50)).toBe(false)
+        expect(stack._isPortrait(50, 100)).toBe(true)
+
+
 
     # --------------------------------------------------------------------------
     # Events API
@@ -136,7 +146,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
           spyOn(stack, "_removeLoader")
           spyOn(stack, "_clear")
           spyOn(stack, "_add")
-          $(LISTENER).trigger(':cards/received', params)  
+          $(LISTENER).trigger(':cards/received', params)
 
         it 'calls stack._removeLoader', ->
           expect(stack._removeLoader).toHaveBeenCalled()
@@ -157,7 +167,7 @@ require ['public/assets/javascripts/lib/components/stack.js'], (Stack) ->
         beforeEach ->
           spyOn(stack, "_clear")
           spyOn(stack, "_add")
-          $(LISTENER).trigger(':cards/append/received', params)  
+          $(LISTENER).trigger(':cards/append/received', params)
 
         it 'does not call stack._clear', ->
           expect(stack._clear).not.toHaveBeenCalled()
