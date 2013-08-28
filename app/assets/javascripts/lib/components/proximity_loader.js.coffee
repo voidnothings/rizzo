@@ -1,20 +1,22 @@
 required = if window.lp.isMobile then 'jsmin' else 'jquery'
 
-define [required], ($) ->
- 
+define [required, 'lib/extends/events'], ($, EventEmitter) ->
+
   class ProximityLoader
 
-    LISTENER = '#js-card-holder'
+    for key, value of EventEmitter
+      @prototype[key] = value
 
+    LISTENER = '#js-row--content'
 
     # params
     # el: The listening element
     # list: comma delimited list of elements to watch
-    # callback: function to call when criteria is matched
+    # success: event to fire when the criteria is matched
+    # klass: Custom parameters to pass through with the success event
     constructor: (args) ->
-      return false if args.callback is undefined
-      @callback = args.callback
-
+      @success = args.success || ':asset/uncomment'
+      @klass = args.klass || ''
       @$el = $(args.el || LISTENER)
       return false if @$el.length is 0
 
@@ -26,7 +28,8 @@ define [required], ($) ->
     # Private
 
     _getViewportEdge: ->
-      window.pageYOffset + window.innerHeight
+      scrolled =  if window.pageYOffset then window.pageYOffset else document.documentElement.scrollTop
+      scrolled + document.documentElement.clientHeight
 
     _setUpElems: (args) ->
       elems = []
@@ -51,9 +54,14 @@ define [required], ($) ->
           @_check()
         , 200
 
-    _check: ->
-      fold = @_getViewportEdge()
-      for el in @elems
-        if (el.top - el.threshold) <= fold
-          @callback(el.$el)
-
+    _check: () ->
+      if @elems.length > 0
+        newElems = []
+        fold = @_getViewportEdge()
+        for el in @elems
+          if (el.top - el.threshold) <= fold
+            @trigger(@success, [el.$el, @klass])
+          else
+            newElems.push(el)
+        # Create a new array of elements that have not yet matched
+        @elems = newElems
