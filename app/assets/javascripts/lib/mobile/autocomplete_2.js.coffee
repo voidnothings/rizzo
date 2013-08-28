@@ -28,7 +28,6 @@ define [], () ->
     _init: (args) ->
       @config = @_updateConfig args
       @el = document.getElementById @config.id
-      @parentElt = document.getElementById @config.parentElt if @config.parentElt
       @_addEventHandlers()
       @results = @_buildResults()
       @xhr = @_setupXHR()
@@ -42,7 +41,7 @@ define [], () ->
     _addEventHandlers: ->
       @el.addEventListener 'input', (e) =>
         @_searchFor e.currentTarget.value
-        @config.inputCallback() if @config.inputCallback
+        @config.inputCallback.call @el if @config.inputCallback
 
       @el.addEventListener 'keypress', (e) =>
         @_keypressHandler e
@@ -208,21 +207,19 @@ define [], () ->
       resultItems = resultItems.slice(0, @config.limit) if @config.limit
 
       @results.appendChild(@_createListItem listItem, searchTerm) for listItem in resultItems
-      @_addClass @parentElt, "#{@config.activeClass}" if @config.parentElt
       @_showResults() unless @results.displayed
 
     _showResults: ->
       @el.parentNode.insertBefore @results, @el.nextSibling # insertAfter @el
       @results.displayed = true
-      @config.showResultsCallback() if @config.showResultsCallback
+      @config.showResultsCallback.call @el if @config.showResultsCallback
 
     _removeResults: ->
       @_emptyResults()
       @results.parentNode.removeChild @results
-      @_removeClass @parentElt, @config.activeClass if @config.parentElt
       delete @results.displayed
       delete @results.highlighted
-      @config.removeResultsCallback() if @config.removeResultsCallback
+      @config.removeResultsCallback.call @el if @config.removeResultsCallback
 
     _emptyResults: ->
       @results.removeChild @results.firstChild while @results.firstChild

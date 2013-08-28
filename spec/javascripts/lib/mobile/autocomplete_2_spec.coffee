@@ -262,14 +262,6 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
 
           expect($('.autocomplete__results').length).toBe 1
 
-        it 'should add a class to the configured element when results are displayed', ->
-          newConfig = {id: 'my_search', uri: '/search', parentElt: 'search_results'}
-          myAutoComplete = new AutoComplete newConfig
-
-          myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
-
-          expect($("##{newConfig.parentElt}")).toHaveClass 'autocomplete__active'
-
       describe 'selecting a list item', ->
         beforeEach ->
           loadFixtures 'autocomplete_mobile.html'
