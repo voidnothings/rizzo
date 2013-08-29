@@ -3,12 +3,12 @@ define [], () ->
   class AutoComplete
 
     DEFAULTS =
-      threshold: 3,
-      resultsClass: 'autocomplete__results',
-      resultItemClass: 'autocomplete__result',
-      resultLinkClass: 'autocomplete__result__link',
-      resultItemHoveredClass: 'autocomplete__current',
-      activeClass: 'autocomplete__active',
+      threshold: 3
+      resultsClass: 'autocomplete__results'
+      resultItemClass: 'autocomplete__result'
+      resultLinkClass: 'autocomplete__result__link'
+      resultItemHoveredClass: 'autocomplete__current'
+      activeClass: 'autocomplete__active'
       throttle: 200
       map:
         title: 'title',
