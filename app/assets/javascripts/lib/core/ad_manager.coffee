@@ -122,11 +122,6 @@ define ['jquery', 'gpt'], ->
           cards = $('.js-card')
           thisCardIndex = cards.index(thisCard)
 
-          # If this is the third last card (there will always be *at least* a trafficDriver and adsense card following),
-          # then there's no need to carry on... just let the ad push the content down.
-          if (cards.length - thisCardIndex < 3)
-            return false
-
           # Eliminate all cards preceding our ad element so we can place a dummy el at the nth position *after* the current one using .eq()
           cards = $(cards.splice(thisCardIndex))
           dummyCard = '<div class="card card--double ad--placeholder js-card" />'
