@@ -1,4 +1,43 @@
-define [], () ->
+# AutoComplete
+#
+# TODO: - there's a bug with accented characters, they aren't being highlighted
+#         (http://frightanic.com/projects/jquery-highlight/ as an example)
+#       - abstract the XHR code to a separate library
+#
+# Arguments:
+#   _args (An object containing)
+#     id                      : [string] The target form element
+#     uri                     : [string] The search endpoint
+#     scope                   : [string] (Optional) Value to specify as the scope of the search
+#     throttle                : [number] (Optional) Time in ms to throttle requests to search endpoint
+#     resultsClass            : [string] (Optional) Class name for results list element
+#     resultItemClass         : [string] (Optional) Class name for result list item element
+#     resultLinkClass         : [string] (Optional) Class name for result list link element
+#     resultItemHoveredClass  : [string] (Optional) Class name for hovered
+#     map                     : [object] (Optional) Endpoint mappings
+#     inputCallback           : [function] (Optional) when something has been entered in the input element
+#     selectCallback          : [function] (Optional) when an item has been selected
+#     showResultsCallback     : [function] (Optional) when the results list has been displayed
+#     removeResultsCallback   : [function] (Optional) when the results list has been removed
+#
+# Map:
+#   Maps an endpoint key to the component's expected key
+#     title : [string]
+#     type  : [string]
+#     uri   : [string]
+#     data  : [array of strings] adds data attribute on the list item for each value
+#
+# Example:
+#  args =
+#    id: 'my_search'
+#    uri: '/search'
+#
+#  new AutoComplete(args)
+#
+# Dependencies:
+#   None
+
+define [], ->
 
   class AutoComplete
 
@@ -8,7 +47,6 @@ define [], () ->
       resultItemClass: 'autocomplete__result'
       resultLinkClass: 'autocomplete__result__link'
       resultItemHoveredClass: 'autocomplete__current'
-      activeClass: 'autocomplete__active'
       throttle: 200
       map:
         title: 'title',
