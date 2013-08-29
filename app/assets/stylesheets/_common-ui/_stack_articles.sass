@@ -25,7 +25,6 @@
     min-height: 60px
     padding-left: 73px
 
-
 .card--full-page__header
   margin-bottom: 20px
   border-bottom: 1px solid $ruled-separator
@@ -128,8 +127,6 @@
 .col--intro
   width: 448px
 
-.results--articles
-  margin-top: -20px
 
 // -----------------------------------------------------------------------------
 // Social Footer
@@ -188,9 +185,9 @@
 // Article Breadcrumbs
 // -----------------------------------------------------------------------------
 
-.stack__breadcrumbs + .stack__article
-  position: relative
-  margin-top: -20px
+.stack__breadcrumbs
+  & + .stack__content
+    margin-top: -20px
 
 .stack__breadcrumb
   @extend %four-pixel-rounded
@@ -201,7 +198,6 @@
   padding: 20px 15px 10px
   position: relative
   text-decoration: none
-  top: -20px
   margin-bottom: 0
 
   .js-hover &:hover
@@ -209,11 +205,6 @@
     text-decoration: none
     -webkit-transform: translate(0,-10px)
     transform: translate(0,-10px)
-
-.stack__breadcrumb:first-child
-  top: 0
-
-
 
 .stack__article__table
   tr
