@@ -57,6 +57,14 @@ $mobile-standard-card-image-height: 192px
   height: $standard-card-image-height
   overflow: hidden
   position: relative
+  &:after
+    +transition()
+    @extend %empty-abs-generated-content
+    background-color: transparent
+    height: 100%
+    left: 0
+    top: 0
+    width: 100%
   .homepage &
     height: $mobile-standard-card-image-height
     +respond-to(medium-view)
@@ -64,6 +72,9 @@ $mobile-standard-card-image-height: 192px
 
   .card__image
     height: 100%
+    &.is-portrait
+      height: auto
+      max-width: 100%
     .homepage &
       width: 100%
       height: auto
@@ -74,12 +85,7 @@ $mobile-standard-card-image-height: 192px
   // darken the image when card is hovered over
   .js-hover .card:hover &
     &:after
-      @extend %empty-abs-generated-content
       background-color: rgba(0,0,0,0.3)
-      height: 100%
-      left: 0
-      top: 0
-      width: 100%
 
   .card--small-image &
     height: $small-card-image-height
@@ -164,7 +170,7 @@ $mobile-standard-card-image-height: 192px
 // Card Extended Content
 // -----------------------------------------------------------------------------
 
-.card--extended-content, 
+.card--extended-content,
 .card--extended-content--half
   height: $card-grid-height
   .homepage &
@@ -203,7 +209,7 @@ $mobile-standard-card-image-height: 192px
 .card--extended-content
   .card__content
     +transition(height, 0.5, ease)
-  
+
   .js-hover &:hover
     .card__content
       height: $card-grid-height - ( 2*$card-content-vertical-padding) - 40px
