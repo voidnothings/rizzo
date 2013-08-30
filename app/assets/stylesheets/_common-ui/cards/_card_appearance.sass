@@ -2,10 +2,9 @@
 // Hero card image overlay
 // -----------------------------------------------------------------------------
 
-.card__hero--hotels
+.card__hero
   &:after
     @extend %empty-abs-generated-content
-    background-image: image_url('collections/best-places.png')
     background-size: $double-card-width $card-grid-height
     height: $card-grid-height
     left: 0
@@ -18,6 +17,13 @@
     +respond-to(medium-view)
       background-size: $double-card-width $card-grid-height
       width: $double-card-width
+
+.card__hero--hotels:after
+  background-image: image_url('collections/best-places.png')
+
+// -----------------------------------------------------------------------------
+// Card Content
+// -----------------------------------------------------------------------------
 
 .card__property-type,
 .card__context
