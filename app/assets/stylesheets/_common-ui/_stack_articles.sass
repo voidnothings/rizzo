@@ -31,7 +31,7 @@
   padding-bottom: 20px
 
 .card--full-page__title
-  @extend %card-header-size
+  +font-size(42)
   color: $header-blue
   margin-bottom: 5px
 
@@ -39,7 +39,7 @@
   font-weight: bold
 
 .card--full-page__subtitle
-  @extend %large-type
+  +font-size(16)
   @extend %inline-block
   @extend %body-copy
   @extend %vertically-centered-dot-after
@@ -55,7 +55,7 @@
 .stack__article
   @extend %body-copy
   @extend %four-pixel-rounded
-  @extend %regular-type-size
+  +font-size(14)
   margin-bottom: 10px
   overflow: hidden
   width: 798px
@@ -90,12 +90,11 @@
   margin-bottom: 20px
   padding: 20px 0
 
+  .text-icon--clock:before
+    font-size: 18px
+
 .stack__article__content
   margin-bottom: 50px
-
-  // TODO: change once we have crazy harry classes on the article content.
-  h3, h4, h5, h6
-    font-weight: bold
 
 .stack__article__image-container
   text-align: center
@@ -138,7 +137,7 @@
   padding: 20px 0
 
 .sharing__label
-  @extend %small-type
+  +font-size(12)
   text-transform: uppercase
   font-weight: bold
   color: $title
@@ -221,7 +220,7 @@
       text-align: left
 
 .stack__article__table--small-text
-  @extend %tiny-type
+  +font-size(10)
   display: block
 
 .stack__article__table--yes,

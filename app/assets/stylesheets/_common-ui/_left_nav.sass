@@ -46,7 +46,7 @@
     width: 148px
 
 .group__title--aside
-  @extend %small-type
+  +font-size(12)
   @extend %uppercase
   color: $nav-search-btn-hover
   display: block
@@ -63,7 +63,7 @@
   @extend %no-padding
 
 .nav__item--stack
-  @extend %regular-type-size
+  +font-size(14)
   color: $body-copy
   display: block
   line-height: 1.2em
@@ -76,7 +76,7 @@
     background-color: $nav-bg--hover
     cursor: pointer
   &:before
-    @extend %huge-type
+    +font-size(30)
     color: $body
     position: absolute
     top: 9px
@@ -142,7 +142,7 @@
   border-top: 1px solid $subdued
 
 .facet--inline-count
-  @extend %small-type
+  +font-size(12)
   color: #8fa1a4
   display: inline-block
   font-weight: normal
@@ -155,7 +155,7 @@
 
 .facet--count
   +border-radius(4)
-  @extend %extra-small-type
+  +font-size(11)
   position: absolute
   background: #fff
   border: 1px solid $highlight

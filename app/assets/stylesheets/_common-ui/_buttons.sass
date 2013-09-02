@@ -18,7 +18,7 @@
 
 .btn
   +border-radius(4)
-  @extend %large-type
+  +font-size(16)
   @extend %base-button
   @extend %smooth-text
   background: white
@@ -66,7 +66,7 @@
 
 .btn--bookable
   @extend %base-button
-  @extend %larger-type
+  +font-size(15)
   background-color: $yella
   color: $new-header-grey
   padding: 6px 15px
@@ -76,7 +76,7 @@
 
 .btn--functional
   @extend %base-button
-  @extend %extra-large-type
+  +font-size(18)
   +background-gradient(#ecf0f2, #dbe2e6)
   +box-shadow(0, 1, 1, 0, rgba(255, 255, 255, 0.8))
   padding: 10px 15px
@@ -105,14 +105,14 @@
 .btn--read-more
   .read-more-block &
     @extend %base-button
-    @extend %irregular-type
+    +font-size(13)
     border: 1px solid $soft-gray
     color: $title
     font-weight: bold
     padding: 5px 7px
 
   .read-more-inline &
-    @extend %regular-type-size
+    +font-size(14)
     font-weight: bold
     background: white
     bottom: 0

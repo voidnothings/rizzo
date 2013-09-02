@@ -33,7 +33,7 @@
 
 .pickadate__month,
 .pickadate__year
-  @extend %extra-large-type
+  +font-size(18)
   color: $header-gray
   font-weight: bold
 
@@ -72,13 +72,13 @@
   width: 100%
 
 .pickadate__weekday
-  @extend %regular-type-size
+  +font-size(14)
   color: $body
   font-weight: normal
 
 .pickadate__day
   +border-radius(30)
-  @extend %irregular-type
+  +font-size(13)
   @extend %helvetica-neue
   @extend %inline-block
   color: $body 
