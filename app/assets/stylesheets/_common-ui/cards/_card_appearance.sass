@@ -2,10 +2,9 @@
 // Hero card image overlay
 // -----------------------------------------------------------------------------
 
-.card__hero--hotels
+.card__hero
   &:after
     @extend %empty-abs-generated-content
-    background-image: image_url('collections/best-places.png')
     background-size: $double-card-width $card-grid-height
     height: $card-grid-height
     left: 0
@@ -18,6 +17,13 @@
     +respond-to(medium-view)
       background-size: $double-card-width $card-grid-height
       width: $double-card-width
+
+.card__hero--hotels:after
+  background-image: image_url('collections/best-places.png')
+
+// -----------------------------------------------------------------------------
+// Card Content
+// -----------------------------------------------------------------------------
 
 .card__property-type,
 .card__context
@@ -116,10 +122,15 @@
   // line above some footers, needs to push fade up a smidge
   .card--poi--article &,
   .card--destination &
-    border-top: 1px solid #e3e7e9
+    border-top: 1px solid #ECF2F5
     padding: 6px 15px 10px 15px
     &:after
       top: -($card-content-vertical-padding + 1)
+
+  .text-icon--clock:before
+    font-size: 24px
+    position: relative
+    top: 3px
 
 // -----------------------------------------------------------------------------
 // Card Footer Items

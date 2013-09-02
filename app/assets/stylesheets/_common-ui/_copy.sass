@@ -37,7 +37,7 @@
   color: $header-blue
   line-height: 1.3em
   margin-bottom: 0.8em
-  
+
 .copy--subtitle
   @extend %large-type
   font-weight: bold
@@ -74,3 +74,22 @@
 .copy--caption
   @extend %small-type
   font-style: italic
+
+
+// $$legacy-- remove post apple
+
+.is-nepal
+  p:first-of-type
+    @extend .copy--feature
+
+  dl:first-of-type
+    margin: 20px 0
+
+  dd:first-of-type
+    text-align: left
+
+  .stack__article__image-container
+    display: none
+
+  .copy--body__title
+    @extend .copy--subtitle
