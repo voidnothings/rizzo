@@ -57,7 +57,7 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
       @$slider_controls.append(@$next).append(@$prev)
       @$slider_controls_container.append(@$slider_controls)
 
-      $(@slides).each (i, val) =>
+      @$el.find(@slides).each (i, val) =>
         $slideLink = $('<a href="#" class="slider__pagination--link">'+(i+1)+'</a>')
 
         if i is 0
@@ -248,6 +248,12 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
 
       $('.slider__pagination--link.is-active').removeClass('is-active')
       $('.slider__pagination--link').eq(index-1).addClass('is-active')
+
+      # Determine if the slide only contains one image and is a portrait image
+      current_slide = @$el.find(@slides).eq(index-1)
+      img = current_slide.find('> img:only-child, > a:only-child img')
+      if img.height() > img.width()
+        current_slide.addClass 'is-portrait'
 
     _setupSlideClasses: ->
       @$el.find(@slides+':first').addClass('is-current').next().addClass('is-next')
