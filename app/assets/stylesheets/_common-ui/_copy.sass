@@ -50,26 +50,27 @@
   text-transform: none
 
 .copy--feature
-  @extend %section-heading-size-type
+  @extend %heading-extra-size-type
   color: $body-copy
   line-height: 1.5em
   em
     font-style: normal
 
 .copy--body
+  @extend %extra-large-type
+  color: $body-copy
+  line-height: 1.66em
+
+.copy--meta
   @extend %larger-type
   color: $body-copy
   line-height: 1.66em
-  color: $body-copy
 
 // Used for titles within copy (sub-sections, if you will)
 .copy--body__title
-  @extend %extra-large-type
-  color: $body-copy
-.copy--body__title-link
-  color: $body-copy
-  &:hover
-    color: $lpblue
+  @extend %section-heading-size-type
+  color: $lpblue
+  margin: 1.8em 0 0.9em
 
 .copy--caption
   @extend %small-type
