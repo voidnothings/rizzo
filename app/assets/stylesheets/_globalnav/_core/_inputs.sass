@@ -38,7 +38,7 @@ input, textarea
     color: $body-copy
 
 .input--submit
-  @extend %larger-type
+  +font-size(15)
   cursor: pointer
   &[disabled], &.input--submit--disabled
     @extend %disabled-state
@@ -222,7 +222,7 @@ input, textarea
 // -----------------------------------------------------------------------------
 
 .newsletter--footer
-  @extend %regular-type-size
+  +font-size(14)
   .responsive &
     margin-bottom: 20px
     +respond-to(wide-view)
