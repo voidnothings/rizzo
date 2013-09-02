@@ -51,15 +51,15 @@
 
 .copy--feature
   @extend %heading-extra-size-type
-  color: $body-copy
-  line-height: 1.5em
+  color: $feature-copy
+  line-height: 1.3em
   em
     font-style: normal
 
 .copy--body
   @extend %extra-large-type
   color: $body-copy
-  line-height: 1.66em
+  line-height: 1.5em
 
 .copy--meta
   @extend %larger-type
@@ -70,6 +70,7 @@
 .copy--body__title
   @extend %section-heading-size-type
   color: $lpblue
+  font-weight: bold
   margin: 1.5em 0 1em
 
 .copy--body__link
@@ -79,6 +80,12 @@
   &:hover
     color: $linkblue
     text-decoration: none
+
+.copy--body__strong
+  color: $title
+
+.copy--body__list
+  margin-left: 20px
 
 .copy--caption
   @extend %small-type
