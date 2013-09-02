@@ -249,6 +249,12 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
       $('.slider__pagination--link.is-active').removeClass('is-active')
       $('.slider__pagination--link').eq(index-1).addClass('is-active')
 
+      # Determine if the slide only contains one image and is a portrait image
+      current_slide = @$el.find(@slides).eq(index-1)
+      img = current_slide.find('> img:only-child, > a:only-child img')
+      if img.height() > img.width()
+        current_slide.addClass 'is-portrait'
+
     _setupSlideClasses: ->
       @$el.find(@slides+':first').addClass('is-current').next().addClass('is-next')
       @$el.find(@slides+':last').addClass('is-prev')
