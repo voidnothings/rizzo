@@ -57,7 +57,7 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
       @$slider_controls.append(@$next).append(@$prev)
       @$slider_controls_container.append(@$slider_controls)
 
-      $(@slides).each (i, val) =>
+      @$el.find(@slides).each (i, val) =>
         $slideLink = $('<a href="#" class="slider__pagination--link">'+(i+1)+'</a>')
 
         if i is 0
