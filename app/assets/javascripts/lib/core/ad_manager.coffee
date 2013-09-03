@@ -99,7 +99,7 @@ define ['jquery', 'gpt'], ->
         # End deprecated.
 
         pubAds.enableSingleRequest()
-        pubAds.collapseEmptyDivs()
+        pubAds.collapseEmptyDivs(true)
         googletag.enableServices()
 
         # Call the display method for all ads we've defined.
