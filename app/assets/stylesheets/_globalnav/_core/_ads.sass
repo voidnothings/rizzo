@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------------------
-// 
+//
 // Adverts Leaderboard
-// 
+//
 // ----------------------------------------------------------------------------
 
 .ad-leaderboard
@@ -28,9 +28,9 @@
     top: 50%
 
 // ----------------------------------------------------------------------------
-// 
+//
 // Other ads
-// 
+//
 // ----------------------------------------------------------------------------
 
 .ad-label
@@ -54,7 +54,7 @@
 
     .tag--horizontal
       opacity: 0
-      
+
       .ie7 &, .ie8 &
         display: none
 
@@ -108,7 +108,7 @@
 .results .card
   &.card--ad
     +multiple-transitions(height 1s ease, width 1s ease)
-  
+
   &.ad-doubleMpu
     @extend %ad-doubleMpu
     z-index: 2
@@ -125,6 +125,9 @@
 
   .row__inner--content
     z-index: 2
+    padding-right: 22px
+    padding-left: 22px
+    background-color: $body-background
 
   &:after
     @extend %empty-abs-generated-content
