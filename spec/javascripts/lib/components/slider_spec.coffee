@@ -55,7 +55,7 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
         expect($('.slider__slide:last').hasClass('is-prev')).toBe(true)
 
       it 'has the correct slides state', ->
-        expect($('.slider__control--next').html()).toBe("1 of 5")
+        expect($('.slider__control--next').html()).toBe("2 of 5")
 
 
     describe 'functionality:', ->

@@ -38,8 +38,8 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
       @slides_container = @$el.find(config.slides_container)
       @$slider_controls = $('<div class="slider__controls no-print"></div>')
       @$slider_pagination = $('<div class="slider__pagination no-print"></div>')
-      @$next = $('<a href="#" class="slider__control slider__control--next icon--chevron-right--white--before">1 of '+@$el.find(@slides).length+'</a>')
-      @$prev = $('<a href="#" class="slider__control slider__control--prev icon--chevron-left--white--after">1 of '+@$el.find(@slides).length+'</a>')
+      @$next = $('<a href="#" class="slider__control slider__control--next icon--chevron-right--white--before">2 of '+@$el.find(@slides).length+'</a>')
+      @$prev = $('<a href="#" class="slider__control slider__control--prev icon--chevron-left--white--after">'+@$el.find(@slides).length+' of '+@$el.find(@slides).length+'</a>')
       @$legacy = $('html.ie7, html.ie8, body.browserIE7, body.browserIE8')
 
       @$slider_controls_container = $('.slider__controls-container')
