@@ -95,10 +95,10 @@
 .btn--edit-dates
   +box-shadow(1, 1, 1, 0, rgba(0,0,0,0.1))
   @extend %base-button
-  background-color: white
+  background-color: #fff
   color: $lpblue
-  padding: 4px 6px
   font-weight: bold
+  padding: 4px 6px
   .js-hover &:hover
     color: $lpblue-highlight
 
@@ -113,14 +113,16 @@
 
   .read-more-inline &
     +font-size(14)
-    font-weight: bold
     background: white
     bottom: 0
     box-shadow: -20px 0 10px 5px white
     color: $header-blue
     cursor: pointer
-    position: absolute
+    font-weight: bold
+    line-height: 1.3em
     right: 0
+    padding-left: 20px
+    position: absolute
 
     &:after
       font-weight: 400
