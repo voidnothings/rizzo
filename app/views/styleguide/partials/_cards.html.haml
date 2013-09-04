@@ -1,0 +1,18 @@
+- require "ostruct"
+
+.cards
+  = render 'components/cards/ad_sense', stack_item: OpenStruct.new(cards_stub[0])
+  = render 'components/cards/article', stack_item: OpenStruct.new(cards_stub[0])
+  = render 'components/cards/blog', stack_item: OpenStruct.new(cards_stub[0])
+  = render 'components/cards/collection', stack_item: OpenStruct.new(cards_stub[0])
+  / = render 'components/cards/double_link', stack_item: OpenStruct.new(cards_stub[2])
+  = render 'components/cards/image', card: OpenStruct.new(cards_stub[0])
+  = render 'components/cards/link', stack_item: OpenStruct.new(cards_stub[0])
+  = render 'components/cards/media', stack_item: OpenStruct.new(cards_stub[0])
+  = render 'components/cards/mpu', stack_item: OpenStruct.new(cards_stub[0])
+  = render 'components/cards/need_to_know', stack_item: OpenStruct.new(cards_stub[1])
+  = render 'components/cards/place', stack_item: OpenStruct.new(cards_stub[0])
+  = render 'components/cards/place', stack_item: OpenStruct.new(cards_stub[0])
+  = render 'components/cards/shop', stack_item: OpenStruct.new(cards_stub[0])
+  = render 'components/cards/traffic_driver', stack_item: OpenStruct.new(cards_stub[0])
+  = render 'components/cards/video', card: OpenStruct.new(cards_stub[0])
