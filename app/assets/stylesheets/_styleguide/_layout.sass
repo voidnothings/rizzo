@@ -1,0 +1,86 @@
+// -----------------------------------------------------------------------------
+// 
+// Styleguide Layout styles
+// 
+// -----------------------------------------------------------------------------
+
+.title--primary
+  color: white
+  line-height: 56px
+
+.styleguide
+  @extend %four-pixel-rounded
+  @extend %standard-shadow
+  @extend %box-off
+  @extend %body-copy
+  margin-bottom: 30px
+  background: #fff
+  
+.styleguide__title
+  @extend %box-off
+  em
+    float: right
+    text-transform: none
+    font-style: normal
+    font-weight: normal
+    color: #999
+
+.styleguide__description
+  padding: 10px 5px
+
+.styleguide__modifier
+  list-style-type: none
+  margin-left: 10px
+  margin-bottom: 5px
+  strong
+    font-family: Monaco, monospace
+    font-size: 12px
+    font-weight: normal
+    color: #222
+
+.styleguide__elements
+  @extend %box-off
+
+.styleguide__element
+  @extend %clearfix
+  @extend %box-off-double
+  position: relative
+  background: #E5EBEE
+  margin-bottom: 10px
+
+.styleguide__element--name
+  @extend %four-pixel-rounded
+  display: block
+  position: absolute
+  top: 5px
+  right: 5px
+  padding: 5px 8px
+  background: #fff
+  color: $text-on-blue
+  border: 1px solid $soft-gray
+
+.styleguide__element__inner
+  width: 70%
+  min-height: 30px
+  position: relative
+
+.styleguide__html
+  padding: 5px 10px
+  background: #edf6f8
+  border-top: 1px solid #dde7ea
+  overflow: auto
+  
+.highlight
+  background: none
+
+
+
+.styleguide__code
+  font-family: Monaco, monospace
+  width: 100%
+  white-space: nowrap
+  overflow-x: auto
+  font-size: 11px
+  line-height: 1.2
+  color: #666
+
