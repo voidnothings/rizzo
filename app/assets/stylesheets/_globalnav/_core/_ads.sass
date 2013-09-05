@@ -59,7 +59,7 @@
         display: none
 
   .homepage &
-    width: 300px
+    width: 310px
     +respond-to(medium-view)
       width: 394px
     .card__content
@@ -97,13 +97,27 @@
   .homepage &
     +box-sizing()
     margin-bottom: 0
+    padding: 30px 0 0
     height: 296px
     width: 310px
-    padding: 30px 0 0
     +respond-to(medium-view)
       margin-bottom: 15px
       padding-top: 60px
-      height: 365px
+      width: 300px
+      height: 360px
+  // Ad house mimics a collection card
+  .ad-house &
+    cursor: pointer
+    +transition(none)
+    margin: 0
+    padding: 0
+    &, iframe
+      height: 296px
+      width: 310px
+    +respond-to(medium-view)
+      &, iframe
+        width: 394px
+        height: 380px
 
 .results .card
   &.card--ad
@@ -202,3 +216,8 @@
     display: block
     text-align: center
     width: 100%
+
+// Ad house mimics a collection card
+.ad-house
+  .tag--horizontal
+    display: none
