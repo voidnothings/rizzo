@@ -4,7 +4,7 @@ define ['jquery', 'gpt'], ->
     sizes:
       adSense: [155,256]
       leaderboard: [[970,66], [728,90]]
-      mpu: [[300,250], [300, 600]]
+      mpu: [[300,250], [300, 600], [394,380]]
       oneByOne: [1,1]
       sponsorTile: [276,32]
       trafficDriver: [192,380]
@@ -113,7 +113,11 @@ define ['jquery', 'gpt'], ->
             adManager.poll document.getElementById(elId), toPoll[elId]
 
     checkMpu : (adEl, iframe) ->
-      if iframe.height() > $(adEl).height()
+      if iframe.width() > 310
+        thisCard = $(adEl).closest('.js-card-ad').addClass('ad-house')
+        $(adEl).removeClass('is-faded-out')
+
+      else if iframe.height() > $(adEl).height()
         # We need a timeout here because the leaderboard might be animating down which messes with our 'top' calc.
         setTimeout ->
           thisCard = $(adEl).closest('.js-card-ad').addClass 'ad-doubleMpu'
@@ -143,6 +147,7 @@ define ['jquery', 'gpt'], ->
             $(adEl).removeClass('is-faded-out')
           , 500
         , 500
+
       else
         # Otherwise remove this class straight away
         $(adEl).removeClass('is-faded-out')
@@ -233,7 +238,7 @@ define ['jquery', 'gpt'], ->
         $(adEl).children('iframe').each ->
           iframe = $(this)
           # If something's been loaded into our ad element, we're good to go
-          if adEl.style.display isnt 'none' and iframe.contents().find('body').html() isnt ""
+          if adEl.style.display isnt 'none' and !!iframe.contents().find('body').html()
             callback.apply(this, [adEl, iframe])
 
             window.clearInterval poll
