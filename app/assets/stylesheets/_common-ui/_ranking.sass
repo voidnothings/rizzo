@@ -11,10 +11,24 @@
 
 @for $i from 1 through 5
   .ranking-bar--#{$i}:before
-    width: 20% * $i
+    width: 25% * $i
     @if $i == 1 or $i == 2
       background: $green
     @if $i == 3 or $i == 4
       background: $orange
     @if $i == 5
       background: $red
+
+// -----------------------------------------------------------------------------
+// Ranking bar
+// -----------------------------------------------------------------------------
+.ranking-dot
+  +border-radius(10)
+  background: $subdued
+  display: inline-block
+  line-height: 1em
+  height: 10px
+  width: 10px
+
+  &.is-active
+    background: $title
