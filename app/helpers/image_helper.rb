@@ -1,8 +1,8 @@
 module ImageHelper
 
-  def safe_image_tag(image_url, opts={}, lazyload)
+  def safe_image_tag(image_url, opts={}, lazyload=nil)
     return if image_url.blank?
-    if lazyload == true
+    if lazyload
       commented_card_image(image_tag(image_url, opts))
     else
       image_tag(image_url, opts)
