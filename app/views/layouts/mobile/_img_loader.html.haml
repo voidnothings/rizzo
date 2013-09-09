@@ -5,10 +5,7 @@
       var sections = ['js-hero', 'js-travel-services'];
 
       for (var i = 0; i < sections.length; i++) {
-
         var scope = document.getElementById(sections[i]);
-
-
         var images = scope.querySelectorAll('[data-uncomment]'),
             len = images.length;
 
@@ -16,7 +13,6 @@
           uncommented = images[j].innerHTML.replace('<!--', '').replace('-->', '');
           images[j].parentNode.innerHTML += uncommented;
         }
-
       }
     }
   })()
