@@ -29,4 +29,8 @@ class GlobalResourcesController < GlobalController
     render '/styleguide/index', :layout=> 'styleguide'
   end
 
+  def styleguideNavigation
+    render '/styleguide/navigation', :layout=> 'styleguide'
+  end
+
 end
