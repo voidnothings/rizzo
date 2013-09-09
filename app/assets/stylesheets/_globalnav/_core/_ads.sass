@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------------------
-// 
+//
 // Adverts Leaderboard
-// 
+//
 // ----------------------------------------------------------------------------
 
 .ad-leaderboard
@@ -17,6 +17,7 @@
   background-color: $row-leader-ad
   border: 3px solid $row-leader-border
   position: relative
+  min-width: 728px
   &:after
     @extend %empty-abs-generated-content
     @extend %sprite-core
@@ -28,9 +29,9 @@
     top: 50%
 
 // ----------------------------------------------------------------------------
-// 
+//
 // Other ads
-// 
+//
 // ----------------------------------------------------------------------------
 
 .ad-label
@@ -54,7 +55,7 @@
 
     .tag--horizontal
       opacity: 0
-      
+
       .ie7 &, .ie8 &
         display: none
 
@@ -108,7 +109,7 @@
 .results .card
   &.card--ad
     +multiple-transitions(height 1s ease, width 1s ease)
-  
+
   &.ad-doubleMpu
     @extend %ad-doubleMpu
     z-index: 2
