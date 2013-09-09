@@ -98,8 +98,10 @@
     top: 50%
 
 .media-gallery__img
-  max-height: 100%
-  max-width: 100%
+  width: 100%
+  .is-portrait &
+    height: 100%
+    width: auto
 .media-gallery__map
   height: 100%
   width: 100%

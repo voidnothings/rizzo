@@ -6,7 +6,7 @@
   letter-spacing: -0.05em
 
 .heading--subtitle
-  @extend %regular-type-size
+  +font-size(14)
 
 .heading--boxed
   @extend %inline-block // ensure the border doesn't stretch full width
@@ -39,7 +39,7 @@
   margin-bottom: 0.8em
 
 .copy--subtitle
-  @extend %large-type
+  +font-size(16)
   font-weight: bold
   color: $header-blue
   text-transform: uppercase
@@ -50,29 +50,46 @@
   text-transform: none
 
 .copy--feature
-  @extend %section-heading-size-type
-  color: $body-copy
-  line-height: 1.5em
+  +font-size(24)
+  color: $feature-copy
+  line-height: 1.3em
   em
     font-style: normal
 
 .copy--body
-  @extend %larger-type
+  +font-size(18)
+  color: $body-copy
+  line-height: 1.5em
+
+.copy--meta
+  +font-size(15)
   color: $body-copy
   line-height: 1.66em
-  color: $body-copy
 
 // Used for titles within copy (sub-sections, if you will)
 .copy--body__title
-  @extend %extra-large-type
-  color: $body-copy
-.copy--body__title-link
-  color: $body-copy
+  +font-size(20)
+  color: $lpblue
+  font-weight: bold
+  margin: 1.5em 0 1em
+
+.copy--body__link
+  border-bottom: 1px dotted
+  color: inherit
+
   &:hover
-    color: $lpblue
+    color: $linkblue
+    text-decoration: none
+
+.copy--body__strong
+  color: $title
+
+.copy--body__list
+  margin-left: 20px
 
 .copy--caption
-  @extend %small-type
+  +font-size(12)
+  display: block
   font-style: italic
 
 
