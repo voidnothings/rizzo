@@ -1,27 +1,15 @@
 module ImageHelper
 
-  def safe_image_tag(image_url, opts={}, lazyload=nil)
+  def safe_image_tag(image_url, image_opts={}, load_opts={})
     return if image_url.blank?
-    if lazyload
-      commented_card_image(image_tag(image_url, opts))
+    if load_opts[:lazyload]
+      commented_image_tag(image_tag(image_url, image_opts))
     else
-      image_tag(image_url, opts)
+      image_tag(image_url, image_opts)
     end
   end
 
-  def commented_image_tag(image_url, opts={})
-    return if image_url.blank?
-    commented_image(image_tag(image_url, opts))
-  end
-
-  def commented_image(image)
-    html = raw("<div data-img=true>")
-    html += raw("<!-- #{image.to_s} -->")
-    html += raw("</div>")
-    html.html_safe
-  end
-
-  def commented_card_image(image)
+  def commented_image_tag(image)
     html = raw("<div data-uncomment=true>")
     html += raw("<!-- #{image.to_s} -->")
     html += raw("</div>")
