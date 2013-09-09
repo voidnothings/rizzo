@@ -1,11 +1,12 @@
 module ImageHelper
 
-  def safe_image_tag(image_url, image_opts={}, load_opts={})
+  def safe_image_tag(image_url, opts={})
     return if image_url.blank?
-    if load_opts[:lazyload]
-      lazyloaded_image_tag(image_tag(image_url, image_opts))
+    lazyload = opts.delete(:lazyload)
+    if lazyload
+      lazyloaded_image_tag(image_tag(image_url, opts))
     else
-      image_tag(image_url, image_opts)
+      image_tag(image_url, opts)
     end
   end
 
