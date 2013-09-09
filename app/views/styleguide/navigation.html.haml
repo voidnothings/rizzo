@@ -1,4 +1,5 @@
-= render 'styleguide/partials/cards'
+= render 'styleguide/partials/navigation'
+
 
 - content_for(:scripts) do
   %script{src: "/javascripts/lib/angular/angular.js"}
@@ -9,4 +10,3 @@
 
 - content_for(:stylesheets) do
   = stylesheet_link_tag 'styleguide', :media => "all"
-
