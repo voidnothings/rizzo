@@ -48,7 +48,11 @@ $stack-intro-lines-to-show: 2
 // -----------------------------------------------------------------------------
 
 .stack__view-select
-  float: right
+  bottom: 10px
+  position: absolute
+  right: 25px
+  top: 10px
+  height: 38px
 
 .stack__view-type
   @extend %left-icon-text
@@ -59,14 +63,15 @@ $stack-intro-lines-to-show: 2
   display: inline-block
   font-weight: bold
   overflow: hidden
-  padding: 10px
+  padding: 0 10px
+  height: 100%
 
   &:hover
     text-decoration: none
 
   &:before
     +font-size(25)
-    line-height: 25px
+    vertical-align: inherit
 
 .stack__view-type--grid
   @extend %grid-icon-before
@@ -80,9 +85,9 @@ $stack-intro-lines-to-show: 2
 
 .stack__view-type--selected
   background: #0fdecf
+  border-color: #0dbdb0 #0fdecf #0fdecf #0dbdb0
   box-shadow: 1px 1px 2px rgba(0,0,0,0.2) inset
   color: white
-  border-color: #0dbdb0 #0fdecf #0fdecf #0dbdb0
 
 
 
@@ -94,6 +99,8 @@ $stack-intro-lines-to-show: 2
   +font-size(30)
   color: #c3d4d7
   clear: left
+  margin-left: 20px
+  margin-top: 20px
 
 .list-view__item
   +border-radius(4)
