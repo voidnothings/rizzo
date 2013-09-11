@@ -4,7 +4,7 @@ define ['jquery', 'gpt'], ->
     sizes:
       adSense: [155,256]
       leaderboard: [[970,66], [728,90]]
-      mpu: [[300,250], [300, 600]]
+      mpu: [[300,250], [300, 600], [394,380]]
       oneByOne: [1,1]
       sponsorTile: [276,32]
       trafficDriver: [192,380]
@@ -99,7 +99,7 @@ define ['jquery', 'gpt'], ->
         # End deprecated.
 
         pubAds.enableSingleRequest()
-        pubAds.collapseEmptyDivs()
+        pubAds.collapseEmptyDivs(true)
         googletag.enableServices()
 
         # Call the display method for all ads we've defined.
@@ -113,7 +113,11 @@ define ['jquery', 'gpt'], ->
             adManager.poll document.getElementById(elId), toPoll[elId]
 
     checkMpu : (adEl, iframe) ->
-      if iframe.height() > $(adEl).height()
+      if iframe.width() > 310
+        thisCard = $(adEl).closest('.js-card-ad').addClass('ad-house')
+        $(adEl).removeClass('is-faded-out')
+
+      else if iframe.height() > $(adEl).height()
         # We need a timeout here because the leaderboard might be animating down which messes with our 'top' calc.
         setTimeout ->
           thisCard = $(adEl).closest('.js-card-ad').addClass 'ad-doubleMpu'
@@ -121,11 +125,6 @@ define ['jquery', 'gpt'], ->
           cardsPerRow = Math.floor grid.width() / (grid.find('.js-single').width())
           cards = $('.js-card')
           thisCardIndex = cards.index(thisCard)
-
-          # If this is the third last card (there will always be *at least* a trafficDriver and adsense card following),
-          # then there's no need to carry on... just let the ad push the content down.
-          if (cards.length - thisCardIndex < 3)
-            return false
 
           # Eliminate all cards preceding our ad element so we can place a dummy el at the nth position *after* the current one using .eq()
           cards = $(cards.splice(thisCardIndex))
@@ -143,6 +142,7 @@ define ['jquery', 'gpt'], ->
             $(adEl).removeClass('is-faded-out')
           , 500
         , 500
+
       else
         # Otherwise remove this class straight away
         $(adEl).removeClass('is-faded-out')
@@ -233,7 +233,7 @@ define ['jquery', 'gpt'], ->
         $(adEl).children('iframe').each ->
           iframe = $(this)
           # If something's been loaded into our ad element, we're good to go
-          if adEl.style.display isnt 'none' and iframe.contents().find('body').html() isnt ""
+          if adEl.style.display isnt 'none' and !!iframe.contents().find('body').html()
             callback.apply(this, [adEl, iframe])
 
             window.clearInterval poll

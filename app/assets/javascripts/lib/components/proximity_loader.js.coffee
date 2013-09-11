@@ -16,7 +16,7 @@ define [required, 'lib/extends/events'], ($, EventEmitter) ->
     # klass: Custom parameters to pass through with the success event
     constructor: (args) ->
       @success = args.success || ':asset/uncomment'
-      @klass = args.klass || ''
+      @klass = args.klass
       @$el = $(args.el || LISTENER)
       return false if @$el.length is 0
 
