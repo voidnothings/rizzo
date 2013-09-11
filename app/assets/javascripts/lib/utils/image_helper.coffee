@@ -1,9 +1,6 @@
 # ImageHelper (lp.ImageHelper)
 # Some utility functions for images
 #
-# Example:
-#   ImageHelper.
-#
 
 define ['jquery'], ($) ->
   
@@ -24,6 +21,8 @@ define ['jquery'], ($) ->
         else if img.ratio < container.ratio
           img.el.addClass('is-wider')
 
+    # This works it out as a percentage so as to keep it centered responsively without
+    # needing to hook into any funky resize events.
     centerWithinContainer: (config) ->
       @_imageMetrics config, (img, container) ->
         if img.el.height() > container.el.height()
