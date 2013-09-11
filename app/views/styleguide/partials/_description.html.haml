@@ -1,0 +1,18 @@
+.styleguide-block__description.card
+  .styleguide-block__tabs
+
+    .copy--subtitle.styleguide-block__heading
+      Component
+    .styleguide__partial.copy--body
+      \= ui_component('#{component}')
+
+    .copy--subtitle
+      Properties
+
+    %pre.styleguide.copy--body.language-ruby<
+      %code<
+        - arguments = opts.values[0]
+        = JSON.pretty_generate arguments
+
+
+

@@ -30,5 +30,8 @@ Rizzo::Application.routes.draw do
   get 'legacy'                       => 'global_resources#legacy'
   get 'responsive'                   => 'global_resources#responsive'
   get 'homepage'                     => 'global_resources#homepage'
+
+  # Styleguide
   get 'styleguide'                   => 'global_resources#styleguide'
+  get 'styleguide/navigation'        => 'global_resources#styleguideNavigation'
 end if defined?(Rizzo::Application)

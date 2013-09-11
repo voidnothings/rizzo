@@ -1,0 +1,14 @@
+:ruby
+  show_description = item[:show_description] || true
+  item_title = item[:name] || item[:title]
+  item_href = item[:path] || item[:href] || item[:url] || item[:slug]
+  item_class = "#{item[:extra_style]} nav__item--stack nav__item--chevron js-#{item[:section]}-item"
+  item_data = { 'item-kind' => "stack:#{item[:section]}" }
+
+
+%a{href: item_href, class: "#{item_class} #{item[:current] ? 'nav__item--current--stack' : ''}", data: item_data}
+  = item_title
+
+  - if item[:count]
+    %span{class: 'facet--inline-count'}
+      = item[:count]

@@ -16,7 +16,6 @@
 @import '_common-ui/_media-gallery'
 @import '_common-ui/_meta-info-box'
 @import '_common-ui/_preloader'
-@import '_common-ui/_ranking-bar'
 @import '_common-ui/_slider'
 
 @import '_common-ui/cards/_cards_base'
@@ -36,3 +35,34 @@
 @import '_common-ui/_tooltip'
 @import '_common-ui/_maps'
 @import '_common-ui/_text_icons'
+
+.title--styleguide
+  color: white
+  padding: 10px 0
+
+.styleguide-block
+  @extend %clearfix
+  padding-bottom: 20px
+  margin-bottom: 20px
+  border-bottom: 1px solid $soft-gray
+
+.styleguide-block__item
+  float: left
+  margin-right: 20px
+
+.styleguide-block__description
+  @extend %box-sizing
+  overflow: hidden
+  padding: 20px
+
+.styleguide-block__heading
+  margin-top: 0
+
+.styleguide__partial
+  border: 2px solid $ruled-separator
+  padding: 5px
+
+pre[class*="language-"]
+  @extend %box-sizing
+  padding: 1em
+  overflow: auto
