@@ -11,27 +11,38 @@ define ['jquery'], ($) ->
 
     # Determined based on being <= 800x600 (4:3) either vertically or horizontally
     detectOrientation: (config) ->
-      img = $(config.img)
-      ratio = img.height() / img.width()
-
-      if (ratio >= 1.33) # 800 / 600
-        img.addClass('is-portrait')
-      else if (ratio <= 0.75) # 600 / 800
-        img.addClass('is-landscape')
+      @_imageMetrics config, (img) ->
+        if (img.ratio >= 1.33) # 800 / 600
+          img.el.addClass('is-portrait')
+        else if (img.ratio <= 0.75) # 600 / 800
+          img.el.addClass('is-landscape')
 
     detectRelativeDimensions: (config) ->
-      container = $(config.container)
-      img = $(config.img)
+      @_imageMetrics config, (img, container) ->
+        if img.ratio > container.ratio
+          img.el.addClass('is-taller')
+        else if img.ratio < container.ratio
+          img.el.addClass('is-wider')
 
-      detectOrientation(config) if img.hasClass('is-landscape').length is 0
+    centerWithinContainer: (config) ->
+      @_imageMetrics config, (img, container) ->
+        if img.el.height() > container.el.height()
+          pxOffset = (container.el.height() - img.el.height()) / 2
+          
+          # NOTE: need to divide by container **width**. % margins are calculated based on width.
+          img.el.css('marginTop', (pxOffset / container.el.width() * 100)+"%")
+        if img.el.width() > container.el.width()
+          pxOffset = (container.el.width() - img.el.width()) / 2
 
-      img = img.filter('.is-landscape')
+          img.el.css('marginLeft', (pxOffset / container.el.width() * 100)+"%")
 
-      # We only want this on landscape images since proper portrait images will just be vertically centered.
-      return if img.length is 0
+    
+    #====== Private(ish) ======#
+    _imageMetrics: (config, callback) ->
+      $(config.img).each ->
+        img = $(@)
+        imgRatio = img.height() / img.width()
+        container = img.closest(config.container)
+        containerRatio = container.height() / container.width()
 
-      if (img.width() / img.height() < container.width() / container.height())
-        img.addClass('is-taller')
-      else if (img.height() / img.width() < container.height() / container.width())
-        img.addClass('is-wider')
-
+        callback.apply this, [ { el:img, ratio:imgRatio }, { el:container, ratio:containerRatio }]
