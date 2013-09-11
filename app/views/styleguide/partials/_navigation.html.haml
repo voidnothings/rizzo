@@ -1,1 +1,2 @@
-= render 'components/left_nav', left_nav: left_nav_stub
+- left_nav_stub.each do | stub |
+  = sg_component('left_nav', left_nav: stub)

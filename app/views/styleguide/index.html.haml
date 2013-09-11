@@ -1,12 +1,14 @@
 = render 'styleguide/partials/cards'
 
 - content_for(:scripts) do
-  %script{src: "/javascripts/lib/angular/angular.js"}
-  %script{src: "/javascripts/services.js"}
-  %script{src: "/javascripts/controllers.js"}
-  %script{src: "/javascripts/lib/angular/angular-resource.js"}
-  %script{src: "/javascripts/app.js"}
+  / %script{src: "/javascripts/lib/angular/angular.js"}
+  / %script{src: "/javascripts/services.js"}
+  / %script{src: "/javascripts/controllers.js"}
+  / %script{src: "/javascripts/lib/angular/angular-resource.js"}
+  / %script{src: "/javascripts/app.js"}
+  = javascript_include_tag 'prism'
 
 - content_for(:stylesheets) do
   = stylesheet_link_tag 'styleguide', :media => "all"
+  = stylesheet_link_tag 'prism', :media => "all"
 
