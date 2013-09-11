@@ -85,6 +85,65 @@ $stack-intro-lines-to-show: 2
   border-color: #0dbdb0 #0fdecf #0fdecf #0dbdb0
 
 
+
+
+.list-view
+  overflow: hidden
+
+.list-view__heading
+  +font-size(30)
+  color: #c3d4d7
+  clear: left
+
+.list-view__item
+  +border-radius(4)
+  // box-shadow: 0 0 1px 0 rgba(3, 46, 92, 0.1)
+  float: left
+  list-style: none
+  margin: 0 0 10px 10px
+  overflow: hidden
+  width: $double-card-width
+
+.list-view__link
+  display: block
+  overflow: hidden
+  color: #232d39
+  font-weight: bold
+
+  &:hover
+    text-decoration: none
+
+
+.list-view__hero
+  background: #fafafc
+  float: left
+  width: 50px
+  height: 50px
+
+.list-view__image
+  display: block
+  width: 50px
+  height: 50px
+
+.list-view__no-image
+  background: url(image_path("map-markers.png")) -413px -61px no-repeat
+  float: left
+  height: 34px
+  width: 24px
+  text-indent: -9999em
+  margin-top: 8px
+  margin-left: 13px
+
+.list-view__title
+  height: 50px
+  line-height: 50px
+  float: left
+  padding-left: 10px
+
+
+
+
+
 // -----------------------------------------------------------------------------
 // Travel warning
 // -----------------------------------------------------------------------------
