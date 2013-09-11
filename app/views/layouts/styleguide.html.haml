@@ -23,14 +23,8 @@
       .row.row--content#js-row--content
         .row__inner.row__inner--content.copy--freight
           .card-holder
-            = render 'components/left_nav', left_nav: left_nav
-            / .card--single
-            /   .card.left-nav
-            /     %a.current.nav__item--stack.obj-list__item{href: "/Home"} Home
-            /     %a.nav__item--stack.obj-list__item{href: "/components"} Components
-            /     %a.nav__item--stack.obj-list__item{href: "/inputs"} Form elements
-            /     %a.nav__item--stack.obj-list__item{href: "/grid"} Grid
-            /     %a.nav__item--stack.obj-list__item{href: "/mixins"} Mixins
+            = ui_component('left_nav', left_nav: left_nav)
+
             .main-content.stack{ng: {view: true}}
               .grid-view.grid-wrapper--10
                 = yield
