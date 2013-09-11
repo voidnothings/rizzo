@@ -25,24 +25,8 @@ define ['jquery'], ($) ->
       config.tabs.on 'click', '.js-tab-trigger', (e) ->
         tabLabel = $(@)
         tab = $(tabLabel.attr('href'))
-
         _openNewTab(tabLabel, tab)
         false
-
-      config.tabs.find('img').each ->
-        img = $(@)
-        tab = img.closest('[id^=js-tab]')
-
-        return unless tab.length > 0
-
-        imgRatio = img.height() / img.width()
-        containerRatio = tab.height() / tab.width()
-
-        if imgRatio < containerRatio
-          img.addClass('is-wider')
-          img.css('marginLeft', ((imgRatio - containerRatio) * 100)+"%")
-        else
-          img.css('marginTop', ((containerRatio - imgRatio) / 2 * 100)+"%")
 
       config.tabsContainer.removeClass('is-loading')
       $(config.tabLabels.filter(':first').addClass('is-active').attr('href')).addClass('is-active')
