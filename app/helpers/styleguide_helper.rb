@@ -1,8 +1,5 @@
 module StyleguideHelper
 
-  include Styleguide::CardsStubsHelper
-  include Styleguide::NavigationStubsHelper
-
   def left_nav
     {
       groups: [

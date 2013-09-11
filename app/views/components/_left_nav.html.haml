@@ -5,7 +5,6 @@
 
     .group--aside{class: (i > 0) ? "group--linked" : ""}
       .group__inner
-
         -if group[:title]
           %label{class: 'group__title--aside', for: "ac-#{group[:section]}"}
             = group[:title]
