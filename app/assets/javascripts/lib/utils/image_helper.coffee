@@ -6,25 +6,43 @@ define ['jquery'], ($) ->
   
   class ImageHelper
 
+    # There are cases where we'd want to detect orientation, work out the relative dimensions,
+    # and center the images at once (such as a responsive image slider for example). This makes
+    # it possible without having to call each function separately with the same config.
+    processImages: (config) ->
+      @applyOrientationClasses(config)
+      @detectRelativeDimensions(config)
+      @centerWithinContainer(config)
+
     # Determined based on being <= 800x600 (4:3) either vertically or horizontally
-    detectOrientation: (config) ->
-      @_imageMetrics config, (img) ->
-        if (img.ratio >= 1.33) # 800 / 600
-          img.el.addClass('is-portrait')
-        else if (img.ratio <= 0.75) # 600 / 800
-          img.el.addClass('is-landscape')
+    # 800x600 being the lowest aspect ratio before not being landscape (or conversely: portrait)
+    detectOrientation: ($img) ->
+      img = @_imageMetrics($img)[0]
+
+      if (img.ratio >= 1.33) # 800 / 600
+        return 'landscape'
+      else if (img.ratio <= 0.75) # 600 / 800
+        return 'portrait'
+      else
+        # Not the best term, but most accurately describes neither portrait nor landscape.
+        return 'squarish'
+
+    applyOrientationClasses: (config) ->
+      $(config.img).each (i, val) =>
+        img = $(val)
+        img.addClass("is-#{@detectOrientation(img)}")
 
     detectRelativeDimensions: (config) ->
-      @_imageMetrics config, (img, container) ->
-        if img.ratio > container.ratio
+      @_prepareImages config, (img, container) ->
+        if img.ratio < container.ratio
           img.el.addClass('is-taller')
-        else if img.ratio < container.ratio
+        else if img.ratio > container.ratio
           img.el.addClass('is-wider')
 
     # This works it out as a percentage so as to keep it centered responsively without
     # needing to hook into any funky resize events.
     centerWithinContainer: (config) ->
-      @_imageMetrics config, (img, container) ->
+      @_prepareImages config, (img, container) ->
         if img.el.height() > container.el.height()
           pxOffset = (container.el.height() - img.el.height()) / 2
           
@@ -37,11 +55,17 @@ define ['jquery'], ($) ->
 
     
     #====== Private(ish) ======#
-    _imageMetrics: (config, callback) ->
-      $(config.img).each ->
-        img = $(@)
-        imgRatio = img.height() / img.width()
+    _prepareImages: (config, callback) ->
+      $(config.img).each (i, val) =>
+        img = $(val)
         container = img.closest(config.container)
-        containerRatio = container.height() / container.width()
+        
+        callback.apply @, @_imageMetrics(img, container)
 
-        callback.apply this, [ { el:img, ratio:imgRatio }, { el:container, ratio:containerRatio }]
+    _imageMetrics: (img, container) ->
+      metrics = [{ el: img, ratio: img.width() / img.height() }]
+
+      if container
+        metrics.push({ el: container, ratio: container.width() / container.height() })
+
+      return metrics

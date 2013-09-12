@@ -4,22 +4,28 @@ require ['jquery', 'public/assets/javascripts/lib/utils/image_helper.js'], ($, I
     beforeEach ->
       loadFixtures('image_helper.html');
       window.image_helper = new ImageHelper()
-      window.config = 
+
+      image_helper.processImages
         container: '.img-container',
         img: '.img'
-
-      image_helper.detectOrientation config
-      image_helper.detectRelativeDimensions config
-      image_helper.centerWithinContainer config
 
     describe 'Object', ->
       it 'is defined', ->
         expect(image_helper).toBeDefined()
 
     describe 'Orientation:', ->
+      # Detection
       it 'detects landscape', ->
-        expect($('#landscape .img').hasClass('is-landscape')).toBe(true)
+        expect(image_helper.detectOrientation($('#landscape .img'))).toBe('landscape')
       it 'detects portrait', ->
+        expect(image_helper.detectOrientation($('#portrait .img'))).toBe('portrait')
+      it 'detects squarish (i.e.: neither quite portrait nor landscape)', ->
+        expect(image_helper.detectOrientation($('#squarish .img'))).toBe('squarish')
+
+      # Class names
+      it 'adds `is-landscape` class', ->
+        expect($('#landscape .img').hasClass('is-landscape')).toBe(true)
+      it 'adds `is-portrait` class', ->
         expect($('#portrait .img').hasClass('is-portrait')).toBe(true)
 
     describe 'Height/width relative to container:', ->
