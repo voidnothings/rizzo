@@ -40,7 +40,8 @@ define ['jquery'], ($) ->
           img.el.addClass('is-wider')
 
     # This works it out as a percentage so as to keep it centered responsively without
-    # needing to hook into any funky resize events.
+    # needing to hook into any funky resize events. This assumes that the image will
+    # be either 100% width or 100% height (thus overflowing either horizontally or vertically)
     centerWithinContainer: (config) ->
       @_prepareImages config, (img, container) ->
         if img.el.height() > container.el.height()
