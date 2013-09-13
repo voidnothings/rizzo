@@ -17,6 +17,14 @@ cards:
 
   -
     :styleguide_title: "Article Card"
+    :thumbnail: "stubs/article.jpg"
+    :slug: "#"
+    :title: "Hello"
+    :image_url: "stubs/article.jpg"
+    :strapline: "Just a little article about the many ways to say hello"
+
+  -
+    :styleguide_title: "Article Card"
     :slug: "#"
     :title: "Hello"
     :image_url: "stubs/article.jpg"
