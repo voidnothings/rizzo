@@ -100,7 +100,7 @@ define ['jquery'], ($) ->
       @handler and @handler.text _text
 
     onUpdate: ->
-      @config.delegate.onUpdate(@, @state, @config.selector) if @config.delegate && @config.delegate.onUpdate
+      @config.delegate.onUpdate.call(@, @state, @config.selector) if @config.delegate && @config.delegate.onUpdate
 
     toggleClasses: ->
       @$el.toggleClass('is-open is-closed')

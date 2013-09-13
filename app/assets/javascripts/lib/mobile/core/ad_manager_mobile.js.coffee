@@ -93,6 +93,8 @@ define ['gpt'], ->
 
     showAd : (adEl, iframe) ->
       if adEl.style.display isnt 'none'
+        if iframe.width > 310
+          adEl.parentNode.classList.add('ad-house')
         adEl.parentNode.classList.remove('is-closed')
         adEl.classList.remove('is-faded-out')
 
