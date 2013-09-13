@@ -66,9 +66,9 @@ define [], ->
     _init: (args) ->
       @config = @_updateConfig args
       @el = document.getElementById @config.id
+      @xhr = @_setupXHR()
       @_addEventHandlers()
       @results = @_buildResults()
-      @xhr = @_setupXHR()
 
     _updateConfig: (args) ->
       newConfig = {}
@@ -76,16 +76,23 @@ define [], ->
       newConfig[key] = value for own key, value of args
       newConfig
 
-    _addEventHandlers: ->
-      @el.addEventListener 'input', (e) =>
-        @_searchFor e.currentTarget.value
+    _on: (elt, evt, callback) ->
+      if window.addEventListener
+        elt.addEventListener evt, callback, false
+      else if window.attachEvent
+        elt.attachEvent "on#{evt}", callback
 
-      @el.addEventListener 'keypress', (e) =>
+    _addEventHandlers: ->
+      @_on(@el, 'input', (e) =>
+        @_searchFor e.currentTarget.value
+      )
+      @_on(@el, 'keydown', (e) =>
         @_keypressHandler e
+      )
 
     _setupXHR: ->
       xhr = new XMLHttpRequest()
-      xhr.addEventListener 'readystatechange', =>
+      xhr.onreadystatechange = =>
         if @xhr.readyState == 4
           if @xhr.status == 200
             @_populateResults JSON.parse(@xhr.responseText), @currentSearch
@@ -96,18 +103,17 @@ define [], ->
       @_addClass results, @config.resultsClass
       @_addClass results, "#{@config.resultsClass}--#{@config.classModifier}" if @config.classModifier
 
-      results.addEventListener 'click', (e) =>
+      @_on(results, 'click', (e) =>
         @_resultsClick e
-      , false
+      , false)
 
-      results.addEventListener 'mouseover', (e) =>
+      @_on(results, 'mouseover', (e) =>
         @_resultsMouseOver e.target
-      , false
+      , false)
 
-      results.addEventListener 'mouseout', (e) =>
+      @_on(results, 'mouseout', (e) =>
         @_resultsMouseOut e.target
-      , false
-
+      , false)
       results
 
     # event handlers
