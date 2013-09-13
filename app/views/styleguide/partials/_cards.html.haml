@@ -1,12 +1,5 @@
-:ruby
-  require "ostruct"
-  cards = YAML.load(File.read(File.expand_path('../../../../data/styleguide/cards_stubs.yml', __FILE__)))
+- require "ostruct"
+- cards = YAML.load(File.read(File.expand_path('../../../../data/styleguide/cards_stubs.yml', __FILE__)))
 
 - cards['cards'].each do |card|
-  = sg_component("cards/#{card[:styleguide_title].downcase.split(' ').join('_')}", stack_item: OpenStruct.new(card), original_stub: card)
-
-- cards['link_cards'].each do |card|
-  = sg_component("cards/#{card[:styleguide_title].downcase.split(' ').join('_')}", stack_item: OpenStruct.new(card), original_stub: card)
-
-- cards['ad_cards'].each do |card|
   = sg_component("cards/#{card[:styleguide_title].downcase.split(' ').join('_')}", stack_item: OpenStruct.new(card), original_stub: card)

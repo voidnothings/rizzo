@@ -65,6 +65,8 @@ cards:
     :kind: "media"
     :resized_image_url: "stubs/sight.jpg"
     :resized_video_url: "stubs/video-thumb.jpg"
+    :image_description: "A photo of a building"
+    :video_description: "A video filmed from a bus"
 
   -
     :styleguide_title: "Place Card"
@@ -81,21 +83,6 @@ cards:
     :title: "Cassis"
     :strapline: "Some information about Cassis and its environs"
 
-  # -
-  #   :styleguide_title: "Double Link Card"
-  #   :kind: ":double_image"
-  #   cards:
-  #   -
-  #     :slug: "#"
-  #     :double: false
-  #     resized_:image_url: ""
-  #   -
-  #     :slug: "#"
-  #     :double: false
-  #     resized_:image_url: ""
-
-
-link_cards:
   -
     :styleguide_title: "Link Card"
     :kind: "link"
@@ -132,7 +119,6 @@ link_cards:
     :title: "Tours"
     :slug: "#"
 
-ad_cards:
   -
     :styleguide_title: "Ad sense Card"
     :kind: "ad_sense"
