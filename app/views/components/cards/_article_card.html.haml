@@ -1,5 +1,5 @@
 - description = stack_item.post_content ? sanitize(stack_item.post_content,:tags => []) : stack_item.strapline
-- slug = defined?(articles_path) ? "#{articles_path}/#{stack_item.id}" : stack_item.url
+- slug = defined?(articles_path) ? "#{articles_path}/#{stack_item.slug}" : stack_item.url
 - title = stack_item.post_title ? stack_item.post_title : stack_item.title
 
 %article.card.card--single.card--poi.card--poi--article.icon--article--white--before.js-card.js-single{class: stack_item.thumbnail ? 'card--small-image card--extended-content' : 'card--no-image' }
