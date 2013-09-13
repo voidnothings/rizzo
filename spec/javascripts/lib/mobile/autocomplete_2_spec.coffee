@@ -178,11 +178,6 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
               expect(callbackSpy).toHaveBeenCalled()
               expect(myAutoComplete._makeRequest).not.toHaveBeenCalled()
 
-
-
-
-
-
           describe 'configuring the search threshold', ->
             beforeEach ->
               loadFixtures 'autocomplete_mobile.html'
@@ -299,6 +294,14 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
 
           expect($('.autocomplete__results').length).toBe 1
 
+        it 'should execute a callback when displaying the results', ->
+          callbackSpy = jasmine.createSpy()
+          newConfig = {id: 'my_search', uri: '/search', showResultsCallback: callbackSpy}
+          myAutoComplete = new AutoComplete newConfig
+          myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
+
+          expect(callbackSpy).toHaveBeenCalled()
+
       describe 'selecting a list item', ->
         beforeEach ->
           loadFixtures 'autocomplete_mobile.html'
@@ -336,6 +339,16 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
           myAutoComplete._removeResults()
 
           expect($("##{newConfig.parentElt}")).not.toHaveClass 'autocomplete__active'
+
+        it 'should execute a callback when removing the results', ->
+          callbackSpy = jasmine.createSpy()
+          newConfig = {id: 'my_search', uri: '/search', removeResultsCallback: callbackSpy}
+          myAutoComplete = new AutoComplete newConfig
+
+          myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
+          myAutoComplete._removeResults()
+
+          expect(callbackSpy).toHaveBeenCalled()
 
       describe 'operating the list via keyboard', ->
 
