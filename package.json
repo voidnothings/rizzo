@@ -20,6 +20,7 @@
     "grunt-template-jasmine-requirejs": "latest",
     "grunt-plato": "latest",
     "grunt-open": "~0.2.1",
+    "grunt-newer": "~0.5.0",
     "matchdep": "~0.1.2"
   }
 }
