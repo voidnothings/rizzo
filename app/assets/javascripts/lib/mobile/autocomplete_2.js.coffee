@@ -115,11 +115,13 @@ define [], ->
     _keypressHandler: (e) ->
       switch e.keyCode
         when KEY.up
-          e.preventDefault()
-          @_highlightUp()
+          if @results.displayed
+            e.preventDefault()
+            @_highlightUp()
         when KEY.down
-          e.preventDefault()
-          @_highlightDown()
+          if @results.displayed
+            e.preventDefault()
+            @_highlightDown()
         when KEY.tab
           if @results.displayed
             e.preventDefault()
