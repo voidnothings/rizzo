@@ -86,13 +86,8 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-coffee');
-    grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-contrib-jasmine');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-plato');
-    grunt.loadNpmTasks('grunt-shell');
-    grunt.loadNpmTasks('grunt-open');
+    // This loads in all the grunt tasks auto-magically.
+    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     // Tasks
     grunt.registerTask('default', ['shell:clean', 'coffee', 'connect', 'jasmine']);

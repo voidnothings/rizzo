@@ -19,6 +19,7 @@
     "grunt-istanbul-coverage": "latest",
     "grunt-template-jasmine-requirejs": "latest",
     "grunt-plato": "latest",
-    "grunt-open": "~0.2.1"
+    "grunt-open": "~0.2.1",
+    "matchdep": "~0.1.2"
   }
 }
