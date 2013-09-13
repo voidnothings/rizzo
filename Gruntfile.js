@@ -63,7 +63,7 @@ module.exports = function(grunt) {
         watch: {
             scripts: {
                 files: ['app/assets/javascripts/lib/**/*.coffee', 'spec/javascripts/lib/**/*.coffee'],
-                tasks: ['shell:clean', 'coffee', 'jasmine'],
+                tasks: ['shell:clean', 'newer:coffee', 'jasmine'],
                 options: {
                     nospawn: true
                 }
@@ -90,9 +90,9 @@ module.exports = function(grunt) {
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     // Tasks
-    grunt.registerTask('default', ['shell:clean', 'coffee', 'connect', 'jasmine']);
+    grunt.registerTask('default', ['shell:clean', 'newer:coffee', 'connect', 'jasmine']);
     grunt.registerTask('dev', ['connect', 'open:jasmine', 'jasmine', 'watch']);
     grunt.registerTask('wip', ['jasmine:avocado:build', 'open:jasmine', 'connect:server:keepalive']);
-    grunt.registerTask('report', ['shell:clean', 'coffee', 'plato', 'shell:openPlato']);
+    grunt.registerTask('report', ['shell:clean', 'newer:coffee', 'plato', 'shell:openPlato']);
 
 };
