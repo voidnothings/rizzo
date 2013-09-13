@@ -1,6 +1,6 @@
 require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
 
-  describe 'AutoComplete 2', ->
+  describe 'AutoComplete', ->
 
     myAutoComplete = null
 
