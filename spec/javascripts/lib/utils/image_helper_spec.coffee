@@ -36,6 +36,6 @@ require ['jquery', 'public/assets/javascripts/lib/utils/image_helper.js'], ($, I
 
     describe 'Offset center positioning:', ->
       it 'centers vertically', ->
-        expect($('#centerV .img').css('marginLeft')).toBe("-100px")
+        expect($('#centerV .img')[0].style.marginLeft).toBe("-12.5%")
       it 'centers horizontally', ->
-        expect($('#centerH .img').css('marginTop')).toBe("-200px")
+        expect($('#centerH .img')[0].style.marginTop).toBe("-50%")
