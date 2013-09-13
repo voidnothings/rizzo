@@ -2,10 +2,9 @@
 // Hero card image overlay
 // -----------------------------------------------------------------------------
 
-.card__hero--hotels
+.card__hero
   &:after
     @extend %empty-abs-generated-content
-    background-image: image_url('collections/best-places.png')
     background-size: $double-card-width $card-grid-height
     height: $card-grid-height
     left: 0
@@ -19,9 +18,16 @@
       background-size: $double-card-width $card-grid-height
       width: $double-card-width
 
+.card__hero--hotels:after
+  background-image: image_url('collections/best-places.png')
+
+// -----------------------------------------------------------------------------
+// Card Content
+// -----------------------------------------------------------------------------
+
 .card__property-type,
 .card__context
-  @extend %irregular-type
+  +font-size(13)
   color: $body
   display: block
   margin-bottom: 2px
@@ -45,7 +51,7 @@
     margin-bottom: 0
 
 .card__locale
-  @extend %small-type
+  +font-size(12)
   @extend %left-icon
   @extend %local-marker-before
   color: $new-header-grey
@@ -59,12 +65,12 @@
     top: -2px
 
 .card__description
-  @extend %irregular-type
+  +font-size(13)
   color: $body-copy
   line-height: 14px
 
 .card__list
-  @extend %irregular-type
+  +font-size(13)
   color: $body-copy
   list-style: circle inside
 
@@ -85,7 +91,7 @@
 // -----------------------------------------------------------------------------
 
 .card__footer
-  @extend %small-type
+  +font-size(12)
   position: absolute
   background: #fff
   bottom: 0
@@ -99,7 +105,7 @@
     display: none
 
   .btn--bookable
-    @extend %irregular-type
+    +font-size(13)
     display: block
     padding: 10px 12px
 
@@ -116,17 +122,22 @@
   // line above some footers, needs to push fade up a smidge
   .card--poi--article &,
   .card--destination &
-    border-top: 1px solid #e3e7e9
+    border-top: 1px solid #ECF2F5
     padding: 6px 15px 10px 15px
     &:after
       top: -($card-content-vertical-padding + 1)
+
+  .text-icon--clock:before
+    font-size: 24px
+    position: relative
+    top: 3px
 
 // -----------------------------------------------------------------------------
 // Card Footer Items
 // -----------------------------------------------------------------------------
 
 .destination__item-count
-  @extend %small-type
+  +font-size(12)
   color: $body
   margin-right: 5px
   padding-left: 18px

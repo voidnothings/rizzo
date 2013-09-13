@@ -92,9 +92,9 @@
 // ----------------------------------------------------------------------------
 
 .nav--secondary
-  @extend %irregular-type
+  +font-size(13)
   @extend %subpixel-text
-  @extend %regular-type-size
+  +font-size(14)
 
 .nav__item--secondary
   padding: 6px 8px
@@ -110,7 +110,7 @@
 
 // Place title is a wrapper to allow us to show very long place names on hover
 .place-title
-  @extend %extra-large-type
+  +font-size(18)
   @extend %truncate-text
   @extend %left-icon
   @extend %icon--location-flag-before
@@ -354,7 +354,7 @@ a.nav__item--breadcrumbs
       display: none
 
 .title--social
-  @extend %regular-type-size
+  +font-size(14)
   padding: 25px 0
   margin-right: 10px
   .responsive &

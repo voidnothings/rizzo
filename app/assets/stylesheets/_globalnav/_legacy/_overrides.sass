@@ -1,8 +1,8 @@
 // ----------------------------------------------------------------------------
-// 
+//
 // Overrides
 // Essentially solves issues when mixing old legacy styles with new core layout
-// 
+//
 // ----------------------------------------------------------------------------
 
 body
@@ -29,7 +29,7 @@ input, textarea, select
   .title--list--footer:hover
     color: $header-gray!important
 
-  .column--footer, .column--footer--last, input, .box-description__title--footer, .box-description__lead--footer, .nav__item--breadcrumbs--current, .label--footer, .form__select--language 
+  .column--footer, .column--footer--last, input, .box-description__title--footer, .box-description__lead--footer, .nav__item--breadcrumbs--current, .label--footer, .form__select--language
     font-size: 12px!important
   .nav__item--footer--darker
     .js-hover &:hover
@@ -41,7 +41,7 @@ input, textarea, select
 .text--legal
   font-size: 11px !important
 
-.row--sitemap 
+.row--sitemap
   .nav__item
     .js-hover &:hover
       color: #7F9394!important
@@ -77,6 +77,7 @@ input, textarea, select
 
 .row--content
   position: relative
+  padding-top: 25px
   // Ensure that the primary--nav dropdowns sit above mpu units
   z-index: 1
   margin-bottom: 18px
@@ -87,7 +88,7 @@ input, textarea, select
 
 .row__inner--content
   padding: 0px!important
-  
+
 .btn-submit--small
   padding: 8px 10px
   font-size: 12px!important
@@ -135,14 +136,16 @@ input, textarea, select
 html.ad-wallpaper
   overflow-x: hidden !important
 
-body.ad-wallpaper 
+body.ad-wallpaper
   overflow-x: visible !important
-  .row--content
+
+.ad-wallpaper
+  .row--content, .row__inner--content
     background-color: transparent !important
-    
+
 // Thorntree
 
-.tt_post_form 
+.tt_post_form
   a > img
     @extend %inline-block
   input[type="button"], input[type="submit"], .jive-main-button
@@ -182,12 +185,12 @@ body.ad-wallpaper
 // Shop
 
 #sideBar
-  #shoppingCart 
+  #shoppingCart
     input
       height: 16px
       margin-top: -2px
       padding: 2px
-  
+
 .bookPricePurch
   .orangeAngleButton
     overflow: hidden !important
@@ -216,8 +219,8 @@ body.ad-wallpaper
   background-image: none!important
 
 // Statler
-.globalListControls 
-  .paginateControls 
+.globalListControls
+  .paginateControls
     div
       position: static !important
       line-height: 12px !important
@@ -244,15 +247,15 @@ body.contact
     input, textarea
       border: 1px solid #CFCBCB
 
-#flightWidget 
-  fieldset 
+#flightWidget
+  fieldset
     input
       border: 1px solid #CFCBCB
       padding: 4px 2px !important
 
-body.reportAbuse 
+body.reportAbuse
   background: none !important
-  #mainContent 
+  #mainContent
     textarea
       border: 1px solid #CFCBCB
 

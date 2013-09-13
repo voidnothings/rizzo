@@ -25,14 +25,13 @@
     min-height: 60px
     padding-left: 73px
 
-
 .card--full-page__header
   margin-bottom: 20px
   border-bottom: 1px solid $ruled-separator
   padding-bottom: 20px
 
 .card--full-page__title
-  @extend %card-header-size
+  +font-size(42)
   color: $header-blue
   margin-bottom: 5px
 
@@ -40,7 +39,7 @@
   font-weight: bold
 
 .card--full-page__subtitle
-  @extend %large-type
+  +font-size(16)
   @extend %inline-block
   @extend %body-copy
   @extend %vertically-centered-dot-after
@@ -56,7 +55,7 @@
 .stack__article
   @extend %body-copy
   @extend %four-pixel-rounded
-  @extend %regular-type-size
+  +font-size(14)
   margin-bottom: 10px
   overflow: hidden
   width: 798px
@@ -66,6 +65,11 @@
 
     &.aligncenter
       margin: 20px auto 10px
+    &.is-landscape
+      width: 100%
+  hr
+    border: none
+    border-bottom: 1px solid $subdued
 
   .media-gallery__resizer
     display: none
@@ -91,12 +95,11 @@
   margin-bottom: 20px
   padding: 20px 0
 
+  .text-icon--clock:before
+    font-size: 18px
+
 .stack__article__content
   margin-bottom: 50px
-
-  // TODO: change once we have crazy harry classes on the article content.
-  h3, h4, h5, h6
-    font-weight: bold
 
 .stack__article__image-container
   text-align: center
@@ -128,8 +131,6 @@
 .col--intro
   width: 448px
 
-.results--articles
-  margin-top: -20px
 
 // -----------------------------------------------------------------------------
 // Social Footer
@@ -141,7 +142,7 @@
   padding: 20px 0
 
 .sharing__label
-  @extend %small-type
+  +font-size(12)
   text-transform: uppercase
   font-weight: bold
   color: $title
@@ -188,9 +189,9 @@
 // Article Breadcrumbs
 // -----------------------------------------------------------------------------
 
-.stack__breadcrumbs + .stack__article
-  position: relative
-  margin-top: -20px
+.stack__breadcrumbs
+  & + .stack__content
+    margin-top: -20px
 
 .stack__breadcrumb
   @extend %four-pixel-rounded
@@ -198,10 +199,9 @@
   +transition(all, 0.2, ease)
   color: #d2ddeb
   display: block
-  padding: 20px 15px 10px
+  padding: 20px 15px 10px 25px
   position: relative
   text-decoration: none
-  top: -20px
   margin-bottom: 0
 
   .js-hover &:hover
@@ -209,11 +209,6 @@
     text-decoration: none
     -webkit-transform: translate(0,-10px)
     transform: translate(0,-10px)
-
-.stack__breadcrumb:first-child
-  top: 0
-
-
 
 .stack__article__table
   tr
@@ -230,7 +225,7 @@
       text-align: left
 
 .stack__article__table--small-text
-  @extend %tiny-type
+  +font-size(10)
   display: block
 
 .stack__article__table--yes,
