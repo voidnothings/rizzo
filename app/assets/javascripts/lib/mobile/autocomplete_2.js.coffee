@@ -76,12 +76,6 @@ define [], ->
       newConfig[key] = value for own key, value of args
       newConfig
 
-    _on: (elt, evt, callback) ->
-      if window.addEventListener
-        elt.addEventListener evt, callback, false
-      else if window.attachEvent
-        elt.attachEvent "on#{evt}", callback
-
     _addEventHandlers: ->
       @_on(@el, 'input', (e) =>
         @_searchFor e.currentTarget.value
@@ -92,10 +86,11 @@ define [], ->
 
     _setupXHR: ->
       xhr = new XMLHttpRequest()
-      xhr.onreadystatechange = =>
+      @_on(xhr, 'readystatechange', =>
         if @xhr.readyState == 4
           if @xhr.status == 200
             @_populateResults JSON.parse(@xhr.responseText), @currentSearch
+      )
       xhr
 
     _buildResults: ->
@@ -295,6 +290,12 @@ define [], ->
       text.replace regex, "<b>$&</b>"
 
     # utility functions
+    _on: (elt, evt, callback) ->
+      if window.addEventListener
+        elt.addEventListener evt, callback, false
+      else if window.attachEvent
+        elt.attachEvent "on#{evt}", callback
+
     _addClass: (item, _class) ->
       if (item.className.indexOf _class) < 0
         item.className += " #{_class}"
