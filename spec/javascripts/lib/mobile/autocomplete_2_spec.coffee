@@ -161,6 +161,28 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
 
               expect(myAutoComplete._makeRequest).not.toHaveBeenCalled()
 
+          describe 'input callback', ->
+            callbackSpy = null
+
+            beforeEach ->
+              loadFixtures 'autocomplete_mobile.html'
+              callbackSpy = jasmine.createSpy()
+              newConfig = {id: 'my_search', uri: '/search', inputCallback: callbackSpy}
+              myAutoComplete = new AutoComplete newConfig
+              spyOn myAutoComplete, '_makeRequest'
+
+            it 'should execute a callback when text has been entered', ->
+              minimumSearch = 'a'
+              myAutoComplete._searchFor minimumSearch
+
+              expect(callbackSpy).toHaveBeenCalled()
+              expect(myAutoComplete._makeRequest).not.toHaveBeenCalled()
+
+
+
+
+
+
           describe 'configuring the search threshold', ->
             beforeEach ->
               loadFixtures 'autocomplete_mobile.html'
@@ -281,7 +303,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
         beforeEach ->
           loadFixtures 'autocomplete_mobile.html'
 
-        it 'should execute a callback when selecting an item if supplied', ->
+        it 'should execute a callback when selecting an item', ->
           callbackSpy = jasmine.createSpy()
           testingMap =
             title: 'title'

@@ -79,7 +79,6 @@ define [], ->
     _addEventHandlers: ->
       @el.addEventListener 'input', (e) =>
         @_searchFor e.currentTarget.value
-        @config.inputCallback.call @el if @config.inputCallback
 
       @el.addEventListener 'keypress', (e) =>
         @_keypressHandler e
@@ -212,6 +211,7 @@ define [], ->
         @_doSearch searchTerm unless @throttled
       else if @results.displayed
         @_removeResults()
+      @config.inputCallback.call @el if @config.inputCallback
 
     _makeRequest: (searchTerm) ->
       if searchTerm != ''
