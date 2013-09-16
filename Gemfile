@@ -13,11 +13,6 @@ gem 'unicorn'
 gem 'rake'
 gem 'airbrake'
 
-group :assets do 
-  gem 'avocado', git: 'git@github.com:lonelyplanet/avocado.git'
-  gem 'beaker', git: 'git@github.com:lonelyplanet/beaker.git'
-end
-
 group :test do 
   gem 'guard'
   gem 'guard-coffeescript'
@@ -33,6 +28,8 @@ group :test do
 
   gem 'guard-cucumber'
   gem 'rb-fsevent', '~> 0.9.1'
+  
+  gem 'rb-readline'
 end
 
 group :production do

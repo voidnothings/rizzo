@@ -1,1 +1,1 @@
-rvm use --create 1.9.3@beaker
+rvm use --create 1.9.3@rizzo

@@ -1,0 +1,96 @@
+<!-- BEGIN INTERSTITIAL -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="%h/879366/flashwrite_1_2.js"></script>
+<!-- <script src="http://pagead2.googlesyndication.com/pagead/imgad/879366/flashwrite_1_2.js"></script> -->
+<script src="http://s0.2mdn.net/879366/flashwrite_1_2.js"></script>
+<script type="text/javascript">
+  var _win = window.parent || window,
+      _doc = window.parent.document || document;
+
+  var adi_timer = 14;
+  var adi_dim= [640, 480];
+  var adi_top_offset= 120;
+  
+  function adiStart() {
+    var adi_int,
+        adi_count,
+        skipAd,
+        adi_counter = adi_timer,
+        clearAdInt = function() {
+          _win.jQuery('#lp-int-wrap').remove();
+          clearInterval(adi_count);
+        };
+
+    jQuery('.lp-int-skip-ad').click(function(e) {
+      clearInterval(adi_int);
+      clearAdInt();
+    });
+
+    adi_count = setInterval(function() {
+      adi_counter--;
+      _win.jQuery('#lp-int-ad-timer').html(adi_counter)
+    },1000, this);
+
+    adi_int = setTimeout(clearAdInt, (adi_timer*1000));
+
+    _win.jQuery('body').append($('#lp-int-wrap'));
+  }
+
+  document.write('<div id="lp-int-wrap"><div id="lp-int-ad" style="margin:'+ adi_top_offset +'px auto 0; width:'+ adi_dim[0]+'px;"><div id="lp-int-head"><div id="lp-int-skip"><button type="submit" class="lp-int-skip-ad"><strong>Skip Advertisement</strong></button></div></div><div class="lp-int-container">');
+</script>
+<style type="text/css">
+  #lp-int-wrap {
+    background:#111;background:rgba(0,0,0,0.8);
+    display:block;
+    bottom:0px;left:0px;position:fixed;right:0px;top:0px;z-index:999999;
+    zoom:1;
+
+    -ms-filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#CC000000,endColorstr=#CC000000);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#CC000000,endColorstr=#CC000000);
+  }
+  #lp-int-ad {
+    background:white;
+    border:1px solid #e3e3e3;
+
+    -moz-box-shadow:5px 5px 5px rgba(0,0,0,0.5);
+    -webkit-box-shadow:5px 5px 5px rgba(0,0,0,0.5);
+    box-shadow:5px 5px 5px rgba(0,0,0,0.5);
+  }
+  #lp-int-head {
+    margin:5px 0;
+    overflow:auto;
+    text-align:center;
+  }
+  #lp-int-ad button {
+    float:right;
+    margin-right:5px;
+  }
+  #lp-int-footer {
+    padding:5px;
+    text-align:center;
+  }
+  .lp-int-container > * {
+    margin:0 auto;
+  }
+</style>
+
+
+
+
+<!-- ---------- START CUSTOM ADManagement ---------- -->
+
+<iframe src="%ihttp://view.atdmt.com/SJK/iview/449106181/direct/01%n?click=%c" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" topmargin="0" leftmargin="0" allowtransparency="true" width="500" height="500">
+<script type="text/javascript">
+document.write('<a href="%chttp://clk.atdmt.com/SJK/go/449106181/direct/01/%n" target="_blank"><img src="%ihttp://view.atdmt.com/SJK/view/449106181/direct/01/%n"/></a>');
+</script><noscript><a href="%chttp://clk.atdmt.com/SJK/go/449106181/direct/01/%n" target="_blank"><img border="0" src="%ihttp://view.atdmt.com/SJK/view/449106181/direct/01/%n" /></a></noscript></iframe>
+
+<!-- ---------- END CUSTOM ADManagement ---------- -->
+
+
+
+
+<script type="text/javascript">
+  document.write('</div><div id="lp-int-footer"><a href="#" class="lp-int-skip-ad">Advertisement closes in <span id="lp-int-ad-timer"> '+ adi_timer +'</span> seconds</a></div></div></div>');
+  adiStart();
+</script>
+<!-- END INTERSTITIAL -->

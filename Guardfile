@@ -23,3 +23,8 @@ group :specs do
     watch(%r{^app/views/(.+)/.*\.(erb|haml)$})          { |m| "spec/requests/#{m[1]}_spec.rb" }
   end
 end
+
+group :assets do
+  guard :coffeescript, :input => 'app/assets/javascripts/lib', :output => 'public/assets/javascripts/lib'
+  guard :coffeescript, :input => 'spec/javascripts/lib', :output => 'public/assets/javascripts/spec'
+end
