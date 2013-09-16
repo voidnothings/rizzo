@@ -98,10 +98,16 @@
     top: 50%
 
 .media-gallery__img
+  @extend %transition--base
+  opacity: 1
+  position: relative
   width: 100%
+  z-index: 1
   .is-portrait &, &.is-wider
     height: 100%
     width: auto
+  .is-loading &
+    opacity: 0
 .media-gallery__map
   height: 100%
   width: 100%
