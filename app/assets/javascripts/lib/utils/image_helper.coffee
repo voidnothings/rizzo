@@ -13,6 +13,7 @@ define ['jquery'], ($) ->
       @applyOrientationClasses(config)
       @detectRelativeDimensions(config)
       @centerWithinContainer(config)
+      $(config.container).removeClass('is-loading')
 
     # Determined based on being <= 800x600 (4:3) either vertically or horizontally
     # 800x600 being the lowest aspect ratio before not being landscape (or conversely: portrait)
