@@ -1,0 +1,22 @@
+// Responsive image helper
+@mixin responsive-image($path: '', $extension: 'jpg')
+  $sizes: "480", "700", "1100", "1671"
+  
+  @if $is-ie == false
+    @each $size in $sizes
+      $index: index($sizes, $size)
+    
+      // Default is the smallest
+      @if $index == 1
+        background-image: url("#{image_path('#{$path}_#{nth($sizes, 1)}.#{$extension}')}")
+        +retinafy()
+          background-image: url("#{image_path('#{$path}_#{nth($sizes, 2)}.#{$extension}')}")
+      @else
+        // Set the min-width to the width below the current image size
+        @media only screen and (min-width: nth($sizes, $index - 1) + px)
+          background-image: url("#{image_path('#{$path}_#{nth($sizes, $index)}.jpg')}")
+
+  @else
+    // For IE7 & 8 we serve the 1024 version
+    // This presumes a lot about screen size
+    background-image: url("#{image_path('#{$path}_#{nth($sizes, 3)}.jpg')}")

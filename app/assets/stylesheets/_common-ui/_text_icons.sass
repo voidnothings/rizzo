@@ -1,0 +1,78 @@
+// -----------------------------------------------------------------------------
+// Text sections with left hand icons
+// -----------------------------------------------------------------------------
+
+.text-icon
+  @extend %left-icon-text
+
+  &:before
+    +font-size(30)
+    font-weight: normal
+    line-height: 20px
+
+.text-icon--info
+  &:before
+    +font-size(20)
+    content: "@"
+    font-weight: bold
+
+.text-icon--duration
+  @extend %tour-duration-before
+
+.text-icon--tick
+  @extend %tick-icon-before
+
+.text-icon--clock
+  @extend %icon--clock-before
+
+.text-icon--cross
+  @extend %cross-icon-before
+
+.text-icon--departs-from
+  @extend %icon--arrow-right-before
+
+.text-icon--duration
+  @extend %tour-duration-before
+
+.text-icon--location,
+.text-icon--address
+  @extend %local-marker-before
+
+.text-icon--returns-to
+  @extend %icon--arrow-left-before
+
+.text-icon--tick
+  @extend %tick-icon-before
+
+.text-icon--tube
+  @extend %icon--underground-before
+
+.text-icon--bus
+  @extend %icon-facilities-transport-before
+
+.text-icon--place
+  @extend %local-marker-before
+
+.text-icon--dollar
+  @extend %dollar-sign-before
+
+.text-icon--hotel
+  @extend %icon-image-poi-hotel-before
+
+.text-icon--flight
+  @extend %icon--flights-before
+
+.text-icon--article
+  @extend %icon-poi-article-before
+
+.text-icon--sight
+  @extend %icon-image-poi-sight-before
+
+.text-icon--activity
+  @extend %icon-image-poi-activity-before
+
+.text-icon--tour
+  @extend %icon-image-poi-tour-before
+
+.text-icon--telephone
+  @extend %phone-icon-before

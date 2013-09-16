@@ -1,0 +1,53 @@
+.tab__content
+  @extend %media-gallery-transition
+  @extend %invisible
+  +perspective(600)
+  position: absolute
+  left: 0
+  top: 0
+  z-index: -1
+  &.is-active
+    @extend %opaque
+    z-index: 1
+
+.tab
+  +font-size(12)
+  +css-arrow-central(top, $width: 10px, $arrowOffset: 17px)
+  background: $gallery-tab-background
+  color: #fff
+  display: block
+  float: left
+  height: 40px
+  line-height: 30px
+  padding: 0 10px
+  position: relative
+  text-transform: uppercase
+  z-index: 2
+  &:after
+    +font-size(32)
+    display: none
+    position: absolute
+    top: -23px
+  &:before
+    +font-size(28)
+    display: inline-block
+    letter-spacing: 2px
+    position: relative
+    top: 1px
+  &:hover, &.is-active
+    background: $red
+    text-decoration: none
+  &.is-active:after
+    color: $red
+    display: block
+
+.tab--photos
+  @extend %icon-gallery-before
+
+.tab--videos
+  @extend %icon-video-before
+
+.tab--map
+  @extend %local-marker-before
+  &:before
+    letter-spacing: 0

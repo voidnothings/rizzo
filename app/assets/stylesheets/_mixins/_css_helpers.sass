@@ -1,0 +1,24 @@
+// -----------------------------------------------------------------------------
+// CSS Helpers
+// -----------------------------------------------------------------------------
+
+@mixin font-size($sizeValue: 14)
+  font-size: #{$sizeValue + px}
+  font-size: #{($sizeValue / $base-font-size) + rem}
+
+@mixin vertically-center($x: 20)
+  height: #{$x + px}
+  line-height: #{$x + px}
+
+@mixin img($url, $color: transparent, $x:0px, $y:0px, $r:no-repeat)
+  background: $color url($url) $r $x $y
+  
+@mixin placeholder()
+  &::-webkit-input-placeholder
+    @content
+  &:-moz-placeholder
+    @content
+  &::-moz-placeholder
+    @content
+  &:-ms-input-placeholder
+    @content

@@ -1,0 +1,224 @@
+// ----------------------------------------------------------------------------
+//
+// Adverts Leaderboard
+//
+// ----------------------------------------------------------------------------
+
+.ad-leaderboard
+  @extend %ad-leaderboard
+  +transition(all, 0.5, ease)
+  display: table-cell
+  text-align: center
+  vertical-align: middle
+
+.ad-leaderboard__inner
+  @include border-radius(2)
+  @extend %inline-block
+  background-color: $row-leader-ad
+  border: 3px solid $row-leader-border
+  position: relative
+  min-width: 728px
+  &:after
+    @extend %empty-abs-generated-content
+    @extend %sprite-core
+    background-position: -95px 0
+    margin-top: -48px
+    width: 10px
+    height: 96px
+    right: -15px
+    top: 50%
+
+// ----------------------------------------------------------------------------
+//
+// Other ads
+//
+// ----------------------------------------------------------------------------
+
+.ad-label
+  @extend %helvetica-neue
+  +font-size(10)
+  color: $highlight
+  line-height: 20px
+  text-align: center
+  text-transform: uppercase
+
+.card--ad
+  .tag--horizontal
+    +transition(opacity, 1, ease)
+
+  &.is-closed
+    margin-left: 0
+    margin-right: 0
+    padding-left: 0
+    padding-right: 0
+    width: 0
+
+    .tag--horizontal
+      opacity: 0
+
+      .ie7 &, .ie8 &
+        display: none
+
+  .homepage &
+    width: 310px
+    +respond-to(medium-view)
+      width: 394px
+    .card__content
+      padding-top: 45px
+
+.ad-trafficDriver, .ad-sponsorTile, .ad-mpu, .ad-doubleMpu
+  &.card__content
+    @extend %block-center
+    +transition(all, 1, ease)
+
+.ad-trafficDriver
+  &.card__content
+    @extend %ad-trafficDriver
+    top: 0
+
+.ad--placeholder
+  height: 380px
+  visibility: hidden
+  z-index: 1
+
+.ad-sponsorTile
+  @extend %ad-sponsorTile
+
+  .stack__intro &
+    position: absolute
+    right: 25px
+    margin-top: 8px
+
+  + .copy--title
+    width: 450px
+
+.ad-mpu.card__content
+  @extend %ad-mpu
+  margin-bottom: 15px
+  .homepage &
+    +box-sizing()
+    margin-bottom: 0
+    padding: 30px 0 0
+    height: 296px
+    width: 310px
+    +respond-to(medium-view)
+      margin-bottom: 15px
+      padding-top: 60px
+      width: 300px
+      height: 360px
+  // Ad house mimics a collection card
+  .ad-house &
+    cursor: pointer
+    +transition(none)
+    margin: 0
+    padding: 0
+    &, iframe
+      height: 296px
+      width: 310px
+    +respond-to(medium-view)
+      &, iframe
+        width: 394px
+        height: 380px
+
+.results .card
+  &.card--ad
+    +multiple-transitions(height 1s ease, width 1s ease)
+
+  &.ad-doubleMpu
+    @extend %ad-doubleMpu
+    z-index: 2
+
+    .card__content
+      height: 600px
+      top: 80px
+
+.ad-wallpaper
+  background-position: center top
+  background-repeat: no-repeat
+  cursor: pointer
+  position: relative
+
+  .row__inner--content
+    z-index: 2
+    padding-right: 22px
+    padding-left: 22px
+    background-color: $body-background
+
+  &:after
+    @extend %empty-abs-generated-content
+    +background-gradient($startColor: rgba(255,255,255,0), $endColor: $body-background)
+    height: 150px
+    // The wallpapers are always the same size (according to the specs sent to the traffickers). We can change the spec
+    //  but until traffickers start uploading the new ones, this will have to do.
+    top: 1150px
+    width: 100%
+    z-index: 1
+
+  .row__inner, .row--footer-push
+    cursor: default
+
+.ad-adSense.card__content
+  font-size: 12px
+  line-height: 15px
+
+  a
+    word-wrap: break-word
+  .googleHeading a,
+  .ad p
+    color: $body-copy
+
+  .ad
+    margin-bottom: 10px
+    p
+      margin-bottom: 0
+
+  .title a
+    color: $title
+    font-weight: bold
+
+.ad-oneByOne
+  display: none
+
+.ad-interstitial-wrap
+  background: #333
+  background: rgba(0,0,0,0.8)
+  bottom: 0px
+  display: block
+  left: 0px
+  position: fixed
+  right: 0px
+  top: 0px
+  z-index: 10000
+  zoom: 1
+  +transition(opacity, 0.5, ease)
+
+.ad-interstitial
+  position: absolute
+  background: white
+  border: 1px solid #e3e3e3
+  display: none // Gets shown later via JS when there's content.
+  margin: 0 auto
+  padding: 25px 10px
+  z-index: 10001
+
+  +box-shadow(5px 5px 5px rgba(0,0,0,0.5))
+
+  iframe
+    border: none
+
+  .close
+    position: absolute
+    right: 10px
+    top: 5px
+
+  .countdown
+    @extend %absolute-left
+    bottom: 5px
+    display: block
+    text-align: center
+    width: 100%
+
+// Ad house mimics a collection card
+.ad-house
+  .tag--horizontal
+    display: none

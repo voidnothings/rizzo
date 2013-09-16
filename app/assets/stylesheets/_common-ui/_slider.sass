@@ -1,0 +1,160 @@
+// -----------------------------------------------------------------------------
+// Slider Style Gallery
+// Note: the height/width for the slider, and the position of the controls needs
+//       to be defined wherever it's implemented.
+// -----------------------------------------------------------------------------
+
+$chevronOffset: 0.35em
+$slideOffset: -5.4em
+$slideHoverOffset: -0.714em
+$slidePadding: 3.357em
+$slideHoverPadding: 2.857em
+$slideArrowSpacing: 1.786em
+$slideHoverArrowSpacing: 0.357em
+$slideOffsetHome: -4.5em
+
+.slider__container
+  height: 100%
+  overflow: hidden
+  position: relative
+  -ms-scroll-chaining: none
+
+.slider__slide
+  display: none
+  left: 0
+  position: absolute
+  top: 0
+  width: 100%
+  +hardware-acceleration()
+  +transition(none)
+
+  &.is-prev, &.is-current, &.is-next
+    display: block
+    z-index: 4
+    .is-animating &
+      +transition(all,0.25,ease)
+  &.is-current
+    left: 0
+    z-index: 5
+  &.is-prev
+    left: -100%
+    z-index: 1
+  &.is-next
+    left: 100%
+    z-index: 1
+  // These are duplicate styles to `is-prev` and `is-next`, but need higher priority.
+  &.is-potentially-prev
+    left: -100%
+    z-index: 1
+  &.is-potentially-next
+    left: 100%
+    z-index: 1
+  &.is-bottom-layer
+    z-index: 1
+  &.is-middle-layer
+    z-index: 2
+
+.slider__controls-container
+  position: relative
+  &:hover
+    .slider__controls
+      opacity: 1
+
+.slider__controls
+  @extend %clearfix
+  @extend %transition--base
+  position: absolute
+  width: 100%
+  z-index: 6
+
+  .homepage &
+    top: 350px
+
+.slider__control
+  +font-size(14)
+  @extend %transition--base
+  background: $gallery-tab-background
+  background: rgba(0,0,0,0.6)
+  color: white
+  font-weight: bold
+  line-height: 1.66em
+  opacity: 0.5
+  padding: 0.643em 2.286em 0.643em
+  position: absolute
+  &:hover
+    opacity: 1
+    text-decoration: none
+  &:before, &:after
+    @extend %transition--base
+    font-size: 2.286em
+    display: inline-block
+    font-weight: normal
+    margin-top: -0.1em
+    position: absolute
+    vertical-align: top
+
+  .homepage &
+    font-size: 24px
+    &:after, &:before
+      content: ""
+      width: 40px
+      height: 100%
+      top: 0
+      background-size: 100%
+      background-position: center center
+      margin-top: 0
+
+.slider__control--prev
+  @extend %chevron-left-after
+  left: $slideOffset
+  padding-right: $slidePadding
+  
+  .homepage &
+    left: $slideOffsetHome
+    
+  &:after
+    right: $chevronOffset
+  &:hover
+    left: $slideHoverOffset
+    padding-right: $slideHoverPadding
+  .at-beginning &
+    opacity: 0
+  
+
+.slider__control--next
+  @extend %chevron-right-before
+  right: $slideOffset
+  padding-left: $slidePadding
+  
+  .homepage &
+    right: $slideOffsetHome
+  
+  &:before
+    left: $chevronOffset
+  &:hover
+    right: $slideHoverOffset
+    padding-left: $slideHoverPadding
+  .at-end &
+    opacity: 0
+  
+
+.slider__pagination
+  bottom: 0
+  display: inline-block
+  margin: 25px auto 0
+  text-align: center
+  width: 100%
+  z-index: 6
+
+.slider__pagination--link
+  @extend %image-replacement
+  +border-radius(3.5)
+  background: $highlight
+  display: inline-block
+  height: 7px
+  margin: 0 3px
+  width: 7px
+  color: $lpblue
+
+  &:hover, &.is-active
+    background: $linkblue

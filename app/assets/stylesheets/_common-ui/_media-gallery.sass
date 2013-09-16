@@ -1,0 +1,149 @@
+// -----------------------------------------------------------------------------
+// Media gallery - named such so as to avoid clashing with the Hotels .gallery
+// -----------------------------------------------------------------------------
+.media-gallery
+  @extend %clearfix
+  @extend %transition--base
+  margin-bottom: 20px
+  position: relative
+  &.has-tabs ~ .card--page__aside
+    @extend %media-gallery-transition
+    top: -316px
+  ~ .card--page__aside
+    @extend %media-gallery-transition
+    top: -276px
+  .media-gallery__container, .tab__content
+    @extend %clearfix
+    @extend %media-gallery-transition
+    height: 241px
+    width: 427px
+    z-index: 0
+
+    &.is-active
+      z-index: 1
+  .slider__controls
+    @extend %media-gallery-transition
+    top: 95px
+  .slider__pagination
+    display: none
+  .slider__container
+    background: $body-background-light
+  .slider__slide
+    background: $body-background-light
+    text-align: center
+
+// This is all in a mixin because IE7/8 don't work when the :checked, and .is-checked selectors
+// are on the same line below (because IE7/8 don't understand :checked, they discard the entire rule)
+@mixin media-gallery-full
+  ~ .media-gallery
+    .media-gallery__container, .tab__content
+      height: 422px
+      width: 748px
+    .slider__controls
+      top: 186px
+    .media-gallery__poi-list
+      @extend %opaque
+      +transform(rotateY(0deg) translateX(0px) translateZ(0px))
+      +transition(all, 0.5, cubic-bezier(0.075, 0.820, 0.165, 1.000))
+      +transition-delay(1)
+      right: 12px
+      z-index: 1
+    .infobox__interesting-places
+      display: none
+    .media-gallery__resizer
+      @extend %contract-arrows-before
+  ~ .card--page__aside
+    top: 0
+
+.media-gallery--full
+  @extend %visually-hide
+  // .is-checked is an ie7/8 fallback
+  &:checked
+    +media-gallery-full()
+  &.is-checked
+    +media-gallery-full()
+    
+
+.media-gallery__resizer
+  @extend %transition--base
+  @extend %expand-arrows-before
+  background: $gallery-tab-background
+  background: rgba(0,0,0,0.6)
+  bottom: 0
+  cursor: pointer
+  display: block
+  height: 40px
+  opacity: 0.3
+  position: absolute
+  right: 0
+  width: 40px
+  z-index: 6
+  &:hover
+    @extend %opaque
+  &:before
+    +font-size(40)
+    color: #fff
+    line-height: 32px
+    margin-left: 10px
+
+.media-gallery__container
+  +perspective()
+  overflow: hidden
+  position: relative
+  .is-loading
+    height: 100%
+    &:after
+      top: 50%
+  &.is-loading:after
+    top: 50%
+
+.media-gallery__img
+  @extend %transition--base
+  opacity: 1
+  position: relative
+  width: 100%
+  z-index: 1
+  .is-portrait &, &.is-wider
+    height: 100%
+    width: auto
+  .is-loading &
+    opacity: 0
+.media-gallery__map
+  height: 100%
+  width: 100%
+
+.media-gallery__poi-list
+  @extend %four-pixel-rounded
+  @extend %invisible
+  @extend %media-gallery-transition
+  +transform(rotateY(70deg) translateX(100px) translateZ(-250px))
+  background: #fff
+  height: 380px
+  padding: 6px 6px 6px 0
+  position: absolute
+  right: -420px
+  top: 12px
+  width: 294px
+  z-index: -1
+
+  .nearby-pois
+    height: 100%
+    overflow: auto
+    &::-webkit-scrollbar
+      width: 4px
+    &::-webkit-scrollbar-thumb
+      +border-radius(2)
+      background: $highlight
+    &::-webkit-scrollbar-track
+      background: none
+
+  .obj-list__item
+    border-top: 1px solid $subdued-highlight
+    margin-bottom: 0
+    padding: 10px 20px 15px 43px
+
+    &:first-child
+      border-top: none
+    &:before
+      left: 13px
+      top: 10px

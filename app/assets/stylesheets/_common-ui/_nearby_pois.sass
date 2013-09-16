@@ -1,0 +1,32 @@
+// List of nearby POIs
+// 
+// 
+// .nearby-pois__list - Nearby POIs
+// 
+// Styleguide 1.8
+
+
+
+.nearby-pois__list
+  @extend %stacked-nav
+  @extend %body-copy
+
+.nearby-pois__poi
+  cursor: pointer
+  position: relative
+  padding-left: 30px
+  margin-bottom: 10px
+  &:before
+    top: 0
+    left: 0
+    line-height: 20px
+  .js-hover &:hover
+    background-color: $nav-bg--hover
+
+.nearby-pois__poi__description
+  p:last-child
+    margin-bottom: 0
+
+.nearby-pois__poi--highlighted, 
+.js-hover .nearby-pois__poi--highlighted:hover
+  background-color: $nav-bg--hover

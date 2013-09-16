@@ -1,0 +1,65 @@
+// -----------------------------------------------------------------------------
+// Stack Intro Card
+// -----------------------------------------------------------------------------
+
+$stack-intro-text-line-height: 25px
+$stack-intro-lines-to-show: 2
+
+.stack
+  .results
+    position: relative
+
+.stack__intro
+  @extend %four-pixel-rounded
+  padding: 25px
+
+  .copy--title
+    margin: 0
+
+  &.stack__intro--empty
+    padding: 10px 25px
+
+.stack__intro__content
+  +transition(max-height, 0.5, ease-in-out)
+  overflow: hidden
+  position: relative
+
+  .is-open &
+    padding-bottom: 25px
+
+  .js-read-more &
+    max-height: 0
+
+  .no-js &
+    max-height: none
+
+// Temporary type styling until crazy harry is updated and rowlf run (20/5/2013)
+.stack__intro__content
+  p:first-of-type
+    @extend .copy--feature
+  h2
+    @extend .copy--subtitle
+  @extend .copy--body
+
+
+// -----------------------------------------------------------------------------
+// Travel warning
+// -----------------------------------------------------------------------------
+
+.travel-alert
+  @extend %four-pixel-rounded
+  @extend %warning-sign-before
+  +font-size(15)
+  background: #fffaca
+  color: $body
+  line-height: 20px
+  margin-top: 10px
+  padding: 15px 15px 15px 38px
+  position: relative
+
+  &:before
+    color: $red
+    font-size: 30px
+    left: 15px
+    position: absolute
+    top: 15px

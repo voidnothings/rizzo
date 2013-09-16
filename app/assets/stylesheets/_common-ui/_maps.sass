@@ -1,0 +1,39 @@
+// -----------------------------------------------------------------------------
+// Map infobox
+// -----------------------------------------------------------------------------
+.infobox--location
+  @extend %four-pixel-rounded
+  @extend %standard-shadow
+  +box-shadow(0, 1, 1, 2, $new-header-grey-shadow)
+  +css-arrow-central(bottom, $width: 10px, $arrowOffset: 17px)
+  background: #fff
+  bottom: 20px
+  left: -51%
+  max-width: 350px
+  padding: 10px 15px
+  position: relative
+
+  &:after
+    +font-size(38)
+    bottom: -22px
+    color: #fff
+    position: absolute
+
+  .section-title
+    +font-size(15)
+    font-weight: bold
+    margin-bottom: 0
+    &:before
+      margin-right: 0
+      position: relative
+      top: 1px
+  .copy--meta
+    color: $title
+    line-height: 1.2em
+    margin-bottom: 0
+    margin-left: 18px
+
+.infobox__link--interesting-places
+  color: $lpblue
+  cursor: pointer
+  font-style: italic

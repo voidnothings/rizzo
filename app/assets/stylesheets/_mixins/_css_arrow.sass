@@ -1,0 +1,57 @@
+// -----------------------------------------------------------------------------
+// CSS Arrow
+// -----------------------------------------------------------------------------
+
+@mixin css-arrow($side: top, $width: 10px, $size: 28px, $offset: 0, $arrowOffset: 28px)
+  color: inherit
+  @if $side == top
+    @extend %curly-arrow-top-after
+    &:after
+      bottom: auto
+      left: $offset
+      top: -$arrowOffset
+  @if $side == right
+    @extend %curly-arrow-right-after
+    &:after
+      left: auto
+      right: -$arrowOffset
+      top: $offset
+  @if $side == bottom
+    @extend %curly-arrow-bottom-after
+    &:after
+      bottom: -$arrowOffset
+      left: $offset
+      top: auto
+  @if $side == left
+    @extend %curly-arrow-left-after
+    &:after
+      left: -$arrowOffset
+      right: auto
+      top: $offset
+
+  &:after
+    font-family: freight
+    font-size: $size
+
+// -----------------------------------------------------------------------------
+// Centralised CSS Arrow
+// -----------------------------------------------------------------------------
+
+@mixin css-arrow-central($side: top, $width: 10px, $size: 28px, $offset: 0, $arrowOffset: 28px)
+  @include css-arrow($side, $width, $size, $offset, $arrowOffset)
+  @if $side == top
+    &:after
+      left: 50%
+      margin-left: -($width)
+  @if $side == bottom
+    &:after
+      left: 50%
+      margin-left: -($width)
+  @if $side == right
+    &:after
+      top: 50%
+      margin-top: -($width)
+  @if $side == left
+    &:after
+      top: 50%
+      margin-top: -($width)

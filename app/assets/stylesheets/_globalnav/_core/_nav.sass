@@ -1,0 +1,561 @@
+// ----------------------------------------------------------------------------
+// 
+// Core nav item
+// 
+// ----------------------------------------------------------------------------
+
+.nav__item
+  &:hover, &:active, &.current
+    text-decoration: none
+
+// ----------------------------------------------------------------------------
+// 
+// primary-nav
+// 
+// ----------------------------------------------------------------------------
+
+.nav--primary
+  // Move the nav to the right of the absolutely positioned logo
+  margin-left: 117px
+  .responsive &
+    margin-left: 0
+    +respond-to(wide-view)
+      margin-left: 117px
+  .homepage &
+    +respond-to(wide-view)
+      margin-left: 157px
+
+%nav__item--look
+  &, &:active
+    color: $nav-primary-type
+  &:hover
+    color: $nav-primary-type-hover
+
+.nav__item--primary, .nav__item--user
+  @extend %nav__item--look
+
+.nav__item--primary
+  padding: 20px 4px
+  .responsive &
+    +font-size(18)
+    padding: 17px 10px
+    border-bottom: 1px solid $offscreen-nav-border
+    padding-left: 60px
+    position: relative
+    &:hover
+      background-color: $offscreen-nav-item-hover
+      &:before
+        border-right: 1px solid $offscreen-nav-border-hover
+        color: $offscreen-nav-border-hover
+    &:before
+      @extend %empty-abs-generated-content
+      width: 50px
+      border-right: 1px solid $offscreen-nav-border
+      display: block
+      left: 0
+      top: 0
+      height: 100%
+      color: $offscreen-nav-border
+      background-position: center
+      background-size: 40%
+    +respond-to(wide-view)
+      +font-size(14)
+      padding: 20px 4px
+      border: none
+      &:hover
+        background: none
+        &:before
+          border: none
+          background-image: none
+      &:before
+        width: 0
+        border: none
+    
+  .homepage &, .homepage & > .nav__item
+    @extend %smooth-text
+    color: white
+    +respond-to(wide-view)
+      font-weight: bold
+
+  .nav__item--primary--signout--mobile
+    +respond-to(wide-view)
+      display: none
+
+.nav--user
+  +respond-to(wide-view)
+    margin-right: 20px
+
+// ----------------------------------------------------------------------------
+// 
+// secondary-nav
+// 
+// ----------------------------------------------------------------------------
+
+.nav--secondary
+  +font-size(13)
+  @extend %subpixel-text
+  +font-size(14)
+
+.nav__item--secondary
+  padding: 6px 8px
+  &, &:active
+    color: $nav-secondary-type
+  &:hover
+    color: $nav-secondary-type-hover
+  &.current
+    @extend %active-background
+    @extend %four-pixel-rounded
+    &:hover
+      color: white
+
+// Place title is a wrapper to allow us to show very long place names on hover
+.place-title
+  +font-size(18)
+  @extend %truncate-text
+  @extend %left-icon
+  @extend %icon--location-flag-before
+  margin-right: 20px
+  // Fix the text-overflow bug in firefox to avoid the final letter being clipped
+  padding-right: 2px
+  padding-left: 22px
+  &:before
+    top: 0
+    font-size: 28px
+    line-height: 22px
+
+.place-title-heading
+  font-weight: bold
+  color: $dark-blue-gray
+  line-height: 26px
+  &:hover
+    text-decoration: none
+
+.place-title__parent
+  color: $dark-blue-gray
+  &:hover
+    text-decoration: none
+
+// ----------------------------------------------------------------------------
+// 
+// user-basket
+// 
+// ----------------------------------------------------------------------------
+
+.user-basket
+  position: relative
+  margin-left: 15px
+  padding: 17px 8px 16px
+  .responsive .wv--nav--inline > &.nav__item
+    display: none
+    +respond-to(wide-view)
+      display: inline-block
+
+.user-basket__items
+  @extend %absolute-left
+  @extend %central-align
+  @include border-radius(8)
+  @include box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.5))
+  top: 12px
+  line-height: 16px
+  margin: 0
+  color: $basket-item-type
+  background-color: $basket-item
+  font-weight: bold
+  font-size: 10px
+  .responsive &
+    display: none
+    +respond-to(wide-view)
+      +box-shadow(0, 1, 3, 1, rgba(0, 0, 0, 0.5))
+      display: inline-block
+      font-size: 10px
+      color: $basket-item-type
+      background-color: $basket-item
+      position: absolute
+      left: 0
+
+.user-box
+  @extend %right-icon
+  @extend %chevron-down-after
+  margin-top: 10px
+  padding-right: 25px
+  &:after
+    @extend %lp-font-stack
+    +font-size(20)
+    line-height: 29px
+    right: 0
+    top: 0
+
+  .responsive &
+    margin-top: 0
+    height: 50px
+    &:after
+      content: ''
+      background-size: 100%
+      background-position: center
+      top: 10px
+    +respond-to(max990)
+      background: $offscreen-nav-user-background
+      &:after
+        background: none
+    +respond-to(wide-view)
+      margin-top: 10px
+      height: auto
+      
+
+
+.user-box__img
+  @extend %four-pixel-rounded
+  border: 2px solid $user-border
+  height: 30px
+  width: 30px
+  .responsive &
+    +border-radius(0)
+    border: none
+    height: 50px
+    width: 50px
+    +respond-to(wide-view)
+      +border-radius(4)
+      border: 2px solid $user-border
+      height: 30px
+      width: 30px
+  .homepage &
+    border-color: white
+
+.nav__submenu--user
+  width: 165px
+  right: -10px
+  left: auto
+  .responsive &
+    display: none
+    +respond-to(wide-view)
+      &:hover
+        display: block
+
+.nav__submenu__content--user
+  &:before
+    left: 123px
+
+
+// ----------------------------------------------------------------------------
+//
+// Bookings Drop-Down Menu
+//
+// ----------------------------------------------------------------------------
+
+.nav__submenu--bookings
+  .nav__submenu__item
+    @extend %left-icon
+    padding-left: 39px
+    &:before
+      @extend %lp-font-stack
+      line-height: 30px
+      font-size: 34px
+      top: 0
+      left: 10px
+    .homepage &:before
+      content: ""
+      background-size: 100%
+      background-position: center
+      height: 100%
+      width: 22px
+
+.nav__submenu__item--flights
+  @extend %icon--flights-before
+
+.nav__submenu__item--hotels
+  @extend %icon-image-poi-hotel-before
+
+.nav__submenu__item--adventure-tours
+  @extend %icon-image-poi-tour-before
+
+.nav__submenu__item--sightseeing-tours
+  @extend %icon-image-poi-activity-before
+
+
+// ----------------------------------------------------------------------------
+// 
+// breadcrumbs-nav
+// 
+// ----------------------------------------------------------------------------
+
+.nav__item--breadcrumbs
+  @extend %left-icon
+  @extend %chevron-right-before
+  padding: 19px 8px 19px 20px
+  color: $header-gray
+  &:before
+    font-size: 16px
+    line-height: 12px
+  &.current
+    font-weight: bold
+    &:hover
+      text-decoration: none
+
+// Qualified selector because not all breadcrumbs are links
+// with slugs and should not be underlined
+a.nav__item--breadcrumbs
+  &:hover
+    text-decoration: underline
+
+.nav__item--breadcrumbs--home
+  @extend %left-icon
+  @extend %left-icon--hidden-text
+  @extend %icon--home-before
+  width: 32px
+  &:before
+    top: 0
+    line-height: 42px
+    font-size: 32px
+    width: inherit
+    text-align: center
+    color: $header-gray
+  .ie7 &
+    @extend .nav__item--breadcrumbs
+    text-indent: 0
+    width: auto
+
+// ----------------------------------------------------------------------------
+// 
+// about-nav
+// 
+// ----------------------------------------------------------------------------
+
+.nav__item--about
+  margin-left: 15px
+  padding: 26px 0
+  color: $header-gray
+  .responsive &
+    padding: 14px 0 14px 10px
+    margin-left: 0
+    border-bottom: 1px solid $responsive-footer-border
+    +respond-to(wide-view)
+      padding: 26px 0
+      margin-left: 15px
+      border-bottom: none
+      font-weight: normal
+
+
+// ----------------------------------------------------------------------------
+// 
+// social-nav
+// 
+// ----------------------------------------------------------------------------
+
+.responsive
+  .nav--social
+    padding: 0 10px
+    +respond-to(wide-view)
+      padding: 0
+  .nav--social__inner
+    float: right
+    +respond-to(wide-view)
+      float: none
+    .base &
+      display: none
+
+.title--social
+  +font-size(14)
+  padding: 25px 0
+  margin-right: 10px
+  .responsive &
+    display: none
+    +respond-to(wide-view)
+      display: inline-block
+  .ie7 &
+    display: none
+
+.nav__item--social
+  +border-radius(16)
+  @extend %left-icon
+  @extend %left-icon--hidden-text
+  @extend %lp-font-stack
+  color: $header-gray
+  margin: 16px 0 17px
+  width: 32px
+  height: 32px
+  .responsive &
+    width: 24px
+    margin: 19px 0 17px
+    +respond-to(400)
+      width: 32px
+    +respond-to(wide-view)
+      margin: 16px 0 17px
+  &:before
+    top: 0
+    line-height: 24px
+    font-size: 32px
+    width: inherit
+    text-align: center
+  .js-hover &:hover
+    background-color: white
+  .ie7 &
+    text-indent: 0
+    height: auto !important
+    width: auto !important
+    margin: 26px 5px 0 0
+
+.icon--twitter--grey
+  @extend %icon--twitter-before
+  // SVG Version
+  .homepage &
+    background-position: center
+    &:before
+      content: ""
+
+.icon--facebook--grey
+  @extend %icon--facebook-before
+  // SVG Version
+  .homepage &
+    background-position: center
+    &:before
+      content: ""
+
+.icon--google-plus--grey
+  @extend %icon--google-plus-before
+  // SVG Version
+  .homepage &
+    background-position: center
+    &:before
+      content: ""
+
+.icon--flickr--grey
+  @extend %icon--flickr-before
+  // SVG Version
+  .homepage &
+    background-position: center
+    &:before
+      content: ""
+
+.icon--rss--grey
+  @extend %icon--rss-before
+  // SVG Version
+  .homepage &
+    background-position: center
+    &:before
+      content: ""
+
+.icon--youtube--grey
+  @extend %icon--youtube-before
+  // SVG Version
+  .homepage &
+    background-position: center
+    &:before
+      content: ""
+
+.icon--pinterest--grey
+  @extend %icon--pinterest-before
+  // SVG Version
+  .homepage &
+    background-position: center
+    &:before
+      content: ""
+
+
+// ----------------------------------------------------------------------------
+// 
+// Sitemap-nav
+// 
+// ----------------------------------------------------------------------------
+
+.col--footer,
+.col--footer--last
+  @extend %smooth-text
+  .responsive &
+    float: none
+    border-bottom: 1px solid $responsive-footer-border
+    +respond-to(wide-view)
+      border: none
+      padding: 0
+
+.col--footer
+  float: left
+  margin: 0 30px 15px 0
+  .responsive &
+    margin: 0
+    padding-left: 10px
+    +respond-to(wide-view)
+      float: left
+      margin: 0 30px 15px 0
+    @if $is-ie == true
+      margin: 0 20px 15px 0
+
+
+.col--footer--last
+  float: right
+  width: 240px
+  margin-right: 10px
+  .responsive &
+    width: auto
+    padding: 0 10px
+    margin-right: 0
+    +respond-to(wide-view)
+      float: right
+      width: 240px
+      padding: 0
+      margin-right: 10px
+    @if $is-ie == true
+      width: 200px
+
+  .btn--regular
+    .responsive &
+      width: 100%
+      +respond-to(wide-view)
+        width: auto
+
+.nav__item--footer
+  line-height: 18px
+  .responsive &
+    padding: 8px 0
+    &:last-child
+      padding-bottom: 20px
+    +respond-to(wide-view)
+      padding: 0
+      &:last-child
+        padding-bottom: 0
+
+.nav__item--sitemap
+  color: $body-copy
+  .js-hover &:hover
+    color: $header-gray
+
+.title--footer
+  font-weight: bold
+
+
+.title--list--footer
+  display: block
+  font-weight: bold
+  color: $title-footer--darker
+  margin-bottom: 15px
+  .responsive &
+    padding: 14px 0
+    display: inline-block
+    margin: 0
+    +respond-to(wide-view)
+      padding: 0
+      display: block
+      margin-bottom: 15px
+
+
+// Override some of the default accordion styles
+
+.col--footer, .col--footer--last
+  .accordion__target--mid
+    max-height: none
+    .responsive &
+      max-height: 40px
+      +respond-to(wide-view)
+        max-height: none
+
+  .accordion__title
+    display: none
+    .responsive &
+      display: block
+      +respond-to(wide-view)
+        display: none
+
+  .accordion__title--footer
+    float: right
+    padding-right: 0
+    width: 50%
+    height: 30px

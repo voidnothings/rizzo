@@ -1,0 +1,251 @@
+
+// -----------------------------------------------------------------------------
+//
+// Full Page Card
+//
+// -----------------------------------------------------------------------------
+
+.card--full-page
+  position: relative
+  @extend %box-off-double
+
+.lodging--top-choice
+  &:after
+    @extend %empty-abs-generated-content
+    background: url(image_path("lodgings-spt.png"))
+    top: -5px
+    left: 17px
+    height: 95px
+    width: 63px
+    +retinafy()
+      background: url(image_path("lodgings-spt-2x.png"))
+      background-size: $lodgings-sprite-size
+
+  .card--full-page__header
+    min-height: 60px
+    padding-left: 73px
+
+.card--full-page__header
+  margin-bottom: 20px
+  border-bottom: 1px solid $ruled-separator
+  padding-bottom: 20px
+
+.card--full-page__title
+  +font-size(42)
+  color: $header-blue
+  margin-bottom: 5px
+
+.card--full-page__link
+  font-weight: bold
+
+.card--full-page__subtitle
+  +font-size(16)
+  @extend %inline-block
+  @extend %body-copy
+  @extend %vertically-centered-dot-after
+  @extend %reset-line-height
+  &:last:after
+    content: ''
+
+
+// -----------------------------------------------------------------------------
+// Article Card
+// -----------------------------------------------------------------------------
+
+.stack__article
+  @extend %body-copy
+  @extend %four-pixel-rounded
+  +font-size(14)
+  margin-bottom: 10px
+  overflow: hidden
+  width: 798px
+  img
+    max-width: 100%
+    margin: 0 auto 10px auto
+
+    &.aligncenter
+      margin: 20px auto 10px
+    &.is-landscape
+      width: 100%
+  hr
+    border: none
+    border-bottom: 1px solid $subdued
+
+  .media-gallery__resizer
+    display: none
+  .slider__pagination
+    bottom: 5px
+    display: block
+    position: absolute
+  .slider__pagination--link
+    @extend %transition--base
+    background: white
+    opacity: 0.5
+    &.is-active, &:hover
+      opacity: 1
+
+  .copy--caption
+    text-align: center
+
+.stack__article__inner
+  padding: 0 25px
+
+.stack__article__header
+  border-bottom: 1px solid $ruled-separator
+  margin-bottom: 20px
+  padding: 20px 0
+
+  .text-icon--clock:before
+    font-size: 18px
+
+.stack__article__content
+  margin-bottom: 50px
+
+.stack__article__image-container
+  text-align: center
+
+.col--mpu
+  +perspective()
+  float: right
+  margin-bottom: 15px
+  margin-left: 15px
+  opacity: 1
+  overflow: hidden
+  width: 300px
+
+  .ad-mpu
+    +transition(all, 0.5, ease)
+    +transform(translateX(0px) rotateY(0deg))
+    
+  &.is-closed
+    width: 0
+    .ad-mpu
+      opacity: 0
+
+      .no-3d-support &
+        margin: 0
+        width: 0
+      .supports-3d &
+        +transform(translateX(150px) rotateY(-104deg))
+
+.col--intro
+  width: 448px
+
+
+// -----------------------------------------------------------------------------
+// Social Footer
+// -----------------------------------------------------------------------------
+
+.sharing
+  @extend %clearfix
+  border-top: 1px solid $ruled-separator
+  padding: 20px 0
+
+.sharing__label
+  +font-size(12)
+  text-transform: uppercase
+  font-weight: bold
+  color: $title
+  line-height: 22px
+
+.sharing__icon
+  @extend %left-icon
+  @extend %left-icon--hidden-text
+  color: $title
+  display: inline-block
+  margin-left: 15px
+  position: relative
+  height: 24px
+  text-align: left
+  width: 20px
+  &:hover
+    text-decoration: none
+  &:before
+    font-size: 34px
+    top: -16px
+
+  .tooltip
+    color: white
+    left: -63%
+    text-indent: 0
+    &:after
+      color: $new-header-grey
+      left: 53%
+
+.icon--print
+  @extend %icon--print-before
+.icon--email
+  @extend %icon--email-before
+
+.facebook-like
+  margin-left: 10px
+  min-width: 90px
+
+.tweet-button
+  margin-left: 10px
+  max-width: 103px
+
+// -----------------------------------------------------------------------------
+// Article Breadcrumbs
+// -----------------------------------------------------------------------------
+
+.stack__breadcrumbs
+  & + .stack__content
+    margin-top: -20px
+
+.stack__breadcrumb
+  @extend %four-pixel-rounded
+  +background-gradient($startColor: rgb(255,255,255), $endColor: rgb(239,239,239))
+  +transition(all, 0.2, ease)
+  color: #d2ddeb
+  display: block
+  padding: 20px 15px 10px 25px
+  position: relative
+  text-decoration: none
+  margin-bottom: 0
+
+  .js-hover &:hover
+    color: $header-blue
+    text-decoration: none
+    -webkit-transform: translate(0,-10px)
+    transform: translate(0,-10px)
+
+.stack__article__table
+  tr
+    border-bottom: 1px solid #e6edf5
+  th,
+  td
+    padding: 13px 13px 13px 0
+    text-align: center
+  th
+    color: $header-gray
+    padding-bottom: 14px
+  td
+    .stack__article__table-align-left
+      text-align: left
+
+.stack__article__table--small-text
+  +font-size(10)
+  display: block
+
+.stack__article__table--yes,
+.stack__article__table--no
+  &:before
+    font-size: 22px
+    line-height: 15px
+
+.stack__article__table--yes
+  @extend %left-icon
+  @extend %left-icon--hidden-text
+  @extend %tick-icon-before
+  color: #1ac571
+  display: inline-block
+  &:before
+    width: 24px
+
+.stack__article__table--no
+  @extend %left-icon
+  @extend %left-icon--hidden-text
+  @extend %cross-icon-before
+  color: #ff514e
+  display: inline-block

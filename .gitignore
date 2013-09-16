@@ -1,4 +1,5 @@
 *.gem
+<<<<<<< HEAD
 *.rbc
 .bundle
 .config
@@ -23,3 +24,11 @@ node_modules/
 spec/helpers/phantomcss/failures/
 spec/helpers/phantomcss/screenshots/*.diff.png
 node_modules/
+=======
+.bundle
+pkg/*
+.sass-cache/*
+.DS_Store
+.grunt
+node_modules/
+>>>>>>> beaker/master

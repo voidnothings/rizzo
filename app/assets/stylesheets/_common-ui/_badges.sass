@@ -1,0 +1,57 @@
+// Badges
+// 
+// 
+// .badge--lp-reviewed     - Lonely Planet Reviewed Badge
+// .badge--top-choice      - Lonely Planet Top Choice Badge
+// .badge--included        - Badge to show other included items
+// 
+// Styleguide 1.1
+
+
+// -----------------------------------------------------------------------------
+// Badges
+// -----------------------------------------------------------------------------
+
+%badge
+  @extend %left-icon
+  @extend %left-icon--hidden-text
+  @extend %inline-block
+  bottom: 8px
+  position: absolute
+  &:before
+    color: $lpblue
+
+.badge--lp-reviewed
+  @extend %badge
+  @extend %lp-review-bubble-before
+  &:before
+    font-size: 46px
+    line-height: 12px
+
+.badge--top-choice
+  @extend %badge
+  @extend %top-choice-before
+  width: 33px
+  &:before
+    font-size: 55px
+    line-height: 10px
+
+.badge--included
+  @extend %four-pixel-rounded
+  @extend %inline-block
+  +font-size(10)
+  background-color: $validation-true
+  color: white
+  font-weight: bold
+  padding: 2px 5px
+  text-transform: uppercase
+
+.badge--staff
+  @extend %four-pixel-rounded
+  @extend %inline-block
+  +font-size(12)
+  background-color: $header-blue
+  padding: 4px 6px
+  text-transform: uppercase
+  position: relative
+  font-weight: bold

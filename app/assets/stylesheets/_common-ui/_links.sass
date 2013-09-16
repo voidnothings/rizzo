@@ -1,0 +1,22 @@
+// Links
+// 
+// 
+// .link--back - Back
+// 
+// Styleguide 1.6
+
+.link--back
+  @extend %left-icon
+  @extend %chevron-left-before
+  @extend %inline-block
+  +font-size(15)
+  padding-left: 15px
+  &:before
+    +font-size(20)
+    line-height: 13px
+    color: $link-color
+
+.link--wrapper
+  @extend %wrapper-link
+  @extend %clearfix
+  overflow: hidden

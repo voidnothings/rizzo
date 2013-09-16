@@ -1,0 +1,77 @@
+// -----------------------------------------------------------------------------
+// 
+// Typographic Base
+// 
+// -----------------------------------------------------------------------------
+
+// The main site uses freight, so we initialise that size here
+// NB: This selector and the chained classes below can be removed when
+// we go site wide with delayed font loading
+html
+  font: $freight-font-size 'Helvetica Neue', Arial, sans-serif
+  @if $is-ie
+    font: $helvetica-font-size 'Helvetica Neue', Arial, sans-serif
+
+// The homepage base uses helvetica as standard, increase the base font size
+html.no-freight
+  font: $helvetica-font-size 'Helvetica Neue', Arial, sans-serif
+
+// Once we've loaded in freight we lower the standard font size
+html.freight
+  font: $freight-font-size 'Helvetica Neue', Arial, sans-serif
+
+body
+  min-height: 100%
+  color: $header-gray
+
+// -----------------------------------------------------------------------------
+// Typographic Element Definitions 
+// -----------------------------------------------------------------------------
+
+h1, h2, h3
+  @extend %smooth-text
+
+p
+  margin-bottom: 10px
+
+a
+  color: $link-color
+  cursor: pointer
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+
+// Needs to be declared twice to work properly cross browser, not to be combined
+::-moz-selection
+  background-color: $active
+  color: white
+
+::selection
+  background-color: $active
+  color: white
+
+
+// -----------------------------------------------------------------------------
+// Reusable Typographic Classes
+// -----------------------------------------------------------------------------
+
+.section-title
+  @extend %lp-font-stack
+  +font-size(22)
+  color: $lpblue 
+  margin-bottom: 15px
+
+.section-subtitle
+  @extend %lp-font-stack
+  +font-size(14)
+  color: $body-copy
+
+.label
+  +font-size(15)
+  @extend %smooth-text
+  font-weight: bold
+  color: $header-gray
+
+.disclaimer
+  @extend %disclaimer-copy
+

@@ -1,0 +1,37 @@
+// ---------------------------------------------------------------------------- 
+// Read More Toggle
+// 
+// <div class="read-more js-read-more-wrapper">
+//   <div class="read-more__handler">
+//     <div class="js-handler">Read More</div>
+//   </div>
+// </div>
+// 
+// ----------------------------------------------------------------------------
+
+.read-more
+  overflow: hidden
+  position: relative
+
+.read-more-block
+  padding-bottom: 32px
+
+.read-more__handler
+  position: absolute
+  bottom: 0
+  height: 70px
+  width: 100%
+  overflow: auto
+  pointer-events: none
+  
+  .btn--read-more
+    position: absolute
+    bottom: 0
+    pointer-events: all
+
+  .is-closed &
+    background: #fff
+    +lp-section-toggle-background()
+
+  .is-open &
+    background: transparent

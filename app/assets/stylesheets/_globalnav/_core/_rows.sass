@@ -1,0 +1,337 @@
+// ----------------------------------------------------------------------------
+//
+// Body
+//
+// The below two lines fix the background colours not stretching the
+// full page width on a small screen size
+//
+// Homepage is removed from this hack because it interferes with overflow-x
+// ----------------------------------------------------------------------------
+
+body
+  background-color: $body-background
+  display: table
+  min-width: 100%
+  &.homepage
+    display: block
+
+// Freight is applied to the main content row of the page
+.copy--freight
+  @extend %lp-font-stack
+
+// ----------------------------------------------------------------------------
+//
+// Row
+//
+// ----------------------------------------------------------------------------
+
+.row
+  @extend %clearfix
+
+.row__inner
+  @extend %block-center
+  @extend %clearfix
+  position: relative
+  @extend %regular-width
+  .responsive &
+    width: auto
+    +respond-to(wide-view)
+      max-width: 1000px
+
+.row--core
+  @extend %helvetica-neue
+  .homepage &
+    @extend %lp-font-stack
+
+.row--text-centered
+  text-align: center
+
+// ----------------------------------------------------------------------------
+//
+// Row cookie compliance
+//
+// ----------------------------------------------------------------------------
+
+.row--cookie-compliance
+  @extend %smooth-text
+  +font-size(12)
+  @extend %lp-font-stack
+  line-height: 1.2
+  background-color: $feature
+  overflow: hidden
+  color: $highlight
+  .responsive &
+    text-align: center
+    +respond-to(wide-view)
+      text-align: left
+  .split--left
+    max-width: 75%
+
+  .cookie-text
+    padding-top: 9px
+
+  .cookie-link
+    color: $highlight
+    text-decoration: underline
+    font-weight: bold
+
+  .cookie-buttons
+    .responsive &
+      text-align: center
+      +respond-to(wide-view)
+        text-align: right
+
+  .btn--gray
+    margin-left: 10px
+
+  .btn--regular
+    font-weight: bold
+
+  &.is-open
+    padding-top: 12px
+    padding-bottom: 12px
+
+  &.is-closed
+    height: 0
+    .ie7 &
+      display: none
+
+
+
+
+// ----------------------------------------------------------------------------
+//
+// Row top adverts
+//
+// ----------------------------------------------------------------------------
+
+.row--leaderboard
+  +transition(all, 0.5, ease)
+  background-color: $row-leader
+  overflow: hidden
+  padding: 16px 0
+  min-height: 90px
+
+  .homepage &
+    background-color: white
+    +respond-to(wide-view)
+      min-height: 92px
+      padding: 25px 0
+
+  &.is-closed
+    height: 0
+    padding: 0
+    min-height: 0
+
+  // This can be removed when switching to the new DFP server
+  .ad-leaderboard__inner
+    .homepage &
+      border: 1px solid $subdued
+      &:after
+        background-position: -106px 4px
+
+  > .row__inner
+    display: table
+
+
+
+// ----------------------------------------------------------------------------
+//
+// Row fluid
+//
+// ----------------------------------------------------------------------------
+
+.row--fluid
+  min-width: 1000px
+  padding-left: 20px
+  padding-right: 20px
+  .responsive &
+    min-width: 0
+
+
+// ----------------------------------------------------------------------------
+//
+// Row Faux Banner
+//
+// When we use the offscreen nav we need to fake a 55px blue bar at the top
+// because the logo and nav are no longer part of the same node
+// ----------------------------------------------------------------------------
+
+.row--faux-banner
+  display: none
+  .responsive &
+    display: block
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    background-color: $primary-nav
+    height: 55px
+    +respond-to(wide-view)
+      display: none
+
+
+// ----------------------------------------------------------------------------
+//
+// Row primary
+//
+// ----------------------------------------------------------------------------
+
+.row--primary
+  z-index: 2
+  position: relative
+  .responsive &
+    position: static
+  .homepage &
+    background: none
+
+
+// ----------------------------------------------------------------------------
+//
+// Row secondary
+//
+// ----------------------------------------------------------------------------
+
+.row--secondary
+  padding-top: 40px
+  margin-bottom: 18px
+
+.row__title--secondary
+  background: $body-background
+  max-width: 340px
+  position: absolute
+  .js-hover &:hover
+    max-width: none
+
+// ----------------------------------------------------------------------------
+//
+// Row Container
+//
+// ----------------------------------------------------------------------------
+
+.row--content
+  margin-bottom: 40px
+  // Ensure that nav dropdowns sit above any content
+  position: relative
+  z-index: 1
+  .responsive &
+    @extend %transition--nav
+    position: relative
+  .homepage &
+    padding-top: 0
+    +respond-to(wide-view)
+      margin-top: -55px
+
+
+// ----------------------------------------------------------------------------
+//
+// Generic footer row
+//
+// ----------------------------------------------------------------------------
+
+.row__inner--footer
+  border-top: 1px solid $responsive-footer-border
+  .responsive &
+    border: none
+    padding: 10px
+    +respond-to(wide-view)
+      border-top: 1px solid $responsive-footer-border
+      padding: 0
+
+// ----------------------------------------------------------------------------
+//
+// Row Sitemap
+//
+// ----------------------------------------------------------------------------
+
+.row--sitemap
+  margin-bottom: 30px
+  .responsive &
+    margin-bottom: 0
+    +respond-to(wide-view)
+      margin-bottom: 30px
+
+.row--sitemap__inner
+  padding-top: 20px
+  .responsive &
+    padding: 0
+    +respond-to(wide-view)
+      padding-top: 20px
+
+
+
+// ----------------------------------------------------------------------------
+//
+// Row About
+//
+// ----------------------------------------------------------------------------
+
+.row--footer--about
+  @extend %smooth-text
+  .responsive &
+    .row__inner--footer
+      border-top: none
+      padding: 0
+      +respond-to(wide-view)
+        border-top: 1px solid $responsive-footer-border
+        padding: 0 10px
+
+.row--footer--about__logo
+  .responsive &
+    margin-bottom: 20px
+
+.row--footer--social__logo
+  .responsive &
+    display: inline-block
+
+
+// ----------------------------------------------------------------------------
+//
+// Row Smallprint
+//
+// ----------------------------------------------------------------------------
+
+.row--smallprint__inner
+  padding: 20px 10px
+  .responsive &
+    padding-top: 20px
+    +respond-to(wide-view)
+      padding: 20px 10px
+
+.text--legal
+  +font-size(11)
+  width: 60%
+  line-height: 1.5em
+  color: $body-copy
+  margin-bottom: 0
+  .responsive &
+    width: 100%
+    text-align: center
+    +respond-to(wide-view)
+      width: 60%
+      text-align: left
+
+.link--view-full-site
+  padding-bottom: 20px
+  &:hover
+    text-decoration: none
+
+
+// ----------------------------------------------------------------------------
+//
+// Sticky footer
+//
+// ----------------------------------------------------------------------------
+
+.wrap--footer
+  @extend %lp-font-stack
+  @extend %subpixel-text
+  @extend %transition--nav
+  position: relative
+
+.wrap--footer-push
+  min-height: 100%
+  height: auto !important
+  height: 100%
+  margin: 0
+

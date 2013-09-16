@@ -1,0 +1,24 @@
+// -----------------------------------------------------------------------------
+// Disabled state for buttons - typically on forms
+
+%disabled-state
+  background: $disabled-state-color
+  border-color: $disabled-state-color
+  color: $disabled-state-text
+  opacity: 0.5
+
+
+// -----------------------------------------------------------------------------
+// Opacity states
+
+%invisible
+  opacity: 0
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
+  filter: alpha(opacity=0)
+
+%opaque
+  opacity: 1
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"
+  filter: alpha(opacity=100)
+  
+

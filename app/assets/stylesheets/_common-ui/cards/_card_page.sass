@@ -1,0 +1,201 @@
+// -----------------------------------------------------------------------------
+// 
+//  Card page module
+// 
+// -----------------------------------------------------------------------------
+
+.card--page
+  @extend %clearfix
+  @extend %four-pixel-rounded
+  color: $body-copy
+  margin: 0
+  padding: 25px
+  position: relative
+
+  .copy--title
+    margin: 0
+  .copy--subtitle
+    +font-size(14)
+    font-weight: bold
+    letter-spacing: 0
+    margin-bottom: 0
+    margin-top: 20px
+    text-transform: none
+  .section-subtitle
+    font-weight: bold
+
+  .map, .media-gallery
+    margin-bottom: 35px
+
+  .sharing
+    clear: left
+
+  .tag
+    +font-size(14)
+  .tag--price__amount
+    font-size: 30px
+    line-height: 0.6em
+    margin-bottom: 12px
+
+.card--page__header
+  border-bottom: 1px solid $ruled-separator
+  margin-bottom: 20px
+  padding-bottom: 20px
+
+.card--page__footer
+  @extend %clearfix
+  clear: left
+  color: $new-header-grey
+  margin-top: 20px
+  padding-top: 20px
+
+  .section-subtitle
+    +font-size(12)
+    text-transform: uppercase
+  .share-this
+    float: left
+  .send-this
+    float: right
+
+.card--page__related-list
+  .section-title
+    +font-size(15)
+    font-weight: bold
+    margin-left: 10px
+    margin-top: 30px
+
+.card--page__breadcrumb--type
+  font-weight: bold
+
+.card--page__breadcrumb
+  @extend %local-marker-before
+  line-height: 25px
+  position: relative
+  text-transform: uppercase
+
+  &:before
+    background: url(image_path("map-markers.png")) no-repeat
+    content: ''
+    float: left
+    height: 21px
+    margin-right: 5px
+    position: relative
+    top: 2px
+    width: 15px
+    z-index: 4
+    +retinafy()
+      background: url(image_path("map-markers-2x.png")) no-repeat
+      background-size: $map-markers-sprite-size
+
+.card--page__breadcrumb--sight:before
+  background-position: -15px -103px
+
+.card--page__breadcrumb--activity:before
+  background-position: -59px -103px
+
+.card--page__breadcrumb--tour:before
+  background-position: -462px -103px
+
+.card--page__breadcrumb--entertainment:before,
+.card--page__breadcrumb--entertainment-nightlife:before
+  background-position: -104px -103px
+
+.card--page__breadcrumb--hotel:before
+  background-position: -149px -103px
+
+.card--page__breadcrumb--restaurant:before
+  background-position: -193px -103px
+
+.card--page__breadcrumb--shopping:before
+  background-position: -283px -103px
+
+.card--page__breadcrumb--event:before
+  background-position: -327px -103px
+
+.card--page__breadcrumb--transport:before
+  background-position: -372px -103px
+
+.card--page__breadcrumb--destination:before
+  background-position: -417px -103px
+
+.card--page__breadcrumb--tour:before
+  background-position: -461px -103px
+
+.card--page__breadcrumb--article:before
+  background-position: -506px -103px
+
+.card--page__breadcrumb--info:before
+  background-position: -551px -103px
+
+.card--page__content
+  @extend %grid-column
+  margin-right: 20px
+  width: 626px
+  .card--single + .stack &
+    width: 427px
+
+  .section-title
+    color: $body-copy
+    margin-bottom: 25px
+  .section-subtitle
+    color: $header-blue
+    margin-bottom: 20px
+    margin-top: 35px
+    text-transform: uppercase
+
+.card--page__aside
+  @extend %grid-column
+  @extend %transition--base
+  position: relative
+  width: 300px
+
+  .booking-panel + .details-panel
+    border-top: 1px solid $ruled-separator
+
+// -----------------------------------------------------------------------------
+// Tour Itinerary
+// -----------------------------------------------------------------------------
+
+.tour-itinerary
+  .tour-itinerary__title
+    +font-size(15)
+    font-weight: bold
+  .copy--meta
+    margin: 20px 0
+
+// -----------------------------------------------------------------------------
+// Booking Panel (normally as an aside)
+// -----------------------------------------------------------------------------
+
+.booking-panel
+  background: $info-background
+  padding: 20px
+  position: relative
+
+.booking-panel__logo
+  margin-bottom: 20px
+
+// -----------------------------------------------------------------------------
+// Details Panel (the lighter panel usually attached to the booking panel)
+// -----------------------------------------------------------------------------
+
+.details-panel
+  background: $secondary-content-bg
+  padding: 20px
+  .section-glossary
+    .section-title
+      +font-size(14)
+      margin: 20px 0 5px
+
+// -----------------------------------------------------------------------------
+// Special Offer tag
+// -----------------------------------------------------------------------------
+.special-offer
+  @extend %four-pixel-rounded
+  background: $red
+  color: #fff
+  display: inline-block
+  font-size: 11px
+  font-weight: bold
+  padding: 5px
+  text-transform: uppercase

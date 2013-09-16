@@ -1,0 +1,32 @@
+// Lonely Planet Reviewed Section
+// 
+// 
+// .lp-review - Review section
+// 
+// Styleguide 1.7
+
+// -----------------------------------------------------------------------------
+// Lp-Reviewed Section
+// Author review text with a generic info lp-terms box
+// -----------------------------------------------------------------------------
+
+.lp-review
+  .section-title
+    @extend %inline-block
+    @extend %right-icon
+    @extend %lp-review-bubble-after
+    padding-right: 20px
+    margin-bottom: 0
+    &:after
+      color: $lp-reviewed-badge
+      font-size: 56px
+      line-height: 22px
+      top: 0
+
+.lp-review__content
+  +font-size(14)
+  margin-bottom: 10px
+
+.lp-review__footer
+  @extend %body-copy
+

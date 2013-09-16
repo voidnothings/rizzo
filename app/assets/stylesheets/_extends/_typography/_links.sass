@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------------
+// Links
+// -----------------------------------------------------------------------------
+
+%link-without-underline
+  &, &:hover
+    text-decoration: none
+
+
+// -----------------------------------------------------------------------------
+// Wrapper links are used when a link contains multiple elements eg. cards
+
+%wrapper-link
+  @extend %link-without-underline
+  display: block
+  height: 100%
+  color: $base-font-color
+
