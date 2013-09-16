@@ -20,4 +20,5 @@ log/*
 .rvmrc
 node_modules/
 .sass-cache/*
+spec/helpers/phantomcss/failures/
 node_modules/
