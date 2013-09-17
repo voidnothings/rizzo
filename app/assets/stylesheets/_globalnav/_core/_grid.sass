@@ -19,11 +19,11 @@
 
 .card--double
   @extend %margin-grid-column-10
-  width: ($card-width * 2) + $card-gutter
+  width: $double-card-width
   .homepage &
     width: 310px
     +respond-to(medium-view)
-      width: ($card-width * 2) + $card-gutter
+      width: $double-card-width
 
 .card--triple
   @extend %margin-grid-column-10
