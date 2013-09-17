@@ -14,7 +14,7 @@ module.exports = function(grunt) {
                 // also run images through ImageAlpha.app before ImageOptim.app
                 imageAlpha: true,
                 // also run images through JPEGmini.app after ImageOptim.app
-                jpegMini: false,
+                jpegMini: true,
                 // quit all apps after optimisation
                 quitAfter: true
             }
@@ -26,10 +26,7 @@ module.exports = function(grunt) {
                     dest: "./app/assets/stylesheets/icons",
                     cssprefix: "icon--",
                     defaultWidth: "32px",
-                    pseudoElems: true,
-                    customSelectors: {
-                        "sprite-11": ".icon--sprite-11--before:before"
-                    }
+                    pseudoElems: true
                 }
             }
         },
@@ -53,14 +50,14 @@ module.exports = function(grunt) {
             clean_icons: {
                 command: "rm -rf app/assets/images/png"
             },
+            clean_js: {
+                command: 'rm -rf public/assets/javascripts'
+            },
             move: {
                 command: "mv app/assets/stylesheets/icons/png app/assets/images"
             },
             openPlato: {
                 command: 'open .plato/index.html'
-            },
-            clean: {
-                command: 'rm -rf public/assets'
             }
         },
         coffee: {
@@ -121,7 +118,7 @@ module.exports = function(grunt) {
         watch: {
             scripts: {
                 files: ['app/assets/javascripts/lib/**/*.coffee', 'spec/javascripts/lib/**/*.coffee'],
-                tasks: ['shell:clean', 'newer:coffee', 'jasmine'],
+                tasks: ['shell:clean_js', 'newer:coffee', 'jasmine'],
                 options: {
                     nospawn: true
                 }
@@ -130,7 +127,7 @@ module.exports = function(grunt) {
         plato: {
             avocado: {
                 files: {
-                    '.plato/': ['public/assets/javascripts/**/*.js']
+                    '.plato/': ['./public/assets/javascripts/**/*.js']
                 }
             }
         }
@@ -141,11 +138,14 @@ module.exports = function(grunt) {
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     // Tasks
-    grunt.registerTask('default', ['shell:clean', 'newer:coffee', 'connect', 'jasmine']);
+    grunt.registerTask('default', ['shell:clean_js', 'coffee', 'connect', 'jasmine']);
     grunt.registerTask('dev', ['connect', 'open:jasmine', 'jasmine', 'watch']);
     grunt.registerTask('wip', ['jasmine:avocado:build', 'open:jasmine', 'connect:server:keepalive']);
-    grunt.registerTask('report', ['shell:clean', 'newer:coffee', 'plato', 'shell:openPlato']);
-    grunt.registerTask('icons', ['svgmin', 'grunticon', 'shell:clean_icons', 'shell:move']);
+    grunt.registerTask('report', ['shell:clean_js', 'coffee', 'plato', 'shell:openPlato']);
     grunt.registerTask('imageoptim', ['imageoptim']);
+    // Don't run this for the moment until (hopefully) grunticon is update with:
+    // https://github.com/filamentgroup/grunticon/pull/84
+    // At the moment it includes a manual step within the npm module and running this would kill the icons
+    // grunt.registerTask('icons', ['svgmin', 'grunticon', 'shell:clean_icons', 'shell:move']);
 
 };
