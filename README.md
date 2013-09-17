@@ -102,8 +102,8 @@ Comments should follow the below pattern:
 
 <a name="abstractions"></a>
 ## 5. Abstractions
-* Reusable blocks of code should be abstracted from your project Sass and placed within beaker if you believe it is globally useful. They should be placed into the common-ui or utils folder (see below for clarfication on where)
-* Variables should be abstracted into Beaker unless you want them to remain local. Variables are local when declared inside mixins.
+* Reusable blocks of code should be abstracted from your project Sass and placed within rizzo if you believe it is globally useful. They should be placed into the common-ui or utils folder (see below for clarfication on where)
+* Variables should be abstracted into Rizzo unless you want them to remain local. Variables are local when declared inside mixins.
 * Code should be abstracted from your style declarations where possible. Check in _utils/extends and _utils/objects to see if there are code patterns already available for you to use.
 
 ```css
@@ -175,7 +175,7 @@ When naming custom mixins, variables and placeholders be verbose and use intuiti
 <a name="base_project"></a>
 ## 8. Base Project
 
-* Start any new project by installing beaker as a gem.
+* Start any new project by installing rizzo as a gem.
 * The first line of your project Sass file should be :
 @import base_project
 
@@ -222,7 +222,7 @@ ___Lonely Planet Javascript Library___
 
 Add this line to your application's Gemfile:
 
-    gem 'avocado'
+    gem 'rizzo'
 
 And then execute:
 
@@ -230,7 +230,7 @@ And then execute:
 
 ## Running tests
 
-To use grunt with avocado:
+To use grunt with rizzo:
 
 - To clean, compile and run all the tests headlessly
 ````bash

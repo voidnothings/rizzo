@@ -90,7 +90,7 @@ module.exports = function(grunt) {
             }
         },
         jasmine: {
-            avocado: {
+            rizzo: {
                 src: ['./public/assets/javascripts/lib/**/*.js'],
                 options: {
                     helpers: ['./spec/javascripts/helpers/**/*.js', './vendor/assets/javascripts/jquery/jquery-1.7.2.min.js'],
@@ -125,7 +125,7 @@ module.exports = function(grunt) {
             }
         },
         plato: {
-            avocado: {
+            rizzo: {
                 files: {
                     '.plato/': ['./public/assets/javascripts/**/*.js']
                 }
@@ -140,7 +140,7 @@ module.exports = function(grunt) {
     // Tasks
     grunt.registerTask('default', ['shell:clean_js', 'coffee', 'connect', 'jasmine']);
     grunt.registerTask('dev', ['connect', 'open:jasmine', 'jasmine', 'watch']);
-    grunt.registerTask('wip', ['jasmine:avocado:build', 'open:jasmine', 'connect:server:keepalive']);
+    grunt.registerTask('wip', ['jasmine:rizzo:build', 'open:jasmine', 'connect:server:keepalive']);
     grunt.registerTask('report', ['shell:clean_js', 'coffee', 'plato', 'shell:openPlato']);
     grunt.registerTask('imageoptim', ['imageoptim']);
     // Don't run this for the moment until (hopefully) grunticon is update with:
