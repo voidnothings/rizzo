@@ -19,6 +19,7 @@ group :test do
   gem 'rspec', '~> 2.10.0'
   gem 'rspec-rails'
   gem 'guard-rspec'
+  gem 'rubyzip', '< 1.0.0'
 
   gem 'selenium-webdriver', '2.26.0'
   gem 'capybara', '< 2.0.0'
@@ -28,8 +29,6 @@ group :test do
 
   gem 'guard-cucumber'
   gem 'rb-fsevent', '~> 0.9.1'
-  
-  gem 'rb-readline'
 end
 
 group :production do
