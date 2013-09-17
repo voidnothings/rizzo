@@ -31,5 +31,6 @@ node_modules/
 spec/reports
 spec/helpers/phantomcss/failures/
 spec/helpers/phantomcss/screenshots/*.diff.png
+spec/helpers/phantomcss/screenshots/*.fail.png
 spec/javascripts/generated/*
 _SpecRunner.html
