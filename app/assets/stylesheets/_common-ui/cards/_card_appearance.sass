@@ -164,55 +164,41 @@
 // List view cards
 // -----------------------------------------------------------------------------
 
-.list-view
+.card--list
+  +border-radius(4)
+  float: left
+  margin: 0 0 10px 10px
+  overflow: hidden
+  width: $double-card-width
 
-  .card
-    +border-radius(4)
-    float: left
-    list-style: none
-    margin: 0 0 10px 10px
-    overflow: hidden
-    width: $double-card-width
+.card--list__link
+  &:hover
+    text-decoration: none
 
-  .link--wrapper
-    display: block
-    overflow: hidden
+.card--list__hero
+  background: #fafafc
+  float: left
+  height: 50px
+  margin-right: 10px
+  width: 50px
 
-    &:hover
-      text-decoration: none
+.card--list__image
+  display: block
+  width: 50px
+  height: 50px
 
-  .card__content
-    padding: 0
-    margin: 0
-    height: auto
+.card--list__no-image
+  @extend %image-replacement
+  background: url(image_path("map-markers.png")) -413px -61px no-repeat
+  float: left
+  height: 34px
+  width: 24px
+  margin-top: 8px
+  margin-left: 13px
 
-  .card__hero
-    float: left
-    width: 50px
-    height: 50px
-
-  .card__hero--no-image
-    background: #fafafc
-
-  .card__image
-    display: block
-    width: 50px
-    height: 50px
-
-  .card__image--no-image
-    background: url(image_path("map-markers.png")) -413px -61px no-repeat
-    float: left
-    height: 34px
-    width: 24px
-    text-indent: -9999em
-    margin-top: 8px
-    margin-left: 13px
-
-  .card__name
-    +font-size(15)
-    color: #232d39
-    font-weight: bold
-    height: 50px
-    line-height: 50px
-    padding-left: 10px
-    margin: 0
+.card--list__name
+  +font-size(15)
+  color: $title
+  font-weight: bold
+  height: 50px
+  line-height: 50px
