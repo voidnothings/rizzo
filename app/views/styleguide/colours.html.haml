@@ -13,16 +13,61 @@
     end
   end
 
+
+%h4
+  %a{ href: "javascript:sortBy(lightToDark)" }<
+    light to dark
+  |
+  %a{ href: "javascript:sortBy(darkToLight)" }<
+    dark to light
+
 - groups.each do |group|
   .styleguide-block
     %h2.copy--subtitle #{group[:title][2..-1]}
-    - group[:body].split(/\n/).each do |line|
-      - unless line == ""
-        - key_value = line.gsub(" !default", "").gsub(" ", "").split(':')
-        .card.card--double.box
-          .styleguide-block__item.styleguide-block__item--colour.copy--subtitle{style: "background-color: #{key_value[1]}", class: key_value[1] == "#fff" ? "is-white" : ""}<
-            = key_value[1]
-          %h3.copy--feature.box<
-            = key_value[0]
+    .js-card-container
+      - group[:body].split(/\n/).each do |line|
+        - unless line == ""
+          - key_value = line.gsub(" !default", "").gsub(" ", "").split(':')
+          - next if key_value[1] =~ /^\$/
+          - key_value[1] = "#{key_value[1]}#{key_value[1].match(/[0-9A-Fa-f]{3}/)[0]}" if key_value[1].length < 7
+          - rgb = key_value[1].scan(/[0-9A-Fa-f]{2}/).collect { |i| i.to_i(16) }
+          - luminance = (0.2126*rgb[0]) + (0.7152*rgb[1]) + (0.0722*rgb[2])
+          .card.card--double.box{ data: { luminance: luminance } }
+            .styleguide-block__item.styleguide-block__item--colour.copy--subtitle{style: "background-color: #{key_value[1]}", class: luminance > 200 ? "is-light" : "" }<
+              = key_value[1]
+            %h3.copy--feature.box<
+              = key_value[0]
 
 = render 'styleguide/partials/shared'
+
+:javascript
+  function sortBy(comparator) {
+      var sections = document.querySelectorAll('.styleguide-block');
+
+      for (var i=0; i < sections.length; i++) {
+          var section = sections[i],    
+              cards = Array.prototype.slice.call(section.querySelectorAll('.card--double')),
+              newCards = '';
+          
+          cards = cards.sort(comparator);
+          
+          cards.forEach(function(card) {
+              newCards += card.outerHTML;
+          });
+          
+          section.querySelector('.js-card-container').innerHTML = newCards;
+      }
+  }
+
+  function lightToDark(a, b) {
+      var lumA = Number(a.getAttribute('data-luminance')),
+          lumB = Number(b.getAttribute('data-luminance'));
+      
+      return lumA < lumB;
+  }
+  function darkToLight(a, b) {
+      var lumA = Number(a.getAttribute('data-luminance')),
+          lumB = Number(b.getAttribute('data-luminance'));
+      
+      return lumA > lumB;
+  }
