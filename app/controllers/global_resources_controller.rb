@@ -33,4 +33,8 @@ class GlobalResourcesController < GlobalController
     render '/styleguide/navigation', :layout=> 'styleguide'
   end
 
+  def styleguideColours
+    render '/styleguide/colours', :layout=> 'styleguide'
+  end
+
 end
