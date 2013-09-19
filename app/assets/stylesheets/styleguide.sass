@@ -36,6 +36,12 @@
 @import '_common-ui/_maps'
 @import '_common-ui/_text_icons'
 
+.box
+  +box-sizing
+  padding: 20px
+
+.clearfix
+  @extend %clearfix
 
 .row--content
   margin-bottom: 50px
@@ -46,13 +52,24 @@
 
 .styleguide-block
   @extend %clearfix
-  padding-bottom: 20px
-  margin-bottom: 20px
-  border-bottom: 1px solid $soft-gray
+  margin-bottom: 40px
 
 .styleguide-block__item
   float: left
   margin-right: 20px
+
+.styleguide-block__item--colour
+  +border-radius(100)
+  +vertically-center(100)
+  width: 100px
+  color: white
+  text-align: center
+  margin-top: 0
+  margin-bottom: 0
+
+  &.is-white
+    border: 2px solid $ruled-separator
+    color: $body-copy
 
 .styleguide-block__description
   @extend %border-box

@@ -1,14 +1,9 @@
-= render 'styleguide/partials/cards'
+- require "ostruct"
+- cards = YAML.load(File.read(File.expand_path('../../../../data/styleguide/cards_stubs.yml', __FILE__)))
 
-- content_for(:scripts) do
-  / %script{src: "/javascripts/lib/angular/angular.js"}
-  / %script{src: "/javascripts/services.js"}
-  / %script{src: "/javascripts/controllers.js"}
-  / %script{src: "/javascripts/lib/angular/angular-resource.js"}
-  / %script{src: "/javascripts/app.js"}
-  = javascript_include_tag 'prism'
+- cards['cards'].each_with_index do |card, i|
+  = sg_component("cards/#{card[:styleguide_title].downcase.split(' ').join('_')}", stack_item: OpenStruct.new(card), original_stub: card, count: i)
 
-- content_for(:stylesheets) do
-  = stylesheet_link_tag 'styleguide', :media => "all"
-  = stylesheet_link_tag 'prism', :media => "all"
+
+= render 'styleguide/partials/shared'
 

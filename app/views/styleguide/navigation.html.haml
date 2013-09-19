@@ -1,14 +1,7 @@
-= render 'styleguide/partials/navigation'
+- left_nav_stub = YAML.load(File.read(File.expand_path('../../../../data/styleguide/navigation_stubs.yml', __FILE__)))['left_nav_stub']
 
-- content_for(:scripts) do
-  / %script{src: "/javascripts/lib/angular/angular.js"}
-  / %script{src: "/javascripts/services.js"}
-  / %script{src: "/javascripts/controllers.js"}
-  / %script{src: "/javascripts/lib/angular/angular-resource.js"}
-  / %script{src: "/javascripts/app.js"}
-  = javascript_include_tag 'prism'
+- left_nav_stub.each_with_index do | stub, i |
+  = sg_component('left_nav', left_nav: stub, count: i)
 
-- content_for(:stylesheets) do
-  = stylesheet_link_tag 'styleguide', :media => "all"
-  = stylesheet_link_tag 'prism', :media => "all"
 
+= render 'styleguide/partials/shared'

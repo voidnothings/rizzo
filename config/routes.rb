@@ -34,4 +34,6 @@ Rizzo::Application.routes.draw do
   # Styleguide
   get 'styleguide'                   => 'global_resources#styleguide'
   get 'styleguide/navigation'        => 'global_resources#styleguideNavigation'
+  get 'styleguide/colours'           => 'global_resources#styleguideColours'
+
 end if defined?(Rizzo::Application)
