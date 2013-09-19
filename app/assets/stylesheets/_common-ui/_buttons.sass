@@ -46,8 +46,6 @@
 .btn--action
   background-color: $green
   color: white
-  &:hover
-    background-color: $green-highlight
 
 .btn--submit
   @extend %lp-font-stack
@@ -59,8 +57,6 @@
 .btn--function
   background-color: $linkblue
   color: white
-  &:hover
-    background-color: $lpblue-highlight
 
 // start of button code ripped from waldorf
 
@@ -68,7 +64,7 @@
   @extend %base-button
   +font-size(15)
   background-color: $yella
-  color: $new-header-grey
+  color: $header-grey
   padding: 6px 15px
   font-weight: bold
   .js-hover &:hover
@@ -84,7 +80,7 @@
   border: 1px solid #c9d1d7
   color: $lpblue
   .js-hover &:hover
-    background-color: $lpblue-highlight
+    background-color: $linkblue
 
 .btn--load-more
   @extend .btn--functional
@@ -100,7 +96,7 @@
   font-weight: bold
   padding: 4px 6px
   .js-hover &:hover
-    color: $lpblue-highlight
+    color: $linkblue
 
 .btn--read-more
   .read-more-block &
