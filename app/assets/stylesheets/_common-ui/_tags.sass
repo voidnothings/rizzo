@@ -59,8 +59,8 @@
   @extend %tag
   @extend %tag--side
   +font-size(12)
-  +tag-curl-left($side-tag, $side-tag-curl)
-  background: $side-tag
+  +tag-curl-left($green, $side-tag-curl)
+  background: $green
   color: #fff
   left: -4px
   position: absolute
@@ -76,7 +76,7 @@
 // -----------------------------------------------------------------------------
 
 .tag--price
-  +tag-curl-top($yella, $bookable-ribbon)
+  +tag-curl-top($yella, $price-tag-curl)
 
 .tag--price__inner
   @extend %tag--top
@@ -110,7 +110,7 @@
 
 .tag--non-bookable
   @extend %tag--top
-  +tag-curl-top($yella, $bookable-ribbon)
+  +tag-curl-top($yella, $price-tag-curl)
   +font-size(40)
   background-color: $yella
   color: #dad06b
@@ -188,7 +188,7 @@
   z-index: 5
   &:after
     @extend %empty-abs-generated-content
-    border-color: transparent transparent $bookable-ribbon transparent
+    border-color: transparent transparent $price-tag-curl transparent
     border-style: solid
     border-width: 0 0 4px 4px
     left: -4px
