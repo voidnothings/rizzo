@@ -15,6 +15,11 @@ module StyleguideHelper
               name: 'Navigation',
               path: '/styleguide/navigation',
               extra_style: "nav__item--delimited"
+            },
+            {
+              name: 'Colour pallette',
+              path: '/styleguide/colours',
+              extra_style: "nav__item--delimited"
             }
           ]
         }
