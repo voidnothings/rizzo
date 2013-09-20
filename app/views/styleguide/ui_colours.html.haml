@@ -5,12 +5,8 @@
     |
     %a{ href: "javascript:sortBy(darkToLight)" } Dark to light
 
-
-- get_colours('_colour_pallette').each do |group|
+- get_colours('_colour_theme').each do |group|
   = render 'styleguide/partials/colour', group: group
-
-
 
 = render 'styleguide/partials/shared'
 = render 'styleguide/javascripts/luminosity'
-
