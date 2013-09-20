@@ -17,6 +17,7 @@ define ['jquery'], ($) ->
         $(e.target).trigger('change')
 
       @selectParent.on 'change', '.js-select', (e) =>
+        e.preventDefault()
         t = $(e.target).find("option:selected")
         val = t.text()
         @getOverlay(e.target).text(val)
