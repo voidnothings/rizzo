@@ -22,7 +22,7 @@ module StyleguideHelper
           title: "Colours",
           items: [
             {
-              name: "Design pallette",
+              name: "Design palette",
               path: "/styleguide/colours",
               extra_style: "nav__item--delimited"
             },
