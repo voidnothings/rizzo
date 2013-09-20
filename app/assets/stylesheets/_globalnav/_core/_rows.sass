@@ -107,7 +107,7 @@ body
 
 .row--leaderboard
   +transition(all, 0.5, ease)
-  background-color: $row-leader
+  background-color: $row-leaderboard
   overflow: hidden
   padding: 16px 0
   min-height: 90px
@@ -165,7 +165,7 @@ body
     top: 0
     left: 0
     right: 0
-    background-color: $primary-nav
+    background-color: $lpblue
     height: 55px
     +respond-to(wide-view)
       display: none
@@ -230,12 +230,12 @@ body
 // ----------------------------------------------------------------------------
 
 .row__inner--footer
-  border-top: 1px solid $responsive-footer-border
+  border-top: 1px solid $input-border
   .responsive &
     border: none
     padding: 10px
     +respond-to(wide-view)
-      border-top: 1px solid $responsive-footer-border
+      border-top: 1px solid $input-border
       padding: 0
 
 // ----------------------------------------------------------------------------
@@ -273,7 +273,7 @@ body
       border-top: none
       padding: 0
       +respond-to(wide-view)
-        border-top: 1px solid $responsive-footer-border
+        border-top: 1px solid $input-border
         padding: 0 10px
 
 .row--footer--about__logo
