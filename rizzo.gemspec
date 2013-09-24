@@ -17,6 +17,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'haml'
   gem.add_dependency 'sass'
+  gem.add_dependency 'airbrake'
   
   gem.add_development_dependency 'rspec', '2.10.0'
   gem.add_development_dependency 'rspec-rails', '2.10.0'

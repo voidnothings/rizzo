@@ -18,6 +18,7 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
 
   class MapManager
     @version: '0.0.11'
+    @apiKey: "AIzaSyBQxopw4OR08VaLVtHaY4XEXWk3dvLSj5k"
     @lodgingMap: null
     @nearbyThingsToDo: null
     @currentPOI: null
@@ -32,7 +33,7 @@ define ['jquery','lib/maps/lodging_map','lib/maps/nearby_things_to_do'], ($, Lod
 
         script = document.createElement("script")
         script.type = "text/javascript"
-        script.src = "http://maps.googleapis.com/maps/api/js?v=2&sensor=false&callback=lp.MapManager.initMap"
+        script.src = "http://maps.googleapis.com/maps/api/js?key=#{@apiKey}&v=2&sensor=false&callback=lp.MapManager.initMap"
         document.body.appendChild(script)
 
 
