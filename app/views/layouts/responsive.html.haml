@@ -13,7 +13,8 @@
   <![endif]-->
 
   = render 'layouts/mobile/require_js_config'
-  = render 'layouts/mobile/require_js_async', script_name: "app_destinations_landing"
+  - if (yield :async_js).present?
+    = render 'layouts/mobile/require_js_async', script_name: "#{yield :async_js}"
 
 %body.responsive.copy--freight
   .wrapper
