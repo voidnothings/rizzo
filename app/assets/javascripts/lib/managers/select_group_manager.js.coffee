@@ -28,5 +28,4 @@ define ['jquery'], ($) ->
 
     setOverlay: (target) ->
       t = $(target).find("option:selected")
-      val = t.text()
-      @getOverlay(target).text(val)
+      @getOverlay(target).text(t.text())
