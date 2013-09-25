@@ -60,7 +60,7 @@
       background-size: 40%
     +respond-to(wide-view)
       +font-size(14)
-      padding: 20px 4px
+      padding: 18px 4px
       border: none
       &:hover
         background: none
@@ -70,9 +70,15 @@
       &:before
         width: 0
         border: none
+  .homepage &
+    +respond-to(wide-view)
+      padding: 20px 4px
     
+  .responsive &, .responsive & > .nav__item
+    +respond-to(wide-view)
+      font-weight: bold
+
   .homepage &, .homepage & > .nav__item
-    @extend %smooth-text
     color: white
     +respond-to(wide-view)
       font-weight: bold
@@ -252,7 +258,7 @@
       font-size: 34px
       top: 0
       left: 10px
-    .homepage &:before
+    .responsive &:before
       content: ""
       background-size: 100%
       background-position: center
@@ -397,7 +403,7 @@ a.nav__item--breadcrumbs
 .icon--twitter--grey
   @extend %icon--twitter-before
   // SVG Version
-  .homepage &
+  .responsive &
     background-position: center
     &:before
       content: ""
@@ -405,7 +411,7 @@ a.nav__item--breadcrumbs
 .icon--facebook--grey
   @extend %icon--facebook-before
   // SVG Version
-  .homepage &
+  .responsive &
     background-position: center
     &:before
       content: ""
@@ -413,7 +419,7 @@ a.nav__item--breadcrumbs
 .icon--google-plus--grey
   @extend %icon--google-plus-before
   // SVG Version
-  .homepage &
+  .responsive &
     background-position: center
     &:before
       content: ""
@@ -421,7 +427,7 @@ a.nav__item--breadcrumbs
 .icon--flickr--grey
   @extend %icon--flickr-before
   // SVG Version
-  .homepage &
+  .responsive &
     background-position: center
     &:before
       content: ""
@@ -429,7 +435,7 @@ a.nav__item--breadcrumbs
 .icon--rss--grey
   @extend %icon--rss-before
   // SVG Version
-  .homepage &
+  .responsive &
     background-position: center
     &:before
       content: ""
@@ -437,7 +443,7 @@ a.nav__item--breadcrumbs
 .icon--youtube--grey
   @extend %icon--youtube-before
   // SVG Version
-  .homepage &
+  .responsive &
     background-position: center
     &:before
       content: ""
@@ -445,7 +451,7 @@ a.nav__item--breadcrumbs
 .icon--pinterest--grey
   @extend %icon--pinterest-before
   // SVG Version
-  .homepage &
+  .responsive &
     background-position: center
     &:before
       content: ""
