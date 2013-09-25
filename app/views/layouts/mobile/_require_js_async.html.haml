@@ -2,22 +2,20 @@
 
   :javascript
     (function(d, s, id) {
-      var fjs, js, ie;
-      fjs = d.getElementsByTagName(s)[0];
-      js = d.createElement(s);
-      js.id = id;
-      js.async = true;
-      js.src = "#{asset_path('requirejs/require.js')}";
-      ie = document.documentElement.className.match(/ie([0-9]+)/);
-
-      if (document.documentElement.clientWidth < 1025 && !ie) {
-        window.lp.isMobile = true;
-        main = "#{async_js_path(script_name, mobile: true)}";
-      } else if (window.lp.enhanced || ie) {
-        main = "#{async_js_path(script_name)}";
-      } else {
-        // Return false here rather than breaking the functionality of the site entirely.
-        return false;
+      var ie = document.documentElement.className.match(/ie([0-9]+)/);
+      if (window.lp.enhanced || ie) {
+        var fjs, js;
+        fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s);
+        js.id = id;
+        js.async = true;
+        js.src = "#{asset_path('requirejs/require.js')}";
+        if (document.documentElement.clientWidth < 1025 && !ie) {
+          window.lp.isMobile = true;
+          main = "#{async_js_path(script_name, mobile: true)}";
+        } else {
+          main = "#{async_js_path(script_name)}";
+        }
       }
       js.setAttribute("data-main", main);
       return fjs.parentNode.insertBefore(js, fjs);

@@ -60,7 +60,7 @@
       background-size: 40%
     +respond-to(wide-view)
       +font-size(14)
-      padding: 20px 4px
+      padding: 18px 4px
       border: none
       &:hover
         background: none
@@ -70,6 +70,9 @@
       &:before
         width: 0
         border: none
+  .homepage &
+    +respond-to(wide-view)
+      padding: 20px 4px
     
   .responsive &, .responsive & > .nav__item
     +respond-to(wide-view)
