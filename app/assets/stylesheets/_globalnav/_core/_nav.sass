@@ -71,8 +71,11 @@
         width: 0
         border: none
     
+  .responsive &, .responsive & > .nav__item
+    +respond-to(wide-view)
+      font-weight: bold
+
   .homepage &, .homepage & > .nav__item
-    @extend %smooth-text
     color: white
     +respond-to(wide-view)
       font-weight: bold
