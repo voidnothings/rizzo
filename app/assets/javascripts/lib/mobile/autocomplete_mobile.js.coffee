@@ -9,6 +9,7 @@
 #     id                      : [string] The target form element
 #     uri                     : [string] The search endpoint
 #     scope                   : [string] (Optional) Value to specify as the scope of the search
+#     threshold               : [number] (Optional) The number of characters required before searching
 #     throttle                : [number] (Optional) Time in ms to throttle requests to search endpoint
 #     resultsClass            : [string] (Optional) Class name for results list element
 #     resultItemClass         : [string] (Optional) Class name for result list item element
