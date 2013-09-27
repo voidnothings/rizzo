@@ -261,7 +261,6 @@ define [], ->
       @config.showResultsCallback.call @el if @config.showResultsCallback
 
     _removeResults: ->
-      @_emptyResults()
       @results.parentNode.removeChild @results
       @results.displayed = false
       @results.highlighted = false
