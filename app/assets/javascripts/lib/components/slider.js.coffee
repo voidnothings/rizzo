@@ -65,7 +65,7 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
       pagination = ''
 
       @$slides.each (i) =>
-        pagination += '<a href="#" class="slider__pagination--link">'+(i+1)+'</a>'
+        pagination += '<a href="#" class="slider__pagination--link">#{i+1}</a>'
 
       @$slider_pagination.append(pagination)
 
