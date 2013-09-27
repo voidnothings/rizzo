@@ -30,16 +30,17 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
       @current_slide = 1
       @$el = $(config.el)
       @$slides = @$el.find(config.slides)
+      @numSlides = @$el.find(@$slides).length
 
-      if @$el.length is 0 or @$slides.length < 2
+      if @$el.length is 0 or @numSlides < 2
         return false
 
       @$slides_container = @$el.find(config.slides_container)
       @$slides_viewport = @$el.find(config.slides_viewport)
       @$slider_controls = $('<div class="slider__controls no-print"></div>')
       @$slider_pagination = $('<div class="slider__pagination no-print"></div>')
-      @$next = $('<a href="#" class="slider__control slider__control--next icon--chevron-right--white--before">2 of '+@$el.find(@$slides).length+'</a>')
-      @$prev = $('<a href="#" class="slider__control slider__control--prev icon--chevron-left--white--after">'+@$el.find(@$slides).length+' of '+@$el.find(@$slides).length+'</a>')
+      @$next = $("<a href='#' class='slider__control slider__control--next icon--chevron-right--white--before'>2 of #{@numSlides}</a>")
+      @$prev = $("<a href='#' class='slider__control slider__control--prev icon--chevron-left--white--after'>#{@numSlides} of #{@numSlides}</a>")
       @$legacy = $('html.ie7, html.ie8, body.browserIE7, body.browserIE8')
 
       if (@$slides_viewport.length is 0)
@@ -65,7 +66,7 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
       pagination = ''
 
       @$slides.each (i) =>
-        pagination += '<a href="#" class="slider__pagination--link">#{i+1}</a>'
+        pagination += "<a href='#' class='slider__pagination--link'>#{i+1}</a>"
 
       @$slider_pagination.append(pagination)
 
