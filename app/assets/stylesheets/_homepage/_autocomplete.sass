@@ -11,8 +11,6 @@
   position: absolute
   width: 100%
   z-index: 5
-  .autocomplete__active &
-    border: 1px solid #F0F3F4
 
 .autocomplete__result
   +font-size(18)
@@ -20,11 +18,9 @@
   display: block
   padding: 5px 10px
 
-  &:hover,
-  .autocomplete__active &
-    background: #07C
-    color: #fff
-    display: block
-    text-decoration: none
-
-
+.autocomplete__current
+  background: #07C
+  color: #fff
+  cursor: pointer
+  display: block
+  text-decoration: none
