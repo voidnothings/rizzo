@@ -140,7 +140,7 @@ define [], ->
     _resultsClick: (e) ->
       target = e.target
 
-      # if the target was a b, check its parent
+      # If the user clicked on the highlighted section of the result, check its parent
       target = target.parentNode if target.tagName == 'B'
 
       # if the real target was an anchor, prevent the event from bubbling so the text isn't selected
