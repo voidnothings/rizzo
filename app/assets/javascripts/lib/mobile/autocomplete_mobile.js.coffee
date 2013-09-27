@@ -165,8 +165,8 @@ define [], ->
 
     _resultsMouseOut: ->
       @_clearHighlight()
-      delete @results.hovered
-      delete @results.highlighted
+      @results.hovered = false
+      @results.highlighted = false
 
     _selectCurrent: ->
       @el.value = @results.highlighted.textContent
@@ -239,7 +239,7 @@ define [], ->
       @_makeRequest searchTerm
 
     _throttleTimeout: ->
-      delete @throttled
+      @throttled = false
       @_doSearch @el.value if @currentSearch != @el.value
 
     _generateURI: (searchTerm, scope) ->
@@ -263,8 +263,8 @@ define [], ->
     _removeResults: ->
       @_emptyResults()
       @results.parentNode.removeChild @results
-      delete @results.displayed
-      delete @results.highlighted
+      @results.displayed = false
+      @results.highlighted = false
       @config.removeResultsCallback.call @el if @config.removeResultsCallback
 
     _emptyResults: ->
