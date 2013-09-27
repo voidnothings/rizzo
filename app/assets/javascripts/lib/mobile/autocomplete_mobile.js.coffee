@@ -167,6 +167,23 @@ define [], ->
       @config.selectCallback.call @results.highlighted if @config.selectCallback
       @_removeResults()
 
+    _highlight: (direction) ->
+      if not @results.highlighted
+        if direction is 'up'
+          @results.highlighted = @results.lastChild
+        if direction is 'down'
+          @results.highlighted = @results.firstChild
+      else
+        if direction is 'up'
+          unless @results.highlighted.previousSibling == null
+            @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
+            @results.highlighted = @results.highlighted.previousSibling
+        if direction is 'down'
+          unless @results.highlighted.nextSibling == null
+            @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
+            @results.highlighted = @results.highlighted.nextSibling 
+      @_highlightCurrent()
+
     _highlightCurrent: ->
       @_addClass @results.highlighted, @config.resultItemHoveredClass
 
@@ -186,23 +203,6 @@ define [], ->
     _handleCancel: ->
       @el.value = ''
       @_removeResults() if @results.displayed
-
-    _highlight: (direction) ->
-      if not @results.highlighted
-        if direction is 'up'
-          @results.highlighted = @results.lastChild
-        if direction is 'down'
-          @results.highlighted = @results.firstChild
-      else
-        if direction is 'up'
-          unless @results.highlighted.previousSibling == null
-            @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
-            @results.highlighted = @results.highlighted.previousSibling
-        if direction is 'down'
-          unless @results.highlighted.nextSibling == null
-            @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
-            @results.highlighted = @results.highlighted.nextSibling 
-      @_highlightCurrent()
 
     _navigateTo: (location) ->
       window.location = location
@@ -261,7 +261,7 @@ define [], ->
       @config.removeResultsCallback.call @el if @config.removeResultsCallback
 
     _emptyResults: ->
-      @results.removeChild @results.firstChild while @results.firstChild
+      @results.innerHTML = ''
 
     _createListItem: (item, searchTerm) ->
       listItem = document.createElement 'LI'

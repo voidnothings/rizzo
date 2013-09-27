@@ -1,4 +1,4 @@
-require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
+require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
 
   describe 'AutoComplete', ->
 
@@ -135,7 +135,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
         myAutoComplete._resultsMouseOver(testElt)
         myAutoComplete._resultsMouseOut()
 
-        expect(myAutoComplete.results.hovered).not.toBeDefined()
+        expect(myAutoComplete.results.hovered).toBe false
 
     describe 'updating the results list', ->
 
@@ -314,7 +314,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
           myAutoComplete = new AutoComplete newConfig
           myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
 
-          myAutoComplete._highlightDown()
+          myAutoComplete._highlight('down')
           myAutoComplete._handleEnter()
 
           expect(callbackSpy).toHaveBeenCalled()
@@ -359,12 +359,12 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
             myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
 
           it 'highlights the first item in the list if none selected and down is pressed', ->
-            myAutoComplete._highlightDown()
+            myAutoComplete._highlight('down')
 
             expect(myAutoComplete.results.highlighted).toBe myAutoComplete.results.firstChild
 
           it 'highlights the last item in the list if none selected and up is pressed', ->
-            myAutoComplete._highlightUp()
+            myAutoComplete._highlight('up')
 
             expect(myAutoComplete.results.highlighted).toBe myAutoComplete.results.lastChild
 
@@ -372,7 +372,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
             myAutoComplete.results.highlighted = myAutoComplete.results.firstChild
             oldSelected = myAutoComplete.results.highlighted
 
-            myAutoComplete._highlightDown()
+            myAutoComplete._highlight('down')
 
             expect(myAutoComplete.results.highlighted).toBe oldSelected.nextSibling
 
@@ -380,7 +380,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
             myAutoComplete.results.highlighted = myAutoComplete.results.lastChild
             oldSelected = myAutoComplete.results.highlighted
 
-            myAutoComplete._highlightUp()
+            myAutoComplete._highlight('up')
 
             expect(myAutoComplete.results.highlighted).toBe oldSelected.previousSibling
 
@@ -388,7 +388,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
             myAutoComplete.results.highlighted = myAutoComplete.results.firstChild
             oldSelected = myAutoComplete.results.highlighted
 
-            myAutoComplete._highlightUp()
+            myAutoComplete._highlight('up')
 
             expect(myAutoComplete.results.highlighted).toBe oldSelected
 
@@ -396,7 +396,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
             myAutoComplete.results.highlighted = myAutoComplete.results.lastChild
             oldSelected = myAutoComplete.results.highlighted
 
-            myAutoComplete._highlightDown()
+            myAutoComplete._highlight('down')
 
             expect(myAutoComplete.results.highlighted).toBe oldSelected
 
@@ -411,7 +411,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
             myAutoComplete = new AutoComplete newConfig
             myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
 
-            myAutoComplete._highlightDown()
+            myAutoComplete._highlight('down')
             myAutoComplete._handleEnter()
 
             expect(myAutoComplete.el.value).toBe SEARCH_RESULTS[0].title
@@ -421,7 +421,7 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
             myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
             spyOn myAutoComplete, "_navigateTo"
 
-            myAutoComplete._highlightDown()
+            myAutoComplete._highlight('down')
             myAutoComplete._handleEnter()
 
             expect(myAutoComplete._navigateTo).toHaveBeenCalled()
@@ -445,8 +445,8 @@ require ['lib/mobile/autocomplete_2'], (AutoComplete) ->
           myAutoComplete._resultsMouseOver targetItem
           myAutoComplete._resultsMouseOut()
 
-          expect(myAutoComplete.results.highlighted).not.toBeDefined()
-          expect(myAutoComplete.results.hovered).not.toBeDefined()
+          expect(myAutoComplete.results.highlighted).toBe false
+          expect(myAutoComplete.results.hovered).toBe false
           expect($(targetItem)).not.toHaveClass 'autocomplete__current'
 
         it 'selects a link list item when clicked', ->
