@@ -114,32 +114,26 @@ define [], ->
 
     # event handlers
     _keypressHandler: (e) ->
-      switch e.keyCode
-        when KEY.up
-          if @results.displayed
+      if @results.displayed
+        switch e.keyCode
+          when KEY.up
             e.preventDefault()
             @_highlight('up')
-            # @_highlightUp()
-        when KEY.down
-          if @results.displayed
+          when KEY.down
             e.preventDefault()
             @_highlight('down')
-            # @_highlightDown()
-        when KEY.tab
-          if @results.displayed
+          when KEY.tab
             e.preventDefault()
             if e.shiftKey
               @_highlight('up')
-              # @_highlightUp()
             else
               @_highlight('down')
-              # @_highlightDown()
-        when KEY.enter
-          if @results.highlighted
-            e.preventDefault()
-            @_handleEnter()
-        when KEY.esc
-          @_handleCancel()
+          when KEY.enter
+            if @results.highlighted
+              e.preventDefault()
+              @_handleEnter()
+          when KEY.esc
+            @_handleCancel()
 
     _resultsClick: (e) ->
       target = e.target
