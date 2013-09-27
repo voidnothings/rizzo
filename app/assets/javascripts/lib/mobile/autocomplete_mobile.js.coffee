@@ -118,18 +118,22 @@ define [], ->
         when KEY.up
           if @results.displayed
             e.preventDefault()
-            @_highlightUp()
+            @_highlight('up')
+            # @_highlightUp()
         when KEY.down
           if @results.displayed
             e.preventDefault()
-            @_highlightDown()
+            @_highlight('down')
+            # @_highlightDown()
         when KEY.tab
           if @results.displayed
             e.preventDefault()
             if e.shiftKey
-              @_highlightUp()
+              @_highlight('up')
+              # @_highlightUp()
             else
-              @_highlightDown()
+              @_highlight('down')
+              # @_highlightDown()
         when KEY.enter
           if @results.highlighted
             e.preventDefault()
@@ -170,7 +174,7 @@ define [], ->
       @_removeResults()
 
     _highlightCurrent: ->
-      @_addClass @results.highlighted, "#{@config.resultItemHoveredClass}"
+      @_addClass @results.highlighted, @config.resultItemHoveredClass
 
     _clearHighlight: ->
       @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
@@ -189,22 +193,21 @@ define [], ->
       @el.value = ''
       @_removeResults() if @results.displayed
 
-    _highlightDown: ->
+    _highlight: (direction) ->
       if not @results.highlighted
-        @results.highlighted = @results.firstChild
+        if direction is 'up'
+          @results.highlighted = @results.lastChild
+        if direction is 'down'
+          @results.highlighted = @results.firstChild
       else
-        unless @results.highlighted.nextSibling == null
-          @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
-          @results.highlighted = @results.highlighted.nextSibling 
-      @_highlightCurrent()
-
-    _highlightUp: ->
-      if not @results.highlighted
-        @results.highlighted = @results.lastChild
-      else
-        unless @results.highlighted.previousSibling == null
-          @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
-          @results.highlighted = @results.highlighted.previousSibling 
+        if direction is 'up'
+          unless @results.highlighted.previousSibling == null
+            @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
+            @results.highlighted = @results.highlighted.previousSibling
+        if direction is 'down'
+          unless @results.highlighted.nextSibling == null
+            @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
+            @results.highlighted = @results.highlighted.nextSibling 
       @_highlightCurrent()
 
     _navigateTo: (location) ->
