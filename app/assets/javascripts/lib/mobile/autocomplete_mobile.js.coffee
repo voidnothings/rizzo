@@ -1,245 +1,307 @@
 # AutoComplete
 #
 # TODO: - there's a bug with accented characters, they aren't being highlighted
-#         (http://instanceof.me/post/17455522476/accent-folding-javascript as a possible solution)
-#       - possibly cancel an existing XHR if typing continues and the last one hasn't returned yet
-#       - put the classes into a config object
+#         (http://frightanic.com/projects/jquery-highlight/ as an example)
 #       - abstract the XHR code to a separate library
 #
 # Arguments:
 #   _args (An object containing)
-#     id        : [string] The target form element
-#     uri       : [string] The search endpoint
-#     listOnly  : [boolean] (Optional) Flag whether to only show the list of results
-#     scope     : [string] (Optional) Value to specify as the scope of the search
+#     id                      : [string] The target form element
+#     uri                     : [string] The search endpoint
+#     scope                   : [string] (Optional) Value to specify as the scope of the search
+#     throttle                : [number] (Optional) Time in ms to throttle requests to search endpoint
+#     resultsClass            : [string] (Optional) Class name for results list element
+#     resultItemClass         : [string] (Optional) Class name for result list item element
+#     resultLinkClass         : [string] (Optional) Class name for result list link element
+#     resultItemHoveredClass  : [string] (Optional) Class name for hovered
+#     map                     : [object] (Optional) Endpoint mappings
+#     inputCallback           : [function] (Optional) when something has been entered in the input element
+#     selectCallback          : [function] (Optional) when an item has been selected
+#     showResultsCallback     : [function] (Optional) when the results list has been displayed
+#     removeResultsCallback   : [function] (Optional) when the results list has been removed
+#
+# Map:
+#   Maps an endpoint key to the component's expected key
+#     title : [string]
+#     type  : [string]
+#     uri   : [string]
+#     data  : [array of strings] adds data attribute on the list item for each value
 #
 # Example:
 #  args =
 #    id: 'my_search'
 #    uri: '/search'
-#    scope: 'homepage'
 #
 #  new AutoComplete(args)
 #
 # Dependencies:
 #   None
 
-required = if window.lp.isMobile then 'jsmin' else 'jquery'
-
-define [required, 'lib/extends/events'], ($, EventEmitter) ->
+define [], ->
 
   class AutoComplete
 
-    for key, value of EventEmitter
-      @prototype[key] = value
-
-    CONFIG = {
-      threshold: 3,
-      map: {
+    DEFAULTS =
+      threshold: 3
+      resultsClass: 'autocomplete__results'
+      resultItemClass: 'autocomplete__result'
+      resultLinkClass: 'autocomplete__result__link'
+      resultItemHoveredClass: 'autocomplete__current'
+      throttle: 200
+      map:
         title: 'title',
         type: 'type',
         uri: 'uri'
-      }
-    }
 
-    constructor: (@args) ->
-      @$el = $("##{@args.id}")
-      @init() unless @$el.length is 0
+    KEY =
+      tab: 9,
+      enter: 13,
+      esc: 27,
+      up: 38,
+      down: 40
 
-    init: ->
-      if @args.responseMap
-        @responseMap = @args.responseMap
-      else
-        @responseMap = CONFIG.map
+    constructor: (args) ->
+      @_init args if args.id and args.uri
 
+    _init: (args) ->
+      @config = @_updateConfig args
+      @el = document.getElementById @config.id
+      @xhr = @_setupXHR()
       @_addEventHandlers()
-      @showingList = false
-      @throttled = false
+      @results = @_buildResults()
+
+    _updateConfig: (args) ->
+      newConfig = {}
+      newConfig[key] = value for own key, value of DEFAULTS
+      newConfig[key] = value for own key, value of args
+      newConfig
 
     _addEventHandlers: ->
-      @$el.on 'input', (e) =>
+      @_on(@el, 'input', (e) =>
         @_searchFor e.currentTarget.value
+      )
+      @_on(@el, 'keydown', (e) =>
+        @_keypressHandler e
+      )
 
-      @$el.on 'keydown', (e) =>
-        if @showingList
-          @_handleKeypress e
+    _setupXHR: ->
+      xhr = new XMLHttpRequest()
+      @_on(xhr, 'readystatechange', =>
+        if @xhr.readyState == 4
+          if @xhr.status == 200
+            @_populateResults JSON.parse(@xhr.responseText), @currentSearch
+      )
+      xhr
 
-      # @$el.on 'blur', =>
-      #   if @showingList
-      #     @_hideList()
+    _buildResults: ->
+      results = document.createElement 'UL'
+      @_addClass results, @config.resultsClass
+      @_addClass results, "#{@config.resultsClass}--#{@config.classModifier}" if @config.classModifier
 
-      # @$el.on 'focus', =>
-      #   if @showingList
-      #     @_unhideList()
+      @_on(results, 'click', (e) =>
+        @_resultsClick e
+      , false)
 
-      @$el.parent().on 'click', (e) =>
-        target = e.target
-        if target.tagName == 'A'
-          # only set the input element value if the link goes nowhere
-          if target.getAttribute('href') == '#'
+      @_on(results, 'mouseover', (e) =>
+        @_resultsMouseOver e.target
+      , false)
+
+      @_on(results, 'mouseout', (e) =>
+        @_resultsMouseOut e.target
+      , false)
+      results
+
+    # event handlers
+    _keypressHandler: (e) ->
+      switch e.keyCode
+        when KEY.up
+          if @results.displayed
             e.preventDefault()
-            @_setValue target.textContent
-            if @responseMap.slug
-              @_setSlug target.parentNode.getAttribute('data-slug')
-            @_removeResults()
+            @_highlightUp()
+        when KEY.down
+          if @results.displayed
+            e.preventDefault()
+            @_highlightDown()
+        when KEY.tab
+          if @results.displayed
+            e.preventDefault()
+            if e.shiftKey
+              @_highlightUp()
+            else
+              @_highlightDown()
+        when KEY.enter
+          if @results.highlighted
+            e.preventDefault()
+            @_handleEnter()
+        when KEY.esc
+          @_handleCancel()
 
-    _setValue: (text) ->
-      if lp.isMobile
-        @$el.value = text
-      else
-        @$el[0].value = text
+    _resultsClick: (e) ->
+      target = e.target
 
-    _setSlug: (text) ->
-      document.getElementById('hotel-search-slug').value = text
+      # if the target was a b, check its parent
+      target = target.parentNode if target.tagName == 'B'
 
-    _handleKeypress: (e) ->
-      if e.keyCode == 40 # down arrow
-        e.preventDefault()
-        @_highlightDown()
-      if e.keyCode == 38 # up arrow
-        e.preventDefault()
-        @_highlightUp()
-      if e.keyCode == 13 # enter
-        if @args.listOnly
-          location.href = @resultsList.childNodes[@currentHighlight].firstChild.href # aaargh!!!
-        else
-          e.preventDefault()
-          @_selectHighlighted()
-      if e.keyCode == 27
-        @_removeResults()
+      # if the real target was an anchor, prevent the event from bubbling so the text isn't selected
+      if target.tagName == 'A'
+        e.stopPropagation()
+      else if target.tagName == 'LI'
+        @results.highlighted = target
+        @_selectCurrent()
 
-    _highlightDown: ->
-      if @currentHighlight >= 0
-        @_updateHighlight @currentHighlight+1, @currentHighlight
-      else
-        @currentHighlight = 0
-        @_updateHighlight @currentHighlight
+    _resultsMouseOver: (target) ->
+      until target.tagName is 'LI'
+        target = target.parentNode
 
-    _highlightUp: ->
-      resultsLength = @resultsList.childNodes.length
+      @_clearHighlight()
+      @results.highlighted = target
+      @results.hovered = true
+      @_highlightCurrent()
 
-      if @currentHighlight < resultsLength
-        @_updateHighlight @currentHighlight-1, @currentHighlight
-      else
-        @currentHighlight = resultsLength-1
-        @_updateHighlight @currentHighlight
+    _resultsMouseOut: ->
+      @_clearHighlight()
+      delete @results.hovered
+      delete @results.highlighted
 
-    _updateHighlight: (newActive, oldActive) ->
-      results = @resultsList.childNodes
-
-      if newActive >= results.length
-        newActive = results.length-1
-
-      if newActive < 0
-        newActive = 0
-
-      @currentHighlight = newActive
-      results[oldActive].className = '' if oldActive >= 0 and oldActive != newActive
-      results[newActive].className = 'autocomplete__active'
-
-    _selectHighlighted: ->
-      currentItem = @resultsList.childNodes[@currentHighlight]
-      @_setValue currentItem.textContent
-      if @responseMap.slug
-        @_setSlug currentItem.getAttribute('data-slug')
+    _selectCurrent: ->
+      @el.value = @results.highlighted.textContent
+      @config.selectCallback.call @results.highlighted if @config.selectCallback
       @_removeResults()
 
-    # _hideList: ->
-    #   body = $('body')
-    #   body.removeClass 'hero-search-results-displayed'
-    #   body.addClass 'hero-search-results-hidden'
+    _highlightCurrent: ->
+      @_addClass @results.highlighted, "#{@config.resultItemHoveredClass}"
 
-    # _unhideList: ->
-    #   body = $('body')
-    #   body.removeClass 'hero-search-results-hidden'
-    #   body.addClass 'hero-search-results-displayed'
+    _clearHighlight: ->
+      @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
 
-    _slothify: (searchTerm) ->
-      if searchTerm.toLowerCase() == "sloth"
-        @trigger('sloth/add')
-        @slothified = true
+    # keypress handlers
+    _handleEnter: ->
+      # check if the child of the selected node is a link
+      highlighted = @results.highlighted.firstChild
+      if highlighted.tagName == 'A'
+        # it's a link, change the href
+        @_navigateTo highlighted.href
+      else 
+        @_selectCurrent()
+
+    _handleCancel: ->
+      @el.value = ''
+      @_removeResults() if @results.displayed
+
+    _highlightDown: ->
+      if not @results.highlighted
+        @results.highlighted = @results.firstChild
       else
-        if @slothified is true
-          $('#js-card-holder').trigger('sloth/remove')
-          @slothified = false
+        unless @results.highlighted.nextSibling == null
+          @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
+          @results.highlighted = @results.highlighted.nextSibling 
+      @_highlightCurrent()
 
-    _searchFor: (searchTerm)  ->
-      threshold = @args.threshold || CONFIG.threshold
-      if searchTerm && searchTerm.length >= threshold
-        @searchTerm = searchTerm
-        @_slothify(searchTerm)
-        if not @throttled
-          @_doRequest @searchTerm
-      else if @showingList
+    _highlightUp: ->
+      if not @results.highlighted
+        @results.highlighted = @results.lastChild
+      else
+        unless @results.highlighted.previousSibling == null
+          @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
+          @results.highlighted = @results.highlighted.previousSibling 
+      @_highlightCurrent()
+
+    _navigateTo: (location) ->
+      window.location = location
+
+    _searchFor: (searchTerm) ->
+      if searchTerm?.length >= @config.threshold
+        @_doSearch searchTerm unless @throttled
+      else if @results.displayed
         @_removeResults()
-        @_slothify(searchTerm)
+      @config.inputCallback.call @el if @config.inputCallback
 
-    _doRequest: ->
-      myRequest = new XMLHttpRequest()
-      myRequest.addEventListener 'readystatechange', =>
-        if myRequest.readyState == 4
-          if myRequest.status == 200
-            @_updateUI JSON.parse myRequest.responseText
+    _makeRequest: (searchTerm) ->
+      if searchTerm != ''
+        @xhr.open 'get', @_generateURI(searchTerm, @config.scope)
+        @xhr.setRequestHeader 'Accept', '*/*'
+        @xhr.send()
 
-      myRequest.open 'get', @_generateURI(@args.uri, @args.scope)
-      myRequest.setRequestHeader 'Accept', '*/*'
-      myRequest.send()
-      @throttled = true
-      window.setTimeout =>
-        @throttled = false
-      , 200
+    _doSearch: (searchTerm) ->
+      unless @xhr.readyState == 4
+        @xhr.abort()
 
-    _generateURI: (searchURI, scope) ->
-      uri = "#{searchURI}#{@searchTerm}"
+      @currentSearch = searchTerm
+      if @config.throttle > 0
+        @throttled = true
+        setTimeout =>
+          @_throttleTimeout()
+        , @config.throttle
+      @_makeRequest searchTerm
+
+    _throttleTimeout: ->
+      delete @throttled
+      @_doSearch @el.value if @currentSearch != @el.value
+
+    _generateURI: (searchTerm, scope) ->
+      uri = "#{@config.uri}#{searchTerm}"
       uri += "?scope=#{scope}" if scope
       uri
 
+    _populateResults: (resultItems, searchTerm) ->
+      @_emptyResults() if @results.displayed
+
+      resultItems = resultItems.slice(0, @config.limit) if @config.limit
+
+      @results.appendChild(@_createListItem listItem, searchTerm) for listItem in resultItems
+      @_showResults() unless @results.displayed
+
+    _showResults: ->
+      @el.parentNode.insertBefore @results, @el.nextSibling # insertAfter @el
+      @results.displayed = true
+      @config.showResultsCallback.call @el if @config.showResultsCallback
+
     _removeResults: ->
-      results = $('.autocomplete__results')
-      @showingList = false
-      results.remove() if results
-      $('body').removeClass 'hero-search-results-displayed'
-      @showingList = false
+      @_emptyResults()
+      @results.parentNode.removeChild @results
+      delete @results.displayed
+      delete @results.highlighted
+      @config.removeResultsCallback.call @el if @config.removeResultsCallback
 
-    _updateUI: (searchResults) ->
-      if @showingList
-        @_removeResults()
+    _emptyResults: ->
+      @results.removeChild @results.firstChild while @results.firstChild
 
-      @resultsList = @_createList searchResults
-      @$el.after @resultsList # aka insertAfter
-      @showingList = true
-      @currentHighlight = undefined
-      $('body').addClass 'hero-search-results-displayed'
-
-    _createList: (results) ->
-      resultItems = (@_createListItem item for item in results)
-      resultItems = resultItems.slice(0, @args.results) if @args.results
-      list = document.createElement 'UL'
-      list.className = 'autocomplete__results'
-      list.appendChild listItem for listItem in resultItems
-      list
-
-    _createListItem: (item) ->
+    _createListItem: (item, searchTerm) ->
       listItem = document.createElement 'LI'
-      listItem.appendChild @_createAnchor(item)
-      if @responseMap.slug
-        listItem.setAttribute 'data-slug', item.slug
-      listItem
+      @_addClass listItem, @config.resultItemClass
 
-    _createAnchor: (item) ->
-      anchor = document.createElement 'A'
-      anchor.href = if @responseMap.uri then item[@responseMap.uri] else '#'
-      anchor.className = 'autocomplete__result'
+      highlightedText = @_highlightText item[@config.map.title], searchTerm
 
-      if @responseMap.type
-        anchor.className += " autocomplete__result__type icon--#{item[@responseMap.type]}--white--before"
-
-      if @searchTerm
-        anchor.innerHTML = @_highlightText item[@responseMap.title], @searchTerm
+      if @config.map.uri? and item.uri?
+        anchor = document.createElement 'A'
+        anchor.href = item[@config.map.uri]
+        anchor.className = @config.resultLinkClass
+        anchor.className += " autocomplete__result__typed icon--#{item[@config.map.type]}--white--before" if @config.map.type
+        anchor.innerHTML = highlightedText
+        listItem.appendChild anchor
       else
-        anchor.innerHTML = item[@responseMap.title]
-      anchor
+        listItem.innerHTML = highlightedText
+
+      if @config.map.data?
+        listItem.setAttribute("data-#{key}", item[key]) for key in @config.map.data
+
+      listItem
 
     _highlightText: (text, term) ->
       regex = new RegExp term, 'ig'
       text.replace regex, "<b>$&</b>"
+
+    # utility functions
+    _on: (elt, evt, callback) ->
+      if window.addEventListener
+        elt.addEventListener evt, callback, false
+      else if window.attachEvent
+        elt.attachEvent "on#{evt}", callback
+
+    _addClass: (item, _class) ->
+      if (item.className.indexOf _class) < 0
+        item.className += " #{_class}"
+
+    _removeClass: (item, _class) ->
+      reg = new RegExp ' ?'+_class, 'g'
+      item.className = item.className.replace reg, ''
