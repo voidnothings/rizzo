@@ -31,6 +31,7 @@ define ['jquery','lib/utils/css_helper', 'lib/maps/pink_parks_styles'], ($, CssH
 
     markerDelay = 0
     markerDelayReset = false
+    topic = $(document.documentElement).data('topic')
 
     constructor: (@args={})->
       @prepare()
