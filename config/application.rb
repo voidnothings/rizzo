@@ -18,7 +18,7 @@ module Rizzo
     config.active_support.escape_html_entities_in_json = true
     config.assets.enabled = true
     config.assets.version = '1.0'
-    config.assets.precompile += ['common_core.css', 'common_core_ie.css', 'common_core_no_font.css', 'common_core_no_font_ie.css', 'common_core_overrides.css', 'common_core_overrides_ie.css', 'common_legacy.css', 'common_legacy_ie.css', 'errbit_notifier.js', 'flamsteed.js', 'omniture/s_code.js', 'prism.js', 'prism.css', 'icons/icons.data.svg.css', 'icons/icons.data.png.css', 'icons/icons.fallback.css', 'fonts.css', 'styleguide.css']
+    config.assets.precompile += ['common_core.css', 'common_core_ie.css', 'common_core_no_font.css', 'common_core_no_font_ie.css', 'common_core_overrides.css', 'common_core_overrides_ie.css', 'common_legacy.css', 'common_legacy_ie.css', 'errbit_notifier.js', 'flamsteed.js', 'omniture/s_code.js', 'prism.js', 'prism.css', 'icons/icons.data.svg.css', 'icons/icons.data.png.css', 'icons/icons.fallback.css', 'fonts.css', 'styleguide.css', 'lonelyplanet_minjs/dist/$.js']
 
   end
 end

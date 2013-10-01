@@ -16,13 +16,6 @@
 
   .copy--title
     margin: 0
-  .copy--subtitle
-    +font-size(14)
-    font-weight: bold
-    letter-spacing: 0
-    margin-bottom: 0
-    margin-top: 20px
-    text-transform: none
   .section-subtitle
     font-weight: bold
 
@@ -162,6 +155,13 @@
 .aside__details
   background-color: $details-panel-bg-darker
 
+  .copy--subtitle
+    +font-size(14)
+    font-weight: bold
+    letter-spacing: 0
+    margin-bottom: 0
+    margin-top: 20px
+    text-transform: none
 
 // -----------------------------------------------------------------------------
 // Tour Itinerary
@@ -171,8 +171,9 @@
   .tour-itinerary__title
     +font-size(15)
     font-weight: bold
+    color: $header-grey
   .copy--meta
-    margin: 20px 0
+    margin: 10px 0 20px 0
 
 // -----------------------------------------------------------------------------
 // Booking Panel (normally as an aside)
@@ -193,10 +194,13 @@
 .details-panel
   background: $details-panel-bg
   padding: 20px
+  .section-title
+    color: $header-blue
   .section-glossary
     .section-title
       +font-size(14)
-      margin: 20px 0 5px
+      margin: 20px 0 0
+      font-weight: bold
 
 // -----------------------------------------------------------------------------
 // Special Offer tag
