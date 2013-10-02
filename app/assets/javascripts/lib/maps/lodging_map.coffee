@@ -25,7 +25,7 @@
 #   lodgingMap.render()
 #
 #
-define ['jquery','lib/utils/css_helper', 'lib/maps/pink_parks_styles'], ($, CssHelper, pinkParksStyles) ->
+define ['jquery','lib/utils/css_helper', 'lib/maps/map_style'], ($, CssHelper, mapStyles) ->
  
   class LodgingMap
 
@@ -54,7 +54,7 @@ define ['jquery','lib/utils/css_helper', 'lib/maps/pink_parks_styles'], ($, CssH
 
       target = $(@args.target).get()[0]
       @map = new google.maps.Map(target, opts)
-      @map.setOptions({styles: pinkParksStyles})
+      @map.setOptions({styles: mapStyles})
 
     setLodgingMarker: () ->
       opts =
