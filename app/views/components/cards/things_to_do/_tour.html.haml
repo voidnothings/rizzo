@@ -5,11 +5,11 @@
       %figure.card__hero.obj-media__img
         = image_tag(stack_item.image_url, class: 'card__image')
     %section.card__content.obj-media__body
-      %span.card__context
+      %span.card__context<
         Tour
-      %h1.card__name.js-card-name
+      %h1.card__name.js-card-name<
         = stack_item.name
-      %p.card__tour-duration
+      %p.card__tour-duration.copy--caption<
         = stack_item.duration
       %p.card__description
         = stack_item.card_description
