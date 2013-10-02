@@ -2,3 +2,10 @@ form_components:
   -
     :styleguide_title: "Fieldset"
     :legend: "Form legend"
+
+  -
+    :styleguide_title: "Text field"
+    :label: "Form legend"
+    :id: "Input ID"
+    :name: "Field name"
+    :placeholder: "Placeholder"
