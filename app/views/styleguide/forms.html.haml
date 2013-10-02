@@ -2,6 +2,6 @@
 - components = YAML.load(File.read(File.expand_path('../../../data/styleguide/forms_stubs.yml', __FILE__)))
 
 - components['form_components'].each_with_index do |component, i|
-  = sg_component("forms/#{component[:styleguide_title].downcase.split(' ').join('_')}", stack_item: OpenStruct.new(component), original_stub: component, count: i)
+  = sg_component("forms/#{component[:styleguide_title].downcase.split(' ').join('_')}", opts: OpenStruct.new(component), original_stub: component, count: i)
 
 = render 'styleguide/partials/shared'
