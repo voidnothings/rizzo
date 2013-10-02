@@ -1,0 +1,4 @@
+form_components:
+  -
+    :styleguide_title: "Fieldset"
+    :legend: "Form legend"
