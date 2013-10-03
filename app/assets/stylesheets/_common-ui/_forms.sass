@@ -1,0 +1,28 @@
+.field
+  +font-size(15)
+  @extend %clearfix
+  margin-bottom: 10px
+
+.field__label
+  float: left
+  padding: 10px 0
+  width: 128px
+
+.field__input
+  +border-radius(4)
+  +font-size(15)
+  background-color: #fff
+  color: $body-copy
+  display: block
+  padding: 10px
+
+.field__input--datepicker
+  @extend %input--regular
+  @extend %lodgings-sprite-standard
+  background-position: 99% -112px
+  padding-right: 35px
+  +retinafy()
+    @extend %lodgings-sprite-retina
+    background-position: 95% -111px
+  +placeholder()
+    color: $placeholder-copy
