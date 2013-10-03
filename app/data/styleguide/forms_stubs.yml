@@ -1,10 +1,14 @@
 form_components:
-  -
-    :styleguide_title: "Fieldset"
-    :legend: "Form legend may not be useful"
 
   -
     :styleguide_title: "Text field"
+    :label: "Field label"
+    :id: "text_id"
+    :name: "text_name"
+    :placeholder: "Placeholder"
+
+  -
+    :styleguide_title: "Select date"
     :label: "Field label"
     :id: "text_id"
     :name: "text_name"
