@@ -1,0 +1,15 @@
+= render :layout => 'components/forms/partials/field', :locals => { :opts => opts } do
+
+  .dropdown.js-select-group
+    - placeholder = opts.placeholder ? opts.placeholder : opts.options[0]
+
+    %label.dropdown__value.js-select-overlay<
+      = placeholder
+    %select.dropdown__select.js-select{ id: opts.id, name: opts.name }
+      - if placeholder
+        %option<
+          = placeholder
+
+      - opts.options.each do |key, value|
+        %option{ value: value }<
+          = key
