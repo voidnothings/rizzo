@@ -68,7 +68,7 @@ define ['jquery','lib/utils/css_helper', 'lib/maps/map_styles'], ($, CssHelper, 
           icon: @markerImageFor('hotel', 'large')
           animation: google.maps.Animation.DROP
         )
-        marker = new google.maps.Marker()
+        marker = new google.maps.Marker(opts)
       else
         opts.icon = @markerImageFor('location-marker', 'dot')
         marker = new google.maps.Marker(opts)
