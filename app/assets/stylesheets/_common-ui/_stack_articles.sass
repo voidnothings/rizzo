@@ -5,28 +5,15 @@
 //
 // -----------------------------------------------------------------------------
 
-.lodging
-  padding: 15px
-
-.lodging__header
-  margin-bottom: 20px
-  border-bottom: 1px solid $body-background
-  padding-bottom: 20px
-
 .lodging__title
   +font-size(42)
-  color: $header-blue
-  margin-bottom: 5px
 
 .lodging__link
   font-weight: bold
 
 .lodging__subtitle
-  +font-size(16)
   @extend %inline-block
-  @extend %body-copy
   @extend %vertically-centered-dot-after
-  @extend %reset-line-height
   &:last:after
     content: ''
 

@@ -45,6 +45,21 @@ body
 
 .row--text-centered
   text-align: center
+  .row__inner
+    width: 95%
+    +respond-to(wide-view)
+      width: 600px
+
+.row--image
+  background-position: cover
+  position: relative
+
+.row--image__standout
+  text-align: center
+  +respond-to(wide-view)
+    display: block
+    position: absolute
+    right: 55%
 
 // ----------------------------------------------------------------------------
 //
@@ -216,9 +231,10 @@ body
   z-index: 1
   .responsive &
     @extend %transition--nav
-    position: relative
+    margin-top: 55px
+    +respond-to(wide-view)
+      margin-top: 0
   .homepage &
-    padding-top: 0
     +respond-to(wide-view)
       margin-top: -55px
 

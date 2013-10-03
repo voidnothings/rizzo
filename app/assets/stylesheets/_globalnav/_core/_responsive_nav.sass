@@ -59,10 +59,10 @@ $responsive-nav-width: 240px
   display: none
   .responsive &
     @extend %transition--nav
-    top: 10px
-    right: 15px
     color: white
     display: block
+    top: 5px
+    right: 5px
     width: 60px
     height: 45px
     position: absolute
@@ -70,6 +70,8 @@ $responsive-nav-width: 240px
     background-position: center
     cursor: pointer
     +respond-to(wide-view)
+      top: 10px
+      right: 15px
       display: none
 
 // On click..
