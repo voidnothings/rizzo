@@ -11,6 +11,13 @@ form_components:
     :placeholder: "Placeholder"
 
   -
+    :styleguide_title: "Security Code"
+    :label: "Field label"
+    :id: "text_id"
+    :name: "text_name"
+    :placeholder: "Placeholder"
+
+  -
     :styleguide_title: "Select field"
     :label: "Select legend"
     :id: "select_id"
