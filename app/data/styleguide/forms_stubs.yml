@@ -1,11 +1,19 @@
 form_components:
   -
     :styleguide_title: "Fieldset"
-    :legend: "Form legend"
+    :legend: "Form legend may not be useful"
 
   -
     :styleguide_title: "Text field"
-    :label: "Form legend"
-    :id: "Input ID"
-    :name: "Field name"
+    :label: "Field label"
+    :id: "text_id"
+    :name: "text_name"
     :placeholder: "Placeholder"
+
+  -
+    :styleguide_title: "Select field"
+    :label: "Select legend"
+    :id: "select_id"
+    :name: "select_name"
+    :placeholder: "Select Item"
+    :options: [ 'one', 'two', ['three', 3] ]

@@ -1,4 +1,2 @@
-.field
-  %label.field__label{ for: opts.id }
-    = opts.label
+= render :layout => 'components/forms/partials/field', :locals => { :opts => opts } do
   %input.field__input{ id: opts.id, name: opts.name, placeholder: opts.placeholder }
