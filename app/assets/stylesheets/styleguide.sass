@@ -55,6 +55,9 @@ pre.styleguide.is-open
 .clearfix
   @extend %clearfix
 
+.isnt-approximate
+  display: none
+
 .row--content
   margin-top: 50px
 
@@ -102,6 +105,8 @@ pre.styleguide.is-open
   &.is-light
     border-color: $body-background
     color: $body-copy
+  .is-approximate &
+    border-color: transparent
 
 .styleguide-block__description
   @extend %border-box
@@ -119,3 +124,6 @@ pre.styleguide.is-open
   min-width: 200px
   +font-size(15)
   line-height: 41px
+
+.styleguide-proximity__input
+  border: 1px solid grey
