@@ -1,0 +1,13 @@
+.pagination
+  .pagination__alpha
+    %a.pagination__link.pagination__link--prev &lt;
+    %a.pagination__link.pagination__link--first First
+
+  .pagination__numbers
+    - for num in 1..pagination[:total]
+      %a.pagination__link{ class: pagination[:current] == num ? "pagination__link--current" : "" }
+        = num
+  
+  .pagination__omega
+    %a.pagination__link.pagination__link--last Last
+    %a.pagination__link.pagination__link--next &gt;

@@ -69,7 +69,7 @@ pre.styleguide.is-open
   @extend %clearfix
   margin-bottom: 40px
 
-.styleguide-block__item
+.styleguide-block__item--left
   float: left
   margin-right: 20px
 
@@ -89,6 +89,11 @@ pre.styleguide.is-open
     &, .tag
       +font-size(14)
 
+.styleguide-block__item--card
+  margin-bottom: 0
+  margin-left: 10px
+  padding: 20px
+
 .styleguide-block__item--colour
   +border-radius(100)
   +vertically-center(100)
@@ -107,6 +112,8 @@ pre.styleguide.is-open
   @extend %border-box
   overflow: hidden
   padding: 20px
+.styleguide-block__description--full
+  margin-left: 10px
 
 .styleguide-block__heading
   margin-top: 0

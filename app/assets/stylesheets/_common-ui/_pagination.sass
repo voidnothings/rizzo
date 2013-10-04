@@ -21,6 +21,33 @@
 // </div>
 // --------------------------------------------------------------------------------------
 
+.pagination
+  margin-left: 10px
+  position: relative
+
+.pagination__link
+  +border-radius(5)
+  background: #fff
+  border: 2px solid $body-background
+  display: inline-block
+  margin-left: 2px
+  padding: 8px 12px
+
+  &:first-child
+    margin-left: 0
+
+.pagination__alpha,
+.pagination__omega
+  @extend %clearfix
+  position: absolute
+  top: 0
+
+.pagination__alpha
+  left: 0
+.pagination__omega
+  right: 0
+.pagination__numbers
+  text-align: center
 
 // --------------------------------------------------------------------------------------
 // Extends the nav object
