@@ -1,2 +1,2 @@
-= render :layout => 'components/forms/partials/field', :locals => { id: id, label: label } do
-  %input.field__input{ id: id, name: name, placeholder: placeholder }
+= render :layout => 'components/forms/partials/field', :locals => { id: opts[:id], label: opts[:label] } do
+  %input.field__input{ id: opts[:id], name: opts[:name], placeholder: opts[:placeholder] }

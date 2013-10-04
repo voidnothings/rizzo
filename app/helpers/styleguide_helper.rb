@@ -57,7 +57,7 @@ module StyleguideHelper
   end
 
   def ui_component(path, opts={})
-    render :partial => "components/#{path}", :locals => opts
+    render "components/#{path}", opts
   end
 
   def sg_component(path, opts)

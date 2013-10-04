@@ -1,5 +1,4 @@
 form_components:
-
   -
     :styleguide_title: "Text field"
     :label: "Field label"
