@@ -3,20 +3,19 @@
   width: 65%
 
 .fieldset
+  +font-size(16)
   color: $header-grey
 
 .fieldset__legend
   +font-size(20)
 
 .field
-  +font-size(15)
   @extend %clearfix
   margin-bottom: 10px
   position: relative
 
 .field__label
   @extend %border-box
-  +font-size(16)
   float: left
   padding: 10px 10px 10px 0
   width: 35%
@@ -25,12 +24,14 @@
   @extend %border-box
   @extend %input-field
   +border-radius(4)
-  +font-size(15)
-  background-color: #fff
+  background-color: $body-background-offset
   color: $body-copy
   float: left
   padding: 10px
   width: 65%
+
+  .standout &
+    background-color: #fff
 
 .field__select
   @extend %input-field
