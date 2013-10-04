@@ -1,20 +1,39 @@
+%input-field
+  float: left
+  width: 65%
+
+.fieldset
+  color: $header-grey
+
+.fieldset__legend
+  +font-size(20)
+
 .field
   +font-size(15)
   @extend %clearfix
   margin-bottom: 10px
+  position: relative
 
 .field__label
+  @extend %border-box
+  +font-size(16)
   float: left
-  padding: 10px 0
-  width: 128px
+  padding: 10px 10px 10px 0
+  width: 35%
 
 .field__input
+  @extend %border-box
+  @extend %input-field
   +border-radius(4)
   +font-size(15)
   background-color: #fff
   color: $body-copy
-  display: block
+  float: left
   padding: 10px
+  width: 65%
+
+.field__select
+  @extend %input-field
 
 .field__input--datepicker
   @extend %input--regular
