@@ -39,5 +39,6 @@ Rizzo::Application.routes.draw do
   get 'styleguide/colours'           => 'styleguide#colours'
   get 'styleguide/ui-colours'        => 'styleguide#uiColours'
   get 'styleguide/forms'             => 'styleguide#forms'
+  get 'styleguide/activity_list'        => 'styleguide#activity_list'
 
 end if defined?(Rizzo::Application)
