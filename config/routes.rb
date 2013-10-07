@@ -38,5 +38,8 @@ Rizzo::Application.routes.draw do
   get 'styleguide/typography'        => 'styleguide#typography'
   get 'styleguide/colours'           => 'styleguide#colours'
   get 'styleguide/ui-colours'        => 'styleguide#uiColours'
+  get 'styleguide/pagination'        => 'styleguide#pagination'
+  #===== yeoman hook =====#
+  # NB! The above line is required for our yeoman generator and should not be changed.
 
 end if defined?(Rizzo::Application)

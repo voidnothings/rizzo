@@ -26,4 +26,10 @@ class StyleguideController < GlobalController
     render '/styleguide/ui_colours'
   end
 
+  def pagination
+    render '/styleguide/pagination'
+  end
+
+  #===== yeoman hook =====#
+  # NB! The above line is required for our yeoman generator and should not be changed.
 end

@@ -1,6 +1,8 @@
 module StyleguideHelper
 
   def left_nav
+    # NB! The below line is required for our yeoman generator and should not be changed.
+    #===== yeoman begin-hook =====#
     {
       groups: [
         {
@@ -45,6 +47,8 @@ module StyleguideHelper
         }
       ]
     }
+    #===== yeoman end-hook =====#
+    # NB! The above line is required for our yeoman generator and should not be changed.
   end
 
   def ad_config
