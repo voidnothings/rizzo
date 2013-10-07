@@ -3,7 +3,7 @@
   .clearfix
     %h1.copy--title Pagination
     %p.copy--body
-      Note: we're using a convention in the url similar to that of handlebars/mustache (<strong>TODO</strong>: review whether this works as a solution) where <code>{{page}}</code> acts as a placeholder for the page number.
+      Note: we're using ruby's <code>sprintf</code> string interpolation in the path as a placeholder for the page number.
 
 - pagination.each_with_index do | stub, i |
   = sg_component('pagination', pagination: stub, count: i, full_width: true, card_style: true)
