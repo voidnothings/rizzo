@@ -50,9 +50,14 @@
       colourBlock.parentNode.removeAttribute('style');
       colourBlock.parentNode.className = colourBlock.parentNode.className.replace(' is-approximate', '').replace(' isnt-approximate', '');
 
+
       if (proximity < 20) {
         colourBlock.parentNode.style["background-color"] = /^#/.test(colour) ? colour : "#"+colour;
         colourBlock.parentNode.className+= ' is-approximate';
+
+        if (proximity === 0) {
+          colourBlock.parentNode.className+= ' is-exact';
+        }
       } else {
         colourBlock.parentNode.className+= ' isnt-approximate';
       }

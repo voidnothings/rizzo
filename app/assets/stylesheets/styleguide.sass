@@ -57,6 +57,15 @@ pre.styleguide.is-open
 
 .isnt-approximate
   display: none
+.is-exact
+  @extend %tick-icon-after
+  position: relative
+  &:after
+    color: white
+    font-size: 5em
+    position: absolute
+    right: 10px
+    top: 20px
 
 .row--content
   margin-top: 50px
