@@ -30,24 +30,12 @@
 .field__select
   @extend %input-field
 
-.field__input--datepicker
-  @extend %input--regular
-  @extend %lodgings-sprite-standard
-  background-position: 97% -111px
-  padding-right: 35px
-  +retinafy()
-    @extend %lodgings-sprite-retina
-    background-position: 95% -111px
-  +placeholder()
-    color: $placeholder-copy
-
 .field__security-code
   background: url("#{image_path('forms/lp-checkout.png')}") -81px -106px no-repeat
   float: left
   height: 27px
   margin: 6px 0 0 10px
   width: 46px
-
 
 
 .input
@@ -64,3 +52,14 @@
 
   .field--half &
     width: 50%
+
+.input--datepicker
+  @extend %input--regular
+  @extend %lodgings-sprite-standard
+  background-position: 97% -111px
+  padding-right: 35px
+  +retinafy()
+    @extend %lodgings-sprite-retina
+    background-position: 95% -111px
+  +placeholder()
+    color: $placeholder-copy
