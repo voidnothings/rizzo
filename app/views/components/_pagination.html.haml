@@ -5,8 +5,12 @@
 
   .pagination__numbers
     - for num in 1..pagination[:total]
-      %a.pagination__link{ class: pagination[:current] == num ? "pagination__link--current" : "" }
-        = num
+      - if pagination[:current] != num
+        %a.pagination__link
+          = num
+      - else
+        .pagination__link.pagination__link--current
+          = num
   
   .pagination__omega
     %a.pagination__link.pagination__link--last Last
