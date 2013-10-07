@@ -32,6 +32,9 @@
   .standout &
     background-color: #fff
 
+  .field--half &
+    width: 35%
+
 .field__select
   @extend %input-field
 
@@ -45,3 +48,10 @@
     background-position: 95% -111px
   +placeholder()
     color: $placeholder-copy
+
+.field__security-code
+  background: url("#{image_path('forms/lp-checkout.png')}") -81px -106px no-repeat
+  float: left
+  height: 27px
+  margin: 6px 0 0 10px
+  width: 46px
