@@ -9,6 +9,9 @@
 .fieldset__legend
   +font-size(20)
 
+
+
+
 .field
   @extend %clearfix
   margin-bottom: 10px
@@ -21,19 +24,8 @@
   width: 35%
 
 .field__input
-  @extend %border-box
-  +border-radius(4)
-  background-color: $body-background-offset
-  color: $body-copy
   float: left
-  padding: 10px
   width: 65%
-
-  .standout &
-    background-color: #fff
-
-  .field--half &
-    width: 35%
 
 .field__select
   @extend %input-field
@@ -55,3 +47,20 @@
   height: 27px
   margin: 6px 0 0 10px
   width: 46px
+
+
+
+.input
+  @extend %border-box
+  +border-radius(4)
+  background-color: $body-background-offset
+  color: $body-copy
+  float: left
+  padding: 10px
+  width: 100%
+
+  .standout &
+    background-color: #fff
+
+  .field--half &
+    width: 50%
