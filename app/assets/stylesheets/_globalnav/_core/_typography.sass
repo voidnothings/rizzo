@@ -28,9 +28,6 @@ body
 // Typographic Element Definitions 
 // -----------------------------------------------------------------------------
 
-h1, h2, h3
-  @extend %smooth-text
-
 p
   margin-bottom: 10px
 
@@ -50,27 +47,7 @@ a
   background-color: $active
   color: white
 
-// -----------------------------------------------------------------------------
-// Reusable Typographic Classes
-// -----------------------------------------------------------------------------
-
-.section-title
-  @extend %lp-font-stack
-  +font-size(22)
-  color: $lpblue 
-  margin-bottom: 15px
-
-.section-subtitle
-  @extend %lp-font-stack
-  +font-size(14)
-  color: $body-copy
-
-.label
-  +font-size(15)
-  @extend %smooth-text
-  font-weight: bold
-  color: $header-grey
-
-.disclaimer
-  @extend %disclaimer-copy
-
+// Override Chrome's agressive defaults
+hr
+  border: none
+  border-bottom: 1px solid $subdued
