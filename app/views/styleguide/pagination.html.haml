@@ -1,7 +1,9 @@
 - pagination = YAML.load(File.read(File.expand_path('../../../data/styleguide/pagination_stubs.yml', __FILE__)))
 .card.card--full-width.styleguide-intro
   .clearfix
-    %h1.split--left.copy--title Pagination
+    %h1.copy--title Pagination
+    %p.copy--body
+      Note: we're using a convention in the url similar to that of handlebars/mustache (<strong>TODO</strong>: review whether this works as a solution) where <code>{{page}}</code> acts as a placeholder for the page number.
 
 - pagination.each_with_index do | stub, i |
   = sg_component('pagination', pagination: stub, count: i, full_width: true, card_style: true)

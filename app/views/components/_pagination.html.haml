@@ -1,17 +1,21 @@
 .pagination
   .pagination__alpha
-    %a.pagination__link.pagination__link--prev &lt;
-    %a.pagination__link.pagination__link--first First
+    %a.pagination__link.pagination__link--prev{ href: pagination[:url].gsub(/\{\{page\}\}/, "#{pagination[:current] - 1}") }<
+      &lt;
+    %a.pagination__link.pagination__link--first{ href: pagination[:url].gsub(/\{\{page\}\}/, "1") }<
+      First
 
   .pagination__numbers
     - for num in 1..pagination[:total]
       - if pagination[:current] != num
-        %a.pagination__link
+        %a.pagination__link{ href: pagination[:url].gsub(/\{\{page\}\}/, "#{num}") }<
           = num
       - else
-        .pagination__link.pagination__link--current
+        .pagination__link.pagination__link--current<
           = num
   
   .pagination__omega
-    %a.pagination__link.pagination__link--last Last
-    %a.pagination__link.pagination__link--next &gt;
+    %a.pagination__link.pagination__link--last{ href: pagination[:url].gsub(/\{\{page\}\}/, "#{pagination[:total]}") }<
+      Last
+    %a.pagination__link.pagination__link--next{ href: pagination[:url].gsub(/\{\{page\}\}/, "#{pagination[:current] + 1}")}<
+      &gt;
