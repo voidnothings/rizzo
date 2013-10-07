@@ -34,7 +34,7 @@ body
   position: relative
   @extend %regular-width
   .responsive &
-    width: auto // 90% ??
+    width: 95%
     +respond-to(wide-view)
       max-width: 1000px
 
@@ -51,7 +51,9 @@ body
       width: 600px
 
 .row--image
-  background-position: cover
+  background-position: 50% 50%
+  background-repeat: no-repeat
+  background-size: cover
   position: relative
 
 .row--image__standout
@@ -232,11 +234,8 @@ body
   .responsive &
     @extend %transition--nav
     margin-top: 55px
-    +respond-to(wide-view)
-      margin-top: 0
   .homepage &
-    +respond-to(wide-view)
-      margin-top: -55px
+    margin-top: 0
 
 
 // ----------------------------------------------------------------------------
@@ -250,6 +249,7 @@ body
   .responsive &
     border: none
     padding: 10px
+    width: 100%
     +respond-to(wide-view)
       border-top: 1px solid $input-border
       padding: 0

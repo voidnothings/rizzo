@@ -29,17 +29,15 @@ $responsive-nav-width: 240px
     background: $offscreen-nav-background
     +respond-to(wide-view)
       box-shadow: none
-      position: static
       width: 100%
       background: $lpblue
       overflow: visible
       height: 55px
-      top: 10px
+      left: 0
+      right: auto
   .homepage &
     +respond-to(wide-view)
       background: none
-      position: relative
-      right: auto
 
 .nav--offscreen__title
   display: none
