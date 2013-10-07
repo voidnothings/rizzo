@@ -6,7 +6,7 @@
 
 .card.styleguide-intro.styleguide-block
   %h1.copy--h1 Buttons
-  %h5.copy--subtitle Please note: 
+  %h5.copy--h2 Please note: 
   %p.copy--body
     Buttons do not call this component directly as the abstraction would be overkill. Buttons should always look like these through a combination of the modifier classes detailed below and in 
     %a{href: 'https://github.com/lonelyplanet/rizzo/blob/master/app/assets/stylesheets/_common-ui/_buttons.sass'}
@@ -16,7 +16,7 @@
   - count = 0
   - buttons.each_with_index do | button, i |
     .styleguide-block__description.card
-      %h2.copy--subtitle.styleguide-block__heading
+      %h2.copy--h2.styleguide-block__heading
         = button[:styleguide_title]
 
       .styleguide-block__items
@@ -26,7 +26,7 @@
           %code #{raw(CGI::escapeHTML(Haml::Engine.new(template).render(template, button: button)))}
 
   .styleguide-block__description.card
-    %h2.copy--subtitle.styleguide-block__heading
+    %h2.copy--h2.styleguide-block__heading
       = variation[:styleguide_title]
     %p.copy--body
       These classes are chained to achieve further effects.
