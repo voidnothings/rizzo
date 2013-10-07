@@ -1,12 +1,17 @@
 // -----------------------------------------------------------------------------
 // Headings
+// 
+// Headings only inherit their margins when included within a .copy--body
+// container. This allows for fewer overrides when using them elsewhere.
 // -----------------------------------------------------------------------------
 
 .copy--h1
   +font-size(32)
   color: $header-blue
   line-height: 1.3em
-  margin-bottom: 0.8em
+  
+  .copy--body &
+    margin-bottom: 0.8em
 
 .copy--h2
   +font-size(16)
@@ -14,21 +19,27 @@
   color: $header-blue
   text-transform: uppercase
   letter-spacing: 0.2em
-  margin: 1.8em 0 0.9em
-  &:first-child
-    margin-top: 0
+  
+  .copy--body &
+    margin: 1.8em 0 0.9em
+    &:first-child
+      margin-top: 0
 
 .copy--h3
   +font-size(20)
   color: $header-blue
   font-weight: bold
-  margin-bottom: 1em
+  
+  .copy--body &
+    margin-bottom: 1em
 
 .copy--h4
   +font-size(16)
   color: $header-grey
   font-weight: bold
-  margin-bottom: 1em
+  
+  .copy--body &
+    margin-bottom: 1em
 
 .copy--h5
   @extend .copy--h2
@@ -70,11 +81,6 @@
   +font-size(12)
   display: block
   font-style: italic
-
-// temporary -- take this out during normalisation of colours
-[data-topic="sights"] .section-title
-  color: $header-blue
-
 
 // -----------------------------------------------------------------------------
 // Lists

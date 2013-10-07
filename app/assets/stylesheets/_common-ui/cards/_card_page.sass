@@ -69,12 +69,9 @@
   .send-this
     float: right
 
-.card--page__related-list
-  .section-title
-    +font-size(15)
-    font-weight: bold
-    margin-left: 10px
-    margin-top: 30px
+// Should really live elsewhere, or be a margin-bottom on card--page
+.section--related-content
+  margin-top: 30px
 
 .card--page__breadcrumb--type
   font-weight: bold
@@ -146,9 +143,6 @@
   .card--single + .stack &
     width: 427px
 
-  .section-title
-    color: $body-copy
-    margin-bottom: 25px
   .section-subtitle
     color: $header-blue
     margin-bottom: 20px
@@ -187,10 +181,6 @@
 // -----------------------------------------------------------------------------
 
 .tour-itinerary
-  .tour-itinerary__title
-    +font-size(15)
-    font-weight: bold
-    color: $header-grey
   .copy--meta
     margin: 10px 0 20px 0
 
@@ -213,13 +203,11 @@
 .details-panel
   background: $details-panel-bg
   padding: 20px
-  .section-title
-    color: $header-blue
-  .section-glossary
-    .section-title
-      +font-size(14)
-      margin: 20px 0 0
-      font-weight: bold
+
+.section-glossary
+  .copy--h3
+    +font-size(14)
+    margin: 20px 0 0
 
 // -----------------------------------------------------------------------------
 // Special Offer tag
