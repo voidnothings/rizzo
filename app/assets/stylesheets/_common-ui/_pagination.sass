@@ -14,18 +14,19 @@
 
   &:first-child
     margin-left: 0
+
 .pagination__link--current
   opacity: 0.5
 
-.pagination__alpha,
-.pagination__omega
+.pagination__backwards,
+.pagination__forwards
   @extend %clearfix
   position: absolute
   top: 0
 
-.pagination__alpha
+.pagination__backwards
   left: 0
-.pagination__omega
+.pagination__forwards
   right: 0
 .pagination__numbers
   text-align: center
