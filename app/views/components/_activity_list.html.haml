@@ -1,0 +1,11 @@
+.activity__list
+  .activity__list--title<
+    = activity_list[:title]
+
+  %ul.activity__list--container
+    - activity_list[:items].each_with_index do |item,i|
+      %li.activitiy__list--item.media{ class: item[:rowClass] ? item[:rowClass] : "" }
+        %span.media__body
+          = item[:html].html_safe
+        %span.media__img--rev<
+          = time_ago_in_words(Time.new(item[:timestamp]))
