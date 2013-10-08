@@ -17,8 +17,8 @@
 .sharing__icon
   @extend %left-icon
   @extend %left-icon--hidden-text
+  @extend %inline-block
   color: $header-grey
-  display: inline-block
   margin-left: 15px
   position: relative
   height: 24px
@@ -27,7 +27,7 @@
   &:hover
     text-decoration: none
   &:before
-    font-size: 34px
+    +font-size(34)
     top: -16px
 
   .tooltip
