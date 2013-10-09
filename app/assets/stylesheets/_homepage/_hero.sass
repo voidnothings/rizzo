@@ -137,25 +137,23 @@
   +transition(all, .3, ease-out)
   position: absolute
   bottom: 20px
-  left: 20px
+  right: 20px
   min-width: 180px
   z-index: 2
   .hero-search-results-displayed &
     +transform(translateY(100px))
-
-  +respond-to(medium-view)
-    left: auto
-    right: 20px
-    bottom: 20px
 
   +respond-to(wide-view)
     .hero-search-results-displayed &
       +transform(none)
 
   +respond-to(1250)
-    left: auto
     right: 30px
     bottom: 30px
+
+.hero__author--left
+  left: 20px
+  right: auto
 
 .hero__author__text
   +font-size(12)
