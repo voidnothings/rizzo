@@ -19,8 +19,18 @@
   width: 35%
 
 .field__input
+  @extend %border-box
   float: left
   width: 65%
+
+
+.field__input--half
+  width: 32%
+
+.field__input--third
+  width: 21%
+
+
 
 .field__select
   @extend %input-field
@@ -31,6 +41,9 @@
   height: 27px
   margin: 6px 0 0 10px
   width: 46px
+
+
+
 
 .field__input--error
 
