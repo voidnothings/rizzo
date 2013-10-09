@@ -57,7 +57,10 @@ field_components:
         :name: "select_name"
         :placeholder: "Item Two"
         :options: [ 'a', 'b', 'c', 'd' ]
-
+      -
+        :name: "select_name"
+        :placeholder: "Item Three"
+        :options: [ 'a1', 'b2', 'c3' ]
 
   -
     :styleguide_title: "Security Code field"

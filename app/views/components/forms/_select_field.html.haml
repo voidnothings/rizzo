@@ -1,4 +1,39 @@
 = render :layout => 'components/forms/partials/field', :locals => { id: opts[:id], label: opts[:label] } do
   .field__input
+    - if opts[:fields].length == 1
+      - field_id    = opts[:id]
+      - field_class = nil
+      = ui_component('forms/dropdown', opts: { id: field_id, name: dropdown[:name], placeholder: dropdown[:placeholder], options: dropdown[:options], selected: dropdown[:selected], class: field_class })
+
+    - else
+      - opts[:fields].each_with_index do |field, i|
+        - field_id = "#{opts[:id]}-#{i}"
+        - field_class = opts[:fields].length == 2 ? "field__dropdown--half" : "field__dropdown--third"
+        - field_class += case i
+            when 0
+              "field_dropdown--first"
+            when opts[:fields].length - 1 
+              "..."
+            else
+              '...'
+        = ui_component('forms/dropdown', opts: { id: field_id, name: dropdown[:name], placeholder: dropdown[:placeholder], options: dropdown[:options], selected: dropdown[:selected], class: field_class })
+
+
+
+
+
     - opts[:fields].each_with_index do |dropdown, i|
-      = ui_component('forms/dropdown', opts: { id: i==0 ? opts[:id] : "#{opts[:id]}-#{i}", name: dropdown[:name], placeholder: dropdown[:placeholder], options: dropdown[:options], selected: dropdown[:selected] })
+
+      - puts [dropdown, i]
+
+      - field_id = i==0 ? opts[:id] : "#{opts[:id]}-#{i}"
+
+      - if opts[:fields].length > 1
+        - if i == 0
+          - field_class += " field__dropdown--first wtf #{i}"
+        - elsif i == opts[:fields].length - 1
+          - field_class += " field__dropdown--last wtf #{i}"
+        - else
+          - field_class += " field__dropdown--middle wtf #{i}"
+
+      = ui_component('forms/dropdown', opts: { id: field_id, name: dropdown[:name], placeholder: dropdown[:placeholder], options: dropdown[:options], selected: dropdown[:selected], class: field_class })
