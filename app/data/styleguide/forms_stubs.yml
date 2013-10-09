@@ -4,12 +4,18 @@ form_components:
     :id: "input_id"
     :name: "text_name"
     :placeholder: "Placeholder"
+    :data:
+      :key: "value"
+      :super: "man"
 
   -
     :styleguide_title: "Date input"
     :id: "input_id"
     :name: "text_name"
     :placeholder: "Placeholder"
+    :data:
+      :key: "value"
+      :super: "man"
 
   -
     :styleguide_title: "Dropdown"
@@ -17,6 +23,9 @@ form_components:
     :name: "text_name"
     :placeholder: "Select Item"
     :options: [ 'one', 'two', 'three' ]
+    :data:
+      :key: "value"
+      :super: "man"
 
 
 field_components:
@@ -26,6 +35,9 @@ field_components:
     :id: "text_id"
     :name: "text_name"
     :placeholder: "Placeholder"
+    :data:
+      :key: "value"
+      :super: "man"
 
   -
     :styleguide_title: "Date field"
@@ -33,6 +45,9 @@ field_components:
     :id: "text_id"
     :name: "text_name"
     :placeholder: "Placeholder"
+    :data:
+      :key: "value"
+      :super: "man"
 
   -
     :styleguide_title: "Select field"
@@ -41,6 +56,9 @@ field_components:
     :name: "select_name"
     :placeholder: "Select Item"
     :options: [ 'one', 'two', ['three', 3] ]
+    :data:
+      :key: "value"
+      :super: "man"
 
   -
     :styleguide_title: "Security Code field"
@@ -48,3 +66,6 @@ field_components:
     :id: "text_id"
     :name: "text_name"
     :placeholder: "Placeholder"
+    :data:
+      :key: "value"
+      :super: "man"
