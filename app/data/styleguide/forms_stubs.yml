@@ -77,6 +77,7 @@ field_components:
       -
         :name: "select_name"
         :placeholder: "Select Item"
+        :prompt: true
         :options: [ 'one', 'two', ['three', 3] ]
 
   -
@@ -87,10 +88,12 @@ field_components:
       -
         :name: "select_name"
         :placeholder: "Item One"
+        :prompt: true
         :options: [ 'one', 'two', 'three' ]
       -
         :name: "select_name"
         :placeholder: "Item Two"
+        :prompt: true
         :options: [ 'a', 'b', 'c', 'd' ]
       -
         :name: "select_name"
