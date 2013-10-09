@@ -3,4 +3,6 @@
   %label.dropdown__value.js-select-overlay<
     = opts[:placeholder]
   %select.dropdown__select.js-select{ id: opts[:id], name: opts[:name], data: opts[:data] }
+    %option
+      = opts[:placeholder]
     = options_for_select(opts[:options], opts[:selected])
