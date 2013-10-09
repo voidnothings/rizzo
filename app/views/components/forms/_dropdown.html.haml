@@ -2,7 +2,7 @@
   %label.dropdown__value.js-select-overlay<
     = opts[:placeholder]
   %select.dropdown__select.js-select{ id: opts[:id], name: opts[:name], data: opts[:data] }
-    - if opts[:include_initial]
+    - if opts[:prompt]
       %option{ value: "" }<
         = opts[:placeholder]
     = options_for_select(opts[:options], opts[:selected])
