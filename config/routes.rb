@@ -38,6 +38,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/typography'        => 'styleguide#typography'
   get 'styleguide/colours'           => 'styleguide#colours'
   get 'styleguide/ui-colours'        => 'styleguide#uiColours'
+  get 'styleguide/pagination'        => 'styleguide#pagination'
   get 'styleguide/forms'             => 'styleguide#forms'
   get 'styleguide/activity_list'        => 'styleguide#activity_list'
 
