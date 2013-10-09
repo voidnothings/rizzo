@@ -3,6 +3,7 @@ form_components:
     :styleguide_title: "Text input"
     :id: "input_id"
     :name: "text_name"
+    :maxlength: 10
     :placeholder: "Placeholder"
     :data:
       :key: "value"
@@ -13,6 +14,8 @@ form_components:
     :id: "input_id"
     :name: "text_name"
     :cols: 40
+    :rows: 6
+    :maxlength: 20
 
   -
     :styleguide_title: "Date input"
@@ -40,6 +43,7 @@ field_components:
     :styleguide_title: "Text field"
     :label: "Field label"
     :id: "text_id"
+    :maxlength: 10
     :name: "text_name"
     :placeholder: "Placeholder"
     :data:
@@ -50,8 +54,10 @@ field_components:
     :styleguide_title: "Text area field"
     :label: "Area label"
     :id: "input_id"
+    :maxlength: 10
     :name: "text_name"
     :cols: 40
+    :rows: 4
 
   -
     :styleguide_title: "Date field"
