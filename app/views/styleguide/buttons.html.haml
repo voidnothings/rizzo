@@ -15,14 +15,14 @@
 .styleguide-block.styleguide-block__buttons
   - count = 0
   - buttons.each_with_index do | button, i |
-    .styleguide-block__description.card
+    .styleguide-block__description.card.copy--body
       %h2.copy--h2.styleguide-block__heading
         = button[:styleguide_title]
 
-      .styleguide-block__items
-        .styleguide-block__item{class: "styleguide-block__item--#{count}"}
+      .styleguide-block__items.media
+        .styleguide-block__item{class: "media__img styleguide-block__item--#{count}"}
           = ui_component("button", button: button)
-        %pre.styleguide.copy--body.language-markup
+        %pre.styleguide.copy--body.language-markup.media__body
           %code #{raw(CGI::escapeHTML(Haml::Engine.new(template).render(template, button: button)))}
 
   .styleguide-block__description.card
