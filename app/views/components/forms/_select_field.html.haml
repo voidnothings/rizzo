@@ -17,4 +17,4 @@
         - dropdown_class = "field__dropdown--middle"
 
     .field__input{ class: field_class }
-      = ui_component('forms/dropdown', opts: { id: field_id, name: dropdown[:name], placeholder: dropdown[:placeholder], options: dropdown[:options], selected: dropdown[:selected], class: dropdown_class })
+      = ui_component('forms/dropdown', opts: { id: field_id, name: dropdown[:name], placeholder: dropdown[:placeholder], options: dropdown[:options], selected: dropdown[:selected], class: dropdown_class, prompt: dropdown[:prompt], data: dropdown[:data] })
