@@ -29,6 +29,7 @@ form_components:
     :name: "text_name"
     :placeholder: "Select Item"
     :options: [ 'one', 'two', 'three' ]
+    :include_initial: true
     :data:
       :key: "value"
       :super: "man"
@@ -69,6 +70,7 @@ field_components:
     :name: "select_name"
     :placeholder: "Select Item"
     :options: [ 'one', 'two', ['three', 3] ]
+    :include_initial: true
     :data:
       :key: "value"
       :super: "man"
