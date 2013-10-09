@@ -25,8 +25,8 @@
       left: 70%
       pointer-events: none
   +respond-to(medium-view)
-    height: 680px
-  +respond-to(1250)
+    height: 700px
+  +respond-to(wide-view)
     height: 800px
 
 .hero__mask
@@ -126,7 +126,7 @@
 .speech-bubble--scroll
   overflow-y: scroll
   -webkit-overflow-scrolling: touch
-  height: 105px
+  height: 115px
   padding: 15px
   +respond-to(medium-view)
     padding: 0
@@ -150,14 +150,14 @@
 
   +respond-to(1250)
     right: 30px
-    bottom: 30px
+    bottom: 20px
 
 .hero__product
   @extend .hero__author
   margin-bottom: 0
   bottom: 10px
   +respond-to(wide-view)
-    bottom: 20px
+    bottom: 10px
 
 .hero__author--left
   left: 20px
@@ -231,38 +231,51 @@
     padding: 0
 
 .hero__author__story
+  +box-sizing()
   position: absolute
   text-align: left
-  bottom: 160px
+  bottom: 0
   padding: 0
   left: auto
   margin: 0 20px
 
   +respond-to(medium-view)
-    padding: 30px
-    bottom: 170px
     left: auto
     right: 20px
-    width: 270px
+    width: 350px
     margin: 0
 
   +respond-to(1250)
-    padding: 30px
-    bottom: 180px
-    left: auto
     right: 40px
-    width: 270px
-    margin: 0
+
+.hero__author__story__image
+  @extend %four-pixel-rounded
+  overflow: hidden
+  +respond-to(medium-view)
+    height: 230px
+  +respond-to(wide-view)
+    height: auto
+
+  > img
+    display: none
+    width: 100%
+    +respond-to(medium-view)
+      display: block
+
+.hero__author__content
+  p
+    +font-size(16)
+    line-height: 24px
+  +respond-to(medium-view)
+    padding: 20px
+  +respond-to(wide-view)
+    padding: 30px
+    p
+      +font-size(18)
 
   .btn--blue
-    +font-size(14)
-    padding: 12px 15px 12px 30px
-    margin-right: 10px
+    +font-size(16)
     font-weight: bold
-    background-position: 10px center
-    +respond-to(medium-view)
-      padding: 12px 18px 12px 38px
-      background-position: 18px center
 
   .btn--light-grey
     +font-size(14)
@@ -295,6 +308,10 @@
     opacity: 0
   & ~ .hero__panel--story
     top: 0
+    .hero__author__story
+      bottom: 160px
+      +respond-to(medium-view)
+        bottom: 170px
   & ~ .hero__overlay
     background-color: rgba(0,0,0,0)
 
