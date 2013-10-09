@@ -9,6 +9,12 @@ form_components:
       :super: "man"
 
   -
+    :styleguide_title: "Text area"
+    :id: "input_id"
+    :name: "text_name"
+    :cols: 40
+
+  -
     :styleguide_title: "Date input"
     :id: "input_id"
     :name: "text_name"
@@ -38,6 +44,13 @@ field_components:
     :data:
       :key: "value"
       :super: "man"
+
+  -
+    :styleguide_title: "Text area field"
+    :label: "Area label"
+    :id: "input_id"
+    :name: "text_name"
+    :cols: 40
 
   -
     :styleguide_title: "Date field"

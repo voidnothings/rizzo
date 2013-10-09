@@ -1,0 +1,3 @@
+= render :layout => 'components/forms/partials/field', :locals => { id: opts[:id], label: opts[:label] } do
+  .field__input
+    = ui_component('forms/text_area', opts: { id: opts[:id], name: opts[:name], data: opts[:data] } )
