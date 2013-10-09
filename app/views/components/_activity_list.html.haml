@@ -4,8 +4,8 @@
 
   %ul.activity__list--container
     - activity_list[:items].each_with_index do |item,i|
-      %li.activitiy__list--item.media{ class: item[:rowClass] ? item[:rowClass] : "" }
+      %li.activitiy__list--item.media{ class: activity_list[:rowClass] ? activity_list[:rowClass] : "" }
         %span.media__body
           = item[:html].html_safe
-        %span.media__img--rev<
+        %time.activitiy__list--time.media__img--rev{:datetime => Time.new(item[:timestamp])}<
           = time_ago_in_words(Time.new(item[:timestamp]))
