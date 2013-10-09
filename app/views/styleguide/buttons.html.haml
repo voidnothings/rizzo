@@ -4,10 +4,10 @@
   variation = button_stub['variation']
   template = File.read(File.expand_path("../../components/_button.html.haml", __FILE__))
 
-.card.styleguide-intro.styleguide-block
+.card.styleguide-intro.styleguide-block.copy--body
   %h1.copy--h1 Buttons
   %p.copy--h2 Please note: 
-  %p.copy--body
+  %p
     Buttons do not call this component directly as the abstraction would be overkill. Buttons should always look like these through a combination of the modifier classes detailed below and in 
     %a{href: 'https://github.com/lonelyplanet/rizzo/blob/master/app/assets/stylesheets/_common-ui/_buttons.sass'}
       buttons.sass

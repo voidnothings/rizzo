@@ -1,9 +1,9 @@
 - require "ostruct"
 - cards = YAML.load(File.read(File.expand_path('../../../data/styleguide/cards_stubs.yml', __FILE__)))
 
-.card.styleguide-intro
+.card.styleguide-intro.copy--body
   %h1.copy--h1 Cards
-  %p.copy--body
+  %p
     Cards should be included as components where possible, and always in rails apps. You can include the ui_component includes as detailed below.
 
 .grid-wrapper--10
