@@ -1,0 +1,44 @@
+// This file is very temporary (and lazy) and will go at the end of the beautiful world campaign
+
+.hero__slider
+  position: relative
+
+.hero__slide
+  position: absolute
+  display: block
+
+.hero__slider__input
+  display: none
+  &:checked + .hero__slider__label
+    opacity: 1
+
+.hero__slider__label
+  +border-radius(20)
+  bottom: 10px
+  cursor: pointer
+  display: block
+  height: 10px
+  width: 10px
+  opacity: 0.5
+  position: absolute
+  z-index: 2
+  background-color: #fff
+
+.hero__slider__img
+  opacity: 0
+  //transition: .25s
+
+// Lazy calculations for slider controls being centrally aligned 
+
+$width: 350
+$margin: 5
+$control_width: 10
+$total_control_width: (($margin + $control_width) * 5) - 5 
+$start_position: (($width/2) - ($total_control_width/2)) - 15
+
+@for $i from 1 through 5
+  .hero__slide:nth-child(#{$i}) .hero__slider__label
+    left: #{$start_position + ($i * 15)}px
+
+.hero__slider__input:checked ~ .hero__slider__img
+  opacity: 1

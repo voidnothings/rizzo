@@ -258,10 +258,12 @@
   overflow: hidden
   position: relative
   +respond-to(medium-view)
-    height: 230px
+    &, & ul, & li
+      height: 230px
   +respond-to(wide-view)
-    height: auto
-  > img
+    &, & ul, & li
+      height: 250px
+  img
     display: none
     width: 100%
     +respond-to(medium-view)
