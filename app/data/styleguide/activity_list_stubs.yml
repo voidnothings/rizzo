@@ -1,6 +1,6 @@
 -
   :title: "Announcements"
-  :rowClass: "text-icon--info"
+  :rowClass: "text-icon--announcement"
   :items:
     -
       :action: "posted in"
