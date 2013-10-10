@@ -224,16 +224,21 @@
 
 .hero__product__details
   @extend .hero__author__details
-  max-width: 190px
+  max-width: 200px
   margin-top: 18px
   display: block
   .copy--h5
     color: white
+  .is-open
+    background-color: $subdued
+    color: $body-copy
+
 
 .hero__author__story--buttons
   padding: 15px
   +respond-to(medium-view)
     padding: 0
+
 
 .hero__author__story
   +box-sizing()
@@ -267,7 +272,10 @@
     display: none
     width: 100%
     +respond-to(medium-view)
+      margin-top: -10px
       display: block
+    +respond-to(wide-view)
+      margin-top: 0
 
 .promo--win
   position: absolute
@@ -308,6 +316,7 @@
     +respond-to(medium-view)
       padding: 12px 18px 12px 38px
       background-position: 18px center
+
 
 @if $is-ie == false
   .feature:first-letter

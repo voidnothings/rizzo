@@ -23,18 +23,21 @@
   position: absolute
   z-index: 2
   background-color: #fff
+  @if $is-ie
+    display: none
 
 .hero__slider__img
+  +transition(opacity, 1, ease)
   opacity: 0
-  //transition: .25s
 
 // Lazy calculations for slider controls being centrally aligned 
 
-$width: 350
-$margin: 5
-$control_width: 10
-$total_control_width: (($margin + $control_width) * 5) - 5 
-$start_position: (($width/2) - ($total_control_width/2)) - 15
+$slider_width: 350
+$button_width: 10
+$button_margin: 5
+
+$total_button_width: (($button_margin + $button_width) * 5) - 5 
+$start_position: (($slider_width/2) - ($total_button_width/2)) - 15
 
 @for $i from 1 through 5
   .hero__slide:nth-child(#{$i}) .hero__slider__label
