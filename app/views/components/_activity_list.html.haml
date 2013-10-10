@@ -1,17 +1,17 @@
 .activity-list
-  .activity-list--title.copy--h5<
+  .activity-list__title.copy--h5<
     = activity_list[:title]
 
-  %ul.activity-list--container
+  %ul.activity-list__container
     - activity_list[:items].each_with_index do |item,i|
-      %li.media
-        .activity-list--item{ class: activity_list[:rowClass] ? "activity-list--icon #{activity_list[:rowClass]}" : "" }
+      %li.media.media--rev
+        .activity-list__item{ class: activity_list[:rowClass] ? "activity-list--icon #{activity_list[:rowClass]}" : "" }
           %span.media__body
-            %a.activity-list--link{ href: "/profiles/#{item[:user][:username]}" }
+            %a.activity-list__link{ href: "/profiles/#{item[:user][:username]}" }
               = item[:user][:name]
             = item[:action]
-            %a.activity-list--link{ href: item[:link][:url], class: item[:link][:icon] ? "activity-list--icon text-icon--#{item[:link][:icon]}" : "" }
+            %a.activity-list__link{ href: item[:link][:url], class: item[:link][:icon] ? "activity-list--icon text-icon--#{item[:link][:icon]}" : "" }
               = item[:link][:text]
-          %time.activity-list--icon.activitiy-list--time.media__img--rev{:datetime => Time.new(item[:timestamp])}<
+          %time.activity-list__icon.activity-list__time.media__img{:datetime => Time.new(item[:timestamp])}<
             = time_ago_in_words(Time.at(item[:timestamp]))
             ago
