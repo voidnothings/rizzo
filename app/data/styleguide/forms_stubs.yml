@@ -27,6 +27,12 @@ form_components:
       :super: "man"
 
   -
+    :styleguide_title: "Checkbox"
+    :id: "checkbox_id"
+    :name: "checkbox_name"
+    :checked: true
+
+  -
     :styleguide_title: "Dropdown"
     :id: "input_id"
     :name: "text_name"
@@ -68,6 +74,13 @@ field_components:
     :data:
       :key: "value"
       :super: "man"
+
+  -
+    :styleguide_title: "Checkbox Field"
+    :id: "checkbox_field_id"
+    :name: "checkbox_name"
+    :checked: true
+    :label: "This is the checkbox"
 
   -
     :styleguide_title: "Select field"

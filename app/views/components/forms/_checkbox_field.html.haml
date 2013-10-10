@@ -1,0 +1,5 @@
+.field
+  .field__content.field__content--checkbox
+    = ui_component('forms/checkbox', opts: opts )
+    %label{ for: opts[:id] }
+      = opts[:label]
