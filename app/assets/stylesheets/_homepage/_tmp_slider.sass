@@ -13,18 +13,16 @@
     opacity: 1
 
 .hero__slider__label
-  +border-radius(20)
+  +border-radius(6)
   bottom: 10px
   cursor: pointer
   display: block
-  height: 10px
-  width: 10px
+  height: 8px
+  width: 8px
   opacity: 0.5
   position: absolute
   z-index: 2
   background-color: #fff
-  @if $is-ie
-    display: none
 
 .hero__slider__img
   +transition(opacity, 1, ease)
@@ -33,10 +31,11 @@
 // Lazy calculations for slider controls being centrally aligned 
 
 $slider_width: 350
-$button_width: 10
-$button_margin: 5
+$button_width: 6
+$button_margin: 4
+$num_buttons: 4
 
-$total_button_width: (($button_margin + $button_width) * 5) - 5 
+$total_button_width: (($button_margin + $button_width) * 5) - $num_buttons 
 $start_position: (($slider_width/2) - ($total_button_width/2)) - 15
 
 @for $i from 1 through 5
@@ -45,3 +44,13 @@ $start_position: (($slider_width/2) - ($total_button_width/2)) - 15
 
 .hero__slider__input:checked ~ .hero__slider__img
   opacity: 1
+
+@if $is-ie
+  .hero__slider__label,
+  .hero__slider__input,
+    display: none
+  
+  .hero__slide
+    display: none
+    &.first
+      display: block

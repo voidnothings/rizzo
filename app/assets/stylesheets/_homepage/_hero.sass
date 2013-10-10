@@ -11,7 +11,7 @@
   .enhanced &, .ie9 &
     +responsive-image('homepage/hero/hero', 'jpg')
   .ie7 &, .ie8 &
-    background-image: url(#{image_path('homepage/hero/hero_1671.jpg')})
+    background-image: url(#{image_path('homepage/hero/hero_1600.jpg')})
   .slothified &
     background-image: url(#{image_path('homepage/rainforest.jpg')})
     &:after
@@ -124,14 +124,15 @@
       left: 72%
 
 .speech-bubble--scroll
-  overflow-y: scroll
-  -webkit-overflow-scrolling: touch
-  height: 115px
-  padding: 15px
-  +respond-to(medium-view)
-    padding: 0
-    height: auto
-    overflow: visible
+  @if $is-ie == false
+    padding: 15px
+    overflow-y: scroll
+    -webkit-overflow-scrolling: touch
+    height: 115px
+    +respond-to(medium-view)
+      padding: 0
+      height: auto
+      overflow: visible
 
 .hero__author
   +transition(all, .3, ease-out)
@@ -238,6 +239,15 @@
   padding: 15px
   +respond-to(medium-view)
     padding: 0
+  .btn--blue
+    display: inline-block
+    +respond-to(medium-view)
+      display: block
+  .btn--green
+    padding-left: 15px
+    padding-right: 15px
+    +respond-to(medium-view)
+      display: none
 
 
 .hero__author__story
@@ -343,11 +353,14 @@
     top: 0
     .hero__author__story
       bottom: 155px
-      +respond-to(medium-view)
-        bottom: 155px
   & ~ .hero__overlay
     background-color: rgba(0,0,0,0)
 
+.story-open
+  .hero__panel--story
+    top: 0
+    .hero__author__story
+      bottom: 155px
 
 
 // hero autocomplete
