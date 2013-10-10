@@ -3,11 +3,13 @@
 
     - field_id = i==0 ? opts[:id] : "#{opts[:id]}-#{i}"
 
+    - dropdown_class = ""
+
     - if opts[:fields].length > 1
       - if opts[:fields].length == 2
-        - field_class = 'field__input--half'
+        - field_class = "field__input--half"
       - elsif opts[:fields].length == 3
-        - field_class = 'field__input--third'
+        - field_class = "field__input--third"
 
       - if i == 0
         - dropdown_class = "field__dropdown--first"
@@ -16,5 +18,5 @@
       - else
         - dropdown_class = "field__dropdown--middle"
 
-    .field__input{ class: field_class }
+    .field__input.field__input--dropdown{ class: field_class }
       = ui_component('forms/dropdown', opts: { id: field_id, name: dropdown[:name], placeholder: dropdown[:placeholder], options: dropdown[:options], selected: dropdown[:selected], class: dropdown_class, prompt: dropdown[:prompt], data: dropdown[:data] })
