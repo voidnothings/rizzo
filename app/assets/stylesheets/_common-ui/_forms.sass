@@ -3,6 +3,7 @@
   color: $header-grey
 
 .fieldset__legend
+  margin-bottom: 10px
   padding: 0
 
 .field
@@ -45,12 +46,9 @@
   .input
     border: 1px solid $section--shopping
 
-  &.booking__field--checkbox
+  &.field__content--checkbox
     &:after
       top: 0
-
-  .dropdown__value
-    border-color: $section--shopping
 
 .field__error
   +font-size(14)
@@ -59,6 +57,9 @@
   margin: 5px 0
   text-align: right
 
+.field__content--checkbox
+  float: none
+  width: auto
 
 
 .input
@@ -84,6 +85,13 @@
 
   .field--half &
     width: 50%
+
+.input--checkbox
+  float: none
+  margin: 0 5px
+  width: auto
+
+
 
 .input--datepicker
   @extend %input--regular
