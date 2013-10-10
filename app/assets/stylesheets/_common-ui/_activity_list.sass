@@ -1,27 +1,37 @@
-.activity__list
+.activity-list
   color: $body-copy
 
-.activity__list--title
+.activity-list--title
+  +font-size(12)
   color: $feature-copy
   font-weight: bold
   margin-bottom: 20px
   text-transform: uppercase
 
-.activity__list--container
+.activity-list--container
   list-style: none
 
-.activitiy__list--item
+.activity-list--item
   +font-size(15)
   line-height: 1em
   margin-bottom: 12px
 
-.activitiy__list--time
+.activity-list--icon
+  &:before
+    font-size: 1.6em
+    position: relative
+
+  &.text-icon--envelope:before
+    top: 2px
+
+.activity-list--link
+  font-weight: bold
+  &:before
+    font-weight: normal
+
+.activitiy-list--time
   @extend %icon--clock-before
-  +font-size(13)
-  position: relative
 
   &:before
-    font-size: 2em
-    left: -0.7em
-    position: absolute
-    top: -2px
+    left: -0.15em
+    top: 2px

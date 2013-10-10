@@ -1,25 +1,62 @@
 -
   :title: "Announcements"
-  :rowClass: "text-icon--announcements"
+  :rowClass: "text-icon--info"
   :items:
     -
-      :html: "<a>Ethelfleda</a> posted in <a>Drafts feature in TT - what do you think? Do you use it?</a>"
-      :timestamp: 1381244741
+      :action: "posted in"
+      :timestamp: 1381396413
+      :user:
+        :name: "Ethelfleda"
+        :username: "ethelfleda"
+      :link:
+        :text: "Drafts feature in TT - what do you think? Do you use it?"
+        :url: ""
     -
-      :html: "<a>Katija</a> created <a>Your recent threads</a>"
+      :action: "created"
       :timestamp: 1381223195
+      :user:
+        :name: "Katija"
+        :username: "katija"
+      :link:
+        :text: "Your recent threads"
+        :url: ""
     -
-      :html: "<a>Ethelfleda</a> posted in <a>Content filters on Thorn Tree</a>"
+      :action: "posted in"
       :timestamp: 1381158473
+      :user:
+        :name: "Ethelfleda"
+        :username: "ethelfleda"
+      :link:
+        :text: "Content filters on Thorn Tree"
+        :url: ""
 -
   :title: "Recent Activity"
   :items:
     -
-      :html: "<a>Ethelfleda</a> posted in <a>Drafts feature in TT - what do you think? Do you use it?</a>"
-      :timestamp: 1381244741
+      :action: "posted in"
+      :timestamp: 1381396413
+      :user:
+        :name: "Ethelfleda"
+        :username: "ethelfleda"
+      :link:
+        :text: "Drafts feature in TT - what do you think? Do you use it?"
+        :url: ""
     -
-      :html: "<a>Katija</a> created <a>Your recent threads</a>"
+      :action: "created"
       :timestamp: 1381223195
+      :user:
+        :name: "Katija"
+        :username: "katija"
+      :link:
+        :text: "Your recent threads"
+        :url: ""
     -
-      :html: "<a>Ethelfleda</a> sent you a <a class='text-icon--envelope'>private message</a>"
+      :action: "sent you a"
       :timestamp: 1381158473
+      :user:
+        :name: "Ethelfleda"
+        :username: "ethelfleda"
+      :link:
+        :icon: "envelope"
+        :text: "private message"
+        :url: ""
