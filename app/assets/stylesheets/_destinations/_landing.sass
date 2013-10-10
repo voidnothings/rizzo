@@ -8,24 +8,148 @@ $section--cities           : #fa5e5b !default
 
 // -----------------------------------------------------------------------------
 
-@import "_landing/_introduction"
+
+$row--introduction-height: 80px
+
+
+.row--introduction
+  background-color: white
+  position: relative // for z-index  
+  z-index: 20
+  color: $header-grey
+  text-align: center
+  +respond-to(wide-view)
+    height: $row--introduction-height
+    @extend %clearfix
+
+.row--introduction__inner
+  +respond-to(wide-view)
+    width: 1000px
+    margin: 0 auto
+
+.row--introduction__branding
+  padding-top: 25px
+
+  +respond-to(wide-view)
+    padding-top: 0
+    float: left
+    width: 20%
+    height: 80px
+    box-shadow: -1px 0 $body-background inset
+
+.media--best-in-travel-logo
+  +respond-to(wide-view)
+    padding-top: 15px
+
+
+.row--introduction__blurb
+  +font-size(15)
+  padding: 20px
+  +respond-to(wide-view)
+    background-color: $header-grey
+    +border-radius(4)
+    +box-shadow(5, 5, 1, 0, rgba(0,0,0,0.1))
+    position: absolute
+    top: -200px
+    // left: -1500px
+    width: 600px
+    text-align: left
+
+.row--introduction__blurb__title
+  margin-bottom: 8px
+  +respond-to(wide-view)
+    color: white
+    +font-size(32)
+
+.row--introduction__blurb__copy
+  +respond-to(wide-view)
+    color: white
+    +font-size(16)
+
+.row--introduction__blurb__hide
+  @extend %cross-icon-before
+  display: none
+  cursor: pointer
+
+  +respond-to(wide-view)
+    display: block
+    position: absolute
+    top: 4px
+    right: 16px
+    width: 24px
+    height: 36px
+    overflow: hidden
+    line-height: 1em
+    +font-size(40)
+    color: white
+    opacity: 0.5
+
+    &:hover
+      text-decoration: none
+      opacity: 1
+
+
+
+// map specific:
+
+.leaflet-top, .leaflet-bottom
+  z-index: 1 !important
+
+.leaflet-container a
+  color: inherit !important
+
+
+.leaflet-popup-pane
+
+  .leaflet-popup-tip
+    background: $header-grey
+
+  .leaflet-popup-content-wrapper
+    background: transparent
+    border-radius: 0
+    box-shadow: none
+    padding: 0
+    text-align: center
+  
+  .leaflet-popup-content
+    margin: 0
+    background: $header-grey
+    +border-radius(4)
+    padding: 8px
+    text-align: center
+      
+  .leaflet-popup-tip
+    margin: -15px auto 0 !important
+
+.map__tooltip
+  color: white
+  +font-size(13)
+  font-weight: 700
+  text-transform: uppercase
 
 
 .row--secondary
   padding-top: 55px // height of faux banner
+  margin-bottom: 0
+  border-bottom: solid 1px $subdued
   +respond-to(wide-view)
+    border-bottom: none
     padding-top: 40px
+    margin-bottom: 18px
 
-.row__title--secondary
-  margin: 12px 12px
+.row__inner--secondary
+  margin: 12px
   +respond-to(wide-view)
-    margin: inherit
+    margin: 0 auto
 
+.place-title
+  margin-top: 2px
+  +respond-to(wide-view)
+    margin-top: inherit
 
 .col--introduction__social
   display: none
   +respond-to(wide-view)
-    background: yellow
     display: block
     width: 20%
     float: left
@@ -37,20 +161,16 @@ $section--cities           : #fa5e5b !default
     width: 60%
 
 .top-ten
-  border-left-width: 5px
-  border-left-style: solid
   border-top: solid 1px $body-background
   display: block
   &:hover
     text-decoration: none
 
   &.expanded
-    border-left-width: 0
     .top-ten__category
       color: white
 
   +respond-to(wide-view)
-    border-left-width: 0
     border-bottom-width: 2px
     border-bottom-style: solid
     float: left
@@ -62,8 +182,9 @@ $section--cities           : #fa5e5b !default
   padding: 20px
   text-align: center
   text-transform: uppercase
-  +font-size(16)
+  +font-size(20)
   +respond-to(wide-view)
+    +font-size(16)
     padding: 0
     height: ( $row--introduction-height - 2 ) // 80 - 2 (calc dynamically via sass?..)
 
@@ -82,21 +203,18 @@ $section--cities           : #fa5e5b !default
     padding-top: 30px
 
 .top-ten--countries
-  border-left-color: $section--countries
   &.expanded
     background-color: $section--countries
   +respond-to(wide-view)
     border-bottom-color: $section--countries
 
 .top-ten--regions
-  border-left-color: $section--regions
   &.expanded
     background-color: $section--regions
   +respond-to(wide-view)
     border-bottom-color: $section--regions
 
 .top-ten--cities
-  border-left-color: $section--cities
   &.expanded
     background-color: $section--cities
   +respond-to(wide-view)
@@ -104,36 +222,133 @@ $section--cities           : #fa5e5b !default
   
 
 
-///////////
+
+
+.top-ten__list
+  +respond-to(wide-view)
+    position: absolute
+    left: 0
+    // top: -( $row--introduction-height )
+    top: -100px
+    width: 100%
+    list-style-type: none
+    @extend %clearfix
+
+.top-ten__list__item
+  height: 75px
+  background-position: center
+  background-size: 100%
+  position: relative
+  +respond-to(wide-view)
+    display: block
+    float: left
+    width: 10%
+    height: 100px
+    position: relative
+
 
 .top-ten__list__title
   background-position: center center
   background-repeat: no-repeat
   text-indent: -9999px
   height: 100%
-  width: 100%
   position: absolute
+  width: 100%
   top: 0
 
-.top-ten__list__item
-  height: 75px
 
-.top-ten__list--argentina
-  background-image: url(#{image_path('destinations/best-in-travel/bg--argentina.jpg')})
-  background-position: center
-  background-size: 100%
-  position: relative
+
+
+.top-ten__list--countries
+  .top-ten__list__item__link
+    +respond-to(wide-view)
+      height: 100%
+      width: 100%
+      display: block
+      &:hover
+        box-shadow: 10px 10px $section--countries inset, -10px -10px $section--countries inset
+
+.top-ten__list--regions
+  .top-ten__list__item__link
+    +respond-to(wide-view)
+      height: 100%
+      width: 100%
+      display: block
+      &:hover
+        box-shadow: 10px 10px $section--regions inset, -10px -10px $section--regions inset
+  
+.top-ten__list--cities
+  .top-ten__list__item__link
+    +respond-to(wide-view)
+      height: 100%
+      width: 100%
+      display: block
+      &:hover
+        box-shadow: 10px 10px $section--cities inset, -10px -10px $section--cities inset
+
+
+.top-ten__list__item__rank
+  +respond-to(wide-view)
+    color: white
+    +font-size(16)
+    font-weight: 700
+    position: absolute
+    top: 10px
+    right: 10px
+
+
+.top-ten__list--country1
+  background-image: url(#{image_path('destinations/best-in-travel/bg--country--1.jpg')})
   .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/title--argentina.png')})
+    background-image: url(#{image_path('destinations/best-in-travel/title--country1.png')})
 
-.top-ten__list--brazil
-  background-image: url(#{image_path('destinations/best-in-travel/bg--brazil.jpg')})
-  background-position: center
-  background-size: 100%
-  position: relative
+.top-ten__list--country2
+  background-image: url(#{image_path('destinations/best-in-travel/bg--country--2.jpg')})
   .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/title--brazil.png')})
+    background-image: url(#{image_path('destinations/best-in-travel/title--country2.png')})
 
+.top-ten__list--country3
+  background-image: url(#{image_path('destinations/best-in-travel/bg--country--3.jpg')})
+  .top-ten__list__title
+    background-image: url(#{image_path('destinations/best-in-travel/title--country2.png')})
+
+.top-ten__list--country4
+  background-image: url(#{image_path('destinations/best-in-travel/bg--country--4.jpg')})
+  .top-ten__list__title
+    background-image: url(#{image_path('destinations/best-in-travel/title--country2.png')})
+
+.top-ten__list--country5
+  background-image: url(#{image_path('destinations/best-in-travel/bg--country--5.jpg')})
+  .top-ten__list__title
+    background-image: url(#{image_path('destinations/best-in-travel/title--country2.png')})
+
+.top-ten__list--country6
+  background-image: url(#{image_path('destinations/best-in-travel/bg--country--6.jpg')})
+  .top-ten__list__title
+    background-image: url(#{image_path('destinations/best-in-travel/title--country2.png')})
+
+.top-ten__list--country7
+  background-image: url(#{image_path('destinations/best-in-travel/bg--country--7.jpg')})
+  .top-ten__list__title
+    background-image: url(#{image_path('destinations/best-in-travel/title--country2.png')})
+
+.top-ten__list--country8
+  background-image: url(#{image_path('destinations/best-in-travel/bg--country--8.jpg')})
+  .top-ten__list__title
+    background-image: url(#{image_path('destinations/best-in-travel/title--country2.png')})
+
+.top-ten__list--country9
+  background-image: url(#{image_path('destinations/best-in-travel/bg--country--9.jpg')})
+  .top-ten__list__title
+    background-image: url(#{image_path('destinations/best-in-travel/title--country2.png')})
+
+.top-ten__list--country10
+  background-image: url(#{image_path('destinations/best-in-travel/bg--country--1.jpg')})
+  .top-ten__list__title
+    background-image: url(#{image_path('destinations/best-in-travel/title--country2.png')})
+
+
+$map__height : 500px
 
 .bit-map
   display: none
@@ -141,55 +356,23 @@ $section--cities           : #fa5e5b !default
     background-color: #cbdae7
     display: block
     width: 100%
-    height: 500px
+    height: $map__height
     position: relative
 
 
-.navigation-bar
-  background: blue
-  @extend %absolute-left
-  width: 100%
-  @extend %clearfix
-  // +transition(opacity, 2.5, ease-in-out)
-  bottom: 0
-  &.is-peeking
-    bottom: -60px
-  &.is-hidden
-    display: none
-  
-.navigation-bar__link
-  display: block
-  float: left
-  width: 10%
-  height: 100px
-  position: relative
-  
-.navigation-bar--countries
-  .navigation-bar__link:hover
-    box-shadow: 10px 10px $section--countries inset, -10px -10px $section--countries inset
-
-
-.navigation-bar__rank
-  color: white
-  +font-size(16)
-  font-weight: 700
-  position: absolute
-  top: 10px
-  right: 10px
 
 @import "_landing/_markers"
 
 @import "_landing/_content-panes"
 
 .carousel
-  border: solid 1px black
-  width: 100px
-  height: 16px
   overflow: hidden
   position: relative
+  min-width: 1100px // on a media query for this size
+  margin: 0 auto
+  height: 100%
 
-.carousel__inner
-  width: 300px
+.carousel__contents-wrapper
   position: absolute
   left: 0
   ul
