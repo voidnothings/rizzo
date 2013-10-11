@@ -4,7 +4,7 @@
 # 
 # ------------------------------------------------------------------------------
 
-define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
+define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitter, PageState) ->
 
   class Slider
 
@@ -27,6 +27,7 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
     constructor: (args) ->
       $.extend config, args
 
+      @page = new PageState()
       @current_slide = 1
       @$el = $(config.el)
       @$slides = @$el.find(config.slides)
@@ -41,7 +42,7 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
       @$slider_pagination = $('<div class="slider__pagination no-print"></div>')
       @$next = $("<a href='#' class='slider__control slider__control--next icon--chevron-right--white--before'>2 of #{@numSlides}</a>")
       @$prev = $("<a href='#' class='slider__control slider__control--prev icon--chevron-left--white--after'>#{@numSlides} of #{@numSlides}</a>")
-      @$legacy = $('html.ie7, html.ie8, body.browserIE7, body.browserIE8')
+      @$legacy = $(@page.getLegacyRoot())
 
       if (@$slides_viewport.length is 0)
         @$slides_viewport = @$el.addClass(config.slides_viewport.substring(1))
@@ -114,7 +115,7 @@ define ['jquery', 'lib/extends/events'], ($, EventEmitter) ->
       @$next.on 'mouseenter click', =>
         @_loadHiddenContent(@$el.find(@$slides)) if config.deferLoading
 
-      # if @$legacy.length is 0 && !!window.addEventListener
+      # if @page.isLegacy() && !!window.addEventListener
       #   require ['pointer','touchwipe'], =>
       #     # Swiping navigation.
       #     @$el.touchwipe
