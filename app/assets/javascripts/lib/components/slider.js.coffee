@@ -107,13 +107,13 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
         @_previousSlide()
         return false
 
+      @$next.on 'mouseenter click', =>
+        @_loadHiddenContent(@$el.find(@$slides)) if config.deferLoading
+
+      @$next.on 'mouseenter click', =>
+        @_loadHiddenContent(@$el.find(@$slides)) if config.deferLoading
+
       @_updateCount()
-
-      @$next.on 'mouseenter click', =>
-        @_loadHiddenContent(@$el.find(@$slides)) if config.deferLoading
-
-      @$next.on 'mouseenter click', =>
-        @_loadHiddenContent(@$el.find(@$slides)) if config.deferLoading
 
       # if @page.isLegacy() && !!window.addEventListener
       #   require ['pointer','touchwipe'], =>
