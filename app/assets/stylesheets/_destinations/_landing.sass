@@ -6,10 +6,12 @@ $section--countries        : #ff708e !default
 $section--regions          : #47a899 !default
 $section--cities           : #fa5e5b !default
 
+$map__height : 500px
+$row--introduction-height: 80px
+
 // -----------------------------------------------------------------------------
 
 
-$row--introduction-height: 80px
 
 
 .row--introduction
@@ -40,7 +42,6 @@ $row--introduction-height: 80px
 .media--best-in-travel-logo
   +respond-to(wide-view)
     padding-top: 15px
-
 
 .row--introduction__blurb
   +font-size(15)
@@ -127,26 +128,6 @@ $row--introduction-height: 80px
   font-weight: 700
   text-transform: uppercase
 
-
-.row--secondary
-  padding-top: 55px // height of faux banner
-  margin-bottom: 0
-  border-bottom: solid 1px $subdued
-  +respond-to(wide-view)
-    border-bottom: none
-    padding-top: 40px
-    margin-bottom: 18px
-
-.row__inner--secondary
-  margin: 12px
-  +respond-to(wide-view)
-    margin: 0 auto
-
-.place-title
-  margin-top: 2px
-  +respond-to(wide-view)
-    margin-top: inherit
-
 .col--introduction__social
   display: none
   +respond-to(wide-view)
@@ -176,7 +157,6 @@ $row--introduction-height: 80px
     float: left
     width: 33.33333%
 
-
 .top-ten__category__link
   display: block
   padding: 20px
@@ -186,7 +166,7 @@ $row--introduction-height: 80px
   +respond-to(wide-view)
     +font-size(16)
     padding: 0
-    height: ( $row--introduction-height - 2 ) // 80 - 2 (calc dynamically via sass?..)
+    height: ( $row--introduction-height - 2 )
 
 .top-ten.expanded
   .top-ten__category__link__inner
@@ -219,10 +199,6 @@ $row--introduction-height: 80px
     background-color: $section--cities
   +respond-to(wide-view)
     border-bottom-color: $section--cities
-  
-
-
-
 
 .top-ten__list
   +respond-to(wide-view)
@@ -246,7 +222,6 @@ $row--introduction-height: 80px
     height: 100px
     position: relative
 
-
 .top-ten__list__title
   background-position: center center
   background-repeat: no-repeat
@@ -256,36 +231,17 @@ $row--introduction-height: 80px
   width: 100%
   top: 0
 
-
-
-
-.top-ten__list--countries
-  .top-ten__list__item__link
-    +respond-to(wide-view)
-      height: 100%
-      width: 100%
-      display: block
-      &:hover
-        box-shadow: 10px 10px $section--countries inset, -10px -10px $section--countries inset
-
-.top-ten__list--regions
-  .top-ten__list__item__link
-    +respond-to(wide-view)
-      height: 100%
-      width: 100%
-      display: block
-      &:hover
-        box-shadow: 10px 10px $section--regions inset, -10px -10px $section--regions inset
-  
-.top-ten__list--cities
-  .top-ten__list__item__link
-    +respond-to(wide-view)
-      height: 100%
-      width: 100%
-      display: block
-      &:hover
-        box-shadow: 10px 10px $section--cities inset, -10px -10px $section--cities inset
-
+.top-ten__list__item__link
+  +respond-to(wide-view)
+    height: 100%
+    width: 100%
+    display: block
+    .top-ten__list--countries &:hover
+      box-shadow: 10px 10px $section--countries inset, -10px -10px $section--countries inset
+    .top-ten__list--regions &:hover
+      box-shadow: 10px 10px $section--regions inset, -10px -10px $section--regions inset
+    .top-ten__list--cities &:hover
+      box-shadow: 10px 10px $section--cities inset, -10px -10px $section--cities inset
 
 .top-ten__list__item__rank
   +respond-to(wide-view)
@@ -296,60 +252,6 @@ $row--introduction-height: 80px
     top: 10px
     right: 10px
 
-
-.top-ten__list--country1
-  background-image: url(#{image_path('destinations/best-in-travel/bg--country--1.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/title--country1.png')})
-
-.top-ten__list--country2
-  background-image: url(#{image_path('destinations/best-in-travel/bg--country--2.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/title--country2.png')})
-
-.top-ten__list--country3
-  background-image: url(#{image_path('destinations/best-in-travel/bg--country--3.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/title--country2.png')})
-
-.top-ten__list--country4
-  background-image: url(#{image_path('destinations/best-in-travel/bg--country--4.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/title--country2.png')})
-
-.top-ten__list--country5
-  background-image: url(#{image_path('destinations/best-in-travel/bg--country--5.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/title--country2.png')})
-
-.top-ten__list--country6
-  background-image: url(#{image_path('destinations/best-in-travel/bg--country--6.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/title--country2.png')})
-
-.top-ten__list--country7
-  background-image: url(#{image_path('destinations/best-in-travel/bg--country--7.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/title--country2.png')})
-
-.top-ten__list--country8
-  background-image: url(#{image_path('destinations/best-in-travel/bg--country--8.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/title--country2.png')})
-
-.top-ten__list--country9
-  background-image: url(#{image_path('destinations/best-in-travel/bg--country--9.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/title--country2.png')})
-
-.top-ten__list--country10
-  background-image: url(#{image_path('destinations/best-in-travel/bg--country--1.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/title--country2.png')})
-
-
-$map__height : 500px
-
 .bit-map
   display: none
   +respond-to(wide-view)
@@ -358,12 +260,6 @@ $map__height : 500px
     width: 100%
     height: $map__height
     position: relative
-
-
-
-@import "_landing/_markers"
-
-@import "_landing/_content-panes"
 
 .carousel
   overflow: hidden
