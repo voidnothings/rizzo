@@ -87,10 +87,10 @@ require ['public/assets/javascripts/lib/components/slider.js'], (Slider) ->
         loadFixtures('slider_hidden_content.html')
         config.deferLoading = true
         window.slider = new Slider(config)
+        spyEvent = spyOnEvent($(slider.$el), ':asset/uncomment')
 
       it 'loads hidden content', ->
+        expect($('.slider__slide:nth-of-type(3) img').length).toBe(0)
         $('.slider__control--next').trigger('click')
         
-        setTimeout ->
-          expect($('.slider__slide:nth-of-type(3) img').length).toBe(1)
-        , 1000
+        expect(':asset/uncomment').toHaveBeenTriggeredOn($(slider.$el), [$('.slider__slide').slice(1), '[data-uncomment]'])

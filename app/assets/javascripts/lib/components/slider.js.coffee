@@ -44,10 +44,12 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
       @$prev = $("<a href='#' class='slider__control slider__control--prev icon--chevron-left--white--after'>#{@numSlides} of #{@numSlides}</a>")
       @$legacy = $(@page.getLegacyRoot())
 
-      if (@$slides_viewport.length is 0)
+      # Don't add the class to the @$el if there's already a @$slides_viewport defined.
+      if @$slides_viewport.length is 0
         @$slides_viewport = @$el.addClass(config.slides_viewport.substring(1))
 
       @$slider_controls_container = $('.slider__controls-container')
+      # As above with the @$slides_viewport
       if @$slider_controls_container.length is 0
         @$slider_controls_container = @$slides_viewport.addClass('slider__controls-container')
       @$slider_controls_container.addClass('at-beginning')
@@ -148,7 +150,11 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
       @_updateCount()
 
     _goToSlide: (index) ->
-      return if index < 1 or index > @$slides.length
+      if index < 1
+        index = 1
+      if index > @$slides.length
+        index = @$slides.length
+
       percentOffset = (index - 1) * 100
       @$slides_container.css('marginLeft', (-1 * percentOffset)+'%')
       @current_slide = index
