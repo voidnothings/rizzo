@@ -76,15 +76,16 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
       @_fadeControls()
 
       slideLinks = @$slider_pagination.find('.slider__pagination--link')
-      slideLinks.on 'click', (e) =>
-        i = parseInt(e.target.innerHTML, 10)
-
-        @$slides.removeClass('is-potentially-next')
-
-        @_goToSlide(i)
-        return false
 
       slideLinks.on
+        'click': (e) =>
+          i = parseInt(e.target.innerHTML, 10)
+
+          @$slides.removeClass('is-potentially-next')
+
+          @_goToSlide(i)
+          return false
+
         'mouseenter': (e) => # in
           index = parseInt(e.target.innerHTML, 10)
 
@@ -94,7 +95,6 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
           @$slides.eq(index - 1).addClass('is-potentially-next')
           
           @_loadHiddenContent(@$slides) if config.deferLoading
-
 
         'mouseleave': (e) => # out
           @$slides.removeClass('is-potentially-next')
