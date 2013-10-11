@@ -59,7 +59,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
         $('input[name="'+$(this).attr('for')+'"]').toggleClass('is-checked')
 
     init: ->
-      @$slider_controls.append(@$next).append(@$prev)
+      @$slider_controls.append(@$next, @$prev)
       @$slider_controls_container.append(@$slider_controls)
 
       @$slides_container.width(@$slides.length * @$slides.width())
