@@ -37,8 +37,12 @@
   text-overflow: ellipsis
   white-space: nowrap
 
-  .standout &, .wrap--footer &
+  .standout &, .wrap--footer &, .inverted &
     background-color: #fff
+
+  .inverted &
+    border: 1px solid $subdued
+    box-shadow: none
 
   &:after
     @extend %four-pixel-rounded
