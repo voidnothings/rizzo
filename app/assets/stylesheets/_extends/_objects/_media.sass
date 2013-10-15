@@ -6,15 +6,17 @@
 // http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/ 
 // -----------------------------------------------------------------------------
 
-%media
+.media
   @extend %clearfix
-  margin-bottom: 10px
 
-  .obj-media__img
-    float: left
-    img
-      display: block
+.media__img
+  float: left
 
-  .obj-media__body
-    position: relative
-    overflow: hidden
+  .media--rev &
+    float: right
+  img
+    display: block
+
+.media__body
+  position: relative
+  overflow: hidden

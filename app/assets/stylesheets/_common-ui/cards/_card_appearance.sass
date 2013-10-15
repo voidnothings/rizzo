@@ -11,7 +11,7 @@
     pointer-events: none
     top: 0
     width: $double-card-width
-  .homepage &:after
+  .responsive &:after
     width: 100%
     background-size: 100%
     +respond-to(medium-view)
@@ -82,8 +82,15 @@
     text-decoration: none
 
 .card__tour-duration
+  @extend %left-icon
+  @extend %tour-duration-before
   color: $header-grey
-  font-weight: bold
+  padding-left: 20px
+  margin-bottom: 12px
+  &:before
+    line-height: 12px
+    font-size: 28px
+
 
 
 // -----------------------------------------------------------------------------
@@ -106,7 +113,6 @@
 
   .btn--bookable
     +font-size(13)
-    display: block
     padding: 10px 12px
 
   // fade to white at the top of the footer when extended content
@@ -166,7 +172,6 @@
 
 .card--list
   @extend %four-pixel-rounded
-  @extend %media
   float: left
   margin-left: 10px
   overflow: hidden

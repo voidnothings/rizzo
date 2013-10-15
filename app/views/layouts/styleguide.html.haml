@@ -2,7 +2,9 @@
 %html{class: 'no-js freight js-hover', lang: "en", "ng-app" => "StyleSheetApp"}
 
   %head
-    = render 'layouts/core/head', responsive: true, homepage: false
+    = render 'layouts/core/head', responsive: false, homepage: false
+    = stylesheet_link_tag 'styleguide', :media => "all"
+    = stylesheet_link_tag 'prism', :media => "all"
 
   %body
 
@@ -26,10 +28,29 @@
             = ui_component('left_nav', left_nav: left_nav)
 
             .main-content.stack{ng: {view: true}}
-              .grid-view.grid-wrapper--10
-                = yield
+              = yield
 
         .row--footer-push
 
     .js-config.is-hidden
+
       = yield :scripts
+
+      = javascript_include_tag 'prism'
+      = javascript_include_tag 'lonelyplanet_minjs/dist/$'
+      :javascript
+        (function(){
+          var snippets = $$('pre')
+          snippets.forEach(function(snippet){
+            if (snippet.firstChild.getBoundingClientRect().height > snippet.getBoundingClientRect().height) {
+              var button = document.createElement('span')
+              button.className = "btn btn--blue btn--slim js-snippet-expand";
+              button.textContent = "Expand snippet";
+              button.on('click', function(e){
+                this.parentNode.find('pre').classList.toggle("is-open");
+              }, false);
+              snippet.parentNode.appendChild(button);
+            }
+          });
+        }())
+      = render 'styleguide/javascripts/copy'

@@ -40,8 +40,6 @@ input, textarea
 .input--submit
   +font-size(15)
   cursor: pointer
-  &[disabled], &.input--submit--disabled
-    @extend %disabled-state
 
 .input--datepicker
   @extend %input--regular
@@ -204,7 +202,9 @@ input, textarea
   // Container is large enough so we can remove new formatting context
   overflow: visible
   &:after
-    line-height: 24px
+    top: 14px
+  .responsive &
+    top: 0
 
 .submit--language
   display: none
@@ -246,7 +246,7 @@ input, textarea
   color: $header-grey
   +placeholder()
     color: $body-copy
-  .homepage &
+  .responsive &
     +font-size(16) // Prevent zoom on iOS
   .ie7 &
     width: auto
@@ -259,6 +259,6 @@ input, textarea
   border: none
   padding-top: 11px
   padding-bottom: 11px
-  .homepage &
+  .responsive &
     +font-size(16) // Prevent zoom on iOS
 

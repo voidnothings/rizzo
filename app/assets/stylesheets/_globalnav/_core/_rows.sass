@@ -12,7 +12,7 @@ body
   background-color: $body-background
   display: table
   min-width: 100%
-  &.homepage
+  &.responsive
     display: block
 
 // Freight is applied to the main content row of the page
@@ -34,17 +34,34 @@ body
   position: relative
   @extend %regular-width
   .responsive &
-    width: auto
+    width: 90%
     +respond-to(wide-view)
       max-width: 1000px
 
 .row--core
   @extend %helvetica-neue
-  .homepage &
+  .responsive &
     @extend %lp-font-stack
 
 .row--text-centered
   text-align: center
+  .row__inner
+    width: 95%
+    +respond-to(wide-view)
+      width: 600px
+
+.row--image
+  background-position: 50% 50%
+  background-repeat: no-repeat
+  background-size: cover
+  position: relative
+
+.row--image__standout
+  text-align: center
+  +respond-to(wide-view)
+    display: block
+    position: absolute
+    right: 55%
 
 // ----------------------------------------------------------------------------
 //
@@ -81,11 +98,11 @@ body
       +respond-to(wide-view)
         text-align: right
 
-  .btn--gray
-    margin-left: 10px
+  .btn
+    +font-size(12)
 
-  .btn--regular
-    font-weight: bold
+  .btn--grey
+    margin-left: 10px
 
   &.is-open
     padding-top: 12px
@@ -178,7 +195,7 @@ body
 // ----------------------------------------------------------------------------
 
 .row--primary
-  z-index: 2
+  z-index: 6
   position: relative
   .responsive &
     position: static
@@ -216,11 +233,9 @@ body
   z-index: 1
   .responsive &
     @extend %transition--nav
-    position: relative
+    margin-top: 55px
   .homepage &
-    padding-top: 0
-    +respond-to(wide-view)
-      margin-top: -55px
+    margin-top: 0
 
 
 // ----------------------------------------------------------------------------
@@ -234,6 +249,7 @@ body
   .responsive &
     border: none
     padding: 10px
+    width: 100%
     +respond-to(wide-view)
       border-top: 1px solid $input-border
       padding: 0
@@ -258,6 +274,9 @@ body
     +respond-to(wide-view)
       padding-top: 20px
 
+  .btn
+    +font-size(14)
+
 
 
 // ----------------------------------------------------------------------------
@@ -275,10 +294,6 @@ body
       +respond-to(wide-view)
         border-top: 1px solid $input-border
         padding: 0 10px
-
-.row--footer--about__logo
-  .responsive &
-    margin-bottom: 20px
 
 .row--footer--social__logo
   .responsive &
@@ -299,7 +314,6 @@ body
       padding: 20px 10px
 
 .text--legal
-  +font-size(11)
   width: 60%
   line-height: 1.5em
   color: $body-copy

@@ -52,6 +52,7 @@
     padding-left: 0
     padding-right: 0
     width: 0
+    border: none
 
     .tag--horizontal
       opacity: 0
@@ -59,7 +60,7 @@
       .ie7 &, .ie8 &
         display: none
 
-  .homepage &
+  .responsive &
     width: 310px
     +respond-to(medium-view)
       width: 394px
@@ -89,13 +90,13 @@
     right: 25px
     margin-top: 8px
 
-  + .copy--title
+  + .copy--h1
     width: 450px
 
 .ad-mpu.card__content
   @extend %ad-mpu
   margin-bottom: 13px
-  .homepage &
+  .responsive &
     +box-sizing()
     margin-bottom: 0
     padding: 30px 0 0

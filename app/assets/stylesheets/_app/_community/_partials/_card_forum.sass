@@ -1,0 +1,36 @@
+$forum-padding: 20px
+
+.card__forum
+  @extend %four-pixel-rounded
+  padding: $forum-padding
+
+.card__forum__title,
+.card__forum__row-container,
+.card__forum__row
+  padding: 0 $forum-padding
+  margin: 0 -#{$forum-padding}
+
+.card__forum__title
+  padding-bottom: 13px
+
+.card__forum__row-container
+  border-top: 1px solid $subdued
+
+.card__forum__row
+  border-top: 1px solid $body-background
+  padding-top: 13px
+  
+  &:first-child
+    border-top: 0
+  .copy--meta
+    +font-size(13)
+    margin-left: 0.2em
+
+.card__forum__row--title
+  background: $details-panel-bg
+  padding: 10px $forum-padding
+  .copy--h5
+    color: $section--need-to-know
+
+  &:first-child
+    border-top: none
