@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>refresh--body-grey</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="Actions" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <path d="M17.73,5 C11.57,5 6.56,9.996 6.406,16.214 L3,16.214 L8.097,21.964 L13.199,16.214 L9.238,16.214 C9.392,11.583 13.133,7.875 17.73,7.875 C22.428,7.875 26.232,11.737 26.232,16.5 C26.232,21.264 22.428,25.125 17.73,25.125 C15.849,25.125 14.113,24.504 12.701,23.451 L10.754,25.563 C12.679,27.09 15.101,28 17.73,28 C23.994,28 29.066,22.851 29.066,16.5 C29.066,10.15 23.994,5 17.73,5" id="refresh--body-grey" fill="#67737B" sketch:type="MSShapeGroup"></path>
+    </g>
+</svg>

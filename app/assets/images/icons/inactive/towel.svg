@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>towel--body-grey</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="Brand" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <path d="M25.6550751,30.8672725 L17.6221503,27.3428697 C16.8825434,27.0184722 15.6668208,27.006747 14.9211098,27.3174651 L6.35509827,30.8917 C5.61040462,31.2033952 5,30.8184174 5,30.0377139 L5,5.42063503 C5,4.63993145 5.66635838,3.99993039 6.47921387,3.99993039 L25.5197688,3.99993039 C26.334659,3.99993039 27,4.63993145 27,5.42063503 L27,30.0377139 C27,30.8184174 26.3946821,31.1926471 25.6550751,30.8672725 Z M25.6550751,30.8672725" id="towel--body-grey" fill="#67737B" sketch:type="MSShapeGroup"></path>
+    </g>
+</svg>

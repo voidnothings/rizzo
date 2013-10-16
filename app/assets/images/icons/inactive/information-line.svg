@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>information-line--body-grey</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <path d="M16,3 C8.83,3 3,8.834 3,16.002 C3,23.168 8.83,29 16,29 C23.166,29 29,23.168 29,16.002 C29,8.834 23.166,3 16,3 Z M16,27.016 C9.922,27.016 4.982,22.074 4.982,16.002 C4.982,9.924 9.922,4.984 16,4.984 C22.072,4.984 27.014,9.924 27.014,16.002 C27.014,22.074 22.072,27.016 16,27.016 Z M12.367,23.16 C12.787,23.139 13.16,23.096 13.484,23.01 C13.928,22.883 14.111,22.541 14.111,22.074 L14.111,16.279 C14.064,15.832 13.881,15.447 13.508,15.215 C13.228,15.043 12.623,14.873 12.205,14.852 L12.205,13.789 L17.863,13.531 L18.021,13.68 L18.021,21.945 C18.021,22.414 18.232,22.754 18.652,22.904 C19.002,23.033 19.375,23.139 19.793,23.16 L19.793,24.184 L12.367,24.184 L12.367,23.16 Z M15.998,12.014 C14.885,12.014 13.9,11.004 13.9,9.863 C13.9,8.803 14.885,7.818 15.998,7.818 C17.113,7.818 18.097,8.775 18.097,9.863 C18.097,11.029 17.164,12.014 15.998,12.014 Z M15.998,12.014" id="information-line--body-grey" fill="#67747C" sketch:type="MSShapeGroup"></path>
+    </g>
+</svg>

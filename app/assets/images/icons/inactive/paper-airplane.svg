@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <title>paper-airplane--body-grey</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <defs></defs>
+    <g id="Actions" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <path d="M31.9140237,3.527 C32.1340237,3.049 31.9170237,2.823 31.4300237,3.027 L0.383023729,16.036 C-0.102976271,16.239 -0.129976271,16.628 0.322023729,16.897 L6.05402373,20.322 C6.50602373,20.593 6.87702373,21.245 6.87702373,21.772 L6.87702373,28.718 C6.87702373,29.245 7.22302373,29.419 7.64702373,29.105 L12.9740237,25.157 C13.3970237,24.844 14.1240237,24.792 14.5880237,25.041 L19.6860237,27.784 C20.1500237,28.034 20.7100237,27.847 20.9300237,27.368 L31.9140237,3.527 L31.9140237,3.527 L31.9140237,3.527 L31.9140237,3.527 Z M8.02602373,27.329 L8.45802373,20.047 L30.8620237,4.095 L10.5650237,21.819 L8.02602373,27.329 L8.02602373,27.329 Z M8.02602373,27.329" id="paper-airplane--body-grey" fill="#67737B" sketch:type="MSShapeGroup"></path>
+    </g>
+</svg>
