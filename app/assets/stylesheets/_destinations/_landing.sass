@@ -177,6 +177,9 @@ $row--introduction-height: 80px
   display: block
   font-weight: 700
   text-decoration: none
+  &:hover
+    color: white
+
   +respond-to(wide-view)
     box-shadow: -1px 0 $body-background inset
     height: ( $row--introduction-height - 30 )
@@ -185,17 +188,23 @@ $row--introduction-height: 80px
 .top-ten--countries
   &.expanded
     background-color: $section--countries
+  &:hover
+    background-color: $section--countries
   +respond-to(wide-view)
     border-bottom-color: $section--countries
 
 .top-ten--regions
   &.expanded
     background-color: $section--regions
+  &:hover
+    background-color: $section--regions
   +respond-to(wide-view)
     border-bottom-color: $section--regions
 
 .top-ten--cities
   &.expanded
+    background-color: $section--cities
+  &:hover
     background-color: $section--cities
   +respond-to(wide-view)
     border-bottom-color: $section--cities
@@ -204,8 +213,7 @@ $row--introduction-height: 80px
   +respond-to(wide-view)
     position: absolute
     left: 0
-    // top: -( $row--introduction-height )
-    top: -100px
+    top: -100px // TODO: Dynamically find number?
     width: 100%
     list-style-type: none
     @extend %clearfix
@@ -243,6 +251,7 @@ $row--introduction-height: 80px
     .top-ten__list--cities &:hover
       box-shadow: 10px 10px $section--cities inset, -10px -10px $section--cities inset
 
+
 .top-ten__list__item__rank
   +respond-to(wide-view)
     color: white
@@ -251,6 +260,8 @@ $row--introduction-height: 80px
     position: absolute
     top: 10px
     right: 10px
+    &:before
+      content: "#"
 
 .bit-map
   display: none
@@ -264,9 +275,9 @@ $row--introduction-height: 80px
 .carousel
   overflow: hidden
   position: relative
-  min-width: 1100px // on a media query for this size
   margin: 0 auto
   height: 100%
+  min-width: 1100px // TODO: Handle media queries
 
 .carousel__contents-wrapper
   position: absolute
@@ -277,11 +288,5 @@ $row--introduction-height: 80px
     li  
       float: left
       width: 100px
-      &.red
-        background-color: red
-      &.blue
-        background-color: blue
-      &.green
-        background-color: green
       a
         display: block

@@ -3,34 +3,62 @@
   left: 0
   top: 0
   z-index: 30
-  height: ( $map__height - 10)
+  height: ( $map__height - 10 )
   width: 100%
 
+  &.is-peeking
+    height: ( $map__height - 100 )
+
+    .content-pane__content
+      height: 200px !important
+
+    .content-pane__nav
+      opacity: 0
+
+    .content-pane__inner, .carousel
+      height: 400px !important
+      transition: all 0.3s ease-in
 
 .content-pane__nav
-  background-color: red
   display: block
-  height: 70%
+  color: white
+  height: ( $map__height - 100 )
   position: absolute
-  top: 15%
+  bottom: 0
   width: 5%
+  text-align: center
+  text-shadow: 1px 1px 5px black
+  +font-size(50)
+  line-height: 240px
+
+  &:hover
+    background-color: rgba(0,0,0,.1)
+    text-decoration: none
 
 .content-pane__nav--back
   left: 0
+  @extend %chevron-left-before
 
 .content-pane__nav--forward
   right: 0
+  @extend %chevron-right-before
 
 .content-pane__hide
   @extend %cross-icon-before
   position: absolute
   top: 5px
   right: 5px
-  width: 50px
-  height: 50px
-  background-color: yellow
+  width: 40px
+  height: 40px
+  color: white
   display: block
   z-index: 50
+  +font-size(40)
+  line-height: 40px
+  text-shadow: 1px 1px 5px black
+  &:hover
+    text-decoration: none
+
 
 .content-pane__inner
   background-size: cover
@@ -49,7 +77,13 @@
 
 .content-pane__content
   width: 1100px
-  margin: 0 auto
+  margin: 0 auto 0
+  // padding-top: 200px
+  position: relative
+  top: 200px // just for offset
+
+.content-pane__content__inner
+
 
 .content-pane__copy
   float: left
@@ -64,13 +98,22 @@
 .content-pane__buttons
   text-transform: uppercase
   color: white
-  width: 190px
+  width: 100%
+  margin-bottom: 20px 
 
 .btn__read-article--regions
   background-color: $section--regions
 
 .btn__visit-destination
-  background-color: $header-grey  
+  background-color: $header-grey
+  &:before
+    font-size: 36px
+    padding-right: 5px
+    line-height: 0
+    position: relative
+    top: 5px
+  @extend %local-marker-before
+
 
 .carousel--regions
   .content-pane__rank
@@ -79,10 +122,10 @@
 .content-pane__rank
   color: white
   position: absolute
-  +font-size(14)
+  +font-size(16)
   font-weight: 700
   text-align: right
-  left: -40px
+  left: -56px
   width: 23px
   height: 20px
   padding: 8px
@@ -96,9 +139,12 @@
   +font-size(120)
   font-weight: 700
   text-transform: uppercase
+  margin-top: -27px
+  line-height: 1em
+  margin-bottom: 16px
 
 .content-pane__leader
-  background-color: red
   color: white
   +font-size(16)
+  font-weight: 700
   margin-right: 5%
