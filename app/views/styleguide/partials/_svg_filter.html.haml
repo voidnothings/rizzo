@@ -1,0 +1,9 @@
+.split--right.filter--links
+
+  .styleguide-proximity
+    %input.styleguide-proximity__input.input--text.input{ type: "text", placeholder: "Find icon" }
+    %span.clearbutton ×
+
+  = ui_component('forms/dropdown', properties: { name: "svg_order", class: "svg-colourise", options: [ { title: "icon--header-grey", value: "", selected: true}, { title: "icon--body-grey", value: "body-grey" }, { title: "icon--subdued", value: "subdued" }, { title: "icon--white", value: "white" }, { title: "icon--lp-blue", value: "lp-blue" } ] })
+
+  = render 'styleguide/javascripts/svg'

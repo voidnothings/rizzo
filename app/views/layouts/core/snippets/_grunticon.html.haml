@@ -17,4 +17,7 @@
         o(1 === r.width && 1 === r.height)
       }, r.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="
     }
-  }(["#{asset_path('icons/icons.data.svg.css')}", "#{asset_path('icons/icons.data.png.css')}", "#{asset_path('icons/icons.fallback.css')}"]))
+  }(["#{asset_path('icons/' + sheet + '.svg.css')}", "#{asset_path('icons/' + sheet + '.png.css')}", "#{asset_path('icons/' + sheet + '.fallback.css')}"]))
+
+%noscript
+  %link{href: "/assets/icons/active.fallback.css", rel: "stylesheet"}

@@ -1,0 +1,6 @@
+// -----------------------------------------------------------------------------
+// icon color mixin
+// -----------------------------------------------------------------------------
+@mixin icon-color($color: '')
+  $colors: body-grey, subdued, white, lp-blue, custom
+  background-position: 0 percentage(index($colors, $color) * .2)

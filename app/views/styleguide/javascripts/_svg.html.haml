@@ -1,0 +1,14 @@
+:javascript
+  (function(){
+
+    var colourSvg = function(value){
+      $('.js-icon').removeClass('icon--body-grey icon--subdued icon--white icon--lp-blue')
+      value && $('.js-icon').addClass('icon--' + value)
+      value == "white" ? $('.js-icon').parent().addClass('is-white') : $('.js-icon').parent().removeClass('is-white')
+    }
+
+    $('.js-select').on('change', function(e){
+      colourSvg(this.value)
+      this.parentNode.find('.js-select-overlay').textContent = this.selectedOptions[0].textContent
+    })
+  }())

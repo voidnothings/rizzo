@@ -2,13 +2,13 @@
 - unless homepage
   .row--faux-banner
 %input{type: "checkbox", id: 'nav--primary__trigger', class: "is-hidden"}
-%label{for: 'nav--primary__trigger', class: 'nav--primary__trigger icon--hamburger--white'}
+%label{for: 'nav--primary__trigger', class: 'nav--primary__trigger icon--hamburger icon--white'}
 
 - if homepage
   .logo--header
     %a.media--lp-logo(href='http://www.lonelyplanet.com')
 - else
-  %a.media--lp-logo.logo--header(href='http://www.lonelyplanet.com')
+  %a.media--lp-logo.logo--header.icon--lp-logo.icon--white(href='http://www.lonelyplanet.com')
 
 .nav-container.m-hidden-menu
 
@@ -22,18 +22,18 @@
           %label.accessibility(for='search-q') Search
           %input.search__input.search__input--primary.js-primary-search(type="search" id="search" maxlength="2048" name="q" value="" autocomplete="off" tabindex="1")>
           %button(class="search__button" type="submit" id="search-q-submit" name="search-q-submit")
-            %span.search__button--icon
+            %span.search__button--icon.icon--search.icon--subdued
               Search
 
       - if user_nav
         .nav__item.wv--nav--inline.nav--primary--user.js-user-nav.split--right__inner
           %a.nav__item.nav__item--primary.nav__item--user.user-basket.js-user-basket.js-nav-cart(href='//shop.lonelyplanet.com/cart/view')
-            %span.user-basket__icon
+            %span.user-basket__icon.icon--shop-basket.icon--lp-blue
               View Basket
 
 
   .wv--split--left
-    
+
     .wv--nav--inline.nav--primary#js-nav--primary
 
       - core_navigation_items.each do |n|

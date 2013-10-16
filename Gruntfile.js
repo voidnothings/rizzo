@@ -1,7 +1,6 @@
-module.exports = function(grunt) {
-
+module.exports = function (grunt) {
     'use strict';
-
+    var extend = require('util')._extend;
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -20,14 +19,23 @@ module.exports = function(grunt) {
             }
         },
         grunticon: {
-            myIcons: {
-                options: {
-                    src: "./app/assets/images/src",
-                    dest: "./app/assets/stylesheets/icons",
-                    cssprefix: "icon--",
-                    defaultWidth: "32px",
-                    pseudoElems: true
-                }
+            all: {
+                options: extend(grunticonoptions, {
+                    src: './app/assets/images/icons/inactive',
+                    dest: './app/assets/stylesheets/CUNTS'
+                })
+            },
+            active: {
+                options: extend(grunticonoptions, {
+                    src: grunticonoptions.activeicons,
+                    customselectors: {
+                        "*": ".$1--before:before, .$1--after:after"
+                    },
+                    dest: './app/assets/stylesheets/icons/',
+                    datasvgcss: 'active.svg.css',
+                    datapngcss: 'active.png.css',
+                    urlpngcss: 'active.fallback.css'
+                })
             }
         },
         svgmin: {
@@ -38,23 +46,23 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: [{
-                    "expand": true,
-                    "cwd": "./app/assets/images/src",
-                    "src": ["*.svg"],
-                    "dest": "./app/assets/images/src",
-                    "ext": ".svg"
+                    expand: true,
+                    cwd: './app/assets/images/src',
+                    src: ['*.svg'],
+                    dest: './app/assets/images/src',
+                    ext: '.svg'
                 }]
             }
         },
         shell: {
             clean_icons: {
-                command: "rm -rf app/assets/images/png"
+                command: 'rm -rf app/assets/images/icons/png'
             },
             clean_js: {
                 command: 'rm -rf public/assets/javascripts'
             },
             move: {
-                command: "mv app/assets/stylesheets/icons/png app/assets/images"
+                command: 'mv app/assets/stylesheets/icons/png/  app/assets/images/icons/png/'
             },
             openPlato: {
                 command: 'open .plato/index.html'
@@ -63,17 +71,17 @@ module.exports = function(grunt) {
         coffee: {
             compile: {
                 files: [{
-                    "expand": true,
-                    "cwd": "./app/assets/javascripts/lib",
-                    "src": ["**/*.coffee", "**/**/*.coffee"],
-                    "dest": "./public/assets/javascripts/lib",
-                    "ext": ".js"
+                    expand: true,
+                    cwd: './app/assets/javascripts/lib',
+                    src: ['**/*.coffee', '**/**/*.coffee'],
+                    dest: './public/assets/javascripts/lib',
+                    ext: '.js'
                 }, {
-                    "expand": true,
-                    "cwd": "./spec/javascripts/lib",
-                    "src": ["**/*.coffee"],
-                    "dest": "./public/assets/javascripts/spec",
-                    "ext": ".js"
+                    expand: true,
+                    cwd: './spec/javascripts/lib',
+                    src: ['**/*.coffee'],
+                    dest: './public/assets/javascripts/spec',
+                    ext: '.js'
                 }]
             }
         },
@@ -87,7 +95,7 @@ module.exports = function(grunt) {
         },
         open: {
             jasmine: {
-                path: "http://127.0.0.1:8888/_SpecRunner.html"
+                path: 'http://127.0.0.1:8888/_SpecRunner.html'
             }
         },
         jasmine: {
@@ -102,14 +110,14 @@ module.exports = function(grunt) {
                         requireConfig: {
                             baseUrl: './',
                             paths: {
-                                jquery: "./vendor/assets/javascripts/jquery/jquery-1.7.2.min",
-                                jsmin: "./vendor/assets/javascripts/lonelyplanet_minjs/dist/$",
-                                polyfills: "./vendor/assets/javascripts/polyfills",
-                                lib: "./public/assets/javascripts/lib",
-                                jplugs: "./vendor/assets/javascripts/jquery/plugins",
-                                s_code: "./vendor/assets/javascripts/omniture/s_code",
-                                maps_infobox: "./vendor/assets/javascripts/google-maps-infobox",
-                                gpt: "http://www.googletagservices.com/tag/js/gpt"
+                                jquery: './vendor/assets/javascripts/jquery/jquery-1.7.2.min',
+                                jsmin: './vendor/assets/javascripts/lonelyplanet_minjs/dist/$',
+                                polyfills: './vendor/assets/javascripts/polyfills',
+                                lib: './public/assets/javascripts/lib',
+                                jplugs: './vendor/assets/javascripts/jquery/plugins',
+                                s_code: './vendor/assets/javascripts/omniture/s_code',
+                                maps_infobox: './vendor/assets/javascripts/google-maps-infobox',
+                                gpt: 'http://www.googletagservices.com/tag/js/gpt'
                             }
                         }
                     }
@@ -147,6 +155,5 @@ module.exports = function(grunt) {
     // Don't run this for the moment until (hopefully) grunticon is update with:
     // https://github.com/filamentgroup/grunticon/pull/84
     // At the moment it includes a manual step within the npm module and running this would kill the icons
-    // grunt.registerTask('icons', ['svgmin', 'grunticon', 'shell:clean_icons', 'shell:move']);
-
+    grunt.registerTask('icons', ['svgmin', 'grunticon:inactive', 'grunticon:active', 'shell:clean_icons', 'shell:move']);
 };
