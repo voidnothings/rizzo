@@ -26,6 +26,7 @@ left_nav_stub:
             :name: 'Top places to stay'
             :path: '#'
             :count: 20
+            :extra_style: 'nav__item--current--stack'
           -
             :name: 'Best things to do in Scotland'
             :path: '#'
