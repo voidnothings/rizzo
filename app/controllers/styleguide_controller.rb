@@ -38,10 +38,6 @@ class StyleguideController < GlobalController
     render '/styleguide/pagination'
   end
 
-  def pagination
-    render '/styleguide/pagination'
-  end
-
   def forms
     render '/styleguide/forms'
   end
