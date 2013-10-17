@@ -8,13 +8,15 @@
 
 .media
   @extend %clearfix
-  margin-bottom: 10px
 
-  .media__img
-    float: left
-    img
-      display: block
+.media__img
+  float: left
 
-  .media__body
-    position: relative
-    overflow: hidden
+  .media--rev &
+    float: right
+  img
+    display: block
+
+.media__body
+  position: relative
+  overflow: hidden

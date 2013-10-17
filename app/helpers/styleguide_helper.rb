@@ -6,11 +6,41 @@ module StyleguideHelper
     {
       groups: [
         {
+          title: "Colours",
+          items: [
+            {
+              name: "Design palette",
+              path: "/styleguide/colours",
+              extra_style: "nav__item--delimited"
+            },
+            {
+              name: "UI Colours",
+              path: "/styleguide/ui-colours",
+              extra_style: "nav__item--delimited"
+            }
+          ]
+        },
+        {
+          title: "Navigation",
+          items: [
+            {
+              name: "Secondary Nav",
+              path: "/styleguide/secondary-nav",
+              extra_style: "nav__item--delimited"
+            },
+            {
+              name: "Left Nav",
+              path: "/styleguide/left-nav",
+              extra_style: "nav__item--delimited"
+            },
+          ]
+        },
+        {
           title: "Components",
           items: [
             {
               name: "Cards",
-              path: "/styleguide",
+              path: "/styleguide/cards",
               extra_style: "nav__item--delimited"
             },
             {
@@ -24,23 +54,28 @@ module StyleguideHelper
               extra_style: "nav__item--delimited"
             },
             {
-              name: "Navigation",
-              path: "/styleguide/navigation",
+              name: "Page title",
+              path: "/styleguide/page-title",
+              extra_style: "nav__item--delimited"
+            },
+            {
+              name: "Pagination",
+              path: "/styleguide/pagination",
+              extra_style: "nav__item--delimited"
+            },
+            {
+              name: "Forms",
+              path: "/styleguide/forms",
               extra_style: "nav__item--delimited"
             }
           ]
         },
         {
-          title: "Colours",
+          title: "Thorntree",
           items: [
             {
-              name: "Design palette",
-              path: "/styleguide/colours",
-              extra_style: "nav__item--delimited"
-            },
-            {
-              name: "UI Colours",
-              path: "/styleguide/ui-colours",
+              name: "Activity List",
+              path: "/styleguide/activity_list",
               extra_style: "nav__item--delimited"
             }
           ]
@@ -55,21 +90,29 @@ module StyleguideHelper
     {hints: "", channels: ""}
   end
 
-  def ui_component(path, opts)
-    render "components/#{path}", opts
+  def ui_component(path, properties={})
+    render "components/#{path}", properties
   end
 
-  def sg_component(path, opts)
-    count = opts.delete(:count)
-    item_class = count ? "styleguide-block__item styleguide-block__item--#{count}" : "styleguide-block__item"
+  def sg_component(path, properties)
+    card_style = properties.delete(:card_style)
+    count = properties.delete(:count)
+    full_width = properties.delete(:full_width)
+    original_stub = properties.delete(:original_stub)
+
+    item_class = full_width ? "styleguide-block__item" : "styleguide-block__item--left"
+    item_class += card_style ? " card styleguide-block__item--card" : ""
+    item_class += count ? " styleguide-block__item--#{count}" : ""
+
     capture_haml do
       haml_tag(:div, class: "styleguide-block") do
         haml_tag(:div, class: item_class) do
-          haml_concat ui_component(path, opts)
+          haml_concat ui_component(path, properties)
         end
-        haml_concat render "styleguide/partials/description", component: path, opts: opts[:original_stub] ? {stack_item: opts[:original_stub]} : opts
+        haml_concat render "styleguide/partials/description", component: path, full_width: full_width, properties: original_stub ? original_stub : properties[:properties]
       end
     end
+
   end
 
   def get_colours(file)

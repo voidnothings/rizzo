@@ -102,6 +102,16 @@
   @extend %subpixel-text
   +font-size(14)
 
+.nav--secondary__dropdown
+  @extend %border-box
+  padding: 0 10px
+  width: 100%
+  +respond-to(400)
+    width: auto
+  .dropdown__value
+    background-color: white
+    +font-size(16)
+
 .nav__item--secondary
   padding: 6px 8px
   &, &:active
@@ -114,16 +124,32 @@
     &:hover
       color: white
 
+
 // Place title is a wrapper to allow us to show very long place names on hover
 .place-title
   +font-size(18)
-  @extend %truncate-text
   @extend %left-icon
   @extend %icon--location-flag-before
+  // These three rules are repeated here because we can't extend from within a media query. Ugly but necessary
+  text-overflow: ellipsis
+  overflow: hidden
+  white-space: nowrap
   margin-right: 20px
   // Fix the text-overflow bug in firefox to avoid the final letter being clipped
   padding-right: 2px
   padding-left: 22px
+  .responsive &
+    margin-left: 10px
+    text-overflow: none
+    overflow: visible
+    white-space: normal
+    +respond-to(medium-view)
+      text-overflow: ellipsis
+      overflow: hidden
+      white-space: nowrap
+    +respond-to(wide-view)
+      margin-left: 0
+
   &:before
     top: 0
     font-size: 28px
@@ -296,12 +322,26 @@
     font-weight: bold
     &:hover
       text-decoration: none
+  .stack__intro &
+    padding: 0 0.2em 0 0.5em
+    &:before
+      content: '/'
+      top: 0.25em
+    &:first-child
+      padding-left: 0
+      &:before
+        content: ''
 
 // Qualified selector because not all breadcrumbs are links
 // with slugs and should not be underlined
 a.nav__item--breadcrumbs
   &:hover
     text-decoration: underline
+
+  .stack__intro &
+    +font-size(13)
+    color: $body-copy
+    text-transform: uppercase
 
 .nav__item--breadcrumbs--home
   @extend %left-icon
