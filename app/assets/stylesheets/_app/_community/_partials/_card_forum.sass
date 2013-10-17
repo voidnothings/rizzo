@@ -3,6 +3,11 @@ $forum-padding: 20px
 .card__forum
   @extend %four-pixel-rounded
   padding: $forum-padding
+
+  &.active
+    border-left: 4px solid $linkblue
+    padding-left: $forum-padding - 4px
+
   .copy--meta
     +font-size(13)
     margin-left: 0.2em
