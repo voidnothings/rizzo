@@ -230,156 +230,30 @@ $row--introduction-height: 80px
     height: 100px
     position: relative
 
-.top-ten__list--city--1
-  background-image: url(#{image_path('destinations/best-in-travel/hero/paris-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/france_paris.svg')})
+$cities: paris trinidad cape-town riga zurich shanghai vancouver chicago adelaide auckland
+$countries: brazil antarctica scotland sweden malawi mexico seychelles belgium macedonia malaysia
+$regions: sikkim the-kimberley yorkshire hakuriku texas victoria-falls mallorca westcoast-nz hunan haapi
 
-.top-ten__list--city--2
-  background-image: url(#{image_path('destinations/best-in-travel/hero/trinidad-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/cuba_central-cuba_trinidad.svg')})
+@for $i from 1 through length($cities)
+  $city: nth($cities, $i)
+  .top-ten__list--city--#{$i}
+    background-image: url(#{image_path('destinations/best-in-travel/hero/#{$city}-640.jpg')})
+    .top-ten__list__title
+      background-image: url(#{image_path('destinations/best-in-travel/SVG/#{$city}.svg')})
 
-.top-ten__list--city--3
-  background-image: url(#{image_path('destinations/best-in-travel/hero/cape-town-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/south-africa_cape-town.svg')})
+@for $i from 1 through length($countries)
+  $country: nth($countries, $i)
+  .top-ten__list--country--#{$i}
+    background-image: url(#{image_path('destinations/best-in-travel/hero/#{$country}-640.jpg')})
+    .top-ten__list__title
+      background-image: url(#{image_path('destinations/best-in-travel/SVG/#{$country}.svg')})
 
-.top-ten__list--city--4
-  background-image: url(#{image_path('destinations/best-in-travel/hero/riga-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/latvia_riga.svg')})
-
-.top-ten__list--city--5
-  background-image: url(#{image_path('destinations/best-in-travel/hero/zurich-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/switzerland_zurich.svg')})
-
-.top-ten__list--city--6
-  background-image: url(#{image_path('destinations/best-in-travel/hero/shanghai-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/china_shanghai.svg')})
-
-.top-ten__list--city--7
-  background-image: url(#{image_path('destinations/best-in-travel/hero/vancouver-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/canada_vancouver.svg')})
-
-.top-ten__list--city--8
-  background-image: url(#{image_path('destinations/best-in-travel/hero/chicago-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/usa_chicago.svg')})
-
-.top-ten__list--city--9
-  background-image: url(#{image_path('destinations/best-in-travel/hero/adelaide-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/australia_south-australia_adelaide.svg')})
-
-.top-ten__list--city--10
-  background-image: url(#{image_path('destinations/best-in-travel/hero/auckland-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/new-zealand_auckland.svg')})
-
-.top-ten__list--country--1
-  background-image: url(#{image_path('destinations/best-in-travel/hero/brazil-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/brazil.svg')})
-
-.top-ten__list--country--2
-  background-image: url(#{image_path('destinations/best-in-travel/hero/antarctica-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/antarctica.svg')})
-
-.top-ten__list--country--3
-  background-image: url(#{image_path('destinations/best-in-travel/hero/scotland-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/scotland.svg')})
-
-.top-ten__list--country--4
-  background-image: url(#{image_path('destinations/best-in-travel/hero/sweden-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/sweden.svg')})
-
-.top-ten__list--country--5
-  background-image: url(#{image_path('destinations/best-in-travel/hero/malawi-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/malawi.svg')})
-
-.top-ten__list--country--6
-  background-image: url(#{image_path('destinations/best-in-travel/hero/mexico-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/mexico.svg')})
-
-.top-ten__list--country--7
-  background-image: url(#{image_path('destinations/best-in-travel/hero/seychelles-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/seychelles.svg')})
-
-.top-ten__list--country--8
-  background-image: url(#{image_path('destinations/best-in-travel/hero/belgium-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/belgium.svg')})
-
-.top-ten__list--country--9
-  background-image: url(#{image_path('destinations/best-in-travel/hero/macedonia-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/macedonia.svg')})
-
-.top-ten__list--country--10
-  background-image: url(#{image_path('destinations/best-in-travel/hero/malaysia-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/malaysia.svg')})
-
-.top-ten__list--region--1
-  background-image: url(#{image_path('destinations/best-in-travel/hero/sikkim-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/india_sikkim.svg')})
-
-.top-ten__list--region--2
-  background-image: url(#{image_path('destinations/best-in-travel/hero/the-kimberley-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/australia_western-australia_the-kimberley.svg')})
-
-.top-ten__list--region--3
-  background-image: url(#{image_path('destinations/best-in-travel/hero/yorkshire-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/england_yorkshire.svg')})
-
-.top-ten__list--region--4
-  background-image: url(#{image_path('destinations/best-in-travel/hero/hakuriku-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/japan_hokuriku.svg')})
-
-.top-ten__list--region--5
-  background-image: url(#{image_path('destinations/best-in-travel/hero/texas-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/usa_texas.svg')})
-
-.top-ten__list--region--6
-  background-image: url(#{image_path('destinations/best-in-travel/hero/victoria-falls-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/zambia_southwestern-zambia_livingstone-and-victoria-falls.svg')})
-
-.top-ten__list--region--7
-  background-image: url(#{image_path('destinations/best-in-travel/hero/mallorca-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/spain_mallorca.svg')})
-
-.top-ten__list--region--8
-  background-image: url(#{image_path('destinations/best-in-travel/hero/westcoast-nz-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/new-zealand_the-west-coast.svg')})
-
-.top-ten__list--region--9
-  background-image: url(#{image_path('destinations/best-in-travel/hero/hunan-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/china_hunan.svg')})
-
-.top-ten__list--region--10
-  background-image: url(#{image_path('destinations/best-in-travel/hero/haapi-640.jpg')})
-  .top-ten__list__title
-    background-image: url(#{image_path('destinations/best-in-travel/SVG/tonga_haapai-group.svg')})
-
+@for $i from 1 through length($regions)
+  $region: nth($regions, $i)
+  .top-ten__list--region--#{$i}
+    background-image: url(#{image_path('destinations/best-in-travel/hero/#{$region}-640.jpg')})
+    .top-ten__list__title
+      background-image: url(#{image_path('destinations/best-in-travel/SVG/#{$region}.svg')})
 
 .top-ten__list__title
   background-position: center center
