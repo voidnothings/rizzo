@@ -1,8 +1,8 @@
 !!! 5
-<!--[if IE 7]><html class="no-js ie7" lang="en"><![endif]-->
-<!--[if IE 8]><html class="no-js ie8" lang="en"><![endif]-->
-<!--[if IE 9]><html class="no-js ie9 no-freight" lang="en"><![endif]-->
-<!--[if gt IE 9]><!--><html class='no-js base no-touch no-freight' lang="en"><!--<![endif]-->
+<!--[if IE 7]><html class="no-js ie7 js-hover" lang="en"><![endif]-->
+<!--[if IE 8]><html class="no-js ie8 js-hover" lang="en"><![endif]-->
+<!--[if IE 9]><html class="no-js ie9 no-freight js-hover" lang="en"><![endif]-->
+<!--[if gt IE 9]><!--><html class='no-js base no-touch js-hover' lang="en"><!--<![endif]-->
 %head
   %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
   = render 'layouts/core/head', responsive: true, homepage: false
@@ -21,6 +21,9 @@
     = render 'layouts/core/snippets/accessibility'
     = render 'layouts/core/snippets/primary_navigation_bar', user_nav: true, responsive: true, homepage: false
     .row.row--content#js-row--content
+      .row.row--secondary.copy--freight#js-secondary-nav
+        = yield :secondary
+
       = yield
 
     .wrap--footer

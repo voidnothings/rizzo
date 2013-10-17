@@ -1,8 +1,14 @@
-.dropdown.js-select-group{ class: opts[:class] }
-  %label.dropdown__value.js-select-overlay<
-    = opts[:placeholder]
-  %select.dropdown__select.js-select{ id: opts[:id], name: opts[:name], data: opts[:data] }
-    - if opts[:prompt]
-      %option{ value: "" }<
-        = opts[:placeholder]
-    = options_for_select(opts[:options], opts[:selected])
+.dropdown.js-select-group{ class: properties[:class] }
+  
+  %label.dropdown__value.js-select-overlay.icon--chevron-down--grey--after<
+    = properties[:selected] || properties[:placeholder] || properties[:options].first[:title]
+  
+  %select.dropdown__select.js-select{ id: properties[:id], name: properties[:name], data: properties[:data] }
+    
+    - if properties[:placeholder]
+      %option{ value: ""}<
+        = properties[:placeholder]
+    
+    - properties[:options].each do |option|
+      %option{value: option[:value] || option[:title], selected: properties[:selected] == option[:title] ? 'selected' : false}<
+        = option[:title]
