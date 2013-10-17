@@ -5,7 +5,8 @@
     = render 'layouts/core/head', responsive: false, homepage: false
     = stylesheet_link_tag 'styleguide', :media => "all"
     = stylesheet_link_tag 'prism', :media => "all"
-
+    = javascript_include_tag 'lonelyplanet_minjs/dist/$'
+    
   %body.copy--freight
 
     .wrapper
@@ -37,7 +38,6 @@
       = yield :scripts
 
       = javascript_include_tag 'prism'
-      = javascript_include_tag 'lonelyplanet_minjs/dist/$'
       :javascript
         (function(){
           var snippets = $$('pre');
