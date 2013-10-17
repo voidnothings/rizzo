@@ -1,4 +1,4 @@
-- description = stack_item.post_content ? Nokogiri::HTML(stack_item.post_content).xpath("//p").first.text : stack_item.strapline
+- description = stack_item.post_content ? sanitize(stack_item.post_content,:tags => []) : stack_item.strapline
 - slug = defined?(articles_path) ? "#{articles_path}/#{stack_item.slug}" : stack_item.url
 - title = stack_item.post_title ? stack_item.post_title : stack_item.title
 
