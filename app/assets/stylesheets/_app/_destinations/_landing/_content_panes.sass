@@ -1,9 +1,10 @@
 .content-pane
+  background-color: rgba(0,0,0,0.4)
   position: absolute
   left: 0
   top: 0
   z-index: 30
-  height: ( $map__height - 10 )
+  height: $map__height - 10
   width: 100%
 
   &.is-peeking
@@ -19,43 +20,60 @@
       height: 400px !important
       transition: all 0.3s ease-in
 
+
 .content-pane__nav
   display: block
   color: white
-  height: ( $map__height - 100 )
+  height: $map__height - 10
   position: absolute
   bottom: 0
   width: 5%
+
+.content-pane__nav__link__icon
+  height: 70px
+  margin-top: ($map__height - 10 - 70) / 2
+
+.content-pane__nav--back
+  left: 0
+  .content-pane__nav__link__icon
+    @extend %chevron-left-after
+
+.content-pane__nav--forward
+  right: 0
+  .content-pane__nav__link__icon
+    @extend %chevron-right-after
+
+
+.content-pane__nav__link
+  position: absolute
+  bottom: 0
+  height: $map__height - 10
+  width: 100%
   text-align: center
   text-shadow: 1px 1px 5px black
-  +font-size(50)
-  line-height: 240px
-
   &:hover
     background-color: rgba(0,0,0,.1)
     text-decoration: none
 
-.content-pane__nav--back
-  left: 0
-  @extend %chevron-left-before
 
-.content-pane__nav--forward
-  right: 0
-  @extend %chevron-right-before
+.content-pane__icon
+  +font-size(60)
+  color: white
+  text-align: center
+  text-shadow: 1px 1px 5px black
+  line-height: 1em
 
 .content-pane__hide
   @extend %cross-icon-before
+  // @extend %absolute-top-left
   position: absolute
-  top: 5px
-  right: 5px
-  width: 40px
-  height: 40px
-  color: white
+  top: 0
+  left: 0
+  width: 100%
+  height: 70px
   display: block
   z-index: 50
-  +font-size(40)
-  line-height: 40px
-  text-shadow: 1px 1px 5px black
+
   &:hover
     text-decoration: none
 
