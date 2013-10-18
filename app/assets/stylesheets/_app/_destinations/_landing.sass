@@ -11,9 +11,6 @@ $row--introduction-height: 80px
 
 // -----------------------------------------------------------------------------
 
-
-
-
 .row--introduction
   background-color: white
   position: relative // for z-index  
@@ -21,8 +18,8 @@ $row--introduction-height: 80px
   color: $header-grey
   text-align: center
   +respond-to(wide-view)
-    height: $row--introduction-height
     @extend %clearfix
+    height: $row--introduction-height
 
 .row--introduction__inner
   +respond-to(wide-view)
@@ -31,7 +28,6 @@ $row--introduction-height: 80px
 
 .row--introduction__branding
   padding-top: 25px
-
   +respond-to(wide-view)
     padding-top: 0
     float: left
@@ -47,25 +43,24 @@ $row--introduction-height: 80px
   +font-size(15)
   padding: 20px
   +respond-to(wide-view)
-    background-color: $header-grey
     +border-radius(4)
     +box-shadow(5, 5, 1, 0, rgba(0,0,0,0.1))
+    background-color: $header-grey
     position: absolute
     top: -200px
-    // left: -1500px
     width: 600px
     text-align: left
 
 .row--introduction__blurb__title
   margin-bottom: 8px
   +respond-to(wide-view)
-    color: white
     +font-size(32)
+    color: white
 
 .row--introduction__blurb__copy
   +respond-to(wide-view)
-    color: white
     +font-size(16)
+    color: white
 
 .row--introduction__blurb__hide
   @extend %cross-icon-before
@@ -73,6 +68,7 @@ $row--introduction-height: 80px
   cursor: pointer
 
   +respond-to(wide-view)
+    +font-size(40)
     display: block
     position: absolute
     top: 4px
@@ -81,7 +77,6 @@ $row--introduction-height: 80px
     height: 36px
     overflow: hidden
     line-height: 1em
-    +font-size(40)
     color: white
     opacity: 0.5
 
@@ -124,9 +119,7 @@ $row--introduction-height: 80px
 
 .map__tooltip
   color: white
-  +font-size(13)
-  font-weight: 700
-  text-transform: uppercase
+  @extend .copy--h5
 
 .col--introduction__social
   display: none
@@ -137,8 +130,8 @@ $row--introduction-height: 80px
 
 .top-tens
   +respond-to(wide-view)
-    float: left
     @extend %clearfix
+    float: left
     width: 60%
 
 .top-ten
@@ -211,12 +204,12 @@ $row--introduction-height: 80px
 
 .top-ten__list
   +respond-to(wide-view)
+    @extend %clearfix
     position: absolute
     left: 0
     top: -100px // TODO: Dynamically find number?
     width: 100%
     list-style-type: none
-    @extend %clearfix
 
 .top-ten__list__item
   height: 75px
