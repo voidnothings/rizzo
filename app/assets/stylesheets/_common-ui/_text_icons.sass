@@ -4,11 +4,13 @@
 
 .text-icon
   @extend %left-icon-text
+  line-height: 20px
 
   &:before
     +font-size(30)
     font-weight: normal
-    line-height: 20px
+    position: relative
+    top: -3px
 
 .text-icon--info
   &:before
