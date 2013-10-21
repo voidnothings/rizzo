@@ -156,25 +156,47 @@
 .carousel--cities
   .content-pane__rank
     background-color: $section--cities
+    &:before
+      border-color: $section--cities
 
 .carousel--countries
   .content-pane__rank
     background-color: $section--countries
+    &:before
+      border-color: $section--countries
 
 .carousel--regions
   .content-pane__rank
     background-color: $section--regions
+    &:before
+      border-color: $section--regions
 
 .content-pane__rank
+  +font-size(16)
   color: white
   position: absolute
-  +font-size(16)
   font-weight: 700
   text-align: right
-  left: -56px
+  left: -50px
+  top: 5px
   width: 23px
   height: 20px
-  padding: 8px
+  position: absolute
+  font-size: 16px !important
+  color: white
+  z-index: 20
+  &:before
+    +box-shadow(1, 1, 1, 0, rgba(0,0,0,0.4))
+    content: ""
+    position: absolute
+    display: block
+    bottom: -.8em
+    border-width: 1.2em .6em
+    border-style: solid
+    z-index: -1
+    left: -1.3em
+    border-right-width: 2.6em
+    border-left-color: transparent !important
   
 
 .content-pane__nav
