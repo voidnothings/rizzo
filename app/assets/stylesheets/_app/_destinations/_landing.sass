@@ -6,10 +6,15 @@ $section--countries        : #ff708e !default
 $section--regions          : #47a899 !default
 $section--cities           : #fa5e5b !default
 
-$map__height : 500px
+$map__height : 500px // 750
 $row--introduction-height: 80px
 
 // -----------------------------------------------------------------------------
+
+
+.row--secondary
+  +respond-to(wide-view)
+    padding-bottom: 10px
 
 .row--introduction
   background-color: white
@@ -239,6 +244,7 @@ $row--introduction-height: 80px
     background-image: url(#{image_path('destinations/best-in-travel/hero/#{$region}-640.jpg')})
 
 .top-ten__list__title
+  +filter(drop-shadow(0 0 5px rgba(0,0,0,0.5)))
   background-position: center center
   background-repeat: no-repeat
   background-size: 140px
@@ -251,6 +257,7 @@ $row--introduction-height: 80px
     background-size: cover
 
 .top-ten__list__item__link
+  background-color: rgba(20,43,68, 0.15)
   +respond-to(wide-view)
     height: 100%
     width: 100%
@@ -282,7 +289,7 @@ $row--introduction-height: 80px
     width: 100%
     height: $map__height
     position: relative
-    margin-top: 10px
+    overflow: hidden
 
 .carousel
   overflow: hidden
@@ -290,15 +297,6 @@ $row--introduction-height: 80px
   margin: 0 auto
   height: 100%
   min-width: 1100px // TODO: Handle media queries
-
-.carousel__contents-wrapper
-  position: absolute
-  left: 0
-  ul
-    overflow: hidden
-    list-style-type: none
-    li  
-      float: left
-      width: 100px
-      a
-        display: block
+  display: none
+  &.current
+    display: block
