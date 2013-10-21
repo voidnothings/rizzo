@@ -25,3 +25,8 @@
   .copy--meta Meta copy is used for styling ancillary content, usually in the details panel, that represents details about the content rather than the actual content itself.
   .copy--caption Caption text is used primarily below images and on our cards.
   .copy--disclaimer Disclaimer text is used for legal and copyright text.
+
+:javascript
+  $$('.styleguide-block [class^=copy--]').forEach(function(el) {
+    el.innerHTML += ' (' + window.getComputedStyle(el, null).getPropertyValue('font-size') + ')';
+  });
