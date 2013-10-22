@@ -17,12 +17,14 @@
     = render 'layouts/mobile/require_js_async', script_name: "#{yield :async_js}"
 
 %body.responsive.copy--freight
+  = render 'layouts/core/snippets/accessibility'
+  = render 'layouts/core/snippets/leaderboard'
   .wrapper
-    = render 'layouts/core/snippets/accessibility'
     = render 'layouts/core/snippets/primary_navigation_bar', user_nav: true, responsive: true, homepage: false
     .row.row--content#js-row--content
       .row.row--secondary.copy--freight#js-secondary-nav
-        = yield :secondary
+        .row--secondary__inner
+          = yield :secondary
 
       = yield
 

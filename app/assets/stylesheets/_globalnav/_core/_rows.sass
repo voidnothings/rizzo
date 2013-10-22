@@ -214,17 +214,19 @@ body
   margin-bottom: 18px
   .responsive &
     padding-top: 20px
-    +respond-to(400)
-      padding-top: 40px
     +respond-to(wide-view)
-      width: 1000px
-      margin: 0 auto
+      padding: 10px 0
 
   .wv--split--right
     .responsive &
       +respond-to(400)
         float: right
         text-align: right
+
+.row--secondary__inner
+  +respond-to(wide-view)
+    width: 1000px
+    margin: 0 auto
 
 .row__title--secondary
   background: $body-background
@@ -233,12 +235,16 @@ body
     max-width: 100%
     float: none
     margin-bottom: 20px
+    padding: 7px 0
     +respond-to(400)
       max-width: 70%
       float: left
       margin-bottom: 0
     +respond-to(medium-view)
       max-width: 340px
+    +respond-to(wide-view)
+      +vertically-center(30)
+      padding: 0
   .js-hover &:hover
     max-width: none
 
