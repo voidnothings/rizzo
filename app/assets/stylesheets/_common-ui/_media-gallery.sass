@@ -115,7 +115,7 @@
   position: relative
   width: 100%
   z-index: 1
-  &.is-portrait, &.is-wider, &.is-squarish
+  &.is-portrait, &.is-wider
     height: 100%
     width: auto
     margin: 0 auto
@@ -123,9 +123,15 @@
 
   .is-loading &
     opacity: 0
+
 .media-gallery__map
   height: 100%
   width: 100%
+  &.is-squarish
+    height: 100%
+    width: auto
+    margin: 0 auto
+    display: block
 
 .media-gallery__poi-list
   @extend %four-pixel-rounded
