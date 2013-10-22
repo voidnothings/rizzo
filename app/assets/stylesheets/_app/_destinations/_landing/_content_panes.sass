@@ -6,7 +6,6 @@
   height: $map__height - 10
   width: 100%
   opacity: 1
-
   &.is-revealing-nav
     height: $map__height - 100
 
@@ -71,12 +70,8 @@
   z-index: 50
 
 
-
-
 .content-pane__inner
   @extend %clearfix
-  // Need to confirm if we're going to slide or straight clicks. Assume latter...
-    // float: left
   left: 0
   background-size: cover
   width: 100%
@@ -102,15 +97,20 @@
   .content-pane__inner--region--#{$i}
     background-image: url(#{image_path('destinations/best-in-travel/hero/#{$region}-1600.jpg')})
 
+.content-pane__legibility-mask
+  +background-gradient($startColor: rgba(0,0,0,0.5), $endColor: rgba(0,0,0,0), $fallbackImg: false, $imgPosition: 0 0, $direction: bottom)
+  @extend %absolute-bottom
+  width: 100%
+
 .content-pane__content
+  @extend %clearfix
+  @extend %block-center
   width: 1100px
-  margin: 0 auto 0
-  // padding-top: 200px
   position: relative
-  top: 200px // just for offset
+  padding-bottom: 50px
 
 .content-pane__content__inner
-
+  @extend %clearfix
 
 .content-pane__copy
   float: left
