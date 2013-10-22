@@ -8,7 +8,7 @@
   position: relative
   &.has-tabs ~ .card--page__aside
     @extend %media-gallery-transition
-    top: -316px
+    top: -302px
   ~ .card--page__aside
     @extend %media-gallery-transition
     top: -262px
@@ -115,14 +115,23 @@
   position: relative
   width: 100%
   z-index: 1
-  &.is-portrait, &.is-wider, &.is-squarish
+  &.is-portrait, &.is-wider
     height: 100%
     width: auto
+    margin: 0 auto
+    display: block
+
   .is-loading &
     opacity: 0
+
 .media-gallery__map
   height: 100%
   width: 100%
+  &.is-squarish
+    height: 100%
+    width: auto
+    margin: 0 auto
+    display: block
 
 .media-gallery__poi-list
   @extend %four-pixel-rounded
