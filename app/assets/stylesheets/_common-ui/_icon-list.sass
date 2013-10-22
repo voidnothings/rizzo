@@ -27,3 +27,25 @@
 
 .icon-list__item--cross
   @extend %cross-icon-before
+  &:before
+    color: $red
+
+
+// -----------------------------------------------------------------------------
+// The markup on viator copy is hugely inconsistent so we are forced to extend
+// these classes here.
+// -----------------------------------------------------------------------------
+
+.copy--viator__included,
+.copy--viator__excluded
+  ul
+    @extend .icon-list
+  li
+    @extend .icon-list__item
+    @extend %tick-icon-before
+    &:before
+      +font-size(18)
+
+.copy--viator__excluded
+  li
+    @extend .icon-list__item--cross
