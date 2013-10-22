@@ -5,6 +5,7 @@ form_components:
     :name: "text_name"
     :maxlength: 10
     :placeholder: "Placeholder"
+    :value: "Existing Value"
     :data:
       :key: "value"
       :super: "man"
@@ -13,6 +14,8 @@ form_components:
     :styleguide_title: "Text area"
     :id: "input_id"
     :name: "text_name"
+    :placeholder: "Placeholder"
+    :value: "Existing Value"
     :cols: 40
     :rows: 6
     :maxlength: 20
@@ -57,6 +60,7 @@ field_components:
     :id: "input_id"
     :maxlength: 10
     :name: "text_name"
+    :placeholder: "Placeholder"
     :cols: 40
     :rows: 4
 
