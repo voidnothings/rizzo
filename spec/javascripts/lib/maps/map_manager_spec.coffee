@@ -1,4 +1,4 @@
-require ['public/assets/javascripts/lib/maps/map_manager', 'gpt'], (MapManager) ->
+require ['public/assets/javascripts/lib/maps/map_manager'], (MapManager) ->
 
   describe 'MapManager', ->
 
@@ -10,19 +10,6 @@ require ['public/assets/javascripts/lib/maps/map_manager', 'gpt'], (MapManager) 
     describe 'object', ->
       it 'is defined', ->
         expect(MapManager).toBeDefined()
-
-    describe 'on page load:', ->
-      beforeEach ->
-        loadFixtures('map_manager.html')
-        window.mapManager = new MapManager
-          centerTrigger: '.js-map-center-trigger'
-          centerDelay: 500
-          minimalUI: true
-
-      it 'Loads successfully', ->
-        waitsFor ->
-          return !$('#js-map-canvas').hasClass('is-loading')
-        , '`is-loading` class to be removed', 10000
 
     describe 'event based load:', ->
       beforeEach ->
