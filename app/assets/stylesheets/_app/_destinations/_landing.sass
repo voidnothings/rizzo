@@ -6,7 +6,7 @@ $section--countries        : #ff708e !default
 $section--regions          : #47a899 !default
 $section--cities           : #fa5e5b !default
 
-$map__height : 500px // 750
+$map__height : 600px
 $row--introduction-height: 80px
 $top-ten__list__height: 100px
 
@@ -209,13 +209,13 @@ $top-ten__list__height: 100px
     border-bottom-color: $section--cities
 
 .top-ten__list
+  list-style-type: none
   +respond-to(wide-view)
     @extend %clearfix
     position: absolute
     left: 0
     top: -$top-ten__list__height
     width: 100%
-    list-style-type: none
 
 .top-ten__list__item
   height: 75px
@@ -282,6 +282,9 @@ $top-ten__list__height: 100px
     &:before
       content: "#"
 
+.bit-map__container
+  @extend %no-outline
+
 .bit-map
   display: none
   +respond-to(wide-view)
@@ -293,7 +296,6 @@ $top-ten__list__height: 100px
     overflow: hidden
 
 .carousel
-  overflow: hidden
   position: relative
   margin: 0 auto
   height: 100%

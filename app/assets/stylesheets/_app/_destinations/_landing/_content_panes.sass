@@ -1,12 +1,13 @@
 .content-pane
   +transition(all, 0.2, ease-in-out)
-  @extend %absolute-top
+
+  position: absolute
+  top: 0
   left: 0
   z-index: 30
   height: $map__height - 10
   width: 100%
   opacity: 1
-
   &.is-revealing-nav
     height: $map__height - 100
 
@@ -23,7 +24,8 @@
 
 .content-pane__nav__link__icon
   height: 70px
-  margin-top: ($map__height - 10 - 70) / 2
+  // margin-top: ($map__height - 10 - 70) / 2
+  margin-top: 318px
 
 .content-pane__nav--back
   left: 0
@@ -71,12 +73,8 @@
   z-index: 50
 
 
-
-
 .content-pane__inner
   @extend %clearfix
-  // Need to confirm if we're going to slide or straight clicks. Assume latter...
-    // float: left
   left: 0
   background-size: cover
   width: 100%
@@ -102,15 +100,23 @@
   .content-pane__inner--region--#{$i}
     background-image: url(#{image_path('destinations/best-in-travel/hero/#{$region}-1600.jpg')})
 
+.content-pane__legibility-mask
+  +background-gradient($startColor: rgba(0,0,0,0.5), $endColor: rgba(0,0,0,0), $fallbackImg: false, $imgPosition: 0 0, $direction: bottom)
+  position: absolute
+  bottom: 0
+  padding-top: 100px
+  width: 100%
+
+
 .content-pane__content
+  @extend %clearfix
+  @extend %block-center
   width: 1100px
-  margin: 0 auto 0
-  // padding-top: 200px
   position: relative
-  top: 200px // just for offset
+  padding-bottom: 50px
 
 .content-pane__content__inner
-
+  @extend %clearfix
 
 .content-pane__copy
   float: left
@@ -126,7 +132,8 @@
   text-transform: uppercase
   color: white
   width: 100%
-  margin-bottom: 20px 
+  margin-bottom: 20px
+
 
 .btn__read-article--cities
   background-color: $section--cities
@@ -138,6 +145,7 @@
   background-color: $section--regions
 
 .btn__visit-destination
+  @extend %local-marker-before
   background-color: $header-grey
   &:before
     font-size: 36px
@@ -145,7 +153,6 @@
     line-height: 0
     position: relative
     top: 5px
-  @extend %local-marker-before
 
 .carousel--cities
   .content-pane__rank
@@ -191,14 +198,13 @@
     left: -1.3em
     border-right-width: 2.6em
     border-left-color: transparent !important
-  
 
 .content-pane__nav
   z-index: 50
 
 .content-pane__title
-  color: white
   +font-size(120)
+  color: white
   font-weight: 700
   text-transform: uppercase
   margin-top: -27px
@@ -206,7 +212,44 @@
   margin-bottom: 16px
 
 .content-pane__leader
-  color: white
   +font-size(16)
+  color: white
   font-weight: 700
   margin-right: 5%
+
+
+// -----------------------------------------------------------------------------
+// Ribbons
+// -----------------------------------------------------------------------------
+
+$spriteOffsets: city "110px" "0px" "80px" "0px", country "110px" "-226px" "80px" "-163px", region "110px" "-113px" "80px" "-83px"
+@each $type in $spriteOffsets
+
+  $key: nth($type, 1)
+  $paneBox: nth($type, 2)
+  $paneValue: nth($type, 3)
+  $navBox: nth($type, 4)
+  $navValue: nth($type, 5)
+
+  .content-pane__inner--#{$key}--1
+    &:before
+      @extend %empty-abs-generated-content
+      background-image: url(#{image_path('destinations/best-in-travel/ribbon-sprite.png')})
+      background-repeat: no-repeat
+      background-position: 0 #{$paneValue}
+      top: -3px
+      left: 0
+      width: #{$paneBox}
+      height: #{$paneBox}
+
+  .top-ten__list--#{$key}--1
+    .top-ten__list__item__link:before
+      @extend %empty-abs-generated-content
+      background-image: url(#{image_path('destinations/best-in-travel/ribbon-sprite.png')})
+      background-repeat: no-repeat
+      background-position: 0 #{$navValue}
+      background-size: cover
+      top: -3px
+      left: 0
+      width: #{$navBox}
+      height: #{$navBox}
