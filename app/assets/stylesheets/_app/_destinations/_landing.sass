@@ -209,13 +209,13 @@ $top-ten__list__height: 100px
     border-bottom-color: $section--cities
 
 .top-ten__list
+  list-style-type: none
   +respond-to(wide-view)
     @extend %clearfix
     position: absolute
     left: 0
     top: -$top-ten__list__height
     width: 100%
-    list-style-type: none
 
 .top-ten__list__item
   height: 75px
@@ -296,7 +296,6 @@ $top-ten__list__height: 100px
     overflow: hidden
 
 .carousel
-  overflow: hidden
   position: relative
   margin: 0 auto
   height: 100%
