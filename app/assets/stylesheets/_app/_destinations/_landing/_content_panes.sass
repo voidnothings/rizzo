@@ -1,28 +1,22 @@
 .content-pane
-  position: absolute
+  +transition(all, 0.2, ease-in-out)
+  @extend %absolute-top
   left: 0
-  top: 0
   z-index: 30
   height: $map__height - 10
   width: 100%
+  opacity: 1
 
-  &.is-peeking
-    height: ( $map__height - 100 )
+  &.is-revealing-nav
+    height: $map__height - 100
 
-    .content-pane__content
-      height: 200px !important
-
-    .content-pane__nav
+    .content-pane__nav__link__icon
       opacity: 0
-
-    .content-pane__inner, .carousel
-      height: 400px !important
-
 
 .content-pane__nav
   display: block
   color: white
-  height: $map__height - 10
+  height: 100%
   position: absolute
   bottom: 0
   width: 5%
@@ -81,12 +75,12 @@
 
 .content-pane__inner
   @extend %clearfix
-  +transition(height, 0.2, ease-in)
   // Need to confirm if we're going to slide or straight clicks. Assume latter...
     // float: left
   left: 0
   background-size: cover
   width: 100%
+  height: 100%
   position: relative
   list-style-type: none
   display: none

@@ -8,6 +8,7 @@ $section--cities           : #fa5e5b !default
 
 $map__height : 500px // 750
 $row--introduction-height: 80px
+$top-ten__list__height: 100px
 
 // -----------------------------------------------------------------------------
 
@@ -212,7 +213,7 @@ $row--introduction-height: 80px
     @extend %clearfix
     position: absolute
     left: 0
-    top: -100px // TODO: Dynamically find number?
+    top: -$top-ten__list__height
     width: 100%
     list-style-type: none
 
@@ -225,7 +226,7 @@ $row--introduction-height: 80px
     display: block
     float: left
     width: 10%
-    height: 100px
+    height: $top-ten__list__height
     position: relative
 
 @for $i from 1 through length($best-in-travel--cities)
@@ -296,7 +297,10 @@ $row--introduction-height: 80px
   position: relative
   margin: 0 auto
   height: 100%
-  min-width: 1100px // TODO: Handle media queries
+  width: 100%
   display: none
   &.current
     display: block
+
+.carousel__contents-wrapper
+  height: 100%
