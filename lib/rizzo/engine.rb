@@ -11,7 +11,7 @@ module Rizzo
     end
 
     initializer "rizzo.update_asset_paths" do |app|
-      app.config.assets.precompile += Rizzo.precompile
+      app.config.assets.precompile += Rizzo::Assets.precompile
     end
   end
 end
