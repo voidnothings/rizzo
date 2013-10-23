@@ -12,7 +12,10 @@ $top-ten__list__height: 100px
 
 // -----------------------------------------------------------------------------
 
-  
+html
+  overflow-y: scroll
+
+
 
 .row--secondary
   +respond-to(wide-view)
@@ -260,13 +263,11 @@ $top-ten__list__height: 100px
       top: 4px
       left: 3px
 
-.bit-map__container
-  @extend %no-outline
-
 .bit-map
   display: none
   +respond-to(wide-view)
-    background-color: #cbdae7
+    +transition(all, 0.2, ease-in)
+    background-color: $nav-primary-type
     display: block
     width: 100%
     // height: $map__height
