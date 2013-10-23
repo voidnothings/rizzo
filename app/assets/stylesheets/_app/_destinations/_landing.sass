@@ -6,8 +6,9 @@ $section--countries        : #ff708e !default
 $section--regions          : #47a899 !default
 $section--cities           : #fa5e5b !default
 
-$map__height : 500px
+$map__height : 600px
 $row--introduction-height: 80px
+$top-ten__list__height: 100px
 
 // -----------------------------------------------------------------------------
 
@@ -15,6 +16,7 @@ $row--introduction-height: 80px
   +respond-to(wide-view)
     background-color: white
     margin-bottom: 0
+    padding-bottom: 10px
 
 .row__title--secondary
   +respond-to(wide-view)
@@ -27,8 +29,8 @@ $row--introduction-height: 80px
   color: $header-grey
   text-align: center
   +respond-to(wide-view)
-    height: $row--introduction-height
     @extend %clearfix
+    height: $row--introduction-height
 
 .row--introduction__inner
   +respond-to(wide-view)
@@ -37,7 +39,6 @@ $row--introduction-height: 80px
 
 .row--introduction__branding
   padding-top: 25px
-
   +respond-to(wide-view)
     padding-top: 0
     float: left
@@ -53,25 +54,24 @@ $row--introduction-height: 80px
   +font-size(15)
   padding: 20px
   +respond-to(wide-view)
-    background-color: $header-grey
     +border-radius(4)
     +box-shadow(5, 5, 1, 0, rgba(0,0,0,0.1))
+    background-color: $header-grey
     position: absolute
     top: -200px
-    // left: -1500px
     width: 600px
     text-align: left
 
 .row--introduction__blurb__title
   margin-bottom: 8px
   +respond-to(wide-view)
-    color: white
     +font-size(32)
+    color: white
 
 .row--introduction__blurb__copy
   +respond-to(wide-view)
-    color: white
     +font-size(16)
+    color: white
 
 .row--introduction__blurb__hide
   @extend %cross-icon-before
@@ -79,6 +79,7 @@ $row--introduction-height: 80px
   cursor: pointer
 
   +respond-to(wide-view)
+    +font-size(40)
     display: block
     position: absolute
     top: 4px
@@ -87,7 +88,6 @@ $row--introduction-height: 80px
     height: 36px
     overflow: hidden
     line-height: 1em
-    +font-size(40)
     color: white
     opacity: 0.5
 
@@ -97,42 +97,6 @@ $row--introduction-height: 80px
 
 
 
-// map specific:
-
-.leaflet-top, .leaflet-bottom
-  z-index: 1 !important
-
-.leaflet-container a
-  color: inherit !important
-
-
-.leaflet-popup-pane
-
-  .leaflet-popup-tip
-    background: $header-grey
-
-  .leaflet-popup-content-wrapper
-    background: transparent
-    border-radius: 0
-    box-shadow: none
-    padding: 0
-    text-align: center
-  
-  .leaflet-popup-content
-    margin: 0
-    background: $header-grey
-    +border-radius(4)
-    padding: 8px
-    text-align: center
-      
-  .leaflet-popup-tip
-    margin: -15px auto 0 !important
-
-.map__tooltip
-  color: white
-  +font-size(13)
-  font-weight: 700
-  text-transform: uppercase
 
 .col--introduction__social
   display: none
@@ -143,8 +107,8 @@ $row--introduction-height: 80px
 
 .top-tens
   +respond-to(wide-view)
-    float: left
     @extend %clearfix
+    float: left
     width: 60%
 
 .top-ten
@@ -216,13 +180,13 @@ $row--introduction-height: 80px
     border-bottom-color: $section--cities
 
 .top-ten__list
+  list-style-type: none
   +respond-to(wide-view)
+    @extend %clearfix
     position: absolute
     left: 0
-    top: -100px // TODO: Dynamically find number?
+    top: -$top-ten__list__height
     width: 100%
-    list-style-type: none
-    @extend %clearfix
 
 .top-ten__list__item
   height: 75px
@@ -233,7 +197,7 @@ $row--introduction-height: 80px
     display: block
     float: left
     width: 10%
-    height: 100px
+    height: $top-ten__list__height
     position: relative
 
 @for $i from 1 through length($best-in-travel--cities)
@@ -252,6 +216,7 @@ $row--introduction-height: 80px
     background-image: url(#{image_path('destinations/best-in-travel/hero/#{$region}-640.jpg')})
 
 .top-ten__list__title
+  +filter(drop-shadow(0 0 5px rgba(0,0,0,0.5)))
   background-position: center center
   background-repeat: no-repeat
   background-size: 140px
@@ -264,6 +229,7 @@ $row--introduction-height: 80px
     background-size: cover
 
 .top-ten__list__item__link
+  background-color: rgba(20,43,68, 0.15)
   +respond-to(wide-view)
     height: 100%
     width: 100%
@@ -285,7 +251,15 @@ $row--introduction-height: 80px
     top: 0
     right: 5px
     &:before
+      +font-size(8)
       content: "#"
+      vertical-align: top
+      position: relative
+      top: 4px
+      left: 3px
+
+.bit-map__container
+  @extend %no-outline
 
 .bit-map
   display: none
@@ -295,22 +269,16 @@ $row--introduction-height: 80px
     width: 100%
     height: $map__height
     position: relative
+    overflow: hidden
 
 .carousel
-  overflow: hidden
   position: relative
   margin: 0 auto
   height: 100%
-  min-width: 1100px // TODO: Handle media queries
+  width: 100%
+  display: none
+  &.current
+    display: block
 
 .carousel__contents-wrapper
-  position: absolute
-  left: 0
-  ul
-    overflow: hidden
-    list-style-type: none
-    li  
-      float: left
-      width: 100px
-      a
-        display: block
+  height: 100%
