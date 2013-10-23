@@ -10,6 +10,9 @@
   color: $header-blue
   line-height: 1.3em
 
+  .context--content &
+    margin-bottom: 0.8em
+
 .copy--h2
   +font-size(16)
   font-weight: bold
@@ -17,15 +20,26 @@
   text-transform: uppercase
   letter-spacing: 0.1em
 
+  .context--content &
+    margin: 1.8em 0 0.9em
+    &:first-child
+      margin-top: 0
+
 .copy--h3
   +font-size(20)
   color: $header-blue
   font-weight: bold
 
+  .context--content &
+    margin-bottom: 1em
+
 .copy--h4
   +font-size(16)
   color: $header-grey
   font-weight: bold
+
+  .context--content &
+    margin-bottom: 1em
 
 .copy--h5
   @extend .copy--h2
