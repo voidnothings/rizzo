@@ -4,6 +4,27 @@ $forum-padding: 20px
   @extend %four-pixel-rounded
   padding: $forum-padding
 
+  &.active
+    border-left: 4px solid $linkblue
+    padding-left: $forum-padding - 4px
+
+  .copy--meta
+    +font-size(13)
+    margin-left: 0.2em
+  .copy--h2, .copy--h3
+    a
+      color: $lpblue
+  .dropdown__value,
+  .dropdown__select
+    min-width: 195px
+
+.card__forum--single
+  padding: 12px $forum-padding
+
+  .dropdown
+    margin-top: -6px
+    top: 2px
+
 .card__forum__title,
 .card__forum__row-container,
 .card__forum__row
@@ -22,9 +43,6 @@ $forum-padding: 20px
   
   &:first-child
     border-top: 0
-  .copy--meta
-    +font-size(13)
-    margin-left: 0.2em
 
 .card__forum__row--title
   background: $details-panel-bg

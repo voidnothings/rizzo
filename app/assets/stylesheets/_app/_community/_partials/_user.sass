@@ -1,0 +1,27 @@
+.user
+  width: 150px
+
+.user__avatar
+  border-radius: 25px
+  height: 50px
+  overflow: hidden
+  width: 50px
+
+.user__username
+  margin-left: 0.2em
+
+.user__badge
+  color: #fff
+  line-height: 1em
+  margin-left: 0.3em
+  padding: 4px
+
+.user__online
+  &:before
+    @extend %inline-block
+    background: $green
+    border-radius: 4
+    content: ''
+    margin-right: 7px
+    height: 8px
+    width: 8px
