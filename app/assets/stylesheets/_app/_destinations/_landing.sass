@@ -15,6 +15,9 @@ $top-ten__list__height: 100px
 html
   overflow-y: scroll
 
+.row--content
+  outline: none
+
 .row--secondary
   +respond-to(wide-view)
     background-color: white
@@ -101,12 +104,30 @@ html
 
 
 
-.col--introduction__social
+.bit-social
   display: none
   +respond-to(wide-view)
     display: block
     width: 20%
+    height: 80px
     float: left
+    position: relative
+
+.bit-social__item
+  position: absolute
+
+.bit-social--facebook
+  top: 15px
+  left: 15px
+
+.bit-social--googleplus
+  top: 15px
+  right: 0
+
+.bit-social--twitter
+  bottom: 17px
+  left: 15px
+
 
 .top-tens
   +respond-to(wide-view)
