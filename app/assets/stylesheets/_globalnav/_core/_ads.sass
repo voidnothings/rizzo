@@ -124,6 +124,9 @@
 .results .card
   &.card--ad
     +multiple-transitions(height 1s ease, width 1s ease)
+    .responsive &
+      +respond-to(wide-view)
+        min-height: 380px
 
   &.ad-doubleMpu
     @extend %ad-doubleMpu
