@@ -15,13 +15,11 @@ $top-ten__list__height: 100px
 html
   overflow-y: scroll
 
-
-
 .row--secondary
   +respond-to(wide-view)
     background-color: white
     margin-bottom: 0
-    padding-bottom: 10px
+    padding-bottom: 7px
 
 .row__title--secondary
   +respond-to(wide-view)
@@ -263,6 +261,11 @@ html
       top: 4px
       left: 3px
 
+.bit-map--container
+  background-color: white
+  padding-top: 3px
+  overflow: hidden
+
 .bit-map
   display: none
   +respond-to(wide-view)
@@ -270,9 +273,8 @@ html
     background-color: $nav-primary-type
     display: block
     width: 100%
-    // height: $map__height
+    // height: JS to calculate
     position: relative
-    overflow: hidden
 
 .carousel
   position: relative

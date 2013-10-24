@@ -1,15 +1,15 @@
 .content-pane
-  +transition(all, 0.2, ease-in-out)
-
+  +transition(all, 0.3, ease-in-out)
   position: absolute
   top: 0
   left: 0
   z-index: 30
-  // height: $map__height - 10
+  height: 98%
   width: 100%
   opacity: 1
   &.is-revealing-nav
-    // height: $map__height - 100
+    +transform(translateY(-100px))
+    height: 100%
     .content-pane__nav__link__icon
       opacity: 0
 
@@ -23,8 +23,6 @@
 
 .content-pane__nav__link__icon
   height: 70px
-  // margin-top: ($map__height - 10 - 70) / 2
-  // margin-top: 318px
 
 .content-pane__nav--back
   left: 0
@@ -40,12 +38,11 @@
 .content-pane__nav__link
   position: absolute
   bottom: 0
-  // height: $map__height - 10
+  height: 50%
   width: 100%
   text-align: center
   text-shadow: 1px 1px 5px black
   &:hover
-    background-color: rgba(0,0,0,.1)
     text-decoration: none
 
 
@@ -108,9 +105,10 @@
 .content-pane__content
   @extend %clearfix
   @extend %block-center
-  width: 1100px
   position: relative
   padding-bottom: 50px
+  width: 1100px
+  
 
 .content-pane__content__inner
   @extend %clearfix
@@ -258,7 +256,8 @@ $spriteOffsets: city "110px" "0px" "80px" "0px", country "110px" "-226px" "80px"
       background-repeat: no-repeat
       background-position: 0 #{$navValue}
       background-size: cover
-      top: -3px
+      top: -2px
+      z-index: 50
       left: 0
       width: #{$navBox}
       height: #{$navBox}
