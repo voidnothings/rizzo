@@ -1,4 +1,5 @@
 @import '_partials/card_forum'
+@import '_partials/post'
 @import '_partials/user'
 
 .btn--plus
@@ -40,3 +41,8 @@
 
     &:hover
       background: none
+
+.thorntree
+  // Hijacking this here where it'll be scoped to thorntree. The idea is to eventually move this out and make copy--body be 16px everywhere.
+  .copy--body
+    +font-size(16)

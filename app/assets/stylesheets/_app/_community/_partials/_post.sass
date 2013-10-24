@@ -1,0 +1,41 @@
+.post__meta
+  +font-size(13)
+  color: $feature-copy
+
+  &.text-icon--clock:before
+    +font-size(22)
+    margin-right: 0.2em
+    position: relative
+    top: 2px
+  .user__username--link
+    color: $header-grey
+    font-weight: bold
+  .timeago
+    margin: 0 0.25em
+
+.post-stats__icon
+  margin-right: -20px
+  width: 60px
+.post-stats__icon
+  +font-size(13)
+  color: $feature-copy
+  font-weight: bold
+  line-height: 1.5em
+  text-align: center
+  
+  &:before
+    +font-size(35)
+    display: block
+    font-weight: normal
+  &.no-comments
+    opacity: 0.4
+    position: relative
+    &:after
+      +transform(rotateZ(40deg))
+      background: $feature-copy
+      content: ' '
+      position: absolute
+      height: 2px
+      left: 19px
+      top: 11px
+      width: 22px
