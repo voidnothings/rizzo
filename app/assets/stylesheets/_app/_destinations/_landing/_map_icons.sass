@@ -1,4 +1,41 @@
 // -----------------------------------------------------------------------------
+// Override leaflet map styles
+// -----------------------------------------------------------------------------
+
+.leaflet-top, .leaflet-bottom
+  z-index: 1 !important
+
+.leaflet-container a
+  color: inherit !important
+
+
+.leaflet-popup-pane
+
+  .leaflet-popup-tip
+    background: $header-grey
+
+  .leaflet-popup-content-wrapper
+    background: transparent
+    border-radius: 0
+    box-shadow: none
+    padding: 0
+    text-align: center
+  
+  .leaflet-popup-content
+    margin: 0
+    background: $header-grey
+    +border-radius(4)
+    padding: 8px
+    text-align: center
+      
+  .leaflet-popup-tip
+    margin: -15px auto 0 !important
+
+.map__tooltip
+  color: white
+  @extend .copy--h5
+
+// -----------------------------------------------------------------------------
 // Map icon sprite
 // -----------------------------------------------------------------------------
 
@@ -8,8 +45,10 @@
   width: 29px !important
   margin-left: -16px !important
   margin-top: -43px !important
-  &:hover
-    margin-top: -40px !important
+
+// Hover state
+.leaflet-marker-pane .map__icon--hover
+  margin-top: -40px !important
 
 .map__icon--city--1
   background-position: 0 0
@@ -75,7 +114,6 @@
   background-position: -232px -86px
 .map__icon--region--10
   background-position: -261px -86px
-
 
 
 // -----------------------------------------------------------------------------

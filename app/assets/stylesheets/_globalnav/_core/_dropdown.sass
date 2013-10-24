@@ -43,8 +43,12 @@
     font-weight: bold
     +font-size(18)
 
-  .standout &, .wrap--footer &
+  .standout &, .wrap--footer &, .inverted &
     background-color: #fff
+
+  .inverted &
+    border: 1px solid $subdued
+    box-shadow: none
 
   &:after
     @extend %four-pixel-rounded

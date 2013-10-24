@@ -1,4 +1,42 @@
-@import '_app/_community/_partials/card_forum'
+@import '_partials/card_forum'
+@import '_partials/user'
 
-.stack__intro__content
-  margin-top: 0.8em
+.btn--plus
+  padding-left: 40px
+  position: relative
+  &:before
+    +font-size(35)
+    left: 15px
+    position: absolute
+    top: 4px
+
+.dropdown__value
+  font-weight: bold
+  padding: 6px 40px 6px 10px
+
+  &:after
+    right: 10px
+    top: 40%
+  
+  .inverted &
+    +font-size(14)
+    min-width: 125px
+    padding-bottom: 2px
+    padding-top: 2px
+
+    &:after
+      top: 13px
+
+.thorntree-search
+  position: relative
+  top: -3px
+
+  .input--text
+    background: #fff
+  .search__button
+    position: absolute
+    right: 4px
+    top: 4px
+
+    &:hover
+      background: none

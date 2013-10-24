@@ -44,7 +44,7 @@ $$ = (function (document, window, $$) {
   };
   nodeList.addClass = function(klass) {
     this[forEach](function(el) {
-      this.addClass(klass);
+      el.addClass(klass);
     });
     return this;
   };
