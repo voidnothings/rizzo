@@ -17,8 +17,15 @@
 
 - if responsive
   = render 'layouts/mobile/cut_the_mustard'
-  = smart_stylesheet('common_core_no_font')
-  = render 'layouts/mobile/fonts_loader'
+
+  -# Some landing pages (best in travel) are still using the font icons so need the font up front
+  -# We need to remove this post-SVG
+  - if @font_icons == true
+    = smart_stylesheet('common_core')
+  - else
+    = smart_stylesheet('common_core_no_font')
+    = render 'layouts/mobile/fonts_loader'
+
 - else
   = smart_stylesheet('common_core')
   = render 'layouts/core/snippets/tynt'
