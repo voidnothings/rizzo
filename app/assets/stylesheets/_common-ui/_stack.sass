@@ -89,9 +89,14 @@ $stack-intro-lines-to-show: 2
   box-shadow: 1px 1px 2px rgba(0,0,0,0.2) inset
   color: white
 
-.list-view_heading
-  +font-size(30)
-  color: $feature-copy
+.list-view__section-heading
+  margin-left: 10px
+  margin-top: 10px
+  @extend .copy--h2
+
+.list-view__heading
+  +font-size(36)
+  color: #c5d6d9
   clear: left
   line-height: 1em
   margin: 20px 0 10px 20px
