@@ -141,8 +141,9 @@ html
     width: 60%
 
 .top-ten
-  border-top: solid 1px $body-background
+  //border-top: solid 1px $body-background
   display: block
+  //+transition(background-color, 0.25, ease-out)
   &:hover
     text-decoration: none
 
@@ -176,6 +177,7 @@ html
   display: block
   font-weight: 700
   text-decoration: none
+  //+transition(color,0.25,ease-out)
   &:hover
     color: white
 
@@ -259,16 +261,19 @@ html
 
 .top-ten__list__item__link
   background-color: rgba(20,43,68, 0.15)
+  +transition(background-color,0.25,ease-out)
+  &:hover
+    background-color: rgba(20,43,68, 0.35)    
   +respond-to(wide-view)
     height: 100%
     width: 100%
     display: block
     .top-ten__list--countries &:hover
-      box-shadow: 10px 10px $section--countries inset, -10px -10px $section--countries inset
+      //box-shadow: 10px 10px $section--countries inset, -10px -10px $section--countries inset
     .top-ten__list--regions &:hover
-      box-shadow: 10px 10px $section--regions inset, -10px -10px $section--regions inset
+      //box-shadow: 10px 10px $section--regions inset, -10px -10px $section--regions inset
     .top-ten__list--cities &:hover
-      box-shadow: 10px 10px $section--cities inset, -10px -10px $section--cities inset
+      //box-shadow: 10px 10px $section--cities inset, -10px -10px $section--cities inset
 
 .top-ten__list__item__rank
   +respond-to(wide-view)
