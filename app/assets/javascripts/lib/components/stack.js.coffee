@@ -6,6 +6,16 @@
 
 define ['jquery','lib/extends/events'], ($, EventEmitter) ->
 
+  # not sure where this should live
+  $('.js--item').on('click', (event) ->
+    element = $(event.target)
+    continent = element.data('continent')
+    $('.js-continent').fadeOut().filter('.js-continent-' + continent).fadeIn()
+    $('.js--item').removeClass('nav__item--current--stack')
+    element.addClass('nav__item--current--stack')
+    event.preventDefault();
+  )
+
   class Stack
 
     $.extend(@prototype, EventEmitter)
@@ -113,12 +123,3 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
         else
           clearInterval insertCards
       , 20)
-
-# not sure where this should live
-  $('.js--item').on('click', (event) ->
-    element = $(event.target)
-    continent = element.data('continent')
-    $('.js-continent').fadeOut().filter('.js-continent-' + continent).fadeIn()
-    element.addClass('.nav__item--current--stack')
-    event.preventDefault();
-  )
