@@ -1,19 +1,21 @@
 - if stack_item.topchoice or stack_item.prices
   .card__tags
     - if stack_item.prices
-      .tag.tag--price
-        .tag--price__inner
-          .tag--price__values
-            from
-            .tag--price__amount<
-              %span.tag--price__currency
-                = raw(currency.to_symbol)
-              %span.js-price
-                = stack_item.prices[currency.to_s].ceil
-          - if stack_item.on_sale?
-            .tag--price__original<
-              = raw(currency.to_symbol)
-              = stack_item.retail_prices[currency.to_s].ceil
+      - if stack_item.prices[currency.to_s].present? && stack_item.prices[currency.to_s] > 0
+        .tag.tag--price
+          .tag--price__inner
+            .tag--price__values
+              from
+              .tag--price__amount<
+                %span.tag--price__currency
+                  = raw(currency.to_symbol)
+                %span.js-price
+                  = stack_item.prices[currency.to_s].ceil
+            - if stack_item.on_sale?
+              - if stack_item.retail_prices[currency.to_s].present? && stack_item.retail_prices[currency.to_s] > 0
+                .tag--price__original<
+                  = raw(currency.to_symbol)
+                  = stack_item.retail_prices[currency.to_s].ceil
     - if stack_item.topchoice
       .tag.tag--badge.tag--top-choice
         %span.tag--badge__content
