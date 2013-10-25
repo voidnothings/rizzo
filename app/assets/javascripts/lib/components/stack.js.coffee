@@ -119,5 +119,6 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
     element = $(event.target)
     continent = element.data('continent')
     $('.js-continent').fadeOut().filter('.js-continent-' + continent).fadeIn()
+    element.addClass('.nav__item--current--stack')
     event.preventDefault();
   )
