@@ -4,17 +4,7 @@
 #
 # ------------------------------------------------------------------------------
 
-define ['jquery','lib/extends/events'], ($, EventEmitter) ->
-
-  # not sure where this should live
-  $('.js--item').on('click', (event) ->
-    element = $(event.target)
-    continent = element.data('continent')
-    $('.js-continent').fadeOut().filter('.js-continent-' + continent).fadeIn()
-    $('.js--item').removeClass('nav__item--current--stack')
-    element.addClass('nav__item--current--stack')
-    event.preventDefault();
-  )
+define ['jquery','lib/extends/events', 'lib/components/world_places'], ($, EventEmitter) ->
 
   class Stack
 
