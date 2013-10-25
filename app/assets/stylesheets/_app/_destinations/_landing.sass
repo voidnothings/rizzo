@@ -268,12 +268,12 @@ html
     height: 100%
     width: 100%
     display: block
-    .top-ten__list--countries &:hover
-      //box-shadow: 10px 10px $section--countries inset, -10px -10px $section--countries inset
-    .top-ten__list--regions &:hover
-      //box-shadow: 10px 10px $section--regions inset, -10px -10px $section--regions inset
-    .top-ten__list--cities &:hover
-      //box-shadow: 10px 10px $section--cities inset, -10px -10px $section--cities inset
+    .top-ten__list--countries &.active
+      box-shadow: 10px 10px $section--countries inset, -10px -10px $section--countries inset
+    .top-ten__list--regions &.active
+      box-shadow: 10px 10px $section--regions inset, -10px -10px $section--regions inset
+    .top-ten__list--cities &.active
+      box-shadow: 10px 10px $section--cities inset, -10px -10px $section--cities inset
 
 .top-ten__list__item__rank
   +respond-to(wide-view)
