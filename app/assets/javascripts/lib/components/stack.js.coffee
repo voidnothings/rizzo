@@ -113,3 +113,11 @@ define ['jquery','lib/extends/events'], ($, EventEmitter) ->
         else
           clearInterval insertCards
       , 20)
+
+# not sure where this should live
+  $('.js--item').on('click', (event) ->
+    element = $(event.target)
+    continent = element.data('continent')
+    $('.js-continent').fadeOut().filter('.js-continent-' + continent).fadeIn()
+    event.preventDefault();
+  )
