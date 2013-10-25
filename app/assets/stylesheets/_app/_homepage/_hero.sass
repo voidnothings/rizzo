@@ -180,19 +180,17 @@
   margin-right: 10px
   background-size: 100%
   background-repeat: no-repeat
-  background-image: url("#{image_path('homepage/beautifulworld/book.png')}")
+  background-image: url("#{image_path('destinations/best-in-travel/homepage/book.png')}")
   +retinafy()
-    background-image: url("#{image_path('homepage/beautifulworld/book@2x.png')}")
+    background-image: url("#{image_path('destinations/best-in-travel/homepage/book@2x.png')}")
 
-.hero__product__text
+.homepage__product__text
   color: white
   line-height: 20px
   margin-bottom: 10px
+  max-width: 150px
   > span
     margin-left: 5px
-    padding: 0 4px
-    position: relative
-    top: -2px
 
 .hero__author__heading
   +font-size(17)
@@ -232,6 +230,10 @@
     background-color: $subdued
     color: $body-copy
 
+.badge--green
+  @extend %four-pixel-rounded
+  background-color: $green
+  padding: 0 4px
 
 .hero__author__story--buttons
   padding: 15px
@@ -298,7 +300,12 @@
     right: 2px
     width: 61px
     height: 51px
-    background-image: url("#{image_path('homepage/beautifulworld/win.png')}")
+    background-image: url("#{image_path('destinations/best-in-travel/homepage/win.png')}")
+    background-size: 100%
+
+@if $is-ie == true
+  .promo--win:after
+    background: none
 
 
 
