@@ -141,12 +141,9 @@ html
     width: 60%
 
 .top-ten
-  //border-top: solid 1px $body-background
   display: block
-  //+transition(background-color, 0.25, ease-out)
   &:hover
     text-decoration: none
-
   &.expanded
     .top-ten__category
       color: white
@@ -187,25 +184,22 @@ html
     padding-top: 30px
 
 .top-ten--countries
+  +background-slide-in-from(bottom, $section--countries)
   &.expanded
-    background-color: $section--countries
-  &:hover
     background-color: $section--countries
   +respond-to(wide-view)
     border-bottom-color: $section--countries
 
 .top-ten--regions
+  +background-slide-in-from(bottom, $section--regions)
   &.expanded
-    background-color: $section--regions
-  &:hover
     background-color: $section--regions
   +respond-to(wide-view)
     border-bottom-color: $section--regions
 
 .top-ten--cities
+  +background-slide-in-from(bottom, $section--cities)
   &.expanded
-    background-color: $section--cities
-  &:hover
     background-color: $section--cities
   +respond-to(wide-view)
     border-bottom-color: $section--cities
