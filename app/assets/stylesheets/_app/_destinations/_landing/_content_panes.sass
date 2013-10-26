@@ -39,7 +39,7 @@
 .content-pane__nav__link
   position: absolute
   bottom: 0
-  height: 25%
+  height: 275px
   width: 100%
   text-align: center
   //text-shadow: 1px 1px 5px black
@@ -125,8 +125,12 @@
   color: white
   float: right
   width: 20%
-  padding-top: 55px
-  background: url(#{image_path('destinations/best-in-travel/where-would-you-go.png')}) no-repeat center 0
+  .buffer-comp
+    padding-top: 50px
+    background: url(#{image_path('destinations/best-in-travel/where-would-you-go.png')}) no-repeat center 0
+  .buffer
+    height: 112px
+  
 
 .content-pane__buttons
   font-size: 14px
@@ -137,16 +141,24 @@
 
 .btn__read-article--cities
   background-color: $section--cities
+  .js-hover &:hover
+    background-color: #e64c49
 
 .btn__read-article--countries
   background-color: $section--countries
+  .js-hover &:hover
+    background-color: #e95977
 
 .btn__read-article--regions
   background-color: $section--regions
+  .js-hover &:hover
+    background-color: #2d9686
 
 .btn__visit-destination
   @extend %local-marker-before
-  background-color: $header-grey
+  background-color: $body-copy
+  .js-hover &:hover
+    background-color: #57636b
   &:before
     font-weight: normal
     font-size: 29px
@@ -159,6 +171,8 @@
   @extend %tick-icon-before
   background-color: $teal
   margin-bottom: 30px
+  .js-hover &:hover
+    background-color: #06cdbf
   &:before
     font-weight: normal
     font-size: 20px
@@ -169,48 +183,55 @@
 
 .carousel--cities
   .content-pane__rank
-    background-color: $section--cities
-    &:before
-      border-color: $section--cities
+    background-image: url(#{image_path('destinations/best-in-travel/tag-red.png')})
+    //background-color: $section--cities
+    //&:before
+      //border-color: $section--cities
 
 .carousel--countries
   .content-pane__rank
-    background-color: $section--countries
-    &:before
-      border-color: $section--countries
+    background-image: url(#{image_path('destinations/best-in-travel/tag-pink.png')})
+    //background-color: $section--countries
+    //&:before
+      //border-color: $section--countries
 
 .carousel--regions
   .content-pane__rank
-    background-color: $section--regions
-    &:before
-      border-color: $section--regions
+    background-image: url(#{image_path('destinations/best-in-travel/tag-green.png')})
+    //background-color: $section--regions
+    //&:before
+      //border-color: $section--regions
 
 .content-pane__rank
-  +font-size(22)
+  +font-size(18)
   color: white
   position: absolute
   font-weight: 700
-  text-align: right
-  left: -50px
-  top: 5px
-  width: 23px
-  height: 20px
+  text-indent: 2px
+  text-align: center
+  left: -45px
+  width: 33px
+  height: 25px
   position: absolute
   //font-size: 16px !important
   color: white
   z-index: 20
+  overflow: hidden
+  background-size: cover
+  line-height: 22px
+  
   &:before
-    +box-shadow(1, 1, 1, 0, rgba(0,0,0,0.4))
+    //+box-shadow(1, 1, 1, 0, rgba(0,0,0,0.4))
     content: ""
     position: absolute
     display: block
     bottom: -.8em
-    border-width: 1.2em .6em
-    border-style: solid
+    //border-width: 1.2em .6em
+    //border-style: solid
     z-index: -1
     left: -1.3em
-    border-right-width: 2.6em
-    border-left-color: transparent !important
+    //border-right-width: 2.6em
+    //border-left-color: transparent !important
 
 .content-pane__nav
   z-index: 50
