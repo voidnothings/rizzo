@@ -6,7 +6,7 @@ $section--countries        : #ff708e !default
 $section--regions          : #47a899 !default
 $section--cities           : #fa5e5b !default
 
-// $map__height : 300px
+$map__height : 400px  // to calc on media queries
 $row--introduction-height: 80px
 $top-ten__list__height: 100px
 
@@ -17,6 +17,10 @@ html
 
 .row--content
   outline: none
+
+.row--cards
+  .row__inner--content
+    padding-top: 40px
 
 .row--secondary
   +respond-to(wide-view)
@@ -30,8 +34,9 @@ html
 
 .row--introduction
   background-color: white
-  position: relative // for z-index  
-  z-index: 20
+  border-bottom: solid 10px $body-background // mask
+  position: relative
+  z-index: 100
   color: $header-grey
   text-align: center
   +respond-to(wide-view)
@@ -214,10 +219,25 @@ html
   list-style-type: none
   +respond-to(wide-view)
     @extend %clearfix
-    position: absolute
-    left: 0
-    top: -$top-ten__list__height
+    // position: absolute
+    // left: 0
+    // top: -$top-ten__list__height
     width: 100%
+
+.js-row--top-ten__list--clone--container
+  position: relative
+
+.top-ten__list--clone
+  +transition(all, 0.3, ease-in-out)
+  position: absolute
+  left: 0
+  bottom: 0
+  z-index: 50
+  &.is-concealed
+    bottom: -90px
+    .top-ten__list__item__link:before, .top-ten__list__item__rank
+      display: none
+
 
 .top-ten__list__item
   height: 75px
@@ -305,6 +325,7 @@ html
     display: block
     width: 100%
     // height: JS to calculate
+    // height: $map__height
     position: relative
 
 .carousel
