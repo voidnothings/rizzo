@@ -1,6 +1,4 @@
 .content-pane
-  +transition(all, 0.3, ease-in-out)
-  +transform(translateY(-10px))
   position: absolute
   top: 0
   left: 0
@@ -8,22 +6,26 @@
   height: 100%
   width: 100%
   opacity: 1
-  &.is-revealing-nav
-    +transform(translateY(-100px))
-    height: 100%
-    .content-pane__nav__link__icon
-      opacity: 0
 
 .content-pane__nav
   display: block
   color: white
   height: 100%
   position: absolute
-  bottom: 0
   width: 5%
+
+.content-pane__nav__link
+  position: absolute
+  top: 0
+  height: 100%
+  width: 100%
+  text-align: center
+  &:hover
+    text-decoration: none
 
 .content-pane__nav__link__icon
   height: 70px
+  margin-top: 125px
 
 .content-pane__nav--back
   left: 0
@@ -34,18 +36,6 @@
   right: 0
   .content-pane__nav__link__icon
     @extend %chevron-right-after
-
-
-.content-pane__nav__link
-  position: absolute
-  bottom: 0
-  height: 275px
-  width: 100%
-  text-align: center
-  //text-shadow: 1px 1px 5px black
-  &:hover
-    text-decoration: none
-
 
 .content-pane__icon
   +font-size(60)
@@ -58,7 +48,6 @@
     +transform(scale(1.2))
     text-decoration: none
 
-
 .content-pane__hide
   @extend %cross-icon-before
   position: absolute
@@ -68,7 +57,6 @@
   height: 70px
   display: block
   z-index: 50
-
 
 .content-pane__inner
   @extend %clearfix
@@ -109,10 +97,8 @@
   @extend %clearfix
   @extend %block-center
   position: relative
-  padding-bottom: 50px
   width: 1000px
-  margin-top: 125px
-  
+  margin: 125px auto 50px
 
 .content-pane__content__inner
   @extend %clearfix
@@ -131,7 +117,6 @@
     background: url(#{image_path('destinations/best-in-travel/where-would-you-go.png')}) no-repeat center 0
   .buffer
     height: 112px
-  
 
 .content-pane__buttons
   font-size: 14px
@@ -238,7 +223,7 @@
   z-index: 50
 
 .content-pane__title
-  +font-size(120)
+  +font-size(100)
   color: white
   font-weight: 700
   text-transform: uppercase
