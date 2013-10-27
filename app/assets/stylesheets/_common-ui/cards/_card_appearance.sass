@@ -172,9 +172,10 @@
 
 .card--list
   @extend %four-pixel-rounded
-  float: left
-  margin-left: 10px
+  display: inline-block
+  margin-left: 8px
   overflow: hidden
+  cursor: pointer
   width: $double-card-width
 
 .card--list__link
@@ -182,10 +183,11 @@
     text-decoration: none
 
 .card--list__hero
-  background: $body-background
-  height: 50px
+  background: $body-background-offset
   margin-right: 10px
+  height: 50px
   width: 50px
+  display: inline-block
 
 .card--list__image
   width: 50px
@@ -206,3 +208,5 @@
   font-weight: bold
   height: 50px
   line-height: 50px
+  display: inline-block
+  vertical-align: top
