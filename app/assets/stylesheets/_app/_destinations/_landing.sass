@@ -18,10 +18,6 @@ html
 .row--content
   outline: none
 
-.row--cards
-  .row__inner--content
-    padding-top: 40px
-
 .row--secondary
   +respond-to(wide-view)
     background-color: white
@@ -57,10 +53,15 @@ html
     height: 80px
     box-shadow: -1px 0 $body-background inset
 
-.row__inner--content
+.row--cards-title
   padding-top: 50px
   .copy--h1
     margin-bottom: 30px
+
+.row--cards
+  padding: 0 10px
+  +respond-to(wide-view)
+    padding: 0
 
 .media--best-in-travel-logo
   +respond-to(wide-view)
