@@ -208,26 +208,38 @@ html
     padding-top: 30px
 
 .top-ten--countries
-  +background-slide-in-from(bottom, $section--countries)
   &.expanded
     background-color: $section--countries
   +respond-to(wide-view)
     border-bottom-color: $section--countries
+  @if $is-ie == false
+    +background-slide-in-from(bottom, $section--countries)
+  @if $is-ie == true
+    &:hover
+      background-color: $section--countries
 
 .top-ten--regions
-  +background-slide-in-from(bottom, $section--regions)
   &.expanded
     background-color: $section--regions
   +respond-to(wide-view)
     border-bottom-color: $section--regions
+  @if $is-ie == false
+    +background-slide-in-from(bottom, $section--regions)
+  @if $is-ie == true
+    &:hover
+      background-color: $section--regions
 
 .top-ten--cities
-  +background-slide-in-from(bottom, $section--cities)
   &.expanded
     background-color: $section--cities
   +respond-to(wide-view)
     border-bottom-color: $section--cities
-
+  @if $is-ie == false
+    +background-slide-in-from(bottom, $section--cities)
+  @if $is-ie == true
+    &:hover
+      background-color: $section--cities
+    
 .top-ten__list
   list-style-type: none
   +respond-to(wide-view)
