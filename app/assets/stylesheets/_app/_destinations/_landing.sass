@@ -241,6 +241,7 @@ html
   position: relative
 
 .top-ten__list--clone
+  background-color: $header-grey
   +transition(all, 0.3, ease-in-out)
   position: absolute
   left: 0
@@ -280,7 +281,7 @@ html
     background-image: url(#{image_path('destinations/best-in-travel/hero/#{$region}-640.jpg')})
 
 .top-ten__list__title
-  +filter(drop-shadow(0 0 5px rgba(0,0,0,0.5)))
+  //+filter(drop-shadow(0 0 5px rgba(0,0,0,0.5)))
   background-position: center center
   background-repeat: no-repeat
   background-size: 140px
@@ -329,9 +330,15 @@ html
   background-color: white
   padding-top: 3px
   overflow: hidden
+  height: 600px
+  @media only screen and (min-width : 1100px)
+    height: 750px
+  @media only screen and (min-width : 1300px)
+    height: 900px
 
 .bit-map
   display: none
+  height: 800px
   +respond-to(wide-view)
     +transition(all, 0.2, ease-in)
     background-color: $nav-primary-type
