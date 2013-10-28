@@ -1,0 +1,63 @@
+.simple_form
+  @extend %four-pixel-rounded
+  @extend %standard-shadow
+  background: #fff
+  .btn[type="submit"]
+    border-style: none
+    margin-right: 15px
+    &:before
+      +font-size(25)
+      line-height: 0.5em
+      margin-right: 5px
+      position: relative
+      top: 2px
+.simple_form__field
+  border-top: 1px solid $subdued
+  padding: 10px 20px
+  &.first
+    border-top: none
+  &.last
+    padding-bottom: 20px
+.simple_form__field--markdown
+  padding-top: 0
+
+.compose
+  &.input
+    background: none
+    border: none
+  .control-label
+    display: none
+
+/*===== MarkItUp editor styles =====*/
+.markItUpHeader
+  background: $body-background-offset
+  border-bottom: 1px solid $subdued
+  margin: 0 -20px
+  padding: 13px 20px
+.markItUpButton
+  display: inline-block
+  list-style: none
+  margin-right: 15px
+  // Yeah, no choice on this...
+  a
+    +font-size(21)
+    color: $header-grey
+    &:hover
+      text-decoration: none
+
+  &.bold a
+    font-weight: bold
+  &.italic a
+    font-style: italic
+  &.quotes 
+    margin-top: -21px
+    a
+      +font-size(42)
+      font-weight: bold
+      position: relative
+      top: 15px
+
+.markItUpEditor
+  height: 200px
+  padding: 20px 0
+  width: 100%
