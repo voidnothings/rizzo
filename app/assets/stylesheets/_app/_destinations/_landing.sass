@@ -166,6 +166,8 @@ html
 
 .top-ten
   display: block
+  border-top: 1px solid #eef1f3
+  border-left: 3px solid
   &:hover
     text-decoration: none
   &.expanded
@@ -173,6 +175,8 @@ html
       color: white
 
   +respond-to(wide-view)
+    border-top: none
+    border-left: none
     border-bottom-width: 2px
     border-bottom-style: solid
     float: left
@@ -210,6 +214,7 @@ html
 .top-ten--countries
   &.expanded
     background-color: $section--countries
+    border-left-color: $section--countries
   +respond-to(wide-view)
     border-bottom-color: $section--countries
   @if $is-ie == false
@@ -221,6 +226,7 @@ html
 .top-ten--regions
   &.expanded
     background-color: $section--regions
+    border-left-color: $section--regions
   +respond-to(wide-view)
     border-bottom-color: $section--regions
   @if $is-ie == false
@@ -232,6 +238,7 @@ html
 .top-ten--cities
   &.expanded
     background-color: $section--cities
+    border-left-color: $section--cities
   +respond-to(wide-view)
     border-bottom-color: $section--cities
   @if $is-ie == false
