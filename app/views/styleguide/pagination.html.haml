@@ -1,5 +1,5 @@
 - pagination = YAML.load(File.read(File.expand_path('../../../data/styleguide/pagination_stubs.yml', __FILE__)))
-.card.styleguide-intro.copy--body
+.card.styleguide-intro.copy--body.context--content
   .clearfix
     %h1.copy--h1 Pagination
     %p
@@ -8,4 +8,4 @@
       It's therefore important that you include the <code>%i</code> in the path that gets passed through.
 
 - pagination.each_with_index do | stub, i |
-  = sg_component('pagination', pagination: stub, count: i, full_width: true, card_style: true)
+  = sg_component('pagination', properties: stub, count: i, full_width: true, card_style: true)

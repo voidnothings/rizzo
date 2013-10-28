@@ -1,0 +1,9 @@
+.split--right.filter--links
+
+  .styleguide-proximity
+    %input.styleguide-proximity__input.input--text.input#proximityMatch{ type: "text", placeholder: "Find closest color" }
+    %span.clearbutton ×
+
+  = ui_component('forms/dropdown', properties: { id: "input_id", name: "text_name", placeholder: "Default order", options: [ { title: "Light to dark", value: "lightToDark" }, { title: "Dark to light", value: "darkToLight" } ] })
+
+  = render 'styleguide/javascripts/colour_finder'

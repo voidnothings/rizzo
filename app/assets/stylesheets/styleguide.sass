@@ -102,6 +102,11 @@ pre.styleguide.is-open
     &, .tag
       +font-size(14)
 
+
+.styleguide-block__item
+  min-height: 40px
+  margin: 20px 0
+
 .styleguide-block__item--card
   margin-bottom: 0
   padding: 20px
@@ -137,7 +142,17 @@ pre.styleguide.is-open
 .filter--links
   min-width: 200px
   +font-size(15)
-  line-height: 41px
+  .dropdown__value
+    line-height: 1
+    width: 140px
+    &:after
+      right: 10px
+  .dropdown
+    float: left
+  .styleguide-proximity
+    float: left
+    margin-right: 10px
+  
 
 .field
   background: #fff
@@ -145,7 +160,24 @@ pre.styleguide.is-open
   width: 250px
 
 .styleguide-proximity__input
-  border: 1px solid grey
+  width: 200px
 
 .styleguide__input-copy
   width: 100%
+
+
+.clearbutton
+  line-height: 12px
+  float: left
+  width: 14px
+  height: 14px
+  text-align: center
+  padding: 0
+  border-radius: 100%
+  background-color: $feature-copy
+  color: white
+  margin-left: -25px
+  font-weight: bold
+  position: relative
+  top: 14px
+  cursor: pointer

@@ -1,6 +1,6 @@
 - components = YAML.load(File.read(File.expand_path('../../../data/styleguide/forms_stubs.yml', __FILE__)))
 
-.card.styleguide-intro.styleguide-block.copy--body
+.card.styleguide-intro.styleguide-block.copy--body.context--content
   %h1.copy--h1
     Forms
 
@@ -12,7 +12,7 @@
     forms in order to take advantage of their accessibility and responsive features.
 
 - components['form_components'].each_with_index do |component, i|
-  = sg_component("forms/#{component[:styleguide_title].downcase.split(' ').join('_')}", opts: component, count: i)
+  = sg_component("forms/#{component[:styleguide_title].downcase.split(' ').join('_')}", properties: component, count: i)
 
 .card.styleguide-intro.styleguide-block
 
@@ -20,4 +20,4 @@
     Field components
 
 - components['field_components'].each_with_index do |component, i|
-  = sg_component("forms/#{component[:styleguide_title].downcase.split(' ').join('_')}", opts: component, count: i)
+  = sg_component("forms/#{component[:styleguide_title].downcase.split(' ').join('_')}", properties: component, count: i)

@@ -51,24 +51,6 @@ module GlobalResourcesHelper
       {title:'Insurance', uri: "http://www.lonelyplanet.com/travel-insurance", icon_class: 'icon--insurance-line--grey--before'}
     ]
   end
-
-  def default_secondary_nav
-    {
-      title: 'Buenos Aires',
-      section_name: 'Hotels',
-      slug: 'buenos-aires',
-      parent: 'Argentina',
-      parent_slug: "argentina",
-      collection: 
-        [
-          {:title=>'Overview', :url=>'#'},
-          {:title=>'Things to do', :url=>'#'},
-          {:title=>'Hotels', :url=>'#'},
-          {:title=>'Tips & Articles', :url=>'#'},
-          {:title=>'Images & Video', :url=>'#'}
-        ]
-    }
-  end
   
   def default_breadcrumbs
     [
@@ -77,10 +59,6 @@ module GlobalResourcesHelper
       {:place=>"Buenos Aires", :slug=>"buneos-aires"},
       {:place=>"Buenos Aires Hotels", "slug"=>nil}
     ]
-  end
-
-  def secondary_nav_bar(args)
-    render :partial=>'layouts/core/snippets/secondary_navigation_bar', :locals=> args
   end
 
   def cart_item_element
@@ -103,33 +81,6 @@ module GlobalResourcesHelper
     end
   end
 
-  def place_heading(title, section_name, slug, parent, parent_slug, no_place_link = false)
-    
-    capture_haml do
-      haml_tag(:div, class: 'place-title') do
-        if no_place_link == true
-          haml_tag(:span, class: 'place-title-heading') do
-            haml_concat(title)
-          end
-        else
-          haml_tag(:a, class: 'place-title-heading', href: "/#{slug}") do
-            haml_concat(title)
-          end
-        end
-        unless section_name.nil?
-          haml_tag(:span, class: 'accessibility') do
-            haml_concat(" " + section_name)
-          end
-        end
-        unless parent.nil?
-          haml_tag(:a, class: 'place-title__parent', href: "/#{parent_slug}") do
-            haml_concat(", " + parent)
-          end
-        end
-      end
-    end
-  end
-  
   def errbit_notifier
     unless params[:errbit] == 'false'
       haml_tag(:script, src:"//rizzo.lonelyplanet.com/assets/errbit_notifier.js")
@@ -144,7 +95,7 @@ module GlobalResourcesHelper
   end
 
   def breadcrumbs_nav(breadcrumb_content)
-    render :partial=>'layouts/core/snippets/footer_breadcrumbs', locals: {breadcrumbs: breadcrumb_content || []}
+    render :partial=>'layouts/core/snippets/footer_breadcrumbs', locals: {breadcrumbs: breadcrumb_content} if breadcrumb_content.present?
   end
   
   def breadcrumb_for(breadcrumb, last)

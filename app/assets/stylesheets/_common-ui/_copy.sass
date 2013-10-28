@@ -9,8 +9,8 @@
   +font-size(32)
   color: $header-blue
   line-height: 1.3em
-  
-  .copy--body &
+
+  .context--content &
     margin-bottom: 0.8em
 
 .copy--h2
@@ -19,8 +19,8 @@
   color: $header-blue
   text-transform: uppercase
   letter-spacing: 0.1em
-  
-  .copy--body &
+
+  .context--content &
     margin: 1.8em 0 0.9em
     &:first-child
       margin-top: 0
@@ -29,16 +29,16 @@
   +font-size(20)
   color: $header-blue
   font-weight: bold
-  
-  .copy--body &
+
+  .context--content &
     margin-bottom: 1em
 
 .copy--h4
   +font-size(16)
   color: $header-grey
   font-weight: bold
-  
-  .copy--body &
+
+  .context--content &
     margin-bottom: 1em
 
 .copy--h5
@@ -59,6 +59,8 @@
   +font-size(18)
   color: $body-copy
   line-height: 1.5em
+  p
+    margin-bottom: 15px
 
 .copy--meta
   +font-size(15)
@@ -81,7 +83,7 @@
 // Links  
 // -----------------------------------------------------------------------------
 
-.copy--body__link
+.copy--body__link, .copy a
   border-bottom: 1px dotted
   color: inherit
   &:hover
@@ -96,8 +98,12 @@
 .copy--body ul,
 .copy--body ol
   padding-left: 1.2em
+  margin-bottom: 10px
 
-  &, li
+.copy--list,
+.copy--body ul,
+.copy--body ol
+  li
     margin-bottom: 10px
 
 .copy--body ul,

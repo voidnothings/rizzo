@@ -230,7 +230,7 @@ define ['jquery', 'gpt'], ->
           window.clearInterval poll
           return
 
-        $(adEl).children('iframe').each ->
+        $(adEl).find('iframe').each ->
           iframe = $(this)
           # If something's been loaded into our ad element, we're good to go
           if adEl.style.display isnt 'none' and !!iframe.contents().find('body').html()

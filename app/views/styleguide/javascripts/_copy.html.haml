@@ -13,7 +13,14 @@
 
   function showCopy(e) {
     var el = e.target,
-        input = el.parentNode.querySelector(inputSelector);
+        input;
+
+    // Must've clicked on the "properties" element.
+    if (el.nodeName == "B") {
+      el = el.parentNode;
+    }
+
+    input = el.parentNode.querySelector(inputSelector)
     
     el.classList.add('is-hidden');
     input.classList.remove('is-hidden');

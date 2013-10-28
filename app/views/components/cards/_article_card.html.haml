@@ -22,4 +22,4 @@
     - if stack_item.post_date
       .card__footer
         %time.text-icon--clock{datetime: stack_item.post_date}
-          = @presenter.prettify_date(stack_item.post_date)
+          = prettify_date(stack_item.post_date)
