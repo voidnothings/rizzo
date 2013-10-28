@@ -28,13 +28,13 @@
 
 .content-pane__nav__link__icon
   height: 70px
-  margin-top: 315px
+  margin-top: 335px
   display: none
   @media only screen and (min-width : 1100px)
     display: block
-    margin-top: 468px
+    margin-top: 488px
   @media only screen and (min-width : 1300px)
-    margin-top: 624px
+    margin-top: 644px
 
 .content-pane__nav--back
   left: 0
@@ -116,6 +116,7 @@
   float: left
   width: 80%
   position: relative
+  margin-top: 20px
 
 .content-pane__links
   color: white
@@ -152,6 +153,8 @@
 .btn__visit-destination
   @extend %local-marker-before
   background-color: $body-copy
+  margin-left: 0
+  margin-right: 0
   .js-hover &:hover
     background-color: #57636b
   &:before
@@ -214,6 +217,7 @@
   overflow: hidden
   background-size: cover
   line-height: 22px
+  margin-top: -5px
   
   &:before
     //+box-shadow(1, 1, 1, 0, rgba(0,0,0,0.4))
@@ -238,7 +242,7 @@
   text-transform: uppercase
   margin-top: -27px
   line-height: 1em
-  margin-bottom: 16px
+  margin-bottom: 15px
 
 .content-pane__leader
   +font-size(16)
