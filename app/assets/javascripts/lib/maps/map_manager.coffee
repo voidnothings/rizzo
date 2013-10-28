@@ -216,7 +216,7 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
         targetElement = if obj.Va then $(obj.Va.target) else $(obj.target)
         id = @id or targetElement.closest('[data-slug]').data('slug')
         map = targetElement.closest('.map')
-        highlightPois(id: id, map: map)
+      highlightPois(id: id, map: map)
 
     highlightPois = ({id, map}) ->
       poiElements.removeClass('nearby-pois__poi--highlighted');
