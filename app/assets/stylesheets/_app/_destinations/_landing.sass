@@ -206,26 +206,38 @@ html
     padding-top: 30px
 
 .top-ten--countries
-  +background-slide-in-from(bottom, $section--countries)
   &.expanded
     background-color: $section--countries
   +respond-to(wide-view)
     border-bottom-color: $section--countries
+  @if $is-ie == false
+    +background-slide-in-from(bottom, $section--countries)
+  @if $is-ie == true
+    &:hover
+      background-color: $section--countries
 
 .top-ten--regions
-  +background-slide-in-from(bottom, $section--regions)
   &.expanded
     background-color: $section--regions
   +respond-to(wide-view)
     border-bottom-color: $section--regions
+  @if $is-ie == false
+    +background-slide-in-from(bottom, $section--regions)
+  @if $is-ie == true
+    &:hover
+      background-color: $section--regions
 
 .top-ten--cities
-  +background-slide-in-from(bottom, $section--cities)
   &.expanded
     background-color: $section--cities
   +respond-to(wide-view)
     border-bottom-color: $section--cities
-
+  @if $is-ie == false
+    +background-slide-in-from(bottom, $section--cities)
+  @if $is-ie == true
+    &:hover
+      background-color: $section--cities
+    
 .top-ten__list
   list-style-type: none
   +respond-to(wide-view)
@@ -278,23 +290,31 @@ html
     background-image: url(#{image_path('destinations/best-in-travel/hero/#{$region}-640.jpg')})
 
 .top-ten__list__title
-  //+filter(drop-shadow(0 0 5px rgba(0,0,0,0.5)))
-  background-position: center center
-  background-repeat: no-repeat
-  background-size: 140px
-  text-indent: -9999px
-  height: 100%
-  position: absolute
-  width: 100%
-  top: 0
-  +respond-to(wide-view)
-    background-size: cover
+  @if $is-ie == false
+    background-position: center center
+    background-repeat: no-repeat
+    background-size: 140px
+    position: absolute
+    height: 100%
+    width: 100%
+    top: 0
+    text-indent: -9999px
+  @if $is-ie == true
+    color: white
+    font-weight: bold
+    +font-size(24)
+    text-align: center
+    text-indent: 0
+    padding-top: 30px
+    text-shadow: 0 1px 1px rgba(0,0,0,0.5)
+
 
 .top-ten__list__item__link
   background-color: rgba(20,43,68, 0.15)
   +transition(background-color,0.25,ease-out)
   &:hover
-    background-color: rgba(20,43,68, 0.35)    
+    background-color: rgba(20,43,68, 0.35)
+    text-decoration: none   
   +respond-to(wide-view)
     height: 100%
     width: 100%
@@ -346,17 +366,21 @@ html
     position: relative
 
 .bit-map__compeition-callout
-  @extend %image-replacement
-  width: 249px
-  height: 117px
-  z-index: 100
-  position: absolute
-  bottom: 20px
-  right: 20px
+  @if $is-ie == true
+    display: none
+    
+  @if $is-ie == false
+    @extend %image-replacement
+    width: 249px
+    height: 117px
+    z-index: 100
+    position: absolute
+    bottom: 20px
+    right: 20px
 
-  background-image: url(#{image_path('destinations/best-in-travel/best-in-travel-where-would-you-go-cta.png')})
-  +retinafy
-    background-image: url(#{image_path('destinations/best-in-travel/best-in-travel-where-would-you-go-cta-2x.png')})
+    background-image: url(#{image_path('destinations/best-in-travel/best-in-travel-where-would-you-go-cta.png')})
+    +retinafy
+      background-image: url(#{image_path('destinations/best-in-travel/best-in-travel-where-would-you-go-cta-2x.png')})
 
 
 .carousel
