@@ -14,10 +14,6 @@ $top-ten__list__height: 100px
 
 html
   overflow-y: scroll
-
-.h2--travel-lists
-  color: $header-grey
-  +font-size(36)
   
 .icon--pen
   width: 27px
@@ -68,7 +64,9 @@ html
 .row--cards-title
   padding-top: 50px
   .copy--h1
+    +font-size(36)
     margin-bottom: 30px
+    color: $header-grey
 
 .row--cards
   padding: 0 10px
@@ -396,3 +394,8 @@ html
 
 .carousel__contents-wrapper
   height: 100%
+
+//$$legacy Overrides - delete when we move the icons to svg
+
+.icon--article--white--before:before
+  height: 33px
