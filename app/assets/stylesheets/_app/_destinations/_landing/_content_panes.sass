@@ -255,35 +255,37 @@
 // Ribbons
 // -----------------------------------------------------------------------------
 
-$spriteOffsets: city "110px" "0px" "80px" "0px", country "110px" "-226px" "80px" "-163px", region "110px" "-113px" "80px" "-83px"
-@each $type in $spriteOffsets
+@if $is-ie == false
 
-  $key: nth($type, 1)
-  $paneBox: nth($type, 2)
-  $paneValue: nth($type, 3)
-  $navBox: nth($type, 4)
-  $navValue: nth($type, 5)
+  $spriteOffsets: city "110px" "0px" "80px" "0px", country "110px" "-226px" "80px" "-163px", region "110px" "-113px" "80px" "-83px"
+  @each $type in $spriteOffsets
 
-  .content-pane__inner--#{$key}--1
-    &:before
-      @extend %empty-abs-generated-content
-      background-image: url(#{image_path('destinations/best-in-travel/ribbon-sprite.png')})
-      background-repeat: no-repeat
-      background-position: 0 #{$paneValue}
-      top: -3px
-      left: 0
-      width: #{$paneBox}
-      height: #{$paneBox}
+    $key: nth($type, 1)
+    $paneBox: nth($type, 2)
+    $paneValue: nth($type, 3)
+    $navBox: nth($type, 4)
+    $navValue: nth($type, 5)
 
-  .top-ten__list--#{$key}--1
-    .top-ten__list__item__link:before
-      @extend %empty-abs-generated-content
-      background-image: url(#{image_path('destinations/best-in-travel/ribbon-sprite.png')})
-      background-repeat: no-repeat
-      background-position: 0 #{$navValue}
-      background-size: cover
-      top: -2px
-      z-index: 50
-      left: 0
-      width: #{$navBox}
-      height: #{$navBox}
+    .content-pane__inner--#{$key}--1
+      &:before
+        @extend %empty-abs-generated-content
+        background-image: url(#{image_path('destinations/best-in-travel/ribbon-sprite.png')})
+        background-repeat: no-repeat
+        background-position: 0 #{$paneValue}
+        top: -3px
+        left: 0
+        width: #{$paneBox}
+        height: #{$paneBox}
+
+    .top-ten__list--#{$key}--1
+      .top-ten__list__item__link:before
+        @extend %empty-abs-generated-content
+        background-image: url(#{image_path('destinations/best-in-travel/ribbon-sprite.png')})
+        background-repeat: no-repeat
+        background-position: 0 #{$navValue}
+        background-size: cover
+        top: -2px
+        z-index: 50
+        left: 0
+        width: #{$navBox}
+        height: #{$navBox}
