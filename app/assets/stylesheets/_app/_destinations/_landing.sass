@@ -341,6 +341,20 @@ html
     // height: $map__height
     position: relative
 
+.bit-map__compeition-callout
+  @extend %image-replacement
+  width: 249px
+  height: 117px
+  z-index: 100
+  position: absolute
+  bottom: 20px
+  right: 20px
+
+  background-image: url(#{image_path('destinations/best-in-travel/best-in-travel-where-would-you-go-cta.png')})
+  +retinafy
+    background-image: url(#{image_path('destinations/best-in-travel/best-in-travel-where-would-you-go-cta-2x.png')})
+
+
 .carousel
   position: relative
   margin: 0 auto
