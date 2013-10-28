@@ -6,6 +6,7 @@ define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shoppin
       @authenticateUser()
       @showUserBasket()
       @initialiseFooterSelects()
+      @initialiseResponsiveNavSelect()
       @addNavTracking()
       @scrollPerf() unless window.lp.touch is true
 
@@ -22,6 +23,10 @@ define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shoppin
       countrySelect = new SelectGroup '.js-select-country'
       languageSelect = new SelectGroup '.js-select-language', ->
         document.getElementById('js-language').submit()
+
+    initialiseResponsiveNavSelect: ->
+      languageSelect = new SelectGroup '#js-responsive-nav', ($this)->
+        window.location = "http://www.lonelyplanet.com/" + $this.options[$this.selectedIndex].value
 
     addNavTracking: ->
       $('#js-primary-nav').on 'click', (e)->
