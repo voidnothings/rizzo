@@ -15,6 +15,18 @@ $top-ten__list__height: 100px
 html
   overflow-y: scroll
 
+.h2--travel-lists
+  color: $header-grey
+  +font-size(36)
+  
+.icon--pen
+  width: 27px
+  height: 27px
+  display: block
+  margin: 0 auto
+  background-image: url(#{image_path('destinations/best-in-travel/pen.png')})
+  background-size: cover
+
 .row--content
   outline: none
 
@@ -229,6 +241,7 @@ html
   position: relative
 
 .top-ten__list--clone
+  background-color: $header-grey
   +transition(all, 0.3, ease-in-out)
   position: absolute
   left: 0
@@ -243,7 +256,6 @@ html
 .top-ten__list__item
   height: 75px
   background-position: center
-  background-size: cover
   position: relative
   +respond-to(wide-view)
     display: block
@@ -268,7 +280,7 @@ html
     background-image: url(#{image_path('destinations/best-in-travel/hero/#{$region}-640.jpg')})
 
 .top-ten__list__title
-  +filter(drop-shadow(0 0 5px rgba(0,0,0,0.5)))
+  //+filter(drop-shadow(0 0 5px rgba(0,0,0,0.5)))
   background-position: center center
   background-repeat: no-repeat
   background-size: 140px
@@ -316,9 +328,15 @@ html
 .bit-map--container
   background-color: white
   overflow: hidden
+  height: 600px
+  @media only screen and (min-width : 1100px)
+    height: 750px
+  @media only screen and (min-width : 1300px)
+    height: 900px
 
 .bit-map
   display: none
+  height: 800px
   +respond-to(wide-view)
     +transition(all, 0.2, ease-in)
     background-color: $nav-primary-type
@@ -327,6 +345,20 @@ html
     // height: JS to calculate
     // height: $map__height
     position: relative
+
+.bit-map__compeition-callout
+  @extend %image-replacement
+  width: 249px
+  height: 117px
+  z-index: 100
+  position: absolute
+  bottom: 20px
+  right: 20px
+
+  background-image: url(#{image_path('destinations/best-in-travel/best-in-travel-where-would-you-go-cta.png')})
+  +retinafy
+    background-image: url(#{image_path('destinations/best-in-travel/best-in-travel-where-would-you-go-cta-2x.png')})
+
 
 .carousel
   position: relative
