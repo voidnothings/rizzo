@@ -8,23 +8,23 @@
   opacity: 1
 
 .content-pane__nav
+  color: white
+  height: 100%
+  position: absolute
+  width: 5%
+
+.content-pane__nav__link
   display: none
   +transition(all, 0.3, ease-in)
   +respond-at(1160)
     display: block
-    color: white
-    height: 100%
     position: absolute
-    width: 5%
-
-.content-pane__nav__link
-  position: absolute
-  top: 0
-  height: 100%
-  width: 100%
-  text-align: center
-  &:hover
-    text-decoration: none
+    top: 0
+    height: 100%
+    width: 100%
+    text-align: center
+    &:hover
+      text-decoration: none
 
 .content-pane__nav__link__icon
   height: 70px
