@@ -25,7 +25,7 @@ define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shoppin
         document.getElementById('js-language').submit()
 
     initialiseResponsiveNavSelect: ->
-      languageSelect = new SelectGroup '#js-responsive-nav', ($this)->
+      responsiveNav = new SelectGroup '.js-responsive-nav', ($this)->
         window.location = "http://www.lonelyplanet.com/" + $this.options[$this.selectedIndex].value
 
     addNavTracking: ->
