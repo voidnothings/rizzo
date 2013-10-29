@@ -47,6 +47,8 @@
 .post-view-link
   +border-radius-each(0, 4, 4, 0)
   +font-size(40)
+  +transform(rotateY(-90deg))
+  +transform-origin(right)
   @extend %chevron-right-before
   @extend %transition--base
   background: $details-panel-bg
@@ -59,7 +61,9 @@
   top: 0
   width: 60px
   z-index: 1
+
   .card:hover &
+    +transform(rotateY(0deg))
     opacity: 1
     text-decoration: none
   &:before
