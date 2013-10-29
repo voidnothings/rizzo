@@ -1,2 +1,3 @@
 = render :layout => 'components/forms/partials/field', :locals => { id: properties[:id], label: properties[:label] } do
-  = ui_component('forms/text_area', properties: properties )
+  .js-input
+    = ui_component('forms/text_area', properties: properties )
