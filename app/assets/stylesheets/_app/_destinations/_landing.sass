@@ -80,13 +80,26 @@ html
   +font-size(15)
   padding: 20px
   +respond-to(wide-view)
+    +transition(all, 0.5, ease-in)
     +border-radius(4)
     +box-shadow(5, 5, 1, 0, rgba(0,0,0,0.1))
+    visibility: hidden
     background-color: $header-grey
     position: absolute
-    top: -200px
+    top: -215px
     width: 600px
     text-align: left
+    .js-loaded &
+      visibility: visible
+      &:after
+        content: "\e095"
+        height: 70px
+        display: block
+        position: absolute
+        font-size: 110px
+        line-height: 19px
+        bottom: -70px
+        left: 62px
 
 .row--introduction__blurb__title
   margin-bottom: 8px
