@@ -1,5 +1,6 @@
 .field
   .field__content.field__content--checkbox
-    = ui_component('forms/checkbox', opts: opts )
-    %label{ for: opts[:id] }
-      = opts[:label]
+    .input__container.js-input
+      = ui_component('forms/checkbox', properties: properties )
+      %label{ for: properties[:id] }
+        = properties[:label]
