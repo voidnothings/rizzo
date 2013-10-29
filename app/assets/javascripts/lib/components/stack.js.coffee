@@ -4,7 +4,7 @@
 #
 # ------------------------------------------------------------------------------
 
-define ['jquery','lib/extends/events'], ($, EventEmitter) ->
+define ['jquery','lib/extends/events', 'lib/components/world_places'], ($, EventEmitter) ->
 
   class Stack
 
