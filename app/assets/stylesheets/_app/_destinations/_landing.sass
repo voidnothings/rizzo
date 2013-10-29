@@ -240,11 +240,11 @@ html
     
 .top-ten__list
   list-style-type: none
+  +respond-to(medium-view)
+    overflow: hidden
   +respond-to(wide-view)
+    overflow: auto
     @extend %clearfix
-    // position: absolute
-    // left: 0
-    // top: -$top-ten__list__height
     width: 100%
 
 .js-row--top-ten__list--clone--container
@@ -267,6 +267,11 @@ html
   height: 75px
   background-position: center
   position: relative
+  background-size: cover
+  +respond-to(medium-view)
+    float: left
+    height: 100px
+    width: 50%
   +respond-to(wide-view)
     display: block
     float: left
@@ -327,6 +332,7 @@ html
       box-shadow: 10px 10px $section--cities inset, -10px -10px $section--cities inset
 
 .top-ten__list__item__rank
+  opacity: 0
   +respond-to(wide-view)
     color: white
     opacity: 0.9
