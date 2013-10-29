@@ -6,4 +6,4 @@
 
 -# The select navigation for small screens
 .wv--split--right.nav--inline.nav--secondary.wv--hidden.nav--secondary__dropdown
-  = ui_component('forms/dropdown', properties: {options: subnav_options(properties[:items]), selected: properties[:section_name], placeholder: properties[:section_name]})
+  = ui_component('forms/dropdown', properties: {options: subnav_options(properties[:items]), selected: properties[:section_name], class: 'js-responsive-nav'})

@@ -8,24 +8,33 @@
   opacity: 1
 
 .content-pane__nav
-  display: block
   color: white
   height: 100%
   position: absolute
   width: 5%
 
 .content-pane__nav__link
-  position: absolute
-  top: 0
-  height: 100%
-  width: 100%
-  text-align: center
-  &:hover
-    text-decoration: none
+  display: none
+  +transition(all, 0.3, ease-in)
+  +respond-at(1160)
+    display: block
+    position: absolute
+    top: 0
+    height: 100%
+    width: 100%
+    text-align: center
+    &:hover
+      text-decoration: none
 
 .content-pane__nav__link__icon
   height: 70px
-  margin-top: 125px
+  position: relative
+  top: 100%
+  margin-top: -262px
+  display: none
+  +respond-at(1150)
+    display: block
+
 
 .content-pane__nav--back
   left: 0
@@ -39,11 +48,11 @@
 
 .content-pane__icon
   +font-size(60)
-  +transition(all, 0.1, ease-in)
   color: white
   text-align: center
-  //text-shadow: 1px 1px 5px black
   line-height: 1em
+
+
   &:hover
     +transform(scale(1.2))
     text-decoration: none
@@ -107,6 +116,7 @@
   float: left
   width: 80%
   position: relative
+  margin-top: 20px
 
 .content-pane__links
   color: white
@@ -143,6 +153,8 @@
 .btn__visit-destination
   @extend %local-marker-before
   background-color: $body-copy
+  padding-left: 0
+  padding-right: 0
   .js-hover &:hover
     background-color: #57636b
   &:before
@@ -205,6 +217,7 @@
   overflow: hidden
   background-size: cover
   line-height: 22px
+  margin-top: -5px
   
   &:before
     //+box-shadow(1, 1, 1, 0, rgba(0,0,0,0.4))
@@ -229,7 +242,7 @@
   text-transform: uppercase
   margin-top: -27px
   line-height: 1em
-  margin-bottom: 16px
+  margin-bottom: 15px
 
 .content-pane__leader
   +font-size(16)
@@ -242,35 +255,37 @@
 // Ribbons
 // -----------------------------------------------------------------------------
 
-$spriteOffsets: city "110px" "0px" "80px" "0px", country "110px" "-226px" "80px" "-163px", region "110px" "-113px" "80px" "-83px"
-@each $type in $spriteOffsets
+@if $is-ie == false
 
-  $key: nth($type, 1)
-  $paneBox: nth($type, 2)
-  $paneValue: nth($type, 3)
-  $navBox: nth($type, 4)
-  $navValue: nth($type, 5)
+  $spriteOffsets: city "110px" "0px" "80px" "0px", country "110px" "-226px" "80px" "-163px", region "110px" "-113px" "80px" "-83px"
+  @each $type in $spriteOffsets
 
-  .content-pane__inner--#{$key}--1
-    &:before
-      @extend %empty-abs-generated-content
-      background-image: url(#{image_path('destinations/best-in-travel/ribbon-sprite.png')})
-      background-repeat: no-repeat
-      background-position: 0 #{$paneValue}
-      top: -3px
-      left: 0
-      width: #{$paneBox}
-      height: #{$paneBox}
+    $key: nth($type, 1)
+    $paneBox: nth($type, 2)
+    $paneValue: nth($type, 3)
+    $navBox: nth($type, 4)
+    $navValue: nth($type, 5)
 
-  .top-ten__list--#{$key}--1
-    .top-ten__list__item__link:before
-      @extend %empty-abs-generated-content
-      background-image: url(#{image_path('destinations/best-in-travel/ribbon-sprite.png')})
-      background-repeat: no-repeat
-      background-position: 0 #{$navValue}
-      background-size: cover
-      top: -2px
-      z-index: 50
-      left: 0
-      width: #{$navBox}
-      height: #{$navBox}
+    .content-pane__inner--#{$key}--1
+      &:before
+        @extend %empty-abs-generated-content
+        background-image: url(#{image_path('destinations/best-in-travel/ribbon-sprite.png')})
+        background-repeat: no-repeat
+        background-position: 0 #{$paneValue}
+        top: -3px
+        left: 0
+        width: #{$paneBox}
+        height: #{$paneBox}
+
+    .top-ten__list--#{$key}--1
+      .top-ten__list__item__link:before
+        @extend %empty-abs-generated-content
+        background-image: url(#{image_path('destinations/best-in-travel/ribbon-sprite.png')})
+        background-repeat: no-repeat
+        background-position: 0 #{$navValue}
+        background-size: cover
+        top: -2px
+        z-index: 50
+        left: 0
+        width: #{$navBox}
+        height: #{$navBox}

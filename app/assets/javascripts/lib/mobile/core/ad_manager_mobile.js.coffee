@@ -114,16 +114,29 @@ define ['gpt'], ->
           window.clearInterval poll
           return
 
-        iframe = adEl.firstChild
+        iframe = adEl.querySelector('iframe')
         # If something's been loaded into our ad element, we're good to go
-        if adEl.style.display isnt 'none' and iframe and iframe.contentDocument.getElementsByTagName('body')[0].innerHTML isnt ""
-          callback.apply(this, [adEl, iframe])
+        if adEl.style.display isnt 'none' and iframe
+          
+          # Sometimes ads just load scripts which don't themselves produce content
+          # This is to catch that
+          hasContent = (iframe) ->
+            children = iframe.contentDocument.body.children
+            count = 0
+            while count < children.length
+              if children[count].nodeName isnt "SCRIPT" && children[count].nodeName isnt "NOSCRIPT"
+                return true
+              count++
+            false
 
-          window.clearInterval poll
+          if hasContent(iframe)
+            callback.apply(this, [adEl, iframe])
 
-          if not adManager.firstLoaded and window.lp and lp.fs and lp.fs.time
-            window.lp.fs.time(
-              'e':'/destination/ad/first'
-            )
-            adManager.firstLoaded = true
+            window.clearInterval poll
+
+            if not adManager.firstLoaded and window.lp and lp.fs and lp.fs.time
+              window.lp.fs.time(
+                'e':'/destination/ad/first'
+              )
+              adManager.firstLoaded = true
       , timeout
