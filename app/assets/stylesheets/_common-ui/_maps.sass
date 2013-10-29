@@ -93,7 +93,7 @@
   bottom: 20px
   left: -51%
   max-width: 350px
-  padding: 10px 15px
+  padding: 8px 15px
   position: relative
   opacity: 1
   visibility: visible
@@ -117,6 +117,7 @@
     +font-size(15)
     color: $header-grey
     margin-left: 1.2em
+    margin-bottom: 0
     font-weight: 300
     line-height: 1
 
@@ -131,5 +132,9 @@
   @extend %lp-font-stack // infobox overrides with roboto font
   +font-size(15)
   margin-bottom: 0
+  font-weight: bold
   &:before
-    line-height: .8
+    top: -1px
+    font-size: 35px
+    left: -4px
+    margin-right: -4px
