@@ -4,7 +4,6 @@
     = properties[:selected] || properties[:placeholder] || properties[:options].first[:title]
   
   %select.dropdown__select.js-select{ id: properties[:id], name: properties[:name], data: properties[:data] }
-    
     - if properties[:placeholder]
       %option{ value: ""}<
         = properties[:placeholder]

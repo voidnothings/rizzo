@@ -6,7 +6,7 @@ $section--countries        : #ff708e !default
 $section--regions          : #47a899 !default
 $section--cities           : #fa5e5b !default
 
-// $map__height : 300px
+$map__height : 400px  // to calc on media queries
 $row--introduction-height: 80px
 $top-ten__list__height: 100px
 
@@ -14,6 +14,14 @@ $top-ten__list__height: 100px
 
 html
   overflow-y: scroll
+  
+.icon--pen
+  width: 27px
+  height: 27px
+  display: block
+  margin: 0 auto
+  img
+    max-width: 100%
 
 .row--content
   outline: none
@@ -30,8 +38,9 @@ html
 
 .row--introduction
   background-color: white
-  position: relative // for z-index  
-  z-index: 20
+  border-bottom: solid 10px $body-background // mask
+  position: relative
+  z-index: 100
   color: $header-grey
   text-align: center
   +respond-to(wide-view)
@@ -52,10 +61,17 @@ html
     height: 80px
     box-shadow: -1px 0 $body-background inset
 
-.row__inner--content
+.row--cards-title
   padding-top: 50px
   .copy--h1
+    +font-size(36)
     margin-bottom: 30px
+    color: $header-grey
+
+.row--cards
+  padding: 0 10px
+  +respond-to(wide-view)
+    padding: 0
 
 .media--best-in-travel-logo
   +respond-to(wide-view)
@@ -121,17 +137,17 @@ html
 .bit-social__item
   position: absolute
 
-.bit-social--facebook
+.bit-social__item--facebook
   top: 15px
   left: 15px
 
-.bit-social--googleplus
+.bit-social__item--googleplus
   top: 15px
   right: 0
 
-.bit-social--twitter
+.bit-social__item--twitter
   bottom: 17px
-  left: 15px
+  left: 5px
 
 
 .top-tens
@@ -140,12 +156,16 @@ html
     float: left
     width: 60%
 
+.top-ten--force-hover-state
+  &:after
+    height: 0 !important
+  .top-ten__category__link__inner
+    color: $header-grey !important
+
 .top-ten
-  border-top: solid 1px $body-background
   display: block
   &:hover
     text-decoration: none
-
   &.expanded
     .top-ten__category
       color: white
@@ -176,6 +196,7 @@ html
   display: block
   font-weight: 700
   text-decoration: none
+  //+transition(color,0.25,ease-out)
   &:hover
     color: white
 
@@ -187,40 +208,64 @@ html
 .top-ten--countries
   &.expanded
     background-color: $section--countries
-  &:hover
-    background-color: $section--countries
   +respond-to(wide-view)
     border-bottom-color: $section--countries
+  @if $is-ie == false
+    +background-slide-in-from(bottom, $section--countries)
+  @if $is-ie == true
+    &:hover
+      background-color: $section--countries
 
 .top-ten--regions
   &.expanded
     background-color: $section--regions
-  &:hover
-    background-color: $section--regions
   +respond-to(wide-view)
     border-bottom-color: $section--regions
+  @if $is-ie == false
+    +background-slide-in-from(bottom, $section--regions)
+  @if $is-ie == true
+    &:hover
+      background-color: $section--regions
 
 .top-ten--cities
   &.expanded
     background-color: $section--cities
-  &:hover
-    background-color: $section--cities
   +respond-to(wide-view)
     border-bottom-color: $section--cities
-
+  @if $is-ie == false
+    +background-slide-in-from(bottom, $section--cities)
+  @if $is-ie == true
+    &:hover
+      background-color: $section--cities
+    
 .top-ten__list
   list-style-type: none
   +respond-to(wide-view)
     @extend %clearfix
-    position: absolute
-    left: 0
-    top: -$top-ten__list__height
+    // position: absolute
+    // left: 0
+    // top: -$top-ten__list__height
     width: 100%
+
+.js-row--top-ten__list--clone--container
+  position: relative
+
+.top-ten__list--clone
+  background-color: $header-grey
+  +transition(all, 0.3, ease-in-out)
+  position: absolute
+  left: 0
+  bottom: 0
+  z-index: 50
+  &.is-concealed
+    bottom: -90px
+    .top-ten__list__item__link:before, .top-ten__list__item__rank
+      display: none
+
 
 .top-ten__list__item
   height: 75px
   background-position: center
-  background-size: cover
   position: relative
   +respond-to(wide-view)
     display: block
@@ -245,29 +290,40 @@ html
     background-image: url(#{image_path('destinations/best-in-travel/hero/#{$region}-640.jpg')})
 
 .top-ten__list__title
-  +filter(drop-shadow(0 0 5px rgba(0,0,0,0.5)))
-  background-position: center center
-  background-repeat: no-repeat
-  background-size: 140px
-  text-indent: -9999px
-  height: 100%
-  position: absolute
-  width: 100%
-  top: 0
-  +respond-to(wide-view)
-    background-size: cover
+  @if $is-ie == false
+    background-position: center center
+    background-repeat: no-repeat
+    background-size: 140px
+    position: absolute
+    height: 100%
+    width: 100%
+    top: 0
+    text-indent: -9999px
+  @if $is-ie == true
+    color: white
+    font-weight: bold
+    +font-size(24)
+    text-align: center
+    text-indent: 0
+    padding-top: 30px
+    text-shadow: 0 1px 1px rgba(0,0,0,0.5)
+
 
 .top-ten__list__item__link
   background-color: rgba(20,43,68, 0.15)
+  +transition(background-color,0.25,ease-out)
+  &:hover
+    background-color: rgba(20,43,68, 0.35)
+    text-decoration: none   
   +respond-to(wide-view)
     height: 100%
     width: 100%
     display: block
-    .top-ten__list--countries &:hover
+    .top-ten__list--countries &.active
       box-shadow: 10px 10px $section--countries inset, -10px -10px $section--countries inset
-    .top-ten__list--regions &:hover
+    .top-ten__list--regions &.active
       box-shadow: 10px 10px $section--regions inset, -10px -10px $section--regions inset
-    .top-ten__list--cities &:hover
+    .top-ten__list--cities &.active
       box-shadow: 10px 10px $section--cities inset, -10px -10px $section--cities inset
 
 .top-ten__list__item__rank
@@ -289,18 +345,43 @@ html
 
 .bit-map--container
   background-color: white
-  padding-top: 3px
   overflow: hidden
+  //height: 500px
+  //@media only screen and (min-width : 1100px)
+    //height: 650px
+  //@media only screen and (min-width : 1300px)
+    //height: 800px
 
 .bit-map
   display: none
+  //height: 800px
+  min-height: 550px
   +respond-to(wide-view)
     +transition(all, 0.2, ease-in)
     background-color: $nav-primary-type
     display: block
     width: 100%
     // height: JS to calculate
+    // height: $map__height
     position: relative
+
+.bit-map__compeition-callout
+  @if $is-ie == true
+    display: none
+    
+  @if $is-ie == false
+    @extend %image-replacement
+    width: 249px
+    height: 117px
+    z-index: 100
+    position: absolute
+    bottom: 20px
+    right: 20px
+
+    background-image: url(#{image_path('destinations/best-in-travel/best-in-travel-where-would-you-go-cta.png')})
+    +retinafy
+      background-image: url(#{image_path('destinations/best-in-travel/best-in-travel-where-would-you-go-cta-2x.png')})
+
 
 .carousel
   position: relative
@@ -313,3 +394,8 @@ html
 
 .carousel__contents-wrapper
   height: 100%
+
+//$$legacy Overrides - delete when we move the icons to svg
+
+.icon--article--white--before:before
+  height: 33px
