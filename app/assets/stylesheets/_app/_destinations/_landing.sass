@@ -38,7 +38,7 @@ html
 
 .row--introduction
   background-color: white
-  border-bottom: solid 10px $body-background // mask
+  border-bottom: solid 20px $body-background // mask
   position: relative
   z-index: 100
   color: $header-grey
@@ -62,7 +62,7 @@ html
     box-shadow: -1px 0 $body-background inset
 
 .row--cards-title
-  padding-top: 50px
+  padding-top: 40px
   .copy--h1
     +font-size(36)
     margin-bottom: 30px
@@ -257,8 +257,11 @@ html
   left: 0
   bottom: 0
   z-index: 50
-  &.is-concealed
+  &.is-fully-concealed
+    bottom: -100px
+  &.is-partially-concealed
     bottom: -90px
+  &.is-fully-concealed, &.is-partially-concealed
     .top-ten__list__item__link:before, .top-ten__list__item__rank
       display: none
 
@@ -394,6 +397,8 @@ html
 
 .carousel__contents-wrapper
   height: 100%
+
+
 
 //$$legacy Overrides - delete when we move the icons to svg
 
