@@ -13,6 +13,10 @@
   .timeago
     margin: 0 0.25em
 
+.post-stats
+  margin-left: 20px
+  position: relative
+  z-index: 2
 .post-stats__icon
   margin-right: -20px
   width: 60px
@@ -39,3 +43,25 @@
       left: 19px
       top: 11px
       width: 22px
+
+.post-view-link
+  +border-radius-each(0, 4, 4, 0)
+  +font-size(40)
+  @extend %chevron-right-before
+  @extend %transition--base
+  background: $details-panel-bg
+  color: $feature-copy
+  height: 100%
+  opacity: 0
+  position: absolute
+  right: 0
+  text-align: center
+  top: 0
+  width: 60px
+  z-index: 1
+  .card:hover &
+    opacity: 1
+    text-decoration: none
+  &:before
+    position: relative
+    top: 45%
