@@ -10,6 +10,11 @@ titles:
     :title: "France"
 
   -
+    :styleguide_title: "World title (not a link)"
+    :no_place_link: true
+    :title: "World"
+
+  -
     :styleguide_title: "Country title on subsection pages (as a link)"
     :title: "France"
     :slug: "/france"
