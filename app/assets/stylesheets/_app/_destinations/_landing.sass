@@ -14,10 +14,6 @@ $top-ten__list__height: 100px
 
 html
   overflow-y: scroll
-
-.h2--travel-lists
-  color: $header-grey
-  +font-size(36)
   
 .icon--pen
   width: 27px
@@ -68,7 +64,9 @@ html
 .row--cards-title
   padding-top: 50px
   .copy--h1
+    +font-size(36)
     margin-bottom: 30px
+    color: $header-grey
 
 .row--cards
   padding: 0 10px
@@ -249,11 +247,11 @@ html
     
 .top-ten__list
   list-style-type: none
+  +respond-to(medium-view)
+    overflow: hidden
   +respond-to(wide-view)
+    overflow: auto
     @extend %clearfix
-    // position: absolute
-    // left: 0
-    // top: -$top-ten__list__height
     width: 100%
 
 .js-row--top-ten__list--clone--container
@@ -276,6 +274,11 @@ html
   height: 75px
   background-position: center
   position: relative
+  background-size: cover
+  +respond-to(medium-view)
+    float: left
+    height: 100px
+    width: 50%
   +respond-to(wide-view)
     display: block
     float: left
@@ -336,6 +339,7 @@ html
       box-shadow: 10px 10px $section--cities inset, -10px -10px $section--cities inset
 
 .top-ten__list__item__rank
+  opacity: 0
   +respond-to(wide-view)
     color: white
     opacity: 0.9
@@ -403,3 +407,8 @@ html
 
 .carousel__contents-wrapper
   height: 100%
+
+//$$legacy Overrides - delete when we move the icons to svg
+
+.icon--article--white--before:before
+  height: 33px
