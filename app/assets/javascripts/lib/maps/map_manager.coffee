@@ -133,6 +133,7 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
     createMarkerImage = (topic, size) ->
       cssInfo = cssHelper.propertiesFor(
         "icon-poi-#{topic}-#{size} icon-poi-#{size}", [
+          'background-position'
           'background-position-x'
           'background-position-y'
           'background-image'
@@ -145,8 +146,13 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
       width = parseInt(cssInfo['width'])
       height = parseInt(cssInfo['height'])
 
-      x = parseInt(cssInfo['background-position-x'])
-      y = parseInt(cssInfo['background-position-y'])
+      # browsers don't all agree on background position (ie, ff)
+      if cssInfo['background-position'] is undefined
+        x = parseInt(cssInfo['background-position-x'])
+        y = parseInt(cssInfo['background-position-y'])
+      else
+        x = parseInt(cssInfo['background-position'].split(' ')[0])
+        y = parseInt(cssInfo['background-position'].split(' ')[1])
 
       new google.maps.MarkerImage(
         url,
