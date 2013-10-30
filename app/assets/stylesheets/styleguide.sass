@@ -42,7 +42,7 @@
   padding: 20px
 
 pre[class*="language-"]
-  @extend %border-box
+  +box-sizing()
   padding: 1em
   overflow: auto
   max-height: 300px
@@ -128,7 +128,7 @@ pre.styleguide.is-open
     border-color: transparent
 
 .styleguide-block__description
-  @extend %border-box
+  +box-sizing()
   overflow: hidden
   padding: 20px
 

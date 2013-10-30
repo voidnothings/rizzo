@@ -11,7 +11,7 @@
   position: relative
 
 .field__label
-  @extend %border-box
+  +box-sizing()
   float: left
   padding: 10px 10px 10px 0
   width: 35%
@@ -62,7 +62,7 @@
 
 
 .input
-  @extend %border-box
+  +box-sizing()
   +border-radius(4)
   background-color: $body-background-offset
   border: 1px solid $body-background-offset

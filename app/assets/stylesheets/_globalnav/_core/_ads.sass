@@ -5,8 +5,9 @@
 // ----------------------------------------------------------------------------
 
 .ad-leaderboard
-  @extend %ad-leaderboard
   +transition(all, 0.5, ease)
+  min-height: 96px
+  // We don't define a width here because sometimes leaderboard = pushdown and they have different widths.
   display: table-cell
   text-align: center
   vertical-align: middle
@@ -35,7 +36,6 @@
 // ----------------------------------------------------------------------------
 
 .ad-label
-  @extend %helvetica-neue
   +font-size(10)
   color: $feature-copy
   line-height: 20px
@@ -70,12 +70,14 @@
 
 .ad-trafficDriver, .ad-sponsorTile, .ad-mpu, .ad-doubleMpu
   &.card__content
-    @extend %block-center
+    margin: 0 auto
     +transition(all, 1, ease)
 
 .ad-trafficDriver
   &.card__content
-    @extend %ad-trafficDriver
+    height: 380px
+    padding: 0
+    width: 192px
     top: 0
 
 .ad--placeholder
@@ -84,7 +86,8 @@
   z-index: 1
 
 .ad-sponsorTile
-  @extend %ad-sponsorTile
+  height: 32px
+  width: 276px
 
   .stack__intro &
     position: absolute
@@ -95,7 +98,7 @@
     width: 450px
 
 .ad-mpu.card__content
-  @extend %ad-mpu
+  width: 300px
   margin-bottom: 13px
   .responsive &
     +box-sizing()
@@ -130,7 +133,7 @@
         min-height: 380px
 
   &.ad-doubleMpu
-    @extend %ad-doubleMpu
+    height: 770px
     z-index: 2
 
     .card__content
@@ -217,7 +220,8 @@
     top: 5px
 
   .countdown
-    @extend %absolute-left
+    position: absolute
+    left: 0
     bottom: 5px
     display: block
     text-align: center

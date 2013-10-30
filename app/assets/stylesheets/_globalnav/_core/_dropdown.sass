@@ -23,7 +23,7 @@
   width: 33.3%
 
 .dropdown__value
-  @extend %border-box
+  +box-sizing()
   @extend %chevron-down-after
   @extend %input--regular
   @extend %right-icon
@@ -51,7 +51,7 @@
     box-shadow: none
 
   &:after
-    @extend %four-pixel-rounded
+    @extend %rounded-corners
     +font-size(22)
     background-color: inherit
     color: inherit
