@@ -6,23 +6,18 @@ require ['lib/forms/form_validator'], (FormValidator) ->
       it 'is defined', ->
         expect(FormValidator).toBeDefined()
 
-    describe 'attaching to a form that exists', ->
+    describe 'initialising a Form Validator', ->
 
       beforeEach ->
         loadFixtures 'form_validation.html'
 
-      it 'initialises the object', ->
+      it 'initialises when the form exists', ->
         spyOn(FormValidator.prototype, '_initialize')
         form = new FormValidator('test-form')
 
         expect(FormValidator.prototype._initialize).toHaveBeenCalled()
 
-    describe 'attaching to a form that does not exist', ->
-
-      beforeEach ->
-        loadFixtures 'form_validation.html'
-
-      it 'does not initialise the object', ->
+      it 'does not initialise when the form does not exist', ->
         spyOn(FormValidator.prototype, '_initialize')
         form = new FormValidator('untest-form')
 
@@ -36,7 +31,7 @@ require ['lib/forms/form_validator'], (FormValidator) ->
       it 'has a field object for each field in the form', ->
         form = new FormValidator('test-form')
 
-        expect(form.fields.length).toBe 2
+        expect(form.fields.length).toBe 3
 
     describe 'validating a form', ->
 
@@ -53,5 +48,7 @@ require ['lib/forms/form_validator'], (FormValidator) ->
 
         $('#required').val('some text')
         $('#number').val(54321)
+        $('#first-select').val(1);
+        $('#second-select').val(1);
 
         expect(form.isValid()).toBe true
