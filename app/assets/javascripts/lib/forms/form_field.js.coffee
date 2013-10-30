@@ -2,12 +2,11 @@ define ["jquery", "lib/forms/field_input"], ($, FieldInput) ->
 
   class FormField
 
+    inputsSelector = "input, textarea, select"
+
     constructor: (field) ->
       @field = $(field)
-      @label = @field.find('.js-field-label').text()
-      @inputs = []
-      @inputsSelector = "input, textarea, select"
-      @_initialize()
+      @_initialize() if @field.length is 1
 
     isValid: ->
       valid = true
@@ -18,5 +17,7 @@ define ["jquery", "lib/forms/field_input"], ($, FieldInput) ->
       valid
 
     _initialize: ->
-      @field.find(@inputsSelector).each (index, elt) =>
+      @inputs = []
+      @field.find(inputsSelector).each (index, elt) =>
         @inputs.push(new FieldInput(elt, @label))
+      @label = @field.find('.js-field-label').text()
