@@ -141,15 +141,18 @@ $mobile-standard-card-image-height: 192px
         height: ($card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
 
   .card--full-image &
-    +background-gradient($startColor: rgba(0,0,0,0), $endColor: rgba(0,0,0,0.75))
+    +background-gradient($startColor: rgba($darkblue, 0.0), $endColor: rgba($darkblue, 0.5))
     bottom: 0
     color: #fff
-    height: auto
+    height: 35%
     left: 0
     margin: 0
     padding: $card-content-vertical-padding $card-content-horizontal-padding
     position: absolute
     right: 0
+    .card__content__inner
+      position: absolute
+      bottom: $card-content-vertical-padding
 
   .card--image-only &
     @extend %transition--base

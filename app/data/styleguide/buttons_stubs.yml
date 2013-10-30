@@ -42,10 +42,10 @@ buttons:
 
 variation:
   :styleguide_title: "Sizes and modifiers"
-  :type: "bookable"
-  :text: "Bookable button"
+  :type: "blue"
+  :text: "Modified button"
   :href: "#"
   :modifiers:
     - "btn--slim"
-    - "disabled"
+    - "is-disabled"
     - "btn--full-width"
