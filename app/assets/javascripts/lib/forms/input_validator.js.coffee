@@ -5,7 +5,8 @@ define ["jquery", "lib/forms/validators", "lib/forms/error_messages"], ($, Valid
     constructor: (input, label, validator) ->
       @input = input
       @label = label
-      @_initialize(validator)
+      @validator = validator
+      @_initialize() if @input and @label and @validator
 
     isValid: ->
       Validators[@name](@input, @args)
@@ -13,12 +14,12 @@ define ["jquery", "lib/forms/validators", "lib/forms/error_messages"], ($, Valid
     getErrorMessage: ->
       "#{@_replace(ErrorMessages[@name], @args)} #{@label}" 
 
-    _initialize: (validator) ->
-      if match = validator.match(/(.+)\((.+)\)/)
+    _initialize: ->
+      if match = @validator.match(/(.+)\((.+)\)/)
         @name = match[1]
         @args = match[2]
       else
-        @name = validator
+        @name = @validator
 
     _replace: (text, variables) ->
       text.replace /{(\d+)}/g, (match, number) ->

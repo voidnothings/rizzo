@@ -5,10 +5,7 @@ define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
     constructor: (input, label) ->
       @input = $(input)
       @label = @input.data('label') || label
-      @inputParent = @input.closest('.js-input')
-      @validators = []
-      @_initialize()
-      @_listen()
+      @_initialize() if @input.length is 1
 
     isValid: ->
       @_clearError()
@@ -23,10 +20,14 @@ define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
       valid
 
     _initialize: ->
-      validators = if @input.data('rules') then @input.data('rules').split(' ') else []
+      @inputParent = @input.closest('.js-input')
+      @validators = []
+      rules = if @input.data('rules') then @input.data('rules').split(' ') else []
 
-      for validator in validators
+      for validator in rules
         @validators.push(new InputValidator(@input, @label, validator))
+
+      @_listen()
 
     _listen: ->
       @input.on 'blur', (e) =>
