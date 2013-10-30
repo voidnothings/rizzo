@@ -25,17 +25,8 @@
     +respond-to(wide-view)
       margin-left: 157px
 
-%nav__item--look
-  &, &:active
-    color: $nav-primary-type
-  &:hover
-    color: #fff
-
-.nav__item--primary, .nav__item--user
-  @extend %nav__item--look
-
 .nav__item--primary
-  padding: 20px 4px
+  padding: 18px 4px
   .responsive &
     +font-size(18)
     padding: 17px 10px
@@ -74,9 +65,15 @@
     +respond-to(wide-view)
       padding: 20px 4px
     
-  .responsive &, .responsive & > .nav__item
-    +respond-to(wide-view)
-      font-weight: bold
+  &, & > .nav__item
+    font-weight: bold
+    color: $nav-primary-type
+    .responsive &
+      font-weight: normal
+      +respond-to(wide-view)
+        font-weight: bold
+    &:hover
+      color: #fff
 
   .homepage &, .homepage & > .nav__item
     color: white
@@ -90,6 +87,11 @@
 .nav--user
   +respond-to(wide-view)
     margin-right: 20px
+
+.nav__item--user
+  color: $nav-primary-type
+  &:hover
+    color: #fff
 
 // ----------------------------------------------------------------------------
 // 
@@ -281,12 +283,13 @@
   .nav__submenu__item
     @extend %left-icon
     padding-left: 39px
+    font-weight: bold
     &:before
-      @extend %lp-font-stack
       line-height: 30px
       font-size: 34px
       top: 0
       left: 10px
+      font-weight: normal
     .responsive &:before
       content: ""
       background-size: 100%

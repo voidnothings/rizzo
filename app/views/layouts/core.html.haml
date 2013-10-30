@@ -5,14 +5,14 @@
 <!--[if gt IE 9]><!--><html class='no-js freight js-hover' data-topic="#{yield :topic}" lang="en"><!--<![endif]-->
 %head
   = render 'layouts/core/head', responsive: false, homepage: false
-%body
+%body.copy--freight
   .wrap--footer-push
     = render 'layouts/core/snippets/body_header', user_nav: defined?(user_nav) ? user_nav : true
 
     .row.row--content#js-row--content
-      .row__inner.row__inner--content.copy--freight
+      .row__inner.row__inner--content
         
-        .row.row--secondary.copy--freight#js-secondary-nav
+        .row.row--secondary#js-secondary-nav
           .row__inner.row__inner--secondary
             = yield :secondary
         
