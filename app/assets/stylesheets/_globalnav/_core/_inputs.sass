@@ -27,7 +27,9 @@ input, textarea
 // ----------------------------------------------------------------------------
 
 .input--regular
-  @extend %input--regular
+  @extend %rounded-corners
+  background-color: #fff
+  color: $header-grey
 
 .input--regular--dark
   @extend %rounded-corners
@@ -42,8 +44,10 @@ input, textarea
   cursor: pointer
 
 .input--datepicker
-  @extend %input--regular
+  @extend %rounded-corners
   @extend %lodgings-sprite-standard
+  background-color: #fff
+  color: $header-grey
   padding-right: 35px
   background-position: 99% -112px
   +retinafy()
@@ -195,7 +199,7 @@ input, textarea
 
 // Footer select is slightly smaller so reduce padding and re-align chevron
 .dropdown__value--language
-  @extend %input--small
+  +font-size(12)
   padding-top: 9px
   padding-bottom: 8px
   border: none
@@ -240,7 +244,9 @@ input, textarea
   font-weight: bold
 
 .input--small--newsletter
-  @extend %input--regular
+  @extend %rounded-corners
+  background-color: #fff
+  color: $header-grey
   padding: 10px
   width: 100%
   color: $header-grey
