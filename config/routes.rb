@@ -44,5 +44,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/pagination'        => 'styleguide#pagination'
   get 'styleguide/forms'             => 'styleguide#forms'
   get 'styleguide/activity_list'     => 'styleguide#activity_list'
+  #===== yeoman hook =====#
+  # NB! The above line is required for our yeoman generator and should not be changed.
 
 end if defined?(Rizzo::Application)
