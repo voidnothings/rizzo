@@ -1,26 +1,47 @@
-.user
+// -----------------------------------------------------------------------------
+// User styles.
+// 
+// For any places where user information is displayed.
+// -----------------------------------------------------------------------------
+
+
+// -----------------------------------------------------------------------------
+// The little user info section displayed on the left hand side of posts.
+// -----------------------------------------------------------------------------
+.user-info
+  +font-size(15)
+  color: $feature-copy
+  margin-right: 10px
   width: 150px
 
-.user__avatar
+.user-info__avatar
   border-radius: 25px
   height: 50px
+  margin-bottom: 12px
   overflow: hidden
   width: 50px
 
-.user__username
+.user-info__username
+  color: $header-grey
+.user-info__username--link
   margin-left: 0.2em
 
-.user__badge
+.user-info__badge
   color: #fff
   line-height: 1em
   margin-left: 0.3em
   padding: 4px
+  text-transform: uppercase
 
-.user__online
+.user-info__online
+  +font-size(12)
+  font-weight: bold
+  margin-bottom: 12px
+  text-transform: uppercase
   &:before
     @extend %inline-block
     background: $green
-    border-radius: 4
+    border-radius: 4px
     content: ''
     margin-right: 7px
     height: 8px
