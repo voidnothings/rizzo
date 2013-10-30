@@ -87,13 +87,16 @@
 
 .input--datepicker
   @extend %rounded-corners
-  @extend %lodgings-sprite-standard
+  background-image: url(image_path("lodgings-spt.png"))
+  background-repeat: no-repeat
   background-color: #fff
   color: $header-grey
   background-position: 97% -111px
   padding-right: 35px
   +retinafy()
-    @extend %lodgings-sprite-retina
+    background-image: url(image_path("lodgings-spt-2x.png"))
+    background-size: $lodgings-sprite-size
+    background-repeat: no-repeat
     background-position: 95% -111px
   +placeholder()
     color: $placeholder-copy

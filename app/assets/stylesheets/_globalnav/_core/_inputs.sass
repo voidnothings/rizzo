@@ -45,13 +45,16 @@ input, textarea
 
 .input--datepicker
   @extend %rounded-corners
-  @extend %lodgings-sprite-standard
+  background-image: url(image_path("lodgings-spt.png"))
+  background-repeat: no-repeat
   background-color: #fff
   color: $header-grey
   padding-right: 35px
   background-position: 99% -112px
   +retinafy()
-    @extend %lodgings-sprite-retina
+    background-image: url(image_path("lodgings-spt-2x.png"))
+    background-size: $lodgings-sprite-size
+    background-repeat: no-repeat
     background-position: 95% -111px
   +placeholder()
     color: $placeholder-copy
@@ -164,14 +167,19 @@ input, textarea
       float: none
 
 .search__button--icon
-  @extend %sprite-core
   @extend %image-replacement
+  background-image: url(image_path("core/core-sprite-standard.png"))
+  background-repeat: no-repeat
   background-position: 0 -101px
   display: block
   height: 13px
   margin: 0 8px
   padding: 0
   width: 13px
+  +retinafy()
+    background-image: url(image_path("core/core-sprite-2x.png"))
+    background-size: $core-sprite-size
+    background-repeat: no-repeat
 
 
 // -----------------------------------------------------------------------------
