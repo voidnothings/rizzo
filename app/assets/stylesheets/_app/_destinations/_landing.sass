@@ -60,6 +60,11 @@ html
     height: 80px
     box-shadow: -1px 0 $body-background inset
 
+.row--introduction__branding__logo
+  width: 117px
+  +respond-to(wide-view)
+    padding-top: 15px
+
 .row--cards-title
   padding-top: 50px
   .copy--h1
@@ -71,10 +76,6 @@ html
   padding: 0 10px
   +respond-to(wide-view)
     padding: 0
-
-.media--best-in-travel-logo
-  +respond-to(wide-view)
-    padding-top: 15px
 
 .row--introduction__blurb
   +font-size(15)
@@ -389,11 +390,10 @@ html
     position: absolute
     bottom: 20px
     right: 20px
-
     background-image: url(#{image_path('destinations/best-in-travel/best-in-travel-where-would-you-go-cta.png')})
-    +retinafy
+    +retinafy()
       background-image: url(#{image_path('destinations/best-in-travel/best-in-travel-where-would-you-go-cta-2x.png')})
-
+      background-size: cover
 
 .carousel
   position: relative
