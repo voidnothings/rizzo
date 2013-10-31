@@ -10,7 +10,7 @@
         - else
           - retail_price = nil
 
-        = ui_component('price_tag', properties: { currency: raw(currency.to_symbol), price: price, retail_price: retail_price })
+      = ui_component('price_tag', properties: { currency: raw(currency.to_symbol), price: price, retail_price: retail_price })
 
     - if stack_item.topchoice
       .tag.tag--badge.tag--top-choice
