@@ -131,7 +131,12 @@
 .place-title
   @extend %truncate-text
   @extend %left-icon
+<<<<<<< HEAD
  // These three rules are repeated here because we can't extend from within a media query. Ugly but necessary
+=======
+  +font-size(18)
+  // These three rules are repeated here because we can't extend from within a media query. Ugly but necessary
+>>>>>>> some nav stylin fixes
   text-overflow: ellipsis
   overflow: hidden
   white-space: nowrap
@@ -359,6 +364,9 @@ a.nav__item--breadcrumbs
   width: 24px
   height: 24px
   top: 15px
+  &:before
+    width: 24px
+    height: 24px
   .ie7 &
     @extend .nav__item--breadcrumbs
     text-indent: 0
