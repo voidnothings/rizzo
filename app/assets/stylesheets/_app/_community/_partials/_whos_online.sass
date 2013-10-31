@@ -1,0 +1,33 @@
+.whos-online
+  &.results
+    margin: 15px -10px 0 0
+  
+  .user-info
+    @extend %clearfix
+    float: left
+    margin-bottom: 15px
+    width: 192px
+    .card
+      +css-arrow(left, 10px, 40px, -4px, 21px)
+      border-radius: 4px
+      box-sizing: border-box
+      float: left
+      padding: 16px 16px 8px
+      position: relative
+      width: 132px
+      &:after
+        color: #fff
+        position: absolute
+        text-shadow: -1px 0 1px rgba(0,0,0,0.1)
+
+  .user-info__avatar
+    float: left
+    margin-right: 10px
+
+  .user-info__details
+    border-radius: 0 0 4px 4px
+    margin: 16px -16px -8px // to counteract the padding of the parent container
+    padding: 8px 6px 8px 16px
+
+  .user-info__location
+    margin-top: 11px
