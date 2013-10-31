@@ -108,13 +108,9 @@
 // -----------------------------------------------------------------------------
 
 .nav--left__item--icon
-  padding: 12px 30px 12px 12px
+  padding: 12px 30px 12px 35px
   &:before
     display: inline-block
-    height: 18px
-    width: 18px
-    margin-right: 2px
-    vertical-align: bottom
 
-  &.is-active:before,
-    @include icon-color(white)
+  &.is-active:before
+    // Mixin for :hover

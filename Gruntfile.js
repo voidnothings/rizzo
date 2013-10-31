@@ -19,23 +19,32 @@ module.exports = function (grunt) {
             }
         },
         grunticon: {
-            all: {
-                options: extend(grunticonoptions, {
+            inactive: {
+                options: {
+                    cssprefix: 'icon--',
+                    datapngcss: 'inactive.png.css',
+                    datasvgcss: 'inactive.svg.css',
+                    defaultWidth: '32px',
+                    dest: './app/assets/stylesheets/icons',
+                    pseudoElems: true,
                     src: './app/assets/images/icons/inactive',
-                    dest: './app/assets/stylesheets/CUNTS'
-                })
+                    urlpngcss: 'inactive.fallback.css'
+                }
             },
             active: {
-                options: extend(grunticonoptions, {
-                    src: grunticonoptions.activeicons,
+                options:{
+                    cssprefix: 'icon--',
                     customselectors: {
                         "*": ".$1--before:before, .$1--after:after"
                     },
-                    dest: './app/assets/stylesheets/icons/',
                     datasvgcss: 'active.svg.css',
                     datapngcss: 'active.png.css',
+                    defaultWidth: '32px',
+                    dest: './app/assets/stylesheets/icons',
+                    pseudoElems: true,
+                    src: './app/assets/images/icons/active',
                     urlpngcss: 'active.fallback.css'
-                })
+                }
             }
         },
         svgmin: {

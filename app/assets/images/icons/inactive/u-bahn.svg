@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <title>u-bahn--body-grey</title>
-    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
-    <defs></defs>
-    <g id="Transport" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <path d="M22.8355596,26.406 C20.8784659,28.207 18.1077717,29 15.4645821,29 C12.8365715,29 10.0668893,28.217 8.12598664,26.406 C6.28830196,24.692 5.5,22.36 5.5,19.901 L5.5,4 L11.3520542,4 L11.3520542,19.331 C11.3520542,20.592 11.5878365,22.033 12.4449504,23.037 C13.1897389,23.895 14.3757337,24.117 15.4645821,24.117 C16.6100992,24.117 17.8638939,23.868 18.5763003,22.909 C19.3382918,21.901 19.5538353,20.555 19.5538353,19.331 L19.5538353,4 L25.5,4 L25.5,19.901 C25.5,22.366 24.6823518,24.694 22.8355596,26.406 Z M22.8355596,26.406" id="u-bahn--body-grey" fill="#67737B" sketch:type="MSShapeGroup"></path>
-    </g>
-</svg>

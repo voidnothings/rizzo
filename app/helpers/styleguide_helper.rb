@@ -152,7 +152,7 @@ module StyleguideHelper
       class_name && icons.push(class_name[1])
     end
     icons
-  end
+ end
 
   def get_colours(file)
     colours = File.read(File.expand_path("../../assets/stylesheets/_variables/#{file}.sass", __FILE__))
