@@ -1,7 +1,7 @@
 .whos-online
-  &.results
+  .results
     margin: 15px -10px 0 0
-  
+
   .user-info
     @extend %clearfix
     float: left
@@ -31,3 +31,12 @@
 
   .user-info__location
     margin-top: 11px
+
+  .filters
+    +font-size(13)
+  .filters__label
+    color: $feature-copy
+    float: left
+    font-weight: bold
+    margin: 8px 10px 0 0
+    text-transform: uppercase
