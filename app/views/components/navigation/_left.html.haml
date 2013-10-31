@@ -4,7 +4,7 @@
     
     - properties[:groups].each_with_index do |group, i|
       
-      .nav--left__group.card{class: (i > 0) ? "nav--left__group--linked" : ""}
+      .card.nav--left__group{class: (i > 0) ? "nav--left__group--linked" : ""}
         
         -if group[:title]
           %label{class: 'nav--left__title copy--h5', for: "ac-#{group[:section]}"}

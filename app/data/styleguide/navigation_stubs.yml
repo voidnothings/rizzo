@@ -50,7 +50,7 @@ left_nav_stub:
   -
     :groups:
       -
-        :title: "With Icons"
+        :title: "Nav with Icons"
         :items:
           -
             :name: 'Sights'
