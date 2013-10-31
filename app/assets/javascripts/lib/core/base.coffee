@@ -38,9 +38,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
       shopCart = new ShoppingCart()
 
     initialiseFooterSelects: ->
-      countrySelect = new SelectGroup '.js-select-country'
-      languageSelect = new SelectGroup '.js-select-language', ->
-        $('#js-language').submit()
+      countrySelect = new SelectGroup '.js-select-group'
 
     initialiseResponsiveNavSelect: ->
       responsiveNav = new SelectGroup '.js-responsive-nav', ($this) ->

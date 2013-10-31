@@ -24,7 +24,7 @@ define ['jquery'], ($) ->
         e.preventDefault()
         @setOverlay(target)
         if @callback then @callback(target)
-        if $(target).data('redirect') then redirect(target)
+        if $(target).data('form_submit') then submit(target)
 
     getOverlay: (target) ->
       $(target).closest(@parent).find('.js-select-overlay')
@@ -33,5 +33,5 @@ define ['jquery'], ($) ->
       t = $(target).find("option:selected")
       @getOverlay(target).text(t.text())
 
-    redirect: (target) ->
-      window.location = $(target).options[$(target).selectedIndex].value
+    submit: (target) ->
+      $(target).closest('form').submit()
