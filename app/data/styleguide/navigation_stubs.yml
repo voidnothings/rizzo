@@ -1,5 +1,5 @@
 left_nav_stub:
- - 
+  -
     :groups:
       -
         :items:
@@ -17,7 +17,7 @@ left_nav_stub:
             :name: 'Best things to do in Scotland'
             :slug: '#'
 
- - 
+  -
     :groups:
       -
         :title: "Collections"
@@ -26,13 +26,13 @@ left_nav_stub:
             :name: 'Top places to stay'
             :slug: '#'
             :count: 20
-            :extra_style: 'is-active'
+            :active: true
           -
             :name: 'Best things to do in Scotland'
             :slug: '#'
             :count: 150
 
- - 
+  -
     :groups:
       -
         :title: "Topics"
@@ -46,6 +46,25 @@ left_nav_stub:
           -
             :name: 'Things to do'
             :slug: '#'
+
+  -
+    :groups:
+      -
+        :title: "With Icons"
+        :items:
+          -
+            :name: 'Sights'
+            :slug: '#'
+            :icon: 'sights'
+          -
+            :name: 'Restaurants'
+            :slug: '#'
+            :icon: 'restaurants'
+            :active: true
+          -
+            :name: 'Tours'
+            :slug: '#'
+            :icon: 'tours'
 
 
 secondary_navigation_stub:
