@@ -80,17 +80,17 @@ html
   +font-size(15)
   padding: 20px
   +respond-to(wide-view)
-    +transition(all, 0.5, ease-in)
     +border-radius(4)
     +box-shadow(5, 5, 1, 0, rgba(0,0,0,0.1))
-    visibility: hidden
+    opacity: 0
     background-color: $header-grey
     position: absolute
     top: -215px
     width: 600px
     text-align: left
     .js-loaded &
-      visibility: visible
+      +transition(opacity, 1, ease-in)
+      opacity: 1
       &:after
         content: "\e095"
         height: 70px
