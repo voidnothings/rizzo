@@ -19,9 +19,12 @@ define ['jquery'], ($) ->
         $(e.target).trigger('change')
 
       @selectParent.on 'change', '.js-select', (e) =>
+        target = e.target
+
         e.preventDefault()
-        @setOverlay(e.target)
-        if @callback then @callback(e.target)
+        @setOverlay(target)
+        if @callback then @callback(target)
+        if $(target).data('redirect') then redirect(target)
 
     getOverlay: (target) ->
       $(target).closest(@parent).find('.js-select-overlay')
@@ -29,3 +32,6 @@ define ['jquery'], ($) ->
     setOverlay: (target) ->
       t = $(target).find("option:selected")
       @getOverlay(target).text(t.text())
+
+    redirect: (target) ->
+      window.location = $(target).options[$(target).selectedIndex].value
