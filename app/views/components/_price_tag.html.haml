@@ -1,0 +1,16 @@
+.tag.tag--price
+  .tag--price__inner
+    .tag--price__values
+      from
+      .tag--price__amount<
+        %span.tag--price__currency.js-currency<
+          = properties[:currency]
+        %span.js-price<>
+          = properties[:price]
+      - if properties[:scope]
+        %span.tag--price__scope<
+          = properties[:scope]
+    - if properties[:retail_price]
+      .tag--price__original<
+        = properties[:currency]
+        = properties[:retail_price]

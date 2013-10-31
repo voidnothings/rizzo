@@ -67,6 +67,11 @@ module StyleguideHelper
               name: "Forms",
               path: "/styleguide/forms",
               extra_style: "nav__item--delimited"
+            },
+            {
+              name: "Tags",
+              path: "/styleguide/tags",
+              extra_style: "nav__item--delimited"
             }
           ]
         },
