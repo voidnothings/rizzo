@@ -26,7 +26,7 @@ left_nav_stub:
             :name: 'Top places to stay'
             :slug: '#'
             :count: 20
-            :extra_style: 'nav__item--current--stack'
+            :extra_style: 'is-active'
           -
             :name: 'Best things to do in Scotland'
             :slug: '#'
@@ -40,15 +40,12 @@ left_nav_stub:
           -
             :name: 'Articles'
             :slug: '#'
-            :extra_style: "nav__item--delimited"
           -
             :name: 'Collections'
             :slug: '#'
-            :extra_style: "nav__item--delimited"
           -
             :name: 'Things to do'
             :slug: '#'
-            :extra_style: "nav__item--delimited"
 
 
 secondary_navigation_stub:
