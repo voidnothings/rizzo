@@ -2,23 +2,21 @@ define ['jquery'], ($) ->
 
   class SelectGroupManager
 
-    constructor: (@parent = null, @callback = false) ->
-      @selectParent = (if @parent != null then $(@parent) else $('.js-select-group'))
-      @selectParent.find('.js-select').each (eltIndex) =>
-        @setOverlay(@selectParent[eltIndex])
+    constructor: () ->
+      @selectContainers = $('.js-select-group-manager')
       @addHandlers()
 
     addHandlers: ->
-      @selectParent.on 'focus', '.js-select', (e) =>
+      @selectContainers.on 'focus', '.js-select', (e) =>
         @getOverlay(e.target).addClass 'dropdown__value--selected'
 
-      @selectParent.on 'blur', '.js-select', (e) =>
+      @selectContainers.on 'blur', '.js-select', (e) =>
         @getOverlay(e.target).removeClass 'dropdown__value--selected'
 
-      @selectParent.on 'keyup', '.js-select', (e) =>
+      @selectContainers.on 'keyup', '.js-select', (e) =>
         $(e.target).trigger('change')
 
-      @selectParent.on 'change', '.js-select', (e) =>
+      @selectContainers.on 'change', '.js-select', (e) =>
         target = e.target
 
         e.preventDefault()
@@ -27,7 +25,7 @@ define ['jquery'], ($) ->
         if $(target).data('form_submit') then submit(target)
 
     getOverlay: (target) ->
-      $(target).closest(@parent).find('.js-select-overlay')
+      $(target).closest('.js-select-group-manager').find('.js-select-overlay')
 
     setOverlay: (target) ->
       t = $(target).find("option:selected")
