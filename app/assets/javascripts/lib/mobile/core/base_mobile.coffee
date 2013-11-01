@@ -1,4 +1,4 @@
-define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shopping_cart_mobile', 'lib/mobile/select_group_manager_mobile', 'lib/utils/asset_fetch', 'lib/utils/local_store'], ($, Authenticator, ShoppingCart, SelectGroup, AssetFetch, LocalStore) ->
+define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shopping_cart_mobile', 'lib/mobile/select_group_manager_mobile', 'lib/utils/asset_fetch', 'lib/utils/local_store'], ($, Authenticator, ShoppingCart, SelectGroupManager, AssetFetch, LocalStore) ->
 
   class Base
 
@@ -20,12 +20,12 @@ define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shoppin
       shopCart = new ShoppingCart()
 
     initialiseFooterSelects: ->
-      countrySelect = new SelectGroup '.js-select-country'
-      languageSelect = new SelectGroup '.js-select-language', ->
+      countrySelect = new SelectGroupManager '.js-select-country'
+      languageSelect = new SelectGroupManager '.js-select-language', ->
         document.getElementById('js-language').submit()
 
     initialiseResponsiveNavSelect: ->
-      responsiveNav = new SelectGroup '.js-responsive-nav', ($this)->
+      responsiveNav = new SelectGroupManager '.js-responsive-nav', ($this)->
         window.location = "http://www.lonelyplanet.com/" + $this.options[$this.selectedIndex].value
 
     addNavTracking: ->

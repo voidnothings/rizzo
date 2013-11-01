@@ -1,6 +1,6 @@
 # Note: We need to add 'lib/core/ad_manager' back in after 'jquery' when the switch to the new DFP server happens.
 #   Also worth noting is that the ad_manager and ad_manager_old calls in waldorf/app/assets/javascripts/*.js need to be removed.
-define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager'], ($, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroup) ->
+define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager'], ($, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroupManager) ->
 
   class Base
 
@@ -38,10 +38,10 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
       shopCart = new ShoppingCart()
 
     initialiseFooterSelects: ->
-      countrySelect = new SelectGroup '.js-select-group'
+      countrySelect = new SelectGroupManager '.js-select-group'
 
     initialiseResponsiveNavSelect: ->
-      responsiveNav = new SelectGroup '.js-responsive-nav', ($this) ->
+      responsiveNav = new SelectGroupManager '.js-responsive-nav', ($this) ->
         window.location = "http://www.lonelyplanet.com/" + $this.options[$this.selectedIndex].value
 
     showCookieComplianceMsg: ->

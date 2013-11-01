@@ -1,6 +1,6 @@
 define ['jquery'], ($) ->
 
-  class SelectGroup
+  class SelectGroupManager
 
     constructor: (@parent = null, @callback = false) ->
       @selectParent = (if @parent != null then $(@parent) else $('.js-select-group'))
