@@ -7,9 +7,11 @@
           = properties[:currency]
         %span.js-price<>
           = properties[:price]
+
       - if properties[:scope]
         %span.tag--price__scope<
           = properties[:scope]
+
     - if properties[:retail_price]
       .tag--price__retail<
         = properties[:currency]
