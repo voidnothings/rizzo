@@ -1,14 +1,24 @@
 :javascript
-  $('#js-left-nav').on('click', '.js--item', function(e){
-    e.preventDefault();
-    var $this = this
+  
+  var getUrlPathName = function(path) {
+    var link = document.createElement('a');
+    link.href = path;
+    return link.pathname;
+  }
+
+  var fetchNewContent = function(path) {
     $.ajax({
-      url: $this.href,
+      url: path,
       success: function(result){
         $('#js-main-content').html(result);
         $('#js-left-nav').find('.js--item').removeClass('is-active')
-        $this.classList.add('is-active')
-        window.history.pushState({state: $this.href}, null, $this.href);
+        $('#js-left-nav').find('[href="' + getUrlPathName(path) + '"]').addClass('is-active')
+        window.history.pushState({state: path}, null, path);
       }
-    })
-  })
+    });
+  }
+
+  $('#js-left-nav').on('click', '.js--item', function(e){
+    e.preventDefault();
+    fetchNewContent(this.href)
+  });
