@@ -10,8 +10,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
       # Note: We need to add this back in when the switch to the new DFP server happens
       # @initAds() unless args.secure
       @showCookieComplianceMsg()
-      @initialiseFooterSelects()
-      @initialiseResponsiveNavSelect()
+      @initialiseSelectGroupManager()
       @addNavTracking()
       @scrollPerf()
 
@@ -37,12 +36,8 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
     showUserBasket: ->
       shopCart = new ShoppingCart()
 
-    initialiseFooterSelects: ->
-      countrySelect = new SelectGroupManager '.js-select-group'
-
-    initialiseResponsiveNavSelect: ->
-      responsiveNav = new SelectGroupManager '.js-responsive-nav', ($this) ->
-        window.location = "http://www.lonelyplanet.com/" + $this.options[$this.selectedIndex].value
+    initialiseSelectGroupManager: ->
+      new SelectGroupManager()
 
     showCookieComplianceMsg: ->
       if LocalStore.get('cookie-compliance') is undefined or LocalStore.get('cookie-compliance') is null

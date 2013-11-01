@@ -5,8 +5,7 @@ define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shoppin
     constructor: (args={})->
       @authenticateUser()
       @showUserBasket()
-      @initialiseFooterSelects()
-      @initialiseResponsiveNavSelect()
+      @initialiseSelectGroupManager()
       @addNavTracking()
       @scrollPerf() unless window.lp.touch is true
 
@@ -19,14 +18,8 @@ define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shoppin
     showUserBasket: ->
       shopCart = new ShoppingCart()
 
-    initialiseFooterSelects: ->
-      countrySelect = new SelectGroupManager '.js-select-country'
-      languageSelect = new SelectGroupManager '.js-select-language', ->
-        document.getElementById('js-language').submit()
-
-    initialiseResponsiveNavSelect: ->
-      responsiveNav = new SelectGroupManager '.js-responsive-nav', ($this)->
-        window.location = "http://www.lonelyplanet.com/" + $this.options[$this.selectedIndex].value
+    initialiseSelectGroupManager: ->
+      new SelectGroupManager()
 
     addNavTracking: ->
       $('#js-primary-nav').on 'click', (e)->
