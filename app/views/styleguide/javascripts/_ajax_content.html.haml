@@ -1,0 +1,13 @@
+:javascript
+  $('#js-left-nav').on('click', '.js--item', function(e){
+    e.preventDefault();
+    var $this = this
+    $.ajax({
+      url: $this.href,
+      success: function(result){
+        $('#js-main-content').html(result);
+        $this.classList.add('is-active')
+        window.history.pushState({state: $this.href}, null, $this.href);
+      }
+    })
+  })

@@ -1,6 +1,6 @@
 class StyleguideController < GlobalController
 
-  layout 'styleguide'
+  layout proc{|c| c.request.xhr? ? false : "styleguide" }
 
   def secondaryNavigation
     render '/styleguide/secondary_nav'
