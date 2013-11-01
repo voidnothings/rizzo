@@ -14,15 +14,37 @@ require ['public/assets/javascripts/lib/managers/select_group_manager'], (Select
         selectGroupManager = new SelectGroupManager()
         expect(selectGroupManager.selectContainers.length).toBe(1)
 
-    describe 'functionality', ->
+    describe 'visual', ->
       beforeEach ->
         loadFixtures('select_group_manager.html')
         new SelectGroupManager()
 
       it 'adds the selected class on focus', ->
-        $('select').focus()
-        expect($('select').hasClass('dropdown__value--selected')).toBe(true)
+        $('.js-select').trigger('focus')
+        expect($('.js-select-overlay').hasClass('dropdown__value--selected')).toBe(true)
 
       it 'adds the selected class on blur', ->
-        $('select').blur()
-        expect($('select').hasClass('dropdown__value--selected')).toBe(true)
+        $('.js-select').trigger('focus')
+        expect($('.js-select-overlay').hasClass('dropdown__value--selected')).toBe(true)
+
+      it 'updates the label overlay on change', ->
+        $('.js-select').val('bar').change()
+        expect($('.js-select-overlay').html()).toBe('Bar')
+
+    describe 'form submission', ->
+      beforeEach ->
+        loadFixtures('select_group_manager.html')
+        window.submit = ->
+        spyOn(window, "submit")
+
+        $('.select-manager-form').on 'submit', window.submit
+        $('.select-manager-form').on 'submit', (e)->
+          e.preventDefault()
+          false
+        $('.js-select').data('form_submit', 'true')
+        new SelectGroupManager()
+
+        $('.js-select').val('bar').change()
+
+      it 'submits the form', ->
+        expect(window.submit).toHaveBeenCalled()

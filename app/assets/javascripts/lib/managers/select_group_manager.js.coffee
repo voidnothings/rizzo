@@ -20,14 +20,13 @@ define ['jquery'], ($) ->
         target = e.target
 
         e.preventDefault()
-        @setOverlay(target)
-        if @callback then @callback(target)
-        if $(target).data('form_submit') then submit(target)
+        @updateOverlay(target)
+        if $(target).data('form_submit') then @submit(target)
 
     getOverlay: (target) ->
       $(target).closest('.js-select-group-manager').find('.js-select-overlay')
 
-    setOverlay: (target) ->
+    updateOverlay: (target) ->
       t = $(target).find("option:selected")
       @getOverlay(target).text(t.text())
 
