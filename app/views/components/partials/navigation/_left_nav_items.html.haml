@@ -2,12 +2,16 @@
   show_description = item[:show_description] || true
   item_title = item[:name] || item[:title]
   item_href = item[:path] || item[:href] || item[:url] || item[:slug]
-  item_class = "#{item[:extra_style]} nav__item--stack nav__item--chevron js-#{item[:section]}-item"
   item_data = { 'item-kind' => "stack:#{item[:section]}" }
 
-%a{href: item_href, class: "#{item_class} #{item[:current] ? 'nav__item--current--stack' : ''}", data: item_data}
+  item_classlist = "#{item[:extra_style]} js-#{item[:section]}-item"
+  item_classlist += " #{item[:active] ? 'is-active' : ''}"
+  if item[:icon]
+    item_classlist += " nav--left__item--icon nav--left__item--#{item[:icon]}"
+  end
+
+%a.nav--left__item{href: item_href, class: "#{item_classlist}", data: item_data}
   = item_title
 
   - if item[:count]
-    %span{class: 'facet--inline-count'}
-      = item[:count]
+    %span{class: 'nav--left__item__facet'} (#{item[:count]})
