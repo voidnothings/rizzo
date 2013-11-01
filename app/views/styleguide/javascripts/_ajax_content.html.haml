@@ -6,6 +6,7 @@
       url: $this.href,
       success: function(result){
         $('#js-main-content').html(result);
+        $('#js-left-nav').find('.js--item').removeClass('is-active')
         $this.classList.add('is-active')
         window.history.pushState({state: $this.href}, null, $this.href);
       }
