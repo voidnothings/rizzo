@@ -75,6 +75,18 @@ module StyleguideHelper
     # NB! The above line is required for our yeoman generator and should not be changed.
   end
 
+  def left_nav_items
+    active_left_nav = {}
+    active_left_nav[:groups] = left_nav[:groups].map do |group|
+      group[:items].map do |item|
+        item[:active] = item[:path] == request.path ? true : false
+        item
+      end
+      group
+    end
+    active_left_nav
+  end
+
   def ad_config
     {hints: "", channels: ""}
   end
