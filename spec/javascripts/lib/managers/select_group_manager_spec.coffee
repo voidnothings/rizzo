@@ -21,11 +21,11 @@ require ['public/assets/javascripts/lib/managers/select_group_manager'], (Select
 
       it 'adds the selected class on focus', ->
         $('.js-select').trigger('focus')
-        expect($('.js-select-overlay').hasClass('dropdown__value--selected')).toBe(true)
+        expect($('.js-select-overlay').hasClass('is-selected')).toBe(true)
 
       it 'adds the selected class on blur', ->
         $('.js-select').trigger('focus')
-        expect($('.js-select-overlay').hasClass('dropdown__value--selected')).toBe(true)
+        expect($('.js-select-overlay').hasClass('is-selected')).toBe(true)
 
       it 'updates the label overlay on change', ->
         $('.js-select').val('bar').change()

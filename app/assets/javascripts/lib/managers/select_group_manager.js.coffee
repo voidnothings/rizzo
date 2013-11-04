@@ -8,10 +8,10 @@ define ['jquery'], ($) ->
 
     addHandlers: ->
       @selectContainers.on 'focus', '.js-select', (e) =>
-        @getOverlay(e.target).addClass 'dropdown__value--selected'
+        @getOverlay(e.target).addClass 'is-selected'
 
       @selectContainers.on 'blur', '.js-select', (e) =>
-        @getOverlay(e.target).removeClass 'dropdown__value--selected'
+        @getOverlay(e.target).removeClass 'is-selected'
 
       @selectContainers.on 'keyup', '.js-select', (e) =>
         $(e.target).trigger('change')
