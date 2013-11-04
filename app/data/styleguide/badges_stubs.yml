@@ -1,0 +1,10 @@
+badges:
+  -
+    :styleguide_title: "Green Badge"
+    :type: "green"
+    :text: "New Product"
+
+  -
+    :styleguide_title: "Blue Badge"
+    :type: "blue"
+    :text: "Staff"

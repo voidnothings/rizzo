@@ -39,6 +39,10 @@ module StyleguideHelper
               path: "/styleguide/cards"
             },
             {
+              name: "Badges",
+              path: "/styleguide/badges"
+            },
+            {
               name: "Buttons",
               path: "/styleguide/buttons"
             },
