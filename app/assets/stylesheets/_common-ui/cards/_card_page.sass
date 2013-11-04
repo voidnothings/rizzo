@@ -6,7 +6,7 @@
 
 .card--page
   @extend %clearfix
-  @extend %four-pixel-rounded
+  @extend %rounded-corners
   color: $body-copy
   padding: 25px
   position: relative
@@ -43,6 +43,7 @@
     width: 100%
   .card__content
     z-index: 1
+    padding: 13px 25px
   .card__name
     +font-size(32)
     margin-bottom: 5px
@@ -218,7 +219,7 @@
 // Special Offer tag
 // -----------------------------------------------------------------------------
 .special-offer
-  @extend %four-pixel-rounded
+  @extend %rounded-corners
   background: $red
   color: #fff
   display: inline-block

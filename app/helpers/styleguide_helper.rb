@@ -1,6 +1,8 @@
 module StyleguideHelper
 
   def left_nav
+    # NB! The below line is required for our yeoman generator and should not be changed.
+    #===== yeoman begin-hook =====#
     {
       groups: [
         {
@@ -8,13 +10,11 @@ module StyleguideHelper
           items: [
             {
               name: "Design palette",
-              path: "/styleguide/colours",
-              extra_style: "nav__item--delimited"
+              path: "/styleguide/colours"
             },
             {
               name: "UI Colours",
-              path: "/styleguide/ui-colours",
-              extra_style: "nav__item--delimited"
+              path: "/styleguide/ui-colours"
             }
           ]
         },
@@ -23,13 +23,11 @@ module StyleguideHelper
           items: [
             {
               name: "Secondary Nav",
-              path: "/styleguide/secondary-nav",
-              extra_style: "nav__item--delimited"
+              path: "/styleguide/secondary-nav"
             },
             {
               name: "Left Nav",
-              path: "/styleguide/left-nav",
-              extra_style: "nav__item--delimited"
+              path: "/styleguide/left-nav"
             },
           ]
         },
@@ -38,33 +36,27 @@ module StyleguideHelper
           items: [
             {
               name: "Cards",
-              path: "/styleguide/cards",
-              extra_style: "nav__item--delimited"
+              path: "/styleguide/cards"
             },
             {
               name: "Buttons",
-              path: "/styleguide/buttons",
-              extra_style: "nav__item--delimited"
+              path: "/styleguide/buttons"
             },
             {
               name: "Typography",
-              path: "/styleguide/typography",
-              extra_style: "nav__item--delimited"
+              path: "/styleguide/typography"
             },
             {
               name: "Page title",
-              path: "/styleguide/page-title",
-              extra_style: "nav__item--delimited"
+              path: "/styleguide/page-title"
             },
             {
               name: "Pagination",
-              path: "/styleguide/pagination",
-              extra_style: "nav__item--delimited"
+              path: "/styleguide/pagination"
             },
             {
               name: "Forms",
-              path: "/styleguide/forms",
-              extra_style: "nav__item--delimited"
+              path: "/styleguide/forms"
             }
           ]
         },
@@ -73,13 +65,26 @@ module StyleguideHelper
           items: [
             {
               name: "Activity List",
-              path: "/styleguide/activity_list",
-              extra_style: "nav__item--delimited"
+              path: "/styleguide/activity_list"
             }
           ]
         }
       ]
     }
+    #===== yeoman end-hook =====#
+    # NB! The above line is required for our yeoman generator and should not be changed.
+  end
+
+  def left_nav_items
+    active_left_nav = {}
+    active_left_nav[:groups] = left_nav[:groups].map do |group|
+      group[:items].map do |item|
+        item[:active] = item[:path] == request.path ? true : false
+        item
+      end
+      group
+    end
+    active_left_nav
   end
 
   def ad_config

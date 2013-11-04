@@ -1,10 +1,10 @@
 $forum-padding: 20px
 
 .card__forum
-  @extend %four-pixel-rounded
+  @extend %rounded-corners
   padding: $forum-padding
 
-  &.active
+  &.active, &.pinned
     border-left: 4px solid $linkblue
     padding-left: $forum-padding - 4px
 

@@ -1,6 +1,6 @@
 class StyleguideController < GlobalController
 
-  layout 'styleguide'
+  layout proc{|c| c.request.xhr? ? false : "styleguide" }
 
   def secondaryNavigation
     render '/styleguide/secondary_nav'
@@ -46,4 +46,6 @@ class StyleguideController < GlobalController
     render '/styleguide/activity_list'
   end
 
+  #===== yeoman hook =====#
+  # NB! The above line is required for our yeoman generator and should not be changed.
 end
