@@ -12,7 +12,7 @@ require ['public/assets/javascripts/lib/managers/select_group_manager'], (Select
 
       it 'picks up all elements in need of SelectGroupManager', ->
         selectGroupManager = new SelectGroupManager()
-        expect(selectGroupManager.selectContainers.length).toBe(1)
+        expect(selectGroupManager.selectContainers.length).toBe(2)
 
     describe 'visual', ->
       beforeEach ->
