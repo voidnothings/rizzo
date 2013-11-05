@@ -8,3 +8,8 @@ badges:
     :styleguide_title: "Blue Badge"
     :type: "blue"
     :text: "Staff"
+
+  -
+    :styleguide_title: "Large Badge"
+    :type: "blue badge--large"
+    :text: "Staff"
