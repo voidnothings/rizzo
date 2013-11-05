@@ -242,7 +242,7 @@ define [], ->
       uri
 
     _populateResults: (resultItems, searchTerm) ->
-      @_emptyResults() if @results.displayed
+      @_emptyResults()
 
       resultItems = resultItems.slice(0, @config.limit) if @config.limit
 
