@@ -22,9 +22,8 @@
 .badge--large
   padding: 4px 6px
 
-.badge--staff, .lp-staff
+.lp-staff
   @extend %badge--base
   @extend .badge--large // Replace with chained class
   @extend .badge--blue // Make this the primary class on the element
   @extend %inline-block // Move this outside the badge class
-  position: relative // Is this necessary? Could be part of badge--base?
