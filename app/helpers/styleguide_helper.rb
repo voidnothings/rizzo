@@ -28,7 +28,20 @@ module StyleguideHelper
             {
               name: "Left Nav",
               path: "/styleguide/left-nav"
+            }
+          ]
+        },
+        {
+          title: "Helpers",
+          items: [
+            {
+              name: "Proportional Grid",
+              path: "/styleguide/proportional-grid"
             },
+            {
+              name: "Cards Grid",
+              path: "/styleguide/cards-grid"
+            }
           ]
         },
         {
