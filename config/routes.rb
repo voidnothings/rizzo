@@ -42,6 +42,8 @@ Rizzo::Application.routes.draw do
   get 'styleguide/colours'           => 'styleguide#colours'
   get 'styleguide/ui-colours'        => 'styleguide#uiColours'
   get 'styleguide/pagination'        => 'styleguide#pagination'
+  get 'styleguide/proportional-grid' => 'styleguide#proportionalGrid'
+  get 'styleguide/cards-grid'        => 'styleguide#cardsGrid'
   get 'styleguide/forms'             => 'styleguide#forms'
   get 'styleguide/activity_list'     => 'styleguide#activity_list'
   #===== yeoman hook =====#
