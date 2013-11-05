@@ -6,41 +6,73 @@
 
 .card--page
   @extend %clearfix
-  @extend %four-pixel-rounded
+  @extend %rounded-corners
   color: $body-copy
-  margin: 0
   padding: 25px
   position: relative
 
-  .copy--title
-    margin: 0
-  .copy--subtitle
-    +font-size(14)
-    font-weight: bold
-    letter-spacing: 0
-    margin-bottom: 0
-    margin-top: 20px
-    text-transform: none
-  .section-subtitle
-    font-weight: bold
-
-  .map, .media-gallery
-    margin-bottom: 35px
-
+  .copy--h1
+    line-height: 1.1em
+    margin: 0 0 10px 0
   .sharing
     clear: left
 
   .tag
     +font-size(14)
   .tag--price__amount
-    font-size: 30px
+    +font-size(30)
     line-height: 0.6em
     margin-bottom: 12px
+
+.card--page__hero
+  border-radius: 4px 4px 0 0
+  height: 300px
+  overflow: hidden
+  position: relative
+  &:after
+    +filter(drop-shadow(0 0 15px #{rgba($darkblue, 0.3)}))
+    @extend %empty-abs-generated-content
+    background-repeat: no-repeat
+    background-size: 250px
+    background-position: center
+    top: 0
+    left: 0
+    width: 100%
+    height: inherit
+  > img
+    width: 100%
+  .card__content
+    z-index: 1
+    padding: 13px 25px
+  .card__name
+    +font-size(32)
+    margin-bottom: 5px
+
+
+.card--page__inner
+  @extend %clearfix
 
 .card--page__header
   border-bottom: 1px solid $body-background
   margin-bottom: 20px
   padding-bottom: 20px
+
+.card--top-choice
+  &:after
+    @extend %empty-abs-generated-content
+    background: url(image_path("lodgings-spt.png"))
+    top: -5px
+    left: 17px
+    height: 95px
+    width: 63px
+    +retinafy()
+      background: url(image_path("lodgings-spt-2x.png"))
+      background-size: $lodgings-sprite-size
+
+  .card--page__header
+    min-height: 60px
+    padding-left: 73px
+
 
 .card--page__footer
   @extend %clearfix
@@ -48,21 +80,12 @@
   color: $header-grey
   margin-top: 20px
   padding-top: 20px
-
-  .section-subtitle
-    +font-size(12)
-    text-transform: uppercase
-  .share-this
-    float: left
   .send-this
     float: right
 
-.card--page__related-list
-  .section-title
-    +font-size(15)
-    font-weight: bold
-    margin-left: 10px
-    margin-top: 30px
+// Should really live elsewhere, or be a margin-bottom on card--page
+.section--related-content
+  margin-top: 30px
 
 .card--page__breadcrumb--type
   font-weight: bold
@@ -100,7 +123,7 @@
 .card--page__breadcrumb--entertainment-nightlife:before
   background-position: -104px -103px
 
-.card--page__breadcrumb--hotel:before
+.card--page__breadcrumb--hotels:before
   background-position: -149px -103px
 
 .card--page__breadcrumb--restaurant:before
@@ -115,13 +138,13 @@
 .card--page__breadcrumb--transport:before
   background-position: -372px -103px
 
-.card--page__breadcrumb--destination:before
+.card--page__breadcrumb--destinations:before
   background-position: -417px -103px
 
 .card--page__breadcrumb--tour:before
   background-position: -461px -103px
 
-.card--page__breadcrumb--article:before
+.card--page__breadcrumb--articles:before
   background-position: -506px -103px
 
 .card--page__breadcrumb--info:before
@@ -130,38 +153,35 @@
 .card--page__content
   @extend %grid-column
   margin-right: 20px
-  width: 626px
+  width: 548px
   .card--single + .stack &
     width: 427px
-
-  .section-title
-    color: $body-copy
-    margin-bottom: 25px
-  .section-subtitle
-    color: $header-blue
-    margin-bottom: 20px
-    margin-top: 35px
-    text-transform: uppercase
 
 .card--page__aside
   @extend %grid-column
   @extend %transition--base
   position: relative
-  width: 300px
+  width: 382px
+  .card--single + .stack &
+    width: 300px
 
   .booking-panel + .details-panel
     border-top: 1px solid $body-background
+
+.card--page__aside--right
+  float: right
+
+.aside__content--standout
+  background-color: $details-panel-bg-darker
+
 
 // -----------------------------------------------------------------------------
 // Tour Itinerary
 // -----------------------------------------------------------------------------
 
 .tour-itinerary
-  .tour-itinerary__title
-    +font-size(15)
-    font-weight: bold
   .copy--meta
-    margin: 20px 0
+    margin: 10px 0 20px 0
 
 // -----------------------------------------------------------------------------
 // Booking Panel (normally as an aside)
@@ -182,20 +202,37 @@
 .details-panel
   background: $details-panel-bg
   padding: 20px
-  .section-glossary
-    .section-title
-      +font-size(14)
-      margin: 20px 0 5px
+
+.section-glossary
+  .copy--h3
+    +font-size(14)
+    margin: 20px 0 0
+  .copy--meta
+    margin-bottom: 10px
+  ul
+    padding-left: 1.2em
+    list-style: circle
+  li
+    margin-bottom: 0
 
 // -----------------------------------------------------------------------------
 // Special Offer tag
 // -----------------------------------------------------------------------------
 .special-offer
-  @extend %four-pixel-rounded
+  @extend %rounded-corners
   background: $red
   color: #fff
   display: inline-block
   font-size: 11px
   font-weight: bold
-  padding: 5px
+  padding: 1px 5px 2px 5px
   text-transform: uppercase
+  margin-right: 5px
+
+
+// -----------------------------------------------------------------------------
+// Partner Copy
+// -----------------------------------------------------------------------------
+.copy--viator
+  b.partner
+    @extend .copy--h3

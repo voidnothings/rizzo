@@ -3,8 +3,12 @@
 
   %head
     = render 'layouts/core/head', responsive: false, homepage: false
-
-  %body
+    = stylesheet_link_tag 'styleguide', :media => "all"
+    = stylesheet_link_tag 'prism', :media => "all"
+    = javascript_include_tag 'lonelyplanet_minjs/dist/$'
+    = javascript_include_tag 'jquery/jquery-1.7.2.min'
+    
+  %body.copy--freight
 
     .wrapper
       .nav-container
@@ -21,15 +25,35 @@
                 %input{id: "search", "ng-model" => "search", placeholder: "Search", class: "search__input search__input--primary", name: "q", value: "", autocomplete: "off", tabindex: "1"}
 
       .row.row--content#js-row--content
-        .row__inner.row__inner--content.copy--freight
+        .row__inner.row__inner--content
           .card-holder
-            = ui_component('left_nav', left_nav: left_nav)
+            = ui_component('navigation/left', properties: left_nav_items)
 
-            .main-content.stack{ng: {view: true}}
-              .grid-view.grid-wrapper--10
-                = yield
+            .main-content.stack#js-main-content
+              = yield
 
         .row--footer-push
 
     .js-config.is-hidden
+
       = yield :scripts
+
+      = javascript_include_tag 'prism'
+      :javascript
+        (function(){
+          var snippets = $$('pre');
+          snippets = (snippets.length == undefined) ? [snippets] : snippets
+          snippets.forEach(function(snippet){
+            if (snippet.firstChild.getBoundingClientRect().height > snippet.getBoundingClientRect().height) {
+              var button = document.createElement('span')
+              button.className = "btn btn--blue btn--slim js-snippet-expand";
+              button.textContent = "Expand snippet";
+              button.on('click', function(e){
+                this.parentNode.find('pre').classList.toggle("is-open");
+              }, false);
+              snippet.parentNode.appendChild(button);
+            }
+          });
+        }())
+      = render 'styleguide/javascripts/copy'
+      = render 'styleguide/javascripts/ajax_content'

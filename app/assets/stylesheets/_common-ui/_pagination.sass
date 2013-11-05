@@ -1,34 +1,33 @@
-// --------------------------------------------------------------------------------------
-// Expanded pagination features a prev/next and links for all pages
-//
-// Example markup:
-//
-// <div class="expanded-pagination">
-//   <ul>
-//     <li class="item prev">
-//       <span>‹ Prev</span>
-//     </li>
-//     <li class="item current">
-//       <span>1</span>
-//     </li>
-//     <li class="item">
-//       <a href="/vietnam/ho-chi-minh-city/hotels?page=2">2</a>
-//     </li>
-//     <li class="item">
-//       <a href="/vietnam/ho-chi-minh-city/hotels?page=3">3</a>
-//     </li>
-//   </ul>
-// </div>
-// --------------------------------------------------------------------------------------
+.pagination
+  margin-left: 10px
+  position: relative
 
+.pagination__link
+  +border-radius(5)
+  background: #fff
+  border: 2px solid $body-background
+  color: $section--transport
+  display: inline-block
+  font-weight: bold
+  margin-left: 2px
+  padding: 8px 12px
 
-// --------------------------------------------------------------------------------------
-// Extends the nav object
-// Simplified styling due to being replaced by load more button with JS
-// --------------------------------------------------------------------------------------
-.expanded-pagination
+  &:first-child
+    margin-left: 0
+
+.pagination__link--current
+  opacity: 0.5
+
+.pagination__backwards,
+.pagination__forwards
+  @extend %clearfix
+  position: absolute
+  top: 0
+
+.pagination__backwards
+  left: 0
+.pagination__forwards
+  right: 0
+.pagination__numbers
   text-align: center
-  ul
-    @extend %nav
-  .current
-    color: $active
+

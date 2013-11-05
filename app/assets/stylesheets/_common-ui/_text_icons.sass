@@ -4,17 +4,29 @@
 
 .text-icon
   @extend %left-icon-text
+  line-height: 20px
 
   &:before
     +font-size(30)
     font-weight: normal
-    line-height: 20px
+    position: relative
+    top: -3px
+    display: inline-block
 
 .text-icon--info
   &:before
     +font-size(20)
     content: "@"
     font-weight: bold
+
+.text-icon--plus
+  &:before
+    content: "+"
+    font-weight: normal
+.text-icon--minus
+  &:before
+    content: "-"
+    font-weight: normal
 
 .text-icon--duration
   @extend %tour-duration-before
@@ -76,3 +88,15 @@
 
 .text-icon--telephone
   @extend %phone-icon-before
+
+.text-icon--envelope
+  @extend %icon--email-before
+
+.text-icon--comment
+  @extend %comments-before
+
+.text-icon--comments-hollow
+  @extend %comments-hollow-before
+
+.text-icon--eye
+  @extend %icon-image-poi-sight-before

@@ -7,6 +7,9 @@
 // 
 // ----------------------------------------------------------------------------
 
+.clearfix
+  @extend %clearfix
+
 // Split two objects left and right - ie the primary nav
 
 .split--left
@@ -118,6 +121,16 @@
 
 .transition
   +transition(all, 0.5, ease-in-out)
+
+.break-text
+  @extend %prevent-text-breakouts
+
+.vertically-centered
+  display: table
+  width: 100%
+  .vertically-centered__inner
+    display: table-cell
+    vertical-align: middle
 
 
 // ----------------------------------------------------------------------------

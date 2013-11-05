@@ -1,0 +1,24 @@
+.row--heading
+  margin: 20px 0 20px
+  +respond-to(medium-view)
+    margin: 40px 0 40px
+
+.copy--boxed
+  @extend %inline-block // ensure the border doesn't stretch full width
+  +box-sizing() // ensure on small screens that even with the padding it won't touch the edge
+  max-width: 90%
+  padding: 4px 10px
+  border: 2px solid #a6acb1
+
+.heading--latest-travel
+  background: $body-background
+  width: 110px
+  margin-left: -55px
+  
+.row--latest-travel .tab--homepage__strapline
+  color: $header-grey
+
+.icon--trail--grey  
+  margin: 0 auto 5px auto
+  +respond-to(medium-view)
+    margin: 0 auto 15px auto

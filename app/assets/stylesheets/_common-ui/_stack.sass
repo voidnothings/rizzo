@@ -10,14 +10,16 @@ $stack-intro-lines-to-show: 2
     position: relative
 
 .stack__intro
-  @extend %four-pixel-rounded
+  @extend %rounded-corners
   padding: 25px
 
-  .copy--title
+  .copy--h1
     margin: 0
 
-  &.stack__intro--empty
-    padding: 10px 25px
+.stack__intro--empty
+  padding: 10px 25px
+  .card--full-image + &
+    padding: 0
 
 .stack__intro__content
   +transition(max-height, 0.5, ease-in-out)
@@ -33,12 +35,15 @@ $stack-intro-lines-to-show: 2
   .no-js &
     max-height: none
 
+  .copy--h1 + &
+    margin-top: 0.8em
+
 // Temporary type styling until crazy harry is updated and rowlf run (20/5/2013)
 .stack__intro__content
   p:first-of-type
     @extend .copy--feature
   h2
-    @extend .copy--subtitle
+    @extend .copy--h2
   @extend .copy--body
 
 
@@ -84,12 +89,20 @@ $stack-intro-lines-to-show: 2
   box-shadow: 1px 1px 2px rgba(0,0,0,0.2) inset
   color: white
 
+.list-view__section-heading
+  margin-left: 10px
+  margin-top: 10px
+  @extend .copy--h2
+
 .list-view__heading
-  +font-size(30)
-  color: $feature-copy
+  +font-size(36)
+  color: #c5d6d9
   clear: left
   line-height: 1em
   margin: 20px 0 10px 20px
+
+.list-view__section .card--list
+  height: 50px
 
 
 // -----------------------------------------------------------------------------
@@ -97,7 +110,7 @@ $stack-intro-lines-to-show: 2
 // -----------------------------------------------------------------------------
 
 .travel-alert
-  @extend %four-pixel-rounded
+  @extend %rounded-corners
   @extend %warning-sign-before
   +font-size(15)
   background: #fffaca

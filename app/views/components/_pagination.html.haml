@@ -1,0 +1,38 @@
+- if properties[:total] > 1
+  .pagination
+    - if properties[:current] > 1
+      .pagination__backwards
+        %a.pagination__link.pagination__link--prev{ href: sprintf(properties[:path], properties[:current] - 1) }<
+          &lt;
+        %a.pagination__link.pagination__link--first{ href: sprintf(properties[:path], 1) }<
+          First
+
+    .pagination__numbers
+      - start = 1
+      - finish = properties[:total]
+      - num_visible = properties[:num_visible] || 5
+      - offset = (num_visible / 2).floor
+
+      - if properties[:total] > num_visible
+        - if properties[:total] - offset <= properties[:current] # [x] [x] [x] [x] [√] [√] [c] [√] [√]
+          - start = properties[:total] - num_visible
+        - elsif properties[:current] <= offset+1 # [√] [√] [c] [√] [√] [x] [x] [x] [x]
+          - finish = num_visible
+        - else # [x] [√] [√] [c] [√] [√] [x] [x] [x]
+          - start = properties[:current] - offset
+          - finish = properties[:current] + offset
+        
+      - for num in start..finish
+        - if properties[:current] != num
+          %a.pagination__link{ href: sprintf(properties[:path], num), data: { current: properties[:current], num: num} }<
+            = num
+        - else
+          .pagination__link.pagination__link--current<
+            = num
+    
+    - if properties[:current] < properties[:total]
+      .pagination__forwards
+        %a.pagination__link.pagination__link--last{ href: sprintf(properties[:path], properties[:total]) }<
+          Last
+        %a.pagination__link.pagination__link--next{ href: sprintf(properties[:path], properties[:current] + 1)}<
+          &gt;

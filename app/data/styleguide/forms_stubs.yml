@@ -1,0 +1,129 @@
+form_components:
+  -
+    :styleguide_title: "Text input"
+    :id: "input_id"
+    :name: "text_name"
+    :maxlength: 10
+    :placeholder: "Placeholder"
+    :value: "Existing Value"
+    :data:
+      :key: "value"
+      :super: "man"
+
+  -
+    :styleguide_title: "Text area"
+    :id: "input_id"
+    :name: "text_name"
+    :placeholder: "Placeholder"
+    :value: "Existing Value"
+    :cols: 40
+    :rows: 6
+    :maxlength: 20
+
+  -
+    :styleguide_title: "Date input"
+    :id: "input_id"
+    :name: "text_name"
+    :placeholder: "Placeholder"
+    :data:
+      :key: "value"
+      :super: "man"
+
+  -
+    :styleguide_title: "Dropdown"
+    :id: "input_id"
+    :name: "text_name"
+    :options:
+      - :title: 'one'
+      - :title: 'two'
+      - :title: 'three'
+    :data:
+      :key: "value"
+      :super: "man"
+
+
+field_components:
+  -
+    :styleguide_title: "Text field"
+    :label: "Field label"
+    :id: "text_id"
+    :maxlength: 10
+    :name: "text_name"
+    :placeholder: "Placeholder"
+    :data:
+      :key: "value"
+      :super: "man"
+
+  -
+    :styleguide_title: "Text area field"
+    :label: "Area label"
+    :id: "input_id"
+    :maxlength: 10
+    :name: "text_name"
+    :placeholder: "Placeholder"
+    :cols: 40
+    :rows: 4
+
+  -
+    :styleguide_title: "Date field"
+    :label: "Field label"
+    :id: "text_id"
+    :name: "text_name"
+    :placeholder: "Placeholder"
+    :data:
+      :key: "value"
+      :super: "man"
+
+  -
+    :styleguide_title: "Select field"
+    :label: "Select legend"
+    :id: "select_id"
+    :fields:
+      -
+        :name: "select_name"
+        :placeholder: "Select Item"
+        :selected: "three"
+        :options:
+          - :title: 'one'
+          - :title: 'two'
+          -
+            :title: 'three'
+            :value: 3
+
+  -
+    :styleguide_title: "Select field"
+    :label: "Multiple Select legend"
+    :id: "multiple_select_id"
+    :fields:
+      -
+        :name: "select_name"
+        :placeholder: "Item One"
+        :options:
+          - :title: 'one'
+          - :title: 'two'
+          - :title: 'three'
+      -
+        :name: "select_name"
+        :placeholder: "Item Two"
+        :options:
+          - :title: 'a'
+          - :title: 'b'
+          - :title: 'c'
+          - :title: 'd'
+      -
+        :name: "select_name"
+        :placeholder: "Item Three"
+        :options: 
+          - :title: 'a1'
+          - :title: 'b2'
+          - :title: 'c3'
+
+  -
+    :styleguide_title: "Security Code field"
+    :label: "Field label"
+    :id: "text_id"
+    :name: "text_name"
+    :placeholder: "Placeholder"
+    :data:
+      :key: "value"
+      :super: "man"

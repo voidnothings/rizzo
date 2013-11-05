@@ -9,14 +9,14 @@
     @extend %empty-generated-content
     height: 100%
 
-@for $i from 1 through 5
+@for $i from 1 through 10
   .ranking-bar--#{$i}:before
-    width: 20% * $i
-    @if $i == 1 or $i == 2
+    width: 10% * $i
+    @if $i < 5
       background: $green
-    @if $i == 3 or $i == 4
+    @if $i > 4 and $i < 9
       background: $orange
-    @if $i == 5
+    @if $i > 8
       background: $red
 
 // -----------------------------------------------------------------------------

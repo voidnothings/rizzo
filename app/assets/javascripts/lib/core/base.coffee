@@ -11,6 +11,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
       # @initAds() unless args.secure
       @showCookieComplianceMsg()
       @initialiseFooterSelects()
+      @initialiseResponsiveNavSelect()
       @addNavTracking()
       @scrollPerf()
 
@@ -40,6 +41,10 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
       countrySelect = new SelectGroup '.js-select-country'
       languageSelect = new SelectGroup '.js-select-language', ->
         $('#js-language').submit()
+
+    initialiseResponsiveNavSelect: ->
+      responsiveNav = new SelectGroup '.js-responsive-nav', ($this) ->
+        window.location = "http://www.lonelyplanet.com/" + $this.options[$this.selectedIndex].value
 
     showCookieComplianceMsg: ->
       if LocalStore.get('cookie-compliance') is undefined or LocalStore.get('cookie-compliance') is null
@@ -78,8 +83,6 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
         window.s.linkstacker("footer")
 
     scrollPerf: ->
-      # Add this irrespective of browser support so that other hovers can function as normal.
-      $('body').addClass('js-hover')
 
       if ($('html.ie7, html.ie8, body.browserIE7, body.browserIE8').length is 0 && !!window.addEventListener)
         # Used to track the enabling of hover effects

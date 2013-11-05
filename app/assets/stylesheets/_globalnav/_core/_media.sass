@@ -8,9 +8,12 @@
   @extend %transition--nav
   position: absolute
   top: 0
-  left: 20px
-  z-index: 2
+  left: 10px
+  z-index: 3
+  +respond-to(wide-view)
+    left: 20px
   .homepage &
+    left: 20px
     background-color: #1d508d
     padding: 10px 15px
     +respond-to(medium-view)
@@ -19,14 +22,19 @@
       margin: 0
 
 .media--lp-logo
-  @extend %sprite-core
   @extend %inline-block
   background-position: 0 0
   height: 41px
   margin: 7px 10px 0 0
   width: 83px
   vertical-align: top
-  z-index: 2
+  z-index: 3
+  background-image: url(image_path("core/core-sprite-standard.png"))
+  background-repeat: no-repeat
+  +retinafy()
+    background-image: url(image_path("core/core-sprite-2x.png"))
+    background-size: $core-sprite-size
+    background-repeat: no-repeat
   .ie7 &
     float: left
 
@@ -57,12 +65,17 @@
 .user-basket__icon
   @extend %image-replacement
   @extend %inline-block
-  @extend %sprite-core
+  background-image: url(image_path("core/core-sprite-standard.png"))
+  background-repeat: no-repeat
   background-position: 0px -127px
   height: 18px
   margin-right: 5px
   vertical-align: middle
   width: 24px
+  +retinafy()
+    background-image: url(image_path("core/core-sprite-2x.png"))
+    background-size: $core-sprite-size
+    background-repeat: no-repeat
   .responsive &
     text-indent: 0
     width: auto

@@ -1,0 +1,54 @@
+$forum-padding: 20px
+
+.card__forum
+  @extend %rounded-corners
+  padding: $forum-padding
+
+  &.active, &.pinned
+    border-left: 4px solid $linkblue
+    padding-left: $forum-padding - 4px
+
+  .copy--meta
+    +font-size(13)
+    margin-left: 0.2em
+  .copy--h2, .copy--h3
+    a
+      color: $lpblue
+  .dropdown__value,
+  .dropdown__select
+    min-width: 195px
+
+.card__forum--single
+  padding: 12px $forum-padding
+
+  .dropdown
+    margin-top: -6px
+    top: 2px
+
+.card__forum__title,
+.card__forum__row-container,
+.card__forum__row
+  padding: 0 $forum-padding
+  margin: 0 -#{$forum-padding}
+
+.card__forum__title
+  padding-bottom: 13px
+
+.card__forum__row-container
+  border-top: 1px solid $subdued
+
+.card__forum__row
+  border-top: 1px solid $body-background
+  padding-top: 13px
+  
+  &:first-child
+    border-top: 0
+
+.card__forum__row--title
+  background: $details-panel-bg
+  padding: 10px $forum-padding
+  .copy--h5
+    color: $section--need-to-know
+
+  &:first-child
+    border-top: none

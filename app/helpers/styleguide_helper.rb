@@ -1,61 +1,119 @@
 module StyleguideHelper
 
   def left_nav
+    # NB! The below line is required for our yeoman generator and should not be changed.
+    #===== yeoman begin-hook =====#
     {
       groups: [
-        {
-          title: "Components",
-          items: [
-            {
-              name: "Cards",
-              path: "/styleguide",
-              extra_style: "nav__item--delimited"
-            },
-            {
-              name: "Navigation",
-              path: "/styleguide/navigation",
-              extra_style: "nav__item--delimited"
-            }
-          ]
-        },
         {
           title: "Colours",
           items: [
             {
               name: "Design palette",
-              path: "/styleguide/colours",
-              extra_style: "nav__item--delimited"
+              path: "/styleguide/colours"
             },
             {
               name: "UI Colours",
-              path: "/styleguide/ui-colours",
-              extra_style: "nav__item--delimited"
+              path: "/styleguide/ui-colours"
+            }
+          ]
+        },
+        {
+          title: "Navigation",
+          items: [
+            {
+              name: "Secondary Nav",
+              path: "/styleguide/secondary-nav"
+            },
+            {
+              name: "Left Nav",
+              path: "/styleguide/left-nav"
+            },
+          ]
+        },
+        {
+          title: "Components",
+          items: [
+            {
+              name: "Cards",
+              path: "/styleguide/cards"
+            },
+            {
+              name: "Buttons",
+              path: "/styleguide/buttons"
+            },
+            {
+              name: "Typography",
+              path: "/styleguide/typography"
+            },
+            {
+              name: "Page title",
+              path: "/styleguide/page-title"
+            },
+            {
+              name: "Pagination",
+              path: "/styleguide/pagination"
+            },
+            {
+              name: "Forms",
+              path: "/styleguide/forms"
+            }
+          ]
+        },
+        {
+          title: "Thorntree",
+          items: [
+            {
+              name: "Activity List",
+              path: "/styleguide/activity_list"
             }
           ]
         }
       ]
     }
+    #===== yeoman end-hook =====#
+    # NB! The above line is required for our yeoman generator and should not be changed.
+  end
+
+  def left_nav_items
+    active_left_nav = {}
+    active_left_nav[:groups] = left_nav[:groups].map do |group|
+      group[:items].map do |item|
+        item[:active] = item[:path] == request.path ? true : false
+        item
+      end
+      group
+    end
+    active_left_nav
   end
 
   def ad_config
     {hints: "", channels: ""}
   end
 
-  def ui_component(path, opts)
-    render "components/#{path}", opts
+  def ui_component(path, properties={})
+    render "components/#{path}", properties
   end
 
-  def sg_component(path, opts)
-    count = opts.delete(:count)
-    item_class = count ? "styleguide-block__item styleguide-block__item--#{count}" : "styleguide-block__item"
+  def sg_component(path, properties)
+    card_style = properties.delete(:card_style)
+    count = properties.delete(:count)
+    full_width = properties.delete(:full_width)
+    original_stub = properties.delete(:original_stub)
+
+    item_class = full_width ? "styleguide-block__item" : "styleguide-block__item--left"
+    item_class += card_style ? " card styleguide-block__item--card" : ""
+    item_class += count ? " styleguide-block__item--#{count}" : ""
+
     capture_haml do
       haml_tag(:div, class: "styleguide-block") do
         haml_tag(:div, class: item_class) do
-          haml_concat ui_component(path, opts)
+          haml_concat ui_component(path, properties)
         end
-        haml_concat render "styleguide/partials/description", component: path, opts: opts[:original_stub] ? {stack_item: opts[:original_stub]} : opts
+        haml_concat render "styleguide/partials/description", component: path, full_width: full_width, properties: original_stub ? original_stub : properties[:properties]
       end
     end
+
   end
 
   def get_colours(file)

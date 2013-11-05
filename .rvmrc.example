@@ -1,1 +1,1 @@
-rvm use --create 1.9.3-p392@rizzo
+rvm use --create 1.9.3@rizzo

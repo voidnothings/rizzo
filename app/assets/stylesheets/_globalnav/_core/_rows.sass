@@ -19,6 +19,11 @@ body
 .copy--freight
   @extend %lp-font-stack
 
+.overthrow-enabled
+  .overthrow
+    overflow: auto
+    -webkit-overflow-scrolling: touch
+
 // ----------------------------------------------------------------------------
 //
 // Row
@@ -29,22 +34,35 @@ body
   @extend %clearfix
 
 .row__inner
-  @extend %block-center
   @extend %clearfix
+  margin: 0 auto
   position: relative
-  @extend %regular-width
+  width: $fixed-layout-width
   .responsive &
-    width: auto
+    width: 90%
     +respond-to(wide-view)
-      max-width: 1000px
-
-.row--core
-  @extend %helvetica-neue
-  .responsive &
-    @extend %lp-font-stack
+      max-width: $fixed-layout-width
 
 .row--text-centered
   text-align: center
+  .row__inner
+    width: 95%
+    +respond-to(wide-view)
+      width: 600px
+
+.row--image
+  background-position: 50% 50%
+  background-repeat: no-repeat
+  background-size: cover
+  position: relative
+
+.row--image__standout
+  text-align: center
+  +respond-to(wide-view)
+    display: block
+    position: absolute
+    right: 55%
+
 
 // ----------------------------------------------------------------------------
 //
@@ -53,9 +71,7 @@ body
 // ----------------------------------------------------------------------------
 
 .row--cookie-compliance
-  @extend %smooth-text
   +font-size(12)
-  @extend %lp-font-stack
   line-height: 1.2
   background-color: $dark-blue-gray
   overflow: hidden
@@ -81,11 +97,11 @@ body
       +respond-to(wide-view)
         text-align: right
 
-  .btn--gray
-    margin-left: 10px
+  .btn
+    +font-size(12)
 
-  .btn--regular
-    font-weight: bold
+  .btn--grey
+    margin-left: 10px
 
   &.is-open
     padding-top: 12px
@@ -95,8 +111,6 @@ body
     height: 0
     .ie7 &
       display: none
-
-
 
 
 // ----------------------------------------------------------------------------
@@ -142,7 +156,7 @@ body
 // ----------------------------------------------------------------------------
 
 .row--fluid
-  min-width: 1000px
+  min-width: $fixed-layout-width
   padding-left: 20px
   padding-right: 20px
   .responsive &
@@ -195,11 +209,39 @@ body
 .row--secondary
   padding-top: 40px
   margin-bottom: 18px
+  .responsive &
+    padding-top: 20px
+    +respond-to(wide-view)
+      padding: 10px 0
+
+  .wv--split--right
+    .responsive &
+      +respond-to(400)
+        float: right
+        text-align: right
+
+.row--secondary__inner
+  +respond-to(wide-view)
+    width: $fixed-layout-width
+    margin: 0 auto
 
 .row__title--secondary
   background: $body-background
   max-width: 340px
-  position: absolute
+  .responsive &
+    max-width: 100%
+    float: none
+    margin-bottom: 20px
+    padding: 7px 0
+    +respond-to(400)
+      max-width: 70%
+      float: left
+      margin-bottom: 0
+    +respond-to(medium-view)
+      max-width: 340px
+    +respond-to(wide-view)
+      +vertically-center(30)
+      padding: 0
   .js-hover &:hover
     max-width: none
 
@@ -216,11 +258,9 @@ body
   z-index: 1
   .responsive &
     @extend %transition--nav
-    position: relative
+    margin-top: 55px
   .homepage &
-    padding-top: 0
-    +respond-to(wide-view)
-      margin-top: -55px
+    margin-top: 0
 
 
 // ----------------------------------------------------------------------------
@@ -234,6 +274,7 @@ body
   .responsive &
     border: none
     padding: 10px
+    width: 100%
     +respond-to(wide-view)
       border-top: 1px solid $input-border
       padding: 0
@@ -267,7 +308,6 @@ body
 // ----------------------------------------------------------------------------
 
 .row--footer--about
-  @extend %smooth-text
   .responsive &
     .row__inner--footer
       border-top: none
@@ -295,7 +335,6 @@ body
       padding: 20px 10px
 
 .text--legal
-  +font-size(11)
   width: 60%
   line-height: 1.5em
   color: $body-copy
