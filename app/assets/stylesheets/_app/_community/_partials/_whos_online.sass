@@ -26,7 +26,7 @@
       +css-arrow(left, 10px, 40px, -4px, 21px)
       box-sizing: border-box
       float: left
-      padding: 16px 16px 8px
+      padding-top: 16px
       position: relative
       width: 132px
       &:after
@@ -36,8 +36,14 @@
   .user-info__avatar
     margin-right: 10px
   .user-info__details
+    padding-left: 16px
+    padding-right: 16px
+  .user-info__details--footer
     border-radius: 0 0 4px 4px
-    margin: 16px -16px -8px // to counteract the padding of the parent container
-    padding: 8px 6px 8px 16px
+    margin-top: 16px
+    padding-bottom: 8px
+    padding-top: 8px
   .user-info__location
     margin-top: 11px
+    &:before
+      left: -3px
