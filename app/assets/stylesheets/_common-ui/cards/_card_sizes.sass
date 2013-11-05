@@ -1,0 +1,37 @@
+// -----------------------------------------------------------------------------
+// 
+// Card based Grid
+// 
+// The main site layout is a grid based on the width of a single card ($card-width).
+// Their parent should have a class of .grid-wrapper--10 (see _grid.sass)
+// 
+// -----------------------------------------------------------------------------
+
+%card-as-column
+  margin-left: 10px
+  float: left
+
+.card--single
+  @extend %card-as-column
+  width: $card-width
+
+.card--double
+  @extend %card-as-column
+  width: $double-card-width
+  .responsive &
+    width: 310px
+    +respond-to(medium-view)
+      width: $double-card-width
+
+.card--triple
+  @extend %card-as-column
+  width: ($card-width * 3) + ($card-gutter * 2)
+
+.card--quadruple
+  @extend %card-as-column
+  width: ($card-width * 4) + ($card-gutter * 3)
+
+.card--full-width
+  margin-left: 10px
+  float: none
+  width: auto
