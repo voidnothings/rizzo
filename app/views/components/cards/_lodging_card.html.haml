@@ -29,6 +29,11 @@
         = truncate((stack_item[:name].titleize), :length=> 50, :separator => ' ')
 
       - show_neighbourhood_or_place_name_and_description(stack_item, in_lodging_nearby)
+
+      - if stack_item[:description] && stack_item[:lp_reviewed]
+        %p.card__description
+          = strip_tags(truncate(stack_item[:description], :length=> 255, :separator => '.', :omission => '...')).try(:html_safe)
+
     %footer.card__footer
       %span.btn.btn--bookable.btn--full-width
         = stack_item[:bookable] ? 'Book Now' : 'Read More'
