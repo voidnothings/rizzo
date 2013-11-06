@@ -1,36 +1,27 @@
 define ['jquery'], ($) ->
 
   required: (field) ->
-    val = field.val()
-    (if (val isnt undefined and val isnt "" and val.length > 0) then true else false)
+    !!field.val()
 
   email: (field) ->
-    val = field.val()
     rule = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,6}$/i
-    rule.test val
+    rule.test field.val()
 
   number: (field) ->
-    val = field.val()
-    rule = /^[0-9]+$/
-    rule.test val
+    /^[0-9]+$/.test field.val()
 
   min: (field, length) ->
-    val = field.val()
-    (if (val isnt undefined and val.length >= length) then true else false)
+    field.val()?.length >= length
 
-  exact: (field, length) ->
-    val = field.val()
-    (if (val.length is length) then true else false)
+  exactLength: (field, length) ->
+    field.val().length is length
 
   match: (field, ref) ->
-    val = field.val()
-    matchVal = $(ref).val()
-    (if (val is matchVal) then true else false)
+    field.val() is $(ref).val()
 
   checked: (field) ->
     field.is(':checked')
 
   text: (field) ->
-    val = field.val()
     rule = /^[a-zA-Z\s]+$/i
-    rule.test val
+    rule.test field.val()

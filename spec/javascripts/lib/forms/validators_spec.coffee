@@ -65,7 +65,7 @@ require ['lib/forms/validators'], (Validators) ->
 
         expect(Validators.min(inputText, 3)).toBe false
 
-    describe 'exact validator', ->
+    describe 'exactLength validator', ->
 
       beforeEach ->
         inputText = $('<input type="text" />')
@@ -73,17 +73,17 @@ require ['lib/forms/validators'], (Validators) ->
       it 'passes if exact length entered', ->
         inputText.val('123')
 
-        expect(Validators.exact(inputText, 3)).toBe true
+        expect(Validators.exactLength(inputText, 3)).toBe true
 
       it 'fails if less than exact length entered', ->
         inputText.val('ab')
 
-        expect(Validators.exact(inputText, 3)).toBe false
+        expect(Validators.exactLength(inputText, 3)).toBe false
 
       it 'fails if more than exact length entered', ->
         inputText.val('abcd')
 
-        expect(Validators.exact(inputText, 3)).toBe false
+        expect(Validators.exactLength(inputText, 3)).toBe false
 
     describe 'match validator', ->
 
