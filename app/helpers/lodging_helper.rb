@@ -10,7 +10,7 @@ module LodgingHelper
     end
   end  
 
-  def show_neighbourhood_or_place_name_and_description(lodging, in_lodging_nearby)
+  def show_neighbourhood_or_place_name(lodging, in_lodging_nearby)
     return if in_lodging_nearby
     nearby_place_name = ''
 
