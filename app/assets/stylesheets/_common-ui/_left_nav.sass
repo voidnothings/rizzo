@@ -1,155 +1,128 @@
-// ---------------------------------------
-// Nav grouped sections
-// ---------------------------------------
+// -----------------------------------------------------------------------------
+// 
+// Left Navigation
+// http://rizzo.lonelyplanet.com/styleguide/left-nav
+// 
+// -----------------------------------------------------------------------------
 
-.group--aside
-  +border-radius(4)
+.nav--left
   width: 182px
-  background: #fff
-  border: 1px solid $subdued
+
+.nav--left__title
+  display: block
+  padding: 13px 15px
+  border-bottom: 1px solid $subdued
+  .accordion__target &
+    border-bottom: none
+
+.nav--left__item
+  @extend %chevron-right-after
+  color: $body-copy
+  display: block
+  line-height: 1.2em
+  padding: 12px 25px 12px 15px
+  position: relative
+  border-bottom: 1px solid $subdued
+  &:hover
+    text-decoration: none
+    background-color: $body-background-offset
+
+  &:after
+    +font-size(16)
+    position: absolute
+    font-weight: 400
+    pointer-events: none
+    right: 12px
+    top: 11px
+
+  &:last-child
+    border-bottom: none
+
+  &.is-active
+    font-weight: bold
+    &, &:hover
+      @extend %active-background
+
+
+// -----------------------------------------------------------------------------
+// Facet count within nav items
+// -----------------------------------------------------------------------------
+
+.nav--left__item__facet
+  +font-size(12)
+  color: #8fa1a4
+  margin-left: 2px
+  .is-active &
+    color: white
+
+
+// -----------------------------------------------------------------------------
+// Groups of navigation items
+// -----------------------------------------------------------------------------
+
+.nav--left__group
+  @extend %rounded-corners
   padding: 5px 0
 
-%group--linked--common
-  background-color: $body-background
-  border-color: $subdued
-  border-style: solid
-  content: ''
-  height: 10px
-  position: absolute
-  top: -12px
-  z-index: 2
-
-.group--linked
+.nav--left__group--linked
   margin-top: 10px
   position: relative
+
+  &:before, &:after
+    @extend %empty-abs-generated-content
+    background-color: $body-background
+    height: 10px
+    bottom: 100%
+    z-index: 2
+
   &:before
-    @extend %group--linked--common
     +border-radius-each(0,4,4,0)
-    border-width: 1px 1px 1px 0
     box-shadow: 15px 0 0 #fff
     left: 4px
     width: 17px
 
   &:after
-    @extend %group--linked--common
     +border-radius-each(4,0,0,4)
-    border-width: 1px 0 1px 1px
     right: 4px
-    width: 148px
+    width: 150px
 
-.group__title--aside
-  +font-size(12)
-  text-transform: uppercase
-  color: $header-blue
-  display: block
-  font-weight: bold
-  letter-spacing: 0.1em
-  line-height: 1.3em
-  padding: 13px 15px
 
-// ---------------------------------------
-// Nav item
-// ---------------------------------------
+// -----------------------------------------------------------------------------
+// Nav items with icons
+// -----------------------------------------------------------------------------
 
-.nav--stack
-  padding: 0
-
-.nav__item--stack
-  +font-size(14)
-  color: $body-copy
-  display: block
-  line-height: 1.2em
-  padding: 12px 30px 12px 15px
-  position: relative
-  text-decoration: none
-  &:hover
-    text-decoration: none
-  .js-hover &:hover
-    background-color: $body-background-offset
-    cursor: pointer
+.nav--left__item--icon
+  padding-left: 35px
   &:before
     +font-size(30)
     color: $body-copy
     position: absolute
     top: 9px
     left: 12px
-
-.nav__item--current--stack
-  font-weight: 700
-  color: white
-  @extend %active-background
-
-.nav__item--stack
-  &.nav__item--current--stack
-    .js-hover &:hover
-      @extend %active-background
-
-.nav__item--chevron
-  @extend %chevron-right-after
-  padding-right: 25px
-  position: relative
-  &:after
-    position: absolute
-    right: 0
+  &.is-active:before
+    color: white
     font-weight: 400
-    pointer-events: none
-    font-size: 16px
-    right: 12px
-    top: 11px
 
-%nav__item--icon-before
-  padding-left: 35px
-
-.nav__item--stack-activities
+.nav--left__item--activities
   @extend %icon-image-poi-activity-before
-  @extend %nav__item--icon-before
 
-.nav__item--stack-entertainment
+.nav--left__item--entertainment
   @extend %icon-image-poi-entertainment-before
-  @extend %nav__item--icon-before
 
-.nav__item--stack-restaurants
+.nav--left__item--restaurants
   @extend %icon-image-poi-restaurant-before
-  @extend %nav__item--icon-before
 
-.nav__item--stack-shopping
+.nav--left__item--shopping
   @extend %icon-image-poi-shopping-before
-  @extend %nav__item--icon-before
 
-.nav__item--stack-sights
+.nav--left__item--sights
   @extend %icon-image-poi-sight-before
-  @extend %nav__item--icon-before
 
-.nav__item--stack-transport
+.nav--left__item--transport
   @extend %icon-image-poi-transport-before
-  @extend %nav__item--icon-before
 
-.nav__item--stack-tours
+.nav--left__item--tours
   @extend %icon-image-poi-tour-before
-  @extend %nav__item--icon-before
 
-.nav__item--stack-events
+.nav--left__item--events
   @extend %icon-image-poi-event-before
-  @extend %nav__item--icon-before
-
-.nav__item--current--stack
-  .facet--count, .facet--inline-count
-    color: white
-  &:before
-    color: white
-    font-weight: normal
-
-.nav__item--delimited
-  border-top: 1px solid $subdued
-
-.facet--inline-count
-  +font-size(12)
-  color: #8fa1a4
-  display: inline-block
-  font-weight: normal
-  padding-left: 2px
-  word-spacing: -2px
-  &:after
-    content: ')'
-  &:before
-    content: '('

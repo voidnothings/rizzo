@@ -39,6 +39,7 @@ define ['jquery'], ($) ->
         selector:   '.js-read-more'
         text:       ['Read More', 'Read Less']
         maxHeight:  2500
+        tolerance: 0
 
       $.extend @config, args
       @$el = $(@config.selector)
@@ -50,9 +51,11 @@ define ['jquery'], ($) ->
       @wrapper = @$el.find('.js-read-more-wrapper')
       @wrapper.addClass if @config.style is 'inline' then 'read-more-inline' else 'read-more-block'
       @totalHeight = @getFullHeight()
-      if @totalHeight > @config.maxHeight
+      if @totalHeight > @config.maxHeight + @config.tolerance
         @addHandler()
         @setWrapperState @config.maxHeight, @config.text[0], 'close'
+      else if @totalHeight > @config.maxHeight
+         @setWrapperState @totalHeight, '', 'open'
 
     getFullHeight: ->
       height = 0

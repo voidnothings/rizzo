@@ -1,6 +1,6 @@
 class StyleguideController < GlobalController
 
-  layout 'styleguide'
+  layout proc{|c| c.request.xhr? ? false : "styleguide" }
 
   def secondaryNavigation
     render '/styleguide/secondary_nav'
@@ -16,6 +16,10 @@ class StyleguideController < GlobalController
 
   def buttons
     render '/styleguide/buttons'
+  end
+
+  def badges
+    render '/styleguide/badges'
   end
 
   def typography
@@ -40,6 +44,14 @@ class StyleguideController < GlobalController
 
   def forms
     render '/styleguide/forms'
+  end
+
+  def proportionalGrid
+    render '/styleguide/proportional-grid'
+  end
+
+  def cardsGrid
+    render '/styleguide/cards-grid'
   end
 
   def activity_list
