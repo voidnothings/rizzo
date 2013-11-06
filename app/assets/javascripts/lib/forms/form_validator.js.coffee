@@ -8,8 +8,8 @@ define ["jquery", "lib/forms/form_field"], ($, FormField) ->
 
     _initialize: ->
       @fields = []
-      $(".js-field").each (index, elt) =>
-        @fields.push(new FormField(elt))
+      $(".js-field").each (index, elem) =>
+        @fields.push(new FormField(elem))
       @_listen()
 
     _listen: ->

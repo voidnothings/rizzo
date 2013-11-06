@@ -20,5 +20,5 @@ define ["jquery", "lib/forms/field_input"], ($, FieldInput) ->
       @inputs = []
       @label = @field.find('.js-field-label').text()
 
-      @field.find(inputsSelector).each (index, elt) =>
-        @inputs.push(new FieldInput(elt, @label))
+      @field.find(inputsSelector).each (index, elem) =>
+        @inputs.push(new FieldInput(elem, @label))
