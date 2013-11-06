@@ -3,7 +3,7 @@ define ["jquery", "lib/forms/form_field"], ($, FormField) ->
   class FormValidator
 
     constructor: (target) ->
-      @form = $("##{target}")
+      @form = $(target)
       @_initialize() if @form.length is 1
 
     _initialize: ->
