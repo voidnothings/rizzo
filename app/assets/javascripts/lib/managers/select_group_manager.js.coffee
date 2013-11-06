@@ -21,7 +21,7 @@ define ['jquery'], ($) ->
 
         e.preventDefault()
         @updateOverlay(target)
-        if $(target).data('form_submit') then @submit(target)
+        if $(target).data('form-submit') then @submit(target)
 
     getOverlay: (target) ->
       $(target).closest('.js-select-group-manager').find('.js-select-overlay')
@@ -31,4 +31,5 @@ define ['jquery'], ($) ->
       @getOverlay(target).text(t.text())
 
     submit: (target) ->
-      $(target).closest('form').submit()
+      if $(target).val() isnt ""
+        $(target).closest('form').submit()
