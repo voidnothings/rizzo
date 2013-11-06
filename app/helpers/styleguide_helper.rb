@@ -64,6 +64,10 @@ module StyleguideHelper
               path: "/styleguide/forms"
             },
             {
+              name: "Navigational Dropdown",
+              path: "/styleguide/navigational_dropdown"
+            },
+            {
               name: "Page title",
               path: "/styleguide/page-title"
             },

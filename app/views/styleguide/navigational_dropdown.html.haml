@@ -1,0 +1,7 @@
+- navigational_dropdown = YAML.load(File.read(File.expand_path('../../../data/styleguide/navigational_dropdown_stubs.yml', __FILE__)))
+.card.styleguide-intro.copy--body.context--content
+  .clearfix
+    %h1.split--left.copy--title Navigational Dropdown
+  
+- navigational_dropdown.each_with_index do | stub, i |
+  = sg_component('navigational_dropdown', properties: stub, count: i)

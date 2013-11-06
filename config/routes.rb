@@ -25,28 +25,29 @@ Rizzo::Application.routes.draw do
   get 'secure/noscript/global-head'         => 'global_resources#show', :defaults => { :snippet => "head", :noscript => "true"}
   get 'secure/noscript/global-body-footer'  => 'global_resources#show', :defaults => { :snippet => "body_footer", :noscript => "true"}
 
-  get 'global'                       => 'global_resources#index'
-  get 'secure/global'                => 'global_resources#index', :defaults => { :secure => "true" }
-  get 'legacy'                       => 'global_resources#legacy'
-  get 'responsive'                   => 'global_resources#responsive'
-  get 'homepage'                     => 'global_resources#homepage'
+  get 'global'                           => 'global_resources#index'
+  get 'secure/global'                    => 'global_resources#index', :defaults => { :secure => "true" }
+  get 'legacy'                           => 'global_resources#legacy'
+  get 'responsive'                       => 'global_resources#responsive'
+  get 'homepage'                         => 'global_resources#homepage'
 
   # Styleguide
-  get 'styleguide'                   => 'styleguide#colours'
-  get 'styleguide/secondary-nav'     => 'styleguide#secondaryNavigation'
-  get 'styleguide/left-nav'          => 'styleguide#leftNavigation'
-  get 'styleguide/cards'             => 'styleguide#cards'
-  get 'styleguide/buttons'           => 'styleguide#buttons'
-  get 'styleguide/badges'            => 'styleguide#badges'
-  get 'styleguide/page-title'        => 'styleguide#pageTitle'
-  get 'styleguide/typography'        => 'styleguide#typography'
-  get 'styleguide/colours'           => 'styleguide#colours'
-  get 'styleguide/ui-colours'        => 'styleguide#uiColours'
-  get 'styleguide/pagination'        => 'styleguide#pagination'
-  get 'styleguide/proportional-grid' => 'styleguide#proportionalGrid'
-  get 'styleguide/cards-grid'        => 'styleguide#cardsGrid'
-  get 'styleguide/forms'             => 'styleguide#forms'
-  get 'styleguide/activity_list'     => 'styleguide#activity_list'
+  get 'styleguide'                       => 'styleguide#colours'
+  get 'styleguide/secondary-nav'         => 'styleguide#secondaryNavigation'
+  get 'styleguide/left-nav'              => 'styleguide#leftNavigation'
+  get 'styleguide/cards'                 => 'styleguide#cards'
+  get 'styleguide/buttons'               => 'styleguide#buttons'
+  get 'styleguide/badges'                => 'styleguide#badges'
+  get 'styleguide/page-title'            => 'styleguide#pageTitle'
+  get 'styleguide/typography'            => 'styleguide#typography'
+  get 'styleguide/colours'               => 'styleguide#colours'
+  get 'styleguide/ui-colours'            => 'styleguide#uiColours'
+  get 'styleguide/pagination'            => 'styleguide#pagination'
+  get 'styleguide/proportional-grid'     => 'styleguide#proportionalGrid'
+  get 'styleguide/cards-grid'            => 'styleguide#cardsGrid'
+  get 'styleguide/forms'                 => 'styleguide#forms'
+  get 'styleguide/activity_list'         => 'styleguide#activity_list'
+  get 'styleguide/navigational_dropdown' => 'styleguide#navigational_dropdown'
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 

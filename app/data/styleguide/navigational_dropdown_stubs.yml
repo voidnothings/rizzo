@@ -1,0 +1,18 @@
+-
+  :action: "/redirector"
+  :dropdown:
+    :id: "foo-bar-baz"
+    :name: "foo-bar-baz"
+    :options:
+      -
+        :title: 'Foo'
+        :value: "/foo"
+      -
+        :title: 'Bar'
+        :value: "/bar"
+      -
+        :title: 'Baz'
+        :value: "/baz"
+    :placeholder: "Select one"
+    :data:
+      :form_submit: "true"
