@@ -18,6 +18,10 @@ class StyleguideController < GlobalController
     render '/styleguide/buttons'
   end
 
+  def badges
+    render '/styleguide/badges'
+  end
+
   def typography
     render '/styleguide/typography'
   end
@@ -40,6 +44,14 @@ class StyleguideController < GlobalController
 
   def forms
     render '/styleguide/forms'
+  end
+
+  def proportionalGrid
+    render '/styleguide/proportional-grid'
+  end
+
+  def cardsGrid
+    render '/styleguide/cards-grid'
   end
 
   def activity_list

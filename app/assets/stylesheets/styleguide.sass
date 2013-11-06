@@ -8,7 +8,6 @@
 @import '_common-ui/_thumbnail_grid'
 @import '_common-ui/_read_more_toggle'
 @import '_common-ui/_left_nav'
-@import '_common-ui/_filters'
 @import '_common-ui/_icon-list'
 @import '_common-ui/_info-list'
 @import '_common-ui/_maps'
@@ -17,8 +16,10 @@
 @import '_common-ui/_preloader'
 @import '_common-ui/_slider'
 @import '_common-ui/_forms'
+@import '_common-ui/_inputs'
 
 @import '_common-ui/cards/_cards_base'
+@import '_common-ui/cards/_card_sizes'
 @import '_common-ui/cards/_card_badges'
 @import '_common-ui/cards/_card_appearance'
 @import '_common-ui/cards/_card_page'
@@ -27,7 +28,6 @@
 @import '_common-ui/_badges'
 @import '_common-ui/_stack'
 @import '_common-ui/_stack_articles'
-@import '_common-ui/_filters'
 @import '_common-ui/_icons/_pois_sprite'
 @import '_common-ui/_icons/_pois_icons'
 @import '_common-ui/_lp_reviewed_section'
@@ -81,10 +81,6 @@ pre.styleguide.is-open
 .styleguide-intro
   padding: 25px
 
-.styleguide-block
-  @extend %clearfix
-  margin-bottom: 40px
-
 .styleguide-block__item--left
   float: left
   margin-right: 20px
@@ -92,18 +88,23 @@ pre.styleguide.is-open
 .styleguide__subtitle
   margin: 20px 10px
 
-.styleguide-block__buttons
+.styleguide-block__buttons,
+.styleguide-block__badges
   .styleguide-block__item
     margin-right: 10px
+    margin-top: 0
     min-width: 200px
   .styleguide-block__items
-    margin-bottom: 20px
+    margin-top: 20px
   pre[class*="language-"]
-    margin: 0
+    margin: 2px 0 0
     padding: 7px
     &, .tag
       +font-size(14)
 
+.styleguide-block__badges
+  .styleguide-block__item
+    min-width: 100px
 
 .styleguide-block__item
   min-height: 40px
@@ -183,4 +184,8 @@ pre.styleguide.is-open
   position: relative
   top: 14px
   cursor: pointer
-  
+
+.styleguide-grid
+  .card
+    text-align: center
+    padding: 10px 0
