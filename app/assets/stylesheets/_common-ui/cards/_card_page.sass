@@ -43,6 +43,7 @@
     width: 100%
   .card__content
     z-index: 1
+    padding: 13px 25px
   .card__name
     +font-size(32)
     margin-bottom: 5px
@@ -150,15 +151,17 @@
   background-position: -551px -103px
 
 .card--page__content
-  @extend %grid-column
+  +box-sizing()
+  float: left
   margin-right: 20px
   width: 548px
   .card--single + .stack &
     width: 427px
 
 .card--page__aside
-  @extend %grid-column
+  +box-sizing()
   @extend %transition--base
+  float: right
   position: relative
   width: 382px
   .card--single + .stack &
@@ -166,9 +169,6 @@
 
   .booking-panel + .details-panel
     border-top: 1px solid $body-background
-
-.card--page__aside--right
-  float: right
 
 .aside__content--standout
   background-color: $details-panel-bg-darker
