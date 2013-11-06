@@ -1,6 +1,11 @@
-- description = stack_item.post_content ? sanitize(stack_item.post_content,:tags => []).split("\r\n").first : stack_item.strapline
-- slug = defined?(articles_path) ? "#{articles_path}/#{stack_item.slug}" : stack_item.url
-- title = stack_item.post_title ? stack_item.post_title : stack_item.title
+:ruby
+  description = stack_item.post_content ? sanitize(stack_item.post_content,:tags => []).split("\r\n").first : stack_item.strapline
+  slug = if stack_item.respond_to?(:place) && defined?(articles_path)
+    "#{articles_path(stack_item.place)}/#{stack_item.slug}"
+  else
+    defined?(articles_path) ? "#{articles_path}/#{stack_item.slug}" : stack_item.url
+  end
+  title = stack_item.post_title ? stack_item.post_title : stack_item.title
 
 %article.card.card--single.card--poi.card--poi--article.icon--article--white--before.js-card.js-single{class: stack_item.thumbnail ? 'card--small-image card--extended-content' : 'card--no-image' }
 
