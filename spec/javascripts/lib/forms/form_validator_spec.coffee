@@ -31,7 +31,7 @@ require ['lib/forms/form_validator'], (FormValidator) ->
       it 'has a field object for each field in the form', ->
         form = new FormValidator('#test-form')
 
-        expect(form.fields.length).toBe 3
+        expect(form.inputs.length).toBe 4
 
     describe 'validating a form', ->
 
