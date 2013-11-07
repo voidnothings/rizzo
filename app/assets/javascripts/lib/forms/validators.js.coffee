@@ -21,7 +21,3 @@ define ['jquery'], ($) ->
 
   checked: (field) ->
     field.is(':checked')
-
-  text: (field) ->
-    rule = /^[a-zA-Z\s]+$/i
-    rule.test field.val()

@@ -114,18 +114,3 @@ require ['lib/forms/validators'], (Validators) ->
         inputText = $('<input type="checkbox" />')
 
         expect(Validators.checked(inputText)).toBe false
-
-    describe 'number validator', ->
-
-      beforeEach ->
-        inputText = $('<input type="text" />')
-
-      it 'passes if text only entered', ->
-        inputText.val('abcd')
-
-        expect(Validators.text(inputText)).toBe true
-
-      it 'fails if not text entered', ->
-        inputText.val('abcd123')
-
-        expect(Validators.text(inputText)).toBe false
