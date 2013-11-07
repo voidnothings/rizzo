@@ -30,12 +30,6 @@ form_components:
       :super: "man"
 
   -
-    :styleguide_title: "Checkbox"
-    :id: "checkbox_id"
-    :name: "checkbox_name"
-    :checked: true
-
-  -
     :styleguide_title: "Dropdown"
     :id: "input_id"
     :name: "text_name"
