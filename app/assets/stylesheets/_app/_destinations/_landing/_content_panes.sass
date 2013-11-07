@@ -27,6 +27,7 @@
       text-decoration: none
 
 .content-pane__nav__link__icon
+  +transition(all, 0.1, ease-in)
   height: 70px
   position: relative
   top: 100%
@@ -58,6 +59,7 @@
     text-decoration: none
 
 .content-pane__hide
+  +transition(all, 0.1, ease-in)
   @extend %cross-icon-before
   position: absolute
   top: 0
@@ -129,6 +131,7 @@
     height: 112px
 
 .content-pane__buttons
+  +transition(all, 0.2, ease-in)
   font-size: 14px
   text-transform: uppercase
   color: white
