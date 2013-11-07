@@ -17,11 +17,9 @@ define ['jquery'], ($) ->
         $(e.target).trigger('change')
 
       @selectContainers.on 'change', '.js-select', (e) =>
-        target = e.target
-
         e.preventDefault()
-        @updateOverlay(target)
-        if $(target).data('form-submit') then @submit(target)
+        @updateOverlay(e.target)
+        if $(e.target).data('form-submit') then @submit(e.target)
 
     getOverlay: (target) ->
       $(target).closest('.js-select-group-manager').find('.js-select-overlay')
