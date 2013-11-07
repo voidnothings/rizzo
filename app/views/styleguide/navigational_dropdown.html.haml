@@ -2,6 +2,11 @@
 .card.styleguide-intro.copy--body.context--content
   .clearfix
     %h1.split--left.copy--title Navigational Dropdown
+    %p
+      This component simply creates a dropdown that acts as an alternative to text link navigation. It is expected that the action you pass it can handle the redirection as this is not done with JS anymore for accessibility reasons.
+
+    %p
+      A working example of this can be seen in the "International" dropdown used in the footer across all our applications.
   
 - navigational_dropdown.each_with_index do | stub, i |
   = sg_component('navigation/dropdown', properties: stub, count: i)
