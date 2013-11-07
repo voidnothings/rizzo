@@ -1,6 +1,9 @@
 .field.js-field
   .field__content.field__content--checkbox
-    .input__container.js-input
+    .input__container.js-input{ class: properties[:error] ? 'field__input--error' : nil }
       %input.input--checkbox{ type: "checkbox", name: properties[:name], id: properties[:id], checked: properties[:checked] ? 'checked' : nil, data: properties[:data] }
       %label.js-field-label{ for: properties[:id] }<
         = properties[:label]
+      - if properties[:error]
+        .field__error.js-error
+          = properties[:error]
