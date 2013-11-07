@@ -94,3 +94,34 @@ require ['public/assets/javascripts/lib/components/section_toggle.js'], (Section
         expect(window.SectionToggle.$el).toHaveClass('is-closed')
         expect(window.SectionToggle.wrapper.css('maxHeight')).toEqual('100px')
         expect(window.SectionToggle.handler.text()).toBe('Read More')
+
+    describe 'With tolerance', ->
+      describe 'When the total height of the area is larger than the max height but within tolerance', ->
+        beforeEach ->
+          loadFixtures('section_toggle.html')
+          spyOn(SectionToggle.prototype, "getFullHeight").andReturn(120)
+          spyOn(SectionToggle.prototype, "addHandler")
+          spyOn(SectionToggle.prototype, "setWrapperState")
+          window.SectionToggle = new SectionToggle({maxHeight: 100, tolerance: 50})
+
+        it 'keeps the toggle area open and does not have a toggle button', ->
+          expect(window.SectionToggle.addHandler).not.toHaveBeenCalled()
+          expect(window.SectionToggle.setWrapperState).toHaveBeenCalledWith(120, '', 'open')
+          expect(window.SectionToggle.$el).toHaveClass('is-open')
+          expect(window.SectionToggle.$el.find('.btn--read-more').length).toBe(0)
+
+      describe 'When the total height of the area is larger than the max height plus tolerance', ->
+        beforeEach ->
+          loadFixtures('section_toggle.html')
+          spyOn(SectionToggle.prototype, "getFullHeight").andReturn(120)
+
+        it 'appends a block-style toggle button by default', ->
+          window.SectionToggle = new SectionToggle({maxHeight: 100, tolerance: 10})
+          expect(window.SectionToggle.$el.find('.btn--clear').length).toBe(1)
+          expect(window.SectionToggle.wrapper).toHaveClass('read-more-block')
+
+        it 'closes toggle area by default', ->
+          window.SectionToggle = new SectionToggle({maxHeight: 100, tolerance: 10})
+          expect(window.SectionToggle.wrapper.css('maxHeight')).toEqual('100px')
+          expect(window.SectionToggle.$el).toHaveClass('is-closed')
+          expect(window.SectionToggle.handler.text()).toBe('Read More')

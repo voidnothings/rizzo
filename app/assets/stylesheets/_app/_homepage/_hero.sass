@@ -9,9 +9,9 @@
   background-repeat: no-repeat
   background-size: cover
   .enhanced &, .ie9 &
-    +responsive-image('destinations/best-in-travel/hero/macedonia', 'jpg')
+    +responsive-image('destinations/best-in-travel/hero/auckland', 'jpg')
   .ie7 &, .ie8 &
-    background-image: url(#{image_path('destinations/best-in-travel/hero/macedonia_1600.jpg')})
+    background-image: url(#{image_path('destinations/best-in-travel/hero/auckland-1600.jpg')})
   .slothified &
     background-image: url(#{image_path('homepage/rainforest.jpg')})
     &:after
@@ -138,11 +138,11 @@
   right: 20px
   min-width: 180px
   z-index: 2
-  .hero-search-results-displayed &
+  .autocomplete__active &
     +transform(translateY(100px))
 
   +respond-to(wide-view)
-    .hero-search-results-displayed &
+    .autocomplete__active &
       +transform(none)
 
   +respond-to(1250)
@@ -368,33 +368,38 @@
 
 
 // hero autocomplete
+.hero__search__input
+  +font-size(24)
+  color: $body-copy
+  height: 45px
+  padding: 0 50px 0 10px
+  width: 100%
 
+.autocomplete__results--hero
+  border: 0
 
-.hero__search__wrapper
+.hero__search
   position: relative
 
-  .autocomplete__active
-    .autocomplete__result
-      text-decoration: underline
-      background: transparent
-
   .autocomplete__results
+    background: transparent
+    border: 0
     margin: 10px 0
     position: static
-    border: 0
-    background: transparent
     box-shadow: none
 
-    .hero-search-results-hidden &
-      display: none
-
   .autocomplete__result
+    padding: 0
+
+  .autocomplete__result__typed
     @extend %left-icon
+
+  .autocomplete__result__link
     color: #fff
-    padding-left: 45px
+    display: block
+    padding: 5px 10px 5px 45px
     &:hover
-      text-decoration: underline
-      background: transparent
+      text-decoration: none
     &:before
       content: ""
       top: 0
@@ -404,12 +409,11 @@
       background-position: center
       margin-left: 8px
 
-.hero__search__input
-  +font-size(24)
-  color: $body-copy
-  height: 45px
-  padding: 0 50px 0 10px
-  width: 100%
+  .autocomplete__current
+    background: transparent
+
+    .autocomplete__result__link
+      text-decoration: underline
 
 // hero search submit buttons
 .hero__search__submit--field
@@ -431,5 +435,5 @@
   padding: 15px
 
   +respond-to(wide-view)
-    .hero-search-results-displayed &
+    .autocomplete__active &
       display: block

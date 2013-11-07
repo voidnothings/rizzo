@@ -28,7 +28,8 @@
 @mixin map-show-pois
   ~ .map
     .map__poi-list
-      @extend %opaque
+      opacity: 1
+      visibility: visible
       +transform(rotateY(0deg) translateX(0px) translateZ(0px))
       +transition(all, 1, cubic-bezier(0.075, 0.820, 0.165, 1.000))
       right: 12px
@@ -46,7 +47,6 @@
 
 .map__poi-list
   @extend %rounded-corners
-  @extend %invisible
   @extend %media-gallery-transition
   +transform(rotateY(70deg) translateX(100px) translateZ(-250px))
   background: #fff
@@ -55,6 +55,8 @@
   right: -420px
   top: 12px
   width: 294px
+  opacity: 0
+  visibility: hidden
   z-index: -1
 
   .nearby-pois
