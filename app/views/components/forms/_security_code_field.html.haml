@@ -1,3 +1,4 @@
 = render :layout => 'components/forms/partials/field', :locals => { id: properties[:id], label: properties[:label], :extra_class => 'field--half' } do
-  = ui_component('forms/text_input', properties: properties )
+  .input__container.js-input
+    = ui_component('forms/text_input', properties: properties )
   .field__security-code

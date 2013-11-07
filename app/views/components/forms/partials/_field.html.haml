@@ -1,7 +1,12 @@
-- field_class = extra_class ||= false
+- field_class = extra_class ||= ""
+
+- error = error ||= nil
 
 .field.js-field{ class: field_class }
   %label.field__label.js-field-label{ for: id }<
     = label
-  .field__content
+  .field__content{ class: error ? 'field__input--error' : nil }
     = yield
+    - if error
+      .field__error.js-error<
+        = error
