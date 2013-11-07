@@ -1,15 +1,18 @@
-define ["jquery", "lib/forms/form_field"], ($, FormField) ->
+define ["jquery", "lib/forms/form_input"], ($, FormInput) ->
 
   class FormValidator
+
+    inputsSelector = "input, textarea, select"
 
     constructor: (target) ->
       @form = $(target)
       @_initialize() if @form.length is 1
 
     _initialize: ->
-      @fields = []
-      $(".js-field").each (index, elem) =>
-        @fields.push(new FormField(elem))
+      @inputs = []
+      @form.find(inputsSelector).each (index, elem) =>
+        label = $(elem).closest('.js-field').find('.js-field-label').text()
+        @inputs.push(new FormInput(elem, label))
       @_listen()
 
     _listen: ->
@@ -19,7 +22,7 @@ define ["jquery", "lib/forms/form_field"], ($, FormField) ->
     isValid: ->
       valid = true
 
-      for field in @fields
-        valid = false unless field.isValid()
+      for input in @inputs
+        valid = false unless input.isValid()
 
       valid
