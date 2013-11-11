@@ -1,0 +1,19 @@
+%article.card.card--collection.js-card{class: "#{stack_item.double? ? 'card--double card--full-image' : 'card--single card--extended-content--half js-single'} card--collection--#{stack_item.topic} #{(stack_item.filter) ? "js-stack-card-filter" : ""}"}
+  %a.link--wrapper{:href => "/#{stack_item.slug}", :data => { 'stack-kind' => stack_item.stack_kind, :filter => stack_item.filter }}
+    - if stack_item.count
+      %span.card__item-count
+        = stack_item.count
+    %figure.card__hero{class: (stack_item.double?) ? "card__hero--#{stack_item.topic}" : ''}
+      = safe_image_tag(stack_item.image_url, class: 'card__image', alt: "#{stack_item.title}", lazyload: defined?(lazyload))
+    .card__content
+      %span.card__context
+        - if stack_item.respond_to?(:kind)
+          = stack_item.kind.titlecase
+        - else
+          Collection
+      %h2.card__name.js-card-name
+        = stack_item.title
+      - unless stack_item.double?
+        - if stack_item.description.present?
+          %p.card__description
+            = stack_item.description
