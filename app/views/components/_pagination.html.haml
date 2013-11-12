@@ -1,5 +1,5 @@
 - if properties[:total] > 1
-  .pagination
+  .pagination{ class: properties[:classes] }
     - if properties[:current] > 1
       .pagination__backwards
         %a.pagination__link.pagination__link--prev{ href: sprintf(properties[:path], properties[:current] - 1) }<

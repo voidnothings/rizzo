@@ -1,6 +1,23 @@
 .pagination
-  margin-left: 10px
   position: relative
+
+  &.card
+    border-radius: 4px
+    padding: 8px 20px
+
+    .pagination__backwards,
+    .pagination__forwards
+      top: 8px
+    .pagination__backwards
+      left: 20px
+    .pagination__forwards
+      right: 20px
+
+    .stack__intro + &,
+    .card.results + &
+      border-radius: 0 0 4px 4px
+      // This bumps it over the bottom border radius of the .stack__intro
+      margin-top: -12px
 
 .pagination__link
   +border-radius(5)
