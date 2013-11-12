@@ -9,9 +9,9 @@
   background-repeat: no-repeat
   background-size: cover
   .enhanced &, .ie9 &
-    +responsive-image('destinations/best-in-travel/hero/auckland', 'jpg')
+    +responsive-image('destinations/best-in-travel/hero/yorkshire', 'jpg')
   .ie7 &, .ie8 &
-    background-image: url(#{image_path('destinations/best-in-travel/hero/auckland-1600.jpg')})
+    background-image: url(#{image_path('destinations/best-in-travel/hero/yorkshire-1600.jpg')})
   .slothified &
     background-image: url(#{image_path('homepage/rainforest.jpg')})
     &:after
@@ -230,10 +230,6 @@
     background-color: $subdued
     color: $body-copy
 
-.badge--green
-  @extend %rounded-corners
-  background-color: $green
-  padding: 0 4px
 
 .hero__author__story--buttons
   padding: 15px
