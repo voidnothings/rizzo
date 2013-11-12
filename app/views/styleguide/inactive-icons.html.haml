@@ -13,4 +13,6 @@
     - get_icons("inactive").each do |icon|
       .col--one-fifth
         .card
-          %div{class: icon, title: icon}
+          %div.js-icon{class: icon, title: icon}
+          %code
+            = icon.gsub('icon--', '')
