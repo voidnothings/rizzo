@@ -1,4 +1,16 @@
+// -----------------------------------------------------------------------------
+// 
 // Responsive image helper
+// 
+// Pass in the path to the image and the extension if necessary
+// 
+// Note: We are using asset path below in order to maintain compatability with
+// Rails 3 and 4. Rails 3 requires two arguments (rails 4: just one) which is
+// why we pass in the empty string below.
+// 
+// -----------------------------------------------------------------------------
+
+
 @mixin responsive-image($path: '', $extension: 'jpg')
   $sizes: "480", "700", "1600"
   
@@ -8,15 +20,15 @@
     
       // Default is the smallest
       @if $index == 1
-        background-image: url("#{image_path('#{$path}-#{nth($sizes, 1)}.#{$extension}')}")
+        background-image: url("#{asset_path('#{$path}-#{nth($sizes, 1)}.#{$extension}', "")}")
         +retinafy()
-          background-image: url("#{image_path('#{$path}-#{nth($sizes, 2)}.#{$extension}')}")
+          background-image: url("#{asset_path('#{$path}-#{nth($sizes, 2)}.#{$extension}', "")}")
       @else
         // Set the min-width to the width below the current image size
         @media only screen and (min-width: nth($sizes, $index - 1) + px)
-          background-image: url("#{image_path('#{$path}-#{nth($sizes, $index)}.jpg')}")
+          background-image: url("#{asset_path('#{$path}-#{nth($sizes, $index)}.jpg', "")}")
 
   @else
     // For IE7 & 8 we serve the 1024 version
     // This presumes a lot about screen size
-    background-image: url("#{image_path('#{$path}-#{nth($sizes, 3)}.jpg')}")
+    background-image: url("#{asset_path('#{$path}-#{nth($sizes, 3)}.jpg', "")}")
