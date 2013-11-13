@@ -76,10 +76,6 @@ module StyleguideHelper
               path: "/styleguide/typography"
             }
           ]
-        },
-        {
-          title: "Thorntree",
-          items: []
         }
       ]
     }
