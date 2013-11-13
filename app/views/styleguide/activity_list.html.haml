@@ -4,6 +4,8 @@
     %h1.copy--h1 Activity List
     %p.copy--body<
       Note: The announcements icon below is not implemented yet.
-  
+    %p.copy--body<
+      Note: The timestamp on the right hand side of each item doesn't work at the moment within the context of the styleguide. Within thorntree, it should work just fine.
+
 - activity_list.each_with_index do | stub, i |
   = sg_component('activity_list', properties: stub, count: i, full_width: true, card_style: true)
