@@ -1,0 +1,22 @@
+:javascript
+  /* 
+  Doc ready function
+  Keyup function
+  capture input value in variable
+  compare variable against .card code contents
+  if it matches addClass .hidden to the rest
+   */
+  (function(){
+    var icons = $('.styleguide-icons').find('.js-card');
+    
+    $('#js-icon-filter').on('keyup', function() {
+      var toMatch = $(this).val();
+
+      icons.addClass('is-hidden').each(function() {
+        
+        this.dataset.icon.match(toMatch) && this.classList.remove('is-hidden');
+      });
+    
+    });
+  
+  }());

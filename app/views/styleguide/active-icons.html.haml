@@ -17,7 +17,9 @@
   %div{class: "grid-wrapper--10"}
     - get_icons("active").each do |icon|
       .col--one-fifth
-        .card
+        .card.js-card{data: {icon: icon}}
           %div.js-icon{class: icon, title: icon}
           %code
             = icon.gsub('icon--', '')
+
+= render 'styleguide/javascripts/svg_search'
