@@ -76,15 +76,6 @@ module StyleguideHelper
               path: "/styleguide/typography"
             }
           ]
-        },
-        {
-          title: "Thorntree",
-          items: [
-            {
-              name: "Activity List",
-              path: "/styleguide/activity_list"
-            }
-          ]
         }
       ]
     }
