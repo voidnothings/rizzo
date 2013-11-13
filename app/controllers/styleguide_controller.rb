@@ -54,10 +54,6 @@ class StyleguideController < GlobalController
     render '/styleguide/cards-grid'
   end
 
-  def activity_list
-    render '/styleguide/activity_list'
-  end
-
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 end

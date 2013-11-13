@@ -79,12 +79,7 @@ module StyleguideHelper
         },
         {
           title: "Thorntree",
-          items: [
-            {
-              name: "Activity List",
-              path: "/styleguide/activity_list"
-            }
-          ]
+          items: []
         }
       ]
     }
