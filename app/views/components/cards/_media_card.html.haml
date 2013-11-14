@@ -1,8 +1,8 @@
-- if stack_item.resized_image_url or stack_item.resized_video_url
+- if card[:resized_image_url] or card[:resized_video_url]
   .card--single.card--media-container.js-card.js-single
 
-    - if stack_item.resized_image_url
-      = render 'components/cards/image_card', card: stack_item
+    - if card[:resized_image_url]
+      = render 'components/cards/image_card', card: card
 
-    - if stack_item.resized_video_url
-      = render 'components/cards/video_card', card: stack_item
+    - if card[:resized_video_url]
+      = render 'components/cards/video_card', card: card

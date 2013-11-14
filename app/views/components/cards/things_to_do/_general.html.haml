@@ -1,13 +1,20 @@
-%article.card.card--single.card--poi.card--poi--restaurant.js-card.js-single{class: stack_item.image_url ? 'card--small-image card--extended-content' : 'card--no-image' }
-  %a.link--wrapper(href="/#{stack_item.slug}")
-    = render :partial => '/components/cards/things_to_do/card_tags', :locals => { :stack_item => stack_item }
-    - if stack_item.image_url
+%article.card.card--single.card--poi.js-card.js-single{class: "card--poi--#{card[:context].downcase} " + (card[:image_url] ? 'card--small-image card--extended-content' : 'card--no-image') }
+  %a.link--wrapper(href="/#{card[:slug]}")
+    = render :partial => '/components/cards/things_to_do/card_tags', :locals => { :card => card }
+    - if card[:image_url]
       %figure.card__hero
-        = image_tag(stack_item.image_url, class: 'card__image')
+        = image_tag(card[:image_url], class: 'card__image')
     .card__content
       %span.card__context
-        General
+        = card[:kind] || 'General'
       %h1.card__name.js-card-name
-        = stack_item.name
+        = card[:name]
+      - if card[:duration].present?
+        %p.card__tour-duration.copy--caption
+          = card[:duration]
       %p.card__description
-        = stack_item.card_description
+        = card[:card_description]
+    - if card[:bookable?]
+      %footer.card__footer
+        %span.btn.btn--bookable.btn--full-width
+          Book now
