@@ -164,5 +164,5 @@ module.exports = function (grunt) {
     // Don't run this for the moment until (hopefully) grunticon is update with:
     // https://github.com/filamentgroup/grunticon/pull/84
     // At the moment it includes a manual step within the npm module and running this would kill the icons
-    grunt.registerTask('icons', ['svgmin', 'grunticon:inactive', 'grunticon:active', 'shell:clean_icons', 'shell:move']);
+    grunt.registerTask('icons', ['svgmin', 'grunticon:active', 'shell:clean_icons', 'shell:move']);
 };
