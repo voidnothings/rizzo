@@ -22,6 +22,9 @@
 .icon--arrow-up,
 .icon--arrow-up--before:before, .icon--arrow-up--after:after { background-image: url(png/arrow-up.png); background-repeat: no-repeat; }
 
+.icon--article-pin,
+.icon--article-pin--before:before, .icon--article-pin--after:after { background-image: url(png/article-pin.png); background-repeat: no-repeat; }
+
 .icon--article,
 .icon--article--before:before, .icon--article--after:after { background-image: url(png/article.png); background-repeat: no-repeat; }
 
@@ -399,6 +402,9 @@
 
 .icon--transfers,
 .icon--transfers--before:before, .icon--transfers--after:after { background-image: url(png/transfers.png); background-repeat: no-repeat; }
+
+.icon--transport-pin,
+.icon--transport-pin--before:before, .icon--transport-pin--after:after { background-image: url(png/transport-pin.png); background-repeat: no-repeat; }
 
 .icon--transport,
 .icon--transport--before:before, .icon--transport--after:after { background-image: url(png/transport.png); background-repeat: no-repeat; }

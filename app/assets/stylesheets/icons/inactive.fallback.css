@@ -14,6 +14,8 @@
 
 .icon--arrow-up { background-image: url(png/arrow-up.png); background-repeat: no-repeat; }
 
+.icon--article-pin { background-image: url(png/article-pin.png); background-repeat: no-repeat; }
+
 .icon--article { background-image: url(png/article.png); background-repeat: no-repeat; }
 
 .icon--back-arrow { background-image: url(png/back-arrow.png); background-repeat: no-repeat; }
@@ -265,6 +267,8 @@
 .icon--tram { background-image: url(png/tram.png); background-repeat: no-repeat; }
 
 .icon--transfers { background-image: url(png/transfers.png); background-repeat: no-repeat; }
+
+.icon--transport-pin { background-image: url(png/transport-pin.png); background-repeat: no-repeat; }
 
 .icon--transport { background-image: url(png/transport.png); background-repeat: no-repeat; }
 

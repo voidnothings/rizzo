@@ -14,61 +14,26 @@
   z-index: 5
 
   &:before
-    background: url(image_path("map-markers.png")) no-repeat
     content: ''
     float: left
     height: 34px
     margin-right: 3px
     width: 24px
     z-index: 4
-    +retinafy()
-      background-image: url(image_path("map-markers-2x.png"))
-      background-size: $map-markers-sprite-size
-
-  .card--link--sights &
-    &:before 
-      background-position: -11px -61px
-
-  .card--link--activities &
-    &:before
-      background-position: -55px -61px
-
-  .card--link--entertainment &
-    &:before
-      background-position: -100px -61px
-
-  .card--collection--hotels &
-    &:before
-      background-position: -145px -61px
-
-  .card--link--restaurants &
-    &:before
-      background-position: -234px -61px
-
-  .card--link--shopping &
-    &:before
-      background-position: -279px -61px
 
   .card--poi--event &
     &:before
       background-position: -323px -61px
 
-  .card--poi--transport &
-    &:before
-      background-position: -368px -61px
-
+  // this will be point pin green
   .card--destination &
     &:before
       background-position: -413px -61px
 
+  // need to get this pin in green
   .card--link--tours &
     &:before
       background-position: -457px -61px
-
-  .card--poi--article &
-    &:before
-      background-position: -502px -61px
-
 
 // -----------------------------------------------------------------------------
 // Media card badges
