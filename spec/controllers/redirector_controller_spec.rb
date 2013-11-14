@@ -67,7 +67,7 @@ describe RedirectorController do
 
       it 'should give a 404' do
         get :internal, url: url
-        expect(response.status).to eq (404)
+        response.status.should eq (404)
       end
     end
   end
