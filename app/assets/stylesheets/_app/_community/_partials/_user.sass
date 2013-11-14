@@ -3,7 +3,83 @@
 // 
 // For any places where user information is displayed.
 // -----------------------------------------------------------------------------
+.user-profile
+  .media__img
+    text-align: center
+  .card--single
+    .btn
+      margin-bottom: 10px
+      width: 90%
+    .input.file
+      display: none
+  .main-content .card
+    @extend %rounded-corners
+    padding: 20px 0
+  .copy--meta
+    &.locked, &.private
+      font-style: italic
 
+.user-profile__avatar
+  cursor: pointer
+  position: relative
+  &:hover
+    :before
+      content: 'Change Avatar'
+      display: block
+      position: absolute
+      text-align: center
+      top: 50%
+      width: 100%
+
+.user-profile__img
+  border: 5px solid white
+  border-radius: 75px
+  height: 125px
+  margin: 0 auto 20px
+  width: 125px
+
+.user-profile__stat-title
+  +font-size(12)
+  color: $feature-copy
+  font-weight: bold
+  text-transform: uppercase
+.user-profile__stat-detail
+  color: $header-grey
+  margin-bottom: 20px
+
+.user-profile__summary
+  background: $details-panel-bg
+  border-bottom: 1px solid $subdued
+  border-top: 1px solid $subdued
+
+.user-profile__row
+  @extend %clearfix
+  border-bottom: 1px solid $body-background-offset
+  margin-bottom: 15px
+  padding: 0 20px 15px
+
+  &.user-profile__summary
+    padding: 20px
+.user-profile__row--title,
+.user-profile__row--last
+  border-bottom: none
+  margin-bottom: 0
+.user-profile__row--last
+  padding-bottom: 0
+
+.user-profile__label
+  color: $lpblue
+  float: left
+  margin-right: 10px
+  width: 175px
+.user-profile__value
+  color: $body-copy
+  float: left
+  font-weight: normal
+  .default
+    +font-size(14)
+    color: $feature-copy
+    font-style: italic
 
 // -----------------------------------------------------------------------------
 // The little user info section displayed on the left hand side of posts.
