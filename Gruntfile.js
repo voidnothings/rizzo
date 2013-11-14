@@ -161,7 +161,9 @@ module.exports = function (grunt) {
     grunt.registerTask('wip', ['jasmine:rizzo:build', 'open:jasmine', 'connect:server:keepalive']);
     grunt.registerTask('report', ['shell:clean_js', 'coffee', 'plato', 'shell:openPlato']);
     grunt.registerTask('imageoptim', ['imageoptim']);
-    // Don't run this for the moment until (hopefully) grunticon is update with:
+    // If you need to run the icons task, first cd node_modules/grunt-grunticon &&
+    // curl https://github.com/filamentgroup/grunticon/pull/84.patch | patch -p1
+    // Until this (or a similar PR is merged)
     // https://github.com/filamentgroup/grunticon/pull/84
     // At the moment it includes a manual step within the npm module and running this would kill the icons
     grunt.registerTask('icons', ['svgmin', 'grunticon:active', 'shell:clean_icons', 'shell:move']);
