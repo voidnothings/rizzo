@@ -1,28 +1,19 @@
-:ruby
-  description = card[:post_content] ? sanitize(card[:post_content],:tags => []).split("\r\n").first : card[:strapline]
-  slug = if card[:place] && defined?(articles_path)
-    "#{articles_path(card[:place])}/#{card[:slug]}"
-  else
-    defined?(articles_path) ? "#{articles_path}/#{card[:slug]}" : card[:url]
-  end
-  title = card[:post_title] || card[:title]
-
 %article.card.card--single.card--poi.card--poi--article.icon--article--white--before.js-card.js-single{class: card[:thumbnail] ? 'card--small-image card--extended-content' : 'card--no-image' }
 
-  %a.link--wrapper{href: slug}
+  %a.link--wrapper{href: card[:url]}
     - if card[:thumbnail]
       %figure.card__hero
-        = safe_image_tag(card[:thumbnail], class: 'card__image', alt: "#{title}", lazyload: defined?(lazyload))
+        = safe_image_tag(card[:thumbnail], class: 'card__image', alt: "#{card[:title]}", lazyload: defined?(lazyload))
     
     .card__content
       %span.card__context
         Article
       %h2.card__name
-        = title
+        = card[:title]
       
-      - if description
+      - if card[:description]
         %p.card__description
-          = raw description.truncate(330, omission: '.', separator: '.')
+          = raw card[:description]
 
     - if card[:post_date]
       .card__footer
