@@ -4,8 +4,6 @@
 // For any places where user information is displayed.
 // -----------------------------------------------------------------------------
 .user-profile
-  .media__img
-    text-align: center
   .card--single
     .btn
       margin-bottom: 10px
@@ -17,7 +15,12 @@
     &.locked, &.private
       font-style: italic
 
-/*===== The Avatar on the user profile page =====*/
+.user-profile__left
+  text-align: center
+
+// -----------------------------------------------------------------------------
+// The Avatar on the user profile page
+// -----------------------------------------------------------------------------
 .user-profile__avatar
   margin-bottom: 20px
 .user-profile__avatar__label
@@ -34,7 +37,7 @@
     z-index: 2
   &:after
     color: #FFF
-    content: 'Update'
+    content: attr(title)
     font-weight: bold
     text-align: center
     top: 50%
@@ -68,7 +71,9 @@
   margin: 0 auto
   width: 125px
 
-/*===== The user's stats in the left hand column on the profile page. =====*/
+// -----------------------------------------------------------------------------
+// The user's stats in the left hand column on the profile page.
+// -----------------------------------------------------------------------------
 .user-profile__stat-title
   +font-size(12)
   color: $feature-copy
@@ -78,7 +83,9 @@
   color: $header-grey
   margin-bottom: 20px
 
-/*===== Stuff for the user profile page's main content. =====*/
+// -----------------------------------------------------------------------------
+// Stuff for the user profile page's main content.
+// -----------------------------------------------------------------------------
 .user-profile__summary
   background: $details-panel-bg
   border-bottom: 1px solid $subdued
