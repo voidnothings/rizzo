@@ -68,7 +68,7 @@ define ['jquery','lib/components/swipe'], ($, Swipe) ->
       @populateThumbs()
 
     header:() ->
-      toolbar = $('<div>').addClass('lp-gallery-toolbar')
+      toolbar = $('<div>').addClass('lp-gallery-toolbar icon--cross icon--white')
       if @args.title
         title = $('<div>').addClass('lp-gallery-title').text(@args.title)
         $(toolbar).append(title)
