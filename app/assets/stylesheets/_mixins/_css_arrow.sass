@@ -4,33 +4,29 @@
 
 @mixin css-arrow($side: top, $width: 10px, $size: 28px, $offset: 0, $arrowOffset: 28px)
   color: inherit
+  &:after
+    height: $size
+    width: $size
   @if $side == top
-    @extend %curly-arrow-top-after
     &:after
       bottom: auto
       left: $offset
-      top: -$arrowOffset
+      top: -($arrowOffset / 2)
   @if $side == right
-    @extend %curly-arrow-right-after
     &:after
       left: auto
-      right: -$arrowOffset
+      right: -($arrowOffset / 2)
       top: $offset
   @if $side == bottom
-    @extend %curly-arrow-bottom-after
     &:after
-      bottom: -$arrowOffset
+      bottom: -($arrowOffset / 2)
       left: $offset
       top: auto
   @if $side == left
-    @extend %curly-arrow-left-after
     &:after
-      left: -$arrowOffset
+      left: -($arrowOffset / 2)
       right: auto
       top: $offset
-
-  &:after
-    font-size: $size
 
 // -----------------------------------------------------------------------------
 // Centralised CSS Arrow
