@@ -90,7 +90,7 @@ define ['jquery','lib/components/swipe'], ($, Swipe) ->
           onUpdate: @onStageUpdate
       @stage = new Swipe(options)
       @stage.render(@args.data)
-    
+
     onStageUpdate: (_bind, _i)=>
       for a in [0...(@args.preload)]
         @onSelect(_i)
