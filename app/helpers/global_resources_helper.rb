@@ -35,20 +35,20 @@ module GlobalResourcesHelper
           {title:'South America', uri:'http://www.lonelyplanet.com/south-america'}
         ]
       },
-      {title:'Themes', uri: "http://www.lonelyplanet.com/themes", icon_class: "icon--themes-line--grey--before",},
-      {title:'Shop', uri: "http://shop.lonelyplanet.com", icon_class: "icon--shop-basket-line--grey--before"},
-      {title:'Thorn Tree forum', uri: "http://www.lonelyplanet.com/thorntree", icon_class: "icon--thorntree-line--grey--before"},
+      {title:'Themes', uri: "http://www.lonelyplanet.com/themes", icon_class: "icon--themes--line--before",},
+      {title:'Shop', uri: "http://shop.lonelyplanet.com", icon_class: "icon--shop-basket--line--before"},
+      {title:'Thorn Tree Forum', uri: "http://www.lonelyplanet.com/thorntree", icon_class: "icon--thorntree--line--before"},
       {title:'Bookings',
         uri: 'http://www.lonelyplanet.com/hotels/',
-        icon_class: 'icon--flights-line--grey--before',
+        icon_class: 'icon--flights--line--before',
         submenu: [
-          {title:'Hotels', uri:'http://www.lonelyplanet.com/hotels', style:'hotels', icon_class: 'icon--hotels--white--before'},
-          {title:'Flights', uri:'http://www.lonelyplanet.com/flights/', style:'flights', icon_class: 'icon--flights--white--before'},
-          {title:'Adventure tours', uri:'http://www.lonelyplanet.com/adventure-tours/', style:'adventure-tours', icon_class: 'icon--tours--white--before'},
-          {title:'Sightseeing tours', uri:'http://www.lonelyplanet.com/sightseeing-tours/', style:'sightseeing-tours', icon_class: 'icon--running--white--before'}
+          {title:'Hotels', uri:'http://www.lonelyplanet.com/hotels', style:'hotels', icon_class: 'icon--hotel--before'},
+          {title:'Flights', uri:'http://www.lonelyplanet.com/flights/', style:'flights', icon_class: 'icon--flights--before'},
+          {title:'Adventure tours', uri:'http://www.lonelyplanet.com/adventure-tours/', style:'adventure-tours', icon_class: 'icon--tour--before'},
+          {title:'Sightseeing tours', uri:'http://www.lonelyplanet.com/sightseeing-tours/', style:'sightseeing-tours', icon_class: 'icon--activity--before'}
         ]
       },
-      {title:'Insurance', uri: "http://www.lonelyplanet.com/travel-insurance", icon_class: 'icon--insurance-line--grey--before'}
+      {title:'Insurance', uri: "http://www.lonelyplanet.com/travel-insurance", icon_class: 'icon--insurance--line--before'}
     ]
   end
 
