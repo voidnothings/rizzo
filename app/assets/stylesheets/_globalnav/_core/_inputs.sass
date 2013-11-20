@@ -29,13 +29,13 @@ input, textarea
 .input--regular
   @extend %rounded-corners
   background-color: #fff
-  color: $header-grey
+  color: $body-copy
 
 .input--regular--dark
   @extend %rounded-corners
   border: none
   background-color: $body-background-offset
-  color: $header-grey
+  color: $body-copy
   +placeholder
     color: $body-copy
 
@@ -43,27 +43,11 @@ input, textarea
   +font-size(15)
   cursor: pointer
 
-.input--datepicker
-  @extend %rounded-corners
-  background-image: url(image_path("lodgings-spt.png"))
-  background-repeat: no-repeat
-  background-color: #fff
-  color: $header-grey
-  padding-right: 35px
-  background-position: 99% -112px
-  +retinafy()
-    background-image: url(image_path("lodgings-spt-2x.png"))
-    background-size: $lodgings-sprite-size
-    background-repeat: no-repeat
-    background-position: 95% -111px
-  +placeholder()
-    color: $placeholder-copy
 
 // IE Friendly placeholders
 .input--placeholder
-  @if $is-ie == false
-    @extend %visually-hide
-  @else
+  display: none
+  .ie7 &, .ie8 &, .ie9 &
     margin: 5px 0
     display: block
 
@@ -175,19 +159,11 @@ input, textarea
 
 .search__button--icon
   @extend %image-replacement
-  background-image: url(image_path("core/core-sprite-standard.png"))
-  background-repeat: no-repeat
-  background-position: 0 -101px
   display: block
-  height: 13px
+  height: 15px
   margin: 0 8px
   padding: 0
-  width: 13px
-  +retinafy()
-    background-image: url(image_path("core/core-sprite-2x.png"))
-    background-size: $core-sprite-size
-    background-repeat: no-repeat
-
+  width: 15px
 
 // -----------------------------------------------------------------------------
 //
@@ -220,8 +196,6 @@ input, textarea
   border: none
   // Container is large enough so we can remove new formatting context
   overflow: visible
-  &:after
-    top: 14px
   .responsive &
     top: 0
 
@@ -259,10 +233,10 @@ input, textarea
 .input--small--newsletter
   @extend %rounded-corners
   background-color: #fff
-  color: $header-grey
+  color: $body-copy
   padding: 10px
   width: 100%
-  color: $header-grey
+  color: $body-copy
   +placeholder()
     color: $body-copy
   .responsive &
@@ -274,7 +248,6 @@ input, textarea
   margin: 7px 0
 
 .dropdown__value--country
-  color: $header-grey
   border: none
   padding-top: 11px
   padding-bottom: 11px
