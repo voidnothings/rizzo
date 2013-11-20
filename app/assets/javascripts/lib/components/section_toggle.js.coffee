@@ -64,7 +64,7 @@ define ['jquery'], ($) ->
       height
 
     addHandler: ->
-      @handler = $("<div class='btn btn--clear js-handler'>#{(@config.text)[0]}</div>")
+      @handler = $("<div class='btn btn--slim btn--clear js-handler'>#{(@config.text)[0]}</div>")
       @wrapper.append(@handler)
       @handler.wrap("<div class='read-more__handler'/>") if @config.shadow
       @bindEvents()
