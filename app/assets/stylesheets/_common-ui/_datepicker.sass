@@ -4,12 +4,15 @@
   position: relative
   z-index: 10000
   clear: both
+  .ie8 &, .ie7 &
+    height: 280px
 
 .pickadate__calendar--wrap
   +transition()
   @extend %rounded-corners
   color: $body-copy
-  top: .5em
+  top: 0
+  left: 0
   background: white
   position: relative
   max-width: 320px
@@ -23,6 +26,7 @@
 .pickadate__calendar
   padding: 10px
   text-align: center
+  border: 1px solid $subdued
 
 .pickadate__month--wrap,
 .pickadate__year--wrap
@@ -34,7 +38,7 @@
 .pickadate__month,
 .pickadate__year
   +font-size(18)
-  color: $header-grey
+  color: $body-copy
   font-weight: bold
 
 .pickadate__month--nav

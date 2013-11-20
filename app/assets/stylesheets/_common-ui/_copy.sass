@@ -1,7 +1,7 @@
 // -----------------------------------------------------------------------------
 // Headings
 // 
-// Headings only inherit their margins when included within a .copy--body
+// Headings only inherit their margins when included within a .context--content
 // container. This allows for fewer overrides when using them elsewhere.
 // -----------------------------------------------------------------------------
 
@@ -35,7 +35,7 @@
 
 .copy--h4
   +font-size(16)
-  color: $header-grey
+  color: $body-copy
   font-weight: bold
 
   .context--content &
@@ -56,11 +56,16 @@
   line-height: 1.3em
 
 .copy--body
-  +font-size(18)
+  +font-size(16)
   color: $body-copy
   line-height: 1.5em
   p
     margin-bottom: 15px
+
+// Copy with a long line length
+.copy--full-width,
+.copy--full-width .copy--body
+  +font-size(18)
 
 .copy--meta
   +font-size(15)
@@ -74,7 +79,7 @@
 
 .copy--body strong,
 .copy--body__strong
-  color: $header-grey
+  color: $body-copy
 
 .copy--disclaimer
   +font-size(11)
