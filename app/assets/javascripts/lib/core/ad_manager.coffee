@@ -245,6 +245,7 @@ define ['jquery', 'gpt'], ->
               )
               adManager.firstLoaded = true
 
+            # Presume a 1x1 image is just a tracking pixel
             if contents.find('img').width() is 1
               return
 

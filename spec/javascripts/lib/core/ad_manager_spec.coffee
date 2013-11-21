@@ -63,13 +63,13 @@ require ['public/assets/javascripts/lib/core/ad_manager', 'gpt'], (adManager) ->
       beforeEach ->
         loadFixtures 'adBoxes.html'
 
-      it 'should not callback when the iframe contains a 1x1 image', ->
+      it 'should not apply callback when the iframe contains a 1x1 image', ->
 
         trackingPixelFixture = document.getElementById("tracking-pixel")
         spyCallback = jasmine.createSpy('Callback spy')
 
         adManager.poll(trackingPixelFixture, spyCallback)
 
-        # if iframe contains only a 1x1 image element then it should not exec callback
+      # if iframe contains only a 1x1 image element then it should not apply callback
         expect(spyCallback).not.toHaveBeenCalled()
 
