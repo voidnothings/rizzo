@@ -1,5 +1,5 @@
 .card--single.card--media-container.js-card.js-single.js-double-image-card
-  - stack_item.cards.each do |card|
+  - card[:cards].each do |card|
 
     - if card.resized_image_url
       = render 'components/cards/image_card', card: card

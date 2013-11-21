@@ -94,7 +94,7 @@ define ['jquery', 'gpt'], ->
         pubAds.setTargeting("ctt", lp.ads.continent) if lp.ads.continent
         pubAds.setTargeting("cnty", lp.ads.country) if lp.ads.country
         pubAds.setTargeting("dest", lp.ads.destination) if lp.ads.destination
-        pubAds.setTargeting("tnm", lp.ads.adTnm) if lp.ads.adTnm
+        pubAds.setTargeting("tnm", lp.ads.adTnm.replace(/\s/, "").split(",")) if lp.ads.adTnm
         pubAds.setTargeting("thm", lp.ads.adThm) if lp.ads.adThm
         # End deprecated.
 

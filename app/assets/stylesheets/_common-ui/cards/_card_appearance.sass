@@ -28,7 +28,6 @@
 .card__property-type,
 .card__context
   +font-size(13)
-  color: $body-copy
   display: block
   margin-bottom: 2px
   font-style: italic
@@ -54,7 +53,6 @@
   +font-size(12)
   @extend %left-icon
   @extend %local-marker-before
-  color: $header-grey
   font-weight: bold
   line-height: 14px
   margin-bottom: 10px
@@ -66,12 +64,10 @@
 
 .card__description
   +font-size(13)
-  color: $body-copy
   line-height: 14px
 
 .card__list
   +font-size(13)
-  color: $body-copy
   list-style: circle inside
 
 .card__list__item
@@ -84,7 +80,6 @@
 .card__tour-duration
   @extend %left-icon
   @extend %tour-duration-before
-  color: $header-grey
   padding-left: 20px
   margin-bottom: 12px
   &:before
@@ -102,7 +97,6 @@
   position: absolute
   background: #fff
   bottom: 0
-  color: $body-copy
   left: 0
   line-height: 12px
   padding: 7px
@@ -113,6 +107,7 @@
 
   .btn--bookable
     +font-size(13)
+    min-height: 0
     padding: 10px 12px
 
   // fade to white at the top of the footer when extended content
@@ -144,11 +139,10 @@
 
 .destination__item-count
   +font-size(12)
-  color: $body-copy
   margin-right: 5px
   padding-left: 18px
   &:before
-    color: $header-grey
+    color: $body-copy
     top: 0
 
 .destination__item-count--sights
@@ -204,7 +198,6 @@
 
 .card--list__name
   +font-size(15)
-  color: $header-grey
   font-weight: bold
   height: 50px
   line-height: 50px
