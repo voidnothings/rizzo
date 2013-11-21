@@ -232,9 +232,10 @@ define ['jquery', 'gpt'], ->
 
         $(adEl).find('iframe').each ->
           iframe = $(this)
+          contents = iframe.contents()
+
           # If something's been loaded into our ad element, we're good to go
-          if adEl.style.display isnt 'none' and !!iframe.contents().find('body').html()
-            callback.apply(this, [adEl, iframe])
+          if adEl.style.display isnt 'none' and !!contents.find('body').html()
 
             window.clearInterval poll
 
@@ -243,6 +244,13 @@ define ['jquery', 'gpt'], ->
                 'e':'/destination/ad/first'
               )
               adManager.firstLoaded = true
+
+            # Presume a 1x1 image is just a tracking pixel
+            if contents.find('img').width() is 1
+              return
+
+            callback.apply(this, [adEl, iframe])
+
       , timeout
 
     # The old init used in the site wide leaderboard.
