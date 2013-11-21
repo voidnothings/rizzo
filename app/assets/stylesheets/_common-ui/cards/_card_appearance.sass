@@ -203,3 +203,63 @@
   line-height: 50px
   display: inline-block
   vertical-align: top
+
+
+// -----------------------------------------------------------------------------
+// Collection card image attribution
+// -----------------------------------------------------------------------------
+
+.card__attribution
+  padding-left: 20px
+  width: 100%
+
+.license
+  background-image: url(image_path("image-attribute-sprite.png"))
+  background-repeat: no-repeat
+  display: inline-block
+  text-indent: -999em
+
+  .card--double &
+    height: 17px
+    width: 17px
+
+  .card--single &
+    height: 14px
+    width: 14px
+
+
+.card__licenses
+
+  .card--double &
+    float: right
+
+.license--cc
+  .card--single &
+    background-position: 0 -21px
+
+  .card--double &
+    background-position: 0 0
+
+.license--attribution
+  .card--single &
+    background-position: -15px -21px
+
+  .card--double &
+    background-position: -20px 0
+
+
+.license--share-alike
+  .card--single &
+    background-position: -30px -21px
+
+  .card--double &
+    background-position: -40px 0
+
+
+.license--non-deriv
+  .card--single &
+    background-position: -46px -21px
+
+  .card--double &
+    background-position: -61px 0
+
