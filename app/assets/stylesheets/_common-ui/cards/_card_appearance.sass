@@ -209,9 +209,25 @@
 // Collection card image attribution
 // -----------------------------------------------------------------------------
 
+.card--collection
+  overflow: hidden
+
+  &:hover
+    .card__content
+      bottom: 0
+
 .card__attribution
-  padding-left: 20px
-  width: 100%
+  @extend %left-icon
+  @extend %tick-icon-before
+  @extend %icon-gallery-before
+  bottom: $card-content-vertical-padding
+  left: $card-content-horizontal-padding
+  padding-left: 25px
+  position: absolute
+  right: $card-content-horizontal-padding
+  &:before
+    +font-size(30)
+    line-height: 0.333em
 
 .license
   background-image: url(image_path("image-attribute-sprite.png"))
