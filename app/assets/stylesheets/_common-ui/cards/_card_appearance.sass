@@ -220,14 +220,16 @@
   @extend %left-icon
   @extend %tick-icon-before
   @extend %icon-gallery-before
-  bottom: $card-content-vertical-padding
-  left: $card-content-horizontal-padding
   padding-left: 25px
-  position: absolute
-  right: $card-content-horizontal-padding
+  margin-top: 15px
   &:before
     +font-size(30)
     line-height: 0.333em
+
+
+.card__attribution-link
+  &:hover
+    text-decoration: underline
 
 .license
   background-image: url(image_path("image-attribute-sprite.png"))
@@ -243,9 +245,7 @@
     height: 14px
     width: 14px
 
-
 .card__licenses
-
   .card--double &
     float: right
 
