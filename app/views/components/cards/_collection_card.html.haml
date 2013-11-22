@@ -18,3 +18,5 @@
           - if card[:description].present?
             %p.card__description
               = card[:description]
+
+        = render partial: "components/cards/partials/image_attribution", locals: {card: card}
