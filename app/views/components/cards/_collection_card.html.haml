@@ -1,7 +1,3 @@
-/ - card[:image_license] = 'by-nd'
-/ - card[:image_attribution] = 'A pretty picture by someone lovely'
-/ - card[:image_attribution_link] = '/somewhere'
-
 %article.card.card--collection.js-card{class: "#{card[:double?] ? 'card--double card--full-image' : 'card--single card--extended-content--half js-single'} card--collection--#{card[:topic]} #{(card[:filter]) ? "js-stack-card-filter" : ""}"}
   %a.link--wrapper{:href => "/#{card[:slug]}", :data => { 'stack-kind' => card[:stack_kind], :filter => card[:filter] }}
     - if card[:count]
