@@ -15,7 +15,7 @@
         .nav--social__inner.nav__item
           .nav--inline
             - social_media_nav.each do |item|
-              %a.nav__item.nav__item--social{href: "#{item[:url]}", class: "icon--#{item[:title]}"}
+              %a.nav__item.nav__item--social{href: "#{item[:url]}", class: "icon--#{item[:title]}--before"}
                 = item[:title].capitalize
 
 
