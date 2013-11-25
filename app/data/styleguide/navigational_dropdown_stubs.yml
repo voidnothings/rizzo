@@ -1,8 +1,8 @@
 -
   :action: "/redirector"
   :dropdown:
-    :id: "foo-bar-baz"
-    :name: "foo-bar-baz"
+    :id: "url"
+    :name: "url"
     :options:
       -
         :title: 'Foo'
