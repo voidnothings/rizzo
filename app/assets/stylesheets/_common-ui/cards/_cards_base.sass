@@ -123,10 +123,9 @@ $mobile-standard-card-image-height: 192px
 // -----------------------------------------------------------------------------
 
 .card__content
-  color: $header-grey
   height: ($card-grid-height - $standard-card-image-height - (2 * $card-content-vertical-padding) )
-  overflow: hidden
   margin-bottom: $card-content-vertical-padding
+  overflow: hidden
   padding: $card-content-vertical-padding $card-content-horizontal-padding 0 $card-content-horizontal-padding
 
   .card--no-image &
@@ -141,18 +140,22 @@ $mobile-standard-card-image-height: 192px
         height: ($card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
 
   .card--full-image &
+    @extend %transition--base
     +background-gradient($startColor: rgba($darkblue, 0.0), $endColor: rgba($darkblue, 0.5))
-    bottom: 0
+    bottom: -40px
     color: #fff
-    height: 35%
     left: 0
     margin: 0
+    height: 83px
     padding: $card-content-vertical-padding $card-content-horizontal-padding
     position: absolute
     right: 0
     .card__content__inner
       position: absolute
-      bottom: $card-content-vertical-padding
+      top: $card-content-vertical-padding
+      left: $card-content-horizontal-padding
+      right: $card-content-horizontal-padding
+      bottom: 0
 
   .card--image-only &
     @extend %transition--base
