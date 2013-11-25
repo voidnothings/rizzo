@@ -41,12 +41,16 @@
   > img
     width: 100%
   .card__content
-    z-index: 1
     padding: 13px 25px
+    z-index: 1
   .card__name
     +font-size(32)
     margin-bottom: 5px
 
+.card--page__hero--attributed
+  .card__content
+    bottom: 0
+    height: 65px
 
 .card--page__inner
   @extend %clearfix

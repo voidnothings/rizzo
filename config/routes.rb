@@ -3,7 +3,7 @@ Rizzo::Application.routes.draw do
   get 'head'                         => 'head#index'
   get 'breadcrumb'                   => 'global_resources#breadcrumb'
   get "r/:encrypted_url"             => 'redirector#show', :as => :redirector
-  get "redirector/:url"              => 'redirector#internal'
+  get "redirector/*url"              => 'redirector#internal'
 
   # Core
   get 'client-solutions/global-head'        => 'global_resources#show', :defaults => { :snippet => "head", :cs => "true" }
