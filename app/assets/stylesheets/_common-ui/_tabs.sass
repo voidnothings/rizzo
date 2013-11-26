@@ -1,24 +1,28 @@
 .tab__content
   @extend %media-gallery-transition
-  @extend %invisible
+  opacity: 0
   +perspective(600)
   position: absolute
   left: 0
   top: 0
   z-index: -1
   &.is-active
-    @extend %opaque
+    opacity: 1
     z-index: 1
+  @if $is-ie
+    display: none
+    &.is-active
+      display: block
 
 .tab
   +font-size(12)
   +css-arrow-central(top, $width: 10px, $arrowOffset: 17px)
-  background: $header-grey
+  background: $body-copy
   color: #fff
   display: block
   float: left
-  height: 40px
-  line-height: 30px
+  height: 35px
+  line-height: 25px
   padding: 0 10px
   position: relative
   text-transform: uppercase
@@ -27,13 +31,15 @@
     +font-size(32)
     display: none
     position: absolute
-    top: -23px
+    top: -21px
+    font-weight: normal
   &:before
     +font-size(28)
     display: inline-block
     letter-spacing: 2px
     position: relative
     top: 1px
+    font-weight: normal
   &:hover, &.is-active
     background: $red
     text-decoration: none

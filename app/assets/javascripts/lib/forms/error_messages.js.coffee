@@ -1,0 +1,10 @@
+define ->
+  required: "Please enter your "
+  email: "Please enter a valid "
+  min: "Please enter at least {0} characters for your "
+  exact: "Please enter exactly {0} characters for your "
+  number: "Please enter only numbers for your "
+  match: "Please match "
+  checked: "Please accept "
+  text: "Please use only plain text for your"
+  errorHeading: "Please correct the following errors:"

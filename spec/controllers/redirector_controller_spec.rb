@@ -45,4 +45,30 @@ describe RedirectorController do
       end
     end
   end
+
+  describe "get#internal" do
+    let(:url) { 'http://www.lonelyplanet.com/this-place' }
+    
+    it 'validates the url' do
+      Rizzo::UrlValidator.should_receive(:validate).with(url).and_return(url)
+      get :internal, url: url
+      response.should redirect_to(url)
+    end
+
+    context 'invalid url' do
+      before(:each) do
+        Rizzo::UrlValidator.stub(:validate).and_raise(Rizzo::UrlValidator::InvalidUrl)
+      end
+
+      it 'should fail' do
+        get :internal, url: url
+        response.should_not be_success
+      end
+
+      it 'should give a 404' do
+        get :internal, url: url
+        response.status.should eq (404)
+      end
+    end
+  end
 end

@@ -19,3 +19,11 @@
 	<div id="js-ad-trafficDriver"></div>
 	<div id="js-ad-adSense"></div>
 </div>
+
+<!-- Tracking pixel -->
+<div id="tracking-pixel">
+	<iframe id="tracking-pixel-iframe"></iframe>
+</div>
+<script type="text/javascript">
+	document.getElementById("tracking-pixel-iframe").contentWindow.document.write('<html><body><img width="1" height="1"></body></html>');
+</script>

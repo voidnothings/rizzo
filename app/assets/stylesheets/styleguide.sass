@@ -8,7 +8,6 @@
 @import '_common-ui/_thumbnail_grid'
 @import '_common-ui/_read_more_toggle'
 @import '_common-ui/_left_nav'
-@import '_common-ui/_filters'
 @import '_common-ui/_icon-list'
 @import '_common-ui/_info-list'
 @import '_common-ui/_maps'
@@ -17,6 +16,7 @@
 @import '_common-ui/_preloader'
 @import '_common-ui/_slider'
 @import '_common-ui/_forms'
+@import '_common-ui/_inputs'
 
 @import '_common-ui/cards/_cards_base'
 @import '_common-ui/cards/_card_sizes'
@@ -28,7 +28,6 @@
 @import '_common-ui/_badges'
 @import '_common-ui/_stack'
 @import '_common-ui/_stack_articles'
-@import '_common-ui/_filters'
 @import '_common-ui/_icons/_pois_sprite'
 @import '_common-ui/_icons/_pois_icons'
 @import '_common-ui/_lp_reviewed_section'
@@ -169,6 +168,24 @@ pre.styleguide.is-open
 .styleguide__input-copy
   width: 100%
 
+.styleguide__anchor
+  position: relative
+
+  > a:first-child
+    @extend %transition--base
+    @extend %local-marker-before // For lack of a link icon currently.
+    display: block
+    padding: 0.5em
+    position: absolute
+    right: -38px
+    top: -24px
+    opacity: 0
+    &:before
+      +font-size(40)
+
+  &:hover > a:first-child
+    opacity: 1
+    text-decoration: none
 
 .clearbutton
   line-height: 12px

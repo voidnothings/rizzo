@@ -1,42 +1,40 @@
 // ---------------------------------------------------------------
-//  Styled fake inputs (checkbox and radio)
+// 
+//  Styled fake inputs using pseudo elements
+// 
 // ---------------------------------------------------------------
 
-.label--checkbox
-  position: relative
-  padding-left: 20px
-  line-height: 18px
-  cursor: pointer
-  &:before
-    @extend %empty-abs-generated-content
-    width: 11px
-    height: 11px
-    border: 1px solid #d9e3e6
-    top: 2px
-    left: 0
-  &.is-active
-    &:before
-      width: 9px
-      height: 9px
-      border: 2px solid $teal
+// ---------------------------------------------------------------
+// Faux Checkbox
+// ---------------------------------------------------------------
 
-.label--radio
-  position: relative
-  padding-left: 20px
-  line-height: 18px
+.faux--input__checkbox
+  color: $body-copy
   cursor: pointer
+  display: block
+  padding-left: 25px
+  position: relative
   &:before
     @extend %empty-abs-generated-content
-    +border-radius(11)
     width: 11px
     height: 11px
     border: 1px solid #d9e3e6
-    top: 2px
+    top: 3px
     left: 0
+  
   &.is-active
-    font-weight: 700
-    color: $header-grey
+    font-weight: bold
+    color: $body-copy
     &:before
-      width: 9px
-      height: 9px
+      width: 6px
+      height: 6px
       border: 4px solid $teal
+
+  input[type='checkbox']:disabled ~ &
+    color: $disabled
+    cursor: normal
+    opacity: 0.4
+
+  // The labels often begin as links, so we have to set the colour on load
+  .js & a
+    color: $body-copy

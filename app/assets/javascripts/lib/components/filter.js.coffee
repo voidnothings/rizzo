@@ -72,7 +72,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
       @$el.find(".js-#{name}-filter").find('input[type=checkbox]').attr('disabled', false)
 
     _toggleActiveClass: (element) ->
-      @$el.find(element).siblings('.js-filter-label').toggleClass('active')
+      @$el.find(element).siblings('.js-filter-label').toggleClass('is-active')
 
     _serialize : ->
       filters = new Serializer(@$el)
@@ -85,9 +85,9 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
         if filter
           filter.attr('checked', value)
           if value
-            filter.siblings('label').addClass('active')
+            filter.siblings('label').addClass('is-active')
           else
-            filter.siblings('label').removeClass('active')
+            filter.siblings('label').removeClass('is-active')
 
     _reset: () ->
       for input in @$el.find('input[type=checkbox]')
@@ -95,6 +95,6 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
         if $input.attr('name')
           $input.attr('checked', false)
           label = $input.siblings('label.js-filter-label')
-          label.removeClass('active')
+          label.removeClass('is-active')
       @trigger(':cards/request', @_serialize())
 

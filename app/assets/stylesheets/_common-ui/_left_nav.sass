@@ -50,7 +50,7 @@
 
 .nav--left__item__facet
   +font-size(12)
-  color: #8fa1a4
+  color: $feature-copy
   margin-left: 2px
   .is-active &
     color: white
@@ -85,6 +85,18 @@
     +border-radius-each(4,0,0,4)
     right: 4px
     width: 150px
+
+
+// -----------------------------------------------------------------------------
+// Lists of items within the navigation e.g. filters
+// -----------------------------------------------------------------------------
+
+.nav--left__list
+  list-style: none
+  padding: 0 15px 10px
+
+.nav--left__list__item
+  margin-bottom: 8px
 
 
 // -----------------------------------------------------------------------------

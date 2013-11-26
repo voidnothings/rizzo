@@ -1,13 +1,12 @@
 // -----------------------------------------------------------------------------
-// 
+//
 //  Card page module
-// 
+//
 // -----------------------------------------------------------------------------
 
 .card--page
   @extend %clearfix
   @extend %rounded-corners
-  color: $body-copy
   padding: 25px
   position: relative
 
@@ -42,12 +41,16 @@
   > img
     width: 100%
   .card__content
-    z-index: 1
     padding: 13px 25px
+    z-index: 1
   .card__name
     +font-size(32)
     margin-bottom: 5px
 
+.card--page__hero--attributed
+  .card__content
+    bottom: 0
+    height: 65px
 
 .card--page__inner
   @extend %clearfix
@@ -73,15 +76,6 @@
     min-height: 60px
     padding-left: 73px
 
-
-.card--page__footer
-  @extend %clearfix
-  clear: left
-  color: $header-grey
-  margin-top: 20px
-  padding-top: 20px
-  .send-this
-    float: right
 
 // Should really live elsewhere, or be a margin-bottom on card--page
 .section--related-content
@@ -150,6 +144,9 @@
 .card--page__breadcrumb--info:before
   background-position: -551px -103px
 
+.card--page__breadcrumb__link
+  color: $body-copy
+
 .card--page__content
   +box-sizing()
   float: left
@@ -192,7 +189,37 @@
   position: relative
 
 .booking-panel__logo
+  background-size: 100% 100%
+  background-repeat: no-repeat
   margin-bottom: 20px
+
+.booking-panel__logo--gadventures
+  background-image: url(/assets/partners/gadventures.png)
+  width: 142px
+  height: 35px
+  .supports-svg &
+    background-image: url(/assets/partners/gadventures.svg)
+
+.booking-panel__logo--intrepid
+  background-image: url(/assets/partners/intrepid.png)
+  width: 48px
+  height: 48px
+  .supports-svg &
+    background-image: url(/assets/partners/intrepid.svg)
+
+.booking-panel__logo--viator
+  background-image: url(/assets/partners/viator.png)
+  width: 92px
+  height: 28px
+  .supports-svg &
+    background-image: url(/assets/partners/viator.svg)
+
+.booking-panel__logo--worldexpeditions
+  background-image: url(/assets/partners/worldexpeditions.png)
+  width: 113px
+  height: 36px
+  .supports-svg &
+    background-image: url(/assets/partners/worldexpeditions.svg)
 
 // -----------------------------------------------------------------------------
 // Details Panel (the lighter panel usually attached to the booking panel)
