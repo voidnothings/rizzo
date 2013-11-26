@@ -12,6 +12,12 @@ describe Rizzo::UrlValidator do
     it { should eq(expected_url_with_port) }
   end
 
+  context 'domain not specified' do
+    let(:url) { 'africa' }
+
+    it { should eq(expected_url_with_port) }
+  end
+
   context 'different domain' do
     let(:url) { "http://www.google.com/africa" }
 
