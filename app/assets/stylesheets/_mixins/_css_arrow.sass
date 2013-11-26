@@ -2,7 +2,7 @@
 // CSS Arrow
 // -----------------------------------------------------------------------------
 
-@mixin css-arrow($side: top, $width: 10px, $size: 28px, $offset: 0, $arrowOffset: 28px)
+@mixin css-arrow($side: top, $size: 20px, $offset: 0, $arrowOffset: 0, $width: 0)
   color: inherit
   &:after
     height: $size
@@ -11,20 +11,20 @@
     &:after
       bottom: auto
       left: $offset
-      top: -($arrowOffset / 2)
+      top: -(0.7 * $size)
   @if $side == right
     &:after
       left: auto
-      right: -($arrowOffset / 2)
+      right: -(0.7 * $size)
       top: $offset
   @if $side == bottom
     &:after
-      bottom: -($arrowOffset / 2)
+      bottom: -(0.7 * $size)
       left: $offset
       top: auto
   @if $side == left
     &:after
-      left: -($arrowOffset / 2)
+      left: -(0.7 * $size)
       right: auto
       top: $offset
 
@@ -32,21 +32,21 @@
 // Centralised CSS Arrow
 // -----------------------------------------------------------------------------
 
-@mixin css-arrow-central($side: top, $width: 10px, $size: 28px, $offset: 0, $arrowOffset: 28px)
-  @include css-arrow($side, $width, $size, $offset, $arrowOffset)
+@mixin css-arrow-central($side: top, $size: 28px, $offset: 0, $arrowOffset: 0, $width: 0)
+  @include css-arrow($side, $size, $offset, $arrowOffset, $width)
   @if $side == top
     &:after
       left: 50%
-      margin-left: -($width)
+      margin-left: -($size / 2)
   @if $side == bottom
     &:after
       left: 50%
-      margin-left: -($width)
+      margin-left: -($size / 2)
   @if $side == right
     &:after
       top: 50%
-      margin-top: -($width)
+      margin-top: -($size / 2)
   @if $side == left
     &:after
       top: 50%
-      margin-top: -($width)
+      margin-top: -($size / 2)
