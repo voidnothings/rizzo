@@ -61,10 +61,30 @@
       &:before
         width: 0
         border: none
+
+    .nav__icon
+      position: absolute
+      width: 50px
+      border-right: 1px solid $offscreen-nav-border
+      display: block
+      left: 0
+      top: 0
+      height: 100%
+      color: $offscreen-nav-border
+      opacity: 0.7
+      &:before
+        position: absolute
+        top: 18px
+        left: 15px
+        width: 22px
+        height: 22px
+      +respond-to(wide-view)
+        display: none
+
   .homepage &
     +respond-to(wide-view)
       padding: 20px 4px
-    
+
   &, & > .nav__item
     font-weight: bold
     color: $nav-primary-type
