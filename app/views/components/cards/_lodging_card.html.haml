@@ -33,10 +33,10 @@
     .card__content
       - if (card[:property_type].present? && card[:bookable?])
         %span.card__property-type<
-          - if card[:property_type].downcase == 'hotel' && card[:star_rating]
-            = hotel_star_ranking(card[:star_rating])
+          - if card[:hotel_star_ranking].present?
+            = card[:hotel_star_ranking]
           - else
-            = sentence_case(card[:property_type])
+            = card[:property_type_title]
 
       %h2.card__name.js-lodging-name{class: card[:neighbourhood] ? '' : 'has-no-locale'}<
         = truncate((card[:name].titleize), :length=> 50, :separator => ' ')
