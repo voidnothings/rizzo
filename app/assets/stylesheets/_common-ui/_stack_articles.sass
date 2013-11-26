@@ -12,9 +12,10 @@
 
 .lodging__subtitle
   @extend %inline-block
-  @extend %vertically-centered-dot-after
-  &:last:after
-    content: ''
+  &:after
+    content: '\00B7'
+    &:last
+      content: ''
 
 
 // -----------------------------------------------------------------------------
