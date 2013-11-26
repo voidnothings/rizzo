@@ -53,13 +53,14 @@
 .card__locale
   +font-size(12)
   @extend %left-icon
-  @extend %local-marker-before
+  color: $header-grey
   font-weight: bold
   line-height: 14px
   margin-bottom: 10px
   padding-left: 15px
   &:before
-    font-size: 22px
+    width: 22px
+    height: 22px
     left: -1px
     top: -2px
 
@@ -80,13 +81,12 @@
 
 .card__tour-duration
   @extend %left-icon
-  @extend %tour-duration-before
+  color: $header-grey
   padding-left: 20px
   margin-bottom: 12px
   &:before
-    line-height: 12px
-    font-size: 28px
-
+    height: 28px
+    width: 28px
 
 // -----------------------------------------------------------------------------
 // Card Footer
@@ -149,17 +149,15 @@
 
 .destination__item-count--sights
   @extend %left-icon
-  @extend %icon-image-poi-sight-before
   &:before
-    +font-size(23)
-    line-height: 15px
+    height: 23px
+    width: 23px
 
 .destination__item-count--lodgings
   @extend %left-icon
-  @extend %icon-image-poi-hotel-before
   &:before
-    +font-size(27)
-    line-height: 9px
+    width: 27px
+    height: 27px
 
 // -----------------------------------------------------------------------------
 // List view cards
