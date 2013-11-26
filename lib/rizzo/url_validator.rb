@@ -1,3 +1,5 @@
+require 'addressable/uri'
+
 module Rizzo
   module UrlValidator
     class InvalidUrl < StandardError; end
