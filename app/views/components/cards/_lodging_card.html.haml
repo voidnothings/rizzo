@@ -9,20 +9,8 @@
       - price = card['total_price'] || card[:indicative_price_in_user_currency]
       .card__tags
         - if price && price > 0
-          .tag.tag--price
-            .tag--price__inner
-              .tag--price__values
-                from
-                .tag--price__amount<
-                  %span.tag--price__currency.js-currency<
-                    = raw(currency.to_symbol)
-                  %span.js-price<>
-                    = price(price, :no_pence)
-                %span.tag--price__scope<
-                  - if card['total_price']
-                    total stay
-                  - else
-                    per night
+          = ui_component('price_tag', properties: { currency: raw(currency.to_symbol), price: price(price, :no_pence), scope: card['total_price'] ? 'total stay' : 'per night' })
+          
         = render :partial => '/components/cards/partials/lodging_badges', :locals => { :card => card }
     - else
       .card__tags
