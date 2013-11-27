@@ -55,7 +55,7 @@ module FooterHelper
       {:title=>'Insurance', :url=>'travel-insurance'}
     ]
   end
-  
+
   def social_media_nav
     [
       {:title=>'twitter', :url=>'https://twitter.com/lonelyplanet'},
@@ -67,7 +67,7 @@ module FooterHelper
       {:title=>'pinterest', :url=>'http://pinterest.com/lonelyplanet/'}
     ]
   end
-  
+
   def footer_nav_about_items
     [
       {:title=> 'About us', :url => '/about/'},

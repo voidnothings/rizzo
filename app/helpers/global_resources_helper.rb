@@ -16,7 +16,7 @@ module GlobalResourcesHelper
       {style:'insurance', title:'Insurance', uri: www_url("bookings/insurance.do")}
     ]
   end
-  
+
   def core_navigation_items
     [
       {title:'Destinations',
@@ -51,7 +51,7 @@ module GlobalResourcesHelper
       {title:'Insurance', uri: "http://www.lonelyplanet.com/travel-insurance", icon_class: 'icon--insurance-line--grey--before'}
     ]
   end
-  
+
   def default_breadcrumbs
     [
       {:place=>"South America", :slug=>"south-america"},
@@ -97,7 +97,7 @@ module GlobalResourcesHelper
   def breadcrumbs_nav(breadcrumb_content)
     render :partial=>'layouts/core/snippets/footer_breadcrumbs', locals: {breadcrumbs: breadcrumb_content} if breadcrumb_content.present?
   end
-  
+
   def breadcrumb_for(breadcrumb, last)
     capture_haml do
       if last == true
@@ -105,11 +105,11 @@ module GlobalResourcesHelper
       elsif breadcrumb[:slug].blank?
         haml_tag(:span, class: "nav__item js-nav-item nav__item--breadcrumbs", itemprop: "url") { haml_concat breadcrumb[:place] }
       else
-        haml_tag(:a, class: "nav__item js-nav-item nav__item--breadcrumbs", href: "http://www.lonelyplanet.com/#{breadcrumb[:slug]}", itemprop:"url") { haml_concat breadcrumb[:place] } 
+        haml_tag(:a, class: "nav__item js-nav-item nav__item--breadcrumbs", href: "http://www.lonelyplanet.com/#{breadcrumb[:slug]}", itemprop:"url") { haml_concat breadcrumb[:place] }
       end
     end
   end
-  
+
   def dns_prefetch_for(links)
     capture_haml do
       links.each do |link|

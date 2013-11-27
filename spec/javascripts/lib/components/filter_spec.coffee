@@ -219,7 +219,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         spyEvent = spyOnEvent(filter.$el, ':cards/request');
         element = filter.$el.find('input[type=checkbox]')
         element.trigger('change')
-      
+
       it '_toggleActiveClass', ->
         expect(filter._toggleActiveClass).toHaveBeenCalled()
 

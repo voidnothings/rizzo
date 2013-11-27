@@ -69,7 +69,7 @@ left_nav_stub:
 
 secondary_navigation_stub:
   :section_name: 'Hotels'
-  :items: 
+  :items:
     -
       :title: 'Overview'
       :slug: 'argentina'
