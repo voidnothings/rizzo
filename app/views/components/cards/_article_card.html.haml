@@ -2,7 +2,7 @@
 
   = render partial: "components/cards/partials/card_content", locals: {card: card}
 
-  - if card[:post_date]
+  - if card[:post_date] && !card[:double?]
     .card__footer
       %time.text-icon--clock{datetime: card[:post_date]}
         = prettify_date(card[:post_date])
