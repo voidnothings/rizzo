@@ -49,7 +49,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         expect(filter.$el.find('.js-filter-label').children().length).toBe(0)
 
       it 'sets the label text to be the link text', ->
-        expect(filter.$el.find('.js-filter-label').text()).toBe("5 Star Hotel")
+        expect(filter.$el.find('.js-filter-label').text()).toBe("5 star hotel")
 
 
     describe 'updating', ->

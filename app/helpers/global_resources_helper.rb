@@ -37,7 +37,7 @@ module GlobalResourcesHelper
       },
       {title:'Themes', uri: "http://www.lonelyplanet.com/themes", icon_class: "icon--themes-line--grey--before",},
       {title:'Shop', uri: "http://shop.lonelyplanet.com", icon_class: "icon--shop-basket-line--grey--before"},
-      {title:'Thorn Tree Forum', uri: "http://www.lonelyplanet.com/thorntree", icon_class: "icon--thorntree-line--grey--before"},
+      {title:'Thorn Tree forum', uri: "http://www.lonelyplanet.com/thorntree", icon_class: "icon--thorntree-line--grey--before"},
       {title:'Bookings',
         uri: 'http://www.lonelyplanet.com/hotels/',
         icon_class: 'icon--flights-line--grey--before',

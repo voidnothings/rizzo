@@ -37,7 +37,7 @@ define ['jquery'], ($) ->
     constructor: (args={}) ->
       @config =
         selector:   '.js-read-more'
-        text:       ['Read More', 'Read Less']
+        text:       ['Read more', 'Read less']
         maxHeight:  2500
         tolerance: 0
 

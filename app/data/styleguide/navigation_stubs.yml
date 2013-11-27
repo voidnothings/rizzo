@@ -80,8 +80,8 @@ secondary_navigation_stub:
       :title: 'Hotels'
       :slug: 'hotels'
     -
-      :title: 'Tips & Articles'
+      :title: 'Tips & articles'
       :slug: 'travel-tips-and-articles'
     -
-      :title: 'Images & Video'
+      :title: 'Images & video'
       :slug: 'images-and-video'

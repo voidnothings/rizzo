@@ -16,20 +16,20 @@ module FooterHelper
 
   def footer_nav_shop_items
     [
-      {:title=>'Destination Guides', :url=>'destination-guides'},
+      {:title=>'Destination guides', :url=>'destination-guides'},
       {:title=>'eBooks', :url=>'ebooks'},
-      {:title=>'Pictorial & Gifts', :url=>'pictorials-and-gifts'},
+      {:title=>'Pictorial & gifts', :url=>'pictorials-and-gifts'},
       {:title=>'Phrasebooks', :url=>'phrasebooks'},
-      {:title=>'Activity Guides', :url=>'activity-guides'},
-      {:title=>'Special Offers', :url=>'special-offers'}
+      {:title=>'Activity guides', :url=>'activity-guides'},
+      {:title=>'Special offers', :url=>'special-offers'}
     ]
   end
 
   def footer_nav_thorntree_items
     [
-      {:title=>'Departure Lounge', :url=>'category.jspa?categoryID=2'},
+      {:title=>'Departure lounge', :url=>'category.jspa?categoryID=2'},
       {:title=>'Check in with Lonely Planet', :url=>'category.jspa?categoryID=11'},
-      {:title=>'The Lobby', :url=>'category.jspa?categoryID=3'}
+      {:title=>'The lobby', :url=>'category.jspa?categoryID=3'}
     ]
   end
 
