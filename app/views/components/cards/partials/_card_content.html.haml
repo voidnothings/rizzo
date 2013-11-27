@@ -12,9 +12,9 @@
     %h2.card__name.js-card-name
       = card[:title]
     - unless card[:double?]
-      - if card[:description].present?
+      - if card[:strapline] || card[:description]
         %p.card__description
-          = card[:description]
+          = card[:strapline] || card[:description]
 
 
     = render partial: "components/cards/partials/image_attribution", locals: {card: card}
