@@ -11,6 +11,7 @@
   font-weight: bold
   padding: 8px 25px
   text-align: center
+  min-height: 40px
   &:hover
     text-decoration: none
   &.is-disabled, &[disabled]
@@ -29,6 +30,7 @@
   width: 100% // Ensure inputs also stretch full width
 
 .btn--slim
+  min-height: 0
   padding: 4px 6px
 
 
@@ -38,7 +40,7 @@
 
 .btn--bookable
   background-color: $yella
-  color: $header-grey
+  color: $body-copy
   .js-hover &:hover
     background-color: $yella-highlight
 
@@ -62,6 +64,10 @@
   background-color: $linkblue
   color: white
 
+.btn--red
+  background-color: $red
+  color: white
+
 .btn--white
   background-color: #fff
   color: $lpblue
@@ -70,11 +76,12 @@
 
 .btn--clear
   border: 1px solid $input-border
-  color: $header-grey
+  color: $body-copy
 
   .read-more-block &
     +font-size(13)
     padding: 0 7px
+    min-height: 0
 
   .read-more-inline &
     +font-size(14)

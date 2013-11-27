@@ -58,6 +58,10 @@ class StyleguideController < GlobalController
     render '/styleguide/activity_list'
   end
 
+  def navigational_dropdown
+    render '/styleguide/navigational_dropdown'
+  end
+
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 end

@@ -1,6 +1,5 @@
 .fieldset
   +font-size(16)
-  color: $header-grey
 
 .fieldset__legend
   margin-bottom: 10px
@@ -10,6 +9,8 @@
   @extend %clearfix
   margin-bottom: 10px
   position: relative
+  .input
+    float: left
 
 .field__label
   +box-sizing()
@@ -63,13 +64,16 @@
 
 .input
   +box-sizing()
+  +transition(background, 0.3, ease)
   @extend %rounded-corners
+
   background-color: $body-background-offset
   border: 1px solid $body-background-offset
   color: $body-copy
-  float: left
   padding: 9px 10px
   width: 100%
+  +placeholder()
+    color: $body-copy
 
   &:focus
     background-color: #fff
@@ -85,6 +89,14 @@
 .input__container
   position: relative
 
+  &.icon--calendar--after
+    &:after
+      width: 22px
+      height: 22px
+      position: absolute
+      right: 8px
+      top: 8px
+
   .field--half &
     float: left
     width: 50%
@@ -93,17 +105,4 @@
   margin: 0 5px
 
 .input--datepicker
-  @extend %rounded-corners
-  background-image: url(image_path("lodgings-spt.png"))
-  background-repeat: no-repeat
-  background-color: #fff
-  color: $header-grey
-  background-position: 97% -111px
-  padding-right: 35px
-  +retinafy()
-    background-image: url(image_path("lodgings-spt-2x.png"))
-    background-size: $lodgings-sprite-size
-    background-repeat: no-repeat
-    background-position: 95% -111px
-  +placeholder()
-    color: $placeholder-copy
+  padding-right: 30px

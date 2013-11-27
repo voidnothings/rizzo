@@ -11,4 +11,13 @@ class RedirectorController < ActionController::Base
     increment_stats_bucket_for_bad_redirected_url(encrypted_url)
     render :status => :bad_request, :nothing => true
   end
+
+  def internal
+    begin
+      url = Rizzo::UrlValidator.validate(params[:url])
+      redirect_to url
+    rescue Rizzo::UrlValidator::InvalidUrl
+      render text: 'Not Found', status: '404'
+    end
+  end
 end

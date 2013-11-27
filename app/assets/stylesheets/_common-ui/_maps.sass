@@ -50,7 +50,7 @@
   @extend %media-gallery-transition
   +transform(rotateY(70deg) translateX(100px) translateZ(-250px))
   background: #fff
-  height: 380px
+  height: 360px
   position: absolute
   right: -420px
   top: 12px
@@ -58,6 +58,7 @@
   opacity: 0
   visibility: hidden
   z-index: -1
+  padding-bottom: 20px
 
   .nearby-pois
     height: 100%
@@ -116,7 +117,7 @@
   .copy--body
     @extend %lp-font-stack // infobox overrides with roboto font
     +font-size(15)
-    color: $header-grey
+    color: $body-copy
     margin-left: 1.2em
     margin-bottom: 0
     font-weight: 300
