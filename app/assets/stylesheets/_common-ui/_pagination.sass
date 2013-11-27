@@ -2,16 +2,8 @@
   position: relative
 
   &.card
-    border-radius: 4px
+    @extend %rounded-corners
     padding: 8px 20px
-
-    .pagination__backwards,
-    .pagination__forwards
-      top: 8px
-    .pagination__backwards
-      left: 20px
-    .pagination__forwards
-      right: 20px
 
     .stack__intro + &,
     .card.results + &
@@ -35,16 +27,6 @@
 .pagination__link--current
   opacity: 0.5
 
-.pagination__backwards,
-.pagination__forwards
-  @extend %clearfix
-  position: absolute
-  top: 0
-
-.pagination__backwards
-  left: 0
-.pagination__forwards
-  right: 0
 .pagination__numbers
   text-align: center
 

@@ -1,7 +1,15 @@
 - if properties[:total] > 1
   .pagination{ class: properties[:classes] }
+    
+    - if properties[:current] < properties[:total]
+      .pagination__forwards.split--right
+        %a.pagination__link.pagination__link--last{ href: sprintf(properties[:path], properties[:total]) }<
+          Last
+        %a.pagination__link.pagination__link--next{ href: sprintf(properties[:path], properties[:current] + 1)}<
+          &gt;
+
     - if properties[:current] > 1
-      .pagination__backwards
+      .pagination__backwards.split--left
         %a.pagination__link.pagination__link--prev{ href: sprintf(properties[:path], properties[:current] - 1) }<
           &lt;
         %a.pagination__link.pagination__link--first{ href: sprintf(properties[:path], 1) }<
@@ -29,10 +37,3 @@
         - else
           .pagination__link.pagination__link--current<
             = num
-    
-    - if properties[:current] < properties[:total]
-      .pagination__forwards
-        %a.pagination__link.pagination__link--last{ href: sprintf(properties[:path], properties[:total]) }<
-          Last
-        %a.pagination__link.pagination__link--next{ href: sprintf(properties[:path], properties[:current] + 1)}<
-          &gt;
