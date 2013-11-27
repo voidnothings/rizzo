@@ -21,6 +21,7 @@
 .card__hero--hotels:after
   background-image: image_url('collections/best-places.png')
 
+
 // -----------------------------------------------------------------------------
 // Card Content
 // -----------------------------------------------------------------------------
@@ -87,7 +88,6 @@
     font-size: 28px
 
 
-
 // -----------------------------------------------------------------------------
 // Card Footer
 // -----------------------------------------------------------------------------
@@ -132,6 +132,7 @@
     font-size: 24px
     position: relative
     top: 3px
+
 
 // -----------------------------------------------------------------------------
 // Card Footer Items
@@ -231,6 +232,9 @@
   &:before
     +font-size(30)
     line-height: 0.333em
+  .card--page__hero--attributed &
+    &:before
+      line-height: 0.55em
 
 .card__attribution-link
   cursor: pointer
@@ -243,9 +247,11 @@
   display: inline-block
   height: 17px
   text-indent: -999em
+  vertical-align: middle
   width: 17px
   .card--single &
     height: 12px
+    vertical-align: sub
     width: 13px
 
 .card__licenses
