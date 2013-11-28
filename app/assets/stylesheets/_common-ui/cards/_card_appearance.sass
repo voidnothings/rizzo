@@ -143,20 +143,10 @@
   margin-right: 5px
   padding-left: 18px
   &:before
-    color: $body-copy
+    @extend %left-icon
     top: 0
-
-.destination__item-count--sights
-  @extend %left-icon
-  &:before
-    height: 23px
-    width: 23px
-
-.destination__item-count--lodgings
-  @extend %left-icon
-  &:before
-    width: 27px
-    height: 27px
+    height: 16px
+    width: 16px
 
 // -----------------------------------------------------------------------------
 // List view cards
