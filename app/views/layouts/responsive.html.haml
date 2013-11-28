@@ -30,6 +30,8 @@
       = yield
 
     .wrap--footer
+      - if (yield :breadcrumbs).present?
+        = yield :breadcrumbs
       = render 'layouts/core/snippets/body_footer', responsive: true
 
     .js-config.is-hidden
