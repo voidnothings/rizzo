@@ -1,5 +1,6 @@
 @import '_partials/card_forum'
 @import '_partials/forms'
+@import '_partials/moderator-tools'
 @import '_partials/post'
 @import '_partials/user'
 @import '_partials/whos_online'
@@ -48,6 +49,18 @@
   .copy--h3
     margin-bottom: 12px
     text-align: center
+
+.stack__intro__toolbar
+  .copy--meta
+    margin: 8px 0 0
+    &, & a
+      color: $feature-copy
+  // This needs to be updated to use SVG when it's ready.
+  // .text-icon--clock
+  //   &:before
+  //     +font-size(24)
+  //     margin-right: 2px
+  //     vertical-align: top
 
 .row__inner--secondary
   .place-title
