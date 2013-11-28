@@ -24,7 +24,7 @@
     .row.row--content{class: @no_wallpaper ? "" : "#js-row--content"}
       - if (yield :secondary).present?
         .row.row--secondary#js-secondary-nav
-          .row--secondary__inner
+          .row__inner
             = yield :secondary  
 
       = yield
