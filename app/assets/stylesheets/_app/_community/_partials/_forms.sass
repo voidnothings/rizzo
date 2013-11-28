@@ -1,6 +1,9 @@
 // -----------------------------------------------------------------------------
 // Styling for thorntree forms (currently using the simple_form gem)
 // -----------------------------------------------------------------------------
+.simple-form
+  @extend %clearfix
+
 .row--compose
   .simple-form
     @extend %rounded-corners
@@ -38,6 +41,9 @@
   border-bottom: 1px solid $subdued
   margin: 0 -20px
   padding: 13px 20px
+  .simple-form__field.first &
+    border-radius: 4px 4px 0 0
+
 .markItUpButton
   display: inline-block
   list-style: none
