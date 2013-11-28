@@ -48,7 +48,7 @@
       %input{type: "checkbox", id: 'ac-thorntree', class: "accordion__input"}
       .nav--stacked.accordion__target.accordion__target--mid
         %label{for: 'ac-thorntree', class: 'accordion__title accordion__title--footer icon--chevron-down--grey--after'}
-        %a.js-nav-item.title--footer.title--list--footer(href='http://www.lonelyplanet.com/thorntree') Thorn Tree Forum
+        %a.js-nav-item.title--footer.title--list--footer(href='http://www.lonelyplanet.com/thorntree') Thorn Tree forum
         - footer_nav_thorntree_items.each do |thorntree|
           %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "http://www.lonelyplanet.com/thorntree/#{thorntree[:url]}"}<
             = thorntree[:title]
@@ -66,7 +66,7 @@
       %input{type: "checkbox", id: 'ac-bookings', class: "accordion__input"}
       .nav--stacked.accordion__target.accordion__target--mid
         %label{for: 'ac-bookings', class: 'accordion__title accordion__title--footer icon--chevron-down--grey--after'}
-        %a.js-nav-item.title--footer.title--list--footer(href='http://www.lonelyplanet.com/bookings') Travel Booking
+        %a.js-nav-item.title--footer.title--list--footer(href='http://www.lonelyplanet.com/bookings') Travel booking
         - footer_nav_travel_bookings_items.each do |booking|
           %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "http://www.lonelyplanet.com/#{booking[:url]}"}<
             = booking[:title]

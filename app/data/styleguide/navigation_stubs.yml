@@ -69,7 +69,7 @@ left_nav_stub:
 
 secondary_navigation_stub:
   :section_name: 'Hotels'
-  :items: 
+  :items:
     -
       :title: 'Overview'
       :slug: 'argentina'
@@ -80,8 +80,8 @@ secondary_navigation_stub:
       :title: 'Hotels'
       :slug: 'hotels'
     -
-      :title: 'Tips & Articles'
+      :title: 'Tips & articles'
       :slug: 'travel-tips-and-articles'
     -
-      :title: 'Images & Video'
+      :title: 'Images & video'
       :slug: 'images-and-video'
