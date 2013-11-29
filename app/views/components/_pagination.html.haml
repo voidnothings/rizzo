@@ -1,6 +1,6 @@
 - if properties[:total] > 1
   .pagination{ class: properties[:classes] }
-    
+
     - if properties[:current] < properties[:total]
       .pagination__forwards.split--right
         %a.pagination__link.pagination__link--last{ href: sprintf(properties[:path], properties[:total]) }<
@@ -19,17 +19,18 @@
       - start = 1
       - finish = properties[:total]
       - num_visible = properties[:num_visible] || 5
-      - offset = (num_visible / 2).floor
+      - offset = (num_visible / 2.0).ceil # Force a floating point number
 
       - if properties[:total] > num_visible
-        - if properties[:total] - offset <= properties[:current] # [x] [x] [x] [x] [√] [√] [c] [√] [√]
-          - start = properties[:total] - num_visible
-        - elsif properties[:current] <= offset+1 # [√] [√] [c] [√] [√] [x] [x] [x] [x]
+        - if properties[:current] >= (properties[:total] - offset) # [x] [x] [x] [x] [√] [√] [c] [√] [√]
+          - start = properties[:total] - num_visible + 1
+        - elsif properties[:current] < offset # [√] [√] [c] [√] [√] [x] [x] [x] [x]
           - finish = num_visible
         - else # [x] [√] [√] [c] [√] [√] [x] [x] [x]
-          - start = properties[:current] - offset
-          - finish = properties[:current] + offset
-        
+          - start = properties[:current] - offset + 1
+          - finish = properties[:current] + offset - 1
+
+
       - for num in start..finish
         - if properties[:current] != num
           %a.pagination__link{ href: sprintf(properties[:path], num), data: { current: properties[:current], num: num} }<
