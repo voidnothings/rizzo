@@ -4,7 +4,7 @@
 # Obs:
 # On a early stage and still very opinionated, which means that it needs abstractions.
 #
-# Arguments: 
+# Arguments:
 #   _args (An hash containing)
 #     selector    : [string] The target element
 #     text        : [array]  An array of strings with the text title for each state
@@ -22,22 +22,22 @@
 #      onupdate: (section, state) =>
 #        console.log(state)
 #  new lp.SectionToggle(args)
-# 
+#
 # Dependencies:
 #   jQuery
- 
+
 define ['jquery'], ($) ->
- 
+
   class SectionToggle
-  
+
     # TODO: turn on transition events again when they're actually reliable!!
 
     @version: '0.0.4'
-    
+
     constructor: (args={}) ->
       @config =
         selector:   '.js-read-more'
-        text:       ['Read More', 'Read Less']
+        text:       ['Read more', 'Read less']
         maxHeight:  2500
         tolerance: 0
 
@@ -68,9 +68,9 @@ define ['jquery'], ($) ->
       @wrapper.append(@handler)
       @handler.wrap("<div class='read-more__handler'/>") if @config.shadow
       @bindEvents()
-    
+
     bindEvents: ->
-      # @wrapper.on('transitionend', => 
+      # @wrapper.on('transitionend', =>
       #   console.log 'transitionend'
       #   @toggleClasses()
       # )

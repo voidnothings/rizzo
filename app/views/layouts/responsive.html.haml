@@ -24,12 +24,14 @@
     .row.row--content{class: @no_wallpaper ? "" : "#js-row--content"}
       - if (yield :secondary).present?
         .row.row--secondary#js-secondary-nav
-          .row--secondary__inner
+          .row__inner
             = yield :secondary  
 
       = yield
 
     .wrap--footer
+      - if (yield :breadcrumbs).present?
+        = yield :breadcrumbs
       = render 'layouts/core/snippets/body_footer', responsive: true
 
     .js-config.is-hidden
