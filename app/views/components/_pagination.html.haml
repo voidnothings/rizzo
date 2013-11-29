@@ -1,18 +1,25 @@
 - if properties[:total] > 1
+
+  - href = properties[:path]
+
+  - if properties[:param]
+    - href.sub!(/(#{properties[:param]})\=([0-9]+)(&amp;|&)?/, '') # Remove any existing pagination param
+    - href+= "#{/\?/.match(href) ? '&amp;' : '?'}#{properties[:param]}=%s" # Append new param
+
   .pagination{ class: properties[:classes] }
 
     - if properties[:current] < properties[:total]
       .pagination__forwards.split--right
-        %a.pagination__link.pagination__link--last{ href: sprintf(properties[:path], properties[:total]) }<
+        %a.pagination__link.pagination__link--last{ href: sprintf(href, properties[:total]) }<
           Last
-        %a.pagination__link.pagination__link--next{ href: sprintf(properties[:path], properties[:current] + 1)}<
+        %a.pagination__link.pagination__link--next{ href: sprintf(href, properties[:current] + 1)}<
           &gt;
 
     - if properties[:current] > 1
       .pagination__backwards.split--left
-        %a.pagination__link.pagination__link--prev{ href: sprintf(properties[:path], properties[:current] - 1) }<
+        %a.pagination__link.pagination__link--prev{ href: sprintf(href, properties[:current] - 1) }<
           &lt;
-        %a.pagination__link.pagination__link--first{ href: sprintf(properties[:path], 1) }<
+        %a.pagination__link.pagination__link--first{ href: sprintf(href, 1) }<
           First
 
     .pagination__numbers
@@ -30,10 +37,9 @@
           - start = properties[:current] - offset + 1
           - finish = properties[:current] + offset - 1
 
-
       - for num in start..finish
         - if properties[:current] != num
-          %a.pagination__link{ href: sprintf(properties[:path], num), data: { current: properties[:current], num: num} }<
+          %a.pagination__link{ href: sprintf(href, num), data: { current: properties[:current], num: num} }<
             = num
         - else
           .pagination__link.pagination__link--current<

@@ -67,23 +67,23 @@ describe "components/_pagination.html.haml" do
 
   describe 'pagination numbers' do
 
-    it 'renders pagination numbers given a total of 5' do
+    it 'renders pagination numbers given a total > 1' do
 
       view.stub(properties: default_properties)
 
       render
 
-      rendered.should have_css('.pagination__numbers')
+      rendered.should have_css('.pagination')
 
     end
 
-    it 'does not render pagination given a total of 1' do
+    it 'does not render pagination given a total <= 1' do
 
       view.stub(properties: default_properties.merge( :total => 1 ))
 
       render
 
-      rendered.should_not have_css('.pagination__numbers')
+      rendered.should_not have_css('.pagination')
 
     end
 
@@ -119,9 +119,9 @@ describe "components/_pagination.html.haml" do
 
     end
 
-    it 'renders numbers 16-20 given a total of 20 and current page number of 18' do
+    it 'renders numbers 16-20 given a total of 20 and current page number of 19' do
 
-      view.stub(properties: default_properties.merge( :total => 20, :current => 18 ))
+      view.stub(properties: default_properties.merge( :total => 20, :current => 19 ))
 
       render
 
@@ -147,9 +147,25 @@ describe "components/_pagination.html.haml" do
     end
 
     it 'appends the given URL parameter if it does not already exist in the given path' do
+
+      view.stub(properties: default_properties.merge( :path => '/?foo=bar', :param => 'page' ))
+
+      render
+
+      links = Capybara.string(rendered).all('.pagination__numbers a.pagination__link').map { |el| el[:href] }
+      links.should eq( ['/?foo=bar&amp;page=2', '/?foo=bar&amp;page=3', '/?foo=bar&amp;page=4', '/?foo=bar&amp;page=5'] )
+
     end
 
     it 'replaces the given URL parameter if it already exists in the given path' do
+
+      view.stub(properties: default_properties.merge( :path => '/?foo=bar&page=1&amp;baz=qux', :param => 'page' ))
+
+      render
+
+      links = Capybara.string(rendered).all('.pagination__numbers a.pagination__link').map { |el| el[:href] }
+      links.should eq( ['/?foo=bar&baz=qux&amp;page=2', '/?foo=bar&baz=qux&amp;page=3', '/?foo=bar&baz=qux&amp;page=4', '/?foo=bar&baz=qux&amp;page=5'] )
+
     end
 
   end
