@@ -3,7 +3,7 @@
   - href = properties[:path]
 
   - if properties[:param]
-    - href.sub!(/(#{properties[:param]})\=([0-9]+)(&amp;|&)?/, '') # Remove any existing pagination param
+    - href = href.sub(/(#{properties[:param]})\=([0-9]+)(&amp;|&)?/, '') # Remove any existing pagination param
     - href+= "#{/\?/.match(href) ? '&amp;' : '?'}#{properties[:param]}=%s" # Append new param
 
   .pagination{ class: properties[:classes] }

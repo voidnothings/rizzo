@@ -146,7 +146,7 @@ describe "components/_pagination.html.haml" do
 
     end
 
-    it 'appends the given URL parameter if it does not already exist in the given path' do
+    it 'appends the given URL parameter if it does not already exist in the path' do
 
       view.stub(properties: default_properties.merge( :path => '/?foo=bar', :param => 'page' ))
 
@@ -157,9 +157,9 @@ describe "components/_pagination.html.haml" do
 
     end
 
-    it 'replaces the given URL parameter if it already exists in the given path' do
+    it 'replaces the given URL parameter if it already exists in the path' do
 
-      view.stub(properties: default_properties.merge( :path => '/?foo=bar&page=1&amp;baz=qux', :param => 'page' ))
+      view.stub(properties: default_properties.merge( :path => '/?foo=bar&page=1&baz=qux', :param => 'page' ))
 
       render
 
