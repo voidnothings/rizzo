@@ -92,6 +92,7 @@
 .media-gallery__container
   +perspective()
   background-color: $body-background
+  overflow: hidden
   position: relative
   .is-loading
     height: 100%
@@ -99,6 +100,10 @@
       top: 50%
   &.is-loading:after
     top: 50%
+
+  .map &
+    // Avoids WebKit/Blink bug of map moving when changing POI
+    overflow: visible
 
 .media-gallery__img
   @extend %transition--base
