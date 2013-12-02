@@ -41,7 +41,7 @@ require ['public/assets/javascripts/lib/managers/select_group_manager'], (Select
         $('.select-manager-form').on 'submit', (e)->
           e.preventDefault()
           false
-        $('.js-select').data('form_submit', 'true')
+        $('.js-select').data('form-submit', 'true')
         new SelectGroupManager()
 
         $('.js-select').val('bar').change()

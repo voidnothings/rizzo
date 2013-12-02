@@ -22,7 +22,7 @@ define ['jsmin', 'lib/utils/page_state', 'lib/extends/events'], ($, PageState, E
 
       width = 0
       i = 0
-      while width < viewport
+      while width < viewport and @$cards[i]
         @firstCards.push(@$cards[i])
         width += @$cards[i].getBoundingClientRect().width
         i++
