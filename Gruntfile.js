@@ -19,31 +19,34 @@ module.exports = function (grunt) {
             }
         },
         grunticon: {
-            inactive: {
-                options: {
-                    cssprefix: 'icon--',
-                    datapngcss: 'inactive.png.css',
-                    datasvgcss: 'inactive.svg.css',
-                    defaultWidth: '32px',
-                    dest: './app/assets/stylesheets/icons',
-                    pseudoElems: true,
-                    src: './app/assets/images/icons/inactive',
-                    urlpngcss: 'inactive.fallback.css'
-                }
-            },
             active: {
                 options:{
                     cssprefix: 'icon--',
                     customselectors: {
                         "*": ".$1--before:before, .$1--after:after"
                     },
-                    datasvgcss: 'active.svg.css',
+                    datasvgcss: 'active.css',
                     datapngcss: 'active.png.css',
                     defaultWidth: '32px',
                     dest: './app/assets/stylesheets/icons',
                     pseudoElems: true,
                     src: './app/assets/images/icons/active',
                     urlpngcss: 'active.fallback.css'
+                }
+            },
+            critical: {
+                options:{
+                    cssprefix: 'icon--',
+                    customselectors: {
+                        "*": ".$1--before:before, .$1--after:after"
+                    },
+                    datasvgcss: 'critical.svg.css',
+                    datapngcss: 'critical.png.css',
+                    defaultWidth: '32px',
+                    dest: './app/assets/stylesheets/icons',
+                    pseudoElems: true,
+                    src: './app/assets/images/icons/active',
+                    urlpngcss: 'critical.css'
                 }
             }
         },
@@ -165,6 +168,5 @@ module.exports = function (grunt) {
     // curl https://github.com/filamentgroup/grunticon/pull/84.patch | patch -p1
     // Until this (or a similar PR is merged)
     // https://github.com/filamentgroup/grunticon/pull/84
-    // At the moment it includes a manual step within the npm module and running this would kill the icons
-    grunt.registerTask('icons', ['svgmin', 'grunticon:active', 'shell:clean_icons', 'shell:move']);
+    grunt.registerTask('icon', ['svgmin', 'grunticon', 'shell:clean_icons', 'shell:move']);
 };
