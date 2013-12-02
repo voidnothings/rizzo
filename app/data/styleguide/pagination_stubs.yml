@@ -12,3 +12,8 @@
   :current: 5
   :total: 5
   :path: "/styleguide/pagination/%i"
+-
+  :current: 5
+  :total: 10
+  :path: "/styleguide/pagination/?foo=bar&baz=qux&page=5"
+  :param: "page"
