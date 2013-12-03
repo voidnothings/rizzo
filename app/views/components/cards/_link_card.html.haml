@@ -1,14 +1,23 @@
-%article.card.card--link.card--single.card--extended-content--half.js-single.js-card{ class: "card--link--#{stack_item.title.downcase}"}
-  %a.link--wrapper(href="#{stack_item.url}")
-    - if stack_item.count
-      %span.card__item-count{class: "icon--#{stack_item.title.downcase.singularize}-pin--before"}
-        = stack_item.count
-    %figure.card__hero
-      = safe_image_tag("cards/#{stack_item.title.downcase}.png", class: 'card__image', alt: "#{stack_item.title}", lazyload: defined?(lazyload))
-    .card__content
-      %span.card__context
-        Collection
-      %h2.card__name.js-card-name
-        #{stack_item.title}
-        - if defined? place
-          in #{place}
+:ruby
+
+  css_classes = [
+
+    "card",
+    "card--link",
+    "card--link--#{card[:title].downcase}",
+    "card--extended-content--half",
+    "#{card[:filter] ? 'js-stack-card-filter' : ''}",
+    "#{card[:double?] ? 'card--double card--full-image' : 'card--single'}"
+
+  ].join(" ")
+
+
+%article.js-card{class: css_classes, data: { filter: card[:filter] } }
+
+  %a.link--wrapper{href: card[:url]}
+
+    - if card[:count]
+      %span.card__item-count
+        = card[:count]
+
+    = render partial: "components/cards/partials/card_content", locals: {card: card}
