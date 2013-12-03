@@ -1,6 +1,6 @@
 :javascript
   (function(html) {
-    var activePath = "#{asset_path('icons/" + sheet + ".css')}";
+    var activePath = "#{asset_path('icons/' + sheet + '.css')}";
     var criticalPath = "#{asset_path('icons/critical.css')}";
     function styleSheet(path) {
       var link = document.createElement("link");
@@ -9,13 +9,13 @@
       link.href = path;
       return link;
     }
-    var script = document.getElementsByTagname("script")[0];
+    var script = document.getElementsByTagName("script")[0];
     var head = script.parentNode;
-    if ("background-size" in html) {
-      head.insertBefore(styleSheet(activePath, script);
+    if ("background-size" in html.style) {
+      head.insertBefore(styleSheet(activePath, script));
       html.className += " supports-svg";
     } else {
-      head.insertBefore(styleSheet(criticalPath, script);
+      head.insertBefore(styleSheet(criticalPath, script));
       html.className += " no-background-size";
     }
   }(document.documentElement));
