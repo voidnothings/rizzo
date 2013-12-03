@@ -148,34 +148,34 @@ describe "components/_pagination.html.haml" do
 
     it 'appends the given URL parameter if it does not already exist in the path' do
 
-      view.stub(properties: default_properties.merge( :path => '/path/to/page?foo=bar&amp;baz=qux', :param => 'page' ))
+      view.stub(properties: default_properties.merge( :path => '/path/to/page?foo=bar&baz=qux', :param => 'page' ))
 
       render
 
       links = Capybara.string(rendered).all('.pagination__numbers a.pagination__link').map { |el| el[:href] }
       links.should eq( [
-        '/path/to/page?foo=bar&amp;baz=qux&amp;page=2',
-        '/path/to/page?foo=bar&amp;baz=qux&amp;page=3',
-        '/path/to/page?foo=bar&amp;baz=qux&amp;page=4',
-        '/path/to/page?foo=bar&amp;baz=qux&amp;page=5'
+        '/path/to/page?foo=bar&baz=qux&page=2',
+        '/path/to/page?foo=bar&baz=qux&page=3',
+        '/path/to/page?foo=bar&baz=qux&page=4',
+        '/path/to/page?foo=bar&baz=qux&page=5'
       ] )
 
     end
 
     it 'replaces the given URL parameter if it already exists in the path' do
 
-      view.stub(properties: default_properties.merge( :path => '/path/to/page?foo=bar&amp;baz=qux&amp;page=5', :param => 'page' ))
-      # view.stub(properties: default_properties.merge( :path => '/path/to/page?foo=bar&amp;page=5&amp;baz=qux', :param => 'page' ))
-      # view.stub(properties: default_properties.merge( :path => '/path/to/page?page=5&amp;foo=bar&amp;baz=qux', :param => 'page' ))
+      view.stub(properties: default_properties.merge( :path => '/path/to/page?foo=bar&baz=qux&page=5', :param => 'page' ))
+      # view.stub(properties: default_properties.merge( :path => '/path/to/page?foo=bar&page=5&baz=qux', :param => 'page' ))
+      # view.stub(properties: default_properties.merge( :path => '/path/to/page?page=5&foo=bar&baz=qux', :param => 'page' ))
 
       render
 
       links = Capybara.string(rendered).all('.pagination__numbers a.pagination__link').map { |el| el[:href] }
       links.should eq( [
-        '/path/to/page?foo=bar&amp;baz=qux&amp;page=2',
-        '/path/to/page?foo=bar&amp;baz=qux&amp;page=3',
-        '/path/to/page?foo=bar&amp;baz=qux&amp;page=4',
-        '/path/to/page?foo=bar&amp;baz=qux&amp;page=5'
+        '/path/to/page?foo=bar&baz=qux&page=2',
+        '/path/to/page?foo=bar&baz=qux&page=3',
+        '/path/to/page?foo=bar&baz=qux&page=4',
+        '/path/to/page?foo=bar&baz=qux&page=5'
       ] )
 
     end
