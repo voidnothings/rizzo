@@ -30,7 +30,7 @@ module.exports = function (grunt) {
                     defaultWidth: '32px',
                     dest: './app/assets/stylesheets/icons',
                     pseudoElems: true,
-                    src: './app/assets/images/icons/active',
+                    src: './app/assets/images/icons/active/',
                     urlpngcss: 'active.fallback.css'
                 }
             },
@@ -45,7 +45,7 @@ module.exports = function (grunt) {
                     defaultWidth: '32px',
                     dest: './app/assets/stylesheets/icons',
                     pseudoElems: true,
-                    src: './app/assets/images/icons/active',
+                    src: './app/assets/images/icons/active/critical',
                     urlpngcss: 'critical.css'
                 }
             }
