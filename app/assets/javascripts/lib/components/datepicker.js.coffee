@@ -39,7 +39,7 @@ define ['jquery', 'jplugs/pickadate.legacy'], ($) ->
         dateMin: today
         format: config.dateFormat
         onSelect: ->
-          self.dateSelec8ted(this.getDate(config.dateFormat), "start")
+          self.dateSelected(this.getDate(config.dateFormat), "start")
       })
 
       @out_date.pickadate({
