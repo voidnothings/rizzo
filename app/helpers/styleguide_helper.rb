@@ -64,6 +64,10 @@ module StyleguideHelper
               path: "/styleguide/cards"
             },
             {
+              name: "Tiles",
+              path: "/styleguide/tiles"
+            },
+            {
               name: "Forms",
               path: "/styleguide/forms"
             },

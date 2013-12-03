@@ -37,6 +37,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/secondary-nav'         => 'styleguide#secondaryNavigation'
   get 'styleguide/left-nav'              => 'styleguide#leftNavigation'
   get 'styleguide/cards'                 => 'styleguide#cards'
+  get 'styleguide/tiles'                 => 'styleguide#tiles'
   get 'styleguide/buttons'               => 'styleguide#buttons'
   get 'styleguide/badges'                => 'styleguide#badges'
   get 'styleguide/page-title'            => 'styleguide#pageTitle'
