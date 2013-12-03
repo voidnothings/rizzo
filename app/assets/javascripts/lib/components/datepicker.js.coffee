@@ -13,6 +13,7 @@ define ['jquery', 'jplugs/pickadate.legacy'], ($) ->
  
     config =
       callbacks: {}
+      dateFormat: 'yyyy/mm/dd'
       startSelector: "#js-av-start"
       endSelector: "#js-av-end"
 
@@ -36,14 +37,16 @@ define ['jquery', 'jplugs/pickadate.legacy'], ($) ->
 
       @in_date.pickadate({
         dateMin: today
+        format: config.dateFormat
         onSelect: ->
-          self.dateSelected(this.getDate('yyyy/mm/dd'), "start")
+          self.dateSelected(this.getDate(config.dateFormat), "start")
       })
 
       @out_date.pickadate({
         dateMin: tomorrow
+        format: config.dateFormat
         onSelect: ->
-          self.dateSelected(this.getDate('yyyy/mm/dd'), "end")
+          self.dateSelected(this.getDate(config.dateFormat), "end")
 
       })
 
@@ -66,10 +69,10 @@ define ['jquery', 'jplugs/pickadate.legacy'], ($) ->
         config.callbacks.onDateSelect(date, type)
 
     inValue: ->
-      new Date($(@in_date).data('pickadate').getDate('yyyy/mm/dd'))
+      new Date($(@in_date).data('pickadate').getDate(config.dateFormat))
 
     outValue: ->
-      new Date($(@out_date).data('pickadate').getDate('yyyy/mm/dd'))
+      new Date($(@out_date).data('pickadate').getDate(config.dateFormat))
 
     isValidEndDate: ->
       @inValue() < @outValue()
