@@ -1,6 +1,15 @@
 .icon--accessibility,
 .icon--accessibility--before:before, .icon--accessibility--after:after { background-image: url(png/accessibility.png); background-repeat: no-repeat; }
 
+.icon--activity--line,
+.icon--activity--line--before:before, .icon--activity--line--after:after { background-image: url(png/activity--line.png); background-repeat: no-repeat; }
+
+.icon--activity--pin--simple,
+.icon--activity--pin--simple--before:before, .icon--activity--pin--simple--after:after { background-image: url(png/activity--pin--simple.png); background-repeat: no-repeat; }
+
+.icon--activity--pin,
+.icon--activity--pin--before:before, .icon--activity--pin--after:after { background-image: url(png/activity--pin.png); background-repeat: no-repeat; }
+
 .icon--activity,
 .icon--activity--before:before, .icon--activity--after:after { background-image: url(png/activity.png); background-repeat: no-repeat; }
 
@@ -22,6 +31,15 @@
 .icon--arrow-up,
 .icon--arrow-up--before:before, .icon--arrow-up--after:after { background-image: url(png/arrow-up.png); background-repeat: no-repeat; }
 
+.icon--article--line,
+.icon--article--line--before:before, .icon--article--line--after:after { background-image: url(png/article--line.png); background-repeat: no-repeat; }
+
+.icon--article--pin--simple,
+.icon--article--pin--simple--before:before, .icon--article--pin--simple--after:after { background-image: url(png/article--pin--simple.png); background-repeat: no-repeat; }
+
+.icon--article--pin,
+.icon--article--pin--before:before, .icon--article--pin--after:after { background-image: url(png/article--pin.png); background-repeat: no-repeat; }
+
 .icon--article-pin,
 .icon--article-pin--before:before, .icon--article-pin--after:after { background-image: url(png/article-pin.png); background-repeat: no-repeat; }
 
@@ -30,6 +48,9 @@
 
 .icon--back-arrow,
 .icon--back-arrow--before:before, .icon--back-arrow--after:after { background-image: url(png/back-arrow.png); background-repeat: no-repeat; }
+
+.icon--bar--pin,
+.icon--bar--pin--before:before, .icon--bar--pin--after:after { background-image: url(png/bar--pin.png); background-repeat: no-repeat; }
 
 .icon--bar,
 .icon--bar--before:before, .icon--bar--after:after { background-image: url(png/bar.png); background-repeat: no-repeat; }
@@ -52,6 +73,9 @@
 .icon--bus,
 .icon--bus--before:before, .icon--bus--after:after { background-image: url(png/bus.png); background-repeat: no-repeat; }
 
+.icon--by,
+.icon--by--before:before, .icon--by--after:after { background-image: url(png/by.png); background-repeat: no-repeat; }
+
 .icon--calendar,
 .icon--calendar--before:before, .icon--calendar--after:after { background-image: url(png/calendar.png); background-repeat: no-repeat; }
 
@@ -66,6 +90,9 @@
 
 .icon--caution,
 .icon--caution--before:before, .icon--caution--after:after { background-image: url(png/caution.png); background-repeat: no-repeat; }
+
+.icon--cc,
+.icon--cc--before:before, .icon--cc--after:after { background-image: url(png/cc.png); background-repeat: no-repeat; }
 
 .icon--chevron-down,
 .icon--chevron-down--before:before, .icon--chevron-down--after:after { background-image: url(png/chevron-down.png); background-repeat: no-repeat; }
@@ -84,6 +111,12 @@
 
 .icon--collapse,
 .icon--collapse--before:before, .icon--collapse--after:after { background-image: url(png/collapse.png); background-repeat: no-repeat; }
+
+.icon--collar,
+.icon--collar--before:before, .icon--collar--after:after { background-image: url(png/collar.png); background-repeat: no-repeat; }
+
+.icon--comment--line,
+.icon--comment--line--before:before, .icon--comment--line--after:after { background-image: url(png/comment--line.png); background-repeat: no-repeat; }
 
 .icon--comment-line,
 .icon--comment-line--before:before, .icon--comment-line--after:after { background-image: url(png/comment-line.png); background-repeat: no-repeat; }
@@ -109,6 +142,9 @@
 .icon--destination,
 .icon--destination--before:before, .icon--destination--after:after { background-image: url(png/destination.png); background-repeat: no-repeat; }
 
+.icon--drinking--pin--simple,
+.icon--drinking--pin--simple--before:before, .icon--drinking--pin--simple--after:after { background-image: url(png/drinking--pin--simple.png); background-repeat: no-repeat; }
+
 .icon--dude-confused,
 .icon--dude-confused--before:before, .icon--dude-confused--after:after { background-image: url(png/dude-confused.png); background-repeat: no-repeat; }
 
@@ -121,8 +157,26 @@
 .icon--email,
 .icon--email--before:before, .icon--email--after:after { background-image: url(png/email.png); background-repeat: no-repeat; }
 
+.icon--entertainment--pin--simple,
+.icon--entertainment--pin--simple--before:before, .icon--entertainment--pin--simple--after:after { background-image: url(png/entertainment--pin--simple.png); background-repeat: no-repeat; }
+
+.icon--entertainment--pin,
+.icon--entertainment--pin--before:before, .icon--entertainment--pin--after:after { background-image: url(png/entertainment--pin.png); background-repeat: no-repeat; }
+
 .icon--entertainment,
 .icon--entertainment--before:before, .icon--entertainment--after:after { background-image: url(png/entertainment.png); background-repeat: no-repeat; }
+
+.icon--envelope,
+.icon--envelope--before:before, .icon--envelope--after:after { background-image: url(png/envelope.png); background-repeat: no-repeat; }
+
+.icon--event--pin--simple,
+.icon--event--pin--simple--before:before, .icon--event--pin--simple--after:after { background-image: url(png/event--pin--simple.png); background-repeat: no-repeat; }
+
+.icon--event--pin,
+.icon--event--pin--before:before, .icon--event--pin--after:after { background-image: url(png/event--pin.png); background-repeat: no-repeat; }
+
+.icon--event,
+.icon--event--before:before, .icon--event--after:after { background-image: url(png/event.png); background-repeat: no-repeat; }
 
 .icon--expand-full-screen,
 .icon--expand-full-screen--before:before, .icon--expand-full-screen--after:after { background-image: url(png/expand-full-screen.png); background-repeat: no-repeat; }
@@ -151,6 +205,9 @@
 .icon--flickr,
 .icon--flickr--before:before, .icon--flickr--after:after { background-image: url(png/flickr.png); background-repeat: no-repeat; }
 
+.icon--flights--line,
+.icon--flights--line--before:before, .icon--flights--line--after:after { background-image: url(png/flights--line.png); background-repeat: no-repeat; }
+
 .icon--flights-left,
 .icon--flights-left--before:before, .icon--flights-left--after:after { background-image: url(png/flights-left.png); background-repeat: no-repeat; }
 
@@ -168,6 +225,9 @@
 
 .icon--folder,
 .icon--folder--before:before, .icon--folder--after:after { background-image: url(png/folder.png); background-repeat: no-repeat; }
+
+.icon--globe,
+.icon--globe--before:before, .icon--globe--after:after { background-image: url(png/globe.png); background-repeat: no-repeat; }
 
 .icon--google-plus,
 .icon--google-plus--before:before, .icon--google-plus--after:after { background-image: url(png/google-plus.png); background-repeat: no-repeat; }
@@ -187,11 +247,17 @@
 .icon--hamburger,
 .icon--hamburger--before:before, .icon--hamburger--after:after { background-image: url(png/hamburger.png); background-repeat: no-repeat; }
 
+.icon--hand-point--line,
+.icon--hand-point--line--before:before, .icon--hand-point--line--after:after { background-image: url(png/hand-point--line.png); background-repeat: no-repeat; }
+
 .icon--hand-point-line,
 .icon--hand-point-line--before:before, .icon--hand-point-line--after:after { background-image: url(png/hand-point-line.png); background-repeat: no-repeat; }
 
 .icon--hand-point,
 .icon--hand-point--before:before, .icon--hand-point--after:after { background-image: url(png/hand-point.png); background-repeat: no-repeat; }
+
+.icon--home--line,
+.icon--home--line--before:before, .icon--home--line--after:after { background-image: url(png/home--line.png); background-repeat: no-repeat; }
 
 .icon--home-line,
 .icon--home-line--before:before, .icon--home-line--after:after { background-image: url(png/home-line.png); background-repeat: no-repeat; }
@@ -199,11 +265,23 @@
 .icon--home,
 .icon--home--before:before, .icon--home--after:after { background-image: url(png/home.png); background-repeat: no-repeat; }
 
+.icon--hotel--line,
+.icon--hotel--line--before:before, .icon--hotel--line--after:after { background-image: url(png/hotel--line.png); background-repeat: no-repeat; }
+
+.icon--hotel--pin--simple,
+.icon--hotel--pin--simple--before:before, .icon--hotel--pin--simple--after:after { background-image: url(png/hotel--pin--simple.png); background-repeat: no-repeat; }
+
+.icon--hotel--pin,
+.icon--hotel--pin--before:before, .icon--hotel--pin--after:after { background-image: url(png/hotel--pin.png); background-repeat: no-repeat; }
+
 .icon--hotel,
 .icon--hotel--before:before, .icon--hotel--after:after { background-image: url(png/hotel.png); background-repeat: no-repeat; }
 
 .icon--housekeeping,
 .icon--housekeeping--before:before, .icon--housekeeping--after:after { background-image: url(png/housekeeping.png); background-repeat: no-repeat; }
+
+.icon--image--line,
+.icon--image--line--before:before, .icon--image--line--after:after { background-image: url(png/image--line.png); background-repeat: no-repeat; }
 
 .icon--image-line,
 .icon--image-line--before:before, .icon--image-line--after:after { background-image: url(png/image-line.png); background-repeat: no-repeat; }
@@ -211,8 +289,17 @@
 .icon--image,
 .icon--image--before:before, .icon--image--after:after { background-image: url(png/image.png); background-repeat: no-repeat; }
 
+.icon--information--line,
+.icon--information--line--before:before, .icon--information--line--after:after { background-image: url(png/information--line.png); background-repeat: no-repeat; }
+
+.icon--information--pin,
+.icon--information--pin--before:before, .icon--information--pin--after:after { background-image: url(png/information--pin.png); background-repeat: no-repeat; }
+
 .icon--information,
 .icon--information--before:before, .icon--information--after:after { background-image: url(png/information.png); background-repeat: no-repeat; }
+
+.icon--insurance--line,
+.icon--insurance--line--before:before, .icon--insurance--line--after:after { background-image: url(png/insurance--line.png); background-repeat: no-repeat; }
 
 .icon--insurance-line,
 .icon--insurance-line--before:before, .icon--insurance-line--after:after { background-image: url(png/insurance-line.png); background-repeat: no-repeat; }
@@ -232,6 +319,9 @@
 .icon--length,
 .icon--length--before:before, .icon--length--after:after { background-image: url(png/length.png); background-repeat: no-repeat; }
 
+.icon--lightbulb--line,
+.icon--lightbulb--line--before:before, .icon--lightbulb--line--after:after { background-image: url(png/lightbulb--line.png); background-repeat: no-repeat; }
+
 .icon--lightbulb-line,
 .icon--lightbulb-line--before:before, .icon--lightbulb-line--after:after { background-image: url(png/lightbulb-line.png); background-repeat: no-repeat; }
 
@@ -249,6 +339,9 @@
 
 .icon--luggage-storage,
 .icon--luggage-storage--before:before, .icon--luggage-storage--after:after { background-image: url(png/luggage-storage.png); background-repeat: no-repeat; }
+
+.icon--magazine--line,
+.icon--magazine--line--before:before, .icon--magazine--line--after:after { background-image: url(png/magazine--line.png); background-repeat: no-repeat; }
 
 .icon--magazine-line,
 .icon--magazine-line--before:before, .icon--magazine-line--after:after { background-image: url(png/magazine-line.png); background-repeat: no-repeat; }
@@ -268,6 +361,9 @@
 .icon--mouse,
 .icon--mouse--before:before, .icon--mouse--after:after { background-image: url(png/mouse.png); background-repeat: no-repeat; }
 
+.icon--nd,
+.icon--nd--before:before, .icon--nd--after:after { background-image: url(png/nd.png); background-repeat: no-repeat; }
+
 .icon--non-smoking,
 .icon--non-smoking--before:before, .icon--non-smoking--after:after { background-image: url(png/non-smoking.png); background-repeat: no-repeat; }
 
@@ -279,6 +375,9 @@
 
 .icon--parking,
 .icon--parking--before:before, .icon--parking--after:after { background-image: url(png/parking.png); background-repeat: no-repeat; }
+
+.icon--pen--line,
+.icon--pen--line--before:before, .icon--pen--line--after:after { background-image: url(png/pen--line.png); background-repeat: no-repeat; }
 
 .icon--pen-line,
 .icon--pen-line--before:before, .icon--pen-line--after:after { background-image: url(png/pen-line.png); background-repeat: no-repeat; }
@@ -292,8 +391,17 @@
 .icon--pinterest,
 .icon--pinterest--before:before, .icon--pinterest--after:after { background-image: url(png/pinterest.png); background-repeat: no-repeat; }
 
+.icon--place--pin--line,
+.icon--place--pin--line--before:before, .icon--place--pin--line--after:after { background-image: url(png/place--pin--line.png); background-repeat: no-repeat; }
+
+.icon--place--pin,
+.icon--place--pin--before:before, .icon--place--pin--after:after { background-image: url(png/place--pin.png); background-repeat: no-repeat; }
+
 .icon--plane,
 .icon--plane--before:before, .icon--plane--after:after { background-image: url(png/plane.png); background-repeat: no-repeat; }
+
+.icon--point--pin,
+.icon--point--pin--before:before, .icon--point--pin--after:after { background-image: url(png/point--pin.png); background-repeat: no-repeat; }
 
 .icon--point-down,
 .icon--point-down--before:before, .icon--point-down--after:after { background-image: url(png/point-down.png); background-repeat: no-repeat; }
@@ -322,6 +430,15 @@
 .icon--report-flag,
 .icon--report-flag--before:before, .icon--report-flag--after:after { background-image: url(png/report-flag.png); background-repeat: no-repeat; }
 
+.icon--restaurant--line,
+.icon--restaurant--line--before:before, .icon--restaurant--line--after:after { background-image: url(png/restaurant--line.png); background-repeat: no-repeat; }
+
+.icon--restaurant--pin--simple,
+.icon--restaurant--pin--simple--before:before, .icon--restaurant--pin--simple--after:after { background-image: url(png/restaurant--pin--simple.png); background-repeat: no-repeat; }
+
+.icon--restaurant--pin,
+.icon--restaurant--pin--before:before, .icon--restaurant--pin--after:after { background-image: url(png/restaurant--pin.png); background-repeat: no-repeat; }
+
 .icon--restaurant,
 .icon--restaurant--before:before, .icon--restaurant--after:after { background-image: url(png/restaurant.png); background-repeat: no-repeat; }
 
@@ -331,11 +448,17 @@
 .icon--s-bahn,
 .icon--s-bahn--before:before, .icon--s-bahn--after:after { background-image: url(png/s-bahn.png); background-repeat: no-repeat; }
 
+.icon--sa,
+.icon--sa--before:before, .icon--sa--after:after { background-image: url(png/sa.png); background-repeat: no-repeat; }
+
 .icon--search,
 .icon--search--before:before, .icon--search--after:after { background-image: url(png/search.png); background-repeat: no-repeat; }
 
 .icon--settings,
 .icon--settings--before:before, .icon--settings--after:after { background-image: url(png/settings.png); background-repeat: no-repeat; }
+
+.icon--shop-basket--line,
+.icon--shop-basket--line--before:before, .icon--shop-basket--line--after:after { background-image: url(png/shop-basket--line.png); background-repeat: no-repeat; }
 
 .icon--shop-basket-line,
 .icon--shop-basket-line--before:before, .icon--shop-basket-line--after:after { background-image: url(png/shop-basket-line.png); background-repeat: no-repeat; }
@@ -345,6 +468,27 @@
 
 .icon--shop,
 .icon--shop--before:before, .icon--shop--after:after { background-image: url(png/shop.png); background-repeat: no-repeat; }
+
+.icon--shopping--line,
+.icon--shopping--line--before:before, .icon--shopping--line--after:after { background-image: url(png/shopping--line.png); background-repeat: no-repeat; }
+
+.icon--shopping--pin--simple,
+.icon--shopping--pin--simple--before:before, .icon--shopping--pin--simple--after:after { background-image: url(png/shopping--pin--simple.png); background-repeat: no-repeat; }
+
+.icon--shopping--pin,
+.icon--shopping--pin--before:before, .icon--shopping--pin--after:after { background-image: url(png/shopping--pin.png); background-repeat: no-repeat; }
+
+.icon--shopping,
+.icon--shopping--before:before, .icon--shopping--after:after { background-image: url(png/shopping.png); background-repeat: no-repeat; }
+
+.icon--sight--line,
+.icon--sight--line--before:before, .icon--sight--line--after:after { background-image: url(png/sight--line.png); background-repeat: no-repeat; }
+
+.icon--sight--pin--simple,
+.icon--sight--pin--simple--before:before, .icon--sight--pin--simple--after:after { background-image: url(png/sight--pin--simple.png); background-repeat: no-repeat; }
+
+.icon--sight--pin,
+.icon--sight--pin--before:before, .icon--sight--pin--after:after { background-image: url(png/sight--pin.png); background-repeat: no-repeat; }
 
 .icon--sight,
 .icon--sight--before:before, .icon--sight--after:after { background-image: url(png/sight.png); background-repeat: no-repeat; }
@@ -370,8 +514,26 @@
 .icon--tag,
 .icon--tag--before:before, .icon--tag--after:after { background-image: url(png/tag.png); background-repeat: no-repeat; }
 
+.icon--tapered-arrow-down,
+.icon--tapered-arrow-down--before:before, .icon--tapered-arrow-down--after:after { background-image: url(png/tapered-arrow-down.png); background-repeat: no-repeat; }
+
+.icon--tapered-arrow-left,
+.icon--tapered-arrow-left--before:before, .icon--tapered-arrow-left--after:after { background-image: url(png/tapered-arrow-left.png); background-repeat: no-repeat; }
+
+.icon--tapered-arrow-right,
+.icon--tapered-arrow-right--before:before, .icon--tapered-arrow-right--after:after { background-image: url(png/tapered-arrow-right.png); background-repeat: no-repeat; }
+
+.icon--tapered-arrow-up,
+.icon--tapered-arrow-up--before:before, .icon--tapered-arrow-up--after:after { background-image: url(png/tapered-arrow-up.png); background-repeat: no-repeat; }
+
 .icon--taxi,
 .icon--taxi--before:before, .icon--taxi--after:after { background-image: url(png/taxi.png); background-repeat: no-repeat; }
+
+.icon--thumb--tack,
+.icon--thumb--tack--before:before, .icon--thumb--tack--after:after { background-image: url(png/thumb--tack.png); background-repeat: no-repeat; }
+
+.icon--thumbs-up--line,
+.icon--thumbs-up--line--before:before, .icon--thumbs-up--line--after:after { background-image: url(png/thumbs-up--line.png); background-repeat: no-repeat; }
 
 .icon--thumbs-up-line,
 .icon--thumbs-up-line--before:before, .icon--thumbs-up-line--after:after { background-image: url(png/thumbs-up-line.png); background-repeat: no-repeat; }
@@ -388,6 +550,15 @@
 .icon--top-choice,
 .icon--top-choice--before:before, .icon--top-choice--after:after { background-image: url(png/top-choice.png); background-repeat: no-repeat; }
 
+.icon--tour--line,
+.icon--tour--line--before:before, .icon--tour--line--after:after { background-image: url(png/tour--line.png); background-repeat: no-repeat; }
+
+.icon--tour--pin--simple,
+.icon--tour--pin--simple--before:before, .icon--tour--pin--simple--after:after { background-image: url(png/tour--pin--simple.png); background-repeat: no-repeat; }
+
+.icon--tour--pin,
+.icon--tour--pin--before:before, .icon--tour--pin--after:after { background-image: url(png/tour--pin.png); background-repeat: no-repeat; }
+
 .icon--tour,
 .icon--tour--before:before, .icon--tour--after:after { background-image: url(png/tour.png); background-repeat: no-repeat; }
 
@@ -402,6 +573,9 @@
 
 .icon--transfers,
 .icon--transfers--before:before, .icon--transfers--after:after { background-image: url(png/transfers.png); background-repeat: no-repeat; }
+
+.icon--transport--pin,
+.icon--transport--pin--before:before, .icon--transport--pin--after:after { background-image: url(png/transport--pin.png); background-repeat: no-repeat; }
 
 .icon--transport-pin,
 .icon--transport-pin--before:before, .icon--transport-pin--after:after { background-image: url(png/transport-pin.png); background-repeat: no-repeat; }
@@ -426,6 +600,9 @@
 
 .icon--user,
 .icon--user--before:before, .icon--user--after:after { background-image: url(png/user.png); background-repeat: no-repeat; }
+
+.icon--video--line,
+.icon--video--line--before:before, .icon--video--line--after:after { background-image: url(png/video--line.png); background-repeat: no-repeat; }
 
 .icon--video-line,
 .icon--video-line--before:before, .icon--video-line--after:after { background-image: url(png/video-line.png); background-repeat: no-repeat; }
