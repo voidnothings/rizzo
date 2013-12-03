@@ -27,8 +27,7 @@ module.exports = function (grunt) {
                     },
                     datasvgcss: 'active.css',
                     datapngcss: 'active.png.css',
-                    defaultWidth: '32px',
-                    dest: 'app/assets/stylesheets/icons',
+                    dest: 'app/assets/stylesheets/icons/',
                     pseudoElems: true,
                     src: 'app/assets/images/icons/active/',
                     urlpngcss: 'active.fallback.css'
@@ -42,10 +41,9 @@ module.exports = function (grunt) {
                     },
                     datasvgcss: 'critical.svg.css',
                     datapngcss: 'critical.png.css',
-                    defaultWidth: '32px',
-                    dest: 'app/assets/stylesheets/icons',
+                    dest: 'app/assets/stylesheets/icons/',
                     pseudoElems: true,
-                    src: 'app/assets/images/icons/active/critical',
+                    src: 'app/assets/images/icons/active/critical/',
                     urlpngcss: 'critical.css'
                 }
             }
@@ -171,5 +169,5 @@ module.exports = function (grunt) {
     // curl https://github.com/filamentgroup/grunticon/pull/84.patch | patch -p1
     // Until this (or a similar PR is merged)
     // https://github.com/filamentgroup/grunticon/pull/84
-    grunt.registerTask('icon', ['svgmin', 'grunticon', 'shell:cat_styles', 'shell:clean_icons', 'shell:move']);
+    grunt.registerTask('icon', ['svgmin', 'grunticon', 'shell:clean_icons', 'shell:move']);
 };
