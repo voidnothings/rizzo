@@ -41,7 +41,7 @@ $mobile-standard-card-image-height: 192px
 
   // apply hover state only to cards in the results area
   .results &
-    .js-hover &:hover
+    &:hover
       +box-shadow(0, 2, 2, 0, rgba(3, 46, 92, 0.10))
 
   // hide the content area for image-only cards when it's not hovered over
@@ -83,7 +83,7 @@ $mobile-standard-card-image-height: 192px
         width: auto
 
   // darken the image when card is hovered over
-  .js-hover .card:hover &
+  .card:hover &
     &:after
       background-color: rgba(0,0,0,0.3)
 
@@ -114,7 +114,7 @@ $mobile-standard-card-image-height: 192px
   img
     height: 100%
     // Filters currently add a lot of jank on scroll
-    .js-hover &
+    &
       +filter(drop-shadow(0px 0px 15px rgba(0,0,0,0.35)))
 
 
@@ -170,7 +170,7 @@ $mobile-standard-card-image-height: 192px
     position: absolute
     right: 0
 
-  .js-hover .card--image-only:hover &
+  .card--image-only:hover &
     bottom: 3px
 
 
@@ -205,7 +205,7 @@ $mobile-standard-card-image-height: 192px
       right: 0
       bottom: 0
 
-  .js-hover &:hover
+  &:hover
     .card__content
       &:after
         content: none
@@ -218,7 +218,7 @@ $mobile-standard-card-image-height: 192px
   .card__content
     +transition(height, 0.5, ease)
 
-  .js-hover &:hover
+  &:hover
     .card__content
       height: $card-grid-height - ( 2*$card-content-vertical-padding) - 40px
   .js-hover.responsive &:hover
@@ -230,6 +230,6 @@ $mobile-standard-card-image-height: 192px
 .card--extended-content--half
   .card__content
     +transition(height, 0.3, ease)
-  .js-hover &:hover
+  &:hover
     .card__content
       height: $card-grid-height - ( 2*$card-content-vertical-padding) - 225px

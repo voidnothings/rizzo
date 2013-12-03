@@ -39,14 +39,13 @@ define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shoppin
         if e.target.hasClass('js-nav-item') then window.s.linkstacker("footer")
 
     scrollPerf: ->
-      document.body.classList.add('js-hover')
       enableTimer = false
 
       window.addEventListener 'scroll', ->
         clearTimeout(enableTimer);
-        document.body.classList.remove('js-hover')
+        document.documentElement.style.pointerEvents = "none"
         enableTimer = setTimeout ->
-          document.body.classList.add('js-hover')
-        , 500
+          document.documentElement.style.pointerEvents = "auto"
+        , 300
       , false
 

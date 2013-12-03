@@ -84,10 +84,10 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
         # Listen for a scroll and use that to remove the possibility of hover effects
         window.addEventListener 'scroll', ->
           clearTimeout(enableTimer);
-          $('body').removeClass('js-hover')
+          document.documentElement.style.pointerEvents = "none"
 
           enableTimer = setTimeout ->
-            $('body').addClass('js-hover')
-          , 500
+            document.documentElement.style.pointerEvents = "auto"
+          , 300
         , false
 )
