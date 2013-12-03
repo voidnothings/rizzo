@@ -1,0 +1,68 @@
+// ----------------------------------------------------------------------------
+//
+// Base tile object
+//
+// ----------------------------------------------------------------------------
+.tile
+  max-width: 340px
+  min-width: 160px
+  overflow: hidden
+  color: white
+
+.tile__link
+  text-decoration: none
+  color: inherit
+
+.tile__wrapper
+  position: relative
+  padding-top: 100%
+
+.tile__media
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+
+  &:after
+    content: ' '
+    position: absolute
+    bottom: 0
+    left: 0
+    width: 100%
+    height: 50%
+
+    @if $is-ie
+      -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF000000, endColorstr=#00000000)"
+    @else
+      +background-gradient(rgba(0, 0, 0, .5), transparent, false, false, to top)
+
+
+.tile__media--img img,
+.tile__media--video video
+  max-width: 100%
+  min-width: 100%
+  height: auto
+
+.tile__cover
+  position: absolute
+  bottom: 0
+  left: 0
+  width: 100%
+
+.tile__cover__content
+  +box-sizing(border-box)
+  padding: 10px 5%
+  font-size: 16px
+  color: white
+
+.tile__cover__title
+  width: 85%
+  margin: 0
+  font-weight: 700
+  +font-size(16)
+  line-height: 1
+  text-transform: uppercase
+
+  ~ .tile__cover__fragment
+    margin: 6px 0 0
