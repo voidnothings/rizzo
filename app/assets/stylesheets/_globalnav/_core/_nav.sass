@@ -413,22 +413,12 @@ a.nav__item--breadcrumbs
 
 .nav__item--social
   +border-radius(16)
-  @extend %left-icon
   @extend %left-icon--hidden-text
   @extend %lp-font-stack
   color: $body-copy
   margin: 16px 0 17px
   width: 32px
   height: 32px
-  background-size: 65%
-  background-position: center
-  &:before
-    top: 7px
-    left: 7px
-    height: 20px
-    width: 20px
-  &:hover:before
-    +icon-color(lp-blue)
   &:hover
     background-color: white
   .ie7 &
@@ -436,6 +426,7 @@ a.nav__item--breadcrumbs
     height: auto !important
     width: auto !important
     margin: 26px 5px 0 0
+    background: none
 
 // ----------------------------------------------------------------------------
 // 
