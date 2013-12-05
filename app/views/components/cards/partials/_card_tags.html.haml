@@ -5,7 +5,8 @@
         .tag.tag--price
           .tag--price__inner
             .tag--price__values
-              from
+              - if card[:price_is_from?]
+                from
               .tag--price__amount<
                 %span.tag--price__currency
                   = raw(currency.to_symbol)
