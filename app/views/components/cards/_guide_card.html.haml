@@ -1,0 +1,23 @@
+:ruby
+
+  css_classes = [
+
+    "card",
+    "card--poi",
+    "#{card[:image_url] ? 'card--small-image card--extended-content' : 'card--no-image'}",
+    "#{card[:double?] ? 'card--double card--full-image' : 'card--single'}"
+
+  ].join(" ")
+
+
+%article.js-card{class: css_classes}
+
+  %a.link--wrapper{href: card[:url]}
+
+    / = render :partial => '/components/cards/partials/things_to_do_card_tags', :locals => { :card => card }
+
+    = render :partial => '/components/cards/partials/card_content', :locals => { :card => card }
+
+    %footer.card__footer
+      %span.btn.btn--bookable.btn--full-width
+        Buy now
