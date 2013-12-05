@@ -1,8 +1,8 @@
 # ------------------------------------------------------------------------------
 # Constructor for initialising availability search datepickers and behaviour
-# 
+#
 # Called by Availability_form_manager
-# 
+#
 # @params
 # container #{string} - The parent form
 # ------------------------------------------------------------------------------
@@ -10,10 +10,11 @@
 define ['jquery', 'jplugs/pickadate.legacy'], ($) ->
 
   class AvailabilityDatepicker
- 
+
     config =
       callbacks: {}
-      dateFormat: 'yyyy/mm/dd'
+      dateFormat: 'd mmm yyyy'
+      dateFormatLabel: 'yyyy/mm/dd'
       startSelector: "#js-av-start"
       endSelector: "#js-av-end"
 
@@ -22,7 +23,7 @@ define ['jquery', 'jplugs/pickadate.legacy'], ($) ->
     # callbacks (optional) Object containing the onDateSelect callback
     constructor: (opts) ->
       $.extend config, opts
-      
+
       self = @
       @in_date =  $(config.target).find(config.startSelector)
       @out_date = $(config.target).find(config.endSelector)
@@ -39,15 +40,14 @@ define ['jquery', 'jplugs/pickadate.legacy'], ($) ->
         dateMin: today
         format: config.dateFormat
         onSelect: ->
-          self.dateSelected(this.getDate(config.dateFormat), "start")
+          self.dateSelected(this.getDate(config.dateFormatLabel), "start")
       })
 
       @out_date.pickadate({
         dateMin: tomorrow
         format: config.dateFormat
         onSelect: ->
-          self.dateSelected(this.getDate(config.dateFormat), "end")
-
+          self.dateSelected(this.getDate(config.dateFormatLabel), "end")
       })
 
     dateSelected : (date, type)->
@@ -64,15 +64,15 @@ define ['jquery', 'jplugs/pickadate.legacy'], ($) ->
         @out_label.text(@out_date.val()).removeClass('is-hidden')
 
       @firstTime = false
-      
+
       if config.callbacks.onDateSelect
         config.callbacks.onDateSelect(date, type)
 
     inValue: ->
-      new Date($(@in_date).data('pickadate').getDate(config.dateFormat))
+      new Date($(@in_date).data('pickadate').getDate(config.dateFormatLabel))
 
     outValue: ->
-      new Date($(@out_date).data('pickadate').getDate(config.dateFormat))
+      new Date($(@out_date).data('pickadate').getDate(config.dateFormatLabel))
 
     isValidEndDate: ->
       @inValue() < @outValue()
@@ -83,7 +83,3 @@ define ['jquery', 'jplugs/pickadate.legacy'], ($) ->
         year:  date[0]
         month: date[1]
         day:   parseInt(date[2], 10)
-
-
- 
-
