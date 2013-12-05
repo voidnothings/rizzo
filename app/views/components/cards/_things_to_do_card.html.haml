@@ -15,7 +15,7 @@
 
   %a.link--wrapper{href: card[:url]}
 
-    = render :partial => '/components/cards/partials/things_to_do_card_tags', :locals => { :card => card }
+    = render :partial => '/components/cards/partials/card_tags', :locals => { :card => card }
 
     - if card[:image_url]
       %figure.card__hero
