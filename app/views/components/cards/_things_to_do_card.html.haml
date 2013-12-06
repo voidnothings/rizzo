@@ -29,6 +29,10 @@
       %h1.card__name.js-card-name
         = card[:name]
 
+      - if card[:show_place_name?]
+        %p.card__locale
+          = card[:place_name]
+
       - if card[:duration].present?
         %p.card__tour-duration.copy--caption
           = card[:duration]
