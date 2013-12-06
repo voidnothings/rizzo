@@ -67,32 +67,3 @@
       left: 19px
       top: 11px
       width: 22px
-
-// -----------------------------------------------------------------------------
-// The anchor on the right of a post (with the chevron) that links to the post and appears when you hover on it.
-// -----------------------------------------------------------------------------
-.post-view-link
-  +font-size(40)
-  +transform(rotateY(-90deg))
-  +transform-origin(right)
-  @extend %chevron-right-before
-  @extend %transition--base
-  background: $details-panel-bg
-  border-radius: 0 4px 4px 0
-  color: $feature-copy
-  height: 100%
-  opacity: 0
-  position: absolute
-  right: 0
-  text-align: center
-  top: 0
-  width: 60px
-  z-index: 1 // So that the link sits underneat the .post-stats above.
-
-  .card:hover &
-    +transform(rotateY(0deg))
-    opacity: 1
-    text-decoration: none
-  &:before
-    position: relative
-    top: 45%
