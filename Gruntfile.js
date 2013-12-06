@@ -28,7 +28,6 @@ module.exports = function (grunt) {
                     datasvgcss: 'active.css',
                     datapngcss: 'active.png.css',
                     dest: 'app/assets/stylesheets/icons/',
-                    pseudoElems: true,
                     src: 'app/assets/images/icons/active/',
                     urlpngcss: 'active.fallback.css'
                 }
@@ -42,7 +41,6 @@ module.exports = function (grunt) {
                     datasvgcss: 'critical.svg.css',
                     datapngcss: 'critical.png.css',
                     dest: 'app/assets/stylesheets/icons/',
-                    pseudoElems: true,
                     src: 'app/assets/images/icons/active/critical/',
                     urlpngcss: 'critical.css'
                 }
