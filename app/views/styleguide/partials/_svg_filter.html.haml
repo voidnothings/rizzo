@@ -2,7 +2,17 @@
 
   .styleguide-proximity
     %input#js-icon-filter.input--text.input{ type: "text", placeholder: "Find icon" }
-
-  = ui_component('forms/dropdown', properties: { name: "svg_order", class: "svg-colourise", options: [ { title: "icon--header-grey", value: "", selected: true}, { title: "icon--body-grey", value: "body-grey" }, { title: "icon--subdued", value: "subdued" }, { title: "icon--white", value: "white" }, { title: "icon--lp-blue", value: "lp-blue" } ] })
-
-  = render 'styleguide/javascripts/svg'
+  :ruby
+    colors =  [
+      'header-grey',
+      'body-grey',
+      'white',
+      'lp-blue',
+      'custom',
+      'custom-2'
+    ]
+    options = []
+    colors.each do |color|
+      options.push({ title: color, value: color, selected: color == colors[0] })
+    end
+  = ui_component('forms/dropdown', properties: { name: "svg_order", class: "svg-colourise", options: options})
