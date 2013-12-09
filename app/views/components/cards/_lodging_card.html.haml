@@ -55,7 +55,7 @@
         = truncate((card[:name].titleize), :length=> 50, :separator => ' ')
 
       - if card[:nearby_place_text]
-        %p.card__locale
+        %p.card__locale.icon--place--pin--before
           = card[:nearby_place_text]
 
       - if card[:card_description]
