@@ -4,7 +4,6 @@
 
 .card__item-count
   +font-size(18)
-  @extend %no-line-height
   position: absolute
   color: #fff
   height: 34px // Stop clipping in IE
@@ -20,6 +19,10 @@
     margin-right: 3px
     width: 24px
     z-index: 4
+
+  .no-js &, .no-background-size &
+    &:before
+      display: none
 
 // -----------------------------------------------------------------------------
 // Media card badges
