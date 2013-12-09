@@ -107,7 +107,7 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
           whiteSpace: 'nowrap'
           width: 'auto'
         closeBoxURL: ''
-        content: "<div class='infobox--location'>
+        content: "<div class='infobox--location icon--tapered-arrow-down--after icon--white--after'>
           <p class='copy--h3 infobox__title text-icon icon--place--pin--before icon--lp-blue--before'>#{locationTitle}</p>
           <p class='copy--body'>
             #{locationAddress or ''}
