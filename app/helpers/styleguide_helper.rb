@@ -147,9 +147,9 @@ module StyleguideHelper
 
   def get_icons(type)
     icons = []
-    File.read(File.expand_path("../../assets/stylesheets/icons/#{type}.svg.css", __FILE__)).split(/}/).each do |rule|
-      class_name = rule.match(/^\.([^:, ]*)/)
-      class_name && icons.push(class_name[1])
+    Dir["app/assets/images/icons/#{type}/*.svg"].each do |file_name|
+      class_name = 'icon--' + File.basename(file_name, '.svg')
+      icons.push(class_name)
     end
     icons
  end
