@@ -141,11 +141,15 @@
   +font-size(12)
   margin-right: 5px
   padding-left: 18px
+  position: relative
   &:before
-    @extend %left-icon
+    position: absolute
+    left: 0
     top: 0
     height: 16px
     width: 16px
+  .no-js &, .no-background-size &
+    display: none
 
 // -----------------------------------------------------------------------------
 // List view cards

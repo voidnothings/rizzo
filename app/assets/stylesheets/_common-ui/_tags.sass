@@ -1,12 +1,3 @@
-// Cards
-// 
-//
-// .tag--price - Usually found hanging off cards or booking forms
-// .tag--badge - A tag containing a badge for the POI
-// 
-// Styleguide 1.9
-
-
 // -----------------------------------------------------------------------------
 // Container for multiple top hanging tags
 // -----------------------------------------------------------------------------
@@ -89,6 +80,7 @@
 
 .tag--price
   +tag-curl-top($yella, $price-tag-curl)
+  min-width: 50px
 
 .tag--price__inner
   @extend %tag--top
