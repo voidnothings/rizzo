@@ -41,7 +41,6 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
       @$slider_pagination = $('<div class="slider__pagination no-print"></div>')
       @$next = $("<a href='#' class='slider__control slider__control--next icon--chevron-right--before icon--white--before'>2 of #{@numSlides}</a>")
       @$prev = $("<a href='#' class='slider__control slider__control--prev icon--chevron-left--after icon--white--after'>#{@numSlides} of #{@numSlides}</a>")
-      @$legacy = $(@page.getLegacyRoot())
 
       # Don't add the class to the @$el if there's already a @$slides_viewport defined.
       if @$slides_viewport.length is 0
