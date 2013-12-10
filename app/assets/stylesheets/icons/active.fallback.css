@@ -64,8 +64,14 @@
 .icon--bold,
 .icon--bold--before:before, .icon--bold--after:after { background-image: url(png/bold.png); background-repeat: no-repeat; }
 
+.icon--book,
+.icon--book--before:before, .icon--book--after:after { background-image: url(png/book.png); background-repeat: no-repeat; }
+
 .icon--breakfast,
 .icon--breakfast--before:before, .icon--breakfast--after:after { background-image: url(png/breakfast.png); background-repeat: no-repeat; }
+
+.icon--bundle,
+.icon--bundle--before:before, .icon--bundle--after:after { background-image: url(png/bundle.png); background-repeat: no-repeat; }
 
 .icon--bureau-de-change,
 .icon--bureau-de-change--before:before, .icon--bureau-de-change--after:after { background-image: url(png/bureau-de-change.png); background-repeat: no-repeat; }
