@@ -142,6 +142,9 @@
 .icon--cross,
 .icon--cross--before:before, .icon--cross--after:after { background-image: url(png/cross.png); background-repeat: no-repeat; }
 
+.icon--destination--pin,
+.icon--destination--pin--before:before, .icon--destination--pin--after:after { background-image: url(png/destination--pin.png); background-repeat: no-repeat; }
+
 .icon--destination-flag,
 .icon--destination-flag--before:before, .icon--destination-flag--after:after { background-image: url(png/destination-flag.png); background-repeat: no-repeat; }
 

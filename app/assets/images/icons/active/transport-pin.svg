@@ -1,9 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <title>transport-pin--title-grey</title>
-    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
-    <defs></defs>
-    <g id="Points-of-interest" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <path d="M15.9989697,0 C22.6279729,0 28,4.654 28,11.648 C28,18.482 21.9459088,21.417 18.7200137,25.788 C16.083455,29.357 15.9989697,32 15.9989697,32 C15.9989697,32 15.9793938,29.344 13.278956,25.788 C9.96033313,21.417 4,18.684 4,11.648 C4,4.652 9.37305744,0 15.9989697,0 Z M21.63,6.983 C21.63,6.24 21.095,5.511 20.179,5.511 L12.05,5.514 C11.135,5.514 10.6,6.24 10.6,6.984 C10.6,7.705 11.026,8.45 12.05,8.45 L14.624,8.449 L14.624,16.652 C14.624,17.72 15.304,18.312 16.22,18.312 C17.135,18.312 17.817,17.718 17.817,16.652 L17.817,8.449 L20.179,8.452 C21.201,8.452 21.63,7.705 21.63,6.983 Z M21.63,6.983" id="transport-pin--title-grey" fill="#3B444F" sketch:type="MSShapeGroup"></path>
-    </g>
-</svg>
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"><title>transport-pin--title-grey</title><path d="M15.999 0c6.629 0 12.001 4.654 12.001 11.648 0 6.834-6.054 9.769-9.28 14.14-2.637 3.569-2.721 6.212-2.721 6.212s-.02-2.656-2.72-6.212c-3.319-4.371-9.279-7.104-9.279-14.14 0-6.996 5.373-11.648 11.999-11.648zm5.631 6.983c0-.743-.535-1.472-1.451-1.472l-8.129.003c-.915 0-1.45.726-1.45 1.47 0 .721.426 1.466 1.45 1.466l2.574-.001v8.203c0 1.068.68 1.66 1.596 1.66.915 0 1.597-.594 1.597-1.66v-8.203l2.362.003c1.022 0 1.451-.747 1.451-1.469zm0 0" fill="#3B444F" sketch:type="MSShapeGroup"/></svg>
