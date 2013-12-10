@@ -29,6 +29,7 @@ module.exports = function (grunt) {
                     datapngcss: 'active.png.css',
                     dest: 'app/assets/stylesheets/icons/',
                     src: 'app/assets/images/icons/active/',
+                    svgo: true,
                     urlpngcss: 'active.fallback.css'
                 }
             },
