@@ -18,8 +18,6 @@
                   = card[:retail_prices][currency.to_s].ceil
     - if card[:topchoice]
       .tag.tag--badge.tag--top-choice
-        %span.tag--badge__content
-          Top Choice
-
-
-
+        .tag--badge__content.icon--collar--after.icon--lp-blue--after
+          .icon--top-choice.icon--white
+            Top Choice

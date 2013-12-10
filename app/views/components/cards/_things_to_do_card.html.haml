@@ -1,10 +1,15 @@
+
 :ruby
+
+  topic = card[:topic].downcase
 
   css_classes = [
 
     "card",
+    "card--icon",
     "card--poi",
-    "card--poi--#{card[:topic].downcase}",
+    "card--poi--#{topic}",
+    "icon--#{topic}--pin--before",
     "#{card[:image_url] ? 'card--small-image card--extended-content' : 'card--no-image'}",
     "#{card[:double?] ? 'card--double card--full-image' : 'card--single'}"
 
@@ -34,7 +39,7 @@
           = card[:place_name]
 
       - if card[:duration].present?
-        %p.card__tour-duration.copy--caption
+        %p.card__tour-duration.copy--caption.icon--length--before
           = card[:duration]
 
       %p.card__description
