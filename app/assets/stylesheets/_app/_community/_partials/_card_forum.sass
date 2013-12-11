@@ -1,12 +1,12 @@
-$forum-padding: 20px
+$forum-horizontal-padding: 20px
 
 .card--forum
   @extend %rounded-corners
-  padding: $forum-padding
+  padding: 15px $forum-horizontal-padding 0
 
   &.active, &.pinned
     border-left: 4px solid $linkblue
-    padding-left: $forum-padding - 4px
+    padding-left: $forum-horizontal-padding - 4px
 
   .copy--meta
     +font-size(13)
@@ -19,7 +19,7 @@ $forum-padding: 20px
     min-width: 195px
 
 .card--forum--single
-  padding: 12px $forum-padding
+  padding: 12px $forum-horizontal-padding
 
   .dropdown
     margin-top: -6px
@@ -28,8 +28,8 @@ $forum-padding: 20px
 .card--forum__title,
 .card--forum__row,
 .card--forum__row-container
-  padding: 13px $forum-padding
-  margin: 0 -#{$forum-padding}
+  padding: 13px $forum-horizontal-padding
+  margin: 0 -#{$forum-horizontal-padding}
 
 .card--forum__title
   padding-bottom: 13px
@@ -39,6 +39,7 @@ $forum-padding: 20px
 
 .card--forum__row-container
   border-top: 1px solid $subdued
+  padding-bottom: 0
 
 .card--forum__row
   @extend %clearfix
@@ -52,7 +53,7 @@ $forum-padding: 20px
 
 .card--forum__row--title
   background: $details-panel-bg
-  padding: 10px $forum-padding
+  padding: 10px $forum-horizontal-padding
   .copy--h5
     color: $section--need-to-know
 
