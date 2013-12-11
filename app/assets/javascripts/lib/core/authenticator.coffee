@@ -1,3 +1,4 @@
+
 define ['jquery'], ($)->
 
   class Authenticator
@@ -32,14 +33,14 @@ define ['jquery'], ($)->
 
     showLoginAndRegister: ()->
       @emptyUserNav()
-      joinElement = "<a class='icon--signin-line--grey--before nav__item nav__item--primary js-user-join js-nav-item' href='#{@options.registerLink}'>Join</a>"
-      signinElement = "<a class='icon--signin-line--grey--before nav__item nav__item--primary js-user-signin js-nav-item' href='#{@signInUrl()}'>Sign in</a>"
+      joinElement = "<a class='nav__item nav__item--join nav__item--primary js-user-join js-nav-item' href='#{@options.registerLink}'>Join</a>"
+      signinElement = "<a class='icon--sign-in--before icon--white--before nav__item nav__item--sign-in nav__item--primary js-user-signin js-nav-item' href='#{@signInUrl()}'>Sign in</a>"
       @el.append(signinElement + joinElement)
 
     showUserBox: ->
       @emptyUserNav()
       @el.addClass('is-signed-in')
-      userBoxElement = "<div class='nav__item nav__item--user user-box js-user-box nav__submenu__trigger icon--chevron-down--white--after'><img class='user-box__img js-box-handler' src='#{@userAvatar()}'/></div>"
+      userBoxElement = "<div class='nav__item nav__item--user user-box js-user-box nav__submenu__trigger icon--chevron-down--after icon--white--after'><img class='user-box__img js-box-handler' src='#{@userAvatar()}'/></div>"
       @el.append(userBoxElement)
       $('.js-user-box').append(@userOptionsMenu())
 
@@ -56,7 +57,7 @@ define ['jquery'], ($)->
         {title: 'Sign out', uri: "#{@options.signOutUrl}", style:"nav-user-options__item--signout js-user-signout" }
       ]
       optionElements =  ("<a class='nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
-      userMenu = "<span class='wv--hidden nav--offscreen__title'>#{@lpUserName}</span><div class='nav__submenu nav__submenu--user'><div class='nav--stacked nav__submenu__content icon--arrow-up--green--after nav__submenu__content--user nav-user-options js-user-options'><div class='nav__submenu__item nav__submenu__title'>#{@lpUserName}</div>#{optionElements}</div></div>"
+      userMenu = "<span class='wv--hidden nav--offscreen__title'>#{@lpUserName}</span><div class='nav__submenu nav__submenu--user'><div class='nav--stacked nav__submenu__content icon--tapered-arrow-up--after icon--custom--after nav__submenu__content--user nav-user-options js-user-options'><div class='nav__submenu__item nav__submenu__title'>#{@lpUserName}</div>#{optionElements}</div></div>"
     
     signInUrl:->
       "https://secure.lonelyplanet.com/sign-in/login?service=#{escape(window.location)}"
