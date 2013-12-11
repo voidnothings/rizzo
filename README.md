@@ -220,7 +220,7 @@ $ cd node_modules/grunt-grunticon
 $ curl https://github.com/filamentgroup/grunticon/pull/84.patch | patch -p1
 ```
 
-Before running `grunt icon` for the first time. You only need to run `grunt icon` if you are building new icons, for the the current icons are already checked into git.
+Before running `grunt icon` for the first time. You only need to run `grunt icon` if you are building new icons, for the current icons are already checked into git.
 
 -----
 
