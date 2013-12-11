@@ -1,5 +1,5 @@
 .table
-  margin-bottom: 20px
+  margin-bottom: 10px
   width: 100%
 
 .table__row
@@ -21,7 +21,11 @@
 .table__cell
   padding: 5px 3px
 
+  &:first-child
+    padding-left: 15px
+
 .table--pagination
+  margin-bottom: 20px
   text-align: center
 
 .filter
@@ -29,14 +33,13 @@
   padding: 10px
   vertical-align: bottom
 
-
 // dataTable specific elements
 .pagination
   li
     display: inline-block
     margin: 0 3px
 
-#reports-queue_processing
+.dataTables_processing
   background: #fff
   bottom: 0
   left: 0
@@ -47,5 +50,18 @@
   top: 0
   z-index: 5
 
-#process_multiple_reports
+.dataTables_wrapper
   position: relative
+
+.dataTables_empty
+  padding: 5px
+  text-align: center
+
+
+.dataTables_filter
+  padding: 5px 20px
+
+  input
+    @extend .input
+    margin-left: 20px
+    width: auto
