@@ -10,7 +10,9 @@
 
   %a.link--wrapper{href: card[:url]}
 
-    = render :partial => '/components/cards/partials/card_tags', :locals => { :card => card }
+    .card__tags
+      - if card[:prices] && card[:prices][currency.to_s].present? && card[:prices][currency.to_s] > 0
+        = render :partial => '/components/cards/partials/card_price', :locals => { :card => card, :icon => card[:price_icon] }
 
     = render :partial => '/components/cards/partials/card_content', :locals => { :card => card }
 

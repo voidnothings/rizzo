@@ -1,26 +1,7 @@
 - if card[:topchoice] or card[:prices]
   .card__tags
-    - if card[:prices]
-      - if card[:prices][currency.to_s].present? && card[:prices][currency.to_s] > 0
-        .tag.tag--price
-          .tag--price__inner
-            .tag--price__values
-              - if card[:context] == 'Book'
-                .icon--book--before.tag--price__icon
-              - if card[:context] == 'eBook'
-                .icon--ipad--before.tag--price__icon
-              - if card[:price_is_from?]
-                from
-              .tag--price__amount<
-                %span.tag--price__currency
-                  = raw(currency.to_symbol)
-                %span.js-price
-                  = card[:prices][currency.to_s].ceil
-            - if card[:on_sale?]
-              - if card[:retail_prices][currency.to_s].present? && card[:retail_prices][currency.to_s] > 0
-                .tag--price__original<
-                  = raw(currency.to_symbol)
-                  = card[:retail_prices][currency.to_s].ceil
+    - if card[:prices] && card[:prices][currency.to_s].present? && card[:prices][currency.to_s] > 0
+      = render :partial => '/components/cards/partials/card_price', :locals => { :card => card, :price_is_from => true }
     - if card[:topchoice]
       .tag.tag--badge.tag--top-choice
         .tag--badge__content.icon--collar--after.icon--lp-blue--after
