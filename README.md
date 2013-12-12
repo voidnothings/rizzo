@@ -21,7 +21,7 @@ Rizzo is the UI layer for lonelyplanet.com. Rizzo also serves LP's header and fo
 4. [Styleguide](#styleguide)
 5. [Testing](#testing)
 6. [Images & icons](#images)
-7. [Git Guidelines](#git)
+7. [Git Guidelines and Code Review](#git)
 8. [Sass Guidelines](#sass)
 9. [Javascript Guidelines](#javascript)
 
@@ -55,7 +55,7 @@ This will add all the Javascript and Sass into your applications load paths. In 
 <a name="raas"></a>
 ## Rizzo as a service
 
-Rizzo also exposes the Global Head (<head>), Global Body Header (Primary navigation) and Global Body Footer (scripts and footer) as a service. These are used for non-rails apps. They are available at:
+Rizzo also exposes the Global Head (html, css, meta etc.), Global Body Header (Primary navigation) and Global Body Footer (scripts and footer) as a service. These are used for non-rails apps. They are available at:
 
 - Global Head - [http://rizzo.lonelyplanet.com/global-head](http://rizzo.lonelyplanet.com/global-head)
 - Global Body Header - [http://rizzo.lonelyplanet.com/global-body-header](http://rizzo.lonelyplanet.com/global-body-header)
@@ -100,24 +100,22 @@ Each component as well as any helper methods should have unit tests.
 
 ### Javascript Unit Tests
 
-To use grunt with rizzo:
-
-- To clean, compile and run all the tests headlessly
+To clean, compile and run all the tests headlessly
 ````bash
   $ grunt
 ````
 
-- To run them headlessly without compiling them all, and to enable watching of files
+To run them headlessly without compiling them all, and to enable watching of files
 ````bash
   $ grunt dev
 ````
 
-- To spawn a server and rerun failed tests
+To spawn a server and rerun failed tests
 ````bash
   $ grunt wip
 ````
 
-- To run plato (Javascript sourcecode analysis)
+To run plato (Javascript sourcecode analysis)
 ````bash
   $ grunt report
 ````
@@ -139,32 +137,43 @@ Currently a work in progress. Eventually to be run on the styleguide as a pre-pu
 
 The icons are built by a grunt task, `grunt icon`, which uses the Filament Group's [grunticon plugin](https://github.com/filamentgroup/grunticon). To add a new icon to the build step, simply copy the svg file into `rizzo/app/assets/images/icons/active`.
 
-Unfortunately at the moment, our icons depend on a patched version of the grunticon plugin. So, at the moment we must:
+Unfortunately at the moment, our icons depend on a patched version of the grunticon plugin. So, at the moment we must do the following before running `grunt icon` for the first time.
 
 ```bash
 $ cd node_modules/grunt-grunticon
 $ curl https://github.com/filamentgroup/grunticon/pull/84.patch | patch -p1
 ```
 
-Before running `grunt icon` for the first time. You only need to run `grunt icon` if you are building new icons, for the current icons are already checked into git.
+You only need to run `grunt icon` if you are building new icons. All current icons are already checked into git.
 
 
 -----
 <a name="git"></a>
-## Git Guidelines
+## Git Guidelines and Code Review
+
+### Git
 
 - Always work in a branch
-- Avoid long running branches! Merge often.
-- Rebase into your own branch from master (as long as it is only you working on that branch)
-- Merge with --no-ff back into master when it has been code reviewed.
+- Rebase into your own branch from master (as long as it is only you working on that branch, otherwise merge)
+- Merge with --no-ff back into master when it has been code reviewed (or merge through github).
 - Use git pull --rebase to avoid commits like this:
 
 ```bash
   Merge remote-tracking branch 'origin/master' into if_feature
 ````
 
-- Prefix your branches with your initials or name
-- Squash your commits using rebase -i if you think it can better reflect the code
+- Prefix your branches with your initials or name.
+- Squash your commits using rebase -i if you think it can better reflect the code you have committed.
+- Make your commit messages useful, no jokes.
+
+### Code Review
+
+- Code review should start when you begin the feature - discuss it with another dev. The code review should absolutely not be the first time the reviewer sees the code.
+- Avoid long running branches! Long branches are *much* harder to code review.
+- Include visual aids (images, animated gifs) in your Pull Requests.
+- Be strict in your code review. Don't let laziness slip through as it's harder to remove later.
+- Code reviews are an opportunity for both devs to learn.
+- It's never a personal attack.
 
 
 
@@ -177,7 +186,7 @@ Before running `grunt icon` for the first time. You only need to run `grunt icon
 
 We use the Sass format which means:
 
-* 2 spaces (or a soft tab) are used for indentation
+* 2 spaces are used for indentation
 * Curly braces are omitted
 * Use + instead of @include
 
@@ -185,21 +194,21 @@ Comments are encouraged and should follow the below pattern:
 
 ```css
 //----------------------------------------------------------
-// UI Object Title
+// Section or component Title
 //
-// Description, modifier classes, styleguide reference 
+// Description
 //----------------------------------------------------------
 ```
 
 ### Style
 
 We use BEM which should help with:
-* Limit nesting to 1 level deep.
-* Avoid large numbers of nested rules.
+* Limiting nesting to 1 level deep.
+* Avoiding large numbers of nested rules.
 
 Also:
 * Group `+` and `@extend` statements at the top of each selector ruleset
-* Don't over-abstract too early
+* Don't over-abstract
 * Write code to be readable and understandable, not to save bytes.
 
 
@@ -211,12 +220,12 @@ We use prefixes for states and javascript hooks:
     <div class="tab js-tab">This element can be reached by javascript</div>
  
 Javascript hooks:
- * Ensures that we maintain a distinction between content and functionality
- * Should *never* relate to css rules
- * Are the only way of reaching a dom element
+ * Ensure that we maintain a distinction between content and functionality.
+ * Should *never* relate to css rules.
+ * Should be the only way of reaching a dom element.
 
 
- -----
+-----
 <a name="javascript"></a>
 ## Javascript Guidelines
 
