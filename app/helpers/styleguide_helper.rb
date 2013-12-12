@@ -4,6 +4,7 @@ module StyleguideHelper
     # Add new sections here.
     ["JS Components", "UI Components"]
   end
+  
   def default_section
     "UI Components"
   end
