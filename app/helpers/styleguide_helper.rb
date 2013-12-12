@@ -151,7 +151,7 @@ module StyleguideHelper
       items: sections.map do |s|
           {
             title: s,
-            slug: s == default_section ? '/styleguide' : s.downcase.strip.gsub(' ', '-')
+            slug: s == default_section ? '/styleguide' : '/styleguide/'+s.downcase.strip.gsub(' ', '-')
           }
         end
     }
