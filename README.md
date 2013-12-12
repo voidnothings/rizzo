@@ -76,9 +76,9 @@ The styleguide is accessible at
 
 TODO: Write about the styleguide process
 
-@remy is going to write about Yeoman here too :)
+### Yeoman Generators
 
-
+Find out about any Yeoman generators we have available and how to use them at our [Yeoman repo](https://github.com/lonelyplanet/yeoman).
 
 -----
 <a name="testing"></a>
