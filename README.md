@@ -74,7 +74,7 @@ TODO: Write about the styleguide process
 
 ### Yeoman Generators
 
-Find out about any Yeoman generators we have available and how to use them at our [Yeoman repo](https://github.com/lonelyplanet/yeoman).
+If you want to create a new component within the styleguide you can do so with Yeoman. Find out about any Yeoman generators we have available and how to use them at our [Yeoman repo](https://github.com/lonelyplanet/yeoman).
 
 -----
 ## Testing
