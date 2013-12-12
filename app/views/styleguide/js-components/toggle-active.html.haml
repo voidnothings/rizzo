@@ -1,0 +1,43 @@
+.card.styleguide-intro.styleguide-block.copy--body.context--content
+  %h1.copy--h1 Toggle Active
+
+  %p
+    A replacement for the so called <a href="http://css-tricks.com/the-checkbox-hack/">"checkbox hack"</a> which we can't use because of issues in iOS, Android, and old IE.
+
+.styleguide-block
+
+  .styleguide-block__description.card.copy--body
+
+    %h2.copy--h2.styleguide-block__heading
+      Normal usage
+
+    %pre.styleguide.copy--body.language-markup
+      %code
+        &lt;a href="#" class="js-toggle-active" data-target=".foo">toggle it&lt;/a>
+
+    %p
+      This will toggle the
+      %code.language-markup
+        is-active
+      class on any element that has the
+      %code.language-markup
+        foo
+      class.
+
+  .styleguide-block__description.card.copy--body
+
+    %h2.copy--h2.styleguide-block__heading
+      Specifying the class
+
+    %pre.styleguide.copy--body.language-markup
+      %code
+        &lt;a href="#" class="js-toggle-active" data-toggle-target=".foo" data-toggle-class="custom-class">toggle it&lt;/a>
+
+    %p
+      This will toggle the
+      %code.language-markup
+        custom-class
+      class on any element that has the
+      %code.language-markup
+        foo
+      class.

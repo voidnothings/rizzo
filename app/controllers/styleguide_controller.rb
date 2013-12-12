@@ -70,8 +70,8 @@ class StyleguideController < GlobalController
     render '/styleguide/ui-components/navigational_dropdown'
   end
 
-  def foo
-    render '/styleguide/js-components/foo'
+  def toggle_active
+    render '/styleguide/js-components/toggle-active'
   end
 
   #===== yeoman hook =====#
