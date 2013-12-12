@@ -26,7 +26,6 @@ Rizzo is the UI layer for lonelyplanet.com. Rizzo also serves LP's header and fo
 9. [Javascript Guidelines](#javascript)
 
 -----
-<a name="raaa"></a>
 ## Rizzo as an application
 
 Rizzo is accessible at [http://rizzo.lonelyplanet.com](http://rizzo.lonelyplanet.com) and can also be run locally:
@@ -35,7 +34,6 @@ Rizzo is accessible at [http://rizzo.lonelyplanet.com](http://rizzo.lonelyplanet
   bundle exec unicorn
 ```
 
-<a name="raag"></a>
 ## Rizzo as an engine
 
 Primarily rizzo is used as an engine to provide layouts and assets to your rails application.
@@ -52,7 +50,6 @@ This will add all the Javascript and Sass into your applications load paths. In 
 
 
 -----
-<a name="raas"></a>
 ## Rizzo as a service
 
 Rizzo also exposes the Global Head (html, css, meta etc.), Global Body Header (Primary navigation) and Global Body Footer (scripts and footer) as a service. These are used for non-rails apps. They are available at:
@@ -65,7 +62,6 @@ An example of the legacy navigation can be viewed at [http://rizzo.lonelyplanet.
 
 
 -----
-<a name="styleguide"></a>
 ## Styleguide
 
 The styleguide is accessible at 
@@ -81,7 +77,6 @@ TODO: Write about the styleguide process
 Find out about any Yeoman generators we have available and how to use them at our [Yeoman repo](https://github.com/lonelyplanet/yeoman).
 
 -----
-<a name="testing"></a>
 ## Testing
 
 ### Unit Tests
@@ -131,7 +126,6 @@ Currently a work in progress. Eventually to be run on the styleguide as a pre-pu
 
 
 -----
-<a name="images"></a>
 ## Images and Icons
 
 
@@ -148,7 +142,6 @@ You only need to run `grunt icon` if you are building new icons. All current ico
 
 
 -----
-<a name="git"></a>
 ## Git Guidelines and Code Review
 
 ### Git
@@ -178,7 +171,6 @@ You only need to run `grunt icon` if you are building new icons. All current ico
 
 
 -----
-<a name="sass"></a>
 ## Sass Guidelines
 
 
@@ -226,7 +218,6 @@ Javascript hooks:
 
 
 -----
-<a name="javascript"></a>
 ## Javascript Guidelines
 
 ### Conventions
