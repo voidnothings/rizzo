@@ -51,6 +51,8 @@ Rizzo::Application.routes.draw do
   get 'styleguide/cards-grid'            => 'styleguide#cardsGrid'
   get 'styleguide/forms'                 => 'styleguide#forms'
   get 'styleguide/activity_list'         => 'styleguide#activity_list'
+  get 'styleguide/js-components'         => 'styleguide#foo'
+  get 'styleguide/js-components/foo'     => 'styleguide#foo'
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 
