@@ -18,6 +18,7 @@ define ["jquery"], ($) ->
 
     constructor: () ->
 
-      $('.js-toggle-active').on 'click', ->
+      $('.js-toggle-active').on 'click', (e) ->
         $el = $(@)
         $($el.data('toggleTarget')).toggleClass($el.data('toggleClass') || 'is-active')
+        e.preventDefault()
