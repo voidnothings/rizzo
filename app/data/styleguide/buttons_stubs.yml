@@ -52,3 +52,4 @@ variation:
     - "is-disabled"
     - "btn--full-width"
     - "btn--icon icon--globe--before icon--white--before"
+    - "btn--icon-only icon--globe icon--white"
