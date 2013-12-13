@@ -9,9 +9,9 @@
   @extend %inline-block
   cursor: pointer
   font-weight: bold
-  padding: 8px 25px
+  line-height: 1em
+  padding: 10px 25px
   text-align: center
-  min-height: 40px
   &:hover
     text-decoration: none
   &.is-disabled, &[disabled]
@@ -29,9 +29,30 @@
   display: block
   width: 100% // Ensure inputs also stretch full width
 
+.btn--small
+  padding: 7px 25px
+
+.btn--large
+  padding: 12px 25px
+
 .btn--slim
   min-height: 0
   padding: 4px 6px
+
+.btn--icon
+  &:before
+    display: inline-block
+    height: 1em
+    margin-left: -0.5em
+    margin-right: 0.5em
+    position: relative
+    top: 0.1em
+    width: 1em
+
+.btn--icon-only
+  @extend %image-replacement
+  padding: 10px 20px
+  width: 1em
 
 // -----------------------------------------------------------------------------
 // Button Layout Modifiers
