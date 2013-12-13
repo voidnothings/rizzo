@@ -18,8 +18,8 @@ module StyleguideHelper
           title: "Utils",
           items: [
             {
-              name: "Foo",
-              path: "foo"
+              name: "Toggle Active",
+              path: "toggle-active"
             }
           ]
         }
