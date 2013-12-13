@@ -7,7 +7,7 @@ buttons:
     :href: "#"
 
   -
-    :styleguide_title: "Green button"
+    :styleguide_title: "Red button"
     :type: "red"
     :text: "Delete"
     :href: "#"
