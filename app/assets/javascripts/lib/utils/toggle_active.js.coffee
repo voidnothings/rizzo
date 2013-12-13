@@ -14,7 +14,7 @@
 
 define ["jquery"], ($) ->
 
-  class AssetFetch
+  class ToggleActive
 
     constructor: () ->
 
