@@ -20,4 +20,4 @@ define ["jquery"], ($) ->
 
       $('.js-toggle-active').on 'click', ->
         $el = $(@)
-        $($el.data('toggleTarget')).toggleClass($el.data('toggleClass') || 'is-active'))
+        $($el.data('toggleTarget')).toggleClass($el.data('toggleClass') || 'is-active')
