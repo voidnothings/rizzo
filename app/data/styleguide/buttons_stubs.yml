@@ -46,6 +46,8 @@ variation:
   :text: "Modified button"
   :href: "#"
   :modifiers:
+    - "btn--small"
+    - "btn--large"
     - "btn--slim"
     - "is-disabled"
     - "btn--full-width"
