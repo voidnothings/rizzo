@@ -5,9 +5,8 @@
     "card",
     "card--poi",
     "card--small-image",
-    "card--extended-content",
     "icon--blog--white--before",
-    "#{card[:double?] ? 'card--double card--full-image' : 'card--single'}"
+    card[:double?] ? "card--double card--full-image" : "card--single card--extended-content"
 
   ].join(" ")
 
