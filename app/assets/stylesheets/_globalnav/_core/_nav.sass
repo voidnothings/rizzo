@@ -336,7 +336,9 @@
     padding: 0 0.2em 0 0.65em
     &:before
       content: '/'
-      top: 0.25em
+      // This stops the lower-left most part of the / from being cut off.
+      padding: 0 1px
+      top: -0.33em
     &:first-child
       padding-left: 0
       &:before
