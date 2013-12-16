@@ -241,3 +241,53 @@ $mobile-standard-card-image-height: 192px
   &:hover
     .card__content
       height: $card-grid-height - ( 2*$card-content-vertical-padding) - 225px
+
+
+// -----------------------------------------------------------------------------
+// Transparent cards (related)
+// -----------------------------------------------------------------------------
+
+.card--transparent
+  background: transparent
+  .card__tags
+    text-shadow: none
+  .card__context
+    color: $high-contrast-fg
+  .card__name
+    color: white
+    font-weight: bold
+
+// -----------------------------------------------------------------------------
+// Small cards
+// -----------------------------------------------------------------------------
+
+.card--small
+  .card__hero
+    height: 100px
+    width: 100px
+    &:after
+      width: 0
+      height: 0
+  .card__content
+    padding: 1em 0
+    height: 40px
+  .card__name
+    +font-size(14)
+  .card__tags
+    right: 4px
+  .tag
+    +font-size(8)
+    min-width: 25px
+    .tag--price__amount
+      +font-size(20)
+      line-height: .8
+      margin-bottom: 0
+    .tag--price__values
+      padding: 2px 4px 4px 4px
+    .tag--price__icon
+      height: 15px
+      &:before
+        width: 15px
+        height: 15px
+    .tag--price__inner
+      border-radius: 0 3px 3px 3px
