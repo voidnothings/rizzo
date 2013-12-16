@@ -7,6 +7,8 @@
   @extend %rounded-corners
   +box-sizing()
   @extend %inline-block
+  background-color: $linkblue
+  color: white
   cursor: pointer
   font-weight: bold
   line-height: 1em
@@ -66,7 +68,7 @@
 // Button Types
 // -----------------------------------------------------------------------------
 
-.btn--bookable
+.btn--yellow
   background-color: $yella
   color: $body-copy
   &:hover
@@ -88,10 +90,6 @@
   background-color: $green
   color: white
 
-.btn--blue
-  background-color: $linkblue
-  color: white
-
 .btn--red
   background-color: $red
   color: white
@@ -103,6 +101,7 @@
     color: $linkblue
 
 .btn--clear
+  background-color: transparent
   border: 1px solid $input-border
   color: $body-copy
 
