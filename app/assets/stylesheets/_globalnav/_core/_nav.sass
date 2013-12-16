@@ -104,6 +104,17 @@
     +respond-to(wide-view)
       display: none
 
+.nav__item--sign-in,
+.nav__item--join
+  &:before
+    width: 18px
+    height: 18px
+    display: inline-block
+    margin-right: 5px
+    opacity: .7
+  &:hover:before
+    opacity: 1
+
 .nav--user
   +respond-to(wide-view)
     margin-right: 20px
@@ -242,11 +253,10 @@
   margin-top: 10px
   padding-right: 25px
   &:after
-    @extend %lp-font-stack
-    +font-size(20)
-    line-height: 29px
     right: 0
-    top: 0
+    top: 10px
+    width: 12px
+    height: 15px
 
   .responsive &
     margin-top: 0

@@ -101,7 +101,7 @@ module.exports = function (grunt) {
             server: {
                 options: {
                     hostname: "127.0.0.1",
-                    port: 8000
+                    port: 8888
                 }
             }
         },
@@ -160,6 +160,7 @@ module.exports = function (grunt) {
 
     // Tasks
     grunt.registerTask('default', ['shell:clean_js', 'coffee', 'connect', 'jasmine']);
+    grunt.registerTask('ci', ['coffee', 'connect', 'jasmine']);
     grunt.registerTask('dev', ['connect', 'open:jasmine', 'jasmine', 'watch']);
     grunt.registerTask('wip', ['jasmine:rizzo:build', 'open:jasmine', 'connect:server:keepalive']);
     grunt.registerTask('report', ['shell:clean_js', 'coffee', 'plato', 'shell:openPlato']);
