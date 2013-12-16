@@ -142,7 +142,8 @@ $mobile-standard-card-image-height: 192px
 
   .card--full-image &
     @extend %transition--base
-    +background-gradient($startColor: rgba($darkblue, 0.0), $endColor: rgba($darkblue, 0.5))
+    
+    +background-gradient-with-stops($direction: top, $startColor: rgba($darkblue, 0.0), $stop2: rgba($darkblue, 0.5) 50%, $stop3: rgba($darkblue, 0.5) 100%)
     bottom: 0
     color: #fff
     left: 0
@@ -159,10 +160,10 @@ $mobile-standard-card-image-height: 192px
       right: $card-content-horizontal-padding
 
   .has-attribution &
-    height: 83px
+    height: 113px
     bottom: -40px
     .card__content__inner
-      top: $card-content-vertical-padding
+      top: 43px
       bottom: 0
 
   .card--image-only &
