@@ -13,7 +13,18 @@
       buttons.sass
 
 .styleguide-block.styleguide-block__buttons
-  - count = 0
+  .styleguide-block__description.card.copy--body
+    %h2.copy--h2.styleguide-block__heading
+      Default Button
+
+    .styleguide-block__items.media
+      .styleguide-block__item{class: "media__img styleguide-block__item--0"}
+        %a.btn{ href: '#' } Submit
+      %pre.styleguide.copy--body.language-markup.media__body
+        %code
+          &lt;a class='btn' href='#'>Submit&lt;/a>
+
+  - count = 1
   - buttons.each_with_index do | button, i |
     .styleguide-block__description.card.copy--body
       %h2.copy--h2.styleguide-block__heading

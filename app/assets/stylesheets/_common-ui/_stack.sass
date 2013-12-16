@@ -125,7 +125,6 @@ $stack-intro-lines-to-show: 2
 
 .travel-alert
   @extend %rounded-corners
-  +font-size(15)
   background: #fffaca
   line-height: 20px
   margin-top: 10px
@@ -133,8 +132,9 @@ $stack-intro-lines-to-show: 2
   position: relative
 
   &:before
+    display: inline-block
+    position: relative
+    top: 2px
+    height: 16px
+    width: 16px
     color: $red
-    font-size: 30px
-    left: 15px
-    position: absolute
-    top: 15px
