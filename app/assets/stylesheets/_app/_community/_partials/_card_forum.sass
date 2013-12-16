@@ -2,11 +2,9 @@ $forum-horizontal-padding: 20px
 
 .card--forum
   @extend %rounded-corners
-  padding: 15px $forum-horizontal-padding 0
 
   &.active, &.pinned
     border-left: 4px solid $linkblue
-    padding-left: $forum-horizontal-padding - 4px
 
   .copy--meta
     +font-size(13)
@@ -18,25 +16,6 @@ $forum-horizontal-padding: 20px
   .dropdown__select
     min-width: 195px
 
-.card--forum--single
-  padding: 12px $forum-horizontal-padding
-
-  .dropdown
-    margin-top: -6px
-    top: 2px
-
-.card--forum__title,
-.card--forum__row,
-.card--forum__row-container
-  padding: 13px $forum-horizontal-padding
-  margin: 0 -#{$forum-horizontal-padding}
-
-.card--forum__title
-  padding-bottom: 13px
-
-  &:first-child
-    padding-top: 0
-
 .card--forum__row-container
   border-top: 1px solid $subdued
   padding-bottom: 0
@@ -44,14 +23,23 @@ $forum-horizontal-padding: 20px
 .card--forum__row
   @extend %clearfix
   border-top: 1px solid $body-background
-  display: block
-  padding-top: 13px
   
   &:first-child
     border-top: 0
-    padding-top: 0
+
+  .media__body,
+  .description
+    p:last-child
+      margin-bottom: 0
 
 .card--forum__row--title
+  padding: 12px $forum-horizontal-padding
+
+  .dropdown
+    margin-top: -6px
+    top: 2px
+
+.card--forum__row--heading
   background: $details-panel-bg
   padding: 10px $forum-horizontal-padding
   .copy--h5
@@ -60,15 +48,12 @@ $forum-horizontal-padding: 20px
   &:first-child
     border-top: none
 
-// refactor required
+.card--forum__row--content
+  padding: 13px $forum-horizontal-padding
+
+.card--forum__row--filters
+  padding: 10px 5px
+
 .card--moderation
-  @extend %rounded-corners
-
-.card--moderation__title
-  padding: 20px
-
-.card--moderation__title--filters
-  padding: 10px 20px
-
-.card--moderation__row
-  border-top: 1px solid $body-background
+  .card--forum__row--heading
+    padding: 15px $forum-horizontal-padding
