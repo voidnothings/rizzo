@@ -8,10 +8,6 @@
 .table__row--head
   background: $body-background-offset
 
-  th
-    text-align: left
-    vertical-align: bottom
-
 .table__row--body
   &.odd
     background: white
@@ -21,16 +17,38 @@
 .table__cell
   padding: 5px 3px
 
+  .table__row--head &
+    text-align: left
+    vertical-align: bottom
+
   &:first-child
     padding-left: 15px
 
-.table--pagination
+.table__pagination
   margin-bottom: 20px
   text-align: center
 
+.table__filters
+  position: absolute
+  padding: 5px 10px
+  text-align: right
+  top: -47px
+  right: 0
+
+  .dataTables_paginate
+    display: inline-block
+    margin-left: 10px
+
+  .dataTables_filter
+    display: inline-block
+    margin-left: 10px
+
+  .dataTables_info
+    display: inline-block
+
 .filter
   display: table-cell
-  padding: 10px
+  padding: 5px
   vertical-align: bottom
 
 // dataTable specific elements
@@ -54,14 +72,16 @@
   position: relative
 
 .dataTables_empty
-  padding: 5px
+  padding: 10px
   text-align: center
 
-
 .dataTables_filter
-  padding: 5px 20px
-
   input
     @extend .input
     margin-left: 20px
     width: auto
+
+.card--moderation
+  .dataTables_filter
+    input
+      background: white
