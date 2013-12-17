@@ -134,7 +134,7 @@ The icons are built by a grunt task, `grunt icon`, which uses the Filament Group
 The easiest way to copy multiple files into the `active` directory (supposing you have access to this folder in Dropbox) is by modifying and using the following rsync command:
 
 ````bash
-$ rsync -vr --delete ~/Dropbox/LP\ Patterns/Icons/svg/* ~/projects/rizzo/app/assets/images/icons/active/
+$ rsync -vr --delete ~/Dropbox/LP\ Patterns/Icons/svg/*.svg ~/projects/rizzo/app/assets/images/icons/active/
 ````
 
 You only need to run `grunt icon` if you are building new icons. All current icons are already checked into git.
