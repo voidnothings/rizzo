@@ -29,7 +29,7 @@ module.exports = function (grunt) {
                 options: {
                     cssprefix: ".icon--",
                     customselectors: {
-                        "*": [".$1--before:before, .$1--after:after"]
+                        "*": [".icon--$1--before:before, .icon--$1--after:after"]
                     },
                     datasvgcss: "active.css",
                     datapngcss: "active.png.css",
@@ -46,7 +46,7 @@ module.exports = function (grunt) {
                 options: {
                     cssprefix: ".icon--",
                     customselectors: {
-                        "*": [".$1--before:before, .$1--after:after"]
+                        "*": [".icon--$1--before:before, .icon--$1--after:after"]
                     },
                     datasvgcss: "critical.svg.css",
                     datapngcss: "critical.png.css",
