@@ -15,15 +15,15 @@ Rizzo is the UI layer for lonelyplanet.com. Rizzo also serves LP's header and fo
 
 # Table of contents
 
-1. [Rizzo as an application](#raaa)
-2. [Rizzo as an engine](#raag)
-3. [Rizzo as a service](#raas)
+1. [Rizzo as an application](#rizzo-as-an-application)
+2. [Rizzo as an engine](#rizzo-as-an-engine)
+3. [Rizzo as a service](#rizzo-as-a-service)
 4. [Styleguide](#styleguide)
 5. [Testing](#testing)
-6. [Images & icons](#images)
-7. [Git Guidelines and Code Review](#git)
-8. [Sass Guidelines](#sass)
-9. [Javascript Guidelines](#javascript)
+6. [Images & icons](#images-and-icons)
+7. [Git Guidelines and Code Review](#git-guidelines-and-code-review)
+8. [Sass Guidelines](#sass-guidelines)
+9. [Javascript Guidelines](#javascript-guidelines)
 
 -----
 ## Rizzo as an application
