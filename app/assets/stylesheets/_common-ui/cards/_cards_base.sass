@@ -128,8 +128,6 @@ $mobile-standard-card-image-height: 192px
   margin-bottom: $card-content-vertical-padding
   overflow: hidden
   padding: $card-content-vertical-padding $card-content-horizontal-padding 0 $card-content-horizontal-padding
-  // Ensure cards are clickable during this section transitioning
-  pointer-events: none
 
   .card--no-image &
     height: $card-grid-height - $default-card-top-padding - $card-content-vertical-padding
@@ -207,6 +205,8 @@ $mobile-standard-card-image-height: 192px
     z-index: 3
     padding: $card-content-vertical-padding $card-content-horizontal-padding 0 $card-content-horizontal-padding
     margin-bottom: $card-content-vertical-padding
+    // Ensure cards are clickable during this section transitioning
+    pointer-events: none
 
     &:after
       @extend %empty-abs-generated-content
