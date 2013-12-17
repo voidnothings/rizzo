@@ -35,13 +35,15 @@
 // -----------------------------------------------------------------------------
 .post__meta
   +font-size(13)
-  color: $feature-copy
+  color: $section--need-to-know
 
-  &.text-icon--clock:before
-    +font-size(22)
+  &.icon--time--before:before
+    display: inline-block
+    height: 14px
     margin-right: 0.2em
     position: relative
     top: 2px
+    width: 14px
   .user__username--link
     color: $body-copy
     font-weight: bold
@@ -61,7 +63,8 @@
   +font-size(13)
   color: $section--need-to-know
   font-weight: bold
-  line-height: 1.5em
+  line-height: 1em
+  margin-bottom: 5px
   // We need to offset the right margin so that the icons and text are centered within the post-stats section
   // whose parent container has 20px padding.
   margin-right: -20px
@@ -72,9 +75,9 @@
     +font-size(35)
     display: block
     font-weight: normal
-    height: 25px
-    opacity: 0.5
-    width: 25px
+    height: 22px
+    margin: 0 auto
+    width: 22px
 
   &.has-none
     opacity: 0.4
