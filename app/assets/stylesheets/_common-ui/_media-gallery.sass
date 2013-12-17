@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// Media gallery - named such so as to avoid clashing with the Hotels .gallery
+// Media gallery
 // -----------------------------------------------------------------------------
 .media-gallery
   @extend %clearfix
@@ -40,6 +40,15 @@
   .slider__slide
     background: $body-background
     text-align: center
+
+.media-gallery--lodging
+
+  .media-gallery__container, .tab__content, .slider__viewport, .slider__slide
+    width: 548px
+    height: 308px
+
+  .slider__controls
+    top: 132px
 
 // This is all in a mixin because IE7/8 don't work when the :checked, and .is-checked selectors
 // are on the same line below (because IE7/8 don't understand :checked, they discard the entire rule)
