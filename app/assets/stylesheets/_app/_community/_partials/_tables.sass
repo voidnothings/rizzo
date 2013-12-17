@@ -9,9 +9,9 @@
   background: $body-background-offset
 
 .table__row--body
-  &.odd
+  &:nth-child(2n+1)
     background: white
-  &.even
+  &:nth-child(2n)
     background: $details-panel-bg
 
 .table__cell
