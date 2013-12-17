@@ -24,7 +24,7 @@ module.exports = function (grunt) {
                     expand: true,
                     cwd: "app/assets/images/icons/active",
                     dest: "app/assets/stylesheets/icons",
-                    src: ["*.svg", "*.png"]
+                    src: ["*.svg"]
                 }],
                 options: {
                     cssprefix: ".icon--",
@@ -39,9 +39,9 @@ module.exports = function (grunt) {
             critical: {
                 files: [{
                     expand: true,
-                    cwd: "app/assets/images/icons/active",
+                    cwd: "app/assets/images/icons/active/critical/",
                     dest: "app/assets/stylesheets/icons",
-                    src: ["*.svg", "*.png"]
+                    src: ["*.svg"]
                 }],
                 options: {
                     cssprefix: ".icon--",
@@ -172,5 +172,7 @@ module.exports = function (grunt) {
     grunt.registerTask('wip', ['jasmine:rizzo:build', 'open:jasmine', 'connect:server:keepalive']);
     grunt.registerTask('report', ['shell:clean_js', 'coffee', 'plato', 'shell:openPlato']);
     grunt.registerTask('imageoptim', ['imageoptim']);
-    grunt.registerTask('icon', ['svgmin', 'grunticon', 'shell:clean_icons', 'shell:move']);
+    grunt.registerTask('icon:active', ['svgmin', 'grunticon:active', 'shell:clean_icons', 'shell:move']);
+    grunt.registerTask('icon:critical', ['svgmin', 'grunticon:critical', 'shell:clean_icons', 'shell:move']);
+    grunt.registerTask('icon', ['icon:active', 'icon:critical']);
 };
