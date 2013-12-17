@@ -131,12 +131,11 @@ Currently a work in progress. Eventually to be run on the styleguide as a pre-pu
 
 The icons are built by a grunt task, `grunt icon`, which uses the Filament Group's [grunticon plugin](https://github.com/filamentgroup/grunticon). To add a new icon to the build step, simply copy the svg file into `rizzo/app/assets/images/icons/active`.
 
-Unfortunately at the moment, our icons depend on a patched version of the grunticon plugin. So, at the moment we must do the following before running `grunt icon` for the first time.
+The easiest way to copy multiple files into the `active` directory (supposing you have access to this folder in Dropbox) is by modifying and using the following rsync command:
 
-```bash
-$ cd node_modules/grunt-grunticon
-$ curl https://github.com/filamentgroup/grunticon/pull/84.patch | patch -p1
-```
+````bash
+$ rsync -vr --delete ~/Dropbox/LP\ Patterns/Icons/svg/* ~/projects/rizzo/app/assets/images/icons/active/
+````
 
 You only need to run `grunt icon` if you are building new icons. All current icons are already checked into git.
 
