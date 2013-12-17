@@ -27,7 +27,7 @@ module.exports = function (grunt) {
                     src: ["*.svg", "*.png"]
                 }],
                 options: {
-                    cssprefix: "icon--",
+                    cssprefix: ".icon--",
                     customselectors: {
                         "*": [".$1--before:before, .$1--after:after"]
                     },
@@ -44,7 +44,7 @@ module.exports = function (grunt) {
                     src: ["*.svg", "*.png"]
                 }],
                 options: {
-                    cssprefix: "icon--",
+                    cssprefix: ".icon--",
                     customselectors: {
                         "*": [".$1--before:before, .$1--after:after"]
                     },
