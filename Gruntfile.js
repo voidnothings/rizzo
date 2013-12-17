@@ -20,30 +20,37 @@ module.exports = function (grunt) {
         },
         grunticon: {
             active: {
-                options:{
-                    cssprefix: 'icon--',
+                files: [{
+                    expand: true,
+                    cwd: "app/assets/images/icons/active",
+                    dest: "app/assets/stylesheets/icons",
+                    src: ["*.svg", "*.png"]
+                }],
+                options: {
+                    cssprefix: "icon--",
                     customselectors: {
-                        "*": ".$1--before:before, .$1--after:after"
+                        "*": [".$1--before:before, .$1--after:after"]
                     },
-                    datasvgcss: 'active.css',
-                    datapngcss: 'active.png.css',
-                    dest: 'app/assets/stylesheets/icons/',
-                    src: 'app/assets/images/icons/active/',
-                    svgo: true,
-                    urlpngcss: 'active.fallback.css'
+                    datasvgcss: "active.css",
+                    datapngcss: "active.png.css",
+                    urlpngcss: "active.fallback.css"
                 }
             },
             critical: {
-                options:{
-                    cssprefix: 'icon--',
+                files: [{
+                    expand: true,
+                    cwd: "app/assets/images/icons/active",
+                    dest: "app/assets/stylesheets/icons",
+                    src: ["*.svg", "*.png"]
+                }],
+                options: {
+                    cssprefix: "icon--",
                     customselectors: {
-                        "*": ".$1--before:before, .$1--after:after"
+                        "*": [".$1--before:before, .$1--after:after"]
                     },
-                    datasvgcss: 'critical.svg.css',
-                    datapngcss: 'critical.png.css',
-                    dest: 'app/assets/stylesheets/icons/',
-                    src: 'app/assets/images/icons/active/critical/',
-                    urlpngcss: 'critical.css'
+                    datasvgcss: "critical.svg.css",
+                    datapngcss: "critical.png.css",
+                    urlpngcss: "critical.css"
                 }
             }
         },
@@ -165,9 +172,5 @@ module.exports = function (grunt) {
     grunt.registerTask('wip', ['jasmine:rizzo:build', 'open:jasmine', 'connect:server:keepalive']);
     grunt.registerTask('report', ['shell:clean_js', 'coffee', 'plato', 'shell:openPlato']);
     grunt.registerTask('imageoptim', ['imageoptim']);
-    // If you need to run the icons task, first cd node_modules/grunt-grunticon &&
-    // curl https://github.com/filamentgroup/grunticon/pull/84.patch | patch -p1
-    // Until this (or a similar PR is merged)
-    // https://github.com/filamentgroup/grunticon/pull/84
     grunt.registerTask('icon', ['svgmin', 'grunticon', 'shell:clean_icons', 'shell:move']);
 };
