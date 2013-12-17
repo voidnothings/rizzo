@@ -52,10 +52,6 @@ module StyleguideHelper
             {
               name: "Active",
               path: "active-icons"
-            },
-            {
-              name: "Inactive",
-              path: "inactive-icons"
             }
           ]
         },
