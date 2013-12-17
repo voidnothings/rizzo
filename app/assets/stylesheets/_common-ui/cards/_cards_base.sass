@@ -249,10 +249,13 @@ $mobile-standard-card-image-height: 192px
 
 .card--transparent
   background: transparent
+
   .card__tags
     text-shadow: none
+
   .card__context
     color: $high-contrast-fg
+
   .card__name
     color: white
     font-weight: bold
@@ -262,32 +265,41 @@ $mobile-standard-card-image-height: 192px
 // -----------------------------------------------------------------------------
 
 .card--small
+
   .card__hero
     height: 100px
     width: 100px
     &:after
       width: 0
       height: 0
+
   .card__content
     padding: 1em 0
     height: auto
+
   .card__name
     +font-size(14)
+
   .card__tags
     right: 4px
+
   .tag
     +font-size(8)
     min-width: 25px
-    .tag--price__amount
+
+  .tag--price__amount
       +font-size(20)
       line-height: .8
       margin-bottom: 0
-    .tag--price__values
+
+  .tag--price__values
       padding: 2px 4px 4px 4px
-    .tag--price__icon
+
+  .tag--price__icon
       height: 15px
       &:before
         width: 15px
         height: 15px
-    .tag--price__inner
+
+  .tag--price__inner
       border-radius: 0 3px 3px 3px
