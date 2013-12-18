@@ -21,8 +21,22 @@
     background: $details-panel-bg
   &.is-deleted
     .post__content
-      color: $section--need-to-know
+      color: $feature-copy
       font-style: italic
+
+.post__icon
+  display: inline-block
+  height: 20px
+  position: relative
+  width: 20px
+  
+  &.is-pinned
+    left: 150px
+    position: absolute
+    top: 17px
+  .subject &
+    margin-left: 5px
+    top: 3px
 
 // -----------------------------------------------------------------------------
 // The meta information displayed at the bottom of a post.
@@ -31,11 +45,13 @@
   +font-size(13)
   color: $feature-copy
 
-  &.text-icon--clock:before
-    +font-size(22)
+  &.icon--time--before:before
+    display: inline-block
+    height: 14px
     margin-right: 0.2em
     position: relative
     top: 2px
+    width: 14px
   .user__username--link
     color: $body-copy
     font-weight: bold
@@ -47,35 +63,33 @@
 // -----------------------------------------------------------------------------
 .post-stats
   margin-left: 20px
+  padding-left: 35px
   position: relative
   z-index: 2
+  width: 25px
 .post-stats__icon
   +font-size(13)
-  color: $section--need-to-know
+  color: $feature-copy
   font-weight: bold
-  line-height: 1.5em
+  line-height: 1em
+  margin-bottom: 5px
   // We need to offset the right margin so that the icons and text are centered within the post-stats section
   // whose parent container has 20px padding.
   margin-right: -20px
   text-align: center
-  width: 60px
+  width: 25px
   
   &:before
     +font-size(35)
     display: block
     font-weight: normal
+    height: 22px
+    margin: 0 auto
+    width: 22px
+
   &.has-none
     opacity: 0.4
     position: relative
-    &:after
-      +transform(rotateZ(40deg))
-      background: $section--need-to-know
-      content: ' '
-      position: absolute
-      height: 2px
-      left: 19px
-      top: 11px
-      width: 22px
 
 .post__position
   +font-size(60)
