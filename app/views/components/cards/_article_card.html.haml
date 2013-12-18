@@ -1,14 +1,13 @@
 :ruby
 
   css_classes = [
-
     "card",
+    "card--icon",
     "card--poi",
     "card--poi--article",
     "card--small-image",
-    "card--extended-content",
-    "icon--article--white--before",
-    "#{card[:double?] ? 'card--double card--full-image' : 'card--single'}"
+    "icon--article--pin--before",
+    card[:double?] ? "card--double card--full-image" : "card--single card--extended-content"
 
   ].join(" ")
 
@@ -22,5 +21,5 @@
     - if card[:post_date] && !card[:double?]
 
       .card__footer
-        %time.text-icon--clock{datetime: card[:post_date]}
+        %time.text-icon.icon--time--before{datetime: card[:post_date]}
           = prettify_date(card[:post_date])

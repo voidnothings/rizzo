@@ -1,3 +1,4 @@
+- transparent ||= nil
 - if card[:image_url]
   %figure.card__hero
     - if overlay_url = card[:overlay_url]
@@ -11,10 +12,10 @@
       = card[:context]
     %h2.card__name.js-card-name
       = card[:title]
-    - unless card[:double?]
+    - unless card[:double?] or transparent
       - if card[:strapline] || card[:description]
         %p.card__description
           = card[:strapline] || card[:description]
 
-
-    = render partial: "components/cards/partials/image_attribution", locals: {card: card}
+    - if card[:image_license] && card[:image_license] != 'expedia'
+      = render partial: "components/cards/partials/image_attribution", locals: {card: card}

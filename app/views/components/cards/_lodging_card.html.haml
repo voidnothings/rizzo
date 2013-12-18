@@ -6,7 +6,7 @@
     "card--poi",
     "card--poi--hotel",
     "card--single",
-    "#{card[:bookable?] ? 'card--small-image card--extended-content' : 'card--no-image'}"
+    card[:bookable?] ? "card--small-image card--extended-content" : "card--no-image"
 
   ].join(" ")
 
@@ -28,7 +28,7 @@
     - else
       .card__tags
         .tag.tag--non-bookable
-          &#57465;
+          %div.icon--contact
         = render :partial => '/components/cards/partials/lodging_badges', :locals => { :card => card }
 
     .card__content
@@ -43,7 +43,7 @@
         = truncate((card[:name].titleize), :length=> 50, :separator => ' ')
 
       - if card[:nearby_place_text]
-        %p.card__locale
+        %p.card__locale.icon--place--pin--before
           = card[:nearby_place_text]
 
       - if card[:card_description]
@@ -51,5 +51,5 @@
           = card[:card_description]
 
     %footer.card__footer
-      %span.btn.btn--bookable.btn--full-width
+      %span.btn.btn--yellow.btn--full-width
         = card[:bookable?] ? 'Book Now' : 'Read more'

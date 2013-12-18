@@ -1,253 +1,227 @@
 # Rizzo
 
-The app that serves global common meta head definitions, global-body-header and global-body-footer for lp new style guides.
-
-Rizzo also acts as a global service such as beacon endpoint, redirector and error pages.
-
-
-## Install
-
-    $ git clone git@github.com:lonelyplanet/rizzo.git
-    $ cd rizzo
-    $ cp .rvmrc.example .rvmrc
-    $ source .rvmrc
-    $ (gem install bundle if not available)
-    $ bundle install
-
-
-## Usage
-You can run rizzo as a server, or as an extension engine for a rails app. 
-
-### As a standalone server
-
-    - bundle exec unicorn
-
-### As an engine on your rails app
-
-    - add rizzo gem into your gemfile
-      gem 'rizzo', git: 'git@github.com:lonelyplanet/rizzo.git'
-      
-
-# Sass
-
-## Principles of writing Lonely Planet Sass
-
-These are guidelines put in place to provide structure and clarity to our Sass library. It is not here to restrict how we write Sass and to that end it should evolve as our practices evolve. However, these guidelines do strongly
-encourage the use of existing, common, sensible patterns.
-
-
-## Table of contents
-
-1. [General principles](#general-principles)
-2. [Indentation](#sass)
-3. [Comments](#comments)
-4. [Format](#format)
-5. [Abstractions](#abstractions)
-6. [Naming](#naming)
-7. [Organization](#organization)
-8. [Base Project](#base_project)
-9. [Utils](#utils)
-10. [Common-ui](#common-ui)
-11. [Styleguide](#styleguide)
-
-
-<a name="general-principles"></a>
-## 1. General principles
+Rizzo is the UI layer for lonelyplanet.com. Rizzo also serves LP's header and footer, assets and styleguide.
 
 > "Leave code in a better state than you found it."
 
-* All code in any code-base should look like a single person typed it, no matter how many people contributed.
-* Strictly enforce the agreed upon style.
-* If in doubt use existing, common patterns.
+
+## Install & Get Dependencies
+
+    $ git clone git@github.com:lonelyplanet/rizzo.git && cd rizzo
+    $ cp .rvmrc.example .rvmrc && source .rvmrc
+    $ bundle install
+    $ npm install
 
 
-<a name="sass"></a>
-## 2. Indentation
-We use the Sass indented format which means:
+# Table of contents
 
-* 2 spaces (or a soft tab) are used for indentation
-* Curly braces are omitted
+1. [Rizzo as an application](#raaa)
+2. [Rizzo as an engine](#raag)
+3. [Rizzo as a service](#raas)
+4. [Styleguide](#styleguide)
+5. [Testing](#testing)
+6. [Images & icons](#images)
+7. [Git Guidelines and Code Review](#git)
+8. [Sass Guidelines](#sass)
+9. [Javascript Guidelines](#javascript)
 
-Tip: configure your editor to "show invisibles". This will allow you to eliminate end of line whitespace, eliminate unintended blank line whitespace, and avoid polluting commits.
+-----
+## Rizzo as an application
 
+Rizzo is accessible at [http://rizzo.lonelyplanet.com](http://rizzo.lonelyplanet.com) and can also be run locally:
 
-<a name="comments"></a>
-## 3. Comments
-
-Don't leave others in the team guessing as to the purpose of uncommon or non-obvious code.
-
-Comments should follow the below pattern:
-
-```css
-//----------------------------------------------------------
-// UI Object Title
-//
-// Description, modifier classes, styleguide reference 
-//----------------------------------------------------------
+```bash
+  bundle exec unicorn
 ```
 
-* Always use // rather than /* as the latter will persist after compilation.
-* Be overly verbose. All comments will be stripped out on build, they are there for our understanding and to help the team develop faster.
-* Place comments on a new line above their subject.
-* Make liberal use of comments to break CSS code into discrete sections.
+## Rizzo as an engine
+
+Primarily rizzo is used as an engine to provide layouts and assets to your rails application.
+
+To enable rizzo, add it to your gemfile:
+
+    gem 'rizzo', git: 'git@github.com:lonelyplanet/rizzo.git'
+
+This will add all the Javascript and Sass into your applications load paths. In order to use the layouts, specify it in your controller. There are currently four layouts that Rizzo provides:
+
+- Core (Fixed width) - [http://rizzo.lonelyplanet.com/global](http://rizzo.lonelyplanet.com/global)
+- Responsive - [http://rizzo.lonelyplanet.com/responsive](http://rizzo.lonelyplanet.com/responsive)
+- Homepage (Transparent header) - [http://rizzo.lonelyplanet.com/homepage](http://rizzo.lonelyplanet.com/homepage)
 
 
-<a name="format"></a>
-## 4. Format
+-----
+## Rizzo as a service
 
-* Nest with care!
-* Limit nesting to 1 level deep. Reassess any nesting more than 2 levels deep. This prevents overly specific CSS selectors.
-* Avoid large numbers of nested rules. Break them up when readability starts to be affected. Avoid nesting that spreads over more than 20 lines.
-* Group `@include` and `@extend` statements at the top of a declaration block.
+Rizzo also exposes the Global Head (html, css, meta etc.), Global Body Header (Primary navigation) and Global Body Footer (scripts and footer) as a service. These are used for non-rails apps. They are available at:
 
-<a name="abstractions"></a>
-## 5. Abstractions
-* Reusable blocks of code should be abstracted from your project Sass and placed within rizzo if you believe it is globally useful. They should be placed into the common-ui or utils folder (see below for clarfication on where)
-* Variables should be abstracted into Rizzo unless you want them to remain local. Variables are local when declared inside mixins.
-* Code should be abstracted from your style declarations where possible. Check in _utils/extends and _utils/objects to see if there are code patterns already available for you to use.
+- Global Head - [http://rizzo.lonelyplanet.com/global-head](http://rizzo.lonelyplanet.com/global-head)
+- Global Body Header - [http://rizzo.lonelyplanet.com/global-body-header](http://rizzo.lonelyplanet.com/global-body-header)
+- Global Body Footer - [http://rizzo.lonelyplanet.com/global-body-footer](http://rizzo.lonelyplanet.com/global-body-footer)
 
-```css
-// Example of refactorable code
+An example of the legacy navigation can be viewed at [http://rizzo.lonelyplanet.com/legacy](http://rizzo.lonelyplanet.com/legacy).
 
-// Before
-.example
-  position: absolute
-  top: 0
-  left: 0
-  right: 30px
-  .heading
-    font-size: 22px
-    width: 100%
-    color: #007c
-    margin-bottom: 20px
-    border-bottom: 1px solid #cecece
 
-// After
-.example
-  @extend %absolute-top-left
-  right: 30px
-  .heading
-    @extend .module-title
-    color: $blue-link
+-----
+## Styleguide
 
+The styleguide is accessible at 
+
+```bash
+  bundle exec unicorn
 ```
 
-Using @extend to link to abstracted classes makes for more readable code as we can specify much more verbose placeholder names and reduce the amount of declarations.
+TODO: Write about the styleguide process
 
+### Yeoman Generators
 
-<a name="naming"></a>
-## 6. Naming
+If you want to create a new component within the styleguide you can do so with Yeoman. Find out about any Yeoman generators we have available and how to use them at our [Yeoman repo](https://github.com/lonelyplanet/yeoman).
 
-Balance the necessity for semantic classnames with terseness when naming classes: short but readable.
+-----
+## Testing
 
-We use two types of prefix:
- * Prefix states with is- Eg. is-hidden
- * Prefix hooks with js- Eg. js-toggle
- 
-Prefixing with js: 
- * This ensures that we maintain a distinction between content and functionality
- * If there is no id to the element you can place your js-hook as the id.
- * If there is an id and you need to style the element with a class it is ok to duplicate the class, eg:
- ```
- <a id="#someContent" class="toggle js-toggle">View content</a>
- ```
- * Do NOT style js-classes in your CSS
- * Do NOT select an element from the DOM without a js-hook.
+### Unit Tests
 
+Each component as well as any helper methods should have unit tests.
 
-When naming mixins that deal with css properties use the same name. Eg:
-* @mixin border-radius()
-* @mixin font-size()
+````bash
+  $ bundle exec rspec
+````
 
-When naming custom mixins, variables and placeholders be verbose and use intuitive naming. Eg:
-* $header-background-blue: #0a4f9c
-* %hotels-card-texture
+### Integration Tests
 
+````bash
+  $ bundle exec cucumber
+````
 
+### Javascript Unit Tests
 
-<a name="organization"></a>
-## 7. Organization
-
-* Logically separate distinct pieces of code.
-* Your main project sass file should only have @import rules within it.
-* Keep Sass files short and readable.
-
-<a name="base_project"></a>
-## 8. Base Project
-
-* Start any new project by installing rizzo as a gem.
-* The first line of your project Sass file should be :
-@import base_project
-
-base_project.sass includes:
- - Reset
- - Typographic Styles
- - All of _Utils
-
-<a name="utils"></a>
-## 9. Utils
-
-_Utils.sass and the _utils folder contain all of our library code in the form of mixins, variables and placeholders. 
-
-No code should go into _utils if it is not protected by one of the above to avoid unnecessary css bloat as all of this code is included by default.
-
-Utils also includes a set of debug styles, designed to highlight common development errors in markup. To activate these @include debug() and add a .debug class to the body element. Obviously this should only be used in development.
-
-<a name="common-ui"></a>
-## 10. Common-Ui
-
-_Common-ui contains all resusable widgets. None of these files are included by default so look to what you might need before choosing to @import them or accidentally duplicating code.
-
-When adding to common-ui, create a new file for your module/widget so that it is available for others. Comment it heavily and add it to the styleguide.
-
-
-<a name="styleguide"></a>
-## 11. Styleguide
-
-We plan to implement the KSS living styleguide (https://github.com/kneath/kss) which will allow commenting in our Sass to dictate the output of the styleguide.
-
-This will be updated as we move forward with this project.
-
-
-
-
-
-This document is derived from Nicolas Gallagher's Idiomatic CSS. (https://github.com/necolas/idiomatic-css) which has been adapted for our needs.
-
-# Javascript
-
-___Lonely Planet Javascript Library___
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'rizzo'
-
-And then execute:
-
-    $ bundle
-
-## Running tests
-
-To use grunt with rizzo:
-
-- To clean, compile and run all the tests headlessly
+To clean, compile and run all the tests headlessly
 ````bash
   $ grunt
 ````
 
-- To run them headlessly without compiling them all, and to enable watching of files (like guard)
+To run them headlessly without compiling them all, and to enable watching of files
 ````bash
   $ grunt dev
 ````
 
-- To spawn a server and rerun failed tests
+To spawn a server and rerun failed tests
 ````bash
   $ grunt wip
 ````
 
-- To run plato (sourcecode analysis)
+To run plato (Javascript sourcecode analysis)
 ````bash
   $ grunt report
 ````
+
+### Visual Regression Tests
+
+Currently a work in progress. Eventually to be run on the styleguide as a pre-push hook. Uses phantomcss.
+
+````bash
+  $ phantomjs spec/lib/visual_regression.js
+````
+
+
+
+-----
+## Images and Icons
+
+
+The icons are built by a grunt task, `grunt icon`, which uses the Filament Group's [grunticon plugin](https://github.com/filamentgroup/grunticon). To add a new icon to the build step, simply copy the svg file into `rizzo/app/assets/images/icons/active`.
+
+Unfortunately at the moment, our icons depend on a patched version of the grunticon plugin. So, at the moment we must do the following before running `grunt icon` for the first time.
+
+```bash
+$ cd node_modules/grunt-grunticon
+$ curl https://github.com/filamentgroup/grunticon/pull/84.patch | patch -p1
+```
+
+You only need to run `grunt icon` if you are building new icons. All current icons are already checked into git.
+
+
+-----
+## Git Guidelines and Code Review
+
+### Git
+
+- Always work in a branch
+- Rebase into your own branch from master (as long as it is only you working on that branch, otherwise merge)
+- Merge with --no-ff back into master when it has been code reviewed (or merge through github).
+- Use git pull --rebase to avoid commits like this:
+
+```bash
+  Merge remote-tracking branch 'origin/master' into if_feature
+````
+
+- Prefix your branches with your initials or name.
+- Squash your commits using rebase -i if you think it can better reflect the code you have committed.
+- Make your commit messages useful, no jokes.
+
+### Code Review
+
+- Code review should start when you begin the feature - discuss it with another dev. The code review should absolutely not be the first time the reviewer sees the code.
+- Avoid long running branches! Long branches are *much* harder to code review.
+- Include visual aids (images, animated gifs) in your Pull Requests.
+- Be strict in your code review. Don't let laziness slip through as it's harder to remove later.
+- Code reviews are an opportunity for both devs to learn.
+- It's never a personal attack.
+
+
+
+-----
+## Sass Guidelines
+
+
+### Syntax
+
+We use the Sass format which means:
+
+* 2 spaces are used for indentation
+* Curly braces are omitted
+* Use + instead of @include
+
+Comments are encouraged and should follow the below pattern:
+
+```css
+//----------------------------------------------------------
+// Section or component Title
+//
+// Description
+//----------------------------------------------------------
+```
+
+### Style
+
+We use BEM which should help with:
+* Limiting nesting to 1 level deep.
+* Avoiding large numbers of nested rules.
+
+Also:
+* Group `+` and `@extend` statements at the top of each selector ruleset
+* Don't over-abstract
+* Write code to be readable and understandable, not to save bytes.
+
+
+### Conventions
+
+We use prefixes for states and javascript hooks:
+
+    <div class="is-hidden">This element has state</div>
+    <div class="tab js-tab">This element can be reached by javascript</div>
+ 
+Javascript hooks:
+ * Ensure that we maintain a distinction between content and functionality.
+ * Should *never* relate to css rules.
+ * Should be the only way of reaching a dom element.
+
+
+-----
+## Javascript Guidelines
+
+### Conventions
+
+@chee is going to write this :)
+
+

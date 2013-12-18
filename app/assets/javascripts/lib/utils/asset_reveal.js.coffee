@@ -23,6 +23,10 @@ define [required], ($)->
         elements = e.data[0] if elements is undefined
         @_loadBgImage(elements)
 
+      @$listener.on ':asset/loadDataSrc', (e, elements) =>
+        elements = e.data[0] if elements is undefined
+        @_loadDataSrc(elements)
+
 
     # Private
 
@@ -63,3 +67,17 @@ define [required], ($)->
         $element.removeClass('rwd-image-blocker')
       else
         $element.find('.rwd-image-blocker').removeClass('rwd-image-blocker')
+
+    _loadDataSrc: (selector) ->
+      $element = $(selector)
+
+      if not $element.attr('data-src')
+        $element = $element.find('[data-src]')
+
+      data = $element.data()
+      $img = $('<img />')
+
+      for attr, val of data
+        $img.attr(attr, val)
+
+      $element.replaceWith($img)

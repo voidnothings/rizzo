@@ -1,0 +1,17 @@
+:ruby
+  css_classes = [
+    "card",
+    "card--guide",
+    "card--small",
+    "card--transparent"
+  ].join(" ")
+
+%article.js-card{class: css_classes}
+
+  %a.link--wrapper{href: card[:url]}
+
+    .card__tags.card__tags--guides
+      - if card[:prices] && card[:prices][currency.to_s].present? && card[:prices][currency.to_s] > 0
+        = render :partial => "/components/cards/partials/card_price", :locals => { :card => card, :icon => card[:price_icon] }
+
+    = render :partial => "/components/cards/partials/card_content", :locals => { :card => card, :transparent => true }
