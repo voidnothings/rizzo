@@ -124,17 +124,16 @@
   display: inline-block
   vertical-align: top
 
-.related__list__title
+.related__list-title
   +font-size(24)
   color: white
-  padding-bottom: 1em
   margin-bottom: .5em
   .related__articles &
     border-bottom: 1px solid $high-contrast-fg
   .related__guides &
     margin-bottom: 0
 
-.related__list__number
+.related__list-number
   +font-size(16)
   color: $subdued
   &:before
@@ -145,16 +144,13 @@
 .related__btn
   text-shadow: none
 
-.related__list__link
+.related__list-link
   display: block
   +font-size(16)
   color: $subdued
   padding-bottom: 1em
 
-.related__list__item__title
-  font-weight: bold
-
-.related__list__item--guide
+.related__list-item--guide
   width: 95px
   display: inline-block
   position: relative
@@ -162,10 +158,10 @@
   &:not(:last-child)
     margin-right: 20px
 
-.related__list__item__context,
-.related__list__date
+.related__list-date
   display: block
   +font-size(14)
+  padding-bottom: 1em
   font-style: italic
   line-height: 1.5
   color: $high-contrast-fg
