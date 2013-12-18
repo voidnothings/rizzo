@@ -39,3 +39,7 @@ _SpecRunner.html
 grunticon.loader.txt
 app/assets/stylesheets/icons/preview.html
 app/assets/images/icons/active/archive
+app/assets/stylesheets/icons/active.fallback.css
+app/assets/stylesheets/icons/active.png.css
+app/assets/stylesheets/icons/critical.svg.css
+app/assets/stylesheets/icons/critical.png.css
