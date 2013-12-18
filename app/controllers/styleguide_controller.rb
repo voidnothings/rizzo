@@ -74,6 +74,10 @@ class StyleguideController < GlobalController
     render '/styleguide/js-components/toggle-active'
   end
 
+  def proximity_loader
+    render '/styleguide/js-components/proximity-loader'
+  end
+
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 end

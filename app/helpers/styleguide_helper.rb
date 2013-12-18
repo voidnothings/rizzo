@@ -4,7 +4,7 @@ module StyleguideHelper
     # Add new sections here.
     ["JS Components", "UI Components"]
   end
-  
+
   def default_section
     "UI Components"
   end
@@ -20,6 +20,10 @@ module StyleguideHelper
             {
               name: "Toggle Active",
               path: "toggle-active"
+            },
+            {
+              name: "Proximity Loader",
+              path: "proximity-loader"
             }
           ]
         }
