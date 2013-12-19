@@ -61,13 +61,14 @@
 // -----------------------------------------------------------------------------
 // The icons and links on the right hand side of a post.
 // -----------------------------------------------------------------------------
-.post-stats
+.post-links
   margin-left: 20px
   padding-left: 35px
   position: relative
   z-index: 2
   width: 25px
-.post-stats__icon
+
+.post-links__icon
   +font-size(13)
   color: $feature-copy
   font-weight: bold
@@ -79,7 +80,7 @@
   text-align: center
   width: 25px
   
-  &:before
+  .results &:before
     +font-size(35)
     display: block
     font-weight: normal
@@ -87,12 +88,26 @@
     margin: 0 auto
     width: 22px
 
-  &.has-none
-    opacity: 0.4
-    position: relative
+  .replies &
+    @extend %image-replacement
+    display: block
+    height: 22px
+    width: 22px
 
 .post__position
   +font-size(60)
   color: $subdued
   display: block
   text-align: center
+
+// -----------------------------------------------------------------------------
+// The thread of the day nomination form.
+// -----------------------------------------------------------------------------
+.thread-of-the-day__form
+
+  &.is-not-active
+    height: 0
+    padding: 0
+
+  &.is-active
+    height: 35px
