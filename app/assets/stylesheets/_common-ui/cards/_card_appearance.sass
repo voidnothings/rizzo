@@ -223,24 +223,23 @@
 
 .card__attribution
   padding-left: 25px
+  position: relative
+  &:before
+    position: absolute
+    top: 5px
+    left: 0
+    width: 20px
+    height: 20px
   .card--single &
     color: $feature-copy
     margin-top: 17px
     &:before
-      top: 5px
+      top: 0
   .card--double &
     position: absolute
     bottom: 7px
     left: 0
     right: 0
-  &:before
-    width: 20px
-    height: 20px
-    left: 0
-    position: absolute
-  .card--page__hero--attributed &
-    &:before
-      line-height: 0.55em
 
 .card__attribution-link
   cursor: pointer
