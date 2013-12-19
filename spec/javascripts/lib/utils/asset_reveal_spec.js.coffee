@@ -19,7 +19,7 @@ require ['public/assets/javascripts/lib/utils/asset_reveal.js'], (AssetReveal) -
       beforeEach ->
         loadFixtures('hidden_assets.html')
         window.assetReveal = new AssetReveal()
-        $("#js-row--content").trigger(":asset/uncomment", [".foo", "[data-uncomment]"])
+        $("#js-row--content").trigger(":asset/uncomment", [".foo"])
 
       it 'uncomments the image', ->
         expect(window.assetReveal.$listener.find('.bar').length).toBe(1)

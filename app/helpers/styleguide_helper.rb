@@ -24,6 +24,10 @@ module StyleguideHelper
             {
               name: "Proximity Loader",
               path: "proximity-loader"
+            },
+            {
+              name: "Asset Reveal",
+              path: "asset-reveal"
             }
           ]
         }
