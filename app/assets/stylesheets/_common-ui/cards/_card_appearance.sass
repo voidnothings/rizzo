@@ -222,29 +222,34 @@
       bottom: 0
 
 .card__attribution
-  @extend %left-icon
   padding-left: 25px
   .card--single &
     color: $feature-copy
     margin-top: 17px
+    &:before
+      top: 5px
   .card--double &
     position: absolute
     bottom: 7px
     left: 0
     right: 0
   &:before
-    +font-size(30)
-    line-height: 0.333em
+    width: 20px
+    height: 20px
+    left: 0
+    position: absolute
   .card--page__hero--attributed &
     &:before
       line-height: 0.55em
 
 .card__attribution-link
   cursor: pointer
+  pointer-events: all
   .card--double &
     @extend %inline-block
     @extend %truncate-text
     width: 70%
+    line-height: 32px
   &:hover
     text-decoration: underline
 
