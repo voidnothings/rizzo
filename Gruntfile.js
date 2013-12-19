@@ -30,8 +30,8 @@ module.exports = function (grunt) {
                     cssprefix: ".icon--",
                     customselectors: {
                         "*": [".icon--$1--before:before, .icon--$1--after:after"],
-                        ".icon--chevron-right": [".pickadate__month--next"],
-                        ".icon--chevron-left": [".pickadate__month--prev"]
+                        "chevron-right": [".pickadate__month--next"],
+                        "chevron-left": [".pickadate__month--prev"]
                     },
                     datasvgcss: "active.css",
                     datapngcss: "active.png.css",
@@ -49,8 +49,8 @@ module.exports = function (grunt) {
                     cssprefix: ".icon--",
                     customselectors: {
                         "*": [".icon--$1--before:before, .icon--$1--after:after"],
-                        ".icon--chevron-right": [".pickadate__month--next"],
-                        ".icon--chevron-left": [".pickadate__month--prev"]
+                        "chevron-right": [".pickadate__month--next"],
+                        "chevron-left": [".pickadate__month--prev"]
                     },
                     datasvgcss: "critical.svg.css",
                     datapngcss: "critical.png.css",
