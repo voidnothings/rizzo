@@ -6,7 +6,7 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         imageoptim: {
-            files: [
+            src: [
                 'app/assets/images'
             ],
             options: {
@@ -29,7 +29,9 @@ module.exports = function (grunt) {
                 options: {
                     cssprefix: ".icon--",
                     customselectors: {
-                        "*": [".icon--$1--before:before, .icon--$1--after:after"]
+                        "*": [".icon--$1--before:before, .icon--$1--after:after"],
+                        ".icon--chevron-right": [".pickadate__month--next"],
+                        ".icon--chevron-left": [".pickadate__month--prev"]
                     },
                     datasvgcss: "active.css",
                     datapngcss: "active.png.css",
@@ -46,7 +48,9 @@ module.exports = function (grunt) {
                 options: {
                     cssprefix: ".icon--",
                     customselectors: {
-                        "*": [".icon--$1--before:before, .icon--$1--after:after"]
+                        "*": [".icon--$1--before:before, .icon--$1--after:after"],
+                        ".icon--chevron-right": [".pickadate__month--next"],
+                        ".icon--chevron-left": [".pickadate__month--prev"]
                     },
                     datasvgcss: "critical.svg.css",
                     datapngcss: "critical.png.css",
@@ -172,7 +176,7 @@ module.exports = function (grunt) {
     grunt.registerTask('wip', ['jasmine:rizzo:build', 'open:jasmine', 'connect:server:keepalive']);
     grunt.registerTask('report', ['shell:clean_js', 'coffee', 'plato', 'shell:openPlato']);
     grunt.registerTask('imageoptim', ['imageoptim']);
-    grunt.registerTask('icon:active', ['svgmin', 'grunticon:active', 'shell:clean_icons', 'shell:move']);
-    grunt.registerTask('icon:critical', ['svgmin', 'grunticon:critical', 'shell:clean_icons', 'shell:move']);
-    grunt.registerTask('icon', ['icon:active', 'icon:critical']);
+    grunt.registerTask('icon:active', ['grunticon:active', 'shell:clean_icons', 'shell:move']);
+    grunt.registerTask('icon:critical', ['grunticon:critical', 'shell:clean_icons', 'shell:move']);
+    grunt.registerTask('icon', ['svgmin', 'icon:active', 'icon:critical']);
 };
