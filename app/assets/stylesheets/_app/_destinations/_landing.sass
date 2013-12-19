@@ -111,9 +111,11 @@ html
     color: white
 
 .row--introduction__blurb__hide
+  @extend %image-replacement
   +transition(all, 0.3, ease-in)
   display: none
   cursor: pointer
+  color: white
 
   +respond-to(wide-view)
     display: block
