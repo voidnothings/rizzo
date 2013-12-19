@@ -15,9 +15,15 @@ define [required], ($)->
     # Subscribe
     listen: ->
       @$listener.on ':asset/uncomment', (e, elements, klass) =>
+        if e.data
+          elements = e.data[0]
+          klass = e.data[1]
         @_uncomment(elements, klass || '[data-uncomment]')
 
       @$listener.on ':asset/uncommentScript', (e, elements, klass) =>
+        if e.data
+          elements = e.data[0]
+          klass = e.data[1]
         @_uncommentScript(elements, klass || '[data-script]')
 
       @$listener.on ':asset/loadBgImage', (e, elements) =>
