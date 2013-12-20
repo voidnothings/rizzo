@@ -1,7 +1,7 @@
-require ['jquery', 'lib/core/base', 'jplugs/pickadate.legacy'], ($, Base) ->
+require ['jquery', 'lib/managers/select_group_manager', 'jplugs/pickadate.legacy'], ($, SelectGroupManager) ->
 
   $ ->
-    base = new Base()
+    selectGroupManager = new SelectGroupManager()
 
     require [
       'lib/styleguide/ajax-content'

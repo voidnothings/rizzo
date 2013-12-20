@@ -1,5 +1,5 @@
-require ['jquery'], (jQuery) ->
-  content = jQuery(document.body)
+require ['jquery'], ($) ->
+  content = $(document.body)
   intro = content.find('.styleguide-intro--icons')
   colorFilter = intro.find('#js-icon-filter')
   colorSelect = intro.find('.js-select')
@@ -7,7 +7,7 @@ require ['jquery'], (jQuery) ->
   iconCards = icons.parent('.js-card')
   iconColors = []
 
-  jQuery.each colorSelect.get(0).options, (_, option) ->
+  colorSelect.length && $.each colorSelect.get(0).options, (_, option) ->
     iconColors.push('icon--' + option.value)
 
   setIconColor = (color) ->
@@ -20,5 +20,5 @@ require ['jquery'], (jQuery) ->
   colorFilter.on 'keyup', (event) ->
     query = this.value
     iconCards.addClass('is-hidden').each () ->
-      element = jQuery(this)
+      element = $(this)
       element.data('icon').match(query) and element.removeClass('is-hidden')
