@@ -259,15 +259,15 @@
   .responsive &
     margin-top: 0
     height: 50px
+    background: $offscreen-nav-user-background
     &:after
       content: ''
       background-size: 100%
       background-position: center
       top: 10px
-    +respond-to(max990)
-      background: $offscreen-nav-user-background
-      &:after
-        background: none
+      background: none
+    +respond-to(990)
+      background: none
     +respond-to(wide-view)
       margin-top: 10px
       height: auto
