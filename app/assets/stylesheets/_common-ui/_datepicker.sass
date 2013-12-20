@@ -1,4 +1,4 @@
-.pickadate__holder
+.picker__holder
   width: 100%
   height: 0
   position: relative
@@ -7,7 +7,7 @@
   .ie8 &, .ie7 &
     height: 280px
 
-.pickadate__calendar--wrap
+.picker__frame
   +transition()
   @extend %rounded-corners
   top: 0
@@ -18,32 +18,33 @@
   min-width: 256px
   max-height: 0
   overflow-y: hidden
-  .pickadate__holder--opened &
+  .picker--opened &
     max-height: 25em
     @extend %fly-out-shadow
 
-.pickadate__calendar
+.picker__box
   padding: 10px
   text-align: center
   border: 1px solid $subdued
 
-.pickadate__month--wrap,
-.pickadate__year--wrap
+.picker__month--wrap,
+.picker__year--wrap
   @extend %inline-block
 
-.pickadate__month--wrap
+.picker__month--wrap
   margin-right: 4px
 
-.pickadate__month,
-.pickadate__year
+.picker__month,
+.picker__year
   +font-size(18)
   font-weight: bold
 
-.pickadate__month--nav
+.picker__nav--prev,
+.picker__nav--next
   position: relative
 
-.pickadate__month--prev,
-.pickadate__month--next
+.picker__nav--prev,
+.picker__nav--next
   position: absolute
   top: 0
   width: 25px
@@ -51,24 +52,24 @@
   cursor: pointer
   background-size: cover
 
-.pickadate__month--prev
+.picker__nav--prev
   @extend %left-icon
   left: 10px
 
-.pickadate__month--next
+.picker__nav--next
   @extend %right-icon
   right: 10px
 
-.pickadate__calendar--table
+.picker__table
   border-collapse: separate
   border-spacing: 4px
   width: 100%
 
-.pickadate__weekday
+.picker__weekday
   +font-size(14)
   font-weight: normal
 
-.pickadate__day
+.picker__day
   +border-radius(30)
   +font-size(13)
   @extend %inline-block
@@ -81,17 +82,17 @@
   border: 1px solid #d7dee3
   cursor: pointer
 
-.pickadate__day--selected,
-.pickadate__day--selected:hover
+.picker__day--selected,
+.picker__day--selected:hover
   border-color: $active
   background-color: $active
   color: white
 
-.pickadate__day--outfocus,
-.pickadate__day--disabled
+.picker__day--outfocus,
+.picker__day--disabled
   border: none
 
-.pickadate__day--disabled
+.picker__day--disabled
   opacity: 0.5
   color: #ddd
   cursor: default

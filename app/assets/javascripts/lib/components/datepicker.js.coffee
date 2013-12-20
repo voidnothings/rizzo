@@ -7,7 +7,7 @@
 # container #{string} - The parent form
 # ------------------------------------------------------------------------------
 
-define ['jquery', 'jplugs/pickadate.legacy'], ($) ->
+define ['jquery', 'pickadate/lib/picker', 'pickadate/lib/picker.date', 'pickadate/lib/picker'], ($) ->
 
   class AvailabilityDatepicker
 
@@ -30,37 +30,37 @@ define ['jquery', 'jplugs/pickadate.legacy'], ($) ->
       @in_label = $('.js-av-start-label')
       @out_label = $('.js-av-end-label')
       @firstTime = if (@in_date.val() is ''  or @in_date.val() is undefined) then true else false
+      @day = 86400000
       today = []
       tomorrow = []
       d = new Date()
-      today.push(d.getFullYear(), (d.getMonth() + 1), d.getDate())
-      tomorrow.push(d.getFullYear(), (d.getMonth() + 1), (d.getDate() + 1))
+      today.push(d.getFullYear() + 1, d.getMonth(), d.getDate())
+      tomorrow.push(d.getFullYear() + 1, d.getMonth(), (d.getDate() + 1))
 
       @in_date.pickadate({
-        dateMin: today
+        min: today
         format: config.dateFormat
-        onSelect: ->
-          self.dateSelected(this.getDate(config.dateFormatLabel), "start")
+        onSet: ->
+          self.dateSelected(this.get('select', config.dateFormatLabel), "start")
       })
 
       @out_date.pickadate({
-        dateMin: tomorrow
+        min: tomorrow
         format: config.dateFormat
-        onSelect: ->
-          self.dateSelected(this.getDate(config.dateFormatLabel), "end")
+        onSet: ->
+          self.dateSelected(this.get('select', config.dateFormatLabel), "end")
       })
 
-    dateSelected : (date, type)->
+    dateSelected: (date, type)->
+      console.log(date, type, 'date, type')
       if type is "start"
         unless @isValidEndDate()
-          checkOut = @normalizeDate(date)
-          @out_date.data('pickadate').setDate(checkOut.year, checkOut.month, checkOut.day + 1)
+          @out_date.data('pickadate').set('select', new Date(date).getTime() + @day)
         @in_label.text(@in_date.val())
 
       else if type is "end"
         if !@isValidEndDate() or @firstTime
-          checkOut = @normalizeDate(date)
-          @in_date.data('pickadate').setDate(checkOut.year, checkOut.month, checkOut.day - 1)
+          @in_date.data('pickadate').set('select', new Date(date).getTime() - @day)
         @out_label.text(@out_date.val()).removeClass('is-hidden')
 
       @firstTime = false
@@ -69,17 +69,10 @@ define ['jquery', 'jplugs/pickadate.legacy'], ($) ->
         config.callbacks.onDateSelect(date, type)
 
     inValue: ->
-      new Date($(@in_date).data('pickadate').getDate(config.dateFormatLabel))
+      new Date($(@in_date).data('pickadate').get('select', config.dateFormatLabel))
 
     outValue: ->
-      new Date($(@out_date).data('pickadate').getDate(config.dateFormatLabel))
+      new Date($(@out_date).data('pickadate').get('select', config.dateFormatLabel))
 
     isValidEndDate: ->
       @inValue() < @outValue()
-
-    normalizeDate: (date) ->
-      date = date.split('/')
-      friendlyDate =
-        year:  date[0]
-        month: date[1]
-        day:   parseInt(date[2], 10)
