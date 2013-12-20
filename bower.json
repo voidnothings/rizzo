@@ -1,5 +1,5 @@
 {
-	"name": "rizzo",
+  "name": "rizzo",
   "dependencies": {
     "flamsteed": "latest",
     "lonelyplanet_minjs": "latest",
