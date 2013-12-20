@@ -157,3 +157,20 @@
 // -----------------------------------------------------------------------------
 .in-reply-to
   margin-top: 10px
+  overflow: hidden
+  
+  &.is-not-active
+    height: 1.5em
+    .icon--chevron-up
+      display: none
+  &.is-active
+    .icon--chevron-down
+      display: none
+
+.in-reply-to__icon
+  display: inline-block
+  height: 1em
+  margin-right: 0.2em
+  position: relative
+  top: 0.2em
+  width: 1em
