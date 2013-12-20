@@ -70,13 +70,18 @@
   z-index: 2
 
 .post-links__icon
+  @extend %transition--base
   +font-size(13)
   color: $feature-copy
   font-weight: bold
   line-height: 1em
   margin: 0 auto 5px
+  opacity: 0.5
   text-align: center
   width: 25px
+
+  .post-links:hover &
+    opacity: 1
   
   .results &:before
     +font-size(35)
@@ -146,3 +151,9 @@
     position: absolute
     top: 0
     width: 1em
+
+// -----------------------------------------------------------------------------
+// In Reply To
+// -----------------------------------------------------------------------------
+.in-reply-to
+  margin-top: 10px
