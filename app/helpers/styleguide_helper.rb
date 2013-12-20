@@ -28,6 +28,10 @@ module StyleguideHelper
             {
               name: "Asset Reveal",
               path: "asset-reveal"
+            },
+            {
+              name: "Image Helper",
+              path: "image-helper"
             }
           ]
         }

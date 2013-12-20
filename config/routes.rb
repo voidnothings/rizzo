@@ -54,6 +54,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/js-components/toggle-active'    => 'styleguide#toggle_active'
   get 'styleguide/js-components/proximity-loader' => 'styleguide#proximity_loader'
   get 'styleguide/js-components/asset-reveal'     => 'styleguide#asset_reveal'
+  get 'styleguide/js-components/image-helper'     => 'styleguide#image_helper'
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 
