@@ -3,6 +3,7 @@
   "dependencies": {
     "flamsteed": "latest",
     "lonelyplanet_minjs": "latest",
-    "fastclick": "latest"
+    "fastclick": "latest",
+    "pickadate": "~3.3.1"
   }
 }
