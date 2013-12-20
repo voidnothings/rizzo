@@ -25,26 +25,26 @@ define ['jquery', 'pickadate/lib/picker', 'pickadate/lib/picker.date', 'pickadat
       $.extend config, opts
 
       self = @
-      @in_date =  $(config.target).find(config.startSelector)
-      @out_date = $(config.target).find(config.endSelector)
-      @in_label = $('.js-av-start-label')
-      @out_label = $('.js-av-end-label')
-      @firstTime = if (@in_date.val() is ''  or @in_date.val() is undefined) then true else false
+      @inDate =  $(config.target).find(config.startSelector)
+      @outDate = $(config.target).find(config.endSelector)
+      @inLabel = $('.js-av-start-label')
+      @outLabel = $('.js-av-end-label')
+      @firstTime = if (@inDate.val() is ''  or @inDate.val() is undefined) then true else false
       @day = 86400000
       today = []
       tomorrow = []
       d = new Date()
-      today.push(d.getFullYear() + 1, d.getMonth(), d.getDate())
-      tomorrow.push(d.getFullYear() + 1, d.getMonth(), (d.getDate() + 1))
+      today.push(d.getFullYear(), d.getMonth(), d.getDate())
+      tomorrow.push(d.getFullYear(), d.getMonth(), (d.getDate() + 1))
 
-      @in_date.pickadate({
+      @inDate.pickadate({
         min: today
         format: config.dateFormat
         onSet: ->
           self.dateSelected(this.get('select', config.dateFormatLabel), "start")
       })
 
-      @out_date.pickadate({
+      @outDate.pickadate({
         min: tomorrow
         format: config.dateFormat
         onSet: ->
@@ -52,16 +52,15 @@ define ['jquery', 'pickadate/lib/picker', 'pickadate/lib/picker.date', 'pickadat
       })
 
     dateSelected: (date, type)->
-      console.log(date, type, 'date, type')
       if type is "start"
         unless @isValidEndDate()
-          @out_date.data('pickadate').set('select', new Date(date).getTime() + @day)
-        @in_label.text(@in_date.val())
+          @outDate.data('pickadate').set('select', new Date(date).getTime() + @day)
+        @inLabel.text(@inDate.val())
 
       else if type is "end"
         if !@isValidEndDate() or @firstTime
-          @in_date.data('pickadate').set('select', new Date(date).getTime() - @day)
-        @out_label.text(@out_date.val()).removeClass('is-hidden')
+          @inDate.data('pickadate').set('select', new Date(date).getTime() - @day)
+        @outLabel.text(@outDate.val()).removeClass('is-hidden')
 
       @firstTime = false
 
@@ -69,10 +68,10 @@ define ['jquery', 'pickadate/lib/picker', 'pickadate/lib/picker.date', 'pickadat
         config.callbacks.onDateSelect(date, type)
 
     inValue: ->
-      new Date($(@in_date).data('pickadate').get('select', config.dateFormatLabel))
+      new Date($(@inDate).data('pickadate').get('select', config.dateFormatLabel))
 
     outValue: ->
-      new Date($(@out_date).data('pickadate').get('select', config.dateFormatLabel))
+      new Date($(@outDate).data('pickadate').get('select', config.dateFormatLabel))
 
     isValidEndDate: ->
       @inValue() < @outValue()
