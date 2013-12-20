@@ -123,18 +123,19 @@ $stack-intro-lines-to-show: 2
 // Travel warning
 // -----------------------------------------------------------------------------
 
-.travel-alert
+.alert
   @extend %rounded-corners
-  background: #fffaca
+  clear: both
   line-height: 20px
   margin-top: 10px
   padding: 15px 15px 15px 38px
   position: relative
 
-  &:before
-    display: inline-block
-    position: relative
-    top: 2px
-    height: 16px
-    width: 16px
-    color: $red
+.alert--success
+  background: #dcf7ee
+
+.alert--error
+  background: #fee7e7
+
+.alert--travel
+  background: #fffaca
