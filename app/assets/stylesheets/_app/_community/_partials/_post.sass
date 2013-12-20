@@ -65,18 +65,16 @@
   margin-left: 20px
   padding-left: 35px
   position: relative
-  z-index: 2
+  text-align: center
   width: 25px
+  z-index: 2
 
 .post-links__icon
   +font-size(13)
   color: $feature-copy
   font-weight: bold
   line-height: 1em
-  margin-bottom: 5px
-  // We need to offset the right margin so that the icons and text are centered within the post-stats section
-  // whose parent container has 20px padding.
-  margin-right: -20px
+  margin: 0 auto 5px
   text-align: center
   width: 25px
   
@@ -104,10 +102,47 @@
 // The thread of the day nomination form.
 // -----------------------------------------------------------------------------
 .thread-of-the-day__form
+  @extend %transition--base
+  overflow: hidden
 
   &.is-not-active
     height: 0
-    padding: 0
+    padding-bottom: 0
+    padding-top: 0
 
   &.is-active
     height: 35px
+
+  .btn--nominate
+    margin-left: 10px
+    margin-top: 1px
+
+// -----------------------------------------------------------------------------
+// Reply Links
+// -----------------------------------------------------------------------------
+.reply-links
+  margin-top: 10px
+.reply-link
+  font-weight: bold
+  margin-right: 15px
+
+  &:before
+    display: inline-block
+    height: 1.2em
+    margin-right: 2px
+    position: relative
+    top: 0.3em
+    width: 1.2em
+
+// -----------------------------------------------------------------------------
+// Post edit information
+// -----------------------------------------------------------------------------
+.post-edit
+  position: relative
+  &:before
+    display: inline-block
+    height: 1em
+    left: -1.2em
+    position: absolute
+    top: 0
+    width: 1em
