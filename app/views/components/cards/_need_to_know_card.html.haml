@@ -4,7 +4,7 @@
       Need to know
     %ul.card__list
 
-      - card[:links].each do |link|
+      - properties[:links].each do |link|
         %li
           %a{href: link[:url].chomp('/when-to-go'), class: 'card__list__item', :title => "#{link[:title]}"}
             = link[:title]
