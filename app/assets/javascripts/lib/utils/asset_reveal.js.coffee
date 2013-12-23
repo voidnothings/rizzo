@@ -74,15 +74,21 @@ define [required], ($)->
         $element.find('.rwd-image-blocker').removeClass('rwd-image-blocker')
 
     _loadDataSrc: (selector) ->
-      $element = $(selector)
+      $elements = $(selector)
 
-      if not $element.attr('data-src')
-        $element = $element.find('[data-src]')
+      $elements.each (i, element) ->
+        $element = $elements.eq(i)
 
-      data = $element.data()
-      $img = $('<img />')
+        if not $element.attr('data-src')
+          $element = $element.find('[data-src]')
 
-      for attr, val of data
-        $img.attr(attr, val)
+        data = $element.data()
 
-      $element.replaceWith($img)
+        return unless data
+
+        $img = $('<img />')
+
+        for attr, val of data
+          $img.attr(attr, val)
+
+        $element.replaceWith($img)
