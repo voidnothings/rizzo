@@ -7,7 +7,7 @@
 # container #{string} - The parent form
 # ------------------------------------------------------------------------------
 
-define ['jquery', 'pickadate/lib/picker', 'pickadate/lib/picker.date', 'pickadate/lib/picker'], ($) ->
+define ['jquery', 'pickadate/lib/picker', 'pickadate/lib/picker.date', 'pickadate/lib/legacy'], ($) ->
 
   class AvailabilityDatepicker
 
