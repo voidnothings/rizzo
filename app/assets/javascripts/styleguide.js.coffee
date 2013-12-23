@@ -1,4 +1,4 @@
-require ['jquery', 'lib/managers/select_group_manager', 'pickadate/lib/picker', 'pickadate/lib/picker.date', 'pickadate/lib/picker'], ($, SelectGroupManager) ->
+require ['jquery', 'lib/managers/select_group_manager', 'pickadate/lib/picker', 'pickadate/lib/picker.date', 'pickadate/lib/legacy'], ($, SelectGroupManager) ->
 
   $ ->
     selectGroupManager = new SelectGroupManager()
