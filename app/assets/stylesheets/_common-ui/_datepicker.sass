@@ -49,21 +49,15 @@
   width: 25px
   height: 25px
   cursor: pointer
-  &:before, &:after
-    +font-size(20)
-    line-height: 20px
+  background-size: cover
 
 .pickadate__month--prev
   @extend %left-icon
   left: 10px
-  &:before
-    text-align: left
 
 .pickadate__month--next
   @extend %right-icon
   right: 10px
-  &:after
-    text-align: right
 
 .pickadate__calendar--table
   border-collapse: separate

@@ -33,7 +33,8 @@
 
 .content-pane__nav__link__icon
   +transition(all, 0.1, ease-in)
-  height: 70px
+  width: 40px
+  height: 40px
   position: relative
   top: 100%
   margin-top: -262px
@@ -46,12 +47,10 @@
 
 .content-pane__nav--forward
   right: 0
+  .content-pane__hide
+    left: 4px
 
 .content-pane__icon
-  +font-size(60)
-  color: white
-  text-align: center
-  line-height: 1em
   &:hover
     +transform(scale(1.2))
     text-decoration: none
@@ -167,7 +166,7 @@
 .btn__visit-destination
   &:before
     position: relative
-    top: 3px
+    top: 1px
     width: 14px
     height: 14px
     display: inline-block
