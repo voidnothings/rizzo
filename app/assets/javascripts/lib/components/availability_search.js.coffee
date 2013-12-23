@@ -80,5 +80,3 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
 
     _hide : ->
       @$el.addClass('is-hidden')
-
-
