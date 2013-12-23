@@ -3,18 +3,18 @@
     "card",
     "card--guide",
     "card--single",
-    card[:image_url] ? "card--small-image card--extended-content" : "card--no-image"
+    properties[:image_url] ? "card--small-image card--extended-content" : "card--no-image"
   ].join(" ")
 
 %article.js-card{class: css_classes}
 
-  %a.link--wrapper{href: card[:url]}
+  %a.link--wrapper{href: properties[:url]}
 
     .card__tags
-      - if card[:prices] && card[:prices][currency.to_s].present? && card[:prices][currency.to_s] > 0
-        = render :partial => "/components/cards/partials/card_price", :locals => { :card => card, :icon => card[:price_icon] }
+      - if properties[:prices] && properties[:prices][currency.to_s].present? && properties[:prices][currency.to_s] > 0
+        = render :partial => "/components/cards/partials/card_price", :locals => { :properties => properties, :icon => properties[:price_icon] }
 
-    = render :partial => "/components/cards/partials/card_content", :locals => { :card => card }
+    = render :partial => "/components/cards/partials/card_content", :locals => { :properties => properties }
 
     %footer.card__footer
       %span.btn.btn--yellow.btn--full-width

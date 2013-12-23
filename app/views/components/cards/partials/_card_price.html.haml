@@ -14,9 +14,9 @@
         %span.tag--price__currency
           = raw(currency.to_symbol)
         %span.js-price
-          = card[:prices][currency.to_s].ceil
-    - if card[:on_sale?]
-      - if card[:retail_prices][currency.to_s].present? && card[:retail_prices][currency.to_s] > 0
+          = properties[:prices][currency.to_s].ceil
+    - if properties[:on_sale?]
+      - if properties[:retail_prices][currency.to_s].present? && properties[:retail_prices][currency.to_s] > 0
         .tag--price__original<
           = raw(currency.to_symbol)
-          = card[:retail_prices][currency.to_s].ceil
+          = properties[:retail_prices][currency.to_s].ceil
