@@ -1,13 +1,10 @@
 require ['jquery', 'public/assets/javascripts/lib/utils/image_helper.js'], ($, ImageHelper) ->
 
   describe 'ImageHelper', ->
+
     beforeEach ->
       loadFixtures('image_helper.html');
       window.image_helper = new ImageHelper()
-
-      image_helper.processImages
-        container: '.img-container',
-        img: '.img'
 
     describe 'Object', ->
       it 'is defined', ->
@@ -75,3 +72,37 @@ require ['jquery', 'public/assets/javascripts/lib/utils/image_helper.js'], ($, I
         $img = $container.find('.img')
         image_helper.centerWithinContainer($img, $container)
         expect($('#centerH .img')[0].style.marginTop).toBe("-50%")
+
+    describe '.processImages()', ->
+
+      it 'Finds and processes images', ->
+        $images = $('.img')
+
+        image_helper.processImages
+          img: '.img'
+          container: '.img-container'
+
+        $images.each (i, img) ->
+          expect(img.className.match(/is\-landscape|portrait|squarish/)).not.toBeNull()
+          expect(img.className.match(/is\-taller|wider|equal/)).not.toBeNull()
+
+      it 'Waits for images to load if it has no dimensions', ->
+        $img = $('.img-onload')
+
+        runs ->
+          image_helper.processImages
+            img: '.img-onload'
+            container: '.img-onload-container'
+
+          $img.eq(0).css({ width: 1000, height: 600 }).trigger('load')
+          $img.eq(1).css({ width: 600, height: 1000 }).trigger('load')
+
+        waitsFor ->
+          $img.eq(0).width() and $img.eq(1).width()
+        , 'The image to load'
+
+        runs ->
+          expect($img.eq(0).hasClass('is-landscape'))
+          expect($img.eq(0).hasClass('is-wider'))
+          expect($img.eq(1).hasClass('is-portrait'))
+          expect($img.eq(1).hasClass('is-taller'))
