@@ -19,9 +19,6 @@ define ['jquery'], ($) ->
             @_run(img, config.container)
         return
 
-      # TODO: configure this as an optional callback? It seems unrelated to this module.
-      $(config.container).removeClass('is-loading')
-
     # Determined based on being <= 800x600 (4:3) either vertically or horizontally
     # 800x600 being the lowest aspect ratio before not being landscape (or conversely: portrait)
     detectOrientation: ($img) ->
@@ -84,6 +81,9 @@ define ['jquery'], ($) ->
       @applyOrientationClasses($img)
       @applyRelativeClasses($img, $container)
       @centerWithinContainer($img, $container)
+
+      # TODO: configure this as an optional callback? It seems unrelated to this module.
+      $container.removeClass('is-loading')
 
     _ratio: ($element) ->
       $element.width() / $element.height()
