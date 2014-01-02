@@ -19,14 +19,13 @@ define ['jquery'], ($) ->
             @_run(img, config.container)
         return
 
-    # Determined based on being <= 800x600 (4:3) either vertically or horizontally
-    # 800x600 being the lowest aspect ratio before not being landscape (or conversely: portrait)
+    # 'Squarish' is determined based on being < 6:5 / 5:6 ratio
     detectOrientation: ($img) ->
       ratio = @_ratio($img)
 
-      if ratio >= 1.33 # 800 / 600
+      if ratio >= 1.2
         return 'landscape'
-      else if ratio <= 0.75 # 600 / 800
+      else if ratio <= 0.833
         return 'portrait'
       else
         # Not the best term, but most accurately describes neither portrait nor landscape.
