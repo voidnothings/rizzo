@@ -15,8 +15,9 @@ define ['jquery'], ($) ->
         if img.width and img.height
           @_run(img, config.container)
         else
-          img.onload = ->
+          img.onload = =>
             @_run(img, config.container)
+        return
 
       # TODO: configure this as an optional callback? It seems unrelated to this module.
       $(config.container).removeClass('is-loading')
@@ -75,7 +76,7 @@ define ['jquery'], ($) ->
 
     _run: (img, container) ->
 
-      return false if img.width or img.height is 0
+      return false if img.width is 0 or img.height is 0
 
       $img = $(img)
       $container = $img.closest(container)
