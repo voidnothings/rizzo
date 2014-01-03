@@ -67,7 +67,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state', 'lib/utils/seria
     _set : (name, value)->
       input = @$form.find("input[name*='#{name}']")
       if input and value
-        input.attr('value', value)
+        input.val(value)
 
     _block : ->
       @$submit.addClass('is-disabled').attr('disabled', true)
