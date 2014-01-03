@@ -125,7 +125,7 @@ module.exports = function (grunt) {
             rizzo: {
                 src: ['./public/assets/javascripts/lib/**/*.js'],
                 options: {
-                    helpers: ['./spec/javascripts/helpers/**/*.js', './vendor/assets/javascripts/jquery/jquery-1.7.2.min.js'],
+                    helpers: ['./spec/javascripts/helpers/**/*.js', './vendor/assets/javascripts/jquery/jquery.js'],
                     host: 'http://127.0.0.1:8888/',
                     specs: './public/assets/javascripts/spec/**/*.js',
                     template: require('grunt-template-jasmine-requirejs'),
@@ -133,7 +133,7 @@ module.exports = function (grunt) {
                         requireConfig: {
                             baseUrl: './',
                             paths: {
-                                jquery: './vendor/assets/javascripts/jquery/jquery-1.7.2.min',
+                                jquery: './vendor/assets/javascripts/jquery/jquery',
                                 jsmin: './vendor/assets/javascripts/lonelyplanet_minjs/dist/$',
                                 polyfills: './vendor/assets/javascripts/polyfills',
                                 lib: './public/assets/javascripts/lib',
