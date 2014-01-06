@@ -228,6 +228,7 @@ Javascript hooks:
 2. Syntax
 	* Use `this` when referring to `this` alone. Use `@variable` for referring to `this.variable`. eg: `self = this` but `@rub(noggin)`
 	* Use curly braces for objects, not coffeescript's implicit object syntax. eg:
+
 		```coffeescript
 		  animals = {
 	        dog: 'brown'
@@ -255,30 +256,37 @@ Javascript hooks:
 	* Don't use comma first
 	* Name collections (arrays, objects, sets, maps) in plural, ie: `badger` is a thing, `badgers` is a collection of things
 	* Start a variable with a captial letter _ONLY_ in the case that it is a prototype, class, contructor, etc.
+
 	```square = (number) -> number * 2``` but ```class BaldMan```
 	
 	* test for truthiness:
+
 		```coffeescript
 	        if collection.length ...
             if string ...
             if truthyThing
 		```
+
 		__NOT__
+		
 		```coffeescript
             if collection.length > 0 ...
             if string isnt ''
 	        if truthyThing is true
 		```
+		
 	* Use coffee classes so we can enjoy rjs (more to come on this in higher level component writing guide)
 	* Use `->` unless you want bound function, then use `=>`. In some sticky situations, `self = this` is still necessary. See if naming it something other than `self` is more sensible in those cases, like:
-	```coffeescript
-	class Badger
-		constructor ->
-		  badger = this
-		  somethingElse((wat) ->
-		  		@eat(badger.honey)
+
+		```coffeescript
+		class Badger
+		  constructor ->
+	  	    badger = this
+	  	    somethingElse((wat) ->
+		      @eat(badger.honey)
 		  )
-	```
+		```
+
 	* Put comments before the line or block they are about. Never use eol comments
 	
 <!--Try not to get caught up in dogmatic rules and religion surrounding javascript and in the community. Be playful.-->
