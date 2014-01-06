@@ -86,6 +86,10 @@ class StyleguideController < GlobalController
     render '/styleguide/js-components/image-helper'
   end
 
+  def alerts
+    render '/styleguide/ui-components/alerts'
+  end
+
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 end
