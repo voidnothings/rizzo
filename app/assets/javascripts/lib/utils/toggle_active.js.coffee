@@ -18,7 +18,12 @@ define ["jquery"], ($) ->
 
     constructor: () ->
 
+      $('.js-toggle-active').each ->
+        $el = $(@)
+        $($el.data('toggleTarget')).addClass('is-not-active')
+
       $('.js-toggle-active').on 'click', (e) ->
         $el = $(@)
-        $($el.data('toggleTarget')).toggleClass($el.data('toggleClass') || 'is-active')
+        custom = if $el.data('toggleClass') then $el.data('toggleClass') + ' ' else ''
+        $($el.data('toggleTarget')).toggleClass(custom + 'is-active is-not-active')
         e.preventDefault()

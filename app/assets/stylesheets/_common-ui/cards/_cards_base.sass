@@ -159,7 +159,7 @@ $mobile-standard-card-image-height: 192px
       left: $card-content-horizontal-padding
       right: $card-content-horizontal-padding
 
-  .has-attribution &
+  .card--full-image.has-attribution &
     height: 113px
     bottom: -40px
     .card__content__inner
@@ -267,7 +267,7 @@ $mobile-standard-card-image-height: 192px
 // Small cards
 // -----------------------------------------------------------------------------
 
-.card--small
+.card.card--small
 
   .card__hero
     height: 100px
@@ -288,7 +288,7 @@ $mobile-standard-card-image-height: 192px
 
   .tag
     +font-size(8)
-    min-width: 25px
+    min-width: 30px
 
   .tag--price__amount
     +font-size(20)

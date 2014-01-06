@@ -77,6 +77,19 @@ class StyleguideController < GlobalController
   def tags
     render '/styleguide/tags'
   end
+
+  def proximity_loader
+    render '/styleguide/js-components/proximity-loader'
+  end
+
+  def asset_reveal
+    render '/styleguide/js-components/asset-reveal'
+  end
+
+  def image_helper
+    render '/styleguide/js-components/image-helper'
+  end
+
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 end

@@ -58,7 +58,6 @@ pre.styleguide.is-open
 .isnt-approximate
   display: none
 .is-exact
-  @extend %tick-icon-after
   position: relative
   &:after
     color: white
@@ -171,35 +170,16 @@ pre.styleguide.is-open
 
   > a:first-child
     @extend %transition--base
-    @extend %local-marker-before // For lack of a link icon currently.
     display: block
-    padding: 0.5em
     position: absolute
-    right: -38px
-    top: -24px
-    opacity: 0
-    &:before
-      +font-size(40)
-
-  &:hover > a:first-child
-    opacity: 1
-    text-decoration: none
-
-.clearbutton
-  line-height: 12px
-  float: right
-  width: 14px
-  height: 14px
-  text-align: center
-  padding: 0
-  border-radius: 100%
-  background-color: $feature-copy
-  color: white
-  left: -6px
-  font-weight: bold
-  position: relative
-  top: -26px
-  cursor: pointer
+    right: 20px
+    top: 10px
+    width: 25px
+    height: 25px
+    opacity: 0.5
+    z-index: 1
+    &:hover
+      opacity: 1
 
 .styleguide-grid
   .card

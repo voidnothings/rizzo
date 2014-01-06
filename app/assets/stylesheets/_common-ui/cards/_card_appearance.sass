@@ -20,7 +20,7 @@
       width: $double-card-width
 
 .card__hero--hotels:after
-  background-image: image_url('collections/best-places.png')
+  background-image: image_url('cards/overlays/best-places.png')
 
 
 // -----------------------------------------------------------------------------
@@ -195,7 +195,6 @@
 
 .card--list__no-image
   @extend %image-replacement
-  background: url(image_path("map-markers.png")) -413px -61px no-repeat
   float: left
   height: 34px
   width: 24px
@@ -223,66 +222,53 @@
       bottom: 0
 
 .card__attribution
-  @extend %left-icon
-  @extend %icon-gallery-before
   padding-left: 25px
+  position: relative
+  &:before
+    position: absolute
+    top: 5px
+    left: 0
+    width: 20px
+    height: 20px
   .card--single &
     color: $feature-copy
     margin-top: 17px
+    &:before
+      top: 0
   .card--double &
     position: absolute
-    bottom: $card-content-vertical-padding
+    bottom: 7px
     left: 0
     right: 0
-  &:before
-    +font-size(30)
-    line-height: 0.333em
-  .card--page__hero--attributed &
-    &:before
-      line-height: 0.55em
 
 .card__attribution-link
   cursor: pointer
+  pointer-events: all
   .card--double &
     @extend %inline-block
     @extend %truncate-text
-    width: 80%
+    width: 70%
+    line-height: 32px
   &:hover
     text-decoration: underline
 
 .license
-  background-image: url(image_path("image-attribute-sprite.png"))
-  background-repeat: no-repeat
   display: inline-block
-  height: 17px
+  height: 32px
+  width: 32px
+  margin-right: -10px
   text-indent: -999em
   vertical-align: middle
-  width: 17px
   .card--single &
-    height: 12px
     vertical-align: sub
-    width: 13px
+    height: 26px
+    width: 26px
+
 
 .card__licenses
   .card--double &
     float: right
-
-.license--cc
-  background-position: 0 0
   .card--single &
-    background-position: 0 -21px
-
-.license--attribution
-  background-position: -20px 0
-  .card--single &
-    background-position: -15px -21px
-
-.license--share-alike
-  background-position: -40px 0
-  .card--single &
-    background-position: -30px -21px
-
-.license--non-deriv
-  background-position: -61px 0
-  .card--single &
-    background-position: -46px -21px
+    display: block
+    margin-left: -5px
+    margin-top: -5px

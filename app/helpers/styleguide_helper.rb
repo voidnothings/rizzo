@@ -4,7 +4,7 @@ module StyleguideHelper
     # Add new sections here.
     ["JS Components", "UI Components"]
   end
-  
+
   def default_section
     "UI Components"
   end
@@ -20,6 +20,18 @@ module StyleguideHelper
             {
               name: "Toggle Active",
               path: "toggle-active"
+            },
+            {
+              name: "Proximity Loader",
+              path: "proximity-loader"
+            },
+            {
+              name: "Asset Reveal",
+              path: "asset-reveal"
+            },
+            {
+              name: "Image Helper",
+              path: "image-helper"
             }
           ]
         }
@@ -44,10 +56,6 @@ module StyleguideHelper
             {
               name: "Active",
               path: "active-icons"
-            },
-            {
-              name: "Inactive",
-              path: "inactive-icons"
             }
           ]
         },
@@ -180,7 +188,7 @@ module StyleguideHelper
     capture_haml do
       haml_tag(:div, class: "styleguide-block#{anchor.nil? ? '' : ' styleguide__anchor'}", id: anchor) do
         unless anchor.nil?
-          haml_tag(:a, name: anchor, href: "##{anchor}")
+          haml_tag(:a, name: anchor, href: "##{anchor}", class: "icon--link icon--lp-blue")
         end
         haml_tag(:div, class: item_class) do
           haml_concat ui_component(path, properties)

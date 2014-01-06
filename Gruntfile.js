@@ -6,7 +6,7 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         imageoptim: {
-            files: [
+            src: [
                 'app/assets/images'
             ],
             options: {
@@ -20,30 +20,41 @@ module.exports = function (grunt) {
         },
         grunticon: {
             active: {
-                options:{
-                    cssprefix: 'icon--',
+                files: [{
+                    expand: true,
+                    cwd: "app/assets/images/icons/active",
+                    dest: "app/assets/stylesheets/icons",
+                    src: ["*.svg"]
+                }],
+                options: {
+                    cssprefix: ".icon--",
                     customselectors: {
-                        "*": ".$1--before:before, .$1--after:after"
+                        "*": [".icon--$1--before:before, .icon--$1--after:after"],
+                        "chevron-right": [".picker__nav--next"],
+                        "chevron-left": [".picker__nav--prev"]
                     },
-                    datasvgcss: 'active.css',
-                    datapngcss: 'active.png.css',
-                    dest: 'app/assets/stylesheets/icons/',
-                    src: 'app/assets/images/icons/active/',
-                    svgo: true,
-                    urlpngcss: 'active.fallback.css'
+                    datasvgcss: "active.css",
+                    datapngcss: "active.png.css",
+                    urlpngcss: "active.fallback.css"
                 }
             },
             critical: {
-                options:{
-                    cssprefix: 'icon--',
+                files: [{
+                    expand: true,
+                    cwd: "app/assets/images/icons/active/critical/",
+                    dest: "app/assets/stylesheets/icons",
+                    src: ["*.svg"]
+                }],
+                options: {
+                    cssprefix: ".icon--",
                     customselectors: {
-                        "*": ".$1--before:before, .$1--after:after"
+                        "*": [".icon--$1--before:before, .icon--$1--after:after"],
+                        "chevron-right": [".picker__nav--next"],
+                        "chevron-left": [".picker__nav--prev"]
                     },
-                    datasvgcss: 'critical.svg.css',
-                    datapngcss: 'critical.png.css',
-                    dest: 'app/assets/stylesheets/icons/',
-                    src: 'app/assets/images/icons/active/critical/',
-                    urlpngcss: 'critical.css'
+                    datasvgcss: "critical.svg.css",
+                    datapngcss: "critical.png.css",
+                    urlpngcss: "critical.css"
                 }
             }
         },
@@ -114,7 +125,7 @@ module.exports = function (grunt) {
             rizzo: {
                 src: ['./public/assets/javascripts/lib/**/*.js'],
                 options: {
-                    helpers: ['./spec/javascripts/helpers/**/*.js', './vendor/assets/javascripts/jquery/jquery-1.7.2.min.js'],
+                    helpers: ['./spec/javascripts/helpers/**/*.js', './vendor/assets/javascripts/jquery/jquery.js'],
                     host: 'http://127.0.0.1:8888/',
                     specs: './public/assets/javascripts/spec/**/*.js',
                     template: require('grunt-template-jasmine-requirejs'),
@@ -122,14 +133,15 @@ module.exports = function (grunt) {
                         requireConfig: {
                             baseUrl: './',
                             paths: {
-                                jquery: './vendor/assets/javascripts/jquery/jquery-1.7.2.min',
+                                jquery: './vendor/assets/javascripts/jquery/jquery',
                                 jsmin: './vendor/assets/javascripts/lonelyplanet_minjs/dist/$',
                                 polyfills: './vendor/assets/javascripts/polyfills',
                                 lib: './public/assets/javascripts/lib',
                                 jplugs: './vendor/assets/javascripts/jquery/plugins',
                                 s_code: './vendor/assets/javascripts/omniture/s_code',
                                 maps_infobox: './vendor/assets/javascripts/google-maps-infobox',
-                                gpt: 'http://www.googletagservices.com/tag/js/gpt'
+                                gpt: 'http://www.googletagservices.com/tag/js/gpt',
+                                pickadate: './vendor/assets/javascripts/pickadate'
                             }
                         }
                     }
@@ -165,9 +177,7 @@ module.exports = function (grunt) {
     grunt.registerTask('wip', ['jasmine:rizzo:build', 'open:jasmine', 'connect:server:keepalive']);
     grunt.registerTask('report', ['shell:clean_js', 'coffee', 'plato', 'shell:openPlato']);
     grunt.registerTask('imageoptim', ['imageoptim']);
-    // If you need to run the icons task, first cd node_modules/grunt-grunticon &&
-    // curl https://github.com/filamentgroup/grunticon/pull/84.patch | patch -p1
-    // Until this (or a similar PR is merged)
-    // https://github.com/filamentgroup/grunticon/pull/84
-    grunt.registerTask('icon', ['svgmin', 'grunticon', 'shell:clean_icons', 'shell:move']);
+    grunt.registerTask('icon:active', ['grunticon:active', 'shell:clean_icons', 'shell:move']);
+    grunt.registerTask('icon:critical', ['grunticon:critical', 'shell:clean_icons', 'shell:move']);
+    grunt.registerTask('icon', ['svgmin', 'icon:active', 'icon:critical']);
 };

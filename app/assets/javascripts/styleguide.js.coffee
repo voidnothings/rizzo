@@ -1,7 +1,7 @@
-require ['jquery', 'lib/core/base', 'jplugs/pickadate.legacy'], ($, Base) ->
+require ['jquery', 'lib/managers/select_group_manager', 'pickadate/lib/picker', 'pickadate/lib/picker.date', 'pickadate/lib/legacy'], ($, SelectGroupManager) ->
 
   $ ->
-    base = new Base()
+    selectGroupManager = new SelectGroupManager()
 
     require [
       'lib/styleguide/ajax-content'
@@ -16,5 +16,5 @@ require ['jquery', 'lib/core/base', 'jplugs/pickadate.legacy'], ($, Base) ->
 
     d = new Date()
     $('.input--datepicker').pickadate({
-      dateMin: [d.getFullYear(), (d.getMonth() + 1), d.getDate()]
+      min: [d.getFullYear(), (d.getMonth() + 1), d.getDate()]
     })

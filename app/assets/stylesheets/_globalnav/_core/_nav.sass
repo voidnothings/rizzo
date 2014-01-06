@@ -1,7 +1,7 @@
 // ----------------------------------------------------------------------------
-// 
+//
 // Core nav item
-// 
+//
 // ----------------------------------------------------------------------------
 
 .nav__item
@@ -9,9 +9,9 @@
     text-decoration: none
 
 // ----------------------------------------------------------------------------
-// 
+//
 // primary-nav
-// 
+//
 // ----------------------------------------------------------------------------
 
 .nav--primary
@@ -190,8 +190,6 @@
   font-weight: bold
   color: $dark-blue-gray
   line-height: 26px
-  // to take the space away before the comma
-  margin-right: -4px
   &:hover
     text-decoration: none
 
@@ -206,10 +204,11 @@
 //
 // ----------------------------------------------------------------------------
 
+.responsive .user-basket,
 .user-basket
   position: relative
   margin-left: 15px
-  padding: 13px 8px 16px
+  padding: 11px 8px 16px
   .responsive .wv--nav--inline > &.nav__item
     display: none
     +respond-to(wide-view)
@@ -261,15 +260,15 @@
   .responsive &
     margin-top: 0
     height: 50px
+    background: $offscreen-nav-user-background
     &:after
       content: ''
       background-size: 100%
       background-position: center
       top: 10px
-    +respond-to(max990)
-      background: $offscreen-nav-user-background
-      &:after
-        background: none
+      background: none
+    +respond-to(990)
+      background: none
     +respond-to(wide-view)
       margin-top: 10px
       height: auto
@@ -325,14 +324,15 @@
       height: 20px
 
 // ----------------------------------------------------------------------------
-// 
+//
 // breadcrumbs-nav
-// 
+//
 // ----------------------------------------------------------------------------
 
 .nav__item--breadcrumbs
   @extend %left-icon
-  padding: 19px 8px 19px 20px
+  padding: 20px 8px 18px 20px
+  line-height: 20px
   color: $body-copy
   &:before
     height: 12px
@@ -346,7 +346,9 @@
     padding: 0 0.2em 0 0.65em
     &:before
       content: '/'
-      top: 0.25em
+      // This stops the lower-left most part of the / from being cut off.
+      padding: 0 1px
+      top: -0.33em
     &:first-child
       padding-left: 0
       &:before
@@ -377,9 +379,9 @@ a.nav__item--breadcrumbs
     width: auto
 
 // ----------------------------------------------------------------------------
-// 
+//
 // about-nav
-// 
+//
 // ----------------------------------------------------------------------------
 
 .nav__item--about
@@ -398,9 +400,9 @@ a.nav__item--breadcrumbs
 
 
 // ----------------------------------------------------------------------------
-// 
+//
 // social-nav
-// 
+//
 // ----------------------------------------------------------------------------
 
 .responsive
@@ -446,9 +448,9 @@ a.nav__item--breadcrumbs
     background: none
 
 // ----------------------------------------------------------------------------
-// 
+//
 // Sitemap-nav
-// 
+//
 // ----------------------------------------------------------------------------
 
 .col--footer,
