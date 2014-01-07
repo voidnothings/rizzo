@@ -14,11 +14,23 @@ define ['jquery'], ($)->
       if window.location.hostname is "www.lpstaging.com" then "lpstaging.com" else "lonelyplanet.com"
 
     createUrls: (baseDomain)->
-      forumPostsUrlTemplate: "//www.#{baseDomain}/thorntree/profile.jspa?username=[USERNAME]"
-      membersUrl: "//www.#{baseDomain}/members"
-      messagesUrl: "//www.#{baseDomain}/members/messages"
-      registerLink: "https://secure.#{baseDomain}/members/registration/new"
-      signOutUrl: "https://secure.#{baseDomain}/sign-in/logout"
+      # If there's a user object in our lp namespace, we know we're using the new community stuff.
+      if window.lp.user
+        url = if /lonelyplanet\.com/.test(window.location.hostname) then "/thorntree" else ""
+
+        registerLink: "#{url}/users/sign_up"
+        signOutUrl: "#{url}/users/sign_out"
+        membersUrl: "#{url}/profiles/[USERNAME]"
+        forumPostsUrlTemplate: "#{url}/profiles/[USERNAME]/activities"
+        profileEditUrl: "#{url}/profiles/[USERNAME]/edit"
+        messagesUrl: "#{url}/profiles/[USERNAME]/messages"
+      else
+        forumPostsUrlTemplate: "//www.#{baseDomain}/thorntree/profile.jspa?username=[USERNAME]"
+        membersUrl: "//www.#{baseDomain}/members"
+        messagesUrl: "//www.#{baseDomain}/members/messages"
+        registerLink: "https://secure.#{baseDomain}/members/registration/new"
+        profileEditUrl: "//www.#{baseDomain}/members/[USERNAME]/edit"
+        signOutUrl: "https://secure.#{baseDomain}/sign-in/logout"
 
     userSignedIn: ->
       @lpUserName = @getLocalData('lp-uname')
@@ -49,9 +61,9 @@ define ['jquery'], ($)->
 
     userOptionsMenu: ->
       userOptions = [
-        {title: 'My profile', uri: "#{@options.membersUrl}", style:"js-user-profile"},
-        {title: 'Settings', uri: "#{@options.membersUrl}/#{@lpUserName}/edit",  style:"js-user-settings"},
-        {title: 'Messages', uri: "#{@options.messagesUrl}", style:"js-user-msg"},
+        {title: 'My profile', uri: "#{@options.membersUrl.replace('[USERNAME]', @lpUserName)}", style:"js-user-profile"},
+        {title: 'Settings', uri: "#{@options.profileEditUrl.replace('[USERNAME]', @lpUserName)}",  style:"js-user-settings"},
+        {title: 'Messages', uri: "#{@options.messagesUrl.replace('[USERNAME]', @lpUserName)}", style:"js-user-msg"},
         {title: 'Forum activity', uri: "#{@options.forumPostsUrlTemplate.replace('[USERNAME]', @lpUserName)}", style:"nav-user-options__item--forum js-user-forum" },
         {title: 'Sign out', uri: "#{@options.signOutUrl}", style:"nav-user-options__item--signout js-user-signout" }
       ]
@@ -62,14 +74,14 @@ define ['jquery'], ($)->
       "https://secure.lonelyplanet.com/sign-in/login?service=#{escape(window.location)}"
     
     userAvatar: ->
-      "#{@options.membersUrl}/#{@lpUserName}/mugshot/mini"
+      if window.lp.user then window.lp.user.avatar else "#{@options.membersUrl}/#{@lpUserName}/mugshot/mini"
 
     update: ->
+      @options = @createUrls(@getDomain())
       @setLocalData("lp-uname", window.lpLoggedInUsername)
       prevState = @userState
       @userState = @userSignedIn()
-      if(@userState is not prevState)
-        @signonWidget()
+      @signonWidget()
 
     bindEvents: ->
       $('#unread').click(()-> e.preventDefault(); window.location = "#{options.membersUrl}/#{@lpUserName}/messages")

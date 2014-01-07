@@ -144,6 +144,36 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
            expect($('a.js-user-signout').text()).toBe('Sign out')
            expect($('a.js-user-signout').attr('href')).toBe(@auth.options.signOutUrl)
 
+    describe 'new thorntree auth', ->
+
+      beforeEach ->
+
+        @auth = new Authenticator()
+        window.lp.user = 
+          avatar: "path/to/image.jpg"
+          facebookUID: "facebookUID"
+          loginTimestamp: "timestamp"
+          username: "username"
+        window.lpLoggedInUsername = lp.user.username;
+        window.facebookUserId = lp.user.facebookUID;
+        window.surveyEnabled = "false";
+        window.timestamp = lp.user.loginTimestamp;
+        window.referer = "null";
+
+        @auth.constructor()
+
+      it 'generates the correct urls', ->
+        expect(@auth.options.registerLink).toBe('/users/sign_up')
+        expect(@auth.options.signOutUrl).toBe("/users/sign_out")
+        expect(@auth.options.membersUrl).toBe("/profiles/[USERNAME]")
+        expect(@auth.options.forumPostsUrlTemplate).toBe("/profiles/[USERNAME]/activities")
+        expect(@auth.options.profileEditUrl).toBe("/profiles/[USERNAME]/edit")
+        expect(@auth.options.messagesUrl).toBe("/profiles/[USERNAME]/messages")
+
+      it 'uses the correct avatar', ->
+        expect(@auth.userAvatar()).toBe('path/to/image.jpg')
+
+
 
     # describe 'messages count', ->
     # 

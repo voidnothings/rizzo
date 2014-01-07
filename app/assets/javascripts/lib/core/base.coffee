@@ -27,8 +27,31 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
 
     authenticateUser: ->
       @auth = new Authenticator()
-      AssetFetch.get "https://secure.lonelyplanet.com/sign-in/status", () =>
-        @auth.update()
+      url = if /lonelyplanet\.com/.test(window.location.hostname) then "/thorntree/users/status" else "/users/status"
+
+      $.ajax
+        url: url
+        dataType: "json"
+        error: =>
+          # Fallback to the old method for the moment.
+          AssetFetch.get "https://secure.lonelyplanet.com/sign-in/status", () =>
+            @auth.update()
+        success: (data) =>
+          # Proposed new format. Not currently used except for the avatar.
+          window.lp.user =
+            avatar: data.avatar
+            facebookUID: data.facebook
+            loginTimestamp: data.timestamp
+            username: data.username
+
+          # Legacy, keep until the old stuff is discarded and Authenticator has been refactored.
+          window.lpLoggedInUsername = data.username || "";
+          window.facebookUserId = data.facebook;
+          window.surveyEnabled = "false";
+          window.timestamp = data.timestamp;
+          window.referer = "null";
+
+          @auth.update()
 
     initAds: ->
       AdManager.init(@adConfig(), 'ad-leaderboard') # Remove the second param when dropping the old ad manager
