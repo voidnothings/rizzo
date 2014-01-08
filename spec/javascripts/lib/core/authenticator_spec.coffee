@@ -146,6 +146,7 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
 
         @auth = new Authenticator()
         window.lp.user = 
+          id: 1234
           avatar: "path/to/image.jpg"
           facebookUID: "facebookUID"
           loginTimestamp: "timestamp"
@@ -162,10 +163,10 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
         expect(@auth.options.registerLink).toBe('/users/sign_up')
         expect(@auth.options.signInUrl).toBe("/users/sign_in")
         expect(@auth.options.signOutUrl).toBe("/users/sign_out")
-        expect(@auth.options.membersUrl).toBe("/profiles/[USERNAME]")
-        expect(@auth.options.forumPostsUrlTemplate).toBe("/profiles/[USERNAME]/activities")
-        expect(@auth.options.profileEditUrl).toBe("/profiles/[USERNAME]/edit")
-        expect(@auth.options.messagesUrl).toBe("/profiles/[USERNAME]/messages")
+        expect(@auth.options.membersUrl).toBe("/profiles/username")
+        expect(@auth.options.forumPostsUrlTemplate).toBe("/profiles/username/activities")
+        expect(@auth.options.profileEditUrl).toBe("/profiles/username/edit")
+        expect(@auth.options.messagesUrl).toBe("/profiles/1234/messages")
 
       it 'uses the correct avatar', ->
         expect(@auth.userAvatar()).toBe('path/to/image.jpg')
