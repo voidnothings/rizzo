@@ -8,7 +8,9 @@ Rizzo is the UI layer for lonelyplanet.com. Rizzo also serves LP's header and fo
 ## Install & Get Dependencies
 
     $ git clone git@github.com:lonelyplanet/rizzo.git && cd rizzo
-    $ cp .rvmrc.example .rvmrc && source .rvmrc
+    $ cp .ruby-version.example .ruby-version
+    $ cp .ruby-gemset.example .ruby-gemset
+    $ cd .
     $ bundle install
     $ npm install
 
