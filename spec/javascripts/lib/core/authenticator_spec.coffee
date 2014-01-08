@@ -71,11 +71,7 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
           expect($('a.js-user-join').attr('href')).toBe(@auth.options.registerLink)
 
         it 'has a sign-in url', ->
-          expect($('a.js-user-signin').attr('href')).toBe(@auth.signInUrl())
-
-        # it 'has a sign-in url with the current service uri', ->  
-        #   expect(@auth.signInUrl()).toMatch(/\?service/)
-        #   expect(@auth.signInUrl()).toMatch(/localhost/)
+          expect($('a.js-user-signin').attr('href')).toBe(@auth.options.signInUrl)
 
 
     describe 'logged-in', ->
@@ -164,6 +160,7 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
 
       it 'generates the correct urls', ->
         expect(@auth.options.registerLink).toBe('/users/sign_up')
+        expect(@auth.options.signInUrl).toBe("/users/sign_in")
         expect(@auth.options.signOutUrl).toBe("/users/sign_out")
         expect(@auth.options.membersUrl).toBe("/profiles/[USERNAME]")
         expect(@auth.options.forumPostsUrlTemplate).toBe("/profiles/[USERNAME]/activities")

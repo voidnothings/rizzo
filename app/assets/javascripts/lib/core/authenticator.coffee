@@ -19,6 +19,7 @@ define ['jquery'], ($)->
         url = if /lonelyplanet\.com/.test(window.location.hostname) then "/thorntree" else ""
 
         registerLink: "#{url}/users/sign_up"
+        signInUrl: "#{url}/users/sign_in"
         signOutUrl: "#{url}/users/sign_out"
         membersUrl: "#{url}/profiles/[USERNAME]"
         forumPostsUrlTemplate: "#{url}/profiles/[USERNAME]/activities"
@@ -30,6 +31,7 @@ define ['jquery'], ($)->
         messagesUrl: "//www.#{baseDomain}/members/messages"
         registerLink: "https://secure.#{baseDomain}/members/registration/new"
         profileEditUrl: "//www.#{baseDomain}/members/[USERNAME]/edit"
+        signInUrl: "https://secure.#{baseDomain}/sign-in/login?service=#{escape(window.location)}"
         signOutUrl: "https://secure.#{baseDomain}/sign-in/logout"
 
     userSignedIn: ->
@@ -45,7 +47,7 @@ define ['jquery'], ($)->
     showLoginAndRegister: ()->
       @emptyUserNav()
       joinElement = "<a class='nav__item nav__item--primary js-user-join js-nav-item' href='#{@options.registerLink}'><i class='nav__icon icon--sign-in--before icon--white--before'></i>Join</a>"
-      signinElement = "<a class='nav__item nav__item--primary js-user-signin js-nav-item' href='#{@signInUrl()}'><i class='nav__icon icon--sign-in--before icon--white--before'></i>Sign in</a>"
+      signinElement = "<a class='nav__item nav__item--primary js-user-signin js-nav-item' href='#{@options.signInUrl}'><i class='nav__icon icon--sign-in--before icon--white--before'></i>Sign in</a>"
       @el.append(signinElement + joinElement)
 
     showUserBox: ->
@@ -69,9 +71,7 @@ define ['jquery'], ($)->
       ]
       optionElements =  ("<a class='nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
       userMenu = "<span class='wv--hidden nav--offscreen__title'>#{@lpUserName}</span><div class='nav__submenu nav__submenu--user'><div class='nav--stacked nav__submenu__content icon--arrow-up--green--after nav__submenu__content--user nav-user-options js-user-options'><div class='nav__submenu__item nav__submenu__title'>#{@lpUserName}</div>#{optionElements}</div></div>"
-    
-    signInUrl:->
-      "https://secure.lonelyplanet.com/sign-in/login?service=#{escape(window.location)}"
+
     
     userAvatar: ->
       if window.lp.user then window.lp.user.avatar else "#{@options.membersUrl}/#{@lpUserName}/mugshot/mini"
