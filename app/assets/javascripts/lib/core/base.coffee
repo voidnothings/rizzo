@@ -27,10 +27,9 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
 
     authenticateUser: ->
       @auth = new Authenticator()
-      url = if /lonelyplanet\.com/.test(window.location.hostname) then "/thorntree/users/status" else "/users/status"
 
       $.ajax
-        url: url
+        url: @auth.getNewStatusUrl()
         dataType: "json"
         error: =>
           # Fallback to the old method for the moment.

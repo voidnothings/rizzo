@@ -159,6 +159,14 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
 
         @auth.constructor()
 
+      it 'produces the correct new status url when NOT on the live site', ->
+        spyOn(@auth, 'getUrl').andReturn('http://community.lonelyplanet.com')
+        expect(@auth.getNewStatusUrl()).toBe('/users/status')
+
+      it 'produces the correct new status url when on the live site', ->
+        spyOn(@auth, 'getUrl').andReturn('http://www.lonelyplanet.com')
+        expect(@auth.getNewStatusUrl()).toBe('/thorntree/users/status')
+
       it 'generates the correct urls', ->
         expect(@auth.options.registerLink).toBe('/users/sign_up')
         expect(@auth.options.signInUrl).toBe("/users/sign_in")

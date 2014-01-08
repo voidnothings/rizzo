@@ -1,6 +1,6 @@
-define ['jquery'], ($)->
+define ['jquery', 'lib/utils/page_state'], ($, PageState)->
 
-  class Authenticator
+  class Authenticator extends PageState
 
     @version = '0.0.13'
     
@@ -33,6 +33,9 @@ define ['jquery'], ($)->
         profileEditUrl: "//www.#{baseDomain}/members/[USERNAME]/edit"
         signInUrl: "https://secure.#{baseDomain}/sign-in/login?service=#{escape(window.location)}"
         signOutUrl: "https://secure.#{baseDomain}/sign-in/logout"
+
+    getNewStatusUrl: ->
+      if /https?:\/\/(www\.)?lonelyplanet\.com/.test(@getUrl()) then "/thorntree/users/status" else "/users/status"
 
     userSignedIn: ->
       @lpUserName = @getLocalData('lp-uname')
