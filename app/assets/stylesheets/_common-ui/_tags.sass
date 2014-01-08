@@ -132,45 +132,49 @@
 
 
 // -----------------------------------------------------------------------------
-// Badge tag
+// Tags on cards - lp reviewed, top choice etc.
 // -----------------------------------------------------------------------------
 
-.tag--badge
-  @extend %inline-block
+.tag--card
+  @extend %tag--top
   +tag-curl-top($header-blue, $darkblue)
   background-color: $header-blue
   color: #fff
 
-.tag--badge__content
+.tag--card__content
   position: relative
   width: 34px
   &:before
     line-height: 15px
+
   .icon--white
     @extend %image-replacement
     width: 32px
     height: 22px
-  .icon--top-choice
-    position: relative
-    top: -5px
 
   .tag--top-choice &
-    border-top-right-radius: 6px
-    padding-top: 14px
     &:after
       position: absolute
-      bottom: -8px
+      bottom: -13px
       height: 12px
       width: 100%
       left: 0
 
 .tag--lp-reviewed
-  @extend %tag--top
   width: 34px
   .icon--lp-reviewed
     width: 28px
     height: 24px
     margin: 8px 0 3px
+
+// Top choice uses the svg collar rather than border-radius
+.tag--top-choice
+  padding: 10px 0 5px
+  border-bottom-left-radius: 0
+  border-bottom-right-radius: 0
+  .icon--top-choice
+    position: relative
+    left: -1px
   
 
 // -----------------------------------------------------------------------------

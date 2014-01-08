@@ -119,6 +119,10 @@ module StyleguideHelper
             {
               name: "Typography",
               path: "typography"
+            },
+            {
+              name: "Tags",
+              path: "tags"
             }
           ]
         }
