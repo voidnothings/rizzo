@@ -7,9 +7,12 @@
 .row--compose
   .simple-form
     @extend %rounded-corners
-    .btn[type="submit"]
-      border-style: none
+    .btn
       margin-right: 15px
+      overflow: visible
+
+      &[type="submit"]
+        border-style: none
 
   .simple-form__field
     @extend %clearfix

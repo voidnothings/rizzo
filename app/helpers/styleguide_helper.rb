@@ -93,6 +93,10 @@ module StyleguideHelper
           title: "Components",
           items: [
             {
+              name: "Alerts",
+              path: "alerts"
+            },
+            {
               name: "Badges",
               path: "badges"
             },
