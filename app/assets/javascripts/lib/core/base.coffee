@@ -37,7 +37,6 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
           AssetFetch.get "https://secure.lonelyplanet.com/sign-in/status", () =>
             @auth.update()
         success: (user) =>
-          # Proposed new format. Not currently used except as a litmus test for whether we're using the new system and for user.avatar.
           # The data returned is defined in community at: app/controllers/users_controller.rb@status
           window.lp.user = user
 

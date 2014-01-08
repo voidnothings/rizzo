@@ -21,10 +21,10 @@ define ['jquery'], ($)->
         registerLink: "#{url}/users/sign_up"
         signInUrl: "#{url}/users/sign_in"
         signOutUrl: "#{url}/users/sign_out"
-        membersUrl: "#{url}/profiles/[USERNAME]"
-        forumPostsUrlTemplate: "#{url}/profiles/[USERNAME]/activities"
-        profileEditUrl: "#{url}/profiles/[USERNAME]/edit"
-        messagesUrl: "#{url}/profiles/[USERNAME]/messages"
+        membersUrl: "#{url}/profiles/#{lp.user.username}"
+        forumPostsUrlTemplate: "#{url}/profiles/#{lp.user.username}/activities"
+        profileEditUrl: "#{url}/profiles/#{lp.user.username}/edit"
+        messagesUrl: "#{url}/profiles/#{lp.user.id}/messages"
       else
         forumPostsUrlTemplate: "//www.#{baseDomain}/thorntree/profile.jspa?username=[USERNAME]"
         membersUrl: "//www.#{baseDomain}/members"
@@ -57,6 +57,9 @@ define ['jquery'], ($)->
       @el.append(userBoxElement)
       $('.js-user-box').append(@userOptionsMenu())
 
+      if window.lp.user and lp.user.unread_message_count > 0
+        $('.js-user-msg').append($("<span>#{lp.user.unread_message_count}</span>").addClass("nav__submenu__notification"))
+
     emptyUserNav: -> 
       @el.removeClass('is-signed-in')
       $('a.js-user-join, a.js-user-signin, div.js-user-box').remove()
@@ -82,9 +85,6 @@ define ['jquery'], ($)->
       prevState = @userState
       @userState = @userSignedIn()
       @signonWidget()
-
-    bindEvents: ->
-      $('#unread').click(()-> e.preventDefault(); window.location = "#{options.membersUrl}/#{@lpUserName}/messages")
 
     signOut: ->
       window.location= @options.signOutUrl
