@@ -36,19 +36,16 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
           # Fallback to the old method for the moment.
           AssetFetch.get "https://secure.lonelyplanet.com/sign-in/status", () =>
             @auth.update()
-        success: (data) =>
-          # Proposed new format. Not currently used except for the avatar.
-          window.lp.user =
-            avatar: data.avatar
-            facebookUID: data.facebook
-            loginTimestamp: data.timestamp
-            username: data.username
+        success: (user) =>
+          # Proposed new format. Not currently used except as a litmus test for whether we're using the new system and for user.avatar.
+          # The data returned is defined in community at: app/controllers/users_controller.rb@status
+          window.lp.user = user
 
           # Legacy, keep until the old stuff is discarded and Authenticator has been refactored.
-          window.lpLoggedInUsername = data.username || "";
-          window.facebookUserId = data.facebook;
+          window.lpLoggedInUsername = user.username || "";
+          window.facebookUserId = user.facebook_uid;
           window.surveyEnabled = "false";
-          window.timestamp = data.timestamp;
+          window.timestamp = user.timestamp;
           window.referer = "null";
 
           @auth.update()
