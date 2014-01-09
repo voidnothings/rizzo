@@ -1,5 +1,5 @@
 :javascript
-  (function(html) {
+  (function($html) {
     var activePath = "#{asset_path('icons/' + sheet + '.css')}";
     var criticalPath = "#{asset_path('icons/critical.css')}";
     function styleSheet(path) {
@@ -12,12 +12,12 @@
     window.setTimeout(function(){
       var script = document.getElementsByTagName("script")[0];
       var head = script.parentNode;
-      if ("background-size" in html.style || "backgroundSize" in html.style) {
+      if ("background-size" in $html.style || "backgroundSize" in $html.style) {
         head.insertBefore(styleSheet(activePath), script);
-        html.className += " supports-svg";
+        $html.className += " supports-svg";
       } else {
         head.insertBefore(styleSheet(criticalPath), script);
-        html.className += " no-background-size";
+        $html.className += " no-background-size";
       }
     }, 0)
   }(document.documentElement));
