@@ -7,7 +7,7 @@
   = render 'layouts/core/head', responsive: false, homepage: false
 
 %body
-  .wrap--footer-push
+  .wrapper
     = render 'layouts/core/snippets/body_header', user_nav: defined?(user_nav) ? user_nav : true
 
     .row.row--content#js-row--content
@@ -19,12 +19,8 @@
               = yield :secondary
         
         = yield
-      
-      .row--footer-push
 
-  .wrap--footer
-    - if (yield :breadcrumbs).present?
-      = yield :breadcrumbs
+    = yield :breadcrumbs
     = render 'layouts/core/snippets/body_footer'
 
   .js-config.is-hidden
