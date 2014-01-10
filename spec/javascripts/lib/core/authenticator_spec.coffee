@@ -174,7 +174,7 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
         expect(@auth.options.membersUrl).toBe("/profiles/username")
         expect(@auth.options.forumPostsUrlTemplate).toBe("/profiles/username/activities")
         expect(@auth.options.profileEditUrl).toBe("/profiles/username/edit")
-        expect(@auth.options.messagesUrl).toBe("/profiles/1234/messages")
+        expect(@auth.options.messagesUrl).toBe("/profiles/username/messages")
 
       it 'uses the correct avatar', ->
         expect(@auth.userAvatar()).toBe('path/to/image.jpg')

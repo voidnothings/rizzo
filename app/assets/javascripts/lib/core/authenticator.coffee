@@ -24,7 +24,7 @@ define ['jquery', 'lib/utils/page_state'], ($, PageState)->
         membersUrl: "#{url}/profiles/#{lp.user.username}"
         forumPostsUrlTemplate: "#{url}/profiles/#{lp.user.username}/activities"
         profileEditUrl: "#{url}/profiles/#{lp.user.username}/edit"
-        messagesUrl: "#{url}/profiles/#{lp.user.id}/messages"
+        messagesUrl: "#{url}/profiles/#{lp.user.username}/messages"
       else
         forumPostsUrlTemplate: "//www.#{baseDomain}/thorntree/profile.jspa?username=[USERNAME]"
         membersUrl: "//www.#{baseDomain}/members"
