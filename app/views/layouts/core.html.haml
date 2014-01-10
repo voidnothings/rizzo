@@ -23,26 +23,9 @@
     = yield :breadcrumbs
     = render 'layouts/core/snippets/body_footer'
 
-  .js-config.is-hidden
-    = render 'layouts/core/snippets/fs_init'
-    = render 'layouts/mobile/fonts_async'
-    = render 'layouts/mobile/base_js_async'
-    = js_configuration
-    - unless Rails.env.production?
-      :javascript
-        window.appEnvironment = "#{Rails.env}";
-    - if defined?($JS_VARS)
-      :javascript
-        #{js_hash($JS_VARS)}
-    - if is_lp_office?(true_client_ip(request))
-      :javascript
-        window.lpOffice = true;
-    = yield :scripts
-    = render 'layouts/core/snippets/google_analytics' if Rails.env.production?
-
-
   %div.ad-oneByOne#js-ad-oneByOne
 
+  = render 'layouts/core/snippets/footer_js'
   - if defined? Variant
     /
       = "build: #{Variant.full_namespace}"
