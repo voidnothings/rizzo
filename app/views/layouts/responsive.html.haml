@@ -20,12 +20,10 @@
       = yield
 
     .wrap--footer
-      - if (yield :breadcrumbs).present?
-        = yield :breadcrumbs
+      = yield :breadcrumbs
       = render 'layouts/core/snippets/body_footer', responsive: true
 
-    .js-config.is-hidden
-      = render 'layouts/core/snippets/footer_js'
+    = render 'layouts/core/snippets/footer_js'
 
     %div.ad-oneByOne#js-ad-oneByOne
 
