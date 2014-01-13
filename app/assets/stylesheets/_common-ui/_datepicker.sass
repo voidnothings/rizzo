@@ -49,8 +49,8 @@
   height: 20px
   cursor: pointer
   background-size: cover
-  .ie8 &:after,
-  .ie7 &:after
+  .no-background-size &:after,
+  .no-js &:after
     +font-size(32)
     font-weight: bold
     line-height: .5
@@ -58,22 +58,22 @@
 .picker__nav--prev
   @extend %left-icon
   left: 10px
-  .ie8 &:after,
-  .ie7 &:after
+  .no-background-size &:after,
+  .no-js &:after
     content: "\2039"
 
 .picker__nav--next
   @extend %right-icon
   right: 10px
-  .ie8 &:after,
-  .ie7 &:after
+  .no-background-size &:after,
+  .no-js &:after
     content: "\203a"
 
 .picker__nav--disabled
   background: none
   cursor: auto
-  .ie8 &:after,
-  .ie7 &:after
+  .no-background-size &:after,
+  .no-js &:after
     content: initial
 
 .picker__table
