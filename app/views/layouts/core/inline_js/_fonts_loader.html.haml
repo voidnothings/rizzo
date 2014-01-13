@@ -2,10 +2,10 @@
   if (window.lp.enhanced && window.localStorage.getItem('_lpfont') == "true") {
     var ss = document.createElement('link'),
         firstLink = document.getElementsByTagName('link')[0],
-        fontSlug = "#{font_path('fonts.css')}";
+        fontPath = "#{font_path('fonts.css')}";
 
     
-    ss.href= "//assets.staticlp.com" + fontSlug;
+    ss.href= fontPath;
     ss.rel = "stylesheet";
     ss.type = "text/css";
     firstLink.parentNode.insertBefore(ss, firstLink);
