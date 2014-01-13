@@ -44,23 +44,37 @@
 .picker__nav--next
   position: absolute
   background-size: cover
-  top: 0
-  width: 25px
-  height: 25px
+  top: 8px
+  width: 20px
+  height: 20px
   cursor: pointer
   background-size: cover
+  .ie8 &:after,
+  .ie7 &:after
+    +font-size(32)
+    font-weight: bold
+    line-height: .5
 
 .picker__nav--prev
   @extend %left-icon
   left: 10px
+  .ie8 &:after,
+  .ie7 &:after
+    content: "\2039"
 
 .picker__nav--next
   @extend %right-icon
   right: 10px
+  .ie8 &:after,
+  .ie7 &:after
+    content: "\203a"
 
 .picker__nav--disabled
   background: none
   cursor: auto
+  .ie8 &:after,
+  .ie7 &:after
+    content: initial
 
 .picker__table
   border-collapse: separate
