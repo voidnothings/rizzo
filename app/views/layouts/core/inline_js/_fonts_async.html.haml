@@ -4,10 +4,14 @@
       
       window.onload = function() {
         var xhr = new XMLHttpRequest();
-        var compiledPath = "#{font_path('fonts.css')}";
-        var newPath = "//www.lonelyplanet.com/assets/" + compiledPath.split('/assets/')[1]
-
-        xhr.open('GET', newPath);
+        var compiledPath = "#{font_path('fonts.css')}",
+            host = window.location.host;
+        
+        if (host == "shop.lonelyplanet.com") {
+          host = host.replace(/shop/, 'www');
+        }
+        
+        xhr.open('GET', "//" + host + "/assets/" + compiledPath.split('/assets/')[1]);
 
         xhr.onload = function (e) {
           window.localStorage.setItem('_lpfont', 'true')
