@@ -219,7 +219,7 @@ Javascript hooks:
 
 
 -----
-## Javascript Guidelines
+## Coffee and JavaScript Guidelines
 
 **Install [editorconfig](http://editorconfig.org/) for your editor !**
 
@@ -257,13 +257,13 @@ Javascript hooks:
 
 4. Some stuff that is great but you may be nervous about:
 
-  * Check if an array or string contains something by bitwise notting: `!!~collection.indexOf('abacus')`
+  <!--* Check if an array or string contains something by bitwise notting: `!!~collection.indexOf('abacus')`-->
 
   * The "Angus Manouver": `snake && snake.bleeding()`
 
-  * Coerce numbers with unary plus: `if +num is 2 ...`
+  <!--* Coerce numbers with unary plus: `if +num is 2 ...`-->
 
-  * Augment a native prototype if that's the right thing to do
+  <!--* Augment a native prototype if that's the right thing to do-->
 
 5. Further Concerns
 
@@ -329,6 +329,8 @@ Javascript hooks:
         };
         ```
 
-  * Try to use function declarations unless a function expression is necessary
+  * Try to use a function expression unless a function declaration [is necessary](http://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/)
+
+  * Stick to double quotes
 
   <!--Try not to get caught up in dogmatic rules and religion surrounding javascript and in the community. Be playful.-->
