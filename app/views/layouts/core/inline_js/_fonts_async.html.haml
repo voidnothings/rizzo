@@ -4,11 +4,8 @@
       
       window.onload = function() {
         var xhr = new XMLHttpRequest();
-        var cdnPath = "#{font_path('fonts.css')}";
-        // Use www to avoid CORS issues
-        // This config should be handled in rails
-        // Asset pipeline doesn't make this very easy though
-        var newPath = "//" + window.location.host +"/assets/" + cdnPath.split('/assets/')[1]
+        var compiledPath = "#{font_path('fonts.css')}";
+        var newPath = "//www.lonelyplanet.com/assets/" + compiledPath.split('/assets/')[1]
 
         xhr.open('GET', newPath);
 
