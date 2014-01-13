@@ -1,5 +1,7 @@
 Then(/^the Core layout should be displayed$/) do
-  page.should have_selector 'html.freight'
+  page.should have_selector 'html.no-freight'
+  page.should_not have_selector 'body.responsive'
+  page.should_not have_selector 'body.homepage'
 end
 
 Then(/^the Legacy layout should be displayed$/) do

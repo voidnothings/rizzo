@@ -1,3 +1,8 @@
+%meta{charset: "utf-8"}
+%meta{name: "author", content: 'Lonely Planet'}
+%meta{name: "fb:app_id", content: "111537044496"}
+= yield :meta
+
 %title
   = content_for?(:head_title) ? yield(:head_title) : 'Lonely Planet Travel Guides and Travel Information'
 
@@ -5,11 +10,6 @@
 = yield :place_hotels_link
 %link{rel: "dns-prefetch", href: "http://assets.staticlp.com"}
 %link{rel: "icon", type: "image/gif", href: "http://www.lonelyplanet.com/favicon.ico"}
-
-= yield :meta
-%meta{charset: "utf-8"}
-%meta{name: "author", content: 'Lonely Planet'}
-%meta{name: "fb:app_id", content: "111537044496"}
 
 - if responsive
   %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
@@ -19,6 +19,7 @@
 = csrf_meta_tags
 
 = render 'layouts/core/snippets/head_js'
+= render 'layouts/core/inline_js/tynt'
 
 = smart_stylesheet('common_core_no_font')
 = yield :stylesheets
