@@ -19,9 +19,10 @@
               = yield :secondary
         
         = yield
-
-    = yield :breadcrumbs
-    = render 'layouts/core/snippets/body_footer'
+    
+    .wrapper.wrapper--footer
+      = yield :breadcrumbs
+      = render 'layouts/core/snippets/body_footer'
 
   %div.ad-oneByOne#js-ad-oneByOne
 
