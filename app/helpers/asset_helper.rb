@@ -43,9 +43,7 @@ module AssetHelper
 
   # Rails 3 and 4 deal with assets differently
   def normalised_asset_path (asset_name)
-    asset_with_digest = asset_path(asset_name)
-    asset_with_digest = "/assets/#{asset_with_digest}" unless asset_with_digest[0..7] == "/assets/"
-    asset_with_digest
+    asset_path(asset_name).sub(/(.*\.com)?\/?(assets\/)?\/?(.*)/, '\1/assets/\3')
   end
 
 end
