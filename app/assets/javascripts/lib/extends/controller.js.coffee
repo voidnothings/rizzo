@@ -70,7 +70,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
         # https://code.google.com/p/chromium/issues/detail?id=63040
         setTimeout(( =>
           $(window).bind 'popstate', =>
-            @setUrl(@getUrl())
+            @setUrl(@getUrl()) unless history.state is null
         ), 1)
 
       else if @_supportsHash()
