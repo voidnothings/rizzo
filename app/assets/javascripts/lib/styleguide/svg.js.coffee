@@ -4,7 +4,7 @@ require ['jquery'], ($) ->
   colorFilter = intro.find('#js-icon-filter')
   colorSelect = intro.find('.js-select')
   icons = content.find('.js-icon')
-  iconCards = icons.parent('.js-card')
+  iconCards = icons.closest('.js-card')
   iconColors = []
 
   colorSelect.length && $.each colorSelect.get(0).options, (_, option) ->

@@ -38,7 +38,7 @@ module StyleguideHelper
       ],
       ui_components: [
         {
-          title: "Colours",
+          title: "Design",
           items: [
             {
               name: "Design palette",
@@ -47,15 +47,10 @@ module StyleguideHelper
             {
               name: "UI Colours",
               path: "ui-colours"
-            }
-          ]
-        },
-        {
-          title: "Icons",
-          items: [
+            },
             {
-              name: "Active",
-              path: "active-icons"
+              name: "Icons",
+              path: "icons"
             }
           ]
         },

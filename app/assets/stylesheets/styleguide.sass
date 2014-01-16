@@ -50,6 +50,10 @@ pre[class*="language-"]
     margin: 0
     float: none
 
+pre[class*="language-"].styleguide
+  margin: 0
+  font-size: 15px
+
 pre.styleguide.is-open
   max-height: none
 
@@ -73,6 +77,9 @@ pre.styleguide.is-open
 
 .styleguide-intro
   padding: 25px
+
+.styleguide-intro__section
+  margin-bottom: 20px
 
 .styleguide-block
   @extend %clearfix
@@ -191,10 +198,30 @@ pre.styleguide.is-open
   [class*="icon--"]
     height: 40px
     width: 40px
-    margin: 0 auto
+    margin-left: 10px
+  [class*="icon--"][class*="--pin"]
+    width: 28px
+  [class*="icon--"][class*="--simple"]
+    width: 30px
+  [class*="icon--"][class*="--place--pin"]
+    width: 40px
+  .icon--lp-logo
+    width: 70px
+  .icon--collar
+    width: 70px
+    height: 20px
+    margin: 10px
+  .icon.icon--pinterest
+    width: 40px
   .is-white
     background-color: $body-copy
     color: white
+
+  .icon__name
+    text-align: right
+    padding: 10px
+    font-size: 12px
+
 
 .filter--links
   .svg-colourise
