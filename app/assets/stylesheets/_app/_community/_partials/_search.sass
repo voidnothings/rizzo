@@ -1,0 +1,21 @@
+// -----------------------------------------------------------------------------
+// Search results styles
+// -----------------------------------------------------------------------------
+
+.advanced-search
+  @extend %transition--base
+  overflow: hidden
+
+  .simple-form__field
+    float: left
+    margin-right: 10px
+  .field__label
+    display: none
+  .field__content
+    width: auto
+  
+  .is-not-active &
+    height: 0
+
+  .is-active &
+    height: 44px
