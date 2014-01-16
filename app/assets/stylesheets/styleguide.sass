@@ -64,12 +64,12 @@ pre.styleguide.is-open
   display: none
 .is-exact
   position: relative
-  &:after
-    color: white
-    font-size: 5em
+  &:before
+    width: 20px
+    height: 20px
     position: absolute
-    right: 10px
-    top: 20px
+    left: 10px
+    top: 10px
 
 .title--styleguide
   color: white
@@ -118,18 +118,19 @@ pre.styleguide.is-open
   margin-bottom: 0
   padding: 20px
 
-.styleguide-block__item--colour
-  +border-radius(100)
-  +vertically-center(100)
-  border: 2px solid #FFF
-  color: white
-  float: left
-  margin: 0 20px 0 0
+.styleguide__colours
   text-align: center
-  width: 100px
+  .copy--h4
+    padding: 10px
+
+.styleguide-block__item--colour
+  border: 6px solid #FFF
+  font-size: 13px
+  padding: 4px 0
+  color: white
+  margin: 0
 
   &.is-light
-    border-color: $body-background
     color: $body-copy
   .is-approximate &
     border-color: transparent
