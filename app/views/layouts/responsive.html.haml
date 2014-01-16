@@ -5,7 +5,7 @@
 <!--[if gt IE 9]><!--><html class='no-js no-freight base' data-topic="#{yield :topic}" lang="en"><!--<![endif]-->
 
 %head
-  = render 'layouts/core/head', responsive: true, homepage: false
+  = render 'layouts/core/head', responsive: true, homepage: false, suppress_tynt: (defined?(suppress_tynt) ? suppress_tynt : false)
 
 %body.responsive
   = render 'layouts/core/snippets/accessibility'
