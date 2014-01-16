@@ -4,7 +4,7 @@
 <!--[if IE 9]><html class="no-js ie9 no-freight" lang="en"><![endif]-->
 <!--[if gt IE 9]><!--><html class="no-js base no-touch no-freight" lang="en"><!--<![endif]-->
 %head
-  = render 'layouts/core/head', responsive: true, homepage: true
+  = render 'layouts/core/head', responsive: true, homepage: true, suppress_tynt: (defined?(suppress_tynt) ? suppress_tynt : false)
 
 %body.responsive.homepage
   .wrapper
