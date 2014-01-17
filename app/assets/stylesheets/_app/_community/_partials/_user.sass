@@ -184,7 +184,6 @@
 .user-info__posted-date
 
 .user-info__posted-date--icon
-  padding-left: 10px
   &:before
     display: inline-block
     height: 18px
@@ -195,9 +194,17 @@
 // -----------------------------------------------------------------------------
 // User info displayed at the side of messages.
 // -----------------------------------------------------------------------------
-.user-info--mini
-  width: 190px
+.user-info--message-list
+  width: 185px
+  +font-size(13)
 
   .user-info__avatar
     float: left
     margin-right: 10px
+
+.user-info--message-thread
+  width: 125px
+  +font-size(13)
+
+  .user-info__avatar
+    margin-bottom: 6px
