@@ -45,13 +45,12 @@ buttons:
 variation:
   :styleguide_title: "Sizes and modifiers"
   :type: "blue"
-  :text: "Modified button"
+  :text: "Submit"
   :href: "#"
   :modifiers:
     - "btn--small"
-    - "btn--large"
     - "btn--slim"
     - "is-disabled"
-    - "btn--full-width"
     - "btn--icon icon--globe--before icon--white--before"
     - "btn--icon-only icon--globe icon--white"
+    - "btn--full-width"
