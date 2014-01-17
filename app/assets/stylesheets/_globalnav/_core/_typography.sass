@@ -7,11 +7,11 @@
 html
   @extend %lp-font-stack
   font-size: $freight-font-size
-  @if $is-ie
-    font-size: $helvetica-font-size 'Helvetica Neue', Arial, sans-serif
-
   &.no-freight
     font-size: $helvetica-font-size
+
+  @if $is-ie
+    font: $helvetica-font-size 'Helvetica Neue', Arial, sans-serif
 
 body
   min-height: 100%
