@@ -51,6 +51,10 @@ module StyleguideHelper
             {
               name: "Icons",
               path: "icons"
+            },
+            {
+              name: "Typography",
+              path: "typography"
             }
           ]
         },
@@ -114,10 +118,6 @@ module StyleguideHelper
             {
               name: "Pagination",
               path: "pagination"
-            },
-            {
-              name: "Typography",
-              path: "typography"
             }
           ]
         }

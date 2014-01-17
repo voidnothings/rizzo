@@ -33,6 +33,6 @@
   .copy--disclaimer Disclaimer text is used for legal and copyright text.
 
 :javascript
-  $$('.styleguide-block [class^=copy--]').forEach(function(el) {
+  $('.styleguide-block [class^=copy--]').each(function(index, el) {
     el.innerHTML += ' (' + window.getComputedStyle(el, null).getPropertyValue('font-size') + ')';
   });
