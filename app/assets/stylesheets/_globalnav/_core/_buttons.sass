@@ -15,6 +15,7 @@
   overflow: hidden
   padding: 10px 25px
   text-align: center
+  border: none
   &:hover
     text-decoration: none
   &.is-disabled, &[disabled]
@@ -56,6 +57,11 @@
   @extend %image-replacement
   padding: 10px 20px
   width: 1em
+
+.btn--icon--minus:before
+  content: '\2212'
+  font-size: 1.25em
+  margin-right: 0.5em
 
 // -----------------------------------------------------------------------------
 // Button Layout Modifiers

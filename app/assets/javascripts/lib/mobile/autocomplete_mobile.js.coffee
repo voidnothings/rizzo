@@ -269,7 +269,7 @@ define [], ->
 
       highlightedText = @_highlightText item[@config.map.title], searchTerm
 
-      if @config.map.uri? and item.uri?
+      if @config.map.uri?
         anchor = document.createElement 'A'
         anchor.href = item[@config.map.uri]
         anchor.className = @config.resultLinkClass

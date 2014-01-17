@@ -44,7 +44,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/typography'                     => 'styleguide#typography'
   get 'styleguide/colours'                        => 'styleguide#colours'
   get 'styleguide/ui-colours'                     => 'styleguide#uiColours'
-  get 'styleguide/active-icons'                   => 'styleguide#activeIcons'
+  get 'styleguide/icons'                          => 'styleguide#icons'
   get 'styleguide/pagination'                     => 'styleguide#pagination'
   get 'styleguide/proportional-grid'              => 'styleguide#proportionalGrid'
   get 'styleguide/cards-grid'                     => 'styleguide#cardsGrid'

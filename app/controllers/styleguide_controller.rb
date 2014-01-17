@@ -38,8 +38,8 @@ class StyleguideController < GlobalController
     render '/styleguide/ui-components/ui_colours'
   end
 
-  def activeIcons
-    render '/styleguide/ui-components/active-icons'
+  def icons
+    render '/styleguide/ui-components/icons'
   end
 
   def inactiveIcons

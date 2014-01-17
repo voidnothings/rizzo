@@ -1,12 +1,12 @@
 !!! 5
-%html{class: 'no-js freight', lang: "en", "ng-app" => "StyleSheetApp"}
+%html{class: 'no-js no-freight', lang: "en"}
 
   %head
-    = render 'layouts/core/head', responsive: false, homepage: false
+    = render 'layouts/core/head', responsive: false, homepage: false, suppress_tynt: (defined?(suppress_tynt) ? suppress_tynt : false)
     = stylesheet_link_tag 'styleguide', :media => "all"
     = stylesheet_link_tag 'prism', :media => "all"
 
-  %body.copy--freight
+  %body
 
     .wrapper
       .nav-container
@@ -35,11 +35,9 @@
             .main-content.stack#js-main-content
               = yield
 
-        .row--footer-push
 
     .js-config.is-hidden
-
-      = requirejs_include_tag('styleguide'){|c|{'main' => 'styleguide'}}
+      = render 'layouts/core/snippets/footer_js'
       = yield :scripts
 
       = javascript_include_tag 'prism'
