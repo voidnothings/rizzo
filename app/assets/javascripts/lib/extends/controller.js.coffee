@@ -18,7 +18,6 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
       @$el = $(LISTENER)
       @_generateState()
       @_initHistory()
-      @_createInitialState()
 
 
     # Subscribe
@@ -94,12 +93,6 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
     _generateState: ->
       @state = $.deparam(@getParams())
       @_removePageParam()
-
-    _createInitialState: ->
-      # We need to set an initial state so that we will trigger a
-      # content refresh if the user navigates back to the first page
-      if @_supportsHistory()
-        window.history.replaceState({firstPage: true}, null, null)
 
     _updateState: (params) ->
       for key of params
