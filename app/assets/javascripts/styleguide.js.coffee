@@ -9,9 +9,10 @@ require ['jquery'], ($) ->
     'lib/styleguide/snippet-expand'
     'lib/styleguide/svg'
     'lib/styleguide/colours'
-  ], ->
+  ], (SelectGroupManager) ->
 
     $ ->
+      new SelectGroupManager()
 
       d = new Date()
       $('.input--datepicker').pickadate({
