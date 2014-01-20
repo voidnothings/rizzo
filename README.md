@@ -219,118 +219,121 @@ Javascript hooks:
 
 
 -----
-## Coffee and JavaScript Guidelines
+## JavaScript Guidelines
 
 **Install [editorconfig](http://editorconfig.org/) for your editor !**
 
+**This README [used to](https://github.com/lonelyplanet/rizzo/blob/06b2c761b56184901d7a2341f6a872a541e7dee7/README.md#conventions-1) contain coffeescript guidelines, these have been removed as nobody should be writing new coffee at this point.**
+
 ### Conventions
 
-1. Whitespace
+#### 1. Whitespace
 
-  * Set your editor to remove trailing whitespace
+* Set your editor to remove trailing whitespace
 
-  * Use 2 spaces for indentation
+* Use 2 spaces for indentation
 
-  * End files with no more and no less than 1 newline
+* End files with no more and no less than 1 newline
 
-2. Syntax
+* The [.editorconfig](https://github.com/lonelyplanet/rizzo/blob/06b2c761b56184901d7a2341f6a872a541e7dee7/.editorconfig) will take care of the above for you
 
-  * Use `this` when referring to `this` alone. Use `@variable` for referring to `this.variable`. eg: `self = this` but `@rub(noggin)`
+#### 2. Syntax
 
-  * Use curly braces for objects, not coffeescript's implicit object syntax. eg:
+* Stick to double quotes
 
-		```coffeescript
-		  animals = {
-	        dog: 'brown'
-		    fox: 'green'
-		    pig: 'yellow'
-		  }
-        ```
+* Spaces are encouraged, to improve readability
+   
+    ```javascript
+    if ( true ) {
+      this;
+    } else {
+      that;
+    }
+    ```
 
-  * Use parens for calling functions: `@albatross({ sausage: 'goose' })`
+* Declare variables at the top of their scope:
 
-  * Stick to single quotes `'` unless using coffeescripts string interpolation, `"jimmy ate the #{foxpuppet.angles}"`
+    ```javascript
+    function balloon() {
+      var wizard,
+          dog = getShibe(),
+          partyHat = "^";
+      // some statements and stuff
+    }
+    ```
 
-3. Typechecking
+* Use strict as the first line inside your require function
 
-  * In [this](http://contribute.jquery.org/style-guide/js/#type-checks) style, except unfortunely we cannot use the "null or undefined" check in coffeescript.
+    ```javascript
+    require("website", function( website ) {
+      "use strict";
+      website.respond();
+      website.enhance({ method: "progressive" });
+    });
+    ```
+   
+* No space before paren in function decl, but spaces within:
+  
+    ```javascript
+    function getDressed( hat, suit, scarf, cane ) {
+      // statements, innit
+    }
+    var antelope = function( colour ) {
+      // . . .
+    }
+    ```
 
-4. Some stuff that is great but you may be nervous about:
+#### 3. Typechecking
 
-  <!--* Check if an array or string contains something by bitwise notting: `!!~collection.indexOf('abacus')`-->
+* In [this](http://contribute.jquery.org/style-guide/js/#type-checks) style, ten and sixpence.
 
-  * The "Angus Manouver": `snake && snake.bleeding()`
+#### 4. Language
 
-  <!--* Coerce numbers with unary plus: `if +num is 2 ...`-->
+* Use camelCase for method and variable names.
 
-  <!--* Augment a native prototype if that's the right thing to do-->
+    `twistAgainLikeWeDidLastSummer()`
+ 
+    __not__
 
-5. Further Concerns
+    `rock_around_the_clock()`
 
-  * Use camelCase for method and variable names.
-		`twistAgainLikeWeDidLastSummer()`
+* Try to avoid single character variable names, words are easier to read and we can leave minification to a minifier
 
-		__NOT__
+* Don't use comma first
 
-		`rock_around_the_clock()`
+* Name collections (arrays, objects, sets, maps) in plural, ie: `badger` is a thing, `badgers` is a collection of things
 
-  * Try to avoid single character variable names, words are easier to read and we can leave minification to a minifier
+* test for truthiness:
 
-  * Don't use comma first
+    ```javascript
+    if ( collection.length ) ...
+    if ( string ) ...
+    if ( truthyThing )
+    ```
+ 
+    __not__
 
-  * Name collections (arrays, objects, sets, maps) in plural, ie: `badger` is a thing, `badgers` is a collection of things
+    ```javascript
+    if ( collection.length > 0 ) ...
+    if ( string !== "" )
+    if ( truthyThing === true )
+    ```
 
-  * Start a variable with a captial letter _ONLY_ in the case that it is a prototype, class, contructor, etc.
+* Put comments before the line or block they are about. Never use eol comments
+ 
+    ```javascript
+    // sanitizes animals for collection by spooks
+    var animalSanitizer = function( animal ) {
+      animal.cut(animal.hair).shampoo().rinse();
+    }
+    ```
+ 
+    __never__
+ 
+    ```javascript
+    var animalSanitizer = function( animal ) {
+      animal.cut(animal.hair).shampoo().rinse(); // sanitizes animals for collection by spooks
+    }
+    ```
 
-   	```square = (number) -> number * 2``` but ```class BaldMan```
-
-	* test for truthiness:
-
-		```coffeescript
-	        if collection.length ...
-            if string ...
-            if truthyThing
-		```
-
-		__NOT__
-
-		```coffeescript
-            if collection.length > 0 ...
-            if string isnt ''
-	        if truthyThing is true
-		```
-
-	* Use coffee classes so we can enjoy rjs (more to come on this in higher level component writing guide)
-
-  * Use `->` unless you want bound function, then use `=>`. In some sticky situations, `self = this` is still necessary. See if naming it something other than `self` is more sensible in those cases, like:
-
-		```coffeescript
-		class Badger
-		  constructor ->
-	  	    badger = this
-	  	    somethingElse((wat) ->
-		      @eat(badger.honey)
-		  )
-		```
-
-	* Put comments before the line or block they are about. Never use eol comments
-
-6. Now that we are switching to javascript:
-
-  * When defining functions, always put a space before the first paren of arguments:
-
-        ```javascript
-        function abracadabra (args) {
-          // some stuff
-        }
-
-        var wax = function () {
-          // some other stuff
-        };
-        ```
-
-  * Try to use a function expression unless a function declaration [is necessary](http://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/)
-
-  * Stick to double quotes
-
-  <!--Try not to get caught up in dogmatic rules and religion surrounding javascript and in the community. Be playful.-->
+* Try to use a function expression unless a function declaration [is necessary](http://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/)
