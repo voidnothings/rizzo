@@ -2,7 +2,7 @@
 // CSS Arrow
 // -----------------------------------------------------------------------------
 
-@mixin css-arrow($side: top, $size: 20px, $offset: 0, $arrowOffset: 0, $width: 0)
+@mixin css-arrow($side: top, $size: 20px, $offset: 0)
   color: inherit
   &:after
     height: $size
@@ -32,8 +32,8 @@
 // Centralised CSS Arrow
 // -----------------------------------------------------------------------------
 
-@mixin css-arrow-central($side: top, $size: 28px, $offset: 0, $arrowOffset: 0, $width: 0)
-  @include css-arrow($side, $size, $offset, $arrowOffset, $width)
+@mixin css-arrow-central($side: top, $size: 28px, $offset: 0)
+  @include css-arrow($side, $size, $offset)
   @if $side == top
     &:after
       left: 50%
