@@ -14,18 +14,19 @@
       display: inline-block
 
 .advanced-search
-  @extend %transition--base
-  overflow: hidden
-
+  
   .simple-form__field
     float: left
     margin-right: 10px
+  .rizzo_date_field
+    width: 155px
+
   .field__label
     display: none
   .field__content
-    width: auto
+    width: 100%
   
   .is-not-active &
-    height: 0
+    display: none
   .is-active &
-    height: 44px
+    display: block
