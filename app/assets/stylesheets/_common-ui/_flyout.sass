@@ -3,7 +3,7 @@
 
 .flyout
   +box-sizing
-  +css-arrow(top, 40px, 235px)
+  +css-arrow(top, 40px, 230px)
   @extend %rounded-corners
   position: absolute
   top: 100%
@@ -20,9 +20,10 @@
   &.is-active
     display: block
 
-.no-js .no-js-filter-toggle
-  &:hover + .flyout
-    display: block
-
 .flyout__inner
   padding: 20px
+
+.no-js
+  .no-js-filter-toggle
+    &:hover + .flyout
+      display: block
