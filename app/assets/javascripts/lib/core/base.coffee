@@ -5,7 +5,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
   class Base
 
     constructor: (args={})->
-      if LocalStore.get('lp-new-sign-in')
+      if LocalStore.getCookie('lp-new-sign-in')
         @authenticateUser()
       else
         @oldAuthenticateUser()
