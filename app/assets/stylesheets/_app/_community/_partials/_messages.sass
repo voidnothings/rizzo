@@ -26,11 +26,13 @@
 
 // Message thread
 .message--thread
+  margin: 0
+  padding: 10px 25px
 
   .user-info
     margin: 0
 
-  .message__body
+  .message__content
     padding: 10px 15px
     border-radius: 3px
     &:before
@@ -39,26 +41,27 @@
       border: 10px solid transparent
       content: ' '
 
-  .message__body--received
+  .message__content--received
     margin-left: 20px
     background: $subdued
     &:before
       left: 0
       border-right-color: $subdued
 
-  .message__body--sent
+  .message__content--sent
     margin-right: 20px
     background: $body-background
     &:before
       right: 0
       border-left-color: $body-background
 
+  .message__content--unread
+    border-right: 4px solid $linkblue
 
 // -----------------------------------------------------------------------------
 // Message lists such as the inbox and outbox
 // -----------------------------------------------------------------------------
-ol.message-list,
-ul.message-list
+.message-list
   padding-left: 0
   list-style: none
 
