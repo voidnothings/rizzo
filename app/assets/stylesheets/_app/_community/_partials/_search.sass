@@ -7,11 +7,18 @@
   .is-open
     display: none
 
+  .pagination,
+  .topic
+    +transition(opacity)
+
   &.is-active
     .is-closed
       display: none
     .is-open
       display: inline-block
+    .pagination,
+    .topic
+      opacity: 0.2
 
 .advanced-search
   
