@@ -150,6 +150,7 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
           avatar: "path/to/image.jpg"
           facebookUID: "facebookUID"
           loginTimestamp: "timestamp"
+          profile_slug: "username"
           username: "username"
         window.lpLoggedInUsername = lp.user.username;
         window.facebookUserId = lp.user.facebookUID;

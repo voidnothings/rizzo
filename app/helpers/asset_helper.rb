@@ -35,9 +35,9 @@ module AssetHelper
 
   def async_js_path (script_name, opts = {})
     if opts[:mobile]
-      asset_path("#{script_name}_mobile.js")
+      normalised_asset_path("#{script_name}_mobile.js")
     else
-      asset_path("#{script_name}.js")
+      normalised_asset_path("#{script_name}.js")
     end
   end
 
