@@ -27,3 +27,11 @@ require ['public/assets/javascripts/lib/utils/toggle_active.js'], (ToggleActive)
         expect($('.foo')[0]).toHaveClass('custom-class')
         $('#custom-class').trigger('click')
         expect($('.foo')[0]).not.toHaveClass('custom-class')
+
+      it 'Toggles the is-active and is-not-active classes.', ->
+        $('#both').trigger('click')
+        expect($('#both')).toHaveClass('is-active')
+        expect($('#both')).not.toHaveClass('is-not-active')
+        $('#both').trigger('click')
+        expect($('#both')).not.toHaveClass('is-active')
+        expect($('#both')).toHaveClass('is-not-active')
