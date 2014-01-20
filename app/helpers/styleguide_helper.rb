@@ -118,6 +118,10 @@ module StyleguideHelper
             {
               name: "Pagination",
               path: "pagination"
+            },
+            {
+              name: "Tags",
+              path: "tags"
             }
           ]
         }
