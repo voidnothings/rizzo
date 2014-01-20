@@ -26,11 +26,14 @@
   "requireParenthesesAroundIIFE": true,
 
   "requireSpacesInFunctionExpression": {
-    "beforeOpeningRoundBrace": true,
     "beforeOpeningCurlyBrace": true
   },
 
-  "disallowMultipleVarDecl": true,
+  "disallowSpacesInFunctionExpression": {
+    "beforeOpeningRoundBrace": true,
+  },
+
+  "requireMultipleVarDecl": true,
 
   "disallowEmptyBlocks": true,
 
@@ -153,12 +156,13 @@
 
   "validateIndentation": 2,
 
-  "disallowMixedSpacesAndTabs": "smart",
+  "disallowMixedSpacesAndTabs": true,
 
   "disallowTrailingWhitespace": true,
 
   "disallowKeywordsOnNewLine": [
-    "else"
+    "else",
+    "catch"
   ],
 
   "requireLineFeedAtFileEnd": true,
