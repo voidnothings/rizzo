@@ -1,8 +1,7 @@
 - field_class = extra_class ||= ""
 
 .field.js-field{ class: field_class }
-  - unless label
-    %label.field__label.js-field-label{ for: id }<
-      = label
+  %label.field__label.js-field-label{ for: id }<
+    = label
   .field__content.js-input
     = yield
