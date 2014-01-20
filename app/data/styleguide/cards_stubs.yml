@@ -54,6 +54,27 @@ cards:
     :subtitle: "Just a little blog about the many ways to say hello"
 
   -
+    :styleguide_title: "Lodging Card"
+    :slug: "#"
+    :name: "Bookable Hotel"
+    :card_description: "The world's greatest hotel in London"
+    :property_type: "hotel"
+    :hotel_star_ranking: "Five star hotel"
+    :bookable?: true
+    :lp_reviewed: true
+    :nearby_place_text: "Brixton"
+    :list_image:
+      url: "http://aff.bstatic.com/images/hotel/max300/134/13487616.jpg"
+
+  -
+    :styleguide_title: "Lodging Card"
+    :slug: "#"
+    :name: "Non Bookable Hotel"
+    :card_description: "This lodging isn't bookable online"
+    :property_type_title: "Guesthouse"
+    :top_choice: true
+
+  -
     :styleguide_title: "Shop Card"
     :slug: "#"
     :place_name: "Paris"

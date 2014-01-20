@@ -4,21 +4,14 @@
 // 
 // -----------------------------------------------------------------------------
 
-// The main site uses freight, so we initialise that size here
-// NB: This selector and the chained classes below can be removed when
-// we go site wide with delayed font loading
 html
-  font: $freight-font-size 'Helvetica Neue', Arial, sans-serif
+  @extend %lp-font-stack
+  font-size: $freight-font-size
+  &.no-freight
+    font-size: $helvetica-font-size
+
   @if $is-ie
     font: $helvetica-font-size 'Helvetica Neue', Arial, sans-serif
-
-// The homepage base uses helvetica as standard, increase the base font size
-html.no-freight
-  font: $helvetica-font-size 'Helvetica Neue', Arial, sans-serif
-
-// Once we've loaded in freight we lower the standard font size
-html.freight
-  font: $freight-font-size 'Helvetica Neue', Arial, sans-serif
 
 body
   min-height: 100%

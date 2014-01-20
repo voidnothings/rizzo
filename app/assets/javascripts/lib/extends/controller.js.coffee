@@ -46,7 +46,6 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
     append: (data, analytics) =>
       @_updateOffset(data.pagination) if data.pagination and data.pagination.page_offsets
       @_removePageParam() # All other requests display the first page
-      @_replaceUrl(@_createUrl())
       @trigger(':cards/append/received', [data, @state, analytics])
 
     newPage: (data, analytics) =>

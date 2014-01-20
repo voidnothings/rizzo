@@ -64,12 +64,12 @@ pre.styleguide.is-open
   display: none
 .is-exact
   position: relative
-  &:after
-    color: white
-    font-size: 5em
+  &:before
+    width: 20px
+    height: 20px
     position: absolute
-    right: 10px
-    top: 20px
+    left: 10px
+    top: 10px
 
 .title--styleguide
   color: white
@@ -92,14 +92,26 @@ pre.styleguide.is-open
 .styleguide__subtitle
   margin: 20px 10px
 
-.styleguide-block__buttons,
+.styleguide-block__buttons
+  .styleguide-block__heading
+    padding: 5px 0
+    margin-bottom: 0
+  pre.language-markup
+    background: none
+    padding: 0
+    line-height: 1
+  .styleguide-block__items
+    margin-bottom: 20px
+  .styleguide-block__item
+    margin: 0
+  .styleguide-block__description
+    min-height: 120px
+
 .styleguide-block__badges
   .styleguide-block__item
     margin-right: 10px
     margin-top: 0
-    min-width: 200px
-  .styleguide-block__items
-    margin-top: 20px
+
   pre[class*="language-"]
     margin: 2px 0 0
     padding: 7px
@@ -107,8 +119,11 @@ pre.styleguide.is-open
       +font-size(14)
 
 .styleguide-block__badges
+  .styleguide-block__items
+    margin-top: 20px
   .styleguide-block__item
     min-width: 100px
+    padding-top: 7px
 
 .styleguide-block__item
   min-height: 40px
@@ -118,18 +133,19 @@ pre.styleguide.is-open
   margin-bottom: 0
   padding: 20px
 
-.styleguide-block__item--colour
-  +border-radius(100)
-  +vertically-center(100)
-  border: 2px solid #FFF
-  color: white
-  float: left
-  margin: 0 20px 0 0
+.styleguide__colours
   text-align: center
-  width: 100px
+  .copy--h4
+    padding: 10px
+
+.styleguide-block__item--colour
+  border: 6px solid #FFF
+  font-size: 13px
+  padding: 4px 0
+  color: white
+  margin: 0
 
   &.is-light
-    border-color: $body-background
     color: $body-copy
   .is-approximate &
     border-color: transparent
@@ -221,6 +237,15 @@ pre.styleguide.is-open
     text-align: right
     padding: 10px
     font-size: 12px
+
+.styleguide-intro--icons
+  .styleguide-intro__inner
+    @extend %transition--base
+    overflow: hidden
+    height: 365px
+    &.is-closed
+      height: 100px
+
 
 
 .filter--links

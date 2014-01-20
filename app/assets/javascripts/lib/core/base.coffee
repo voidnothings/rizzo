@@ -5,7 +5,11 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
   class Base
 
     constructor: (args={})->
-      @authenticateUser()
+      if LocalStore.getCookie('lp-new-sign-in')
+        @authenticateUser()
+      else
+        @oldAuthenticateUser()
+
       @showUserBasket()
       # Note: We need to add this back in when the switch to the new DFP server happens
       # @initAds() unless args.secure
@@ -31,10 +35,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
       $.ajax
         url: @auth.getNewStatusUrl()
         dataType: "json"
-        error: =>
-          # Fallback to the old method for the moment.
-          AssetFetch.get "https://secure.lonelyplanet.com/sign-in/status", () =>
-            @auth.update()
+        error: @oldAuthenticateUser(@auth)
         success: (user) =>
           # The data returned is defined in community at: app/controllers/users_controller.rb@status
           window.lp.user = user
@@ -47,6 +48,11 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
           window.referer = "null";
 
           @auth.update()
+
+    oldAuthenticateUser: (auth) ->
+      @auth = auth || new Authenticator()
+      AssetFetch.get "https://secure.lonelyplanet.com/sign-in/status", () =>
+        @auth.update()
 
     initAds: ->
       AdManager.init(@adConfig(), 'ad-leaderboard') # Remove the second param when dropping the old ad manager

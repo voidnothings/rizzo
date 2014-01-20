@@ -74,6 +74,10 @@ class StyleguideController < GlobalController
     render '/styleguide/js-components/toggle-active'
   end
 
+  def tags
+    render '/styleguide/tags'
+  end
+
   def proximity_loader
     render '/styleguide/js-components/proximity-loader'
   end
