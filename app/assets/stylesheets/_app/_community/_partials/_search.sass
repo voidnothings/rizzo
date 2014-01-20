@@ -2,6 +2,17 @@
 // Search results styles
 // -----------------------------------------------------------------------------
 
+.search-results
+  
+  .is-open
+    display: none
+
+  &.is-active
+    .is-closed
+      display: none
+    .is-open
+      display: inline-block
+
 .advanced-search
   @extend %transition--base
   overflow: hidden
@@ -16,6 +27,5 @@
   
   .is-not-active &
     height: 0
-
   .is-active &
     height: 44px
