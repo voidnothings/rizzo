@@ -30,7 +30,7 @@
   },
 
   "disallowSpacesInFunctionExpression": {
-    "beforeOpeningRoundBrace": true,
+    "beforeOpeningRoundBrace": true
   },
 
   "requireMultipleVarDecl": true,
@@ -89,8 +89,8 @@
     "?",
     "+",
     "/",
-    "*",
     ":",
+    "*",
     "=",
     "==",
     "===",
