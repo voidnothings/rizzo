@@ -14,7 +14,9 @@ define ["jquery"], ($) ->
         $el = $(event.target)
         @_updateClasses($el)
         @broadcast($el)
-        false
+
+        if event.target.nodeName.toUpperCase() is 'A'
+          event.preventDefault()
 
       $(LISTENER).on ':toggleActive/update', (e, target) =>
         @_updateClasses($(target))

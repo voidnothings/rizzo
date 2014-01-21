@@ -36,6 +36,15 @@ require ['public/assets/javascripts/lib/utils/toggle_active.js'], (ToggleActive)
         expect($('#both')).not.toHaveClass('is-active')
         expect($('#both')).toHaveClass('is-not-active')
 
+      it 'Prevents the default click event for anchor elements', ->
+        e = $.Event('click')
+        $('#is-cancellable').trigger(e)
+        expect(e.isDefaultPrevented()).toBe(true)
+
+      it 'Does not prevent the default click event for non-anchor elements', ->
+        e = $.Event('click')
+        $('#not-cancellable').trigger(e)
+        expect(e.isDefaultPrevented()).not.toBe(true)
 
     describe 'works with events', ->
       beforeEach ->
@@ -50,5 +59,5 @@ require ['public/assets/javascripts/lib/utils/toggle_active.js'], (ToggleActive)
       it 'on update', ->
         target = document.querySelector('#evented')
         beforeState = $('#evented').hasClass('is-active')
-        $('#js-card-holder').trigger(':toggleActive/update', target)
+        $('#js-row--content').trigger(':toggleActive/update', target)
         expect($('#evented').hasClass('is-active')).not.toEqual(beforeState)
