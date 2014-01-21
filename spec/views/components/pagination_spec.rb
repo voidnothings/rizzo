@@ -204,7 +204,7 @@ describe "components/_pagination.html.haml" do
 
       render
 
-      rendered.should include('Showing 1-5 of 25')
+      rendered.should include('Showing 1–5 of 25')
 
     end
 
@@ -214,7 +214,7 @@ describe "components/_pagination.html.haml" do
 
       render
 
-      rendered.should include('Showing 6-10 of 25')
+      rendered.should include('Showing 6–10 of 25')
 
     end
 
@@ -224,7 +224,7 @@ describe "components/_pagination.html.haml" do
 
       render
 
-      rendered.should include('Showing 1-4 of 4')
+      rendered.should include('Showing 1–4 of 4')
 
     end
 
@@ -234,7 +234,7 @@ describe "components/_pagination.html.haml" do
 
       render
 
-      rendered.should include('Showing 6-7 of 7')
+      rendered.should include('Showing 6–7 of 7')
 
     end
 
