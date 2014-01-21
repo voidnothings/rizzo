@@ -10,10 +10,6 @@
 
   .pagination{ class: properties[:classes] }
 
-    - if properties[:show_detailed]
-      %a.pagination__detailed-info{ href: 'foo' }
-        OHAI
-
     - if properties[:current_page] < total_pages
       .pagination__forwards.split--right
         %a.pagination__link.pagination__link--last{ href: href.gsub(/%i/, total_pages.to_s) }<
