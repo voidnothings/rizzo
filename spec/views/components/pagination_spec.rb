@@ -88,7 +88,7 @@ describe "components/_pagination.html.haml" do
 
       render
 
-      rendered.should have_css('.pagination')
+      rendered.should have_css('.pagination__numbers')
 
     end
 
@@ -98,7 +98,7 @@ describe "components/_pagination.html.haml" do
 
       render
 
-      rendered.should_not have_css('.pagination')
+      rendered.should_not have_css('.pagination__numbers')
 
     end
 
@@ -192,6 +192,49 @@ describe "components/_pagination.html.haml" do
         '/path/to/page?foo=bar&baz=qux&page=4',
         '/path/to/page?foo=bar&baz=qux&page=5'
       ] )
+
+    end
+
+  end
+
+  describe 'detailed position' do
+
+    it 'displays detailed position information' do
+      view.stub(properties: default_properties.merge( :show_detailed => true ))
+
+      render
+
+      rendered.should include('Showing 1-5 of 25')
+
+    end
+
+    it 'displays correct detailed position for second page' do
+
+      view.stub(properties: default_properties.merge( :show_detailed => true, :current_page => 2 ))
+
+      render
+
+      rendered.should include('Showing 6-10 of 25')
+
+    end
+
+    it 'displays correct detailed position when there are fewer items' do
+
+      view.stub(properties: default_properties.merge( :show_detailed => true, :total_results => 4 ))
+
+      render
+
+      rendered.should include('Showing 1-4 of 4')
+
+    end
+
+    it 'displays correct detailed position when there are fewer items' do
+
+      view.stub(properties: default_properties.merge( :show_detailed => true, :total_results => 7, :current_page => 2 ))
+
+      render
+
+      rendered.should include('Showing 6-7 of 7')
 
     end
 

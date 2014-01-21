@@ -17,3 +17,9 @@
   :total_results: 50
   :path: "/styleguide/pagination/?foo=bar&baz=qux&page=5"
   :param: "page"
+-
+  :current_page: 5
+  :total_results: 50
+  :path: "/styleguide/pagination/?foo=bar&baz=qux&page=5"
+  :param: "page"
+  :show_detailed: true
