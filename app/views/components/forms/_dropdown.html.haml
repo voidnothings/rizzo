@@ -1,11 +1,13 @@
-.dropdown.js-select-group-manager{ class: "#{properties[:class]}#{properties[:options].empty? ? ' is-disabled' : ''}" }
+- no_options = properties[:options].nil? || properties[:options].empty?
 
+.dropdown.js-select-group-manager{ class: "#{properties[:class]}#{no_options ? ' is-disabled' : ''}" }
   %label.dropdown__value.js-select-overlay.icon--chevron-down--after
-    = properties[:selected] || properties[:placeholder] || properties[:options].first[:title] || ""
+    - unless no_options
+      = properties[:selected] || properties[:placeholder] || properties[:options].first[:title] || ""
 
-  %select.dropdown__select.js-select{ id: properties[:id], name: properties[:name], data: properties[:data], class: properties[:dropdown_class], disabled: properties[:options].empty? }
+  %select.dropdown__select.js-select{ id: properties[:id], name: properties[:name], data: properties[:data], class: properties[:dropdown_class], disabled: no_options }
 
-    - if properties[:options].empty?
+    - if no_options
       %option{ value: "" }<
         Nothing to select
     - elsif properties[:placeholder]
