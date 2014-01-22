@@ -1,7 +1,7 @@
 // ---------------------------------------------------------------
-// 
+//
 //  Styled fake inputs using pseudo elements
-// 
+//
 // ---------------------------------------------------------------
 
 // ---------------------------------------------------------------
@@ -21,7 +21,7 @@
     border: 1px solid #d9e3e6
     top: 3px
     left: 0
-  
+
   &.is-active
     font-weight: bold
     color: $body-copy
@@ -38,3 +38,17 @@
   // The labels often begin as links, so we have to set the colour on load
   .js & a
     color: $body-copy
+
+.faux--input__checkbox--hide-text
+  display: inline-block
+  width: 17px
+  height: 17px
+  padding-left: 0
+  overflow: hidden
+  text-align: left
+  text-indent: -9999px
+
+.faux--input__checkbox--red
+  &.is-active
+    &:before
+      border-color: $red
