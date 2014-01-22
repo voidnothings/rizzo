@@ -17,7 +17,6 @@ define ["jquery"], ($) ->
         false
 
       $(LISTENER).on ':toggleActive/update', (e, target) =>
-        e.stopPropagation()
         @_updateClasses($(target))
 
     broadcast: ($el) ->
