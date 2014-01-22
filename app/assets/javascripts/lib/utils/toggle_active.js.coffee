@@ -2,7 +2,7 @@ define ["jquery"], ($) ->
 
   class ToggleActive
 
-    LISTENER = '#js-card-holder'
+    LISTENER = '#js-row--content'
 
     constructor: ->
       @listen()
