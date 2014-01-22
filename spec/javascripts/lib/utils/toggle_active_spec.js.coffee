@@ -35,3 +35,20 @@ require ['public/assets/javascripts/lib/utils/toggle_active.js'], (ToggleActive)
         $('#both').trigger('click')
         expect($('#both')).not.toHaveClass('is-active')
         expect($('#both')).toHaveClass('is-not-active')
+
+
+    describe 'works with events', ->
+      beforeEach ->
+        loadFixtures('toggle_active.html')
+        window.toggleActive = new ToggleActive()
+        spyEvent = spyOnEvent($('#evented'), ':toggleActive/click')
+
+      it 'on click it triggers :toggleActive/click', ->
+        $('#evented').trigger('click')
+        expect(':toggleActive/click').toHaveBeenTriggeredOn($('#evented'))
+
+      it 'on update', ->
+        target = document.querySelector('#evented')
+        beforeState = $('#evented').hasClass('is-active')
+        $('#js-card-holder').trigger(':toggleActive/update', target)
+        expect($('#evented').hasClass('is-active')).not.toEqual(beforeState)
