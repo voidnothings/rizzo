@@ -83,7 +83,7 @@ module GlobalResourcesHelper
   end
 
   def place_heading(title, section_name, slug, parent, parent_slug, no_place_link = false)
-    
+
     capture_haml do
       haml_tag(:div, class: 'place-title icon--destination-flag--before') do
         if no_place_link == true
@@ -108,7 +108,7 @@ module GlobalResourcesHelper
       end
     end
   end
-  
+
   def errbit_notifier
     unless params[:errbit] == 'false'
       haml_tag(:script, src:"//rizzo.lonelyplanet.com/assets/errbit_notifier.js")
@@ -133,7 +133,7 @@ module GlobalResourcesHelper
       elsif breadcrumb[:slug].blank?
         haml_tag(:span, class: "nav__item js-nav-item nav__item--breadcrumbs icon--chevron-right--before", itemprop: "url") { haml_concat breadcrumb[:place] }
       else
-        haml_tag(:a, class: "nav__item js-nav-item nav__item--breadcrumbs icon--chevron-right--before", href: "http://www.lonelyplanet.com/#{breadcrumb[:slug]}", itemprop:"url") { haml_concat breadcrumb[:place] } 
+        haml_tag(:a, class: "nav__item js-nav-item nav__item--breadcrumbs icon--chevron-right--before", href: "http://www.lonelyplanet.com/#{breadcrumb[:slug]}", itemprop:"url") { haml_concat breadcrumb[:place] }
       end
     end
   end
