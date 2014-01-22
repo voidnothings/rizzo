@@ -13,6 +13,10 @@
   .styleguide-block.styleguide-grid.context--content
     %p.copy--h2 Proportional Grid with a #{gutter} pixel gutter (.grid-wrapper--#{gutter})
     %div{class: "grid-wrapper--#{gutter}"}
+      .col--one-whole
+        .card.copy--h4 .col--one-whole
+
+    %div{class: "grid-wrapper--#{gutter}"}
       - 2.times do
         .col--one-half
           .card.copy--h4 .col--one-half

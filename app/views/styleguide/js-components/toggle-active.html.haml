@@ -52,3 +52,22 @@
       %code.language-markup
         foo
       class.
+
+  .styleguide-block__description.card.copy--body
+
+    %h2.copy--h2.styleguide-block__heading
+      Toggling the clicked element as well
+
+    %pre.styleguide.copy--body.language-markup
+      %code
+        :escaped
+          <a href="#" class="js-toggle-active" data-toggle-me="true" data-toggle-target=".foo">toggle it</a>
+
+    %p
+      This will toggle the
+      %code.language-markup
+        is-active
+      class on the element that was clicked as well as any element with class of
+      %code.language-markup
+        foo
+      \.
