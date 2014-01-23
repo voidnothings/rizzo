@@ -27,10 +27,26 @@ require(['jquery', 'public/assets/javascripts/lib/mixins/flyout.js'], function($
                         x: true,
                         y: true
                     }
-
                 })
                 expect(count).toBe(3)
             })
+        });
+
+        describe('updates the facet count', function() {
+
+            it('when there are no filters', function() {
+                beforeEach(function() {
+                    spyOn(flyout, "countFilters").andReturn(0);
+                })
+                expect(flyout.updateFilters(filters)).toBe("")
+            }),
+            it('when there are no filters', function() {
+                beforeEach(function() {
+                    spyOn(flyout, "countFilters").andReturn(2);
+                })
+                expect(flyout.updateFilters(filters)).toBe("(2)")
+            })
+
         })
 
     });
