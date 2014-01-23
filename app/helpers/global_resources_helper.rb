@@ -44,9 +44,9 @@ module GlobalResourcesHelper
         submenu: [
           {title:'Hotels', uri:'http://www.lonelyplanet.com/hotels', style:'hotels', icon_class: 'icon--hotel--before'},
           {title:'Flights', uri:'http://www.lonelyplanet.com/flights/', style:'flights', icon_class: 'icon--flights--before'},
+          {title:'Car Rental', uri:'http://www.lonelyplanet.com/car-rental/', style:'car-rental', icon_class: 'icon--car--before'}
           {title:'Adventure tours', uri:'http://www.lonelyplanet.com/adventure-tours/', style:'adventure-tours', icon_class: 'icon--tour--before'},
           {title:'Sightseeing tours', uri:'http://www.lonelyplanet.com/sightseeing-tours/', style:'sightseeing-tours', icon_class: 'icon--activity--before'},
-          {title:'Car Rental', uri:'http://www.lonelyplanet.com/car-rental/', style:'car-rental', icon_class: 'icon--car--before'}
         ]
       },
       {title:'Insurance', uri: "http://www.lonelyplanet.com/travel-insurance", icon_class: 'icon--insurance--line--before icon--white--before'}
