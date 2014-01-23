@@ -13,14 +13,19 @@
   cursor: pointer
   display: block
   padding-left: 25px
+  line-height: 15px
   position: relative
   &:before
     @extend %empty-abs-generated-content
     width: 11px
     height: 11px
     border: 1px solid #d9e3e6
-    top: 3px
     left: 0
+
+  .theme--dark &
+    color: $subdued
+    &:before
+      border-color: $subdued
 
   &.is-active
     font-weight: bold
@@ -29,6 +34,9 @@
       width: 6px
       height: 6px
       border: 4px solid $teal
+
+    .theme--dark &
+      color: $subdued
 
   input[type='checkbox']:disabled ~ &
     color: $disabled

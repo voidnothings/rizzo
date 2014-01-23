@@ -12,11 +12,10 @@
         from
       .tag--price__amount<
         %span.tag--price__currency
-          = raw(currency.to_symbol)
+          = raw(properties[:currency_symbol])
         %span.js-price
-          = properties[:prices][currency.to_s].ceil
-    - if properties[:on_sale?]
-      - if properties[:retail_prices][currency.to_s].present? && properties[:retail_prices][currency.to_s] > 0
-        .tag--price__retail<
-          = raw(currency.to_symbol)
-          = properties[:retail_prices][currency.to_s].ceil
+          = properties[:price]
+    - if properties[:on_sale_here?]
+      .tag--price__retail<
+        = raw(properties[:currency_symbol])
+        = properties[:retail_price]

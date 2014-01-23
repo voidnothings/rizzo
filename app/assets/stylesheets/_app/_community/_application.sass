@@ -1,11 +1,13 @@
 @import '_partials/card_forum'
 @import '_partials/forms'
+@import '_partials/messages'
 @import '_partials/moderator-tools'
 @import '_partials/post'
+@import '_partials/search'
+@import '_partials/tables'
+@import '_partials/topic'
 @import '_partials/user'
 @import '_partials/whos_online'
-@import '_partials/tables'
-@import '_partials/messages'
 
 .dropdown__value
   padding: 6px 40px 6px 10px
@@ -72,11 +74,20 @@
   opacity: 0.7
   width: 22px
 
-.topic__content
-  padding-bottom: 16px
-
 .btn--reply
   &:before
     height: 1.1em
     top: 0.2em
     width: 1.1em
+
+.keep-private
+  margin-left: 10px
+  .field__label
+    width: auto
+.keep-private__checkbox
+  margin-right: 5px
+.keep-private__container
+  .field__label
+    width: 42%
+  .field__content
+    width: 58%

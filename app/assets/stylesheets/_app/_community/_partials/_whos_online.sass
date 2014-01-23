@@ -23,16 +23,15 @@
     width: $card-width
     .card
       @extend %rounded-corners
-      +css-arrow(left, 10px, 40px, -4px, 21px)
       box-sizing: border-box
       float: left
       padding-top: 16px
       position: relative
       width: 132px
-      &:after
-        color: #fff
+      &:before
+        +size(25px)
+        left: -15px
         position: absolute
-        text-shadow: -2px 0 1px rgba(0, 0, 0, 0.05)
   .user-info__avatar
     margin-right: 10px
   .user-info__details

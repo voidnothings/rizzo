@@ -1,19 +1,35 @@
+# encoding: UTF-8
 require 'spec_helper'
 
 describe "components/_pagination.html.haml" do
 
   default_properties = {
-    :total => 5,
-    :current => 1,
-    :num_visible => 5,
+    :total_results => 25,
+    :results_per_page => 5,
+    :current_page => 1,
+    :visible_pages => 5,
     :path => "/?page=%i"
   }
+
+  describe 'pagination container' do
+
+    it 'adds any passed in classes' do
+
+      view.stub(properties: default_properties.merge( :classes => 'foo bar' ))
+
+      render
+
+      rendered.should have_css('.pagination.foo.bar')
+
+    end
+
+  end
 
   describe 'backward links' do
 
     it 'renders previous and first page links when not on the first page' do
 
-      view.stub(properties: default_properties.merge( :current => 2 ))
+      view.stub(properties: default_properties.merge( :current_page => 2 ))
 
       render
 
@@ -53,7 +69,7 @@ describe "components/_pagination.html.haml" do
 
     it 'does not render next and last page links when on the last page' do
 
-      view.stub(properties: default_properties.merge( :current => 5 ))
+      view.stub(properties: default_properties.merge( :current_page => 5 ))
 
       render
 
@@ -67,27 +83,27 @@ describe "components/_pagination.html.haml" do
 
   describe 'pagination numbers' do
 
-    it 'renders pagination numbers given a total > 1' do
+    it 'renders pagination numbers given a total > results per page' do
 
       view.stub(properties: default_properties)
 
       render
 
-      rendered.should have_css('.pagination')
+      rendered.should have_css('.pagination__numbers')
 
     end
 
-    it 'does not render pagination given a total <= 1' do
+    it 'does not render pagination given a total <= results per page' do
 
-      view.stub(properties: default_properties.merge( :total => 1 ))
+      view.stub(properties: default_properties.merge( :total_results => 4 ))
 
       render
 
-      rendered.should_not have_css('.pagination')
+      rendered.should_not have_css('.pagination__numbers')
 
     end
 
-    it 'renders selected variation on for the current page number' do
+    it 'renders selected variation for the current page number' do
 
       view.stub(properties: default_properties)
 
@@ -97,9 +113,9 @@ describe "components/_pagination.html.haml" do
 
     end
 
-    it 'renders numbers 1-5 given a total of 20 and current page number of 2' do
+    it 'renders numbers 1-5 given a total of 100 results and current page number of 2' do
 
-      view.stub(properties: default_properties.merge( :total => 20, :current => 2 ))
+      view.stub(properties: default_properties.merge( :total_results => 100, :current_page => 2 ))
 
       render
 
@@ -108,9 +124,9 @@ describe "components/_pagination.html.haml" do
 
     end
 
-    it 'renders numbers 8-12 given a total of 20 and current page number of 10' do
+    it 'renders numbers 8-12 given a total of 100 results and current page number of 10' do
 
-      view.stub(properties: default_properties.merge( :total => 20, :current => 10 ))
+      view.stub(properties: default_properties.merge( :total_results => 100, :current_page => 10 ))
 
       render
 
@@ -119,9 +135,9 @@ describe "components/_pagination.html.haml" do
 
     end
 
-    it 'renders numbers 16-20 given a total of 20 and current page number of 19' do
+    it 'renders numbers 16-20 given a total of 100 results and current page number of 19' do
 
-      view.stub(properties: default_properties.merge( :total => 20, :current => 19 ))
+      view.stub(properties: default_properties.merge( :total_results => 100, :current_page => 19 ))
 
       render
 
@@ -177,6 +193,49 @@ describe "components/_pagination.html.haml" do
         '/path/to/page?foo=bar&baz=qux&page=4',
         '/path/to/page?foo=bar&baz=qux&page=5'
       ] )
+
+    end
+
+  end
+
+  describe 'detailed position' do
+
+    it 'displays detailed position information' do
+      view.stub(properties: default_properties.merge( :show_detailed => true ))
+
+      render
+
+      rendered.should include('Showing 1–5 of 25')
+
+    end
+
+    it 'displays correct detailed position for second page' do
+
+      view.stub(properties: default_properties.merge( :show_detailed => true, :current_page => 2 ))
+
+      render
+
+      rendered.should include('Showing 6–10 of 25')
+
+    end
+
+    it 'displays correct detailed position when there are fewer items' do
+
+      view.stub(properties: default_properties.merge( :show_detailed => true, :total_results => 4 ))
+
+      render
+
+      rendered.should include('Showing 1–4 of 4')
+
+    end
+
+    it 'displays correct detailed position when there are fewer items' do
+
+      view.stub(properties: default_properties.merge( :show_detailed => true, :total_results => 7, :current_page => 2 ))
+
+      render
+
+      rendered.should include('Showing 6–7 of 7')
 
     end
 

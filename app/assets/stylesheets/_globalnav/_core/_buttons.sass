@@ -133,3 +133,11 @@
       margin-left: 5px
       width: 9px
       height: 5px
+
+  &.is-active
+    color: white
+    background-color: $active
+    +box-shadow(1, 1, 1, 0, rgba($darkblue, 0.1), true)
+    border-color: transparent
+    &:before, &:after
+      +icon-color(white)
