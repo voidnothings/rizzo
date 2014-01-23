@@ -1,6 +1,6 @@
 // -----------------------------------------------------------------------------
 // Post styles
-// 
+//
 // Styles related to individual thorn tree posts.
 // -----------------------------------------------------------------------------
 
@@ -35,7 +35,7 @@
   height: 20px
   position: relative
   width: 20px
-  
+
   &.is-pinned
     left: 150px
     position: absolute
@@ -93,7 +93,7 @@
 
   .post-links:hover &
     opacity: 1
-  
+
   .results &:before
     +font-size(35)
     display: block
@@ -102,7 +102,8 @@
     margin: 0 auto
     width: 22px
 
-  .replies &
+  .replies &,
+  .message &
     @extend %image-replacement
     display: block
     height: 22px
@@ -169,7 +170,7 @@
 .in-reply-to
   margin-top: 10px
   overflow: hidden
-  
+
   &.is-not-active
     height: 1.5em
     .icon--chevron-up
