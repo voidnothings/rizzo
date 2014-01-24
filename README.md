@@ -212,23 +212,26 @@ Also:
 
 For example: 
 ```css
-position
-top
-right
-z-index
-display
-width
-height
-margin
-padding
-border
-font-style
-font-weight
-line-height
-background
-box-shadow
-opacity
-outline
+.component
+  +css-arrow(top)
+  @extend %clearfix
+  position
+  top
+  right
+  z-index
+  display
+  width
+  height
+  margin
+  padding
+  border
+  font-style
+  font-weight
+  line-height
+  background
+  box-shadow
+  opacity
+  outline
 ```
 
 ### Conventions
