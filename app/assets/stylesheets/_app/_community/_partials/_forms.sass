@@ -51,23 +51,13 @@
   list-style: none
   margin-right: 15px
   // Yeah, no choice on this...
-  a
-    +font-size(21)
-    color: $body-copy
-    &:hover
-      text-decoration: none
+  &, a
+    +size(21px)
+    display: inline-block
+    overflow: hidden
 
-  &.bold a
-    font-weight: bold
-  &.italic a
-    font-style: italic
-  &.quotes 
-    margin-top: -21px
-    a
-      +font-size(42)
-      font-weight: bold
-      position: relative
-      top: 15px
+  a
+    text-indent: 100%
 
 .markItUpEditor
   height: 200px
