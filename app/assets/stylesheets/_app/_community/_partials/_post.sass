@@ -116,9 +116,9 @@
   text-align: center
 
 // -----------------------------------------------------------------------------
-// The thread of the day nomination form.
+// Forms on post--single page.
 // -----------------------------------------------------------------------------
-.thread-of-the-day__form
+.post--single__form
   @extend %transition--base
   overflow: hidden
 
@@ -128,7 +128,10 @@
     padding-top: 0
 
   &.is-active
-    height: 35px
+    &.thread-of-the-day-form
+      height: 35px
+    &.report-form
+      height: 120px
 
   .btn--nominate
     margin-left: 10px
