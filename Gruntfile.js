@@ -141,7 +141,7 @@ module.exports = function(grunt) {
                 options: {
                     helpers: ['./spec/javascripts/helpers/**/*.js', './vendor/assets/javascripts/jquery/jquery.js'],
                     host: 'http://127.0.0.1:8888/',
-                    specs: './public/assets/javascripts/spec/mixins/*.js',
+                    specs: './public/assets/javascripts/spec/**/*.js',
                     template: require('grunt-template-jasmine-requirejs'),
                     templateOptions: {
                         requireConfig: {
@@ -185,10 +185,10 @@ module.exports = function(grunt) {
 
     // Tasks
     grunt.registerTask('default', ['shell:clean_js', 'coffee', 'copy', 'connect', 'jasmine']);
-    grunt.registerTask('ci', ['coffee', 'connect', 'jasmine']);
+    grunt.registerTask('ci', ['coffee', 'copy', 'connect', 'jasmine']);
     grunt.registerTask('dev', ['connect', 'open:jasmine', 'jasmine', 'watch']);
     grunt.registerTask('wip', ['jasmine:rizzo:build', 'open:jasmine', 'connect:server:keepalive']);
-    grunt.registerTask('report', ['shell:clean_js', 'coffee', 'plato', 'shell:openPlato']);
+    grunt.registerTask('report', ['shell:clean_js', 'coffee', 'copy', 'plato', 'shell:openPlato']);
     grunt.registerTask('imageoptim', ['imageoptim']);
     grunt.registerTask('icon:active', ['grunticon:active', 'shell:clean_icons', 'shell:move']);
     grunt.registerTask('icon:critical', ['grunticon:critical', 'shell:clean_icons', 'shell:move']);

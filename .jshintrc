@@ -19,11 +19,24 @@
   "undef":        true,
   "strict":       true,
   "trailing":     true,
+  "expr":         true,
 
   // relax
   "supernew":     true,
   "validthis":    true,
 
   // environment
-  "browser":      true
+  "browser":      true,
+
+  // globals
+
+  "globals": {
+    "define":     false,
+    "require":    false,
+    "describe":   false,
+    "beforeEach": false,
+    "it":         false,
+    "expect":     false,
+    "spyOn":      false
+  }
 }

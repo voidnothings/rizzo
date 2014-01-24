@@ -2,11 +2,6 @@
     "name": "rizzo",
     "version": "0.1.0",
     "private": true,
-    "dependencies": {
-        "jasmine-node": "latest",
-        "jsdom": "latest",
-        "coffee-script": "latest"
-    },
     "devDependencies": {
         "grunt": "latest",
         "grunt-contrib-connect": "latest",
