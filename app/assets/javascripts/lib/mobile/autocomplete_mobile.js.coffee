@@ -181,7 +181,7 @@ define [], ->
         if direction is 'down'
           unless @results.highlighted.nextSibling == null
             @_removeClass(@results.highlighted, @config.resultItemHoveredClass) if @results.highlighted
-            @results.highlighted = @results.highlighted.nextSibling 
+            @results.highlighted = @results.highlighted.nextSibling
       @_highlightCurrent()
 
     _highlightCurrent: ->
@@ -197,7 +197,7 @@ define [], ->
       if highlighted.tagName == 'A'
         # it's a link, change the href
         @_navigateTo highlighted.href
-      else 
+      else
         @_selectCurrent()
 
     _handleCancel: ->
@@ -273,7 +273,9 @@ define [], ->
         anchor = document.createElement 'A'
         anchor.href = item[@config.map.uri]
         anchor.className = @config.resultLinkClass
-        anchor.className += " autocomplete__result__typed icon--#{item[@config.map.type]}--before icon--white--before" if @config.map.type
+        iconClass = item['icon']
+        iconClass || iconClass = if item[@config.map.type] == "place" then "icon--place--pin--before" else "icon--#{item[@config.map.type]}--before"
+        anchor.className += " autocomplete__result__typed #{iconClass} icon--white--before" if @config.map.type
         anchor.innerHTML = highlightedText
         listItem.appendChild anchor
       else
