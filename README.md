@@ -200,10 +200,36 @@ We use BEM which should help with:
 * Avoiding large numbers of nested rules.
 
 Also:
-* Group `+` and `@extend` statements at the top of each selector ruleset
 * Don't over-abstract
 * Write code to be readable and understandable, not to save bytes.
 
+### Property Ordering
+1. Sass specifics e.g. `+` and `@extend`
+2. Position
+3. Box model
+4. Typography
+5. Decorative
+
+For example: 
+```css
+position
+top
+right
+z-index
+display
+width
+height
+margin
+padding
+border
+font-style
+font-weight
+line-height
+background
+box-shadow
+opacity
+outline
+```
 
 ### Conventions
 
