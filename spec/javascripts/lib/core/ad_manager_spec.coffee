@@ -57,3 +57,19 @@ require ['public/assets/javascripts/lib/core/ad_manager', 'gpt'], (adManager) ->
           # The ads are loaded into iframes in the containers. NOTE: use `>=` because sometimes, GPT will add an additional 'hidden' one (who knows why)
           $(".ad-container > div iframe").length >= $(".ad-container > div").length
         , "ads to be loaded into the expected divs"
+
+    describe 'tracking pixel', ->
+
+      beforeEach ->
+        loadFixtures 'adBoxes.html'
+
+      it 'should not apply callback when the iframe contains a 1x1 image', ->
+
+        trackingPixelFixture = document.getElementById("tracking-pixel")
+        spyCallback = jasmine.createSpy('Callback spy')
+
+        adManager.poll(trackingPixelFixture, spyCallback)
+
+      # if iframe contains only a 1x1 image element then it should not apply callback
+        expect(spyCallback).not.toHaveBeenCalled()
+

@@ -1,0 +1,12 @@
+= render 'styleguide/partials/shared'
+
+- pagination = YAML.load(File.read(File.expand_path('../../../../data/styleguide/pagination_stubs.yml', __FILE__)))
+.card.styleguide-intro.copy--body.context--content
+  .clearfix
+    %h1.copy--h1 Pagination
+    %p
+      %strong NB:
+      It's important that you include the <code>%i</code> in the path that gets passed through <em>or</em> provide the name of the URL parameter via the <code>param</code> property.
+
+- pagination.each_with_index do | stub, i |
+  = sg_component('pagination', properties: stub, count: i, full_width: true, card_style: true)

@@ -1,20 +1,57 @@
-%article.card.card--single.card--poi.js-card.js-single{class: "card--poi--#{card[:context].downcase} " + (card[:image_url] ? 'card--small-image card--extended-content' : 'card--no-image') }
-  %a.link--wrapper(href="/#{card[:slug]}")
-    = render :partial => '/components/cards/partials/things_to_do_card_tags', :locals => { :card => card }
-    - if card[:image_url]
+
+:ruby
+
+  topic = properties[:topic].downcase
+
+  css_classes = [
+
+    "card",
+    "card--icon",
+    "card--poi",
+    "card--poi--#{topic}",
+    "icon--#{topic}--pin--before",
+    "#{properties[:image_url] ? 'card--small-image card--extended-content' : 'card--no-image'}",
+    "#{properties[:double?] ? 'card--double card--full-image' : 'card--single'}"
+
+  ].join(" ")
+
+
+%article.js-card{class: css_classes}
+
+  %a.link--wrapper{href: properties[:url]}
+
+
+    - if properties[:topchoice] or properties[:price]
+      .card__tags
+        - if properties[:price]
+          = render :partial => '/components/cards/partials/card_price', :locals => { :properties => properties, :price_is_from => true }
+        -# Make lp_reviewed false first
+        = render :partial => '/components/cards/partials/tags', :locals => { properties: properties }
+
+    - if properties[:image_url]
       %figure.card__hero
-        = image_tag(card[:image_url], class: 'card__image')
+        = safe_image_tag(properties[:image_url], class: 'card__image')
+
     .card__content
-      %span.card__context
-        = card[:kind] || 'General'
+      - if properties[:category]
+        %span.card__context
+          = properties[:category]
+
       %h1.card__name.js-card-name
-        = card[:name]
-      - if card[:duration].present?
-        %p.card__tour-duration.copy--caption
-          = card[:duration]
+        = properties[:name]
+
+      - if properties[:show_place_name?]
+        %p.card__locale
+          = properties[:place_name]
+
+      - if properties[:duration].present?
+        %p.card__tour-duration.copy--caption.icon--length--before
+          = properties[:duration]
+
       %p.card__description
-        = card[:card_description]
-    - if card[:bookable?]
+        = properties[:description]
+
+    - if properties[:bookable?]
       %footer.card__footer
-        %span.btn.btn--bookable.btn--full-width
+        %span.btn.btn--yellow.btn--full-width
           Book now

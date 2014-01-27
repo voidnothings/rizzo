@@ -1,32 +1,54 @@
 // -----------------------------------------------------------------------------
 // Styling for thorntree forms (currently using the simple_form gem)
 // -----------------------------------------------------------------------------
-.simple_form
-  @extend %rounded-corners
-  @extend .card
-  .btn[type="submit"]
-    border-style: none
-    margin-right: 15px
-    &:before
-      +font-size(25)
-      line-height: 0.5em
+.simple-form
+  @extend %clearfix
+
+.simple-form__field
+  &.boolean
+    overflow: hidden
+    .field__label
+      padding-top: 0
+
+.row--compose
+  .simple-form
+    @extend %rounded-corners
+    .btn
+      margin-right: 15px
+      overflow: visible
+
+      &[type="submit"]
+        border-style: none
+
+  .simple-form__field
+    @extend %clearfix
+    border-top: 1px solid $subdued
+    padding: 10px 20px
+    &.first
+      border-top: none
+    &.last
+      padding-bottom: 20px
+    .field
+      margin-bottom: 0
+
+  .simple-form__field--markdown
+    padding-top: 0
+    .input
+      background: none
+      border: none
+    .control-label
+      display: none
+
+  .radio
+    margin-right: 5px
+    position: relative
+    top: 10px
+    .radio_buttons
       margin-right: 5px
-      position: relative
-      top: 2px
-.simple_form__field
-  border-top: 1px solid $subdued
-  padding: 10px 20px
-  &.first
-    border-top: none
-  &.last
-    padding-bottom: 20px
-.simple_form__field--markdown
-  padding-top: 0
-  .input
-    background: none
-    border: none
-  .control-label
-    display: none
+
+.btn--moderation
+  margin-bottom: 10px
+
 
 // -----------------------------------------------------------------------------
 // MarkItUp editor styles
@@ -36,28 +58,21 @@
   border-bottom: 1px solid $subdued
   margin: 0 -20px
   padding: 13px 20px
+  .simple-form__field.first &
+    border-radius: 4px 4px 0 0
+
 .markItUpButton
   display: inline-block
   list-style: none
   margin-right: 15px
   // Yeah, no choice on this...
-  a
-    +font-size(21)
-    color: $body-copy
-    &:hover
-      text-decoration: none
+  &, a
+    +size(21px)
+    display: inline-block
+    overflow: hidden
 
-  &.bold a
-    font-weight: bold
-  &.italic a
-    font-style: italic
-  &.quotes 
-    margin-top: -21px
-    a
-      +font-size(42)
-      font-weight: bold
-      position: relative
-      top: 15px
+  a
+    text-indent: 100%
 
 .markItUpEditor
   height: 200px

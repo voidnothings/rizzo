@@ -1,20 +1,60 @@
 module StyleguideHelper
 
+  def sections
+    # Add new sections here.
+    ["JS Components", "UI Components"]
+  end
+
+  def default_section
+    "UI Components"
+  end
+
   def left_nav
     # NB! The below line is required for our yeoman generator and should not be changed.
     #===== yeoman begin-hook =====#
     {
-      groups: [
+      js_components: [
         {
-          title: "Colours",
+          title: "Utils",
+          items: [
+            {
+              name: "Toggle Active",
+              path: "toggle-active"
+            },
+            {
+              name: "Proximity Loader",
+              path: "proximity-loader"
+            },
+            {
+              name: "Asset Reveal",
+              path: "asset-reveal"
+            },
+            {
+              name: "Image Helper",
+              path: "image-helper"
+            }
+          ]
+        }
+      ],
+      ui_components: [
+        {
+          title: "Design",
           items: [
             {
               name: "Design palette",
-              path: "/styleguide/colours"
+              path: "colours"
             },
             {
               name: "UI Colours",
-              path: "/styleguide/ui-colours"
+              path: "ui-colours"
+            },
+            {
+              name: "Icons",
+              path: "icons"
+            },
+            {
+              name: "Typography",
+              path: "typography"
             }
           ]
         },
@@ -22,12 +62,16 @@ module StyleguideHelper
           title: "Navigation",
           items: [
             {
+              name: "Dropdown",
+              path: "navigational_dropdown"
+            },
+            {
               name: "Left Nav",
-              path: "/styleguide/left-nav"
+              path: "left-nav"
             },
             {
               name: "Secondary Nav",
-              path: "/styleguide/secondary-nav"
+              path: "secondary-nav"
             }
           ]
         },
@@ -36,11 +80,11 @@ module StyleguideHelper
           items: [
             {
               name: "Proportional Grid",
-              path: "/styleguide/proportional-grid"
+              path: "proportional-grid"
             },
             {
               name: "Cards Grid",
-              path: "/styleguide/cards-grid"
+              path: "cards-grid"
             }
           ]
         },
@@ -48,32 +92,36 @@ module StyleguideHelper
           title: "Components",
           items: [
             {
+              name: "Alerts",
+              path: "alerts"
+            },
+            {
               name: "Badges",
-              path: "/styleguide/badges"
+              path: "badges"
             },
             {
               name: "Buttons",
-              path: "/styleguide/buttons"
+              path: "buttons"
             },
             {
               name: "Cards",
-              path: "/styleguide/cards"
+              path: "cards"
             },
             {
               name: "Forms",
-              path: "/styleguide/forms"
+              path: "forms"
             },
             {
               name: "Page title",
-              path: "/styleguide/page-title"
+              path: "page-title"
             },
             {
               name: "Pagination",
-              path: "/styleguide/pagination"
+              path: "pagination"
             },
             {
-              name: "Typography",
-              path: "/styleguide/typography"
+              name: "Tags",
+              path: "tags"
             }
           ]
         }
@@ -85,14 +133,40 @@ module StyleguideHelper
 
   def left_nav_items
     active_left_nav = {}
-    active_left_nav[:groups] = left_nav[:groups].map do |group|
+    preceding_slug = (active_section == default_section) ? "/styleguide/" : "/styleguide/#{active_section}/"
+
+    active_left_nav[:groups] = left_nav[:"#{active_section.downcase.gsub(/[ -]/, "_")}"].map do |group|
       group[:items].map do |item|
-        item[:active] = item[:path] == request.path ? true : false
+        item[:path] = "#{preceding_slug}#{item[:path]}"
+        item[:active] = (item[:path] == request.path) ? true : false
         item
       end
       group
     end
     active_left_nav
+  end
+
+  def active_section
+    # Check whether any of the sections above are currently in the url.
+    section_from_slug = request.fullpath.match(/styleguide\/([^\/]+)/)
+
+    if section_from_slug && (sections.map {|s| s.downcase.strip.gsub(' ', '-') }.include? section_from_slug[1])
+      section_from_slug[1]
+    else
+      default_section
+    end
+  end
+
+  def secondary_nav_items
+    {
+      section_name: active_section,
+      items: sections.map do |s|
+          {
+            title: s,
+            slug: s == default_section ? '/styleguide' : '/styleguide/'+s.downcase.strip.gsub(' ', '-')
+          }
+        end
+    }
   end
 
   def ad_config
@@ -117,7 +191,7 @@ module StyleguideHelper
     capture_haml do
       haml_tag(:div, class: "styleguide-block#{anchor.nil? ? '' : ' styleguide__anchor'}", id: anchor) do
         unless anchor.nil?
-          haml_tag(:a, name: anchor, href: "##{anchor}")
+          haml_tag(:a, name: anchor, href: "##{anchor}", class: "icon--link icon--lp-blue")
         end
         haml_tag(:div, class: item_class) do
           haml_concat ui_component(path, properties)
@@ -127,6 +201,15 @@ module StyleguideHelper
     end
 
   end
+
+  def get_icons(type)
+    icons = []
+    Dir["app/assets/images/icons/#{type}/*.svg"].each do |file_name|
+      class_name = 'icon--' + File.basename(file_name, '.svg')
+      icons.push(class_name)
+    end
+    icons
+ end
 
   def get_colours(file)
     colours = File.read(File.expand_path("../../assets/stylesheets/_variables/#{file}.sass", __FILE__))

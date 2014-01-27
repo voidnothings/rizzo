@@ -1,10 +1,10 @@
 # ------------------------------------------------------------------------------
-# 
+#
 # Creates a slider style gallery
-# 
+#
 # ------------------------------------------------------------------------------
 
-define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitter, PageState) ->
+define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitter) ->
 
   class Slider
 
@@ -27,7 +27,6 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
     constructor: (args) ->
       $.extend config, args
 
-      @page = new PageState()
       @current_slide = 1
       @$el = $(config.el)
       @$slides = @$el.find(config.slides)
@@ -40,9 +39,8 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
       @$slides_viewport = @$el.find(config.slides_viewport)
       @$slider_controls = $('<div class="slider__controls no-print"></div>')
       @$slider_pagination = $('<div class="slider__pagination no-print"></div>')
-      @$next = $("<a href='#' class='slider__control slider__control--next icon--chevron-right--white--before'>2 of #{@numSlides}</a>")
-      @$prev = $("<a href='#' class='slider__control slider__control--prev icon--chevron-left--white--after'>#{@numSlides} of #{@numSlides}</a>")
-      @$legacy = $(@page.getLegacyRoot())
+      @$next = $("<a href='#' class='slider__control slider__control--next icon--chevron-right--before icon--white--before'>2 of #{@numSlides}</a>")
+      @$prev = $("<a href='#' class='slider__control slider__control--prev icon--chevron-left--after icon--white--after'>#{@numSlides} of #{@numSlides}</a>")
 
       # Don't add the class to the @$el if there's already a @$slides_viewport defined.
       if @$slides_viewport.length is 0
@@ -57,14 +55,14 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
       @init()
 
       # Polyfill for resizer in IE7/8
-      @$legacy.find('.js-resizer').on 'click', ->
+      @$el.find('.js-resizer').on 'click', ->
         $('input[name="'+$(this).attr('for')+'"]').toggleClass('is-checked')
 
     init: ->
       @$slider_controls.append(@$next, @$prev)
       @$slider_controls_container.append(@$slider_controls)
 
-      @$slides_container.width(@$slides.length * @$slides.width())
+      @$slides_container.width('' + (@$slides.length * 100) + '%')
 
       pagination = ''
 
@@ -95,7 +93,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
           @$slides.removeClass('is-potentially-next')
 
           @$slides.eq(index - 1).addClass('is-potentially-next')
-          
+
           @_loadHiddenContent(@$slides) if config.deferLoading
 
         'mouseleave': (e) => # out
@@ -141,7 +139,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
       percentOffset = (@current_slide - 1) * 100
       @$slides_container.css('marginLeft', (-1 * percentOffset)+'%')
       @_updateCount()
-      
+
     _previousSlide: ->
       return if @current_slide is 0
       @current_slide--
@@ -170,13 +168,13 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
         nextIndex = 1
       if (prevIndex < 1)
         prevIndex = @$slides.length
-      
+
       @$slider_controls_container.removeClass('at-beginning at-end')
       if @current_slide is 1
         @$slider_controls_container.addClass('at-beginning')
       else if @current_slide is @$slides.length
         @$slider_controls_container.addClass('at-end')
-      
+
       $('.slider__control--next').html(currentHTML.replace(/(^[0-9]+)/, nextIndex))
       $('.slider__control--prev').html(currentHTML.replace(/(^[0-9]+)/, prevIndex))
 

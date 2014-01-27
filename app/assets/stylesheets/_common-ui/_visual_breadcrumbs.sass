@@ -17,10 +17,7 @@
   text-decoration: none
   margin-bottom: 0
 
-  .js-hover &:hover
+  &:hover
     color: $header-blue
     text-decoration: none
-    -webkit-transform: translate(0,-10px)
-    transform: translate(0,-10px)
-
-
+    @include transform(translate(0, -10px))

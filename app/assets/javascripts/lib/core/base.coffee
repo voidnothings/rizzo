@@ -1,17 +1,20 @@
 # Note: We need to add 'lib/core/ad_manager' back in after 'jquery' when the switch to the new DFP server happens.
 #   Also worth noting is that the ad_manager and ad_manager_old calls in waldorf/app/assets/javascripts/*.js need to be removed.
-define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager'], ($, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroup) ->
+define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager'], ($, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroupManager) ->
 
   class Base
 
     constructor: (args={})->
-      @authenticateUser()
+      if LocalStore.getCookie('lp-new-sign-in')
+        @authenticateUser()
+      else
+        @oldAuthenticateUser()
+
       @showUserBasket()
       # Note: We need to add this back in when the switch to the new DFP server happens
       # @initAds() unless args.secure
       @showCookieComplianceMsg()
-      @initialiseFooterSelects()
-      @initialiseResponsiveNavSelect()
+      @initialiseSelectGroupManager()
       @addNavTracking()
       @scrollPerf()
 
@@ -28,6 +31,26 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
 
     authenticateUser: ->
       @auth = new Authenticator()
+
+      $.ajax
+        url: @auth.getNewStatusUrl()
+        dataType: "json"
+        error: @oldAuthenticateUser(@auth)
+        success: (user) =>
+          # The data returned is defined in community at: app/controllers/users_controller.rb@status
+          window.lp.user = user
+
+          # Legacy, keep until the old stuff is discarded and Authenticator has been refactored.
+          window.lpLoggedInUsername = user.username || "";
+          window.facebookUserId = user.facebook_uid;
+          window.surveyEnabled = "false";
+          window.timestamp = user.timestamp;
+          window.referer = "null";
+
+          @auth.update()
+
+    oldAuthenticateUser: (auth) ->
+      @auth = auth || new Authenticator()
       AssetFetch.get "https://secure.lonelyplanet.com/sign-in/status", () =>
         @auth.update()
 
@@ -37,14 +60,8 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
     showUserBasket: ->
       shopCart = new ShoppingCart()
 
-    initialiseFooterSelects: ->
-      countrySelect = new SelectGroup '.js-select-country'
-      languageSelect = new SelectGroup '.js-select-language', ->
-        $('#js-language').submit()
-
-    initialiseResponsiveNavSelect: ->
-      responsiveNav = new SelectGroup '.js-responsive-nav', ($this) ->
-        window.location = "http://www.lonelyplanet.com/" + $this.options[$this.selectedIndex].value
+    initialiseSelectGroupManager: ->
+      new SelectGroupManager()
 
     showCookieComplianceMsg: ->
       if LocalStore.get('cookie-compliance') is undefined or LocalStore.get('cookie-compliance') is null
@@ -91,10 +108,10 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
         # Listen for a scroll and use that to remove the possibility of hover effects
         window.addEventListener 'scroll', ->
           clearTimeout(enableTimer);
-          $('body').removeClass('js-hover')
+          document.documentElement.style.pointerEvents = "none"
 
           enableTimer = setTimeout ->
-            $('body').addClass('js-hover')
-          , 500
+            document.documentElement.style.pointerEvents = "auto"
+          , 300
         , false
 )

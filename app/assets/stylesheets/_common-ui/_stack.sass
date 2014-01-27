@@ -1,15 +1,15 @@
 // -----------------------------------------------------------------------------
-// 
+//
 //  Main page layout - adapts to not having a sidebar
-// 
+//
 // -----------------------------------------------------------------------------
 
 .stack
   margin-left: 10px
   +box-sizing()
+  min-height: 400px
   .card--single + &
-    float: left
-    width: ($card-width * 4) + ($card-gutter * 3)
+    overflow: hidden
 
 
 // -----------------------------------------------------------------------------
@@ -30,10 +30,20 @@ $stack-intro-lines-to-show: 2
   .copy--h1
     margin: 0
 
+  .sharing
+    border-top: none
+
 .stack__intro--empty
   padding: 10px 25px
+
   .card--full-image + &
     padding: 0
+
+  .sharing
+    padding: 10px 20px
+
+.stack__intro__toolbar
+  margin-top: 15px
 
 .stack__intro__content
   +transition(max-height, 0.5, ease-in-out)
@@ -89,12 +99,10 @@ $stack-intro-lines-to-show: 2
     vertical-align: inherit
 
 .stack__view-type--grid
-  @extend %grid-icon-before
   +border-radius-each(4, 0, 0, 4)
   border-width: 1px 0 1px 1px
 
 .stack__view-type--list
-  @extend %list-icon-before
   +border-radius-each(0, 4, 4, 0)
   border-width: 1px 1px 1px 0
 
@@ -117,25 +125,3 @@ $stack-intro-lines-to-show: 2
 
 .list-view__section .card--list
   height: 50px
-
-
-// -----------------------------------------------------------------------------
-// Travel warning
-// -----------------------------------------------------------------------------
-
-.travel-alert
-  @extend %rounded-corners
-  @extend %warning-sign-before
-  +font-size(15)
-  background: #fffaca
-  line-height: 20px
-  margin-top: 10px
-  padding: 15px 15px 15px 38px
-  position: relative
-
-  &:before
-    color: $red
-    font-size: 30px
-    left: 15px
-    position: absolute
-    top: 15px

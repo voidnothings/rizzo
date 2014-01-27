@@ -42,18 +42,19 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
       $(LISTENER).on 'click', '.js-stack-card-filter', (e) =>
         e.preventDefault()
         $this = $(e.currentTarget)
-        filters = $this.find('[data-filter]').data('filter')
+        filters = $this.data('filter')
         @_set(filters, true)
         @config = 
           callback: "trackFilter", 
-          stack: $this.find('[data-filter]').data("stack-kind") or ""
+          stack: $this.data("stack-kind") or ""
         @trigger(':cards/request', [@_serialize(), @config])
 
     # Private area
 
     _removeSEOLinks: (parent) ->
       parent.find('.js-filter-label').each ->
-        $(@).html($(@).children('a').text())
+        seoLink = $(@).children('a').text()
+        $(@).html(seoLink) if seoLink
 
     _update: (data)->
       if data.disable_price_filters

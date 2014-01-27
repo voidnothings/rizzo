@@ -64,10 +64,10 @@ require ['public/assets/javascripts/lib/components/section_toggle.js'], (Section
         window.SectionToggle = new SectionToggle({maxHeight: 100})
         expect(window.SectionToggle.wrapper.css('maxHeight')).toEqual('100px')
         expect(window.SectionToggle.$el).toHaveClass('is-closed')
-        expect(window.SectionToggle.handler.text()).toBe('Read More')
+        expect(window.SectionToggle.handler.text()).toBe('Read more')
 
 
-    describe 'When the Read More button is clicked while closed', ->
+    describe 'When the Read more button is clicked while closed', ->
       beforeEach ->
         loadFixtures('section_toggle.html')
         spyOn(SectionToggle.prototype, "getFullHeight").andReturn(150)
@@ -78,10 +78,10 @@ require ['public/assets/javascripts/lib/components/section_toggle.js'], (Section
       it 'opens the toggle area when the toggle button is clicked', ->
         expect(window.SectionToggle.$el).toHaveClass('is-open')
         expect(window.SectionToggle.wrapper.css('maxHeight')).toEqual('150px')
-        expect(window.SectionToggle.handler.text()).toBe('Read Less')
+        expect(window.SectionToggle.handler.text()).toBe('Read less')
 
 
-    describe 'When the Read More button is clicked while open', ->
+    describe 'When the Read more button is clicked while open', ->
       beforeEach ->
         loadFixtures('section_toggle.html')
         spyOn(SectionToggle.prototype, "getFullHeight").andReturn(150)
@@ -93,7 +93,7 @@ require ['public/assets/javascripts/lib/components/section_toggle.js'], (Section
       it 'opens the toggle area when the toggle button is clicked', ->
         expect(window.SectionToggle.$el).toHaveClass('is-closed')
         expect(window.SectionToggle.wrapper.css('maxHeight')).toEqual('100px')
-        expect(window.SectionToggle.handler.text()).toBe('Read More')
+        expect(window.SectionToggle.handler.text()).toBe('Read more')
 
     describe 'With tolerance', ->
       describe 'When the total height of the area is larger than the max height but within tolerance', ->
@@ -106,7 +106,7 @@ require ['public/assets/javascripts/lib/components/section_toggle.js'], (Section
 
         it 'keeps the toggle area open and does not have a toggle button', ->
           expect(window.SectionToggle.addHandler).not.toHaveBeenCalled()
-          expect(window.SectionToggle.setWrapperState).toHaveBeenCalledWith(120, '', 'open')
+          expect(window.SectionToggle.setWrapperState).toHaveBeenCalledWith({ height : 120, text : 'Read less', state : 'open', classes : 'icon--chevron-up--after'})
           expect(window.SectionToggle.$el).toHaveClass('is-open')
           expect(window.SectionToggle.$el.find('.btn--read-more').length).toBe(0)
 
@@ -124,4 +124,4 @@ require ['public/assets/javascripts/lib/components/section_toggle.js'], (Section
           window.SectionToggle = new SectionToggle({maxHeight: 100, tolerance: 10})
           expect(window.SectionToggle.wrapper.css('maxHeight')).toEqual('100px')
           expect(window.SectionToggle.$el).toHaveClass('is-closed')
-          expect(window.SectionToggle.handler.text()).toBe('Read More')
+          expect(window.SectionToggle.handler.text()).toBe('Read more')

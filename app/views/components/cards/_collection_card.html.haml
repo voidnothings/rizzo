@@ -1,20 +1,24 @@
-%article.card.card--collection.js-card{class: "#{card[:double?] ? 'card--double card--full-image' : 'card--single card--extended-content--half js-single'} card--collection--#{card[:topic]} #{(card[:filter]) ? "js-stack-card-filter" : ""}"}
-  %a.link--wrapper{:href => "/#{card[:slug]}", :data => { 'stack-kind' => card[:stack_kind], :filter => card[:filter] }}
-    - if card[:count]
-      %span.card__item-count
-        = card[:count]
-    %figure.card__hero{class: (card[:double?]) ? "card__hero--#{card[:topic]}" : ''}
-      = safe_image_tag(card[:image_url], class: 'card__image', alt: "#{card[:title]}", lazyload: defined?(lazyload))
-    .card__content
-      .card__content__inner
-        %span.card__context
-          - if card[:kind].present?
-            = card[:kind].titlecase
-          - else
-            Collection
-        %h2.card__name.js-card-name
-          = card[:title]
-        - unless card[:double?]
-          - if card[:description].present?
-            %p.card__description
-              = card[:description]
+:ruby
+
+  css_classes = [
+
+    "card",
+    "card--collection",
+    "card--collection--#{properties[:topic]}",
+    properties[:filter] ? "js-stack-card-filter" : "",
+    properties[:double?] ? "card--double card--full-image" : "card--single card--extended-content--half",
+    properties[:image_license] && properties[:image_license] != "expedia" ? "has-attribution" : ""
+
+  ].join(" ")
+
+  icon_classes = properties[:topic] ? "icon--#{properties[:topic].singularize}--pin--before icon--white--before" : ""
+
+%article.js-card{class: css_classes, data: { 'stack-kind' => properties[:stack_kind], :filter => properties[:filter] } }
+
+  %a.link--wrapper{href: properties[:url]}
+
+    - if properties[:count]
+      %span.card__item-count{class: icon_classes}
+        = properties[:count]
+
+    = render partial: "components/cards/partials/card_content", locals: {properties: properties}

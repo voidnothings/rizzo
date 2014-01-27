@@ -1,0 +1,244 @@
+# encoding: UTF-8
+require 'spec_helper'
+
+describe "components/_pagination.html.haml" do
+
+  default_properties = {
+    :total_results => 25,
+    :results_per_page => 5,
+    :current_page => 1,
+    :visible_pages => 5,
+    :path => "/?page=%i"
+  }
+
+  describe 'pagination container' do
+
+    it 'adds any passed in classes' do
+
+      view.stub(properties: default_properties.merge( :classes => 'foo bar' ))
+
+      render
+
+      rendered.should have_css('.pagination.foo.bar')
+
+    end
+
+  end
+
+  describe 'backward links' do
+
+    it 'renders previous and first page links when not on the first page' do
+
+      view.stub(properties: default_properties.merge( :current_page => 2 ))
+
+      render
+
+      rendered.should have_css('.pagination__backwards')
+      rendered.should have_css('.pagination__link--prev')
+      rendered.should have_css('.pagination__link--first')
+
+    end
+
+    it 'does not render previous and first page links when on the first page' do
+
+      view.stub(properties: default_properties)
+
+      render
+
+      rendered.should_not have_css('.pagination__backwards')
+      rendered.should_not have_css('.pagination__link--prev')
+      rendered.should_not have_css('.pagination__link--first')
+
+    end
+
+  end
+
+  describe 'forward links' do
+
+    it 'renders next and last page links when not on the last page' do
+
+      view.stub(properties: default_properties)
+
+      render
+
+      rendered.should have_css('.pagination__forwards')
+      rendered.should have_css('.pagination__link--next')
+      rendered.should have_css('.pagination__link--last')
+
+    end
+
+    it 'does not render next and last page links when on the last page' do
+
+      view.stub(properties: default_properties.merge( :current_page => 5 ))
+
+      render
+
+      rendered.should_not have_css('.pagination__forwards')
+      rendered.should_not have_css('.pagination__link--next')
+      rendered.should_not have_css('.pagination__link--last')
+
+    end
+
+  end
+
+  describe 'pagination numbers' do
+
+    it 'renders pagination numbers given a total > results per page' do
+
+      view.stub(properties: default_properties)
+
+      render
+
+      rendered.should have_css('.pagination__numbers')
+
+    end
+
+    it 'does not render pagination given a total <= results per page' do
+
+      view.stub(properties: default_properties.merge( :total_results => 4 ))
+
+      render
+
+      rendered.should_not have_css('.pagination__numbers')
+
+    end
+
+    it 'renders selected variation for the current page number' do
+
+      view.stub(properties: default_properties)
+
+      render
+
+      rendered.should have_css('.pagination__numbers .pagination__link.pagination__link--current:nth-child(1)')
+
+    end
+
+    it 'renders numbers 1-5 given a total of 100 results and current page number of 2' do
+
+      view.stub(properties: default_properties.merge( :total_results => 100, :current_page => 2 ))
+
+      render
+
+      links = Capybara.string(rendered).all('.pagination__numbers .pagination__link').map { |el| el.text }
+      links.should eq( ['1', '2', '3', '4', '5'] )
+
+    end
+
+    it 'renders numbers 8-12 given a total of 100 results and current page number of 10' do
+
+      view.stub(properties: default_properties.merge( :total_results => 100, :current_page => 10 ))
+
+      render
+
+      links = Capybara.string(rendered).all('.pagination__numbers .pagination__link').map { |el| el.text }
+      links.should eq( ['8', '9', '10', '11', '12'] )
+
+    end
+
+    it 'renders numbers 16-20 given a total of 100 results and current page number of 19' do
+
+      view.stub(properties: default_properties.merge( :total_results => 100, :current_page => 19 ))
+
+      render
+
+      links = Capybara.string(rendered).all('.pagination__numbers .pagination__link').map { |el| el.text }
+      links.should eq( ['16', '17', '18', '19', '20'] )
+
+    end
+
+  end
+
+  describe 'pagination link URLs' do
+
+    it 'formats the given path string for the correct number' do
+
+      view.stub(properties: default_properties)
+
+      render
+
+      # The current page is not a link
+      links = Capybara.string(rendered).all('.pagination__numbers a.pagination__link').map { |el| el[:href] }
+      links.should eq( ['/?page=2', '/?page=3', '/?page=4', '/?page=5'] )
+
+    end
+
+    it 'appends the given URL parameter if it does not already exist in the path' do
+
+      view.stub(properties: default_properties.merge( :path => '/path/to/page?foo=bar&baz=qux', :param => 'page' ))
+
+      render
+
+      links = Capybara.string(rendered).all('.pagination__numbers a.pagination__link').map { |el| el[:href] }
+      links.should eq( [
+        '/path/to/page?foo=bar&baz=qux&page=2',
+        '/path/to/page?foo=bar&baz=qux&page=3',
+        '/path/to/page?foo=bar&baz=qux&page=4',
+        '/path/to/page?foo=bar&baz=qux&page=5'
+      ] )
+
+    end
+
+    it 'replaces the given URL parameter if it already exists in the path' do
+
+      view.stub(properties: default_properties.merge( :path => '/path/to/page?foo=bar&baz=qux&page=5', :param => 'page' ))
+      # view.stub(properties: default_properties.merge( :path => '/path/to/page?foo=bar&page=5&baz=qux', :param => 'page' ))
+      # view.stub(properties: default_properties.merge( :path => '/path/to/page?page=5&foo=bar&baz=qux', :param => 'page' ))
+
+      render
+
+      links = Capybara.string(rendered).all('.pagination__numbers a.pagination__link').map { |el| el[:href] }
+      links.should eq( [
+        '/path/to/page?foo=bar&baz=qux&page=2',
+        '/path/to/page?foo=bar&baz=qux&page=3',
+        '/path/to/page?foo=bar&baz=qux&page=4',
+        '/path/to/page?foo=bar&baz=qux&page=5'
+      ] )
+
+    end
+
+  end
+
+  describe 'detailed position' do
+
+    it 'displays detailed position information' do
+      view.stub(properties: default_properties.merge( :show_detailed => true ))
+
+      render
+
+      rendered.should include('Showing 1–5 of 25')
+
+    end
+
+    it 'displays correct detailed position for second page' do
+
+      view.stub(properties: default_properties.merge( :show_detailed => true, :current_page => 2 ))
+
+      render
+
+      rendered.should include('Showing 6–10 of 25')
+
+    end
+
+    it 'displays correct detailed position when there are fewer items' do
+
+      view.stub(properties: default_properties.merge( :show_detailed => true, :total_results => 4 ))
+
+      render
+
+      rendered.should include('Showing 1–4 of 4')
+
+    end
+
+    it 'displays correct detailed position when there are fewer items' do
+
+      view.stub(properties: default_properties.merge( :show_detailed => true, :total_results => 7, :current_page => 2 ))
+
+      render
+
+      rendered.should include('Showing 6–7 of 7')
+
+    end
+
+  end
+
+end

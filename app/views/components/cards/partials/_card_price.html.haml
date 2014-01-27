@@ -1,0 +1,21 @@
+- icon ||= nil
+- price_is_from ||= false
+
+.tag.tag--price
+  .tag--price__inner
+    .tag--price__values
+      - if icon == :book
+        .icon--book--before.tag--price__icon
+      - if icon == :ebook
+        .icon--ipad--before.tag--price__icon
+      - if price_is_from
+        from
+      .tag--price__amount<
+        %span.tag--price__currency
+          = raw(properties[:currency_symbol])
+        %span.js-price
+          = properties[:price]
+    - if properties[:on_sale_here?]
+      .tag--price__retail<
+        = raw(properties[:currency_symbol])
+        = properties[:retail_price]

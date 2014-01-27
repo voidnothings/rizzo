@@ -7,6 +7,11 @@
   border-top: 1px solid $body-background
   padding: 20px 0 0
 
+// Ensure that social plugin flyouts remain at the top layer
+.sharing__nav
+  position: relative
+  z-index: 10
+
 .sharing__label
   +font-size(12)
   text-transform: uppercase
@@ -26,8 +31,10 @@
   &:hover
     text-decoration: none
   &:before
-    +font-size(34)
     top: -16px
+  .no-js &, .no-background-size &
+    text-indent: 0
+    width: auto
 
   .tooltip
     color: white
@@ -36,11 +43,6 @@
     &:after
       color: $body-copy
       left: 53%
-
-.icon--print
-  @extend %icon--print-before
-.icon--email
-  @extend %icon--email-before
 
 .facebook-like
   margin-left: 10px

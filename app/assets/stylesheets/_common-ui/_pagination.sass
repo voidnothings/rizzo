@@ -1,6 +1,16 @@
 .pagination
-  margin-left: 10px
   position: relative
+
+  &.card
+    @extend %rounded-corners
+    padding: 8px 20px
+
+    .topic-header + &,
+    .forum-header + &,
+    .replies + &
+      border-radius: 0 0 4px 4px
+      // This bumps it over the bottom border radius of the .stack__intro
+      margin-top: -12px
 
 .pagination__link
   +border-radius(5)
@@ -18,16 +28,8 @@
 .pagination__link--current
   opacity: 0.5
 
-.pagination__backwards,
-.pagination__forwards
-  @extend %clearfix
-  position: absolute
-  top: 0
-
-.pagination__backwards
-  left: 0
-.pagination__forwards
-  right: 0
 .pagination__numbers
   text-align: center
 
+.pagination__detailed-info
+  padding-top: 15px

@@ -9,15 +9,12 @@
 // ----------------------------------------------------------------------------
 
 body
+  @extend %lp-font-stack
   background-color: $body-background
   display: table
   min-width: 100%
   &.responsive
     display: block
-
-// Freight is applied to the main content row of the page
-.copy--freight
-  @extend %lp-font-stack
 
 .overthrow-enabled
   .overthrow
@@ -212,7 +209,7 @@ body
   .responsive &
     padding-top: 20px
     +respond-to(wide-view)
-      padding: 10px 0
+      padding-top: 40px
 
   .wv--split--right
     .responsive &
@@ -242,7 +239,7 @@ body
     +respond-to(wide-view)
       +vertically-center(30)
       padding: 0
-  .js-hover &:hover
+  &:hover
     max-width: none
 
 // ----------------------------------------------------------------------------
@@ -270,13 +267,11 @@ body
 // ----------------------------------------------------------------------------
 
 .row__inner--footer
-  border-top: 1px solid $input-border
+
   .responsive &
-    border: none
     padding: 10px
     width: 100%
     +respond-to(wide-view)
-      border-top: 1px solid $input-border
       padding: 0
 
 // ----------------------------------------------------------------------------
@@ -287,10 +282,13 @@ body
 
 .row--sitemap
   margin-bottom: 30px
+  border-top: 1px solid $input-border
   .responsive &
     margin-bottom: 0
+    border: 0
     +respond-to(wide-view)
       margin-bottom: 30px
+      border-top: 1px solid $input-border
 
 .row--sitemap__inner
   padding-top: 20px
@@ -299,8 +297,6 @@ body
     +respond-to(wide-view)
       padding-top: 20px
 
-
-
 // ----------------------------------------------------------------------------
 //
 // Row About
@@ -308,13 +304,16 @@ body
 // ----------------------------------------------------------------------------
 
 .row--footer--about
+  border-top: 1px solid $input-border
   .responsive &
-    .row__inner--footer
-      border-top: none
-      padding: 0
-      +respond-to(wide-view)
-        border-top: 1px solid $input-border
-        padding: 0 10px
+    padding: 0
+    border-top: 0
+    +respond-to(wide-view)
+      padding: 0 10px
+      border-top: 1px solid $input-border
+
+  .media--lp-logo
+    margin-top: 15px
 
 .row--footer--social__logo
   .responsive &
@@ -357,13 +356,13 @@ body
 //
 // ----------------------------------------------------------------------------
 
-.wrap--footer
+.wrapper--footer
   @extend %lp-font-stack
   @extend %subpixel-text
   @extend %transition--nav
   position: relative
 
-.wrap--footer-push
+.wrapper--footer-push
   min-height: 100%
   height: auto !important
   height: 100%

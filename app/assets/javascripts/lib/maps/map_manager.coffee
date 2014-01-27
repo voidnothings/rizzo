@@ -96,7 +96,7 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
       @map.setOptions(styles: mapStyles)
 
     # this needs to be down here so it isn't loaded until we have a google
-    setLocationMarker = => require ['maps_infobox'], =>
+    setLocationMarker = => require ['google-maps-infobox'], =>
       locationTitle = if topic is 'lodging' then @config.title else 'Location'
       locationAddress = @config.lodgingLocation or lp.lodging.address[0] or ''
       infobox = new InfoBox
@@ -107,8 +107,8 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
           whiteSpace: 'nowrap'
           width: 'auto'
         closeBoxURL: ''
-        content: "<div class='infobox--location'>
-          <p class='copy--h3 infobox__title text-icon text-icon--address'>#{locationTitle}</p>
+        content: "<div class='infobox--location icon--tapered-arrow-down--after icon--white--after'>
+          <p class='copy--h3 infobox__title text-icon icon--place--pin--before icon--lp-blue--before'>#{locationTitle}</p>
           <p class='copy--body'>
             #{locationAddress or ''}
             <span class='infobox__interesting-places'> &middot;

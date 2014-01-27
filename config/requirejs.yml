@@ -1,8 +1,8 @@
 paths:
   gpt: "//www.googletagservices.com/tag/js/gpt"
   jplugs: "jquery/plugins"
-  jquery: "jquery/jquery-1.7.2.min"
-  jquery: "flamsteed/lib/javascripts/flamsteed"
+  jquery: "jquery/jquery"
+  flamsteed: "flamsteed/lib/javascripts/flamsteed"
   sailthru: "sailthru/v1"
   s_code: "omniture/s_code"
 
@@ -11,3 +11,6 @@ modules:
   - name: 'app_core_legacy'
   - name: 'app_secure_core'
   - name: 'app_secure_core_legacy'
+  - name: 'styleguide'
+
+findNestedDependencies: true

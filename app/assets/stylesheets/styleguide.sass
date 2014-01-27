@@ -3,11 +3,8 @@
 @import '_common-ui/_copy'
 @import '_common-ui/_tabs'
 @import '_common-ui/_pagination'
-@import '_common-ui/_gallery'
 @import '_common-ui/_nearby_pois'
-@import '_common-ui/_thumbnail_grid'
 @import '_common-ui/_read_more_toggle'
-@import '_common-ui/_left_nav'
 @import '_common-ui/_icon-list'
 @import '_common-ui/_info-list'
 @import '_common-ui/_maps'
@@ -24,18 +21,18 @@
 @import '_common-ui/cards/_card_appearance'
 @import '_common-ui/cards/_card_page'
 
+@import '_common-ui/_left_nav'
 @import '_common-ui/_tags'
 @import '_common-ui/_badges'
 @import '_common-ui/_stack'
 @import '_common-ui/_stack_articles'
 @import '_common-ui/_icons/_pois_sprite'
-@import '_common-ui/_icons/_pois_icons'
-@import '_common-ui/_lp_reviewed_section'
 @import '_common-ui/_datepicker'
 @import '_common-ui/_tooltip'
 @import '_common-ui/_maps'
 @import '_common-ui/_text_icons'
 @import '_common-ui/_activity_list'
+@import '_common-ui/_alerts'
 /*===== yeoman hook =====*/
 /*===== NB! The above line is required for our yeoman generator and should not be changed. =====*/
 
@@ -53,6 +50,10 @@ pre[class*="language-"]
     margin: 0
     float: none
 
+pre[class*="language-"].styleguide
+  margin: 0
+  font-size: 15px
+
 pre.styleguide.is-open
   max-height: none
 
@@ -62,17 +63,13 @@ pre.styleguide.is-open
 .isnt-approximate
   display: none
 .is-exact
-  @extend %tick-icon-after
   position: relative
-  &:after
-    color: white
-    font-size: 5em
+  &:before
+    width: 20px
+    height: 20px
     position: absolute
-    right: 10px
-    top: 20px
-
-.row--content
-  margin-top: 50px
+    left: 10px
+    top: 10px
 
 .title--styleguide
   color: white
@@ -81,6 +78,13 @@ pre.styleguide.is-open
 .styleguide-intro
   padding: 25px
 
+.styleguide-intro__section
+  margin-bottom: 20px
+
+.styleguide-block
+  @extend %clearfix
+  margin-bottom: 30px
+
 .styleguide-block__item--left
   float: left
   margin-right: 20px
@@ -88,14 +92,26 @@ pre.styleguide.is-open
 .styleguide__subtitle
   margin: 20px 10px
 
-.styleguide-block__buttons,
+.styleguide-block__buttons
+  .styleguide-block__heading
+    padding: 5px 0
+    margin-bottom: 0
+  pre.language-markup
+    background: none
+    padding: 0
+    line-height: 1
+  .styleguide-block__items
+    margin-bottom: 20px
+  .styleguide-block__item
+    margin: 0
+  .styleguide-block__description
+    min-height: 120px
+
 .styleguide-block__badges
   .styleguide-block__item
     margin-right: 10px
     margin-top: 0
-    min-width: 200px
-  .styleguide-block__items
-    margin-top: 20px
+
   pre[class*="language-"]
     margin: 2px 0 0
     padding: 7px
@@ -103,8 +119,11 @@ pre.styleguide.is-open
       +font-size(14)
 
 .styleguide-block__badges
+  .styleguide-block__items
+    margin-top: 20px
   .styleguide-block__item
     min-width: 100px
+    padding-top: 7px
 
 .styleguide-block__item
   min-height: 40px
@@ -114,18 +133,19 @@ pre.styleguide.is-open
   margin-bottom: 0
   padding: 20px
 
-.styleguide-block__item--colour
-  +border-radius(100)
-  +vertically-center(100)
-  border: 2px solid #FFF
-  color: white
-  float: left
-  margin: 0 20px 0 0
+.styleguide__colours
   text-align: center
-  width: 100px
+  .copy--h4
+    padding: 10px
+
+.styleguide-block__item--colour
+  border: 6px solid #FFF
+  font-size: 13px
+  padding: 4px 0
+  color: white
+  margin: 0
 
   &.is-light
-    border-color: $body-background
     color: $body-copy
   .is-approximate &
     border-color: transparent
@@ -145,7 +165,7 @@ pre.styleguide.is-open
 .filter--links
   min-width: 200px
   +font-size(15)
-  .dropdown__value
+  .dropdown
     line-height: 1
     width: 140px
     &:after
@@ -155,7 +175,7 @@ pre.styleguide.is-open
   .styleguide-proximity
     float: left
     margin-right: 10px
-  
+
 
 .field
   background: #fff
@@ -163,6 +183,7 @@ pre.styleguide.is-open
   width: 250px
 
 .styleguide-proximity__input
+  float: left
   width: 200px
 
 .styleguide__input-copy
@@ -173,37 +194,60 @@ pre.styleguide.is-open
 
   > a:first-child
     @extend %transition--base
-    @extend %local-marker-before // For lack of a link icon currently.
     display: block
-    padding: 0.5em
     position: absolute
-    right: -38px
-    top: -24px
-    opacity: 0
-    &:before
-      +font-size(40)
-
-  &:hover > a:first-child
-    opacity: 1
-    text-decoration: none
-
-.clearbutton
-  line-height: 12px
-  float: left
-  width: 14px
-  height: 14px
-  text-align: center
-  padding: 0
-  border-radius: 100%
-  background-color: $feature-copy
-  color: white
-  margin-left: -25px
-  font-weight: bold
-  position: relative
-  top: 14px
-  cursor: pointer
+    right: 20px
+    top: 10px
+    width: 25px
+    height: 25px
+    opacity: 0.5
+    z-index: 1
+    &:hover
+      opacity: 1
 
 .styleguide-grid
   .card
     text-align: center
     padding: 10px 0
+
+.styleguide-icons
+  [class*="icon--"]
+    height: 40px
+    width: 40px
+    margin-left: 10px
+  [class*="icon--"][class*="--pin"]
+    width: 28px
+  [class*="icon--"][class*="--simple"]
+    width: 30px
+  [class*="icon--"][class*="--place--pin"]
+    width: 40px
+  .icon--lp-logo
+    width: 70px
+  .icon--collar
+    width: 70px
+    height: 20px
+    margin: 10px
+  .icon.icon--pinterest
+    width: 40px
+  .is-white
+    background-color: $body-copy
+    color: white
+
+  .icon__name
+    text-align: right
+    padding: 10px
+    font-size: 12px
+
+.styleguide-intro--icons
+  .styleguide-intro__inner
+    @extend %transition--base
+    overflow: hidden
+    height: 365px
+    &.is-closed
+      height: 100px
+
+
+
+.filter--links
+  .svg-colourise
+    width: 170px

@@ -1,9 +1,48 @@
 // -----------------------------------------------------------------------------
 // Post styles
-// 
+//
 // Styles related to individual thorn tree posts.
 // -----------------------------------------------------------------------------
 
+.post--single
+  .card.pagination
+    border-top: 1px solid $subdued
+    margin-bottom: 0
+  .topic-header + .card.pagination
+    border-radius: 0
+  .card__forum
+    border-radius: 0 0 4px 4px
+    border-top: 1px solid $subdued
+  .card.results + .card.pagination
+    margin-bottom: 12px
+
+.post
+  &.is-primary
+    background: $details-panel-bg
+  &.is-deleted
+    .post__content
+      color: $feature-copy
+      font-style: italic
+
+  blockquote
+    border-left: 3px solid $disabled
+    padding-left: 5px
+    background: $details-panel-bg
+    margin-bottom: 1em
+
+.post__icon
+  display: inline-block
+  height: 20px
+  position: relative
+  width: 20px
+
+  &.is-pinned
+    left: 150px
+    position: absolute
+    top: 17px
+  .subject &
+    margin-left: 5px
+    top: 3px
 
 // -----------------------------------------------------------------------------
 // The meta information displayed at the bottom of a post.
@@ -11,79 +50,149 @@
 .post__meta
   +font-size(13)
   color: $feature-copy
+  margin-top: 20px
 
-  &.text-icon--clock:before
-    +font-size(22)
+  &.icon--time--before:before
+    display: inline-block
+    height: 14px
     margin-right: 0.2em
     position: relative
     top: 2px
+    width: 14px
   .user__username--link
     color: $body-copy
     font-weight: bold
   .timeago
     margin: 0 0.25em
 
+.post__meta--breadcrumb a
+  color: $body-copy
+  font-weight: bold
+
 // -----------------------------------------------------------------------------
 // The icons and links on the right hand side of a post.
 // -----------------------------------------------------------------------------
-.post-stats
+.post-links
   margin-left: 20px
+  padding-left: 35px
   position: relative
+  text-align: center
+  width: 25px
   z-index: 2
-.post-stats__icon
-  // We need to offset the right margin so that the icons and text are centered within the post-stats section
-  // whose parent container has 20px padding.
-  margin-right: -20px
-  width: 60px
-.post-stats__icon
+
+.post-links__icon
+  @extend %transition--base
   +font-size(13)
   color: $feature-copy
   font-weight: bold
-  line-height: 1.5em
+  line-height: 1em
+  margin: 0 auto 5px
+  opacity: 0.5
   text-align: center
-  
-  &:before
+  width: 25px
+
+  .post-links:hover &
+    opacity: 1
+
+  .results &:before
     +font-size(35)
     display: block
     font-weight: normal
-  &.no-comments
-    opacity: 0.4
-    position: relative
-    &:after
-      +transform(rotateZ(40deg))
-      background: $feature-copy
-      content: ' '
-      position: absolute
-      height: 2px
-      left: 19px
-      top: 11px
-      width: 22px
+    height: 22px
+    margin: 0 auto
+    width: 22px
 
-// -----------------------------------------------------------------------------
-// The anchor on the right of a post (with the chevron) that links to the post and appears when you hover on it.
-// -----------------------------------------------------------------------------
-.post-view-link
-  +font-size(40)
-  +transform(rotateY(-90deg))
-  +transform-origin(right)
-  @extend %chevron-right-before
-  @extend %transition--base
-  background: $details-panel-bg
-  border-radius: 0 4px 4px 0
-  color: $feature-copy
-  height: 100%
-  opacity: 0
-  position: absolute
-  right: 0
+  .replies &,
+  .message &
+    @extend %image-replacement
+    display: block
+    height: 22px
+    width: 22px
+
+.post__position
+  +font-size(60)
+  color: $subdued
+  display: block
   text-align: center
-  top: 0
-  width: 60px
-  z-index: 1 // So that the link sits underneat the .post-stats above.
 
-  .card:hover &
-    +transform(rotateY(0deg))
-    opacity: 1
-    text-decoration: none
+.post-delete-multiple
+  label
+    display: none
+
+// -----------------------------------------------------------------------------
+// Forms on post--single page.
+// -----------------------------------------------------------------------------
+.post--single__form
+  @extend %transition--base
+  overflow: hidden
+
+  &.is-not-active
+    height: 0
+    padding-bottom: 0
+    padding-top: 0
+
+  &.is-active
+    &.thread-of-the-day-form
+      height: 35px
+    &.report-form
+      height: 120px
+
+  .btn--nominate
+    margin-left: 10px
+    margin-top: 1px
+
+// -----------------------------------------------------------------------------
+// Reply Links
+// -----------------------------------------------------------------------------
+.reply-links
+  margin-top: 10px
+.reply-link
+  font-weight: bold
+  margin-right: 15px
+
   &:before
+    display: inline-block
+    height: 1.2em
+    margin-right: 2px
     position: relative
-    top: 45%
+    top: 0.3em
+    width: 1.2em
+
+// -----------------------------------------------------------------------------
+// Post edit information
+// -----------------------------------------------------------------------------
+.post-edit
+  position: relative
+  &:before
+    display: inline-block
+    height: 1em
+    left: -1.2em
+    position: absolute
+    top: 0
+    width: 1em
+
+// -----------------------------------------------------------------------------
+// In Reply To
+// -----------------------------------------------------------------------------
+.in-reply-to
+  margin-top: 10px
+  overflow: hidden
+
+  &.is-not-active
+    height: 1.5em
+    .icon--chevron-up
+      display: none
+  &.is-active
+    .icon--chevron-down
+      display: none
+
+.in-reply-to__icon
+  display: inline-block
+  height: 1em
+  margin-right: 0.2em
+  position: relative
+  top: 0.2em
+  width: 1em
+
+.in-reply-to__content
+  margin-top: 10px

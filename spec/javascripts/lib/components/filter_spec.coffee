@@ -46,10 +46,13 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         window.filter = new Filter({el: '#js-filters-seo'})
 
       it 'removes the links inside the labels', ->
-        expect(filter.$el.find('.js-filter-label').children().length).toBe(0)
+        expect(filter.$el.find('.js-filter-label:first').children().length).toBe(0)
 
       it 'sets the label text to be the link text', ->
-        expect(filter.$el.find('.js-filter-label').text()).toBe("5 Star Hotel")
+        expect(filter.$el.find('.js-filter-label:first').text()).toBe("5 star hotel")
+
+      it 'keeps label text which is not within a link', ->
+        expect(filter.$el.find('.js-filter-label:last').text()).toBe("4 star hotel")
 
 
     describe 'updating', ->
@@ -219,7 +222,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
         spyEvent = spyOnEvent(filter.$el, ':cards/request');
         element = filter.$el.find('input[type=checkbox]')
         element.trigger('change')
-      
+
       it '_toggleActiveClass', ->
         expect(filter._toggleActiveClass).toHaveBeenCalled()
 
@@ -240,7 +243,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
 
       it 'calls _set with the new filters', ->
         filterCard = $(LISTENER).find('.js-stack-card-filter')
-        filters = filterCard.find('[data-filter]').data('filter')
+        filters = filterCard.data('filter')
         filterCard.trigger('click')
         expect(filter._set).toHaveBeenCalledWith(filters, true)
 

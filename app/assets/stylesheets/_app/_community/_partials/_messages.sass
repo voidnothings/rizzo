@@ -1,0 +1,94 @@
+// -----------------------------------------------------------------------------
+// Messages
+// -----------------------------------------------------------------------------
+
+.message
+
+  .post-links
+    padding-left: 20px
+    text-align: left
+
+// Message in a list
+.message--list
+  padding: 20px 25px
+  border-top: 1px solid $body-background
+  border-left: 4px solid transparent
+  &:last-child
+    border-bottom: 1px solid $body-background
+  &.message--unread
+    background: $subdued
+    border-left-color: $linkblue
+  &.is-active
+    background: mix($yella-highlight, #FFF, 25%)
+
+  .message__subject,
+  .message__body
+    display: inline
+
+  .message__subject
+    margin-right: .25em
+
+// Message in a conversation thread
+.message--thread
+  margin: 0
+  padding: 10px 25px
+
+  .user-info
+    margin: 0
+
+  .message__content
+    padding: 10px 15px
+    border-radius: 3px
+    &:before
+      position: absolute
+      top: 15px
+      border: 10px solid transparent
+      content: ' '
+
+  .message__content--received
+    margin-left: 20px
+    background: $subdued
+    &:before
+      left: 0
+      border-right-color: $subdued
+
+  .message__content--sent
+    margin-right: 20px
+    background: $body-background
+    &:before
+      right: 0
+      border-left-color: $body-background
+
+  .message__content--unread
+    border-right: 4px solid $linkblue
+
+// -----------------------------------------------------------------------------
+// Message list paraphernalia
+// -----------------------------------------------------------------------------
+.messages-header,
+.messages-footer
+  padding: 10px 25px
+
+  .copy--h1
+    margin-bottom: 0
+
+  .js-faux-input
+    width: 25px
+    margin-left: 15px
+
+.messages-header--conversation
+  margin-bottom: 10px
+  border-bottom: 1px solid $body-background
+
+.messages-footer--conversation
+  margin-top: 10px
+  border-top: 1px solid $body-background
+
+.messages-controls
+  +font-size(16)
+  line-height: 2.625 // Magic number alert, 42 (the height of the title) / 16
+  text-align: right
+
+.message-list
+  padding-left: 0
+  list-style: none

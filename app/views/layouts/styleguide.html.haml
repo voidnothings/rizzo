@@ -1,14 +1,12 @@
 !!! 5
-%html{class: 'no-js freight js-hover', lang: "en", "ng-app" => "StyleSheetApp"}
+%html{class: 'no-js no-freight', lang: "en"}
 
   %head
-    = render 'layouts/core/head', responsive: false, homepage: false
+    = render 'layouts/core/head', responsive: false, homepage: false, suppress_tynt: (defined?(suppress_tynt) ? suppress_tynt : false)
     = stylesheet_link_tag 'styleguide', :media => "all"
     = stylesheet_link_tag 'prism', :media => "all"
-    = javascript_include_tag 'lonelyplanet_minjs/dist/$'
-    = javascript_include_tag 'jquery/jquery-1.7.2.min'
-    
-  %body.copy--freight
+
+  %body
 
     .wrapper
       .nav-container
@@ -26,34 +24,20 @@
 
       .row.row--content#js-row--content
         .row__inner.row__inner--content
+
+          .row.row--secondary#js-secondary-nav
+            .row__inner.row__inner--secondary
+              = ui_component("navigation/secondary", properties: secondary_nav_items)
+
           .grid-wrapper--10
             = ui_component('navigation/left', properties: left_nav_items)
 
             .main-content.stack#js-main-content
               = yield
 
-        .row--footer-push
 
     .js-config.is-hidden
-
+      = render 'layouts/core/snippets/footer_js'
       = yield :scripts
 
       = javascript_include_tag 'prism'
-      :javascript
-        (function(){
-          var snippets = $$('pre');
-          snippets = (snippets.length == undefined) ? [snippets] : snippets
-          snippets.forEach(function(snippet){
-            if (snippet.firstChild.getBoundingClientRect().height > snippet.getBoundingClientRect().height) {
-              var button = document.createElement('span')
-              button.className = "btn btn--blue btn--slim js-snippet-expand";
-              button.textContent = "Expand snippet";
-              button.on('click', function(e){
-                this.parentNode.find('pre').classList.toggle("is-open");
-              }, false);
-              snippet.parentNode.appendChild(button);
-            }
-          });
-        }())
-      = render 'styleguide/javascripts/copy'
-      = render 'styleguide/javascripts/ajax_content'

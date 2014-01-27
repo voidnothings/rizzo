@@ -13,7 +13,6 @@
   &:after
     content: attr(data-expand)
   &:before
-    +lp-section-toggle-background()
     +transition()
     @extend %empty-abs-generated-content
     @extend %opaque
@@ -42,16 +41,12 @@
 .accordion__input:checked 
   & + .accordion__target
     .accordion__title
-      @extend %chevron-up-after
       &:after
         top: 18px
-      // Let's take the closest unicode character we have (non-freight)
-      .base &:after
-        content: '\22c0'
-      // Then enhance if we have the font
-      .enhanced &:after, .ie8.home &:after
-        content: ""
-
+      // Let's take the closest unicode character we have (no-svg)
+      .no-js &, .no-background-size &
+        &:after
+          content: '\22c0'
 
 
 .accordion__target
@@ -74,7 +69,6 @@
 
 .accordion__title
   position: relative
-  @extend %chevron-down-after
   cursor: pointer
   display: block
   padding-right: 30px
@@ -86,17 +80,18 @@
     pointer-events: none
     position: absolute
     right: 12px
-    top: 17px
+    top: 13px
+    width: 13px
+    height: 13px
+    background-position: top right
   .responsive &
     &:after
       right: 17px
   // Let's take the closest unicode character we have (non-freight)
-  .base &:after
-    content: '\2335'
-  // Then remove it if we have svg
-  .enhanced &:after, .ie8.home &:after
-    content: ""
-    background-position: top right
+  // Let's take the closest unicode character we have (no-svg)
+  .no-js &, .no-background-size &
+    &:after
+      content: '\2335'
   .col--footer &
     &:after
       color: $body-copy

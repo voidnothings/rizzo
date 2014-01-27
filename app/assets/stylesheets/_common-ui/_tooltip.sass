@@ -37,7 +37,7 @@
   top: 130%
   z-index: -1
   +box-shadow(0, 1, 1, 2, $new-header-grey-shadow)
-  +css-arrow-central(top, $width: 10px, $arrowOffset: 22px)
+  +css-arrow-central(top, $size: 10px)
   
   .ie7 &, .ie8 &, .browserIE7 &, .browserIE8 &
     display: none
@@ -48,7 +48,7 @@
   bottom: 130%
   text-shadow: 0px 4px 2px $new-header-grey-shadow
   top: auto
-  +css-arrow-central(bottom, $width: 10px, $arrowOffset: 22px)
+  +css-arrow-central(bottom, $size: 10px)
 
 .tooltip--error
   background-color: $red

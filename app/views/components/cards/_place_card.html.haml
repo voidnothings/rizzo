@@ -1,23 +1,27 @@
-%article.card.card--place.card--single.card--destination.js-card.js-single{class: !card[:image_url] ? 'card--no-image' : card[:strapline] ? 'card--extended-content' : 'card--extended-content--half' }
-  %a.link--wrapper(href="/#{card[:slug]}")
-    - if card[:image_url]
-      %figure.card__hero
-        - if overlay_url = card[:overlay_url]
-          .card__hero__overlay
-            = safe_image_tag(overlay_url, :alt => card[:title])
-        = safe_image_tag(card[:image_url], class: 'card__image', alt: "#{card[:title]}", lazyload: defined?(lazyload))
+:ruby
 
-    .card__content
-      %span.card__context
-        Destination
-      %h2.card__name.js-card-name
-        = card[:title]
-      - if card[:strapline]
-        %p.card__description
-          = card[:strapline]
-    - if card[:things_to_do_count] && card[:lodging_count]
+  css_classes = [
+
+    "card",
+    "card--place",
+    "card--destination",
+    "card--icon",
+    "icon--destination--pin--before",
+    "#{properties[:image_url] ? 'card--extended-content' : 'card--no-image'}",
+    "#{properties[:double?] ? 'card--double card--full-image' : 'card--single'}"
+
+  ].join(" ")
+
+
+%article.js-card{class: css_classes}
+
+  %a.link--wrapper{href: properties[:url]}
+
+    = render partial: "components/cards/partials/card_content", locals: {properties: properties}
+
+    - if properties[:things_to_do_count] && properties[:lodging_count]
       %footer.card__footer
-        %span.destination__item-count.destination__item-count--sights
-          = card[:things_to_do_count]
-        %span.destination__item-count.destination__item-count--lodgings
-          = card[:lodging_count]
+        %span.destination__item-count.destination__item-count--sights.icon--hotel--before
+          = properties[:things_to_do_count]
+        %span.destination__item-count.destination__item-count--lodgings.icon--sight--before
+          = properties[:lodging_count]

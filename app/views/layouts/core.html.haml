@@ -1,48 +1,32 @@
 !!! 5
-<!--[if IE 7]><html class="no-js ie7 js-hover" data-topic="#{yield :topic}" lang="en"><![endif]-->
-<!--[if IE 8]><html class="no-js ie8 js-hover" data-topic="#{yield :topic}" lang="en"><![endif]-->
-<!--[if IE 9]><html class="no-js ie9 js-hover" data-topic="#{yield :topic}" lang="en"><![endif]-->
-<!--[if gt IE 9]><!--><html class='no-js freight js-hover' data-topic="#{yield :topic}" lang="en"><!--<![endif]-->
+<!--[if IE 7]><html class="no-js ie7 no-freight" data-topic="#{yield :topic}" lang="en"><![endif]-->
+<!--[if IE 8]><html class="no-js ie8 no-freight" data-topic="#{yield :topic}" lang="en"><![endif]-->
+<!--[if IE 9]><html class="no-js ie9 no-freight" data-topic="#{yield :topic}" lang="en"><![endif]-->
+<!--[if gt IE 9]><!--><html class='no-js no-freight' data-topic="#{yield :topic}" lang="en"><!--<![endif]-->
 %head
-  = render 'layouts/core/head', responsive: false, homepage: false
-%body.copy--freight
-  .wrap--footer-push
+  = render 'layouts/core/head', responsive: false, homepage: false, suppress_tynt: (defined?(suppress_tynt) ? suppress_tynt : false)
+
+%body
+  .wrapper
     = render 'layouts/core/snippets/body_header', user_nav: defined?(user_nav) ? user_nav : true
 
     .row.row--content#js-row--content
       .row__inner.row__inner--content
-        
+
         - if content_for?(:secondary)
           .row.row--secondary#js-secondary-nav
             .row__inner.row__inner--secondary
               = yield :secondary
-        
+
         = yield
-      
-      .row--footer-push
 
-  .wrap--footer
-    = yield :breadcrumbs
-    = render 'layouts/core/snippets/body_footer'
-
-  .js-config.is-hidden
-    = render 'layouts/core/snippets/fs_init'
-    = js_configuration
-    - unless Rails.env.production?
-      :javascript
-        window.appEnvironment = "#{Rails.env}";
-    - if defined?($JS_VARS)
-      :javascript
-        #{js_hash($JS_VARS)}
-    - if is_lp_office?(true_client_ip(request))
-      :javascript
-        window.lpOffice = true;
-    = yield :scripts
+    .wrapper.wrapper--footer
+      = yield :breadcrumbs
+      = render 'layouts/core/snippets/body_footer'
 
   %div.ad-oneByOne#js-ad-oneByOne
 
+  = render 'layouts/core/snippets/footer_js'
   - if defined? Variant
     /
       = "build: #{Variant.full_namespace}"
-
-

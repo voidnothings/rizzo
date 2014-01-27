@@ -7,17 +7,21 @@
   @extend %rounded-corners
   +box-sizing()
   @extend %inline-block
+  background-color: $linkblue
+  color: white
   cursor: pointer
   font-weight: bold
-  padding: 8px 25px
+  line-height: 1em
+  overflow: hidden
+  padding: 10px 25px
   text-align: center
-  min-height: 40px
+  border: none
   &:hover
     text-decoration: none
   &.is-disabled, &[disabled]
     background-color: $subdued
     color: white
-    .js-hover &:hover
+    &:hover
       background-color: $subdued
 
 
@@ -29,54 +33,88 @@
   display: block
   width: 100% // Ensure inputs also stretch full width
 
+.btn--small
+  padding: 7px 25px
+
+.btn--large
+  padding: 12px 25px
+
 .btn--slim
   min-height: 0
   padding: 4px 6px
 
+.btn--icon
+  &:before
+    display: inline-block
+    height: 1em
+    // -0.2em makes sure the button is still the correct height.
+    margin: -0.2em 0.5em 0 -0.5em
+    position: relative
+    top: 0.1em
+    width: 1em
+
+.btn--icon-only
+  @extend %image-replacement
+  padding: 10px 20px
+  width: 1em
+
+.btn--icon--minus:before
+  content: '\2212'
+  font-size: 1.25em
+  margin-right: 0.5em
+
+// -----------------------------------------------------------------------------
+// Button Layout Modifiers
+// -----------------------------------------------------------------------------
+
+.btn--inline
+  display: inline-block
+  margin-right: 5px
+  overflow: visible
 
 // -----------------------------------------------------------------------------
 // Button Types
 // -----------------------------------------------------------------------------
 
-.btn--bookable
+.btn--yellow
   background-color: $yella
   color: $body-copy
-  .js-hover &:hover
+  &:hover
     background-color: $yella-highlight
 
 .btn--grey
   background-color: $body-copy
   color: white
-  .js-hover &:hover
+  &:hover
     background-color: #57636b
 
 .btn--light-grey
   background-color: $disabled
   color: white
-  .js-hover &:hover
+  &:hover
     background-color: $disabled
-    
+
 .btn--green
   background-color: $green
   color: white
 
-.btn--blue
-  background-color: $linkblue
+.btn--red
+  background-color: $red
   color: white
 
 .btn--white
   background-color: #fff
   color: $lpblue
-  .js-hover &:hover
+  &:hover
     color: $linkblue
 
 .btn--clear
+  background-color: transparent
   border: 1px solid $input-border
   color: $body-copy
 
   .read-more-block &
     +font-size(13)
-    padding: 0 7px
     min-height: 0
 
   .read-more-inline &
@@ -92,11 +130,15 @@
     border: 0
 
     &:after
-      font-weight: 400
+      display: inline-block
       margin-left: 5px
+      width: 9px
+      height: 5px
 
-    .is-closed &
-      @extend %chevron-down-after
-
-    .is-open &
-      @extend %chevron-up-after
+  &.is-active
+    color: white
+    background-color: $active
+    +box-shadow(1, 1, 1, 0, rgba($darkblue, 0.1), true)
+    border-color: transparent
+    &:before, &:after
+      +icon-color(white)

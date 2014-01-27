@@ -1,12 +1,12 @@
 // Dropdown
-// 
+//
 // .dropdown - Lonely Planet masked select elements
-// 
+//
 // Styleguide 3.2
 
 // ----------------------------------------------------------------------------
 // Custom Select Dropdown
-// 
+//
 // Pseudo element has height, background-color and left padding in order to mask
 // the content of dropdown__value if it extends beyond its container
 // ----------------------------------------------------------------------------
@@ -24,12 +24,10 @@
 
 .dropdown__value
   +box-sizing()
-  @extend %chevron-down-after
   @extend %rounded-corners
   @extend %right-icon
   +word-break()
   font-weight: bold
-  background-color: #fff
   background-color: $body-background-offset
   border: 1px solid $body-background-offset
   box-shadow: 1px 1px 1px rgba(3,46,92,0.2)
@@ -44,8 +42,14 @@
     border: none
     font-weight: bold
     +font-size(18)
+  .no-js &, .no-background-size &
+    &.icon--chevron-down--after:after
+      // down-pointing arrowhead, looks quite like a downpointing chevron
+      content: '\02c5'
+      font-size: 15px
 
-  .standout &, .wrap--footer &, .inverted &
+
+  .standout &, .wrapper--footer &, .inverted &
     background-color: #fff
 
   .inverted &
@@ -54,27 +58,9 @@
 
   &:after
     @extend %rounded-corners
-    +font-size(22)
-    background-color: inherit
-    color: inherit
-    line-height: 0
-    padding-left: 5px
-    pointer-events: none
-    right: 0
-    top: 17px
-    width: 20px
-
-  .base 
-    &:after
-      content: '\2335'
-
-  .enhanced &, .ie8.home &
-    &:after
-      background-position: center
-      content: ''
-      height: 100%
-      right: 10px
-      top: 0
+    right: 5px
+    top: 33%
+    width: 14px
 
   .dropdown--first &
     +border-radius-each(4,0,0,4)
@@ -92,7 +78,7 @@
   .field__input--error &
     border-color: $red
 
-.dropdown__value--selected
+.dropdown__value.is-selected
   background-color: #fff
   border: 1px solid $details-panel-border
 

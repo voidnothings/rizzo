@@ -16,13 +16,13 @@
 
 .tab
   +font-size(12)
-  +css-arrow-central(top, $width: 10px, $arrowOffset: 17px)
+  +css-arrow-central(top, $size: 10px)
   background: $body-copy
   color: #fff
   display: block
   float: left
   height: 35px
-  line-height: 25px
+  line-height: 35px
   padding: 0 10px
   position: relative
   text-transform: uppercase
@@ -34,26 +34,15 @@
     top: -21px
     font-weight: normal
   &:before
-    +font-size(28)
     display: inline-block
-    letter-spacing: 2px
+    width: 16px
+    height: 16px
     position: relative
     top: 1px
-    font-weight: normal
+    vertical-align: text-bottom
   &:hover, &.is-active
     background: $red
     text-decoration: none
   &.is-active:after
     color: $red
     display: block
-
-.tab--photos
-  @extend %icon-gallery-before
-
-.tab--videos
-  @extend %icon-video-before
-
-.tab--map
-  @extend %local-marker-before
-  &:before
-    letter-spacing: 0

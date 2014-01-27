@@ -1,3 +1,6 @@
+.user-basket__icon
+  +icon-color(white)
+
 .hero
   width: 100%
   height: 450px
@@ -9,14 +12,14 @@
   background-repeat: no-repeat
   background-size: cover
   .enhanced &, .ie9 &
-    +responsive-image('destinations/best-in-travel/hero/yorkshire', 'jpg')
+    +responsive-image('hero/hero', 'jpg')
   .ie7 &, .ie8 &
-    background-image: url(#{image_path('destinations/best-in-travel/hero/yorkshire-1600.jpg')})
+    background-image: url(#{image_path('hero/hero-1600.jpg')})
   .slothified &
-    background-image: url(#{image_path('homepage/rainforest.jpg')})
+    background-image: url(#{image_path('rainforest.jpg')})
     &:after
       @extend %empty-abs-generated-content
-      background-image: url("#{image_path('homepage/sloth.png')}")
+      background-image: url("#{image_path('sloth.png')}")
       background-repeat: no-repeat
       width: 100%
       height: 270px
@@ -35,12 +38,12 @@
   position: relative
   width: 100%
   &.is-focused
-    .icon--search-glass--grey
-      opacity: 1
     .hero__overlay
       background: rgba(0,0,0,0.5)
     .hero__search
       width: 90%
+    .hero__search__icon
+      opacity: 0.2
 
 .hero__search
   @extend %inline-block
@@ -55,7 +58,7 @@
     overflow: visible
     &:after
       @extend %empty-abs-generated-content
-      background-image: url("#{image_path('homepage/sloth2.png')}")
+      background-image: url("#{image_path('sloth2.png')}")
       background-repeat: no-repeat
       width: 100%
       height: 270px
@@ -94,7 +97,7 @@
   .ie7 &
     width: 500px
     zoom: 1
-  +respond-to(1250)
+  +respond-to(1200)
     padding-top: 320px
 
 .hero__logo
@@ -116,12 +119,18 @@
   @extend %rounded-corners
   &:after
     @extend %empty-abs-generated-content
-    top: 100%
-    right: 140px
+    right: 162px
+    width: 32px
+    height: 32px
+    bottom: -20px
+
+  +respond-to(1200)
+    &:after
+      right: 65px
 
 .speech-bubble--scroll
   @if $is-ie == false
-    padding: 15px
+    margin-bottom: 20px
     overflow-y: scroll
     -webkit-overflow-scrolling: touch
     height: 115px
@@ -138,6 +147,10 @@
   right: 20px
   min-width: 180px
   z-index: 2
+  display: none
+  +respond-to(medium-view)
+    display: block
+  
   .autocomplete__active &
     +transform(translateY(100px))
 
@@ -145,7 +158,7 @@
     .autocomplete__active &
       +transform(none)
 
-  +respond-to(1250)
+  +respond-to(1200)
     right: 30px
     bottom: 20px
 
@@ -169,7 +182,7 @@
   letter-spacing: 0
   display: block
   margin: 0 5px 5px 0
-  +respond-to(1250)
+  +respond-to(1200)
     display: inline-block
   span
     text-transform: lowercase
@@ -180,9 +193,9 @@
   margin-right: 10px
   background-size: 100%
   background-repeat: no-repeat
-  background-image: url("#{image_path('destinations/best-in-travel/homepage/book.png')}")
+  background-image: url("#{image_path('beautifulworld/book.png')}")
   +retinafy()
-    background-image: url("#{image_path('destinations/best-in-travel/homepage/book@2x.png')}")
+    background-image: url("#{image_path('beautifulworld/book@2x.png')}")
 
 .homepage__product__text
   color: white
@@ -204,19 +217,17 @@
     +border-radius(100)
     width: 50px
     height: 50px
-    +respond-to(1250)
+    +respond-to(1200)
       width: 75px
       height: 75px
 
 .hero__author__details
-  display: none
+  display: inline-block
   vertical-align: top
   text-align: left
   margin-left: 10px
   margin-top: 5px
-  +respond-to(medium-view)
-    display: inline-block
-  +respond-to(1250)
+  +respond-to(1200)
     display: block
 
 .hero__product__details
@@ -229,16 +240,15 @@
   .is-open
     background-color: $subdued
     color: $body-copy
+  .btn--blue
+    min-height: 32px
+    margin-top: 5px
 
 
 .hero__author__story--buttons
-  padding: 15px
-  +respond-to(medium-view)
-    padding: 0
   .btn--blue
     display: inline-block
-    +respond-to(medium-view)
-      display: block
+    margin-right: 5px
   .btn--green
     padding-left: 15px
     padding-right: 15px
@@ -254,6 +264,7 @@
   padding: 0
   left: auto
   margin: 0 20px
+  padding: 15px
 
   +respond-to(medium-view)
     left: auto
@@ -261,7 +272,7 @@
     width: 350px
     margin: 0
 
-  +respond-to(1250)
+  +respond-to(1200)
     right: 40px
 
 .hero__author__story__image
@@ -296,20 +307,22 @@
     right: 2px
     width: 61px
     height: 51px
-    background-image: url("#{image_path('destinations/best-in-travel/homepage/win.png')}")
+    background-image: url("#{image_path('best-in-travel/win.png')}")
     background-size: 100%
 
 @if $is-ie == true
   .promo--win:after
     background: none
 
-
+.hero__product__text
+  color: white
 
 .hero__author__content
   p
     +font-size(16)
     line-height: 24px
     margin-bottom: 20px
+    color: $body-copy
   +respond-to(medium-view)
     padding: 20px
   +respond-to(wide-view)
@@ -343,7 +356,10 @@
 
 .hero__panel--story
   top: 100%
-
+  color: $body-copy
+  display: none
+  +respond-to(medium-view)
+    display: block
 
 // Toggle between the search and photo story panels
 #hero-swipe:checked
@@ -352,7 +368,9 @@
   & ~ .hero__panel--story
     top: 0
     .hero__author__story
-      bottom: 155px
+      bottom: 95px
+      +respond-to(1200)
+        bottom: 175px
   & ~ .hero__overlay
     background-color: rgba(0,0,0,0)
 
@@ -360,7 +378,9 @@
   .hero__panel--story
     top: 0
     .hero__author__story
-      bottom: 155px
+      bottom: 95px
+      +respond-to(1200)
+        bottom: 175px
 
 
 // hero autocomplete
@@ -403,7 +423,6 @@
       background-size: 100%
       width: 25px
       height: 100%
-      background-position: center
       margin-left: 8px
 
   .autocomplete__current
@@ -434,3 +453,9 @@
   +respond-to(wide-view)
     .autocomplete__active &
       display: block
+
+.hero__search__icon
+  @extend %image-replacement
+  width: 20px
+  height: 20px
+  opacity: 0.2
