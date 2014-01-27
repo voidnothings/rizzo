@@ -4,6 +4,12 @@
 .simple-form
   @extend %clearfix
 
+.simple-form__field
+  &.boolean
+    overflow: hidden
+    .field__label
+      padding-top: 0
+
 .row--compose
   .simple-form
     @extend %rounded-corners
@@ -22,6 +28,8 @@
       border-top: none
     &.last
       padding-bottom: 20px
+    .field
+      margin-bottom: 0
 
   .simple-form__field--markdown
     padding-top: 0
@@ -30,6 +38,13 @@
       border: none
     .control-label
       display: none
+
+  .radio
+    margin-right: 5px
+    position: relative
+    top: 10px
+    .radio_buttons
+      margin-right: 5px
 
 .btn--moderation
   margin-bottom: 10px
