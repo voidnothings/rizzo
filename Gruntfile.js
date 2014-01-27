@@ -108,6 +108,20 @@ module.exports = function(grunt) {
                 }]
             }
         },
+        copy: {
+            source: {
+                expand: true,
+                cwd: './app/assets/javascripts/lib',
+                src: ['**/*.js', '**/**/*.js'],
+                dest: './public/assets/javascripts/lib'
+            },
+            specs: {
+                expand: true,
+                cwd: './spec/javascripts/lib',
+                src: ['**/*.js', '**/**/*.js'],
+                dest: './public/assets/javascripts/spec'
+            }
+        },
         connect: {
             server: {
                 options: {
@@ -170,11 +184,11 @@ module.exports = function(grunt) {
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     // Tasks
-    grunt.registerTask('default', ['shell:clean_js', 'coffee', 'connect', 'jasmine']);
-    grunt.registerTask('ci', ['coffee', 'connect', 'jasmine']);
+    grunt.registerTask('default', ['shell:clean_js', 'coffee', 'copy', 'connect', 'jasmine']);
+    grunt.registerTask('ci', ['coffee', 'copy', 'connect', 'jasmine']);
     grunt.registerTask('dev', ['connect', 'open:jasmine', 'jasmine', 'watch']);
     grunt.registerTask('wip', ['jasmine:rizzo:build', 'open:jasmine', 'connect:server:keepalive']);
-    grunt.registerTask('report', ['shell:clean_js', 'coffee', 'plato', 'shell:openPlato']);
+    grunt.registerTask('report', ['shell:clean_js', 'coffee', 'copy', 'plato', 'shell:openPlato']);
     grunt.registerTask('imageoptim', ['imageoptim']);
     grunt.registerTask('icon:active', ['grunticon:active', 'shell:clean_icons', 'shell:move']);
     grunt.registerTask('icon:critical', ['grunticon:critical', 'shell:clean_icons', 'shell:move']);

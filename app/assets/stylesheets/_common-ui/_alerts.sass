@@ -6,7 +6,7 @@
   @extend %rounded-corners
   clear: both
   margin: 10px 0
-  padding: 15px 15px 13px 45px
+  padding: 15px 15px 13px 15px
   position: relative
 
   &:before
@@ -15,6 +15,9 @@
     position: absolute
     top: 12px
     width: 20px
+
+  &[class*=icon--]
+    padding-left: 45px
 
 .alert--success
   background: lighten($green, 50%)

@@ -13,6 +13,12 @@ define ["jquery"], ($) ->
       $('.js-toggle-active').on 'click', (event) =>
         $el = $(event.target)
         @_updateClasses($el)
+
+        # Prevent the click event bubbling so we can update this component
+        # by click elsewhere on the document
+        # 
+        # Replace it with the toggleActive/click event
+        event.stopPropagation()
         @broadcast($el)
 
         if event.target.nodeName.toUpperCase() is 'A'
@@ -22,7 +28,7 @@ define ["jquery"], ($) ->
         @_updateClasses($(target))
 
     broadcast: ($el) ->
-      $el.trigger(':toggleActive/click', {active: $el.hasClass('is-active')})
+      $el.trigger(':toggleActive/click', {isActive: $el.hasClass('is-active')})
 
 
     # Private
