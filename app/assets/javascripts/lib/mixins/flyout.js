@@ -36,16 +36,18 @@ define([ "jquery" ], function($) {
     },
 
     this.close = $("#js-row--content").on(":toggleActive/click", function(event, data) {
-      var target = event.target;
+      var target = event.target,
+          $document = $(document);
+
       if (data.isActive) {
-        $(document).on("click.toggleActive", function(event) {
+        $document.on("click.toggleActive", function(event) {
           if (!$(event.target).closest(".js-filter-flyout").length) {
             $("#js-row--content").trigger(":toggleActive/update", target);
-            $(document).off("click.toggleActive");
+            $document.off("click.toggleActive");
           }
         });
       } else {
-        $(document).off("click.toggleActive");
+        $document.off("click.toggleActive");
       }
 
     });
