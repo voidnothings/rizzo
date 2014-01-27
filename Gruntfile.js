@@ -31,7 +31,9 @@ module.exports = function(grunt) {
                     customselectors: {
                         "*": [".icon--$1--before:before, .icon--$1--after:after"],
                         "chevron-right": [".picker__nav--next"],
-                        "chevron-left": [".picker__nav--prev"]
+                        "chevron-left": [".picker__nav--prev"],
+                        "chevron-down": [".select2-choice:after"],
+                        "chevron-up": [".select2-dropdown-open .select2-choice:after"]
                     },
                     datasvgcss: "active.css",
                     datapngcss: "active.png.css",

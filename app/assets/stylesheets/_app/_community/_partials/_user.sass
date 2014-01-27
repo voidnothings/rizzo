@@ -173,16 +173,6 @@
     height: 8px
     width: 8px
 
-.user-info__location
-  +font-size(13)
-  font-weight: bold
-  &:before
-    +font-size(28)
-    font-weight: normal
-    line-height: 0.1em
-    position: relative
-    top: 3px
-
 .user-info__details--footer
   @extend %clearfix
   +font-size(13)
@@ -191,24 +181,28 @@
   font-weight: bold
 
 .user-info__detail
-  margin-right: 10px
+  margin-left: 10px
+  &:first-child
+    margin-left: 0
 
-.user-info__detail
+.user-info__location
+  +font-size(13)
+  font-weight: bold
+
+.user-info__detail,
+.user-info__location
   &:before
     +font-size(24)
     line-height: 0.1em
-    margin-right: 5px
+    +size(18px)
+    margin-right: 4px
     position: relative
-    top: 3px
-  &.text-icon--clock
-    &:before
-      font-weight: normal
+    top: 5px
 
 .user-info__posted-date--icon
   &:before
     display: inline-block
-    height: 18px
-    width: 18px
+    +size(18px)
     margin-right: 2px
     vertical-align: middle
 
