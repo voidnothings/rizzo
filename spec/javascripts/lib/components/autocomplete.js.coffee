@@ -1,4 +1,4 @@
-require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
+require ['lib/components/autocomplete'], (AutoComplete) ->
 
   describe 'AutoComplete', ->
 
@@ -405,7 +405,7 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
             loadFixtures 'autocomplete_mobile.html'
 
           it 'should populate the input element with the selected basic list item contents', ->
-            testingMap = 
+            testingMap =
               title: 'title'
             newConfig = {id: 'my_search', uri: '/search', map: testingMap}
             myAutoComplete = new AutoComplete newConfig
@@ -498,7 +498,7 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
         describe 'adding items to a populated list', ->
           beforeEach ->
             myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
-            
+
           it 'should remove the previous results from the list', ->
             spyOn myAutoComplete, '_emptyResults'
             myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
@@ -526,7 +526,7 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
           loadFixtures 'autocomplete_mobile.html'
           myAutoComplete = new AutoComplete newConfig
           myAutoComplete._populateResults SEARCH_RESULTS, SEARCH_TERM
-          
+
         it 'should limited the number of search items generated', ->
           results = myAutoComplete.results.childNodes
 
@@ -537,11 +537,11 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
       describe 'generating a list item from a result item', ->
         item = null
         searchTerm = 'Lon'
-  
+
         describe 'creating a text item', ->
-          testingMap = 
+          testingMap =
             title: 'title'
-    
+
           newConfig = {id: 'my_search', uri: '/search', map: testingMap}
 
           beforeEach ->
@@ -557,14 +557,14 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
           it 'should highlight the search term', ->
             expect(item.tagName).toBe 'LI'
             expect(item.innerHTML).toBe '<b>Lon</b>don'
-        
+
         describe 'creating a basic link item', ->
-          testingMap = 
+          testingMap =
             title: 'title',
             uri: 'uri'
-    
+
           newConfig = {id: 'my_search', uri: '/search', map: testingMap}
-    
+
           beforeEach ->
             loadFixtures 'autocomplete_mobile.html'
             myAutoComplete = new AutoComplete newConfig
@@ -586,12 +586,12 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
             expect(anchor.innerHTML).toBe '<b>Lon</b>don'
 
         describe 'creating adding data attributes to a link item', ->
-          testingMap = 
+          testingMap =
             title: 'title',
             data: ['uri', 'type']
-    
+
           newConfig = {id: 'my_search', uri: '/search', map: testingMap}
-    
+
           beforeEach ->
             loadFixtures 'autocomplete_mobile.html'
             myAutoComplete = new AutoComplete newConfig
@@ -605,13 +605,14 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
             expect(item.getAttribute('data-type')).toBe SEARCH_RESULTS[0].type
 
         describe 'creating a typed link item', ->
-          testingMap = 
+          testingMap =
             title: 'title',
             uri: 'uri',
-            type: 'type'
-    
+            type: 'type',
+            icon: 'icon--place--pin--before'
+
           newConfig = {id: 'my_search', uri: '/search', map: testingMap}
-    
+
           beforeEach ->
             loadFixtures 'autocomplete_mobile.html'
             myAutoComplete = new AutoComplete newConfig
@@ -626,9 +627,9 @@ require ['lib/mobile/autocomplete_mobile'], (AutoComplete) ->
             expect(anchor.getAttribute('href')).toBe SEARCH_RESULTS[0].uri
             expect($(anchor)).toHaveClass 'autocomplete__result__link'
             expect($(anchor)).toHaveClass 'autocomplete__result__typed'
-            expect($(anchor)).toHaveClass "icon--#{SEARCH_RESULTS[0].type}--before"
+            expect($(anchor)).toHaveClass "icon--place--pin--before"
             expect($(anchor)).toHaveClass 'icon--white--before'
-   
+
           it 'should contain an anchor tag containing the highlighted search term', ->
             anchor = item.childNodes[0]
 
