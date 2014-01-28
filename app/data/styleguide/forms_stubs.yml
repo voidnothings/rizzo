@@ -84,6 +84,36 @@ field_components:
     :label: "This is the checkbox"
 
   -
+    :styleguide_title: "Radio Buttons Field"
+    :id: "radio_buttons"
+    :label: "Radio options"
+    :options:
+      -
+        :name: 'foo[]'
+        :id: 'foo-1'
+        :value: '1'
+        :label: 'One'
+        :data:
+          :key: "value"
+          :super: "man"
+      -
+        :name: 'foo[]'
+        :id: 'foo-2'
+        :value: '2'
+        :label: 'Two'
+        :data:
+          :key: "value"
+          :super: "man"
+      -
+        :name: 'foo[]'
+        :id: 'foo-3'
+        :value: '3'
+        :label: 'Three'
+        :data:
+          :key: "value"
+          :super: "man"
+
+  -
     :styleguide_title: "Select field"
     :label: "Select legend"
     :id: "select_id"
