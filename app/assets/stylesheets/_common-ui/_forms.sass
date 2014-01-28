@@ -63,30 +63,6 @@
   float: none
   width: auto
 
-.input
-  +box-sizing()
-  +transition(background, 0.3, ease)
-  @extend %rounded-corners
-
-  background-color: $body-background-offset
-  border: 1px solid $body-background-offset
-  color: $body-copy
-  padding: 9px 10px
-  width: 100%
-  +placeholder()
-    color: $body-copy
-
-  &:focus
-    background-color: #fff
-    border: 1px solid $details-panel-border
-
-  .standout &
-    background-color: #fff
-
-    &:focus
-      background-color: #fff
-      border: 1px solid $details-panel-border
-
 .input__container
   position: relative
 
