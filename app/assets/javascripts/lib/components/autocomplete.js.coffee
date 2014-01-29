@@ -269,13 +269,17 @@ define [], ->
 
       highlightedText = @_highlightText item[@config.map.title], searchTerm
 
-      if @config.map.uri? and item.uri?
+      if @config.map.uri? and item[@config.map.uri]?
         anchor = document.createElement 'A'
         anchor.href = item[@config.map.uri]
-        anchor.className = @config.resultLinkClass
-        iconClass = item['icon']
-        iconClass || iconClass = if item[@config.map.type] == "place" then "icon--place--pin--before" else "icon--#{item[@config.map.type]}--before"
-        anchor.className += " autocomplete__result__typed #{iconClass} icon--white--before" if @config.map.type
+        anchor.className = "#{@config.resultLinkClass} icon--white--before"
+        if item.icon
+          anchor.className += " #{item.icon}--before"
+        else if item[@config.map.type] == 'place'
+          anchor.className += ' icon--place--pin--before'
+        else
+          anchor.className += " icon--#{item[@config.map.type]}--before"
+        @config.map.type && anchor.className += " autocomplete__result__typed"
         anchor.innerHTML = highlightedText
         listItem.appendChild anchor
       else
