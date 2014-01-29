@@ -212,7 +212,7 @@ module StyleguideHelper
  end
 
   def get_colours(file)
-    colours = File.read(File.expand_path("../../assets/stylesheets/_variables/#{file}.sass", __FILE__))
+    colours = File.read(File.expand_path("../../assets/stylesheets/sass/variables/#{file}.sass", __FILE__))
     colours = colours.split("// -----------------------------------------------------------------------------\n")
     colours.delete_if(&:empty?)
     groups = []
