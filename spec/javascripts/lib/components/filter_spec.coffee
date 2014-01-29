@@ -6,7 +6,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
 
     data =
       disable_price_filters: true
-      external_filter: '5star,4star,3star,2star'
+      external_filter: '5star,4star,3_star,2-star'
 
     data_alt =
       disable_price_filters: false
@@ -123,7 +123,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
 
 
     describe 'setting filter values', ->
-      external_filters = "5star,4star,3star,2star"
+      external_filters = "5star,4star,3_star,2-star"
 
       beforeEach ->
         loadFixtures('filter.html')
@@ -164,7 +164,7 @@ require ['public/assets/javascripts/lib/components/filter.js'], (Filter) ->
 
 
     describe 'resetting the filter', ->
-      external_filter = ["5star","4star","3star","2star"]
+      external_filter = ["5star","4star","3_star","2-star"]
 
       beforeEach ->
         window.filter = new Filter({el: '#js-filters-reset'})
