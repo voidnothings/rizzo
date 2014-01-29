@@ -2,7 +2,7 @@ define [], () ->
 
   class PageState
 
-    augmentedUrls: /(.*)(?=\/rated$|\/apartments$|\/hostels-and-budget-hotels$|\/guesthouses$)/
+    augmentedUrls: /(.*)(?=\/rated$|\/apartments$|\/hostels-and-budget-hotels$|\/guesthouses|\/restaurants|\/entertainment|\/sights|\/activities|\/shopping|\/transport|\/events|\/tours$)/
     checkFilters: /filters/
     checkSearch: /search/
     legacyBrowsers: /(browser)?ie(7|8)/i
