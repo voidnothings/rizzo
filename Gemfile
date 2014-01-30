@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.16'
 gem 'haml'
 gem 'sass'
+gem 'sass-globbing'
 gem 'haml-rails'
 gem 'sass-rails', '~> 3.2.3'
 gem 'coffee-rails','3.2.2'
@@ -13,7 +14,7 @@ gem 'unicorn'
 gem 'rake'
 gem 'airbrake'
 
-group :test do 
+group :test do
   gem 'guard'
   gem 'guard-coffeescript'
   gem 'rspec', '~> 2.10.0'
