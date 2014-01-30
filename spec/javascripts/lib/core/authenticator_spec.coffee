@@ -160,12 +160,16 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
 
         @auth.constructor()
 
-      it 'produces the correct new status url when NOT on the live site', ->
-        spyOn(@auth, 'getUrl').andReturn('http://community.lonelyplanet.com')
+      it 'produces the correct new status url when NOT on the live site or thorntree staging', ->
+        spyOn(@auth, 'getUrl').andReturn('http://shop.lonelyplanet.com')
         expect(@auth.getNewStatusUrl()).toBe('/users/status')
 
       it 'produces the correct new status url when on the live site', ->
         spyOn(@auth, 'getUrl').andReturn('http://www.lonelyplanet.com')
+        expect(@auth.getNewStatusUrl()).toBe('/thorntree/users/status')
+
+      it 'produces the correct new status url when on thorntree staging', ->
+        spyOn(@auth, 'getUrl').andReturn('https://community.lonelyplanet.com')
         expect(@auth.getNewStatusUrl()).toBe('/thorntree/users/status')
 
       it 'generates the correct urls', ->
