@@ -1,7 +1,7 @@
 // -----------------------------------------------------------------------------
-// 
+//
 // Typographic Base
-// 
+//
 // -----------------------------------------------------------------------------
 
 html
@@ -18,7 +18,7 @@ body
   color: $body-copy
 
 // -----------------------------------------------------------------------------
-// Typographic Element Definitions 
+// Typographic Element Definitions
 // -----------------------------------------------------------------------------
 
 p
@@ -34,7 +34,12 @@ a
 em
   font-style: normal
 
+// -----------------------------------------------------------------------------
+// Text selection
+//
 // Needs to be declared twice to work properly cross browser, not to be combined
+// -----------------------------------------------------------------------------
+
 ::-moz-selection
   background-color: $active
   color: white
@@ -43,7 +48,3 @@ em
   background-color: $active
   color: white
 
-// Override Chrome's agressive defaults
-hr
-  border: none
-  border-bottom: 1px solid $subdued
