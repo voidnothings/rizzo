@@ -21,6 +21,9 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
     # Subscribe
     listen: ->
 
+      $(LISTENER).on ':cards/received', (e, data) =>
+        @_clearFilterSubcategory()
+
       $(LISTENER).on ':page/received', (e, data) =>
         @_clearFilterSubcategory()
         @_update(data)
