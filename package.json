@@ -6,7 +6,7 @@
         "grunt": "latest",
         "grunt-contrib-connect": "latest",
         "grunt-contrib-coffee": "latest",
-        "grunt-contrib-jasmine": "latest",
+        "grunt-contrib-jasmine": "0.5.2",
         "grunt-contrib-watch": "latest",
         "grunt-contrib-copy": "latest",
         "grunt-imageoptim": "latest",
