@@ -11,9 +11,12 @@ define ['jquery', 'gpt'], ->
 
     adUnits: {}
     firstLoaded: false
+    polls: {}
+
 
     init : () ->
 
+      @addEvents()
       # GPT Boilerplate code
       window.googletag = window.googletag || {}
       googletag.cmd = googletag.cmd || []
@@ -110,7 +113,13 @@ define ['jquery', 'gpt'], ->
         # Kick off polling where needed.
         for elId of toPoll
           if toPoll.hasOwnProperty(elId)
-            adManager.poll document.getElementById(elId), toPoll[elId]
+            adManager.poll document.getElementById(elId), toPoll[elId], elId
+
+
+    addEvents : ->
+      $("#js-card-holder").on ":cards/request :page/request", ->
+        for poll of adManager.polls
+          clearInterval(adManager.polls[poll])
 
     checkMpu : (adEl, iframe) ->
       if iframe.width() > 310
@@ -216,28 +225,26 @@ define ['jquery', 'gpt'], ->
         e && e.preventDefault() && e.stopPropagation()
 
     # Abstract this polling functionality out for use in both checkMpu and hideEmpty
-    poll : (adEl, callback) ->
+    poll : (adEl, callback, id) ->
       count = 0
       maxPoll = 15000 # The maximum amount of milliseconds to poll for
       timeout = 250
-
       # Ugly but necessary. DOM Mutation events are deprecated, and there's not enough support for MutationObserver yet so we have to poll.
-      poll = window.setInterval ->
+      adManager.polls["poll" + id] = window.setInterval ->
         count++
 
         # Make sure we're not running this thing indefinitely
         if (count >= maxPoll/timeout)
-          window.clearInterval poll
+          window.clearInterval adManager.polls["poll" + id]
           return
 
         $(adEl).find('iframe').each ->
           iframe = $(this)
           contents = iframe.contents()
-
           # If something's been loaded into our ad element, we're good to go
           if adEl.style.display isnt 'none' and !!contents.find('body').html()
 
-            window.clearInterval poll
+            window.clearInterval adManager.polls["poll" + id]
 
             if not adManager.firstLoaded and window.lp and lp.fs and lp.fs.time
               window.lp.fs.time(
