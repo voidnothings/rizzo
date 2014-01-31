@@ -5,7 +5,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
     $.extend(@prototype, EventEmitter)
 
     LISTENER = '#js-card-holder'
-    
+
     # @params {}
     # el: {string} selector for parent element
     constructor: (args) ->
@@ -19,12 +19,17 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
 
 
     # Subscribe
-    listen: ->  
+    listen: ->
+
+      $(LISTENER).on ':cards/received', (e, data) =>
+        @_clearFilterSubcategory()
 
       $(LISTENER).on ':page/received', (e, data) =>
+        @_clearFilterSubcategory()
         @_update(data)
 
       $(LISTENER).on ':filter/reset', =>
+        @_clearFilterSubcategory()
         @_reset()
 
 
@@ -44,8 +49,8 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
         $this = $(e.currentTarget)
         filters = $this.data('filter')
         @_set(filters, true)
-        @config = 
-          callback: "trackFilter", 
+        @config =
+          callback: "trackFilter",
           stack: $this.data("stack-kind") or ""
         @trigger(':cards/request', [@_serialize(), @config])
 
@@ -63,13 +68,16 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
         @_showGroup('price')
         @_enable('price')
 
+    _clearFilterSubcategory: ->
+      $(LISTENER).attr("data-filter-subcategory", "false")
+
     _hideGroup: (name) ->
       @$el.find(".js-#{name}-filter").addClass('is-hidden')
 
     _showGroup: (name) ->
       @$el.find(".js-#{name}-filter").removeClass('is-hidden')
 
-    _enable: (name) ->  
+    _enable: (name) ->
       @$el.find(".js-#{name}-filter").find('input[type=checkbox]').attr('disabled', false)
 
     _toggleActiveClass: (element) ->
@@ -92,7 +100,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
 
     _reset: () ->
       for input in @$el.find('input[type=checkbox]')
-        $input = $(input) 
+        $input = $(input)
         if $input.attr('name')
           $input.attr('checked', false)
           label = $input.siblings('label.js-filter-label')

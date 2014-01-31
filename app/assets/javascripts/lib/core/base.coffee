@@ -35,7 +35,8 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
       $.ajax
         url: @auth.getNewStatusUrl()
         dataType: "json"
-        error: @oldAuthenticateUser(@auth)
+        error: =>
+          @oldAuthenticateUser(@auth)
         success: (user) =>
           # The data returned is defined in community at: app/controllers/users_controller.rb@status
           window.lp.user = user
