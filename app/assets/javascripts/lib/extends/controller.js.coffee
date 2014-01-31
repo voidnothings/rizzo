@@ -67,10 +67,10 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
         # Modern browsers
         # WebKit fires a popstate event on document load
         # https://code.google.com/p/chromium/issues/detail?id=63040
-        setTimeout(( =>
-          $(window).bind 'popstate', =>
-            @setUrl(@getUrl()) unless history.state is null
-        ), 1)
+        # setTimeout(( =>
+        #   $(window).bind 'popstate', =>
+        #     @setUrl(@getUrl()) unless history.state is null
+        # ), 1)
 
       else if @_supportsHash()
         #ie8 and ie9
