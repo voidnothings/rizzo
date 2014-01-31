@@ -5,6 +5,7 @@ paths:
   flamsteed: "flamsteed/lib/javascripts/flamsteed"
   sailthru: "sailthru/v1"
   s_code: "omniture/s_code"
+  trackjs: "trackjs/trackjs"
 
 modules:
   - name: 'app_core'
