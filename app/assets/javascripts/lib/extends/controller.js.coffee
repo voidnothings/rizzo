@@ -10,7 +10,9 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
     constructor: (args = {}) ->
       # Ignore initial popstate in chrome
       # https://code.google.com/p/chromium/issues/detail?id=63040
-      @watchPopState = false
+      @popStateFired = false
+      @currentUrl = @getUrl()
+
       $.extend @config, args
       @init()
       @listen()
@@ -69,7 +71,10 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
         # Modern browsers
         # WebKit fires a popstate event on document load
         $(window).bind 'popstate', =>
-          @setUrl(@getUrl()) if @watchPopState
+          if !@popStateFired
+            @popStateFired = true
+            if @getUrl() is @currentUrl then return
+          @setUrl(@getUrl())
 
       else if @_supportsHash()
         #ie8 and ie9
@@ -140,7 +145,9 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
           window.history.replaceState({}, null, url)
         else
           window.history.pushState({}, null, url)
-          @watchPopState = true;
+
+          # Chrome workaround
+          @currentUrl = @getUrl;
       else
         # Ensure we don't trigger a refresh
         @allowHistoryNav = false

@@ -49,6 +49,7 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
       beforeEach ->
         window.controller = new Controller()
         spyOn(controller, "_generateState")
+        controller.popStateFired = false;
         controller.init()
 
       it 'calls generateState with the current url', ->
@@ -58,12 +59,13 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
     describe 'initialisation without support for history.pushState', ->
       beforeEach ->
         window.controller = new Controller()
-        location.href = "#!foo"
         spyOn(controller, "_supportsHistory").andReturn(false)
         spyOn(controller, "_onHashChange")
+        controller.popStateFired = false;
         controller.init()
 
       it 'calls _onHashChange', ->
+        $(window).trigger('hashchange')
         expect(controller._onHashChange).toHaveBeenCalled()
 
 
@@ -169,19 +171,23 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         expect(history.pushState).toHaveBeenCalledWith({}, null, "/test")
 
       afterEach ->
-        controller.watchPopState = false
+        controller.popStateFired = false
+
 
     describe 'updating hash bang', ->
       beforeEach ->
         window.controller = new Controller()
         spyOn(controller, '_supportsHistory').andReturn(false)
+        spyOn(controller, '_supportsHash').andReturn(true)
+        spyOn(controller, 'setHash')
+        controller.popStateFired = false
         controller._navigate("/test")
 
       afterEach ->
         window.location.hash = ""
 
       it 'the hash is appended to the url', ->
-        expect(window.location.hash).toContain('test')
+        expect(controller.setHash).toHaveBeenCalledWith('/test')
 
 
     describe 'when we dont support pushState', ->
@@ -243,12 +249,17 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         loadFixtures('controller.html')
         window.controller = new Controller()
         spyOn(controller, "_supportsHistory").andReturn(true)
+        spyOn(controller, "getUrl").andReturn("http://www.lonelyplanet.com/england/london")
         spyOn(controller, "setUrl")
 
       it 'does not refresh the page', ->
-        controller.watchPopState = false;
+        controller.popStateFired = false;
+        controller.currentUrl = "http://www.lonelyplanet.com/england/london"
         $(window).trigger('popstate')
         expect(controller.setUrl).not.toHaveBeenCalled()
+
+      afterEach ->
+        controller.popStateFired = false
 
 
     describe 'after first load', ->
@@ -256,10 +267,27 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         loadFixtures('controller.html')
         window.controller = new Controller()
         spyOn(controller, "_supportsHistory").andReturn(true)
+        spyOn(controller, "getUrl").andReturn("http://www.lonelyplanet.com/england/london?search=foo")
         spyOn(controller, "setUrl")
 
       it 'refreshes the page', ->
-        controller.watchPopState = true;
+        controller.popStateFired = false;
+        controller.currentUrl = "http://www.lonelyplanet.com/england/london"
+        $(window).trigger('popstate')
+        expect(controller.setUrl).toHaveBeenCalled()
+
+
+    describe 'returning to the first page', ->
+      beforeEach ->
+        loadFixtures('controller.html')
+        window.controller = new Controller()
+        spyOn(controller, "_supportsHistory").andReturn(true)
+        spyOn(controller, "getUrl").andReturn("http://www.lonelyplanet.com/england/london")
+        spyOn(controller, "setUrl")
+
+      it 'refreshes the page', ->
+        controller.popStateFired = true;
+        controller.currentUrl = "http://www.lonelyplanet.com/england/london"
         $(window).trigger('popstate')
         expect(controller.setUrl).toHaveBeenCalled()
 
