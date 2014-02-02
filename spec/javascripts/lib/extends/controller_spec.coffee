@@ -4,12 +4,12 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
 
     LISTENER = '#js-card-holder'
 
-    serialized = 
+    serialized =
       url: "http://www.lonelyplanet.com/france/paris/hotels"
       urlWithSearchAndFilters: "http://www.lonelyplanet.com/england/london/hotels?utf8=✓&search%5Bpage_offsets%5D=0%2C58&search%5Bfrom%5D=29+May+2013&search%5Bto%5D=30+May+2013&search%5Bguests%5D=2&search%5Bcurrency%5D=USD&filters%5Bproperty_type%5D%5B3star%5D=true&filters%5Blp_reviewed%5D=true"
       urlParams: "utf8=✓&search%5Bfrom%5D=29+May+2013&search%5Bto%5D=30+May+2013&search%5Bguests%5D=2&search%5Bcurrency%5D=USD&filters%5Bproperty_type%5D%5B3star%5D=true&filters%5Blp_reviewed%5D=true"
       newUrlWithSearchAndFilters: "filters%5Bproperty_type%5D%5B4star%5D=true"
-    
+
     deserialized =
       utf8: "✓"
       search:
@@ -22,7 +22,7 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
           "3star": "true"
         lp_reviewed: "true"
 
-    newParams = 
+    newParams =
       filters:
         property_type:
           "4star": true
@@ -32,8 +32,9 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
     appendParams =
       page: 2
 
-    analytics = 
+    analytics =
       callback: "setSearch"
+
 
     describe 'Object', ->
 
@@ -71,23 +72,23 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
     # Private Methods
     # --------------------------------------------------------------------------
 
-    describe 'generating state', ->
+    describe 'generating application state', ->
       beforeEach ->
         window.controller = new Controller()
         spyOn(controller, "getParams").andReturn(serialized.urlParams)
 
-      it 'updates the state object with the search parameters', ->
+      it 'updates the application state object with the search parameters', ->
         controller._generateState()
         expect(controller.state).toEqual(deserialized)
 
 
-    describe 'updating state', ->
+    describe 'updating application state', ->
       beforeEach ->
         window.controller = new Controller()
         spyOn(controller, "getParams").andReturn(serialized.newUrlWithSearchAndFilters)
         controller._generateState()
 
-      it 'creates a new state', ->
+      it 'creates a new application state', ->
         controller._updateState(newParams)
         expect(controller.state.filters["property_type"]["4star"]).toBe(true)
 
@@ -100,12 +101,12 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         controller._generateState()
 
       describe 'with pushState support', ->
-        it 'serializes the state with the document root', ->
+        it 'serializes the application state with the document root', ->
 
           newUrl = controller._createUrl()
           expect(newUrl).toBe("/?" + serialized.newUrlWithSearchAndFilters)
 
-        it 'serializes the state with the *new* document root', ->
+        it 'serializes the application state with the *new* document root', ->
 
           newUrl = controller._createUrl("/reviewed")
           expect(newUrl).toBe("/reviewed?" + serialized.newUrlWithSearchAndFilters)
@@ -129,11 +130,11 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         spyOn(controller, "_serializeState").andReturn(serialized.newUrlWithSearchAndFilters)
         spyOn(controller, "getDocumentRoot").andReturn("/foo")
 
-      it 'serializes the state with the document root and appends .json', ->
+      it 'serializes the application state with the document root and appends .json', ->
         newUrl = controller._createRequestUrl()
         expect(newUrl).toBe("/foo.json?" + serialized.newUrlWithSearchAndFilters)
 
-      it 'serializes the state with the *new* document root and appends .json', ->
+      it 'serializes the application state with the *new* document root and appends .json', ->
         newUrl = controller._createRequestUrl("/bar")
         expect(newUrl).toBe("/bar.json?" + serialized.newUrlWithSearchAndFilters)
 
@@ -144,7 +145,7 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         controller.state = deserialized
         controller._updateOffset({page_offsets: 3})
 
-      it 'should update the state with the returned page offset', ->
+      it 'should update the application state with the returned page offset', ->
         expect(controller.state.search.page_offsets).toBe(3)
 
 
@@ -167,6 +168,8 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
       it 'history.pushState is called', ->
         expect(history.pushState).toHaveBeenCalledWith({}, null, "/test")
 
+      afterEach ->
+        controller.watchPopState = false
 
     describe 'updating hash bang', ->
       beforeEach ->
@@ -230,6 +233,35 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
       it 'enters the ajax function', ->
         expect($.ajax).toHaveBeenCalled()
 
+
+    # --------------------------------------------------------------------------
+    # Back / Forward
+    # --------------------------------------------------------------------------
+
+    describe 'on first load', ->
+      beforeEach ->
+        loadFixtures('controller.html')
+        window.controller = new Controller()
+        spyOn(controller, "_supportsHistory").andReturn(true)
+        spyOn(controller, "setUrl")
+
+      it 'does not refresh the page', ->
+        controller.watchPopState = false;
+        $(window).trigger('popstate')
+        expect(controller.setUrl).not.toHaveBeenCalled()
+
+
+    describe 'after first load', ->
+      beforeEach ->
+        loadFixtures('controller.html')
+        window.controller = new Controller()
+        spyOn(controller, "_supportsHistory").andReturn(true)
+        spyOn(controller, "setUrl")
+
+      it 'refreshes the page', ->
+        controller.watchPopState = true;
+        $(window).trigger('popstate')
+        expect(controller.setUrl).toHaveBeenCalled()
 
 
     # --------------------------------------------------------------------------

@@ -5,10 +5,12 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
     $.extend(@prototype, EventEmitter)
 
     LISTENER = '#js-card-holder'
-
     state: {}
 
     constructor: (args = {}) ->
+      # Ignore initial popstate in chrome
+      # https://code.google.com/p/chromium/issues/detail?id=63040
+      @watchPopState = false
       $.extend @config, args
       @init()
       @listen()
@@ -66,11 +68,8 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
       if @_supportsHistory()
         # Modern browsers
         # WebKit fires a popstate event on document load
-        # https://code.google.com/p/chromium/issues/detail?id=63040
-        # setTimeout(( =>
-        #   $(window).bind 'popstate', =>
-        #     @setUrl(@getUrl()) unless history.state is null
-        # ), 1)
+        $(window).bind 'popstate', =>
+          @setUrl(@getUrl()) if @watchPopState
 
       else if @_supportsHash()
         #ie8 and ie9
@@ -141,6 +140,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
           window.history.replaceState({}, null, url)
         else
           window.history.pushState({}, null, url)
+          @watchPopState = true;
       else
         # Ensure we don't trigger a refresh
         @allowHistoryNav = false
