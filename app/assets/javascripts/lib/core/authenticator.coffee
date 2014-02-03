@@ -3,13 +3,13 @@ define ['jquery', 'lib/utils/page_state'], ($, PageState)->
   class Authenticator extends PageState
 
     @version = '0.0.13'
-    
+
     constructor: () ->
       @options = @createUrls(@getDomain())
       @userState = @userSignedIn()
       @el = $('.js-user-nav')
       @signonWidget()
-    
+
     getDomain: ->
       if window.location.hostname is "www.lpstaging.com" then "lpstaging.com" else "lonelyplanet.com"
 
@@ -63,7 +63,7 @@ define ['jquery', 'lib/utils/page_state'], ($, PageState)->
       if window.lp.user and lp.user.unread_message_count > 0
         $('.js-user-msg').append($("<span>#{lp.user.unread_message_count}</span>").addClass("nav__submenu__notification"))
 
-    emptyUserNav: -> 
+    emptyUserNav: ->
       @el.removeClass('is-signed-in')
       $('a.js-user-join, a.js-user-signin, div.js-user-box').remove()
 
@@ -78,7 +78,7 @@ define ['jquery', 'lib/utils/page_state'], ($, PageState)->
       optionElements =  ("<a class='nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
       userMenu = "<span class='wv--hidden nav--offscreen__title'>#{@lpUserName}</span><div class='nav__submenu nav__submenu--user'><div class='nav--stacked nav__submenu__content icon--arrow-up--green--after nav__submenu__content--user nav-user-options js-user-options'><div class='nav__submenu__item nav__submenu__title'>#{@lpUserName}</div>#{optionElements}</div></div>"
 
-    
+
     userAvatar: ->
       if window.lp.user then window.lp.user.avatar else "#{@options.membersUrl}/#{@lpUserName}/mugshot/mini"
 
@@ -93,19 +93,19 @@ define ['jquery', 'lib/utils/page_state'], ($, PageState)->
       window.location= @options.signOutUrl
 
     getLocalData:(k)->
-      if (@supportStorage())
+      if (window.lp.supports.localStorage)
         window.localStorage.getItem(k)
       else
         @localDataFallback(k)
-    
+
     setLocalData:(k,v)->
-      if (@supportStorage())
+      if (window.lp.supports.localStorage)
         window.localStorage.setItem(k,v)
       else
         window[k] = v
-    
+
     delAllLocalData:()->
-      if (@supportStorage())
+      if (window.lp.supports.localStorage)
         window.localStorage.clear()
 
     delLocalData:(k)->
@@ -119,10 +119,3 @@ define ['jquery', 'lib/utils/page_state'], ($, PageState)->
         when 'lp-received-msg' then 0
         when 'lp-sent-msg' then 0
         else null
-
-    supportStorage: ->
-      try
-        (window.localStorage) && (window['localStorage'] != null)
-      catch error
-        false
-

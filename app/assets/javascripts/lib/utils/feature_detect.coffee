@@ -1,11 +1,11 @@
 # ------------------------------------------------------------------------------
-# 
+#
 # Bucket Class for all our feature detection
-# 
+#
 # To add a new feature, extend the features object.
 # The key will become the class added to the <html>.
 # The corresponding function should return true or false.
-# 
+#
 # ------------------------------------------------------------------------------
 
 (->
@@ -19,7 +19,7 @@
         msTransform: "-ms-transform"
         MozTransform: "-moz-transform"
         transform: "transform"
-      
+
       # Add it to the body to get the computed style.
       document.body.insertBefore el, null
       for t of transforms
@@ -34,11 +34,9 @@
       "placeholder" of document.createElement("input")
 
   for feature of features
-    window.lp = window.lp || {}
-    window.lp.supports = window.lp.supports || {}
-    lp.supports[feature] = !!features[feature]()
+    window.lp.supports[feature] = !!features[feature]()
 
-    if lp.supports[feature]
+    if window.lp.supports[feature]
       document.documentElement.className += ' supports-'+feature
     else
       document.documentElement.className += ' no-'+feature+'-support'

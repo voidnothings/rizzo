@@ -3,14 +3,14 @@ define ['jsmin'], ($)->
   class Authenticator
 
     @version = '0.0.1'
-    
+
     constructor: () ->
       @options = @createUrls(@getDomain())
       @$el = $('.js-user-nav')
       unless @$el.length is 0
         @userState = @userSignedIn()
         @signonWidget()
-    
+
     getDomain: ->
       if window.location.hostname is "www.lpstaging.com" then "lpstaging.com" else "lonelyplanet.com"
 
@@ -62,7 +62,7 @@ define ['jsmin'], ($)->
       userBoxElement.innerHTML = userImage + userMenu
       @$el.appendChild(userBoxElement)
 
-    emptyUserNav: -> 
+    emptyUserNav: ->
       @$el.classList.remove('is-signed-in')
       signedInElems = $('a.js-user-join, a.js-user-signin, div.js-user-box')
       for i in signedInElems
@@ -78,10 +78,10 @@ define ['jsmin'], ($)->
       ]
       optionElements =  ("<a class='nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
       userMenu = "<span class='wv--hidden nav--offscreen__title'>#{@lpUserName}</span><div class='nav__submenu nav__submenu--user'><div class='nav--stacked nav__submenu__content nav__submenu__content--user nav-user-options js-user-options'><div class='nav__submenu__item nav__submenu__title'>#{@lpUserName}</div>#{optionElements}</div></div>"
-    
+
     signInUrl:->
       "https://secure.lonelyplanet.com/sign-in/login?service=#{escape(@getLocation())}"
-    
+
     userAvatar: ->
       "#{@options.membersUrl}/#{@lpUserName}/mugshot/small"
 
@@ -96,19 +96,19 @@ define ['jsmin'], ($)->
       window.location= @options.signOutUrl
 
     getLocalData:(k)->
-      if (@supportStorage())
+      if (window.lp.supports.localStorage)
         window.localStorage.getItem(k)
       else
         @localDataFallback(k)
-    
+
     setLocalData:(k,v)->
-      if (@supportStorage())
+      if (window.lp.supports.localStorage)
         window.localStorage.setItem(k,v)
       else
         window[k] = v
-    
+
     delAllLocalData:()->
-      if (@supportStorage())
+      if (window.lp.supports.localStorage)
         window.localStorage.clear()
 
     delLocalData:(k)->
@@ -122,10 +122,3 @@ define ['jsmin'], ($)->
         when 'lp-received-msg' then 0
         when 'lp-sent-msg' then 0
         else null
-
-    supportStorage: ->
-      try
-        (window.localStorage) && (window['localStorage'] != null)
-      catch error
-        false
-
