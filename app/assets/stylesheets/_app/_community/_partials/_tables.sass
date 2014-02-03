@@ -18,7 +18,9 @@
   .table__row--head &
     text-align: left
     vertical-align: bottom
-
+  
+  &.report-content
+    padding-right: 10px
   &:first-child
     padding-left: 15px
 
@@ -52,6 +54,14 @@
     display: inline-block
     margin: 0 3px
 
+.datatable
+  .moderator, .action
+    .dropdown__value, .dropdown__select
+      min-width: initial
+      width: 100px
+  .created_at
+    min-width: 80px
+
 .dataTables_processing
   background: #fff
   bottom: 0
@@ -72,7 +82,6 @@
 
 .dataTables_filter
   input
-    @extend .input
     margin-left: 20px
     width: auto
 
@@ -80,3 +89,6 @@
   .dataTables_filter
     input
       background: white
+
+.datatables-icon
+  +size(24px)
