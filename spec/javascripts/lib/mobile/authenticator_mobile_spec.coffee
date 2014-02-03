@@ -4,6 +4,7 @@ require ['public/assets/javascripts/lib/mobile/core/authenticator_mobile'], (Aut
 
     beforeEach ->
       localStorage.removeItem('lp-uname')
+      window.lp.supports.localStorage = true
 
     it 'is defined', ->
       expect(Authenticator).toBeDefined()
@@ -67,14 +68,14 @@ require ['public/assets/javascripts/lib/mobile/core/authenticator_mobile'], (Aut
         it 'does not has a register link', ->
           expect($('a.js-user-join')).not.toExist()
 
-        it 'has user box', ->  
+        it 'has user box', ->
           expect($('.js-user-box')).toExist()
-        
+
         it 'has an avatar thumbnail', ->
           expect($('img.user-box__img')).toExist()
           expect(@auth.userAvatar()).toBe("#{@auth.options.membersUrl}/#{@auth.lpUserName}/mugshot/small")
 
-    
+
     describe 'options menu', ->
 
       beforeEach ->
