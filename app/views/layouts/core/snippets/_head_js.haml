@@ -50,6 +50,15 @@
     time: function(x){!!window.performance && !!window.performance.now && this.buffer.push({e: x, t: window.performance.now()})}
   };
 
+  // Dev analytics package
+  (function(d,t){
+    if (!d.cookie.match(/lpDev/)) return;
+    var g=d.createElement(t);
+    var s=d.getElementsByTagName(t)[0];
+    g.src="//assets.staticlp.com/analytics/analytics.dev.js";
+    s.parentNode.insertBefore(g,s);
+  }(document,"script"));
+
 = render 'layouts/core/inline_js/cut_the_mustard'
 = render 'layouts/core/inline_js/fonts_loader'
 = render 'layouts/core/inline_js/grunticon', sheet: 'active'
