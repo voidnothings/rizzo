@@ -21,7 +21,7 @@
         transform: "transform"
 
       # Add it to the body to get the computed style.
-      document.body.insertBefore el, null
+      document.body.insertBefore el, document.body.firstChild
       for t of transforms
         if el.style[t] isnt `undefined`
           el.style[t] = "translate3d(1px,1px,1px)"
