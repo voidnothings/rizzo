@@ -7,39 +7,40 @@
 # The corresponding function should return true or false.
 #
 # ------------------------------------------------------------------------------
+require ['jquery'], ($) ->
+  $ ->
+    (->
+      features =
+        '3d': ->
+          el = document.createElement("p")
+          has3d = undefined
+          transforms =
+            webkitTransform: "-webkit-transform"
+            OTransform: "-o-transform"
+            msTransform: "-ms-transform"
+            MozTransform: "-moz-transform"
+            transform: "transform"
 
-(->
-  features =
-    '3d': ->
-      el = document.createElement("p")
-      has3d = undefined
-      transforms =
-        webkitTransform: "-webkit-transform"
-        OTransform: "-o-transform"
-        msTransform: "-ms-transform"
-        MozTransform: "-moz-transform"
-        transform: "transform"
+          # Add it to the body to get the computed style.
+          document.body.insertBefore el, document.body.firstChild
+          for t of transforms
+            if el.style[t] isnt `undefined`
+              el.style[t] = "translate3d(1px,1px,1px)"
+              has3d = window.getComputedStyle(el).getPropertyValue(transforms[t])
+          document.body.removeChild el
+          has3d isnt `undefined` and has3d.length > 0 and has3d isnt "none"
+        'cssmasks': ->
+          document.body.style[ '-webkit-mask-repeat' ] isnt undefined
+        'placeholder': ->
+          "placeholder" of document.createElement("input")
 
-      # Add it to the body to get the computed style.
-      document.body.insertBefore el, document.body.firstChild
-      for t of transforms
-        if el.style[t] isnt `undefined`
-          el.style[t] = "translate3d(1px,1px,1px)"
-          has3d = window.getComputedStyle(el).getPropertyValue(transforms[t])
-      document.body.removeChild el
-      has3d isnt `undefined` and has3d.length > 0 and has3d isnt "none"
-    'cssmasks': ->
-      document.body.style[ '-webkit-mask-repeat' ] isnt undefined
-    'placeholder': ->
-      "placeholder" of document.createElement("input")
+      for feature of features
+        window.lp.supports[feature] = !!features[feature]()
 
-  for feature of features
-    window.lp.supports[feature] = !!features[feature]()
+        if window.lp.supports[feature]
+          document.documentElement.className += ' supports-'+feature
+        else
+          document.documentElement.className += ' no-'+feature+'-support'
 
-    if window.lp.supports[feature]
-      document.documentElement.className += ' supports-'+feature
-    else
-      document.documentElement.className += ' no-'+feature+'-support'
-
-  return
-)()
+      return
+    )()
