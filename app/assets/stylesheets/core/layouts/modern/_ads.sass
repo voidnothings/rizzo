@@ -1,8 +1,36 @@
 // ----------------------------------------------------------------------------
 //
-// Adverts Leaderboard
+// Row top adverts
 //
 // ----------------------------------------------------------------------------
+
+.row--leaderboard
+  +transition(all, 0.5, ease)
+  background-color: $row-leaderboard
+  overflow: hidden
+  padding: 16px 0
+  min-height: 90px
+
+  .homepage &
+    background-color: white
+    +respond-to(wide-view)
+      min-height: 92px
+      padding: 25px 0
+
+  &.is-closed
+    height: 0
+    padding: 0
+    min-height: 0
+
+  // This can be removed when switching to the new DFP server
+  .ad-leaderboard__inner
+    .homepage &
+      border: 1px solid $subdued
+      &:after
+        background-position: -106px 4px
+
+  > .row__inner
+    display: table
 
 .ad-leaderboard
   +transition(all, 0.5, ease)
