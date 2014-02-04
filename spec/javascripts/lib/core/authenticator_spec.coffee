@@ -4,6 +4,7 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
 
     beforeEach ->
       localStorage.removeItem('lp-uname')
+      window.lp.supports.localStorage = true
 
     it 'is defined', ->
       expect(Authenticator).toBeDefined()
@@ -96,14 +97,14 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
         it 'does not has a register link', ->
           expect($('a.js-user-join')).not.toExist()
 
-        it 'has user box', ->  
+        it 'has user box', ->
           expect($('div.user-box')).toExist()
-        
+
         it 'has an avatar thumbnail', ->
           expect($('img.user-box__img')).toExist()
           expect(@auth.userAvatar()).toBe("#{@auth.options.membersUrl}/#{@auth.lpUserName}/mugshot/mini")
 
-    
+
     describe 'options menu', ->
 
       beforeEach ->
@@ -145,7 +146,7 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
       beforeEach ->
 
         @auth = new Authenticator()
-        window.lp.user = 
+        window.lp.user =
           id: 1234
           avatar: "path/to/image.jpg"
           facebookUID: "facebookUID"
@@ -187,23 +188,23 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
 
 
     # describe 'messages count', ->
-    # 
+    #
     #   describe 'user', ->
-    #     
+    #
     #     beforeEach ->
     #       loadFixtures('userBox.html')
     #       window.localStorage.setItem('lp-uname', 'KellyJones')
     #       Authenticator.prototype.showMessageCount = ()-> console.log('me')
     #       @auth = new Authenticator()
-    # 
+    #
     #     it 'has no messages to read', ->
     #       expect($('span.js-user-msg-unread')).not.toExist()
-    # 
+    #
     #     it 'has 7 messages to read', ->
-    #       data = 
+    #       data =
     #         received_count: 0
     #         sent_count: 0
     #         unread_count: 7
     #       @auth.messageCountCallBack(data)
     #       expect($('span.js-user-msg-unread').text()).toBe('7')
-    # 
+    #

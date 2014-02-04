@@ -1,4 +1,5 @@
 window.lp = {};
+window.lp.supports = {};
 lp.isMobile = false;
 
 require.config({

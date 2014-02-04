@@ -77,7 +77,6 @@
   padding-left: 35px
   position: relative
   text-align: center
-  width: 25px
   z-index: 2
 
 .post-links__icon
@@ -126,12 +125,14 @@
   @extend %transition--base
   overflow: hidden
 
-  &.is-not-active
+  .js &
     height: 0
     padding-bottom: 0
     padding-top: 0
 
   &.is-active
+    padding-bottom: 13px
+    padding-top: 13px
     &.thread-of-the-day-form
       height: 35px
     &.report-form
@@ -158,6 +159,9 @@
     top: 0.3em
     width: 1.2em
 
+.in-reply-to
+  color: $feature-copy
+
 // -----------------------------------------------------------------------------
 // Post edit information
 // -----------------------------------------------------------------------------
@@ -170,29 +174,3 @@
     position: absolute
     top: 0
     width: 1em
-
-// -----------------------------------------------------------------------------
-// In Reply To
-// -----------------------------------------------------------------------------
-.in-reply-to
-  margin-top: 10px
-  overflow: hidden
-
-  &.is-not-active
-    height: 1.5em
-    .icon--chevron-up
-      display: none
-  &.is-active
-    .icon--chevron-down
-      display: none
-
-.in-reply-to__icon
-  display: inline-block
-  height: 1em
-  margin-right: 0.2em
-  position: relative
-  top: 0.2em
-  width: 1em
-
-.in-reply-to__content
-  margin-top: 10px
