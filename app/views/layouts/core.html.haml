@@ -7,7 +7,7 @@
   = render 'layouts/core/head', responsive: false, homepage: false, suppress_tynt: (defined?(suppress_tynt) ? suppress_tynt : false)
 
 %body
-  .wrapper
+  .wrapper.js-wrapper
     = render 'layouts/core/snippets/body_header', user_nav: defined?(user_nav) ? user_nav : true
 
     .row.row--content#js-row--content
