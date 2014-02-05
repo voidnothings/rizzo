@@ -13,7 +13,6 @@ gem 'uglifier', '>= 1.0.3'
 gem 'unicorn'
 gem 'rake'
 gem 'airbrake'
-gem 'awesome_print'
 
 group :test do
   gem 'guard'
