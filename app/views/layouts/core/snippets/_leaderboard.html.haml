@@ -1,4 +1,6 @@
-.row.row--leaderboard.is-closed{ class: defined?(additional_row_class) ? additional_row_class : "" }
-  .row__inner
-    .ad-leaderboard
-      #js-ad-leaderboard.ad-leaderboard__inner
+- additional_row_class ||= ''
+- cache "#{__FILE__}--#{local_assigns.map(&:to_s).join}" do
+  .row.row--leaderboard.is-closed{ class: additional_row_class }
+    .row__inner
+      .ad-leaderboard
+        #js-ad-leaderboard.ad-leaderboard__inner
