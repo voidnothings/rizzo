@@ -52,7 +52,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/tags'                           => 'styleguide#tags'
   get 'styleguide/inputs'                         => 'styleguide#inputs'
   get 'styleguide/dropdown'                       => 'styleguide#dropdown'
-  get 'styleguide/slider'                         => 'styleguide#slider'
+  get 'styleguide/range-slider'                   => 'styleguide#rangeSlider'
   get 'styleguide/js-components'                  => 'styleguide#toggle_active'
   get 'styleguide/js-components/toggle-active'    => 'styleguide#toggle_active'
   get 'styleguide/js-components/proximity-loader' => 'styleguide#proximity_loader'

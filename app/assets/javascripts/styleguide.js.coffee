@@ -10,12 +10,10 @@ require ['jquery'], ($) ->
     'lib/styleguide/snippet-expand'
     'lib/styleguide/svg'
     'lib/styleguide/colours'
-  ], (SelectGroupManager, RangeSlider) ->
+  ], (SelectGroupManager) ->
 
     $ ->
       new SelectGroupManager()
-      new RangeSlider()
-
       d = new Date()
       $('.input--datepicker').pickadate({
         min: [d.getFullYear(), (d.getMonth() + 1), d.getDate()]

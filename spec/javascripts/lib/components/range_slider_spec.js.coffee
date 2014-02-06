@@ -24,6 +24,13 @@ require ['public/assets/javascripts/lib/components/range_slider.js'], (RangeSlid
           handles: 2,
           connect: true,
           range: ["0","100"],
-          start: ["40","60"]
+          start: ["40","60"],
+          serialization: {
+            resolution: 1,
+            to: [
+              [ $("[name='foo']") ],
+              [ $("[name='bar']") ]
+            ]
+          }
         }
         expect(rangeSlider._getConfig(input)).toEqual(output)

@@ -2,6 +2,9 @@
 // Range slider as used on filters
 // -----------------------------------------------------------------------------
 
+// Import vendor styles
+@import 'noUiSlider'
+
 .noUi-background
   background: $details-panel-border
 
@@ -22,19 +25,17 @@
 
 .noUi-handle
   +multiple-box-shadow(inset 0 0 1px #FFF, inset 0 1px 7px #EBEBEB, 0 3px 6px -3px #BBB)
+  +size(24px)
   position: relative
-  width: 24px
-  height: 24px
   border-radius: 14px
   background: #FFF
   cursor: default
 
   &:after
     @extend %empty-abs-generated-content
+    +size(8px)
     top: 8px
     left: 8px
-    width: 8px
-    height: 8px
     background-color: $active
     border-radius: 8px
     pointer-events: none

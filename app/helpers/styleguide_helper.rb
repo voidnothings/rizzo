@@ -100,8 +100,8 @@ module StyleguideHelper
               path: "dropdown"
             },
             {
-              name: "Slider",
-              path: "slider"
+              name: "Range Slider",
+              path: "range-slider"
             },
           ]
         },
