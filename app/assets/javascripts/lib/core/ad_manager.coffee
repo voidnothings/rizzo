@@ -4,6 +4,7 @@ define ['jquery', 'gpt'], ->
     sizes:
       adSense: [155,256]
       leaderboard: [[970,66], [728,90]]
+      leaderboard_small: [728,90]
       mpu: [[300,250], [300, 600], [394,380]]
       oneByOne: [1,1]
       sponsorTile: [276,32]
