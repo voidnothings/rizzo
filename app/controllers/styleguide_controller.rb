@@ -50,8 +50,16 @@ class StyleguideController < GlobalController
     render '/styleguide/ui-components/pagination'
   end
 
-  def forms
-    render '/styleguide/ui-components/forms'
+  def inputs
+    render '/styleguide/ui-components/inputs'
+  end
+
+  def dropdown
+    render '/styleguide/ui-components/dropdown'
+  end
+
+  def rangeSlider
+    render '/styleguide/ui-components/range_slider'
   end
 
   def proportionalGrid

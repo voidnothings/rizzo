@@ -1,6 +1,7 @@
 require ['jquery'], ($) ->
   require [
     'lib/managers/select_group_manager'
+    'lib/components/range_slider'
     'pickadate/lib/picker'
     'pickadate/lib/picker.date'
     'pickadate/lib/legacy'
@@ -13,7 +14,6 @@ require ['jquery'], ($) ->
 
     $ ->
       new SelectGroupManager()
-
       d = new Date()
       $('.input--datepicker').pickadate({
         min: [d.getFullYear(), (d.getMonth() + 1), d.getDate()]
