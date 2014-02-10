@@ -1,6 +1,6 @@
 # Note: We need to add 'lib/core/ad_manager' back in after 'jquery' when the switch to the new DFP server happens.
 #   Also worth noting is that the ad_manager and ad_manager_old calls in waldorf/app/assets/javascripts/*.js need to be removed.
-define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager'], ($, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroupManager) ->
+define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager', 'lib/core/ad_manager'], ($, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroupManager, AdManager) ->
 
   class Base
 
@@ -12,7 +12,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
 
       @showUserBasket()
       # Note: We need to add this back in when the switch to the new DFP server happens
-      # @initAds() unless args.secure
+      @initAds() unless args.secure
       @showCookieComplianceMsg()
       @initialiseSelectGroupManager()
       @addNavTracking()
@@ -56,7 +56,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
         @auth.update()
 
     initAds: ->
-      AdManager.init(@adConfig(), 'ad-leaderboard') # Remove the second param when dropping the old ad manager
+      AdManager.init(@adConfig)
 
     showUserBasket: ->
       shopCart = new ShoppingCart()
