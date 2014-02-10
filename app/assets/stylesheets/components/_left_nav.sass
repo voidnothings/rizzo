@@ -6,9 +6,15 @@
 // -----------------------------------------------------------------------------
 
 .nav--left
+  display: table-cell
   margin-right: 10px
   padding-right: 10px
+  vertical-align: top
   width: 182px
+  
+  .ie7 &
+    display: block
+    float: left
 
 .nav--left__title
   display: block
