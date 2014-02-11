@@ -8,7 +8,7 @@
       - if properties[:no_place_link] == true
         %span.place-title-heading #{properties[:title]}
       - else
-        %a.place-title-heading{href: "/#{properties[:slug]}"} #{properties[:title]}
+        %a.place-title-heading{href: "/#{properties[:slug].sub(/^\//, '')}"} #{properties[:title]}
 
       - if properties[:parent]
-        %a.place-title__parent{href: "/#{properties[:parent_slug]}"}, #{properties[:parent]}
+        %a.place-title__parent{href: "/#{properties[:parent_slug].sub(/^\//, '')}"}, #{properties[:parent]}
