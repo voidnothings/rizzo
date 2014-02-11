@@ -16,6 +16,8 @@ define ['jquery', 'gpt'], ->
 
     init : () ->
 
+      return if @isInitialised
+
       @addEvents()
       # GPT Boilerplate code
       window.googletag = window.googletag || {}
@@ -115,6 +117,7 @@ define ['jquery', 'gpt'], ->
           if toPoll.hasOwnProperty(elId)
             adManager.poll document.getElementById(elId), toPoll[elId], elId
 
+      @isInitialised = true
 
     addEvents : ->
       $("#js-card-holder").on ":cards/request :page/request", ->
