@@ -1,10 +1,13 @@
 .range-slider.context--content
   %h4.copy--h4
     = properties[:title]
-    - if properties[:unit]
-      (#{properties[:unit]})
 
-  .js-range-slider{data: {range: "#{properties[:min][:extreme]},#{properties[:max][:extreme]}", current: "#{properties[:min][:value]},#{properties[:max][:value]}", targets: "#{properties[:min][:name]},#{properties[:max][:name]}"}}
+  .js-range-slider{data: {range: "#{properties[:min][:extreme]},#{properties[:max][:extreme]}", current: "#{properties[:min][:value]},#{properties[:max][:value]}", targets: "#{properties[:min][:name]},#{properties[:max][:name]}", cap_level: "#{properties[:cap_level] ? properties[:cap_level] : false}"}}
+
+  .range-slider__labels.js-range-labels<
+    %span.js-range-min #{properties[:unit]}#{properties[:min][:value]}
+    %span &ndash;
+    %span.js-range-max #{properties[:unit]}#{properties[:max][:value]}
 
   .no-js-visible
     .grid-wrapper--10

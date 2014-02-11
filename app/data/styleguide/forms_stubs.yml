@@ -180,3 +180,15 @@ slider_components:
       :extreme: "100"
       :value: "75"
       :name: "[filters][price][upper]"
+  -
+    :title: "Capped price slider"
+    :unit: "$"
+    :cap_level: "90"
+    :min:
+      :extreme: "0"
+      :value: "25"
+      :name: "[filters][price][lower]"
+    :max:
+      :extreme: "100"
+      :value: "75"
+      :name: "[filters][price][upper]"
