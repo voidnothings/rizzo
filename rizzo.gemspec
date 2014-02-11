@@ -18,17 +18,12 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'haml'
   gem.add_dependency 'sass'
   gem.add_dependency 'addressable'
-  
+
   gem.add_development_dependency 'rspec', '2.10.0'
   gem.add_development_dependency 'rspec-rails', '2.10.0'
-  gem.add_development_dependency 'guard'
-  gem.add_development_dependency 'guard-rspec'
-  gem.add_development_dependency 'guard-jasmine'
-  gem.add_development_dependency 'guard-coffeescript'
   gem.add_development_dependency 'capybara'
   gem.add_development_dependency 'cucumber'
   gem.add_development_dependency 'cucumber-rails'
-  gem.add_development_dependency 'guard-cucumber'
   gem.add_development_dependency 'unicorn'
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'jasmine'
