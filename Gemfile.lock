@@ -29,9 +29,6 @@ GEM
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     addressable (2.3.5)
-    airbrake (3.1.14)
-      builder
-      json
     arel (3.0.2)
     better_errors (1.0.1)
       coderay (>= 1.0.0)
@@ -217,7 +214,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  airbrake
   better_errors
   binding_of_caller
   capybara (< 2.0.0)

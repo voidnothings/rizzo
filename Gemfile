@@ -12,7 +12,6 @@ gem 'requirejs-rails'
 gem 'uglifier', '>= 1.0.3'
 gem 'unicorn'
 gem 'rake'
-gem 'airbrake'
 
 group :test do
   gem 'guard'
