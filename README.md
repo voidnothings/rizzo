@@ -193,15 +193,48 @@ Comments are encouraged and should follow the below pattern:
 //----------------------------------------------------------
 ```
 
-### Style
+### Naming classes
 
-We use BEM which should help with:
+We use the BEM methodology within class names.
+
+* -- for modifiers
+* __ for child elements
+
+For example:
+
+````
+<div class="gallery">
+  <h1 class="gallery__title">Gallery</h1>
+  <img class="gallery__image gallery__image--large" />
+  <img class="gallery__image" />
+  <img class="gallery__image" />
+</div>
+````
+
+
+This helps with:
+* Avoiding cross module collisions
+* Signifying intent and relationships from the classname
 * Limiting nesting to 1 level deep.
 * Avoiding large numbers of nested rules.
 
 Also:
 * Don't over-abstract
 * Write code to be readable and understandable, not to save bytes.
+
+
+### Other Class Naming Conventions
+
+We use prefixes for states and javascript hooks:
+
+    <div class="is-hidden">This element has state</div>
+    <div class="tab js-tab">This element can be reached by javascript</div>
+
+Javascript hooks:
+ * Ensure that we maintain a distinction between content and functionality.
+ * Should *never* relate to css rules.
+ * Should be the only way of reaching a dom element.
+
 
 ### Property Ordering
 1. Sass specifics e.g. `+` and `@extend`
@@ -233,19 +266,6 @@ For example:
   opacity
   outline
 ```
-
-### Conventions
-
-We use prefixes for states and javascript hooks:
-
-    <div class="is-hidden">This element has state</div>
-    <div class="tab js-tab">This element can be reached by javascript</div>
-
-Javascript hooks:
- * Ensure that we maintain a distinction between content and functionality.
- * Should *never* relate to css rules.
- * Should be the only way of reaching a dom element.
-
 
 -----
 ## JavaScript Guidelines
