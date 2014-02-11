@@ -10,6 +10,7 @@ require ['jquery'], ($) ->
     'lib/styleguide/snippet-expand'
     'lib/styleguide/svg'
     'lib/styleguide/colours'
+    'lib/styleguide/typography'
   ], (SelectGroupManager) ->
 
     $ ->
