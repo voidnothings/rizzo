@@ -197,8 +197,9 @@ Comments are encouraged and should follow the below pattern:
 
 We use the BEM methodology within class names.
 
-* -- for modifiers
-* __ for child elements
+* .block {}
+* .block__element {}
+* .block--modifier {}
 
 For example:
 
