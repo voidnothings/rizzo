@@ -29,6 +29,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'jasmine'
   gem.add_development_dependency 'selenium-webdriver'
   gem.add_development_dependency 'headless'
-  gem.add_development_dependency 'rb-fsevent', '~> 0.9.1'
 end
 
