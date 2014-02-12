@@ -1,1 +1,1 @@
-%input.input.input--text.input--datepicker{ type: 'date', id: properties[:id], name: properties[:name], placeholder: properties[:placeholder], value: properties[:value] || "", data: properties[:data] }
+%input.input.input--text.input--datepicker{ type: 'date', id: properties[:id], name: properties[:name], placeholder: properties[:placeholder], value: properties[:value] || "", data: properties[:data], data: properties[:required] ? { rules: 'required' } : {} }
