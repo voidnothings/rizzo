@@ -10,7 +10,7 @@ define ["jquery", "lib/forms/form_input"], ($, FormInput) ->
 
     _initialize: ->
       @inputs = []
-      @form.find(inputsSelector).each (index, elem) =>
+      @form.find(inputsSelector).not('[type="hidden"]').each (index, elem) =>
         label = $(elem).closest('.js-field').find('.js-field-label').text()
         @inputs.push(new FormInput(elem, label))
       @_listen()
