@@ -19,6 +19,8 @@
 
 .noUi-horizontal
   height: 8px
+  box-sizing: border-box
+  padding: 0 10px 0 13px
 
 .noUi-vertical
   width: 8px
@@ -48,8 +50,11 @@
     left: -8px
     top: -14px
 
+  .ie8 &
+    width: 4px
+    &:after
+      display: none
+
 .range-slider__labels
-  margin-top: 10px
-  font-size: 0
-  > span
-    +font-size(24)
+  +font-size(24)
+  margin-top: 15px

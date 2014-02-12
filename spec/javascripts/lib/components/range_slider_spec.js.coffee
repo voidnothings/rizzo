@@ -26,15 +26,17 @@ require ['public/assets/javascripts/lib/components/range_slider.js'], (RangeSlid
           range: ["0","100"],
           start: ["40","60"]
         }
-        expect(rangeSlider._getConfig(input).handles).toEqual(2)
-        expect(rangeSlider._getConfig(input).connect).toEqual(true)
-        expect(rangeSlider._getConfig(input).range).toEqual(["0", "100"])
-        expect(rangeSlider._getConfig(input).start).toEqual(["40","60"])
+        config = rangeSlider._getConfig(input)
+        expect(config.handles).toEqual(2)
+        expect(config.connect).toEqual(true)
+        expect(config.range).toEqual(["0", "100"])
+        expect(config.start).toEqual(["40","60"])
+
+
 
     describe "A capped slider", ->
       beforeEach ->
         window.rangeSlider = new RangeSlider()
-        spyOn(rangeSlider, "_getCapLevel").andReturn("90")
 
       it 'parses the data attributes correctly', ->
         input = {
@@ -43,10 +45,11 @@ require ['public/assets/javascripts/lib/components/range_slider.js'], (RangeSlid
           targets: "foo,bar",
           capLevel: "90"
         }
-        expect(rangeSlider._getConfig(input).handles).toEqual(2)
-        expect(rangeSlider._getConfig(input).connect).toEqual(true)
-        expect(rangeSlider._getConfig(input).range).toEqual(["0", "90"])
-        expect(rangeSlider._getConfig(input).start).toEqual(["40","60"])
+        config = rangeSlider._getConfig(input)
+        expect(config.handles).toEqual(2)
+        expect(config.connect).toEqual(true)
+        expect(config.range).toEqual(["0", "90"])
+        expect(config.start).toEqual(["40","60"])
 
       it 'reduces the current amount if above the cap', ->
         input = {
@@ -55,7 +58,8 @@ require ['public/assets/javascripts/lib/components/range_slider.js'], (RangeSlid
           targets: "foo,bar",
           capLevel: "90"
         }
-        expect(rangeSlider._getConfig(input).handles).toEqual(2)
-        expect(rangeSlider._getConfig(input).connect).toEqual(true)
-        expect(rangeSlider._getConfig(input).range).toEqual(["0", "90"])
-        expect(rangeSlider._getConfig(input).start).toEqual(["40","90"])
+        config = rangeSlider._getConfig(input)
+        expect(config.handles).toEqual(2)
+        expect(config.connect).toEqual(true)
+        expect(config.range).toEqual(["0", "90"])
+        expect(config.start).toEqual(["40","90"])

@@ -172,6 +172,7 @@ slider_components:
   -
     :title: "Price slider"
     :unit: "$"
+    :unit_position: "before"
     :min:
       :extreme: "0"
       :value: "25"
@@ -183,6 +184,7 @@ slider_components:
   -
     :title: "Capped price slider"
     :unit: "$"
+    :unit_position: "before"
     :cap_level: "90"
     :min:
       :extreme: "0"

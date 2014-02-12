@@ -25,61 +25,79 @@ define([ "jquery", "nouislider/jquery.nouislider" ], function($) {
       serialization: {
         resolution: 1,
         to: [
-          [ $("[name='" + data.targets.split(",")[0] + "']"), this._setMinLabel ],
-          [ this._setMaxValue, this._setMaxLabel ]
+          [ this._setMinValue.bind(this, data), this._setMinLabel.bind(this, data) ],
+          [ this._setMaxValue.bind(this, data), this._setMaxLabel.bind(this, data) ]
         ]
       }
     };
   };
 
-  RangeSlider.prototype._getCapLevel = function(data) {
-    return data.capLevel;
-  };
-
   RangeSlider.prototype._getMaxRangeValue = function(data) {
-    var max;
-    if (this._getCapLevel(data)) {
-      max = this._getCapLevel(data);
-    }
-    return max || data.range.split(",")[1];
+    return data.capLevel || data.range.split(",")[1];
   };
 
   RangeSlider.prototype._getMaxStartValue = function(data) {
-    var max,
-    current = data.current.split(",")[1];
-    if (this._getCapLevel(data) && current > this._getCapLevel(data)) {
-      max = this._getCapLevel(data);
+    var capValue = data.capLevel,
+        currentValue = data.current.split(",")[1];
+
+    if (capValue && currentValue > capValue) {
+      return capValue;
     }
-    return max || current;
+    return currentValue;
   };
 
-  // Called in the scope of the range slider component
-  RangeSlider.prototype._setMinLabel = function(value) {
-    var $min = $(this).next(".js-range-labels").find(".js-range-min");
-    $min.text(value);
-  };
-
-  // Called in the scope of the range slider component
-  RangeSlider.prototype._setMaxLabel = function(value) {
-    var $this = $(this),
-    $max = $this.next(".js-range-labels").find(".js-range-max");
-    if (value == $this.data().capLevel) {
-      value += " and above";
+  RangeSlider.prototype._addUnitToValue = function(data, value) {
+    if (data.unitPosition === "before") {
+      return data.unit + value;
+    } else {
+      return value + " " + data.unit;
     }
-    $max.text(value);
   };
 
-  // Called in the scope of the range slider component
-  RangeSlider.prototype._setMaxValue = function(value) {
-    var data = $(this).data(),
-        $target = $("[name='" + data.targets.split(",")[1] + "']");
+  // ---------------------------------------------------------------------------
+  // These functions are proxies for updating the slider on user action
+  //
+  // They are called within the scope of RangeSlider
+  // ---------------------------------------------------------------------------
 
-    if (value == data.capLevel) {
-      value = data.range.split(",")[1];
+  RangeSlider.prototype._setMinLabel = function(slider, value) {
+    if (slider.unit && slider.unitPosition) {
+      value = this._addUnitToValue(slider, value);
+    }
+    slider.base.closest(".js-range-slider-container").find(".js-range-min").text(value);
+  };
+
+  RangeSlider.prototype._setMinValue = function(slider, value) {
+    $("[name='" + slider.targets.split(",")[0] + "']").val(value);
+  };
+
+  RangeSlider.prototype._setMaxLabel = function(slider, value) {
+    var newValue;
+
+    if (slider.unit && slider.unitPosition) {
+      newValue = this._addUnitToValue(slider, value);
+    }
+
+    if (value == slider.capLevel) {
+      newValue = (newValue || value) + "+";
+    }
+
+    slider.base.closest(".js-range-slider-container").find(".js-range-max").text(newValue);
+  };
+
+  RangeSlider.prototype._setMaxValue = function(slider, value) {
+    var $target = $("[name='" + slider.targets.split(",")[1] + "']");
+
+    if (value == slider.capLevel) {
+      value = slider.range.split(",")[1];
     }
 
     $target.val(value);
   };
+
+  // ---------------------------------------------------------------------------
+  // Initialisation
+  // ---------------------------------------------------------------------------
 
   $(function() {
     rangeSlider = new RangeSlider();
