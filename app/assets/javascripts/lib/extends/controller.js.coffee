@@ -32,7 +32,9 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
 
       $(LISTENER).on ':cards/append', (e, data, analytics) =>
         @_updateState(data)
-        @_callServer(@_createRequestUrl(), @append, analytics)
+        # We don't want to modify the url for appending content
+        existingUrl = @getUrl()
+        @_callServer(@_createRequestUrl(existingUrl), @append, analytics)
 
       $(LISTENER).on ':page/request', (e, data, analytics) =>
         @newDocumentRoot = data.url.split('?')[0]
