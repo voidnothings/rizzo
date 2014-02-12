@@ -166,7 +166,7 @@ module.exports = function(grunt) {
         watch: {
             scripts: {
                 files: ['app/assets/javascripts/lib/**/*.coffee', 'spec/javascripts/lib/**/*.coffee'],
-                tasks: ['shell:clean_js', 'newer:coffee', 'jasmine'],
+                tasks: ['shell:clean_js', 'coffee', 'jasmine'],
                 options: {
                     nospawn: true
                 }
