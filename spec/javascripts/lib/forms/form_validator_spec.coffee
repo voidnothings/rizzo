@@ -43,6 +43,10 @@ require ['lib/forms/form_validator'], (FormValidator) ->
 
         expect(form.isValid()).toBe false
 
+        $('#test-form input').first().trigger('blur')
+
+        expect($('#test-form [type="submit"]').attr('disabled')).toBe 'disabled'
+
       it 'is valid if the fields are valid', ->
         form = new FormValidator('#test-form')
 
@@ -51,4 +55,7 @@ require ['lib/forms/form_validator'], (FormValidator) ->
         $('#first-select').val(1);
         $('#second-select').val(1);
 
+        $('#test-form input').first().trigger('blur')
+
         expect(form.isValid()).toBe true
+        expect($('#test-form input[type="submit"]').attr('disabled')).toBe undefined
