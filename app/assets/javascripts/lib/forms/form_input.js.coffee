@@ -7,13 +7,13 @@ define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
       @label = @input.data('label') || label
       @_initialize() if @input.length is 1
 
-    isValid: ->
+    isValid: (triggerErrors) ->
       @_clearError()
       valid = true
 
       for validator in @validators
         unless validator.isValid()
-          @_showError validator.getErrorMessage()
+          @_showError validator.getErrorMessage() if triggerErrors
           valid = false
           break
 
