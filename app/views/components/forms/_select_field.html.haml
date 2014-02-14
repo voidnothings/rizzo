@@ -24,7 +24,7 @@
       - input_class += " field__input--error"
 
     .input__container.js-input{ class: input_class }
-      = ui_component('forms/dropdown', properties: { id: field_id, name: dropdown[:name], placeholder: dropdown[:placeholder], options: dropdown[:options], class: dropdown_class, selected: dropdown[:selected], data: dropdown[:data], data: properties[:required] ? { rules: 'required' } : {} })
+      = ui_component('forms/dropdown', properties: { id: field_id, name: dropdown[:name], placeholder: dropdown[:placeholder], options: dropdown[:options], class: dropdown_class, selected: dropdown[:selected], data: dropdown[:data], data: properties[:rules] ? { rules: properties[:rules] } : {} })
     - if dropdown[:error]
       .field__error.js-error
         = dropdown[:error]

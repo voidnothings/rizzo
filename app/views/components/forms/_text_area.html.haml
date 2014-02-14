@@ -1,3 +1,3 @@
 = find_and_preserve do
-  %textarea.input.input--text-area{ id: properties[:id], name: properties[:name], placeholder: properties[:placeholder], rows: properties[:rows], cols: properties[:cols], data: properties[:data], maxlength: properties[:maxlength], data: properties[:required] ? { rules: 'required' } : {} }
+  %textarea.input.input--text-area{ id: properties[:id], name: properties[:name], placeholder: properties[:placeholder], rows: properties[:rows], cols: properties[:cols], data: properties[:data], maxlength: properties[:maxlength], data: properties[:rules] ? { rules: properties[:rules] } : {} }
     = properties[:value] || ""
