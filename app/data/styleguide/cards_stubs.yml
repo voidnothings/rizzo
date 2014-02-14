@@ -80,6 +80,30 @@ cards:
     :place_name: "Paris"
 
   -
+    :styleguide_title: "Guide Card"
+    :url: "#"
+    :image_url: "http://media.lonelyplanet.com/shop/images/Miami___the_Keys_travel_guide_-_6th_Edition929784_Large.png"
+    :title: "Miami & The Keys Travel Guide"
+    :description: "Some information about what this book is all about."
+    :context: "Book"
+    :price_icon: :book
+    :currency_symbol: "$"
+    :price: 6.66
+
+  -
+    :styleguide_title: "Guide Card"
+    :url: "#"
+    :image_url: "http://media.lonelyplanet.com/shop/images/Miami___the_Keys_travel_guide_-_6th_Edition929784_Large.png"
+    :title: "Miami & The Keys Travel Guide"
+    :description: "Some information about what this book is all about."
+    :context: "Book"
+    :price_icon: :book
+    :on_sale_here?: true
+    :currency_symbol: "$"
+    :price: 6.66
+    :retail_price: 9.99
+
+  -
     :styleguide_title: "Need to know Card"
     :kind: "need_to_know"
     :slug: "#"
