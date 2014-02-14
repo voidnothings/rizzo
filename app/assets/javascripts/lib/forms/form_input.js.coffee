@@ -8,7 +8,7 @@ define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
       @_initialize() if @input.length is 1
 
     isValid: (triggerErrors) ->
-      @_clearError()
+      @_clearError() if triggerErrors
       valid = true
 
       for validator in @validators

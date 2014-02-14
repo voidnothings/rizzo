@@ -26,20 +26,21 @@ define ["jquery", "lib/forms/form_input"], ($, FormInput) ->
           e.preventDefault()
 
       for input in @inputs
-        input.input.on "blur", (e) =>
-          if @isValid(false, e.target)
+        input.input.on "blur", input , (e) =>
+          e.data.isValid(true)
+
+          if @isValid(false, e.data)
             $submit.removeAttr('disabled')
           else
             $submit.attr('disabled', 'disabled')
 
       $submit.attr('disabled', 'disabled') unless @isValid(false)
 
-    isValid: (triggerErrors, showErrorsFor) ->
+    isValid: (triggerErrors, byPassEl) ->
       valid = true
       triggerErrors = (triggerErrors == undefined) || triggerErrors
 
       for input in @inputs
-        triggerInputErrors = (showErrorsFor && showErrorsFor == input.input[0]) || triggerErrors
-        valid = false unless input.isValid(triggerInputErrors)
+        valid = false unless input is byPassEl or input.isValid(triggerErrors)
 
       valid
