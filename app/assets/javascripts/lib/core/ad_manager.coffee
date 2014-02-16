@@ -4,6 +4,7 @@ define ['jquery', 'gpt'], ->
     sizes:
       adSense: [155,256]
       leaderboard: [[970,66], [728,90]]
+      leaderboard_small: [728,90]
       mpu: [[300,250], [300, 600], [394,380]]
       oneByOne: [1,1]
       sponsorTile: [276,32]
@@ -15,6 +16,8 @@ define ['jquery', 'gpt'], ->
 
 
     init : () ->
+
+      return if @isInitialised
 
       @addEvents()
       # GPT Boilerplate code
@@ -115,6 +118,7 @@ define ['jquery', 'gpt'], ->
           if toPoll.hasOwnProperty(elId)
             adManager.poll document.getElementById(elId), toPoll[elId], elId
 
+      @isInitialised = true
 
     addEvents : ->
       $("#js-card-holder").on ":cards/request :page/request", ->
@@ -259,18 +263,3 @@ define ['jquery', 'gpt'], ->
             callback.apply(this, [adEl, iframe])
 
       , timeout
-
-    # The old init used in the site wide leaderboard.
-    initOld : (_config,_target) ->
-      _config.service?= 'http://ad.doubleclick.net/adi/2009.lonelyplanet'
-      iframe = document.createElement('iframe')
-      iframe.src = "#{_config.service}/#{_config.adZone};#{_config.adKeywords};#{_config.segQS};tile=#{_config.tile};sz=#{_config.unit[0]}x#{_config.unit[1]};ord=#{_config.ord}?"
-      iframe.title = "ad-leaderboard--frame"
-      iframe.marginHeight = "0"
-      iframe.marginWidth = "0"
-      iframe.frameBorder = "0"
-      iframe.scrolling = 'no'
-      iframe.style.width = "#{_config.unit[0]}px"
-      iframe.style.height = "#{_config.unit[1]}px"
-      s = document.getElementById(_target)
-      s.appendChild(iframe)

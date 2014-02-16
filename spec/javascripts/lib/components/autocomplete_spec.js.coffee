@@ -202,14 +202,11 @@ require ['lib/components/autocomplete'], (AutoComplete) ->
               myAutoComplete = null
               loadFixtures 'autocomplete_mobile.html'
               newConfig = {id: 'my_search', uri: '/search', throttle: 0}
-              console.log myAutoComplete
               myAutoComplete = new AutoComplete newConfig
               myAutoComplete._searchFor 'Lon'
-              console.log myAutoComplete
               spyOn myAutoComplete, '_makeRequest'
 
             it 'should perfom a search if the threshold has been reached', ->
-              console.log myAutoComplete
               minimumSearch = 'Lond'
               myAutoComplete._searchFor minimumSearch
 
@@ -561,7 +558,8 @@ require ['lib/components/autocomplete'], (AutoComplete) ->
         describe 'creating a basic link item', ->
           testingMap =
             title: 'title',
-            uri: 'uri'
+            uri: 'uri',
+            type: 'type'
 
           newConfig = {id: 'my_search', uri: '/search', map: testingMap}
 
@@ -577,7 +575,8 @@ require ['lib/components/autocomplete'], (AutoComplete) ->
             anchor = item.childNodes[0]
             expect(anchor.tagName).toBe 'A'
             expect(anchor.getAttribute('href')).toBe SEARCH_RESULTS[0].uri
-            expect(anchor.className).toBe 'autocomplete__result__link'
+
+            expect(anchor.className).toBe 'autocomplete__result__link icon--white--before icon--place--pin--before autocomplete__result__typed'
 
           it 'should contain an anchor tag containing the highlighted search term', ->
             anchor = item.childNodes[0]

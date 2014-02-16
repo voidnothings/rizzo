@@ -54,6 +54,17 @@ $forum-horizontal-padding: 20px
 .card--forum__row--filters
   padding: 10px 5px
 
+.card--forum__row--ad
+  @extend %clearfix
+  padding-top: 25px
+  .googleHeading
+    text-align: right
+  .ad
+    float: left
+    // Each ad takes up 1/3 of the space so 33% = 30% width + 3% margin.
+    margin-right: 3%
+    width: 30%
+
 .card--moderation
   .card--forum__row--heading
     padding: 15px $forum-horizontal-padding

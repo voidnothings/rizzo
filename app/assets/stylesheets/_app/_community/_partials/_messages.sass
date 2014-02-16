@@ -5,8 +5,11 @@
 .message
 
   .post-links
-    padding-left: 20px
+    margin-right: 8px
     text-align: left
+
+    .faux--input__checkbox
+      margin-left: 4px
 
 // Message in a list
 .message--list
@@ -28,6 +31,12 @@
   .message__subject
     margin-right: .25em
 
+.message__body
+  .message--sent &
+    padding-left: 145px
+  .message--received &
+    padding-right: 145px
+
 // Message in a conversation thread
 .message--thread
   margin: 0
@@ -47,17 +56,17 @@
 
   .message__content--received
     margin-left: 20px
-    background: $subdued
+    background: mix($teal, #FFF, 8%)
     &:before
       left: 0
-      border-right-color: $subdued
+      border-right-color: mix($teal, #FFF, 8%)
 
   .message__content--sent
     margin-right: 20px
-    background: $body-background
+    background: $body-background-offset
     &:before
       right: 0
-      border-left-color: $body-background
+      border-left-color: $body-background-offset
 
   .message__content--unread
     border-right: 4px solid $linkblue

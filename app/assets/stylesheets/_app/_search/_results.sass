@@ -1,33 +1,44 @@
-.search__input-container,
-.search__button-container
-  display: inline-block
-  width: 50%
-  vertical-align: top
+// -----------------------------------------------------------------------------
+// Search result
+// -----------------------------------------------------------------------------
 
-.search__results-count
-  margin: 15px 0
-
-.search__btn
-  margin-left: 15px
-
-.search__result
-  clear: both
-
-  .search__result-type
-    margin-bottom: 0
-
-.search__result__image-area
+.search__result-aside
   width: 100px
-  min-height: 100px
-  margin-bottom: 20px
+  margin-right: 20px
 
-.search__result-image,
-.search__result-icon
+.search__result-image
+  min-width: 100%
   max-width: 100%
 
 .search__result-icon
-  height: 100px
+  +size(30px)
+  float: right
 
-.search__result-meta
-  padding-left: 20px
-  margin-bottom: 20px
+.search__result-type
+  margin-bottom: 5px
+
+// -----------------------------------------------------------------------------
+// Result list paraphernalia
+// -----------------------------------------------------------------------------
+
+// Search again form
+.search__form
+  float: right
+
+.search__form__input
+  float: left
+  margin-right: 10px
+
+// Pagination
+.search__header__pagination
+  margin-top: 15px
+  padding-top: 15px
+  border-top: 1px solid $body-background
+
+
+// Fluff
+.search__results-count
+  margin: 15px 0
+
+.search__results-list
+  list-style: none

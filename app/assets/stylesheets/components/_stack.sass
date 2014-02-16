@@ -11,6 +11,23 @@
   .card--single + &
     overflow: hidden
 
+  .nav--left + &
+    display: table-cell
+    overflow: visible
+    vertical-align: top
+    width: 798px
+    max-width: 798px
+    .responsive
+      width: 1000px
+      max-width: 1000px
+      +respond-to(wide-view)
+        width: 798px
+        max-width: 798px
+    .ie7  &
+      display: block
+      overflow: hidden
+      width: auto
+
 
 // -----------------------------------------------------------------------------
 // Stack Intro Card

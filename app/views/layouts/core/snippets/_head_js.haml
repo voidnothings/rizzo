@@ -51,13 +51,13 @@
     };
 
     // Dev analytics package
-    (function(d,t){
+    (function(d,t,c){
       if (!d.cookie.match(/lpDev/)) return;
       var g=d.createElement(t);
       var s=d.getElementsByTagName(t)[0];
-      g.src="//assets.staticlp.com/analytics/analytics.dev.js";
+      g.src="//assets.staticlp.com/analytics/analytics.dev.js?"+c.getTime();
       s.parentNode.insertBefore(g,s);
-    }(document,"script"));
+    }(document,"script",new Date));
 
 = render 'layouts/core/inline_js/cut_the_mustard'
 = render 'layouts/core/inline_js/fonts_loader'

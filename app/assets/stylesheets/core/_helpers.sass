@@ -79,6 +79,13 @@
     +respond-to(wide-view)
       display: block
 
+.wv--table
+  display: table-cell
+  .responsive &
+    display: none
+    +respond-to(wide-view)
+      display: table-cell
+
 
 .wv--split--left
   float: left

@@ -9,3 +9,10 @@
   - if defined?($JS_VARS)
     :javascript
       #{js_hash($JS_VARS)}
+
+  :javascript
+    (function(w,c){
+      if (w.lp.ads && c) {
+        w.lp.ads.networkCode=c
+      }
+    }(window,lp.getCookie('lpNetworkCode')));

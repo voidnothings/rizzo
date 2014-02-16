@@ -150,13 +150,13 @@ module.exports = function(grunt) {
                             baseUrl: './',
                             paths: {
                                 jquery: './vendor/assets/javascripts/jquery/jquery',
-                                jsmin: './vendor/assets/javascripts/lonelyplanet_minjs/dist/$',
                                 polyfills: './vendor/assets/javascripts/polyfills',
                                 lib: './public/assets/javascripts/lib',
-                                jplugs: './vendor/assets/javascripts/jquery/plugins',
+                                jplugs: './vendor/assets/javascripts/jquery-plugins',
                                 s_code: './vendor/assets/javascripts/omniture/s_code',
                                 gpt: 'http://www.googletagservices.com/tag/js/gpt',
-                                pickadate: './vendor/assets/javascripts/pickadate'
+                                pickadate: './vendor/assets/javascripts/pickadate',
+                                nouislider: './vendor/assets/javascripts/nouislider',
                             }
                         }
                     }
@@ -166,7 +166,7 @@ module.exports = function(grunt) {
         watch: {
             scripts: {
                 files: ['app/assets/javascripts/lib/**/*.coffee', 'spec/javascripts/lib/**/*.coffee'],
-                tasks: ['shell:clean_js', 'newer:coffee', 'jasmine'],
+                tasks: ['shell:clean_js', 'coffee', 'jasmine'],
                 options: {
                     nospawn: true
                 }
