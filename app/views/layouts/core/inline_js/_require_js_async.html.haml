@@ -1,4 +1,4 @@
-- cache "#{__FILE__}" do
+- cache "#{__FILE__}--#{local_assigns.map(&:to_s).join}--#{Rizzo::COMMIT}" do
   :javascript
     (function(d, s) {
       var ie = document.documentElement.className.match(/ie([0-9]+)/);
