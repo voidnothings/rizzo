@@ -9,6 +9,7 @@ require.config({
     jplugs: "vendor/assets/javascripts/jquery-plugins",
     pointer: "vendor/assets/javascripts/pointer",
     touchwipe: "vendor/assets/javascripts/jquery.touchwipe.1.1.1",
-    s_code: "vendor/assets/javascripts/omniture/s_code"
+    s_code: "vendor/assets/javascripts/omniture/s_code",
+    nouislider: "vendor/assets/javascripts/nouislider"
   }
 });
