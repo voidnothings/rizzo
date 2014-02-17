@@ -4,8 +4,7 @@
 
 @mixin css-arrow($side: top, $size: 20px, $offset: 0)
   &:after
-    height: $size
-    width: $size
+    +size($size)
   @if $side == top
     &:after
       bottom: auto
