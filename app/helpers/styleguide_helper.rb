@@ -137,8 +137,8 @@ module StyleguideHelper
               path: "tags"
             },
             {
-              name: "Tooltip",
-              path: "tooltip"
+              name: "Tooltips",
+              path: "tooltips"
             }
           ]
         }

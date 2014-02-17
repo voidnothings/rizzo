@@ -59,7 +59,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/js-components/asset-reveal'     => 'styleguide#asset_reveal'
   get 'styleguide/js-components/image-helper'     => 'styleguide#image_helper'
   get 'styleguide/alerts'                         => 'styleguide#alerts'
-  get 'styleguide/tooltip'                        => 'styleguide#tooltip'
+  get 'styleguide/tooltips'                       => 'styleguide#tooltips'
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 

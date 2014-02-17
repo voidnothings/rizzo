@@ -102,8 +102,8 @@ class StyleguideController < GlobalController
     render '/styleguide/ui-components/alerts'
   end
 
-  def tooltip
-    render '/styleguide/ui_components/tooltip'
+  def tooltips
+    render '/styleguide/ui-components/tooltips'
   end
 
   #===== yeoman hook =====#
