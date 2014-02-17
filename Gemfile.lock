@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/lonelyplanet/requirejs-rails.git
+  revision: 6e321a240dc35585141c058b8a32d136df097a29
+  specs:
+    requirejs-rails (0.9.1)
+      railties (>= 3.1.1, < 4.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -162,8 +169,6 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
-    requirejs-rails (0.9.1)
-      railties (>= 3.1.1, < 3.3)
     rspec (2.10.0)
       rspec-core (~> 2.10.0)
       rspec-expectations (~> 2.10.0)
@@ -235,7 +240,7 @@ DEPENDENCIES
   rails (= 3.2.16)
   rake
   rb-fsevent (~> 0.9.1)
-  requirejs-rails
+  requirejs-rails!
   rspec (~> 2.10.0)
   rspec-rails
   rubyzip (< 1.0.0)
