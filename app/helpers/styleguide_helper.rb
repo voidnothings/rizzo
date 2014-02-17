@@ -102,7 +102,7 @@ module StyleguideHelper
             {
               name: "Range Slider",
               path: "range-slider"
-            },
+            }
           ]
         },
         {
