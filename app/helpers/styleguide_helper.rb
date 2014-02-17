@@ -135,6 +135,10 @@ module StyleguideHelper
             {
               name: "Tags",
               path: "tags"
+            },
+            {
+              name: "Tooltip",
+              path: "tooltip"
             }
           ]
         }
