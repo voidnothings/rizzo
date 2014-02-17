@@ -102,6 +102,26 @@ class StyleguideController < GlobalController
     render '/styleguide/ui-components/alerts'
   end
 
+  def utilityClasses
+    render '/styleguide/sass-utilities/utility-classes'
+  end
+
+  def legacy
+    render '/styleguide/sass-utilities/legacy'
+  end
+
+  def noJs
+    render '/styleguide/sass-utilities/no-js'
+  end
+
+  def lpSpecific
+    render '/styleguide/sass-utilities/lp-specific'
+  end
+
+  def responsive
+    render '/styleguide/sass-utilities/responsive'
+  end
+
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 end

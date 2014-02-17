@@ -1,37 +1,81 @@
 module StyleguideHelper
 
+  def root
+    "/styleguide"
+  end
+
   def sections
     # Add new sections here.
-    ["JS Components", "UI Components"]
+    [
+      {
+        title: "UI Components",
+        slug: "/ui-components"
+      },
+      {
+        title: "JS Components",
+        slug: "/js-components"
+      },
+      {
+        title: "Sass Utilities",
+        slug: "/sass-utilities"
+      }
+    ]
   end
 
   def default_section
-    "UI Components"
+    sections[0]
   end
 
   def left_nav
     # NB! The below line is required for our yeoman generator and should not be changed.
     #===== yeoman begin-hook =====#
     {
+      sass_utilities: [
+        {
+          title: "Utility Classes",
+          items: [
+            {
+              name: "General",
+              slug: "utility-classes"
+            },
+            {
+              name: "Legacy Support",
+              slug: "legacy"
+            },
+            {
+              name: "No Javascript",
+              slug: "no-js"
+            },
+            {
+              name: "LP Specific",
+              slug: "lp-specific"
+            },
+            {
+              name: "Responsive",
+              slug: "responsive"
+            }
+          ]
+        }
+      ],
       js_components: [
         {
           title: "Utils",
           items: [
             {
               name: "Toggle Active",
-              path: "toggle-active"
+              slug: "toggle-active"
             },
             {
               name: "Proximity Loader",
-              path: "proximity-loader"
+              slug: "proximity-loader"
             },
             {
               name: "Asset Reveal",
-              path: "asset-reveal"
+              slug: "asset-reveal"
             },
             {
               name: "Image Helper",
-              path: "image-helper"
+              slug: "image-helper"
             }
           ]
         }
@@ -42,19 +86,19 @@ module StyleguideHelper
           items: [
             {
               name: "Design palette",
-              path: "colours"
+              slug: "colours"
             },
             {
               name: "UI Colours",
-              path: "ui-colours"
+              slug: "ui-colours"
             },
             {
               name: "Icons",
-              path: "icons"
+              slug: "icons"
             },
             {
               name: "Typography",
-              path: "typography"
+              slug: "typography"
             }
           ]
         },
@@ -63,15 +107,15 @@ module StyleguideHelper
           items: [
             {
               name: "Dropdown",
-              path: "navigational_dropdown"
+              slug: "navigational_dropdown"
             },
             {
               name: "Left Nav",
-              path: "left-nav"
+              slug: "left-nav"
             },
             {
               name: "Secondary Nav",
-              path: "secondary-nav"
+              slug: "secondary-nav"
             }
           ]
         },
@@ -80,11 +124,11 @@ module StyleguideHelper
           items: [
             {
               name: "Proportional Grid",
-              path: "proportional-grid"
+              slug: "proportional-grid"
             },
             {
               name: "Cards Grid",
-              path: "cards-grid"
+              slug: "cards-grid"
             }
           ]
         },
@@ -93,15 +137,15 @@ module StyleguideHelper
           items: [
             {
               name: "Inputs",
-              path: "inputs"
+              slug: "inputs"
             },
             {
               name: "Dropdown",
-              path: "dropdown"
+              slug: "dropdown"
             },
             {
               name: "Range Slider",
-              path: "range-slider"
+              slug: "range-slider"
             },
           ]
         },
@@ -110,31 +154,31 @@ module StyleguideHelper
           items: [
             {
               name: "Alerts",
-              path: "alerts"
+              slug: "alerts"
             },
             {
               name: "Badges",
-              path: "badges"
+              slug: "badges"
             },
             {
               name: "Buttons",
-              path: "buttons"
+              slug: "buttons"
             },
             {
               name: "Cards",
-              path: "cards"
+              slug: "cards"
             },
             {
               name: "Page title",
-              path: "page-title"
+              slug: "page-title"
             },
             {
               name: "Pagination",
-              path: "pagination"
+              slug: "pagination"
             },
             {
               name: "Tags",
-              path: "tags"
+              slug: "tags"
             }
           ]
         }
@@ -146,12 +190,11 @@ module StyleguideHelper
 
   def left_nav_items
     active_left_nav = {}
-    preceding_slug = (active_section == default_section) ? "/styleguide/" : "/styleguide/#{active_section}/"
-
-    active_left_nav[:groups] = left_nav[:"#{active_section.downcase.gsub(/[ -]/, "_")}"].map do |group|
+    preceding_slug = "#{root}#{active_section[:slug]}/"
+    active_left_nav[:groups] = left_nav[:"#{active_section[:slug].gsub(/^\//, "").gsub(/[ -]/, "_")}"].map do |group|
       group[:items].map do |item|
-        item[:path] = "#{preceding_slug}#{item[:path]}"
-        item[:active] = (item[:path] == request.path) ? true : false
+        item[:slug] = "#{preceding_slug}#{item[:slug]}"
+        item[:active] = (item[:slug] == request.path) ? true : false
         item
       end
       group
@@ -162,23 +205,32 @@ module StyleguideHelper
   def active_section
     # Check whether any of the sections above are currently in the url.
     section_from_slug = request.fullpath.match(/styleguide\/([^\/]+)/)
-
-    if section_from_slug && (sections.map {|s| s.downcase.strip.gsub(' ', '-') }.include? section_from_slug[1])
-      section_from_slug[1]
-    else
-      default_section
+    section_from_slug && sections.map do |section|
+      if section[:slug].include? section_from_slug[1]
+        return section
+      end
     end
+    default_section
+  end
+
+
+  def page_title
+    {
+      title: active_section[:title],
+      is_body_title: true,
+      icon: "housekeeping"
+    }
   end
 
   def secondary_nav_items
     {
-      section_name: active_section,
-      items: sections.map do |s|
-          {
-            title: s,
-            slug: s == default_section ? '/styleguide' : '/styleguide/'+s.downcase.strip.gsub(' ', '-')
-          }
-        end
+      section_name: active_section[:title],
+      items: sections.map do |section|
+        {
+          title: section[:title],
+          slug: "#{root}#{section[:slug]}"
+        }
+      end
     }
   end
 
@@ -186,11 +238,11 @@ module StyleguideHelper
     {hints: "", channels: ""}
   end
 
-  def ui_component(path, properties={})
-    render "components/#{path}", properties
+  def ui_component(slug, properties={})
+    render "components/#{slug}", properties
   end
 
-  def sg_component(path, properties)
+  def sg_component(slug, properties)
     card_style = properties.delete(:card_style)
     count = properties.delete(:count)
     full_width = properties.delete(:full_width)
@@ -207,9 +259,9 @@ module StyleguideHelper
           haml_tag(:a, name: anchor, href: "##{anchor}", class: "icon--link icon--lp-blue")
         end
         haml_tag(:div, class: item_class) do
-          haml_concat ui_component(path, properties)
+          haml_concat ui_component(slug, properties)
         end
-        haml_concat render "styleguide/partials/description", component: path, full_width: full_width, properties: original_stub ? original_stub : properties[:properties]
+        haml_concat render "styleguide/partials/description", component: slug, full_width: full_width, properties: original_stub ? original_stub : properties[:properties]
       end
     end
 
@@ -222,7 +274,29 @@ module StyleguideHelper
       icons.push(class_name)
     end
     icons
- end
+  end
+
+  def description_from_comment(comment)
+    comment.gsub(/\/\/ \[doc\]/, "").gsub(/\/\//, "")
+  end
+
+  def get_css(file)
+    sass = File.readlines(File.expand_path("../../assets/stylesheets/core/utilities/#{file}.sass", __FILE__))
+    snippets = []
+    sass.each_with_index do |line, index|
+      if line.match(/\/\/ \[doc\]/)
+        if sass[ index + 1 ].match(/\/\//)
+          line = line + sass[ index+1 ]
+          index = index + 1
+        end
+        snippets.push({
+          description: description_from_comment(line),
+          css_class: sass[ index + 1 ]
+        })
+      end
+    end
+    snippets
+  end
 
   def get_colours(file)
     colours = File.read(File.expand_path("../../assets/stylesheets/sass/variables/#{file}.sass", __FILE__))
