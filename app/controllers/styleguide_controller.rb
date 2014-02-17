@@ -122,6 +122,10 @@ class StyleguideController < GlobalController
     render '/styleguide/sass-utilities/responsive'
   end
 
+  def utilityPlaceholders
+    render '/styleguide/sass-utilities/utility-placeholders'
+  end
+
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 end

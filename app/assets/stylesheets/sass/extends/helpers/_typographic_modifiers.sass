@@ -1,15 +1,20 @@
 // -----------------------------------------------------------------------------
 // Abstractions
 
+// [doc] Split long words over multiple lines. Useful for hyperlinks.
+// The same as applying .break-text
 %prevent-text-breakouts
   +word-break()
   +hyphens()
 
+// [doc] Truncate single line text and cap it with ...
 %truncate-text
   text-overflow: ellipsis
   overflow: hidden
   white-space: nowrap
 
+// [doc] Cancels out the default font-smoothing: antialiased effect.
+// It makes the characters bolder and works well on small type.
 %subpixel-text
   -webkit-font-smoothing: subpixel-antialiased
   -moz-osx-font-smoothing: auto

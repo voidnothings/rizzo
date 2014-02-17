@@ -2,6 +2,7 @@
 // Image Replacement
 // -----------------------------------------------------
 
+// [doc] Hide text in order to replace with a background image
 %image-replacement
   display: inline-block
   border: 0
@@ -13,6 +14,8 @@
   direction: ltr
   *line-height: 0
 
+// [doc] Visually hide using clip - still available to Screen Readers.
+// Can also be applied using .accessibility
 %visually-hide
   border: 0
   // Modern syntax for clip used - intentially not supporting ie7
@@ -24,6 +27,7 @@
   position: absolute
   width: 1px
 
+// [doc] Show an element after it has been hidden using %visually-hide
 %visually-show
   clip: auto
   width: auto

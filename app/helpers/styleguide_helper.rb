@@ -55,6 +55,15 @@ module StyleguideHelper
               slug: "responsive"
             }
           ]
+        },
+        {
+          title: "Utility Placeholders",
+          items: [
+            {
+              name: "General",
+              slug: "utility-placeholders"
+            }
+          ]
         }
       ],
       js_components: [
@@ -281,7 +290,7 @@ module StyleguideHelper
   end
 
   def get_css(file)
-    sass = File.readlines(File.expand_path("../../assets/stylesheets/core/utilities/#{file}.sass", __FILE__))
+    sass = File.readlines(File.expand_path("../../assets/stylesheets/#{file}.sass", __FILE__))
     snippets = []
     sass.each_with_index do |line, index|
       if line.match(/\/\/ \[doc\]/)
