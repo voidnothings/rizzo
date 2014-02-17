@@ -7,22 +7,37 @@
 // 
 // Styleguide 1.11
 
-.tooltip--trigger
+.tooltip--container
   position: relative
 
+%tooltip--below
+  bottom: auto
+  opacity: 1
+  top: 120%
+  z-index: 999
+
+  .ie7 &, .ie8 &, .browserIE7 &, .browserIE8 &
+    display: block
+%tooltip--above
+  bottom: 120%
+  opacity: 1
+  top: auto
+
+.tooltip--trigger
+  @extend .tooltip--container
   &:hover
     .tooltip
-      bottom: auto
-      opacity: 1
-      top: 120%
-      z-index: 999
-
-      .ie7 &, .ie8 &, .browserIE7 &, .browserIE8 &
-        display: block
+      @extend %tooltip--below
     .tooltip--above
-      bottom: 120%
-      opacity: 1
-      top: auto
+      @extend %tooltip--above
+
+.tooltip--focus-trigger
+  @extend .tooltip--container
+  &:focus
+    + .tooltip
+      @extend %tooltip--below
+    + .tooltip--above
+      @extend %tooltip--above
 
 .tooltip
   @extend %rounded-corners

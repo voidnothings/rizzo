@@ -1,2 +1,3 @@
+- tooltip = !properties[:tooltip].nil?
 - type = properties[:type] || 'text'
-%input.input{ class: "input--#{type}", id: properties[:id], name: properties[:name], value: properties[:value] || "", type: type, placeholder: properties[:placeholder], data: properties[:data], maxlength: properties[:maxlength], data: properties[:rules] ? { rules: properties[:rules] } : {} }
+%input.input{ class: "input--#{type}#{tooltip ? " tooltip--focus-trigger" : ""}", id: properties[:id], name: properties[:name], value: properties[:value] || "", type: type, placeholder: properties[:placeholder], data: properties[:data], maxlength: properties[:maxlength], data: properties[:rules] ? { rules: properties[:rules] } : {} }
