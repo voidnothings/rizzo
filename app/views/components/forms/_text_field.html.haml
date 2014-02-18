@@ -1,14 +1,6 @@
-- tooltip = properties[:tooltip]
-= render :layout => 'components/forms/partials/field', :locals => { id: properties[:id], label: properties[:label], extra_class: properties[:extra_class], tooltip: tooltip } do
+= render :layout => 'components/forms/partials/field', :locals => { id: properties[:id], label: properties[:label], extra_class: properties[:extra_class], tooltip: properties[:tooltip] } do
   .input__container.js-input{ class: properties[:error] ? 'field__input--error' : nil }
     = ui_component('forms/text_input', properties: properties )
-    - if !tooltip.nil?
-      .tooltip.input__tooltip
-        - if tooltip[:title]
-          .input__tooltip__title
-            = tooltip[:title]
-        .input__tooltip__copy
-          = tooltip[:copy]
     - if properties[:error]
       .field__error.js-error
         = properties[:error]

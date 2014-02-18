@@ -4,3 +4,4 @@
       %input.input--radio{ type: "radio", name: option[:name], id: option[:id], checked: option[:checked] ? 'checked' : nil, data: option[:data], value: option[:value], data: properties[:rules] ? { rules: properties[:rules] } : {} }
       %label.js-field-label{ for: option[:id] }<
         = option[:label]
+  = render :partial => 'components/forms/partials/tooltip', :locals => { tooltip: properties[:tooltip] }
