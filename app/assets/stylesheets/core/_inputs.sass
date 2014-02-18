@@ -42,21 +42,6 @@ input[type="submit"]
       background-color: #fff
       border: 1px solid $details-panel-border
 
-
-// IE Friendly placeholders
-.input--placeholder
-  display: none
-  .ie7 &, .ie8 &, .ie9 &
-    margin: 5px 0
-    display: block
-
-// Replace an input with an image or pseudo element
-.hidden-input
-  @extend %visually-hide
-  // Show the input for ie7 where we don't have pseudo elements
-  .ie7 &, .no-js &
-    @extend %visually-show
-
 // ----------------------------------------------------------------------------
 //
 // Header: Search Form
