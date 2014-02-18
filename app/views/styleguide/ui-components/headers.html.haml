@@ -1,0 +1,10 @@
+= render 'styleguide/partials/shared'
+
+- headers = YAML.load(File.read(File.expand_path('../../../../data/styleguide/header_stubs.yml', __FILE__)))['headers']
+
+.card.styleguide-intro.copy--body.context--content
+  .clearfix
+    %h1.copy--h1 Headers
+
+  - headers.each do | properties |
+    = sg_component('header', properties: properties, full_width: true)

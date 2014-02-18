@@ -1,0 +1,17 @@
+headers:
+  -
+    :intro: "Featured Interest:"
+    :slides:
+      -
+        :title: "Photography"
+        :strapline: "Taking pictures and stuff"
+      -
+        :title: "Boating"
+        :strapline: "Taking fish and stuff"
+      -
+        :title: "Adventure travel"
+        :strapline: "Travelling about and adventures and stuff"
+      -
+        :intro: "Something else:"
+        :title: "Wow"
+        :strapline: "Really wild"
