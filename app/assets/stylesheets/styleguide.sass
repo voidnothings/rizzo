@@ -1,6 +1,7 @@
 @import 'base_helpers'
 @import 'sprites/pois_sprite'
 @import 'components/*'
+/* this comment is necessary to fix broken syntax highlighting... lame */
 @import 'prism'
 
 .box
@@ -124,6 +125,24 @@ pre.styleguide.is-open
 
 .styleguide-block__heading
   margin-top: 0
+
+.styleguide-block__tooltips
+  .styleguide-block__description
+    overflow: visible
+  .tooltip--left,
+  .tooltip--right
+    width: 165px
+  .tooltip--left
+    right: 103%
+  .tooltip--right
+    left: 103%
+  .tooltip--hover:hover,
+  .tooltip--focus:focus
+    .tooltip--left, + .tooltip--left
+      right: 101%
+    .tooltip--right, + .tooltip--right
+      left: 101%
+  .tooltip--focus
 
 .styleguide__partial
   border: 2px solid $body-background

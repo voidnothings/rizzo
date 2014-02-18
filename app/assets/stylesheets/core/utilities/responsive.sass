@@ -1,0 +1,78 @@
+// ----------------------------------------------------------------------------
+//
+// Responsive Helpers
+//
+// wv = wide-view
+// ----------------------------------------------------------------------------
+
+// [doc] Place this class on elements with background images in order to block
+// them on intitial load. Usually in order to load in dynamically later.
+.rwd-image-blocker
+  .js &
+  background-image: none !important
+
+// [doc] Hide content on wider screens
+.wv--hidden
+  display: none
+  .responsive &
+    display: inline-block
+    +respond-to(wide-view)
+      display: none
+
+// [doc] Hide content but show it on wider screens
+.wv--block
+  display: block
+  .responsive &
+    display: none
+    +respond-to(wide-view)
+      display: block
+
+// [doc] Hide content but show it on wider screens (with inline-block properties)
+.wv--inline-block
+  @extend %inline-block
+  .responsive &
+    display: none
+    +respond-to(wide-view)
+      display: inline-block
+
+// [doc] Hide content but show it on wider screens (with display:table properties)
+.wv--table
+  display: table-cell
+  .responsive &
+    display: none
+    +respond-to(wide-view)
+      display: table-cell
+
+// [doc] Toggles a stacked nav to an inline nav for wider screens
+.wv--nav--inline
+  .responsive &
+    display: block
+    > .nav__item
+      display: block
+    +respond-to(wide-view)
+      display: inline-block
+      > .nav__item
+        vertical-align: top
+        display: inline-block
+    .ie7 &
+      .nav__item
+        float: left
+
+// [doc] Floats content left but only on wider screens
+.wv--split--left
+  float: left
+  .responsive &
+    float: none
+    +respond-to(wide-view)
+      float: left
+
+// [doc] Floats content right but only on wider screens
+.wv--split--right
+  float: right
+  text-align: right
+  .responsive &
+    float: none
+    text-align: left
+    +respond-to(wide-view)
+      float: right
+      text-align: right
