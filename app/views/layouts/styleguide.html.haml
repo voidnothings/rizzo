@@ -12,7 +12,7 @@
         .row.row--primary
           .split--left
             .wv--nav--inline.nav--primary#js-nav--primary
-              %a.media--lp-logo.logo--header(href='http://www.lonelyplanet.com')
+              %a.media--lp-logo.logo--header.icon--lp-logo.icon--white{href: 'http://rizzo.lonelyplanet.com/styleguide'}
               %h1.title--primary.title--styleguide Styleguide
 
           .split--right
@@ -26,7 +26,7 @@
 
           .row.row--secondary#js-secondary-nav
             .row__inner.row__inner--secondary
-              = ui_component("navigation/secondary", properties: secondary_nav_items)
+              = yield :secondary
 
           .grid-wrapper--10
             = ui_component('navigation/left', properties: left_nav_items)

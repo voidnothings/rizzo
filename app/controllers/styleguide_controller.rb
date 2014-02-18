@@ -102,6 +102,26 @@ class StyleguideController < GlobalController
     render '/styleguide/ui-components/alerts'
   end
 
+  def utilityClasses
+    render '/styleguide/sass-utilities/utility-classes'
+  end
+
+  def legacy
+    render '/styleguide/sass-utilities/legacy'
+  end
+
+  def noJs
+    render '/styleguide/sass-utilities/no-js'
+  end
+
+  def lpSpecific
+    render '/styleguide/sass-utilities/lp-specific'
+  end
+
+  def responsive
+    render '/styleguide/sass-utilities/responsive'
+  end
+
   def tooltips
     render '/styleguide/ui-components/tooltips'
   end
