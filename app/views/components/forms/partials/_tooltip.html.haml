@@ -1,0 +1,7 @@
+- if !tooltip.nil?
+  .tooltip.tooltip--below.icon--tapered-arrow-up--after
+    - if tooltip[:title]
+      %strong
+        = tooltip[:title]
+    .input__tooltip__copy
+      = tooltip[:copy]
