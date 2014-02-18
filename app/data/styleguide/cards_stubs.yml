@@ -47,6 +47,14 @@ cards:
     :strapline: "Just a little article about the many ways to say hello"
 
   -
+    :styleguide_title: "Article Card"
+    :slug: "#"
+    :title: "The world's best housekeeper"
+    :style: "mini"
+    :image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
+    :icon: "housekeeping"
+
+  -
     :styleguide_title: "Blog Card"
     :slug: "#"
     :title: "Hello"

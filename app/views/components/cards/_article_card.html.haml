@@ -1,4 +1,7 @@
 :ruby
+  if properties[:style] == "mini"
+    return render "components/cards/mini_card", properties: properties
+  end
 
   css_classes = [
     "card",
