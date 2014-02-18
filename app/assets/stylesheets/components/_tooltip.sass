@@ -29,17 +29,17 @@
 
 .tooltip--above
   +css-arrow-central(bottom, $size: 22px)
-  bottom: auto
-  left: auto
-  right: auto
-  top: -3.5em
-
-.tooltip--below
-  +css-arrow-central(top, $size: 22px)
-  bottom: -3.5em
+  bottom: 115%
   left: auto
   right: auto
   top: auto
+
+.tooltip--below
+  +css-arrow-central(top, $size: 22px)
+  bottom: auto
+  left: auto
+  right: auto
+  top: 115%
 
 .tooltip--left
   +css-arrow-central(right, $size: 22px)
@@ -62,16 +62,16 @@
 // -----------------------------------------------------------------------------
 
 %tooltip--above--hover
-  bottom: auto
-  left: auto
-  right: auto
-  top: -3.2em
-
-%tooltip--below--hover
-  bottom: -3.2em
+  bottom: 105%
   left: auto
   right: auto
   top: auto
+
+%tooltip--below--hover
+  bottom: auto
+  left: auto
+  right: auto
+  top: 105%
 
 %tooltip--left--hover
   bottom: auto
