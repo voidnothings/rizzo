@@ -20,9 +20,9 @@ define ["jquery", "lib/forms/form_input"], ($, FormInput) ->
       @form.on "submit", (e) =>
 
         if @isValid()
-          $submit.removeAttr('disabled')
+          $submit.removeProp('disabled')
         else
-          $submit.attr('disabled', 'disabled')
+          $submit.prop('disabled', 'disabled')
           e.preventDefault()
 
       for input in @inputs
@@ -30,11 +30,11 @@ define ["jquery", "lib/forms/form_input"], ($, FormInput) ->
           e.data.isValid(true)
 
           if @isValid(false, e.data)
-            $submit.removeAttr('disabled')
+            $submit.removeProp('disabled')
           else
-            $submit.attr('disabled', 'disabled')
+            $submit.prop('disabled', 'disabled')
 
-      $submit.attr('disabled', 'disabled') unless @isValid(false)
+      $submit.prop('disabled', 'disabled') unless @isValid(false)
 
     isValid: (triggerErrors, byPassEl) ->
       valid = true
