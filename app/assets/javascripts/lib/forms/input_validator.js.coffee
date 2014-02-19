@@ -16,7 +16,7 @@ define ["jquery", "lib/forms/validators", "lib/forms/error_messages"], ($, Valid
 
     _initialize: ->
       # check for validation rules that have parameters and split them up, e.g. min(3)
-      if match = @validator.match(/(.+)\((.+)\)/)
+      if match = @validator.match(/(.+?)\((.+)\)/)
         @name = match[1]
         @args = match[2]
       else

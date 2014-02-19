@@ -13,6 +13,6 @@
   :javascript
     (function(w,c){
       if (w.lp.ads && c) {
-        w.lp.ads.networkCode=c
+        w.lp.ads.networkCode=c.length?c.pop():c
       }
-    }(window,lp.getCookie('lpNetworkCode')));
+    }(window,lp.getCookie('lpNetworkCode') || window.location.search.match(/lpNetworkCode=([0-9]{4,8})/) ));
