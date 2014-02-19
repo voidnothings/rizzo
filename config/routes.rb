@@ -66,10 +66,10 @@ Rizzo::Application.routes.draw do
   get 'styleguide/sass-utilities/utility-classes'      => 'styleguide#utilityClasses'
   get 'styleguide/sass-utilities/legacy'               => 'styleguide#legacy'
   get 'styleguide/sass-utilities/no-js'                => 'styleguide#noJs'
-  get 'styleguide/sass-utilities/lp-specific'          => 'styleguide#lpSpecific'
+  get 'styleguide/sass-utilities/lp-specific-classes'  => 'styleguide#lpSpecificClasses'
   get 'styleguide/sass-utilities/responsive'           => 'styleguide#responsive'
   get 'styleguide/sass-utilities/utility-placeholders' => 'styleguide#utilityPlaceholders'
-
+  get 'styleguide/sass-utilities/lp-specific-placeholders'  => 'styleguide#lpSpecificPlaceholders'
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 

@@ -114,8 +114,8 @@ class StyleguideController < GlobalController
     render '/styleguide/sass-utilities/no-js'
   end
 
-  def lpSpecific
-    render '/styleguide/sass-utilities/lp-specific'
+  def lpSpecificClasses
+    render '/styleguide/sass-utilities/lp-specific-classes'
   end
 
   def responsive
@@ -126,6 +126,9 @@ class StyleguideController < GlobalController
     render '/styleguide/sass-utilities/utility-placeholders'
   end
 
+  def lpSpecificPlaceholders
+    render '/styleguide/sass-utilities/lp-specific-placeholders'
+  end
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 end

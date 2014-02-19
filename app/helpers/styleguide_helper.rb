@@ -32,7 +32,7 @@ module StyleguideHelper
     {
       sass_utilities: [
         {
-          title: "Utility Classes",
+          title: "Classes",
           items: [
             {
               name: "General",
@@ -48,7 +48,7 @@ module StyleguideHelper
             },
             {
               name: "LP Specific",
-              slug: "lp-specific"
+              slug: "lp-specific-classes"
             },
             {
               name: "Responsive",
@@ -57,11 +57,15 @@ module StyleguideHelper
           ]
         },
         {
-          title: "Utility Placeholders",
+          title: "Placeholders",
           items: [
             {
               name: "General",
               slug: "utility-placeholders"
+            },
+            {
+              name: "LP Specific",
+              slug: "lp-specific-placeholders"
             }
           ]
         }
