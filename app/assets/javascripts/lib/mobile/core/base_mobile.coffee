@@ -8,7 +8,7 @@ define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shoppin
       @initialiseSelectGroupManager()
       @addNavTracking()
       @scrollPerf() unless window.lp.touch is true
-
+      @menuToggle()
 
     authenticateUser: ->
       @auth = new Authenticator()
@@ -49,3 +49,9 @@ define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shoppin
         , 300
       , false
 
+    menuToggle: ->
+      document.querySelector('.js-primary-trigger').addEventListener 'click', ->
+        body = document.body
+        className = document.body.className
+        navClass = ' show-nav'
+        if className.indexOf(navClass) >= 0 then body.className = className.replace(navClass, '') else body.className += navClass
