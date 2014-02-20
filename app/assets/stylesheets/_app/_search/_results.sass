@@ -1,44 +1,114 @@
 // -----------------------------------------------------------------------------
+// Search layout
+// -----------------------------------------------------------------------------
+.search__results
+  width: 75%
+
+// -----------------------------------------------------------------------------
 // Search result
 // -----------------------------------------------------------------------------
 
-.search__result-aside
-  width: 100px
-  margin-right: 20px
+.search__result
+  @extend %rounded-corners
+  padding: 0
 
-.search__result-image
+.search__result-figure
+  position: relative
+  display: block
+  width: 200px
+
+.search__result-figure__overlay
+  position: absolute
+  bottom: 0
+  left: 0
+  padding: 15px 20px
+
+  .search__result-type,
+  .search__result-title
+    color: #FFF
+
+.search__result-figure__image
   min-width: 100%
   max-width: 100%
+  border-top-left-radius: 4px
+  border-bottom-left-radius: 4px
 
-.search__result-icon
+.search__result-figure__icon
   +size(30px)
   float: right
 
-.search__result-type
+.search__result-meta
+  padding: 15px 20px
+
+.search__result-type,
+.search__result-title
+  line-height: 1.1
+
+.search__result-title
+  @extend %truncate-text
   margin-bottom: 5px
+
+.search__result-description
+  +font-size(14)
+  line-height: 1.35
+  color: $feature-copy
+
+.search__result--guide
+
+  // Guide images are not square and isolated on a white BG
+  .search__result-figure__image
+    min-width: 0
+    margin: 0 auto
+
+.search__result--hero
+  margin-bottom: 30px
+
+  .text-icon:before
+    +icon-color(lp-blue)
+
+  .search__result-figure
+    width: auto
+
+  .search__result-figure__image
+    border-top-right-radius: 4px
+    border-bottom-left-radius: 0
+
+  .search__result-links
+    +font-size(14)
+
+    > li
+      display: inline
+      padding-right: .5em
+
+  .search__result-count
+    color: $feature-copy
 
 // -----------------------------------------------------------------------------
 // Result list paraphernalia
 // -----------------------------------------------------------------------------
 
-// Search again form
+.search__heading
+  margin-bottom: 20px
+  color: $feature-copy
+
 .search__form
+  margin: 50px 0 30px
+
+.search__label
+  display: block
+  margin-bottom: .5em
+
+.search__query
+  width: 100%
+  border: 0
+  border-bottom: 2px solid $input-border
+  font-size: 60px
+  color: $body-copy
+  background: none
+
+.search__clear
+
+.search__filters
   float: right
+  margin-top: -8px
 
-.search__form__input
-  float: left
-  margin-right: 10px
-
-// Pagination
-.search__header__pagination
-  margin-top: 15px
-  padding-top: 15px
-  border-top: 1px solid $body-background
-
-
-// Fluff
-.search__results-count
-  margin: 15px 0
-
-.search__results-list
-  list-style: none
