@@ -1,4 +1,4 @@
-define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shopping_cart_mobile', 'lib/mobile/select_group_manager_mobile', 'lib/utils/asset_fetch', 'lib/utils/local_store'], ($, Authenticator, ShoppingCart, SelectGroupManager, AssetFetch, LocalStore) ->
+define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shopping_cart_mobile', 'lib/mobile/select_group_manager_mobile', 'lib/utils/asset_fetch', 'lib/utils/local_store', 'lib/utils/toggle_active'], ($, Authenticator, ShoppingCart, SelectGroupManager, AssetFetch, LocalStore) ->
 
   class Base
 
@@ -8,7 +8,6 @@ define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shoppin
       @initialiseSelectGroupManager()
       @addNavTracking()
       @scrollPerf() unless window.lp.touch is true
-      @menuToggle()
 
     authenticateUser: ->
       @auth = new Authenticator()
@@ -48,10 +47,3 @@ define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shoppin
           document.documentElement.style.pointerEvents = "auto"
         , 300
       , false
-
-    menuToggle: ->
-      document.querySelector('.js-primary-trigger').addEventListener 'click', ->
-        body = document.body
-        className = document.body.className
-        navClass = ' show-nav'
-        if className.indexOf(navClass) >= 0 then body.className = className.replace(navClass, '') else body.className += navClass
