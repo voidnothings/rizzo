@@ -1,29 +1,47 @@
-# ------------------------------------------------------------------------------------------
-# A replacement for the so called "checkbox hack" (http://css-tricks.com/the-checkbox-hack/)
-# which we can't use because of issues in iOS, Android, and old IE.
-# 
-# An example of how to use it is:
-# 
-#   <a href="#" class="js-toggle-active" data-target=".foo">toggle it</a>
-# 
-# ... or to specify the class (which defaults to 'is-active'):
-# 
-#   <a href="#" class="js-toggle-active" data-toggle-target=".foo" data-toggle-class="custom-class">toggle it</a>
-# 
-# ------------------------------------------------------------------------------------------
-
 define ["jquery"], ($) ->
 
   class ToggleActive
 
-    constructor: () ->
+    LISTENER = '#js-row--content'
 
+    constructor: ->
+      @listen()
+      @_addInitialState()
+
+
+    listen: ->
+      $('.js-toggle-active').on 'click', (event) =>
+        $el = $(event.target)
+        @_updateClasses($el)
+
+        # Prevent the click event bubbling so we can update this component
+        # by click elsewhere on the document
+        # 
+        # Replace it with the toggleActive/click event
+        event.stopPropagation()
+        @broadcast($el)
+
+        if event.target.nodeName.toUpperCase() is 'A'
+          event.preventDefault()
+
+      $(LISTENER).on ':toggleActive/update', (e, target) =>
+        @_updateClasses($(target))
+
+    broadcast: ($el) ->
+      $el.trigger(':toggleActive/click', {isActive: $el.hasClass('is-active')})
+
+
+    # Private
+
+    _addInitialState: ->
       $('.js-toggle-active').each ->
         $el = $(@)
         $($el.data('toggleTarget')).addClass('is-not-active')
+        $el.addClass('is-not-active') if $el.data('toggleMe')
 
-      $('.js-toggle-active').on 'click', (e) ->
-        $el = $(@)
-        custom = if $el.data('toggleClass') then $el.data('toggleClass') + ' ' else ''
-        $($el.data('toggleTarget')).toggleClass(custom + 'is-active is-not-active')
-        e.preventDefault()
+    _updateClasses: ($el) ->
+      classList = 'is-active is-not-active '
+      classList += $el.data('toggleClass') if $el.data('toggleClass')
+
+      $el.toggleClass(classList) if $el.data('toggleMe')
+      $($el.data('toggleTarget')).toggleClass(classList)
