@@ -1,4 +1,4 @@
-define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shopping_cart_mobile', 'lib/mobile/select_group_manager_mobile', 'lib/utils/asset_fetch', 'lib/utils/local_store', 'lib/utils/toggle_active'], ($, Authenticator, ShoppingCart, SelectGroupManager, AssetFetch, LocalStore) ->
+define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shopping_cart_mobile', 'lib/mobile/select_group_manager_mobile', 'lib/utils/asset_fetch', 'lib/utils/local_store', 'lib/utils/toggle_active'], ($, Authenticator, ShoppingCart, SelectGroupManager, AssetFetch, LocalStore, ToggleActive) ->
 
   class Base
 
@@ -8,6 +8,7 @@ define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shoppin
       @initialiseSelectGroupManager()
       @addNavTracking()
       @scrollPerf() unless window.lp.touch is true
+      new ToggleActive
 
     authenticateUser: ->
       @auth = new Authenticator()

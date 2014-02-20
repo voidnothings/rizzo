@@ -2,12 +2,11 @@ define ["jquery"], ($) ->
 
   class ToggleActive
 
-    LISTENER = '#js-row--content'
+    LISTENER = '.js-wrapper'
 
     constructor: ->
       @listen()
       @_addInitialState()
-
 
     listen: ->
       $('.js-toggle-active').on 'click', (event) =>
