@@ -108,6 +108,13 @@
   &:hover
     color: $linkblue
 
+.btn--subtle
+  background-color: transparent
+  border: 1px solid $grey-highlight
+  color: $grey-highlight
+  &:before, &:after
+    +icon-color(body-grey)
+
 .btn--clear
   background-color: transparent
   border: 1px solid $input-border

@@ -1,7 +1,7 @@
 .search__form
   position: relative
   margin: 50px 0 30px
-  border-bottom: 2px solid $input-border
+  border-bottom: 2px solid mix($grey-highlight, $body-background, 30)
 
   &.is-populated:after
     display: none
@@ -13,18 +13,19 @@
 .search__query
   width: 100%
   border: 0
-  font-size: 60px
+  font-size: 50px
   color: $body-copy
   background: none
+  +placeholder
+    color: mix($grey-highlight, $body-background, 30)
 
 .search__form:after,
 .search__reset
+  +size(40px)
   +icon-color(body-grey)
   position: absolute
   right: 0
   bottom: 10px
-  width: 40px
-  height: 40px
 
 .search__reset
   border: 0

@@ -42,6 +42,12 @@ buttons:
     :text: "Read more"
     :href: "#"
 
+  -
+    :styleguide_title: "Subtle button"
+    :type: "subtle"
+    :text: "Filters"
+    :href: "#"
+
 variation:
   :styleguide_title: "Sizes and modifiers"
   :text: "Submit"
