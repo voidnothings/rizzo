@@ -5,13 +5,18 @@
 // wv = wide-view
 // ----------------------------------------------------------------------------
 
-// [doc] Place this class on elements with background images in order to block
-// them on intitial load. Usually in order to load in dynamically later.
+// [doc] Block background images
+//
+// Place this class on elements with background images in order to block
+// them on initial load.
+//
+// This is usually done in order to load them in dynamically later. [/doc]
+
 .rwd-image-blocker
   .js &
   background-image: none !important
 
-// [doc] Hide content on wider screens
+// [doc] Hide content on wider screens. [/doc]
 .wv--hidden
   display: none
   .responsive &
@@ -19,7 +24,7 @@
     +respond-to(wide-view)
       display: none
 
-// [doc] Hide content but show it on wider screens
+// [doc] Hide content but show it on wider screens. [/doc]
 .wv--block
   display: block
   .responsive &
@@ -27,7 +32,7 @@
     +respond-to(wide-view)
       display: block
 
-// [doc] Hide content but show it on wider screens (with inline-block properties)
+// [doc] Hide content but show it on wider screens (with inline-block properties). [/doc]
 .wv--inline-block
   @extend %inline-block
   .responsive &
@@ -35,7 +40,7 @@
     +respond-to(wide-view)
       display: inline-block
 
-// [doc] Hide content but show it on wider screens (with display:table properties)
+// [doc] Hide content but show it on wider screens (with display:table properties). [/doc]
 .wv--table
   display: table-cell
   .responsive &
@@ -43,7 +48,7 @@
     +respond-to(wide-view)
       display: table-cell
 
-// [doc] Toggles a stacked nav to an inline nav for wider screens
+// [doc] Toggles a stacked nav to an inline nav for wider screens. [/doc]
 .wv--nav--inline
   .responsive &
     display: block
@@ -58,7 +63,7 @@
       .nav__item
         float: left
 
-// [doc] Floats content left but only on wider screens
+// [doc] Floats content left but only on wider screens. [/doc]
 .wv--split--left
   float: left
   .responsive &
@@ -66,7 +71,7 @@
     +respond-to(wide-view)
       float: left
 
-// [doc] Floats content right but only on wider screens
+// [doc] Floats content right but only on wider screens. [/doc]
 .wv--split--right
   float: right
   text-align: right
