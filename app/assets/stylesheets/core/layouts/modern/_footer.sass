@@ -165,7 +165,7 @@
 
 .title--social
   +font-size(14)
-  padding: 25px 0
+  padding: 23px 0
   margin-right: 10px
   .responsive &
     display: none
@@ -175,10 +175,8 @@
     display: none
 
 .nav__item--social
+  @extend %image-replacement
   border-radius: 16px
-  @extend %left-icon--hidden-text
-  @extend %lp-font-stack
-  color: $body-copy
   margin: 16px 0 17px
   width: 32px
   height: 32px

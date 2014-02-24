@@ -66,6 +66,10 @@ module StyleguideHelper
             {
               name: "LP Specific",
               slug: "lp-specific-placeholders"
+            },
+            {
+              name: "Icons",
+              slug: "icon-placeholders"
             }
           ]
         }

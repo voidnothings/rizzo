@@ -134,6 +134,10 @@ class StyleguideController < GlobalController
     render '/styleguide/sass-utilities/lp-specific-placeholders'
   end
 
+  def iconPlaceholders
+    render '/styleguide/sass-utilities/icon-placeholders'
+  end
+
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 end
