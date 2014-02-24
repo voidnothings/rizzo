@@ -314,26 +314,30 @@ module StyleguideHelper
     icons
   end
 
-  def description_from_comment(comment)
-    comment.gsub(/\/\/ \[doc\]/, "").gsub(/\/\//, "")
+  def description_from_snippet(snippet)
+    decorated_snippet = {}
+    snippet.split(/\[\/doc\]/).each_with_index do |section, index|
+      if index == 0
+        decorated_snippet[:title] = section.split("\n//\n// ").delete_if(&:empty?).first.gsub("\n//", "")
+        decorated_snippet[:description] = section.split("\n//\n// ").delete_if(&:empty?)[1..-1].map do |line|
+          line.gsub("\n//", "")
+        end
+      else
+        decorated_snippet[:snippet] = section.split("\n").delete_if(&:empty?).delete_if do |line|
+          line.index("//") == 0
+        end[0].gsub("@mixin ", "+")
+      end
+    end
+    decorated_snippet
   end
 
   def get_css(file)
-    sass = File.readlines(File.expand_path("../../assets/stylesheets/#{file}.sass", __FILE__))
-    snippets = []
-    sass.each_with_index do |line, index|
-      if line.match(/\/\/ \[doc\]/)
-        if sass[ index + 1 ].match(/\/\//)
-          line = line + sass[ index+1 ]
-          index = index + 1
-        end
-        snippets.push({
-          description: description_from_comment(line),
-          css_class: sass[ index + 1 ].gsub("@mixin ", "+")
-        })
-      end
+    sass = File.read(File.expand_path("../../assets/stylesheets/#{file}.sass", __FILE__))
+    decorated_snippets = []
+    sass.split(/\[doc\]/).each do |snippet|
+      decorated_snippets.push(description_from_snippet(snippet)) unless snippet.index("//") == 0
     end
-    snippets
+    decorated_snippets
   end
 
   def get_colours(file)
