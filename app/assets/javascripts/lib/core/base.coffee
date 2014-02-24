@@ -1,4 +1,4 @@
-define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager', 'lib/core/ad_manager', 'lib/utils/scroll_perf'], ($, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroupManager, AdManager, ScrollPerf) ->
+define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager', 'lib/core/ad_manager'], ($, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroupManager, AdManager) ->
 
   class Base
 
@@ -13,7 +13,6 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
       @showCookieComplianceMsg()
       @initialiseSelectGroupManager()
       @addNavTracking()
-      new ScrollPerf
 
     # This adConfig can all be ditched when switching to the new DFP server.
     lpAds = (window.lp and lp.ads)
