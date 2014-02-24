@@ -16,8 +16,8 @@ module StyleguideHelper
         slug: "/js-components"
       },
       {
-        title: "Sass Utilities",
-        slug: "/sass-utilities"
+        title: "CSS Utilities",
+        slug: "/css-utilities"
       }
     ]
   end
@@ -30,9 +30,9 @@ module StyleguideHelper
     # NB! The below line is required for our yeoman generator and should not be changed.
     #===== yeoman begin-hook =====#
     {
-      sass_utilities: [
+      css_utilities: [
         {
-          title: "Utility Classes",
+          title: "Classes",
           items: [
             {
               name: "General",
@@ -48,11 +48,45 @@ module StyleguideHelper
             },
             {
               name: "LP Specific",
-              slug: "lp-specific"
+              slug: "lp-specific-classes"
             },
             {
               name: "Responsive",
               slug: "responsive"
+            }
+          ]
+        },
+        {
+          title: "Placeholders",
+          items: [
+            {
+              name: "General",
+              slug: "utility-placeholders"
+            },
+            {
+              name: "LP Specific",
+              slug: "lp-specific-placeholders"
+            },
+            {
+              name: "Icons",
+              slug: "icon-placeholders"
+            }
+          ]
+        },
+        {
+          title: "Mixins",
+          items: [
+            {
+              name: "Responsive",
+              slug: "responsive-mixins"
+            },
+            {
+              name: "Utility Mixins",
+              slug: "utility-mixins"
+            },
+            {
+              name: "Media",
+              slug: "media-mixins"
             }
           ]
         }
@@ -285,7 +319,7 @@ module StyleguideHelper
   end
 
   def get_css(file)
-    sass = File.readlines(File.expand_path("../../assets/stylesheets/core/utilities/#{file}.sass", __FILE__))
+    sass = File.readlines(File.expand_path("../../assets/stylesheets/#{file}.sass", __FILE__))
     snippets = []
     sass.each_with_index do |line, index|
       if line.match(/\/\/ \[doc\]/)
@@ -295,7 +329,7 @@ module StyleguideHelper
         end
         snippets.push({
           description: description_from_comment(line),
-          css_class: sass[ index + 1 ]
+          css_class: sass[ index + 1 ].gsub("@mixin ", "+")
         })
       end
     end
