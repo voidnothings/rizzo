@@ -69,14 +69,15 @@ define ['jquery', 'lib/utils/page_state'], ($, PageState)->
 
     userOptionsMenu: ->
       userOptions = [
-        {title: 'My profile', uri: "#{@options.membersUrl.replace('[USERNAME]', @lpUserName)}", style:"js-user-profile"},
-        {title: 'Settings', uri: "#{@options.profileEditUrl.replace('[USERNAME]', @lpUserName)}",  style:"js-user-settings"},
-        {title: 'Messages', uri: "#{@options.messagesUrl.replace('[USERNAME]', @lpUserName)}", style:"js-user-msg"},
-        {title: 'Forum activity', uri: "#{@options.forumPostsUrlTemplate.replace('[USERNAME]', @lpUserName)}", style:"nav-user-options__item--forum js-user-forum" },
-        {title: 'Sign out', uri: "#{@options.signOutUrl}", style:"nav-user-options__item--signout js-user-signout" }
+        {title: 'My profile', uri: "#{@options.membersUrl.replace('[USERNAME]', @lpUserName)}", style:"js-user-profile", icon:"user"},
+        {title: 'Settings', uri: "#{@options.profileEditUrl.replace('[USERNAME]', @lpUserName)}",  style:"js-user-settings", icon:"settings"},
+        {title: 'Messages', uri: "#{@options.messagesUrl.replace('[USERNAME]', @lpUserName)}", style:"js-user-msg", icon:"envelope"},
+        {title: 'Forum activity', uri: "#{@options.forumPostsUrlTemplate.replace('[USERNAME]', @lpUserName)}", style:"nav-user-options__item--forum js-user-forum", icon:"article--line" },
+        {title: 'Sign out', uri: "#{@options.signOutUrl}", style:"nav-user-options__item--signout js-user-signout", icon:"sign-out" }
       ]
       optionElements =  ("<a class='nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
-      userMenu = "<span class='wv--hidden nav--offscreen__title'>#{@lpUserName}</span><div class='nav__submenu nav__submenu--user'><div class='nav--stacked nav__submenu__content icon--arrow-up--green--after nav__submenu__content--user nav-user-options js-user-options'><div class='nav__submenu__item nav__submenu__title'>#{@lpUserName}</div>#{optionElements}</div></div>"
+      responsiveOptionElements =  ("<a class='nav__item nav__item--primary nav__submenu__trigger copy--icon--before icon--#{u.icon}--before icon--white--before' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
+      userMenu = "<span class='wv--hidden nav--offscreen__title'>#{@lpUserName}</span><div class='wv--hidden wv--nav--inline'>#{responsiveOptionElements}</div><div class='nav__submenu nav__submenu--user'><div class='nav--stacked nav__submenu__content icon--arrow-up--green--after nav__submenu__content--user nav-user-options js-user-options'><div class='nav__submenu__item nav__submenu__title'>#{@lpUserName}</div>#{optionElements}</div></div>"
 
 
     userAvatar: ->
