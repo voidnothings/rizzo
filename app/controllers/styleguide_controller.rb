@@ -103,23 +103,23 @@ class StyleguideController < GlobalController
   end
 
   def utilityClasses
-    render '/styleguide/sass-utilities/utility-classes'
+    render '/styleguide/css-utilities/utility-classes'
   end
 
   def legacy
-    render '/styleguide/sass-utilities/legacy'
+    render '/styleguide/css-utilities/legacy'
   end
 
   def noJs
-    render '/styleguide/sass-utilities/no-js'
+    render '/styleguide/css-utilities/no-js'
   end
 
   def lpSpecificClasses
-    render '/styleguide/sass-utilities/lp-specific-classes'
+    render '/styleguide/css-utilities/lp-specific-classes'
   end
 
   def responsive
-    render '/styleguide/sass-utilities/responsive'
+    render '/styleguide/css-utilities/responsive'
   end
 
   def tooltips
@@ -127,15 +127,27 @@ class StyleguideController < GlobalController
   end
 
   def utilityPlaceholders
-    render '/styleguide/sass-utilities/utility-placeholders'
+    render '/styleguide/css-utilities/utility-placeholders'
   end
 
   def lpSpecificPlaceholders
-    render '/styleguide/sass-utilities/lp-specific-placeholders'
+    render '/styleguide/css-utilities/lp-specific-placeholders'
   end
 
   def iconPlaceholders
-    render '/styleguide/sass-utilities/icon-placeholders'
+    render '/styleguide/css-utilities/icon-placeholders'
+  end
+
+  def responsiveMixins
+    render '/styleguide/css-utilities/responsive-mixins'
+  end
+
+  def mediaMixins
+    render '/styleguide/css-utilities/media-mixins'
+  end
+
+  def utilityMixins
+    render '/styleguide/css-utilities/utility-mixins'
   end
 
   #===== yeoman hook =====#
