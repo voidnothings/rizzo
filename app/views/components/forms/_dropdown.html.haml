@@ -1,6 +1,7 @@
 - no_options = properties[:options].nil? || properties[:options].empty?
+- tooltip = properties[:tooltip]
 
-.dropdown.js-select-group-manager{ class: "#{properties[:class]}#{no_options ? ' is-disabled' : ''}" }
+.dropdown.js-select-group-manager{ class: "#{properties[:class]}#{no_options ? ' is-disabled' : ''}#{!tooltip.nil? ? ' tooltip--container' : ''}" }
   %label.dropdown__value.js-select-overlay.icon--chevron-down--after
     - unless no_options
       = properties[:selected] || properties[:placeholder] || properties[:options].first[:title] || ""
@@ -17,3 +18,5 @@
     - properties[:options].each do |option|
       %option{value: option[:value] || option[:title], selected: properties[:selected] == option[:title] ? 'selected' : false}<
         = option[:title]
+  
+  = render :partial => 'components/forms/partials/tooltip', :locals => { tooltip: tooltip }

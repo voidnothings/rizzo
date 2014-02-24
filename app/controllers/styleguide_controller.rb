@@ -122,6 +122,10 @@ class StyleguideController < GlobalController
     render '/styleguide/sass-utilities/responsive'
   end
 
+  def tooltips
+    render '/styleguide/ui-components/tooltips'
+  end
+
   def utilityPlaceholders
     render '/styleguide/sass-utilities/utility-placeholders'
   end
@@ -129,6 +133,7 @@ class StyleguideController < GlobalController
   def lpSpecificPlaceholders
     render '/styleguide/sass-utilities/lp-specific-placeholders'
   end
+
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 end

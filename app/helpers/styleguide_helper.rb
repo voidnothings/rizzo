@@ -159,7 +159,7 @@ module StyleguideHelper
             {
               name: "Range Slider",
               slug: "range-slider"
-            },
+            }
           ]
         },
         {
@@ -192,6 +192,10 @@ module StyleguideHelper
             {
               name: "Tags",
               slug: "tags"
+            },
+            {
+              name: "Tooltips",
+              slug: "tooltips"
             }
           ]
         }

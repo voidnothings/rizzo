@@ -93,7 +93,7 @@
   @extend %rounded-corners
   @extend %standard-shadow
   +box-shadow(0, 3, 2, 0, $new-header-grey-shadow)
-  +css-arrow-central(bottom, $size: 10px)
+  +css-arrow-central(bottom, $size: 25px)
   +multiple-transitions(opacity 0.5s ease-in-out, visibility  0 linear 0)
   background: #fff
   bottom: 20px
@@ -110,7 +110,6 @@
     pointer-events: none
 
   &:after
-    bottom: -17px
     color: #fff
     position: absolute
     +filter(drop-shadow(0 3px 2px $new-header-grey-shadow))
