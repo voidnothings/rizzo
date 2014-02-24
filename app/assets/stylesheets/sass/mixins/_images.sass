@@ -1,23 +1,12 @@
-// -----------------------------------------------------------------------------
-// 
-// Responsive image helper
-// 
-// Pass in the path to the image and the extension if necessary
-// 
-// Note: We are using asset path below in order to maintain compatability with
-// Rails 3 and 4. Rails 3 requires two arguments (rails 4: just one) which is
-// why we pass in the empty string below.
-// 
-// -----------------------------------------------------------------------------
-
-
+// [doc] Responsive Images using CSS Backgrounds. Covering Retina & IE8.
+// Using this requires three versions of the image to be available at 480,700 & 1600px wide.
 @mixin responsive-image($path: '', $extension: 'jpg')
   $sizes: "480", "700", "1600"
-  
+
   @if $is-ie == false
     @each $size in $sizes
       $index: index($sizes, $size)
-    
+
       // Default is the smallest
       @if $index == 1
         background-image: url("#{normalised_asset_path('#{$path}-#{nth($sizes, 1)}.#{$extension}', "")}")

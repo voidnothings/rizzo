@@ -1,15 +1,14 @@
-// -----------------------------------------------------------------------------
-// CSS Helpers
-// -----------------------------------------------------------------------------
-
+// [doc] Rem with pixel fallback for font sizes
 @mixin font-size($sizeValue: 14)
   font-size: #{$sizeValue + px}
   font-size: #{($sizeValue / $base-font-size) + rem}
 
+// [doc] Vertically center using line-height (not suitable for multiple lines of text)
 @mixin vertically-center($x: 20)
   height: #{$x + px}
   line-height: #{$x + px}
 
+// [doc] Style input placeholders (Pass in a content block)
 @mixin placeholder()
   &::-webkit-input-placeholder
     @content
@@ -20,6 +19,7 @@
   &:-ms-input-placeholder
     @content
 
+// [doc] Create square dimenstions based on width, returns width & height.
 @mixin size($w, $h: $w)
   height: $h
   width: $w

@@ -63,15 +63,18 @@ Rizzo::Application.routes.draw do
   get 'styleguide/js-components/asset-reveal'          => 'styleguide#asset_reveal'
   get 'styleguide/js-components/image-helper'          => 'styleguide#image_helper'
 
-  get 'styleguide/sass-utilities/'                     => 'styleguide#utilityClasses'
-  get 'styleguide/sass-utilities/utility-classes'      => 'styleguide#utilityClasses'
-  get 'styleguide/sass-utilities/legacy'               => 'styleguide#legacy'
-  get 'styleguide/sass-utilities/no-js'                => 'styleguide#noJs'
-  get 'styleguide/sass-utilities/lp-specific-classes'  => 'styleguide#lpSpecificClasses'
-  get 'styleguide/sass-utilities/responsive'           => 'styleguide#responsive'
-  get 'styleguide/sass-utilities/utility-placeholders' => 'styleguide#utilityPlaceholders'
-  get 'styleguide/sass-utilities/lp-specific-placeholders'  => 'styleguide#lpSpecificPlaceholders'
-  get 'styleguide/sass-utilities/icon-placeholders'    => 'styleguide#iconPlaceholders'
+  get 'styleguide/css-utilities/'                      => 'styleguide#utilityClasses'
+  get 'styleguide/css-utilities/utility-classes'       => 'styleguide#utilityClasses'
+  get 'styleguide/css-utilities/legacy'                => 'styleguide#legacy'
+  get 'styleguide/css-utilities/no-js'                 => 'styleguide#noJs'
+  get 'styleguide/css-utilities/lp-specific-classes'   => 'styleguide#lpSpecificClasses'
+  get 'styleguide/css-utilities/responsive'            => 'styleguide#responsive'
+  get 'styleguide/css-utilities/utility-placeholders'  => 'styleguide#utilityPlaceholders'
+  get 'styleguide/css-utilities/lp-specific-placeholders' => 'styleguide#lpSpecificPlaceholders'
+  get 'styleguide/css-utilities/icon-placeholders'     => 'styleguide#iconPlaceholders'
+  get 'styleguide/css-utilities/responsive-mixins'     => 'styleguide#responsiveMixins'
+  get 'styleguide/css-utilities/media-mixins'          => 'styleguide#mediaMixins'
+  get 'styleguide/css-utilities/utility-mixins'         => 'styleguide#utilityMixins'
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 
