@@ -92,11 +92,8 @@ module.exports = function(grunt) {
       openPlato: {
         command: "open .plato/index.html"
       },
-      copyHooks: {
-        command: "cp git-hooks/* .git/hooks"
-      },
-      makeHooksExecutable: {
-        command: "chmod +x .git/hooks/*"
+      enableHooks: {
+        command: "ln -s -f ../../git-hooks/pre-commit .git/hooks/pre-commit"
       }
     },
     coffee: {
@@ -216,5 +213,5 @@ module.exports = function(grunt) {
   grunt.registerTask("icon:active", [ "grunticon:active", "shell:cleanIcons", "shell:move" ]);
   grunt.registerTask("icon:critical", [ "grunticon:critical", "shell:cleanIcons", "shell:move" ]);
   grunt.registerTask("icon", [ "svgmin", "icon:active", "icon:critical" ]);
-  grunt.registerTask("setup", [ "shell:copyHooks", "shell:makeHooksExecutable" ]);
+  grunt.registerTask("setup", [ "shell:enableHooks" ]);
 };

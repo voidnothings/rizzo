@@ -47,7 +47,9 @@ if (!Function.prototype.bind) {
       boundArgs.push("$" + i);
     }
 
+    /* jshint ignore:start */
     bound = Function("binder", "return function(" + boundArgs.join(",") + "){return binder.apply(this,arguments)}")(binder);
+    /* jshint ignore:end */
 
     if (target.prototype) {
       Empty.prototype = target.prototype;
