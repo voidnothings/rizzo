@@ -4,7 +4,7 @@ paths:
   jquery: "jquery/jquery"
   flamsteed: "flamsteed/lib/javascripts/flamsteed"
   sailthru: "sailthru/v1"
-  s_code: "omniture/s_code"
+  sCode: "omniture/s_code"
   trackjs: "trackjs/trackjs"
 
 modules:
