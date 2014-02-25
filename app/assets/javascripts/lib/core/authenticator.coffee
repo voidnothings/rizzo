@@ -37,6 +37,15 @@ define ['jquery', 'lib/utils/page_state'], ($, PageState)->
     getNewStatusUrl: ->
       if /https?:\/\/(www\.|[a-zA-Z-.]*community\.)?lonelyplanet\.com/.test(@getUrl()) then "/thorntree/users/status" else "/users/status"
 
+    getUserOptions: ->
+      [
+        {title: 'My profile', uri: "#{@options.membersUrl.replace('[USERNAME]', @lpUserName)}", style:"js-user-profile", icon:"user"},
+        {title: 'Settings', uri: "#{@options.profileEditUrl.replace('[USERNAME]', @lpUserName)}",  style:"js-user-settings", icon:"settings"},
+        {title: 'Messages', uri: "#{@options.messagesUrl.replace('[USERNAME]', @lpUserName)}", style:"js-user-msg", icon:"envelope"},
+        {title: 'Forum activity', uri: "#{@options.forumPostsUrlTemplate.replace('[USERNAME]', @lpUserName)}", style:"nav-user-options__item--forum js-user-forum", icon:"comment" },
+        {title: 'Sign out', uri: "#{@options.signOutUrl}", style:"nav-user-options__item--signout js-user-signout", icon:"sign-out" }
+      ]
+
     userSignedIn: ->
       @lpUserName = @getLocalData('lp-uname')
       if (@lpUserName and (@lpUserName isnt '') and (@lpUserName isnt 'undefined')) then true else false
@@ -50,14 +59,15 @@ define ['jquery', 'lib/utils/page_state'], ($, PageState)->
     showLoginAndRegister: ()->
       @emptyUserNav()
       joinElement = "<a class='nav__item nav__item--primary js-user-join js-nav-item' href='#{@options.registerLink}'><i class='nav__icon icon--sign-in--before icon--white--before'></i>Join</a>"
-      signinElement = "<a class='nav__item nav__item--primary js-user-signin js-nav-item' href='#{@options.signInUrl}'><i class='nav__icon icon--sign-in--before icon--white--before'></i>Sign in</a>"
-      @el.append(signinElement + joinElement)
+      signinElement = "<a class='nav__item nav__item--primary js-user-signin js-nav-item' href='#{@options.signInUrl}'><i class='nav__icon icon--user--before icon--white--before'></i>Sign in</a>"
+      @el.append("<div class='wv--nav--inline nav__item--user-menu'>"+signinElement + joinElement+"</div>")
 
     showUserBox: ->
       @emptyUserNav()
       @el.addClass('is-signed-in')
       userBoxElement = "<div class='nav__item nav__item--user user-box js-user-box nav__submenu__trigger icon--chevron-down--white--after'><img class='user-box__img js-box-handler' src='#{@userAvatar()}'/></div>"
       @el.append(userBoxElement)
+      @el.append(@responsiveOptionsMenu())
       $('.js-user-box').append(@userOptionsMenu())
 
       if window.lp.user and lp.user.unread_message_count > 0
@@ -65,19 +75,17 @@ define ['jquery', 'lib/utils/page_state'], ($, PageState)->
 
     emptyUserNav: ->
       @el.removeClass('is-signed-in')
-      $('a.js-user-join, a.js-user-signin, div.js-user-box').remove()
+      $('div.js-user-box, div.nav__item--user-menu').remove()
 
     userOptionsMenu: ->
-      userOptions = [
-        {title: 'My profile', uri: "#{@options.membersUrl.replace('[USERNAME]', @lpUserName)}", style:"js-user-profile", icon:"user"},
-        {title: 'Settings', uri: "#{@options.profileEditUrl.replace('[USERNAME]', @lpUserName)}",  style:"js-user-settings", icon:"settings"},
-        {title: 'Messages', uri: "#{@options.messagesUrl.replace('[USERNAME]', @lpUserName)}", style:"js-user-msg", icon:"envelope"},
-        {title: 'Forum activity', uri: "#{@options.forumPostsUrlTemplate.replace('[USERNAME]', @lpUserName)}", style:"nav-user-options__item--forum js-user-forum", icon:"article--line" },
-        {title: 'Sign out', uri: "#{@options.signOutUrl}", style:"nav-user-options__item--signout js-user-signout", icon:"sign-out" }
-      ]
-      optionElements =  ("<a class='nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
-      responsiveOptionElements =  ("<a class='nav__item nav__item--primary nav__submenu__trigger copy--icon--before icon--#{u.icon}--before icon--white--before' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
-      userMenu = "<span class='wv--hidden nav--offscreen__title'>#{@lpUserName}</span><div class='wv--hidden wv--nav--inline'>#{responsiveOptionElements}</div><div class='nav__submenu nav__submenu--user'><div class='nav--stacked nav__submenu__content icon--arrow-up--green--after nav__submenu__content--user nav-user-options js-user-options'><div class='nav__submenu__item nav__submenu__title'>#{@lpUserName}</div>#{optionElements}</div></div>"
+      userOptions = @getUserOptions()
+      optionElements = ("<a class='nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
+      userMenu = "<span class='wv--hidden nav--offscreen__title'>#{@lpUserName}</span><div class='nav__submenu nav__submenu--user'><div class='nav--stacked nav__submenu__content icon--arrow-up--green--after nav__submenu__content--user nav-user-options js-user-options'><div class='nav__submenu__item nav__submenu__title'>#{@lpUserName}</div>#{optionElements}</div></div>"
+
+    responsiveOptionsMenu: ->
+      userOptions = @getUserOptions()
+      responsiveOptionElements =  ("<a class='nav__item nav__item--primary' href='#{u.uri}'><i class='nav__icon copy--icon--before icon--#{u.icon}--before icon--white--before'></i>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
+      resonsiveMenu = "<div class='wv--nav--inline nav__item--user-menu'>#{responsiveOptionElements}</div>"
 
 
     userAvatar: ->
