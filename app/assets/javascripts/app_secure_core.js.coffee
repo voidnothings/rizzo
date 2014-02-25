@@ -1,4 +1,4 @@
-require ['jquery', 'lib/core/base', 'flamsteed', 'trackjs'], ($, Base, _FS) ->
+require ['jquery', 'lib/core/base', 'flamsteed', 'polyfills/function_bind', 'trackjs'], ($, Base, _FS) ->
   $ ->
     config =
       secure: true

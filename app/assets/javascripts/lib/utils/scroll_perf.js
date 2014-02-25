@@ -1,16 +1,16 @@
 // http://www.thecssninja.com/javascript/follow-up-60fps-scroll
-define(["lib/utils/feature_detect"], function() {
+define([ "lib/utils/feature_detect" ], function() {
   "use strict";
 
   var ScrollPerf = function ScrollPerf() {
     this.cover = document.getElementById("js-pointer-cover");
     this.scrolling = false;
     this.clicked = false;
-    this.position = [0, 0];
+    this.position = [ 0, 0 ];
     if (window.lp.supportsAvailable) {
       this._init();
     } else {
-      document.addEventListener(":featureDetect/available", this._init.bind(this))
+      document.addEventListener(":featureDetect/available", this._init.bind(this));
     }
     return this;
   };
@@ -42,7 +42,7 @@ define(["lib/utils/feature_detect"], function() {
 
   ScrollPerf.prototype._onClick = function onClick(event) {
     if (event.target === this.cover && !event.homemade) {
-      this.position = [event.clientX, event.clientY];
+      this.position = [ event.clientX, event.clientY ];
       this.clicked = true;
     }
   };
@@ -75,7 +75,6 @@ define(["lib/utils/feature_detect"], function() {
     element.dispatchEvent(event);
     return element;
   };
-
 
   ScrollPerf.prototype._bindEvents = function bindEvents() {
     window.addEventListener("scroll", this._onScroll.bind(this));

@@ -23,20 +23,20 @@ module.exports = function(grunt) {
     },
     grunticon: {
       active: {
-        files: [{
+        files: [ {
           expand: true,
           cwd: "app/assets/images/icons/active",
           dest: "app/assets/stylesheets/icons",
-          src: ["*.svg"]
-        }],
+          src: [ "*.svg" ]
+        } ],
         options: {
           cssprefix: ".icon--",
           customselectors: {
-            "*": [".icon--$1--before:before, .icon--$1--after:after"],
-            "chevron-right": [".picker__nav--next"],
-            "chevron-left": [".picker__nav--prev"],
-            "chevron-down": [".select2-choice:after"],
-            "chevron-up": [".select2-dropdown-open .select2-choice:after"]
+            "*": [ ".icon--$1--before:before, .icon--$1--after:after" ],
+            "chevron-right": [ ".picker__nav--next" ],
+            "chevron-left": [ ".picker__nav--prev" ],
+            "chevron-down": [ ".select2-choice:after" ],
+            "chevron-up": [ ".select2-dropdown-open .select2-choice:after" ]
           },
           datasvgcss: "active.css",
           datapngcss: "active.png.css",
@@ -44,18 +44,18 @@ module.exports = function(grunt) {
         }
       },
       critical: {
-        files: [{
+        files: [ {
           expand: true,
           cwd: "app/assets/images/icons/active/critical/",
           dest: "app/assets/stylesheets/icons",
-          src: ["*.svg"]
-        }],
+          src: [ "*.svg" ]
+        } ],
         options: {
           cssprefix: ".icon--",
           customselectors: {
-            "*": [".icon--$1--before:before, .icon--$1--after:after"],
-            "chevron-right": [".picker__nav--next"],
-            "chevron-left": [".picker__nav--prev"]
+            "*": [ ".icon--$1--before:before, .icon--$1--after:after" ],
+            "chevron-right": [ ".picker__nav--next" ],
+            "chevron-left": [ ".picker__nav--prev" ]
           },
           datasvgcss: "critical.svg.css",
           datapngcss: "critical.png.css",
@@ -65,18 +65,18 @@ module.exports = function(grunt) {
     },
     svgmin: {
       options: {
-        plugins: [{
+        plugins: [ {
           removeViewBox: false
-        }]
+        } ]
       },
       dist: {
-        files: [{
+        files: [ {
           expand: true,
           cwd: "./app/assets/images/icons/active",
-          src: ["*.svg"],
+          src: [ "*.svg" ],
           dest: "./app/assets/images/icons/active",
           ext: ".svg"
-        }]
+        } ]
       }
     },
     shell: {
@@ -91,6 +91,9 @@ module.exports = function(grunt) {
       },
       openPlato: {
         command: "open .plato/index.html"
+      },
+      enableHooks: {
+        command: "ln -s -f ../../git-hooks/pre-commit .git/hooks/pre-commit"
       }
     },
     coffee: {
@@ -117,13 +120,13 @@ module.exports = function(grunt) {
       source: {
         expand: true,
         cwd: "./app/assets/javascripts/lib",
-        src: ["**/*.js", "**/**/*.js"],
+        src: [ "**/*.js", "**/**/*.js" ],
         dest: "./public/assets/javascripts/lib"
       },
       specs: {
         expand: true,
         cwd: "./spec/javascripts/lib",
-        src: ["**/*.js", "**/**/*.js"],
+        src: [ "**/*.js", "**/**/*.js" ],
         dest: "./public/assets/javascripts/spec"
       }
     },
@@ -142,9 +145,9 @@ module.exports = function(grunt) {
     },
     jasmine: {
       rizzo: {
-        src: ["./public/assets/javascripts/lib/**/*.js"],
+        src: [ "./public/assets/javascripts/lib/**/*.js" ],
         options: {
-          helpers: ["./spec/javascripts/helpers/**/*.js", "./vendor/assets/javascripts/jquery/jquery.js"],
+          helpers: [ "./spec/javascripts/helpers/**/*.js", "./vendor/assets/javascripts/jquery/jquery.js" ],
           host: "http://127.0.0.1:8888/",
           specs: "./public/assets/javascripts/spec/**/*.js",
           template: require("grunt-template-jasmine-requirejs"),
@@ -157,7 +160,7 @@ module.exports = function(grunt) {
                 polyfills: "./vendor/assets/javascripts/polyfills",
                 lib: "./public/assets/javascripts/lib",
                 jplugs: "./vendor/assets/javascripts/jquery-plugins",
-                s_code: "./vendor/assets/javascripts/omniture/s_code",
+                sCode: "./vendor/assets/javascripts/omniture/s_code",
                 gpt: "http://www.googletagservices.com/tag/js/gpt",
                 pickadate: "./vendor/assets/javascripts/pickadate"
               }
@@ -168,8 +171,8 @@ module.exports = function(grunt) {
     },
     watch: {
       scripts: {
-        files: ["app/assets/javascripts/lib/**/*.coffee", "spec/javascripts/lib/**/*.coffee"],
-        tasks: ["shell:cleanJs", "newer:coffee", "jasmine"],
+        files: [ "app/assets/javascripts/lib/**/*.coffee", "spec/javascripts/lib/**/*.coffee" ],
+        tasks: [ "shell:cleanJs", "newer:coffee", "jasmine" ],
         options: {
           nospawn: true
         }
@@ -178,8 +181,20 @@ module.exports = function(grunt) {
     plato: {
       rizzo: {
         files: {
-          ".plato/": ["./public/assets/javascripts/**/*.js"]
+          ".plato/": [ "./public/assets/javascripts/**/*.js" ]
         }
+      }
+    },
+    jshint: {
+      src: [ "Gruntfile.js", "app/assets/javascripts/**/*.js" ],
+      options: {
+        jshintrc: "./.jshintrc"
+      }
+    },
+    jscs: {
+      src: [ "Gruntfile.js", "app/assets/javascripts/**/*.js" ],
+      options: {
+        config: "./.jscs.json"
       }
     }
 
@@ -189,13 +204,14 @@ module.exports = function(grunt) {
   require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
 
   // Tasks
-  grunt.registerTask("default", ["shell:cleanJs", "coffee", "copy", "connect", "jasmine"]);
-  grunt.registerTask("ci", ["coffee", "copy", "connect", "jasmine"]);
-  grunt.registerTask("dev", ["connect", "open:jasmine", "jasmine", "watch"]);
-  grunt.registerTask("wip", ["jasmine:rizzo:build", "open:jasmine", "connect:server:keepalive"]);
-  grunt.registerTask("report", ["shell:cleanJs", "coffee", "copy", "plato", "shell:openPlato"]);
-  grunt.registerTask("imageoptim", ["imageoptim"]);
-  grunt.registerTask("icon:active", ["grunticon:active", "shell:cleanIcons", "shell:move"]);
-  grunt.registerTask("icon:critical", ["grunticon:critical", "shell:cleanIcons", "shell:move"]);
-  grunt.registerTask("icon", ["svgmin", "icon:active", "icon:critical"]);
+  grunt.registerTask("default", [ "shell:cleanJs", "coffee", "copy", "connect", "jasmine" ]);
+  grunt.registerTask("ci", [ "coffee", "copy", "connect", "jasmine" ]);
+  grunt.registerTask("dev", [ "connect", "open:jasmine", "jasmine", "watch" ]);
+  grunt.registerTask("wip", [ "jasmine:rizzo:build", "open:jasmine", "connect:server:keepalive" ]);
+  grunt.registerTask("report", [ "shell:cleanJs", "coffee", "copy", "plato", "shell:openPlato" ]);
+  grunt.registerTask("imageoptim", [ "imageoptim" ]);
+  grunt.registerTask("icon:active", [ "grunticon:active", "shell:cleanIcons", "shell:move" ]);
+  grunt.registerTask("icon:critical", [ "grunticon:critical", "shell:cleanIcons", "shell:move" ]);
+  grunt.registerTask("icon", [ "svgmin", "icon:active", "icon:critical" ]);
+  grunt.registerTask("setup", [ "shell:enableHooks" ]);
 };
