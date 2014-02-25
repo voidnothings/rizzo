@@ -1,3 +1,6 @@
+// Taken from:
+// https://github.com/es-shims/es5-shim/blob/master/es5-shim.js#L44
+
 function Empty() {}
 
 if (!Function.prototype.bind) {
