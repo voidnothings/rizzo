@@ -272,10 +272,6 @@ module StyleguideHelper
     }
   end
 
-  def ad_config
-    {hints: "", channels: ""}
-  end
-
   def ui_component(slug, properties={})
     render "components/#{slug}", properties
   end
