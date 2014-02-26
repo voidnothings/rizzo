@@ -37,7 +37,7 @@ define ['jquery', 'pickadate/lib/picker', 'pickadate/lib/picker.date', 'pickadat
       today.push(d.getFullYear(), d.getMonth(), d.getDate())
       tomorrow.push(d.getFullYear(), d.getMonth(), (d.getDate() + 1))
 
-      inOpts = 
+      inOpts =
         format: config.dateFormat
         onSet: ->
           self.dateSelected(this.get('select', config.dateFormatLabel), "start")

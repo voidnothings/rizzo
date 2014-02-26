@@ -246,16 +246,12 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
 
     describe 'on first load', ->
       beforeEach ->
-        loadFixtures('controller.html')
         window.controller = new Controller()
-        spyOn(controller, "_supportsHistory").andReturn(true)
-        spyOn(controller, "getUrl").andReturn("http://www.lonelyplanet.com/england/london")
         spyOn(controller, "setUrl")
+        controller.popStateFired = false;
+        controller._handlePopState()
 
       it 'does not refresh the page', ->
-        controller.popStateFired = false;
-        controller.currentUrl = "http://www.lonelyplanet.com/england/london"
-        $(window).trigger('popstate')
         expect(controller.setUrl).not.toHaveBeenCalled()
 
       afterEach ->
@@ -264,31 +260,27 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
 
     describe 'after first load', ->
       beforeEach ->
-        loadFixtures('controller.html')
         window.controller = new Controller()
-        spyOn(controller, "_supportsHistory").andReturn(true)
         spyOn(controller, "getUrl").andReturn("http://www.lonelyplanet.com/england/london?search=foo")
         spyOn(controller, "setUrl")
-
-      it 'refreshes the page', ->
         controller.popStateFired = false;
         controller.currentUrl = "http://www.lonelyplanet.com/england/london"
-        $(window).trigger('popstate')
+        controller._handlePopState()
+
+      it 'refreshes the page', ->
         expect(controller.setUrl).toHaveBeenCalled()
 
 
     describe 'returning to the first page', ->
       beforeEach ->
-        loadFixtures('controller.html')
         window.controller = new Controller()
-        spyOn(controller, "_supportsHistory").andReturn(true)
         spyOn(controller, "getUrl").andReturn("http://www.lonelyplanet.com/england/london")
         spyOn(controller, "setUrl")
-
-      it 'refreshes the page', ->
         controller.popStateFired = true;
         controller.currentUrl = "http://www.lonelyplanet.com/england/london"
-        $(window).trigger('popstate')
+        controller._handlePopState()
+
+      it 'refreshes the page', ->
         expect(controller.setUrl).toHaveBeenCalled()
 
 
