@@ -6,7 +6,7 @@
   clear: both
 
 .picker__frame
-  +transition()
+  @extend %transition--slower
   @extend %rounded-corners
   top: 0
   left: 0
@@ -86,8 +86,8 @@
   font-weight: normal
 
 .picker__day
-  +border-radius(30)
   +font-size(13)
+  border-radius: 30px
   @extend %inline-block
   font-family: "Helvetica Neue", arial
   font-weight: bold

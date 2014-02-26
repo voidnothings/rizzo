@@ -1,6 +1,6 @@
 .row--secondary
   @extend %clearfix
-  @include box-shadow(0, 2, 1, 1, rgba(0, 0, 0, 0.1), true)
+  box-shadow: 0 2px 1px 1px rgba(0, 0, 0, 0.1) inset
   background: #20374f
   padding: 11px 0
 
@@ -21,12 +21,12 @@
 
 .row__inner--secondary
   min-height: 32px
-  
+
 
 // ----------------------------------------------------------------------------
-// 
+//
 // secondary-nav
-// 
+//
 // ----------------------------------------------------------------------------
 
 .nav--secondary
@@ -48,7 +48,7 @@
   &:active
     color: #b0bac5
   &.current
-    @include border-radius(4)
+    @extend %rounded-corners
     background-color: $active
     color: #fff
 

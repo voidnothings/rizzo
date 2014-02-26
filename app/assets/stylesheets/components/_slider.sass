@@ -24,10 +24,10 @@ $slideOffsetHome: -4.5em
   -ms-scroll-chaining: none
 
 .slider__slide
+  +hardware-acceleration()
   float: left
   width: 100%
-  +hardware-acceleration()
-  +transition(none)
+  transition: none
 
 .slider__controls-container
   position: relative
@@ -120,7 +120,7 @@ $slideOffsetHome: -4.5em
 
 .slider__pagination--link
   @extend %image-replacement
-  +border-radius(3.5)
+  border-radius: 3px
   background: $details-panel-border
   display: inline-block
   height: 7px
