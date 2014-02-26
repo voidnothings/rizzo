@@ -61,6 +61,7 @@ define ['jquery', 'lib/utils/page_state'], ($, PageState)->
       joinElement = "<a class='nav__item nav__item--primary js-user-join js-nav-item' href='#{@options.registerLink}'><i class='nav__icon icon--sign-in--before icon--white--before'></i>Join</a>"
       signinElement = "<a class='nav__item nav__item--primary js-user-signin js-nav-item' href='#{@options.signInUrl}'><i class='nav__icon icon--user--before icon--white--before'></i>Sign in</a>"
       @el.append("<div class='wv--nav--inline nav__item--user-menu'>"+signinElement + joinElement+"</div>")
+      @el.append("<div class='wv--nav--inline nav__item--user-menu--wv'>"+signinElement + joinElement+"</div>")
 
     showUserBox: ->
       @emptyUserNav()
@@ -75,7 +76,7 @@ define ['jquery', 'lib/utils/page_state'], ($, PageState)->
 
     emptyUserNav: ->
       @el.removeClass('is-signed-in')
-      $('div.js-user-box, div.nav__item--user-menu').remove()
+      $('div.js-user-box, div.nav__item--user-menu, .nav__item--user-menu--wv').remove()
 
     userOptionsMenu: ->
       userOptions = @getUserOptions()

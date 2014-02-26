@@ -172,9 +172,16 @@
 
 .nav__item--user-menu
   background: $offscreen-nav-user-background
+  display: none
 
   .responsive &
     display: block
 
     +respond-to(wide-view)
       display: none
+.nav__item--user-menu--wv
+  display: inline
+  .responsive &
+    display: none
+    +respond-to(wide-view)
+      display: inline
