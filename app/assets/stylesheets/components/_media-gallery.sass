@@ -7,10 +7,10 @@
   margin-bottom: 20px
   position: relative
   &.has-tabs ~ .card--page__aside
-    @extend %media-gallery-transition
+    @extend %transition--slower
     top: -302px
   ~ .card--page__aside
-    @extend %media-gallery-transition
+    @extend %transition--slower
     top: -262px
 
   .media-gallery__container, .tab__content, .slider__viewport, .slider__slide
@@ -18,12 +18,12 @@
     width: 427px
   .media-gallery__container, .tab__content, .slider__viewport
     @extend %clearfix
-    @extend %media-gallery-transition
+    @extend %transition--slower
     z-index: 0
     &.is-active
       z-index: 1
   .slider__controls
-    @extend %media-gallery-transition
+    @extend %transition--slower
     top: 95px
   .slider__pagination
     display: none
@@ -32,10 +32,10 @@
     overflow: hidden
   .slider__viewport,
   .slider__slide
-    @extend %media-gallery-transition
+    @extend %transition--slower
     width: 427px
   .slider__container
-    @extend %media-gallery-transition
+    @extend %transition--slower
     background: $body-background
   .slider__slide
     background: $body-background

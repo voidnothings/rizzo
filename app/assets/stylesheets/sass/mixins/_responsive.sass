@@ -1,15 +1,17 @@
 // -----------------------------------------------------------------------------
-// Responsive Mixins
+// [doc]
 //
-// Always use this mixin to apply breakpoints so we support legacy browsers
+// Enable styles at a certain viewport
 //
-// There are two common breakpoints: medium-view and wide-view
-// Alternatively you can just pass in an integer
+// Always use this mixin to apply breakpoints so we can support legacy browsers.
 //
-// http://sassmeister.com/gist/8047633
+// You can pass in named arguments or integers.
+// Named argument options are: medium-view (600px) and wide-view(1025px).
+//
+// Example of use: http://sassmeister.com/gist/8047633.
+//
+// [/doc]
 // -----------------------------------------------------------------------------
-
-
 @mixin respond-to($screen-width)
 
   // We have to set up a blank variable here or sass errors out

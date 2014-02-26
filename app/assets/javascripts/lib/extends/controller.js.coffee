@@ -68,14 +68,8 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
 
     _initHistory: ->
       if @_supportsHistory()
-        # Modern browsers
-        # WebKit fires a popstate event on document load
         $(window).bind 'popstate', =>
-          if !@popStateFired
-            @popStateFired = true
-            if @getUrl() is @currentUrl then return
-          @setUrl(@getUrl())
-
+          @_handlePopState()
       else if @_supportsHash()
         #ie8 and ie9
         @allowHistoryNav = true
@@ -86,6 +80,13 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
       else
         #ie7
         false
+
+    # WebKit fires a popstate event on document load
+    _handlePopState: () ->
+      if !@popStateFired
+        @popStateFired = true
+        if @getUrl() is @currentUrl then return
+      @setUrl(@getUrl())
 
     _supportsHistory: ->
       @isHistoryEnabled ?= (window.history and window.history.pushState and window.history.replaceState and !navigator.userAgent.match(/((iPod|iPhone|iPad).+\bOS\s+[1-4]|WebApps\/.+CFNetwork)/))

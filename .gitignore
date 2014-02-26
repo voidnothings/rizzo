@@ -11,6 +11,8 @@
 .DS_Store
 *DS_Store
 .sass-cache/*
+.ruby-gemset
+.ruby-version
 pkg/*
 InstalledFiles
 _yardoc

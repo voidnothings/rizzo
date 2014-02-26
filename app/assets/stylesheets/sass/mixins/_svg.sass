@@ -1,8 +1,13 @@
 // -----------------------------------------------------------------------------
-// icon color mixin
-// use icon-color(color-name) to select a color, normally for use in :hover.
-// it sets the background position to the correct slot to show the icon in that
-// color. custom and custom-2 are the default/custom colors that some icons have
+// [doc]
+//
+// Change the colour of an SVG icon.
+//
+// This is normally done on hover. You pass in a colour to the mixin.
+//
+// Colour options: body-grey, white, lp-blue, custom, custom-2.
+//
+// [/doc]
 // -----------------------------------------------------------------------------
 @mixin icon-color($color: '')
   $colors: body-grey, white, lp-blue, custom, custom-2

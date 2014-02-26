@@ -1,5 +1,7 @@
 Rizzo::Application.routes.draw do
 
+  root to: redirect('/styleguide/ui-components/colours')
+
   get 'head'                         => 'head#index'
   get 'breadcrumb'                   => 'global_resources#breadcrumb'
   get "r/:encrypted_url"             => 'redirector#show', :as => :redirector
@@ -33,8 +35,12 @@ Rizzo::Application.routes.draw do
   get 'homepage'                         => 'global_resources#homepage'
 
   # Styleguide
-  get 'styleguide/'                                    => 'styleguide#colours'
-  get 'styleguide/ui-components'                       => 'styleguide#colours'
+  get 'styleguide/',               to: redirect('/styleguide/ui-components/colours')
+  get 'styleguide/ui-components',  to: redirect('/styleguide/ui-components/colours')
+  get 'styleguide/js-components',  to: redirect('/styleguide/js-components/toggle-active')
+  get 'styleguide/css-utilities/', to: redirect('/styleguide/css-utilities/utility-classes')
+
+  get 'styleguide/ui-components/colours'               => 'styleguide#colours'
   get 'styleguide/ui-components/secondary-nav'         => 'styleguide#secondaryNavigation'
   get 'styleguide/ui-components/left-nav'              => 'styleguide#leftNavigation'
   get 'styleguide/ui-components/navigational_dropdown' => 'styleguide#navigational_dropdown'
@@ -43,7 +49,6 @@ Rizzo::Application.routes.draw do
   get 'styleguide/ui-components/badges'                => 'styleguide#badges'
   get 'styleguide/ui-components/page-title'            => 'styleguide#pageTitle'
   get 'styleguide/ui-components/typography'            => 'styleguide#typography'
-  get 'styleguide/ui-components/colours'               => 'styleguide#colours'
   get 'styleguide/ui-components/ui-colours'            => 'styleguide#uiColours'
   get 'styleguide/ui-components/icons'                 => 'styleguide#icons'
   get 'styleguide/ui-components/pagination'            => 'styleguide#pagination'
@@ -57,19 +62,22 @@ Rizzo::Application.routes.draw do
   get 'styleguide/ui-components/alerts'                => 'styleguide#alerts'
   get 'styleguide/ui-components/tooltips'              => 'styleguide#tooltips'
 
-  get 'styleguide/js-components'                       => 'styleguide#toggle_active'
   get 'styleguide/js-components/toggle-active'         => 'styleguide#toggle_active'
   get 'styleguide/js-components/proximity-loader'      => 'styleguide#proximity_loader'
   get 'styleguide/js-components/asset-reveal'          => 'styleguide#asset_reveal'
   get 'styleguide/js-components/image-helper'          => 'styleguide#image_helper'
 
-  get 'styleguide/sass-utilities/'                     => 'styleguide#utilityClasses'
-  get 'styleguide/sass-utilities/utility-classes'      => 'styleguide#utilityClasses'
-  get 'styleguide/sass-utilities/legacy'               => 'styleguide#legacy'
-  get 'styleguide/sass-utilities/no-js'                => 'styleguide#noJs'
-  get 'styleguide/sass-utilities/lp-specific'          => 'styleguide#lpSpecific'
-  get 'styleguide/sass-utilities/responsive'           => 'styleguide#responsive'
-
+  get 'styleguide/css-utilities/utility-classes'       => 'styleguide#utilityClasses'
+  get 'styleguide/css-utilities/legacy'                => 'styleguide#legacy'
+  get 'styleguide/css-utilities/no-js'                 => 'styleguide#noJs'
+  get 'styleguide/css-utilities/lp-specific-classes'   => 'styleguide#lpSpecificClasses'
+  get 'styleguide/css-utilities/responsive'            => 'styleguide#responsive'
+  get 'styleguide/css-utilities/utility-placeholders'  => 'styleguide#utilityPlaceholders'
+  get 'styleguide/css-utilities/lp-specific-placeholders' => 'styleguide#lpSpecificPlaceholders'
+  get 'styleguide/css-utilities/icon-placeholders'     => 'styleguide#iconPlaceholders'
+  get 'styleguide/css-utilities/responsive-mixins'     => 'styleguide#responsiveMixins'
+  get 'styleguide/css-utilities/media-mixins'          => 'styleguide#mediaMixins'
+  get 'styleguide/css-utilities/utility-mixins'         => 'styleguide#utilityMixins'
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 

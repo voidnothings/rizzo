@@ -12,7 +12,7 @@
         %span.tag--price__scope.js-scope<
           = properties[:scope]
 
-    - if properties[:retail_price]
+    - if properties[:on_sale?]
       .tag--price__retail<
         = properties[:currency]
         = properties[:retail_price]
