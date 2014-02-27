@@ -179,7 +179,8 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
         expect(@auth.options.signOutUrl).toBe("/users/sign_out")
         expect(@auth.options.membersUrl).toBe("/profiles/username")
         expect(@auth.options.forumPostsUrlTemplate).toBe("/profiles/username/activities")
-        expect(@auth.options.profileEditUrl).toBe("/profiles/username/edit")
+        # Annoyingly, this url needs to go to forum settings, but must remain named profileEditUrl since that's what it is on the old thorn tree
+        expect(@auth.options.profileEditUrl).toBe("/forums/settings")
         expect(@auth.options.messagesUrl).toBe("/profiles/username/messages")
 
       it 'uses the correct avatar', ->
