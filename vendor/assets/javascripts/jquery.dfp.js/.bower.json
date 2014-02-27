@@ -1,0 +1,13 @@
+{
+  "name": "jquery.dfp.js",
+  "homepage": "https://github.com/i-like-robots/jquery.dfp.js",
+  "_release": "358f045b6b",
+  "_resolution": {
+    "type": "branch",
+    "branch": "i-like-robots-namespace-option",
+    "commit": "358f045b6b5d343c01bc050e9613a05ae6d43fb2"
+  },
+  "_source": "https://github.com/i-like-robots/jquery.dfp.js.git",
+  "_target": "i-like-robots-namespace-option",
+  "_originalSource": "git+https://github.com/i-like-robots/jquery.dfp.js"
+}

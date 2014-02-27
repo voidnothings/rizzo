@@ -6,12 +6,14 @@ paths:
   sailthru: "sailthru/v1"
   sCode: "omniture/s_code"
   trackjs: "trackjs/trackjs"
+  dfp: "jquery.dfp.js/jquery.dfp"
 
 modules:
   - name: 'app_core'
   - name: 'app_core_legacy'
   - name: 'app_secure_core'
   - name: 'app_secure_core_legacy'
+  - name: 'ad_manager'
   - name: 'styleguide'
 
 findNestedDependencies: true
