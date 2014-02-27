@@ -27,7 +27,7 @@ define(["jquery"], function($) {
         setTargeting: keywords,
         namespace: lpConfig.layers ? lpConfig.layers.join("/") : "",
         collapseEmptyDivs: true,
-        enableSingleRequest: true
+        enableSingleRequest: false
       });
 
     });
