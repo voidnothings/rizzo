@@ -23,7 +23,7 @@ define ['jquery', 'lib/utils/page_state'], ($, PageState)->
         signOutUrl: "#{url}/users/sign_out"
         membersUrl: "#{url}/profiles/#{lp.user.profile_slug}"
         forumPostsUrlTemplate: "#{url}/profiles/#{lp.user.profile_slug}/activities"
-        profileEditUrl: "#{url}/profiles/#{lp.user.profile_slug}/edit"
+        profileEditUrl: "#{url}/forums/settings"
         messagesUrl: "#{url}/profiles/#{lp.user.profile_slug}/messages"
       else
         forumPostsUrlTemplate: "//www.#{baseDomain}/thorntree/profile.jspa?username=[USERNAME]"
