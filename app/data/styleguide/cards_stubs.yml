@@ -55,6 +55,14 @@ cards:
     :icon: "housekeeping"
 
   -
+    :styleguide_title: "Quote Card"
+    :slug: "#"
+    :title: "See your breakfast on the big screen - submit your Ulster fry film!"
+    :context: "Thorntree"
+    :name: "Shadyguy17"
+    :avatar: "http://assets.staticlp.com/assets/stubs/article.jpg"
+
+  -
     :styleguide_title: "Blog Card"
     :slug: "#"
     :title: "Hello"
