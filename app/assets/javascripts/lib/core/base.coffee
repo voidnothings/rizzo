@@ -41,10 +41,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
         @auth.update()
 
     initAds: ->
-
-      # Treat ad manager as a singleton so that we don't attempt to re-init
-      # in apps that require and call this manually.
-      AdManager()
+      @adManager = new AdManager(4817, window.lp.ads || {})
 
     showUserBasket: ->
       shopCart = new ShoppingCart()

@@ -1,58 +1,77 @@
 define(["jquery"], function($) {
 
-  return function() {
+  function AdUnit($target) {
+    this.$target = $target
+    this._init();
+  }
+
+  AdUnit.prototype._init = function() {
+    if (!this.isEmpty()) {
+      this.$target.closest('.is-closed').removeClass('is-closed');
+    }
+  };
+
+  AdUnit.prototype.isEmpty = function() {
+    if (this.$target.css("display") === "none") {
+      return true;
+    }
+
+    var $iframe = this.$target.find("iframe").contents();
+
+    // Sometimes DFP will return uesless 1x1 blank images
+    // so we must check for them.
+    return $iframe.find("img").width() === 1;
+  };
+
+  function AdManager(networkID, config) {
+    this.networkID = networkID;
+    this.config = config;
+    this.loadedAds = [];
+    this._init();
+  }
+
+  AdManager.prototype._init = function() {
+    var self = this;
+
     require(["dfp"], function() {
 
-      var networkID = 4817;
-
-      var lpConfig = window.lp.ads || {};
-
-      var keywords = {
-        "ctt": lpConfig.continent,
-        "cnty": lpConfig.country,
-        "dest": lpConfig.destination,
-        "thm": lpConfig.adThm,
-        "tnm": lpConfig.adTnm ? lpConfig.adTnm.replace(/\s/, "").split(",") : ""
-      };
-
-      if (!$.isEmptyObject(lpConfig.keyValues)) {
-        for (var key in lpConfig.keyValues) {
-          if (lpConfig.keyValues.hasOwnProperty(key)) {
-            keywords[key] = lpConfig[key];
-          }
-        }
-      }
-
-      function isAdEmpty($adunit) {
-        if ($adunit.css("display") === "none") {
-          return true;
-        }
-
-        var $iframe = $adunit.find("iframe").contents();
-
-        // Sometimes DFP will return uesless 1x1 blank images
-        // so we must check for them.
-        return $iframe.find("img").width() === 1;
-      }
-
-      function adCallback($adunit) {
-        if (!isAdEmpty($adunit)) {
-          $adunit.closest('.is-closed').removeClass('is-closed');
-        }
-
+      function adLoadedCallback($adunit) {
+        self.loadedAds.push(new AdUnit($adunit));
         // TODO: analytics here
-      };
+      }
 
       $.dfp({
-        dfpID: networkID,
-        setTargeting: keywords,
-        namespace: lpConfig.layers ? lpConfig.layers.join("/") : "",
+        dfpID: self.networkID,
+        setTargeting: self.keywords(),
+        namespace: self.config.layers ? self.config.layers.join("/") : "",
         collapseEmptyDivs: true,
         enableSingleRequest: false,
-        afterEachAdLoaded: adCallback
+        afterEachAdLoaded: adLoadedCallback
       });
 
     });
   };
+
+  AdManager.prototype.keywords = function() {
+    var keywords = {
+      "ctt": this.config.continent,
+      "cnty": this.config.country,
+      "dest": this.config.destination,
+      "thm": this.config.adThm,
+      "tnm": this.config.adTnm ? this.config.adTnm.replace(/\s/, "").split(",") : ""
+    };
+
+    if (!$.isEmptyObject(this.config.keyValues)) {
+      for (var key in config.keyValues) {
+        if (this.config.keyValues.hasOwnProperty(key)) {
+          keywords[key] = this.config[key];
+        }
+      }
+    }
+
+    return keywords;
+  };
+
+  return AdManager;
 
 });
