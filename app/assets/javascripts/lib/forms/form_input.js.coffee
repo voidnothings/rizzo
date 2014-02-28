@@ -8,7 +8,7 @@ define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
       @_initialize() if @input.length is 1
 
     isValid: (triggerErrors) ->
-      @_clearError() if triggerErrors
+      @_clearInput() if triggerErrors
       valid = true
 
       for validator in @validators
@@ -25,7 +25,7 @@ define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
       rules = if @input.data('rules') then @input.data('rules').split(' ') else []
 
       for validator in rules
-        @validators.push(new InputValidator(@input, @label, validator))
+        @validators.push(new InputValidator(@input, @label, validator, @))
 
       @_listen()
 
@@ -37,10 +37,13 @@ define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
         @input.on 'change', (e) =>
           @isValid()
 
-    _clearError: ->
-      @inputParent.removeClass 'field__input--error'
+    _clearInput: ->
+      @inputParent.removeClass 'field__input--error field__input--valid'
       @inputParent.find('.js-error').remove()
 
     _showError: (message) ->
       @inputParent.addClass 'field__input--error'
       @inputParent.append $("<div class='field__error js-error'>#{message}</div>")
+
+    _showValid: ->
+      @inputParent.addClass 'field__input--valid'

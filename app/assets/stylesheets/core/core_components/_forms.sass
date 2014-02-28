@@ -33,23 +33,39 @@
   margin: 6px 0 0 10px
   width: 46px
 
-.field__input--error
-  .input
-    border: 1px solid $red
-
+.field__input--error,
+.field__input--valid
   &:after
     +font-size(10)
     border-radius: 12px
     background-color: $red
     color: #fff
-    content: '!'
     font-weight: 700
-    padding: 4px 9px
     pointer-events: none
     position: absolute
     right: 8px
     text-align: center
-    top: 9px
+    top: 7px
+  .field__content--checkbox &
+    &:after
+      top: 1px
+
+.field__input--error
+  .input
+    border: 1px solid $red
+  &:after
+    background-color: $red
+    content: '!'
+    padding: 4px 9px
+
+.field__input--valid
+  .input
+    border: 1px solid $green
+
+  &:after
+    background-color: $green
+    content: '\2713'
+    padding: 4px 6px
 
   .field__content--checkbox &
     &:after
