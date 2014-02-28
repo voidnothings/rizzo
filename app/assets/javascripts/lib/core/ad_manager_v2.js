@@ -1,4 +1,5 @@
 define(["jquery"], function($) {
+
   return function() {
     require(["dfp"], function() {
 
@@ -22,12 +23,33 @@ define(["jquery"], function($) {
         }
       }
 
+      function isAdEmpty($adunit) {
+        if ($adunit.css("display") === "none") {
+          return true;
+        }
+
+        var $iframe = $adunit.find("iframe").contents();
+
+        // Sometimes DFP will return uesless 1x1 blank images
+        // so we must check for them.
+        return $iframe.find("img").width() === 1;
+      }
+
+      function adCallback($adunit) {
+        if (!isAdEmpty($adunit)) {
+          $adunit.closest('.is-closed').removeClass('is-closed');
+        }
+
+        // TODO: analytics here
+      };
+
       $.dfp({
         dfpID: networkID,
         setTargeting: keywords,
         namespace: lpConfig.layers ? lpConfig.layers.join("/") : "",
         collapseEmptyDivs: true,
-        enableSingleRequest: false
+        enableSingleRequest: false,
+        afterEachAdLoaded: adCallback
       });
 
     });
