@@ -13,7 +13,6 @@ modules:
   - name: 'app_core_legacy'
   - name: 'app_secure_core'
   - name: 'app_secure_core_legacy'
-  - name: 'ad_manager'
   - name: 'styleguide'
 
 findNestedDependencies: true
