@@ -25,7 +25,7 @@ define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
       rules = if @input.data('rules') then @input.data('rules').split(' ') else []
 
       for validator in rules
-        @validators.push(new InputValidator(@input, @label, validator, @))
+        @validators.push(new InputValidator(@input, @label, validator)) unless /username_check/.test(validator)
 
       @_listen()
 
@@ -37,8 +37,23 @@ define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
         @input.on 'change', (e) =>
           @isValid()
 
-    _clearInput: ->
-      @inputParent.removeClass 'field__input--error field__input--valid'
+      # Because the validators are all synchronous and expect an immediate true/false
+      # response we need to handle this separately.
+      if /username_check/.test(@input.data('rules'))
+        validator = @input.data('rules').match(/(username_check\(.*?\))/)[1]
+        inputValidator = new InputValidator(@input, @label, validator)
+        timer = false
+        validator_rules = inputValidator.get_validation_rules()
+
+        @input.on "keyup", (e) =>
+          clearTimeout(timer) if timer
+
+          timer = setTimeout =>
+            @_usernameCheck(validator_rules[2])
+          , 250
+
+    _clearInput: (extra_classes) ->
+      @inputParent.removeClass "field__input--error #{extra_classes}"
       @inputParent.find('.js-error').remove()
 
     _showError: (message) ->
@@ -47,3 +62,16 @@ define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
 
     _showValid: ->
       @inputParent.addClass 'field__input--valid'
+
+    _usernameCheck: (url) ->
+      if (@input.val().length > 3)
+        $.ajax url + "/" + @input.val(),
+          success: (data) =>
+            @_indicate_username_validity(data)
+
+      @_clearInput("field__input--valid")
+    _indicateUsernameValidity: (data) ->
+      if data.unique
+        @_showValid()
+      else
+        @_showError("That username is taken.")
