@@ -6,7 +6,7 @@
 
 .stack
   margin-left: 10px
-  +box-sizing()
+  box-sizing: border-box
   min-height: 400px
   .card--single + &
     overflow: hidden
@@ -63,7 +63,7 @@ $stack-intro-lines-to-show: 2
   margin-top: 15px
 
 .stack__intro__content
-  +transition(max-height, 0.5, ease-in-out)
+  transition: max-height 0.5s ease-in-out
   overflow: hidden
   position: relative
 
@@ -116,11 +116,11 @@ $stack-intro-lines-to-show: 2
     vertical-align: inherit
 
 .stack__view-type--grid
-  +border-radius-each(4, 0, 0, 4)
+  border-radius: 4px 0 0 4px
   border-width: 1px 0 1px 1px
 
 .stack__view-type--list
-  +border-radius-each(0, 4, 4, 0)
+  border-radius: 0 4px 4px 0
   border-width: 1px 1px 1px 0
 
 .stack__view-type--selected

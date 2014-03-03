@@ -5,8 +5,8 @@
 .btn
   +font-size(16)
   @extend %rounded-corners
-  +box-sizing()
   @extend %inline-block
+  box-sizing: border-box
   background-color: $linkblue
   color: white
   cursor: pointer
@@ -145,7 +145,7 @@
   &.is-active
     color: white
     background-color: $active
-    +box-shadow(1, 1, 1, 0, rgba($darkblue, 0.1), true)
+    box-shadow: 1px 1px 1px 0 rgba($darkblue, 0.1) inset
     border-color: transparent
     &:before, &:after
       +icon-color(white)

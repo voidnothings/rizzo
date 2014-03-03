@@ -29,8 +29,8 @@
   overflow: hidden
   position: relative
   &:after
-    +filter(drop-shadow(0 0 15px #{rgba($darkblue, 0.3)}))
     @extend %empty-abs-generated-content
+    filter: drop-shadow(0 0 15px #{rgba($darkblue, 0.3)})
     background-repeat: no-repeat
     background-size: 250px
     background-position: center
@@ -106,7 +106,7 @@
   color: $body-copy
 
 .card--page__content
-  +box-sizing()
+  box-sizing: border-box
   float: left
   margin-right: 20px
   width: 548px
@@ -114,8 +114,8 @@
     width: 427px
 
 .card--page__aside
-  +box-sizing()
   @extend %transition--base
+  box-sizing: border-box
   float: right
   position: relative
   width: 382px

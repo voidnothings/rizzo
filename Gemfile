@@ -10,6 +10,7 @@ gem 'coffee-rails','3.2.2'
 gem 'coffee-script-source', '1.4.0'
 gem 'requirejs-rails', git: 'https://github.com/lonelyplanet/requirejs-rails.git'
 gem 'uglifier', '>= 1.0.3'
+gem 'autoprefixer-rails'
 gem 'unicorn'
 gem 'rake'
 

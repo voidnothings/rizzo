@@ -8,8 +8,8 @@
 
 .stack__breadcrumb
   @extend %rounded-corners
-  +background-gradient($startColor: rgb(255,255,255), $endColor: rgb(239,239,239))
-  +transition(all, 0.2, ease)
+  @extend %transition--base
+  background: linear-gradient(to bottom, rgb(255,255,255), rgb(239,239,239))
   color: $disabled
   display: block
   padding: 20px 15px 10px 25px
@@ -18,6 +18,6 @@
   margin-bottom: 0
 
   &:hover
+    transform: translate(0, -10px)
     color: $header-blue
     text-decoration: none
-    @include transform(translate(0, -10px))
