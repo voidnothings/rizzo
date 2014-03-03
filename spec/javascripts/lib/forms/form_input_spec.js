@@ -70,7 +70,7 @@ require( [ "lib/forms/form_input" ], function(FormInput) {
       });
 
       it("clears the error message", function() {
-        formInput._clearInput();
+        formInput._clearValidation();
 
         expect(inputParent).not.toHaveClass("field__input--error");
         expect(inputParent.find(".js-error").length).toBe(0);
