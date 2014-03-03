@@ -1,5 +1,5 @@
 // http://www.thecssninja.com/javascript/follow-up-60fps-scroll
-define([ "lib/utils/feature_detect" ], function() {
+define([ "jquery", "lib/utils/feature_detect" ], function($) {
   "use strict";
 
   var ScrollPerf = function ScrollPerf() {
@@ -10,7 +10,7 @@ define([ "lib/utils/feature_detect" ], function() {
     if (window.lp.supportsAvailable) {
       this._init();
     } else {
-      document.addEventListener(":featureDetect/available", this._init.bind(this));
+      $(document).on(":featureDetect/available", this._init.bind(this));
     }
     return this;
   };
