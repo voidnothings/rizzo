@@ -33,34 +33,20 @@
   margin: 6px 0 0 10px
   width: 46px
 
-.field__input--error
-  .input
-    border: 1px solid $red
-
+.field__input--error,
+.field__input--valid
   &:after
-    +font-size(10)
-    border-radius: 12px
-    background-color: $red
-    color: #fff
-    content: '!'
-    font-weight: 700
-    padding: 4px 9px
-    pointer-events: none
+    +size(20px)
     position: absolute
-    right: 8px
-    text-align: center
-    top: 9px
-
-  .field__content--checkbox &
-    &:after
-      top: 1px
+    right: 10px
+    top: 7px
 
 .field__error
   +font-size(14)
   color: $red
   clear: both
+  font-weight: bold
   margin: 5px 0
-  text-align: right
 
 .field__content--checkbox
   float: none
