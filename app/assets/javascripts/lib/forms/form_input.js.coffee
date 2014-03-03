@@ -8,7 +8,8 @@ define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
       @_initialize() if @input.length is 1
 
     isValid: (triggerErrors) ->
-      @_clearInput() if triggerErrors
+      is_username_check = /username_check/.test(@input.data('rules'))
+      @_clearInput() if triggerErrors and !is_username_check
       valid = true
 
       for validator in @validators
@@ -53,24 +54,24 @@ define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
           , 250
 
     _clearInput: (extra_classes) ->
-      @inputParent.removeClass "field__input--error #{extra_classes}"
+      @inputParent.removeClass "field__input--error icon--cross--after #{extra_classes}"
       @inputParent.find('.js-error').remove()
 
     _showError: (message) ->
-      @inputParent.addClass 'field__input--error'
+      @inputParent.addClass 'field__input--error icon--cross--after icon--custom--after'
       @inputParent.append $("<div class='field__error js-error'>#{message}</div>")
 
     _showValid: ->
-      @inputParent.addClass 'field__input--valid'
+      @inputParent.addClass 'field__input--valid icon--tick--after icon--custom--after'
 
     _usernameCheck: (url) ->
       if (@input.val().length > 3)
         $.ajax url + "/" + @input.val(),
           success: (data) =>
-            @_indicate_username_validity(data)
+            @_indicateUsernameValidity(data)
 
-      @_clearInput("field__input--valid")
     _indicateUsernameValidity: (data) ->
+      @_clearInput("field__input--valid icon--tick--after")
       if data.unique
         @_showValid()
       else
