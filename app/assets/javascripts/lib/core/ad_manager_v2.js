@@ -1,27 +1,5 @@
-define(["jquery"], function($) {
+define(["jquery", "lib/core/ad_unit"], function($, AdUnit) {
 
-  function AdUnit($target) {
-    this.$target = $target
-    this._init();
-  }
-
-  AdUnit.prototype._init = function() {
-    if (!this.isEmpty()) {
-      this.$target.closest('.is-closed').removeClass('is-closed');
-    }
-  };
-
-  AdUnit.prototype.isEmpty = function() {
-    if (this.$target.css("display") === "none") {
-      return true;
-    }
-
-    var $iframe = this.$target.find("iframe").contents();
-
-    // Sometimes DFP will return uesless 1x1 blank images
-    // so we must check for them.
-    return $iframe.find("img").width() === 1;
-  };
 
   function AdManager(networkID, config) {
     this.networkID = networkID;
@@ -35,24 +13,28 @@ define(["jquery"], function($) {
 
     require(["dfp"], function() {
 
-      function adLoadedCallback($adunit) {
-        self.loadedAds.push(new AdUnit($adunit));
-        // TODO: analytics here
+      function boundCallback($adunit) {
+        self._adCallback.call(self, $adunit);
       }
 
       $.dfp({
         dfpID: self.networkID,
-        setTargeting: self.keywords(),
+        setTargeting: self.formatKeywords(),
         namespace: self.config.layers ? self.config.layers.join("/") : "",
         collapseEmptyDivs: true,
         enableSingleRequest: false,
-        afterEachAdLoaded: adLoadedCallback
+        afterEachAdLoaded: boundCallback
       });
 
     });
   };
 
-  AdManager.prototype.keywords = function() {
+  AdManager.prototype._adCallback = function($adunit) {
+    this.loadedAds.push(new AdUnit($adunit));
+    // TODO: analytics here
+  };
+
+  AdManager.prototype.formatKeywords = function() {
     var keywords = {
       "ctt": this.config.continent,
       "cnty": this.config.country,
@@ -61,10 +43,10 @@ define(["jquery"], function($) {
       "tnm": this.config.adTnm ? this.config.adTnm.replace(/\s/, "").split(",") : ""
     };
 
-    if (!$.isEmptyObject(this.config.keyValues)) {
-      for (var key in config.keyValues) {
+    if (this.config.keyValues && !$.isEmptyObject(this.config.keyValues)) {
+      for (var key in this.config.keyValues) {
         if (this.config.keyValues.hasOwnProperty(key)) {
-          keywords[key] = this.config[key];
+          keywords[key] = this.config.keyValues[key];
         }
       }
     }
