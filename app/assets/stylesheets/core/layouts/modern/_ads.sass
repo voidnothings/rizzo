@@ -5,7 +5,7 @@
 // ----------------------------------------------------------------------------
 
 .row--leaderboard
-  +transition(all, 0.5, ease)
+  @extend %transition--slower
   background-color: $row-leaderboard
   overflow: hidden
   padding: 16px 0
@@ -33,7 +33,7 @@
     display: table
 
 .ad-leaderboard
-  +transition(all, 0.5, ease)
+  @extend %transition--slower
   min-height: 96px
   // We don't define a width here because sometimes leaderboard = pushdown and they have different widths.
   display: table-cell
@@ -41,8 +41,8 @@
   vertical-align: middle
 
 .ad-leaderboard__inner
-  @include border-radius(2)
   @extend %inline-block
+  border-radius: 2px
   background-color: $row-primary--darker
   border: 3px solid $header-blue
   position: relative
@@ -72,7 +72,7 @@
 
 .card--ad
   .tag--horizontal--left
-    +transition(opacity, 1, ease)
+    transition: opacity 1s ease
 
   &.is-closed
     margin-left: 0
@@ -99,7 +99,7 @@
 .ad-trafficDriver, .ad-sponsorTile, .ad-mpu, .ad-doubleMpu
   &.card__content
     margin: 0 auto
-    +transition(all, 1, ease)
+    transition: all 1s ease
 
 .ad-trafficDriver
   &.card__content
@@ -129,7 +129,7 @@
   width: 300px
   margin-bottom: 13px
   .responsive &
-    +box-sizing()
+    box-sizing: border-box
     margin-bottom: 0
     padding: 30px 0 0
     height: 296px
@@ -142,7 +142,7 @@
   // Ad house mimics a collection card
   .ad-house &
     cursor: pointer
-    +transition(none)
+    transition: none
     margin: 0
     padding: 0
     &, iframe
@@ -155,7 +155,7 @@
 
 .results .card
   &.card--ad
-    +multiple-transitions(height 1s ease, width 1s ease)
+    transition: height 1s ease, width 1s ease
     .responsive &
       +respond-to(wide-view)
         min-height: 380px
@@ -182,7 +182,7 @@
 
   &:after
     @extend %empty-abs-generated-content
-    +background-gradient($startColor: rgba(255,255,255,0), $endColor: $body-background)
+    background: linear-gradient(to bottom, rgba(255,255,255,0), $body-background)
     height: 150px
     // The wallpapers are always the same size (according to the specs sent to the traffickers). We can change the spec
     //  but until traffickers start uploading the new ones, this will have to do.
@@ -226,7 +226,7 @@
   top: 0px
   z-index: 10000
   zoom: 1
-  +transition(opacity, 0.5, ease)
+  transition: opacity 0.5s ease
 
 .ad-interstitial
   position: absolute
@@ -236,8 +236,7 @@
   margin: 0 auto
   padding: 25px 10px
   z-index: 10001
-
-  +box-shadow(5px 5px 5px rgba(0,0,0,0.5))
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.5)
 
   iframe
     border: none

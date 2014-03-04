@@ -140,6 +140,15 @@ cards:
   -
     :styleguide_title: "Place Card"
     :kind: "place"
+    :double?: "true"
+    :slug: "#"
+    :title: "Antarctic"
+    :image_url: "http://media.lonelyplanet.com/lpi/24571/24571-47/469x264.jpg"
+    :strapline: "Some stuff about Antarctic"
+
+  -
+    :styleguide_title: "Place Card"
+    :kind: "place"
     :slug: "#"
     :title: "Paris"
     :image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"

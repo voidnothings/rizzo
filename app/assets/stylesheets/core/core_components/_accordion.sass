@@ -13,7 +13,7 @@
   &:after
     content: attr(data-expand)
   &:before
-    +transition()
+    @extend %transition--slower
     @extend %empty-abs-generated-content
     @extend %opaque
     height: 30px
@@ -24,7 +24,7 @@
 .accordion__input
   display: none
 
-.accordion__input:checked 
+.accordion__input:checked
   & + .accordion__target--small
     max-height: 400px
   & + .accordion__target--mid
@@ -38,7 +38,7 @@
       @extend %invisible
       height: 0
 
-.accordion__input:checked 
+.accordion__input:checked
   & + .accordion__target
     .accordion__title
       &:after
@@ -50,12 +50,12 @@
 
 
 .accordion__target
-  +transition(max-height,0.3,linear)
+  transition: max-height 0.3s linear
   overflow: hidden
 
-.accordion__target--break  
+.accordion__target--break
   border-bottom: 1px solid $body-background
-  +border-radius-each(0,0,4,4)
+  border-radius: 0 0 4px 4px
 
 .accordion__target--small,
 .accordion__target--mid
@@ -65,7 +65,7 @@
   max-height: 0px
 
 .accordion__target--large
-  max-height: 300px 
+  max-height: 300px
 
 .accordion__title
   position: relative

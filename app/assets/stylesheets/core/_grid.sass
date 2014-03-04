@@ -1,15 +1,15 @@
 // -----------------------------------------------------------------------------
-// 
+//
 //  Column based grid setup
-// 
+//
 // -----------------------------------------------------------------------------
 
 [class*="grid-wrapper--"]
-  +box-sizing()
   @extend %clearfix
+  box-sizing: border-box
 
   > [class*="col--"]
-    +box-sizing()
+    box-sizing: border-box
     float: left
     .ie7 &, .no-boxsizing &
       padding-left: 0
@@ -23,17 +23,17 @@
 $gutter-widths: 10, 15, 20, 30
 
 @each $gutter-width in $gutter-widths
-  
+
   .grid-wrapper--#{$gutter-width}
     margin-left: -#{$gutter-width}px
-    
+
     > [class*="col--"]
       padding-left: #{$gutter-width}px
 
 
 // -----------------------------------------------------------------------------
 // Proportional Grids
-// 
+//
 // The modifier on the column determines its own width
 // -----------------------------------------------------------------------------
 

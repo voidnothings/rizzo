@@ -85,7 +85,7 @@
 
 // Should this be moved out and into an ads file?
 .col--mpu
-  +perspective()
+  perspective: 600
   float: right
   margin-bottom: 15px
   margin-left: 15px
@@ -94,8 +94,8 @@
   width: 300px
 
   .ad-mpu
-    +transition(all, 0.5, ease)
-    +transform(translateX(0px) rotateY(0deg))
+    @extend %transition--slower
+    transform: translateX(0px) rotateY(0deg)
 
   &.is-closed
     width: 0
@@ -106,7 +106,7 @@
         margin: 0
         width: 0
       .supports-3d &
-        +transform(translateX(150px) rotateY(-104deg))
+        transform: translateX(150px) rotateY(-104deg)
 
 .related
   width: 100%

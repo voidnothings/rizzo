@@ -23,10 +23,10 @@
   width: 33.3%
 
 .dropdown__value
-  +box-sizing()
   @extend %rounded-corners
   @extend %right-icon
-  +word-break()
+  word-wrap: break-word
+  box-sizing: border-box
   font-weight: bold
   background-color: $body-background-offset
   border: 1px solid $body-background-offset
@@ -63,17 +63,17 @@
     width: 14px
 
   .dropdown--first &
-    +border-radius-each(4,0,0,4)
+    border-radius: 4px 0 0 4px
     border-right: none
 
   .dropdown--middle &
-    +border-radius(0)
+    border-radius: 0
     border-left: none
     border-right: none
 
   .dropdown--last &
     border-left: none
-    +border-radius-each(0,4,4,0)
+    border-radius: 0 4px 4px 0
 
   .field__input--error &
     border-color: $red
