@@ -4,13 +4,14 @@
   button_stub = YAML.load(File.read(File.expand_path('../../../../data/styleguide/buttons_stubs.yml', __FILE__)))
   buttons = button_stub['buttons']
   variation = button_stub['variation']
+  social_media = button_stub['social_media']
   template = File.read(File.expand_path("../../../components/_button.html.haml", __FILE__))
 
 .card.styleguide-intro.styleguide-block.copy--body.context--content
   %h1.copy--h1 Buttons
-  %p.copy--h2 Please note: 
+  %p.copy--h2 Please note:
   %p
-    Buttons do not call this component directly as the abstraction would be overkill. Buttons should always look like these through a combination of the modifier classes detailed below and in 
+    Buttons do not call this component directly as the abstraction would be overkill. Buttons should always look like these through a combination of the modifier classes detailed below and in
     %a{href: 'https://github.com/lonelyplanet/rizzo/blob/master/app/assets/stylesheets/components/_buttons.sass'}
       buttons.sass
 
@@ -69,3 +70,21 @@
           %pre.styleguide.copy--body.language-markup
             %code #{raw(CGI::escapeHTML(Haml::Engine.new(template).render(template, button: variation)))}
         - i += 1
+
+
+    .col--one-half.context--content
+      .copy--h3 Social Media
+
+      - count = 1
+      - social_media.each_with_index do | button, i |
+        .styleguide-block__description.card.copy--body
+          .styleguide-block__items.clearfix
+
+            %h2.copy--h2.styleguide-block__heading.split--left
+              = button[:styleguide_title]
+
+            .styleguide-block__item.split--right{class: " styleguide-block__item--#{count}"}
+              = ui_component("button", button: button)
+
+          %pre.styleguide.copy--body.language-markup
+            %code #{raw(CGI::escapeHTML(Haml::Engine.new(template).render(template, button: button)))}
