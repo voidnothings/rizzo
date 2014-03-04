@@ -59,3 +59,20 @@ variation:
     - "btn--icon icon--globe--before icon--white--before"
     - "btn--icon-only icon--globe icon--white"
     - "btn--full-width"
+
+social_media:
+  -
+    :styleguide_title: "Facebook"
+    :type: "facebook btn--icon icon--facebook--before icon--white--before"
+    :text: "Facebook"
+    :href: "#"
+  -
+    :styleguide_title: "Google plus"
+    :type: "google-plus btn--icon icon--google-plus--before icon--white--before"
+    :text: "Google plus"
+    :href: "#"
+  -
+    :styleguide_title: "Twitter"
+    :type: "twitter btn--icon icon--twitter--before icon--white--before"
+    :text: "Twitter"
+    :href: "#"

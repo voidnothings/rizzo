@@ -153,11 +153,19 @@
 // -----------------------------------------------------------------------------
 // Social Media
 // -----------------------------------------------------------------------------
+%btn--social
+  &:before
+    +size(20px)
+    top: 3px
+
 .btn--facebook
+  @extend %btn--social
   background: $facebook
 
 .btn--google-plus
+  @extend %btn--social
   background: $google-plus
 
 .btn--twitter
+  @extend %btn--social
   background: $twitter
