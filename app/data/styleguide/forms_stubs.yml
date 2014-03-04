@@ -194,3 +194,15 @@ slider_components:
       :extreme: "100"
       :value: "75"
       :name: "[filters][price][upper]"
+  -
+    :title: "Duration slider"
+    :unit: "hours"
+    :unit_position: "after"
+    :min:
+      :extreme: "1"
+      :value: "24"
+      :name: "[filters][duration][lower]"
+    :max:
+      :extreme: "168"
+      :value: "72"
+      :name: "[filters][duration][upper]"
