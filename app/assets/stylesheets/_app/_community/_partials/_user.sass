@@ -232,6 +232,20 @@
   .card--forum__row--content
     padding: 13px 35px
 
+  .simple-form__field
+    .input,
+    .dropdown__select,
+    .field__label.boolean,
+    .btn
+      +font-size(18)
+
+  .rizzo_text_field,
+  .rizzo_select
+    .field__label
+      display: none
+    .field__content
+      width: 100%
+
 .register__title
   +font-size(22)
   padding: 10px 0
@@ -239,6 +253,21 @@
 
 .register__email
   border-right: 1px solid $subdued
+  .simple-form__field.boolean
+    margin: 25px 0 20px
+  .boolean
+    float: left
+  .field__label.boolean
+    margin-left: 12px
+    width: 405px
+
+.register__social
+  .btn
+    +font-size(18)
+    padding: 14px 25px
+    &:before
+      +size(20px)
+      top: 3px
 
 .register__or
   background: white
