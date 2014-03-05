@@ -51,6 +51,7 @@
 .search__result-title
   @extend %truncate-text
   margin-bottom: 5px
+  color: $body-copy
 
 .search__result-description
   +font-size(14)
@@ -60,7 +61,7 @@
   strong
     padding: 2px .25em
     font-weight: normal
-    background: lighten($orange, 30%)
+    background: $highlight-warning
 
 .search__result--guide
 
@@ -68,9 +69,9 @@
   .search__result-title
     padding-right: 60px
 
-  // Guide images are not square and isolated on a white BG
+  // Guide images are not square
   .search__result-figure
-    background: #f4fbfe
+    background: $card-figure-bg
 
   .search__result-figure__image
     min-width: 0
