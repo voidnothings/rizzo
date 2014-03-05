@@ -223,3 +223,59 @@
 
   .user-info__avatar
     margin-bottom: 6px
+
+// -----------------------------------------------------------------------------
+// User account pages (register and log in).
+// -----------------------------------------------------------------------------
+.user-account
+  .card--forum__row--title,
+  .card--forum__row--content
+    padding: 13px 35px
+
+  .simple-form__field
+    .input,
+    .dropdown__select,
+    .field__label.boolean,
+    .btn
+      +font-size(18)
+
+  .rizzo_text_field,
+  .rizzo_select
+    .field__label
+      display: none
+    .field__content
+      width: 100%
+
+.user-account__title
+  +font-size(22)
+  padding: 10px 0
+  text-align: center
+
+.user-account__email
+  border-right: 1px solid $subdued
+  .simple-form__field.boolean
+    margin: 25px 0 20px
+  .boolean
+    float: left
+  .field__label.boolean
+    margin-left: 12px
+    width: 405px
+
+.user-account__social
+  .btn
+    +font-size(18)
+    padding: 14px 25px
+
+.user-account__or
+  background: white
+  left: 50%
+  margin-left: -11px
+  padding: 12px 0
+  position: absolute
+  top: 16px
+  text-transform: uppercase
+
+.user-account__header
+  color: $body-copy
+  margin-bottom: 20px
+  text-align: center
