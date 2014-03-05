@@ -33,7 +33,6 @@ require ['public/assets/javascripts/lib/components/range_slider.js'], (RangeSlid
         expect(config.start).toEqual(["40","60"])
 
 
-
     describe "A capped slider", ->
       beforeEach ->
         window.rangeSlider = new RangeSlider()
@@ -63,3 +62,36 @@ require ['public/assets/javascripts/lib/components/range_slider.js'], (RangeSlid
         expect(config.connect).toEqual(true)
         expect(config.range).toEqual(["0", "90"])
         expect(config.start).toEqual(["40","90"])
+
+
+    describe "Updating the units", ->
+      beforeEach ->
+        window.rangeSlider = new RangeSlider()
+
+      describe "positioned before", ->
+
+        describe "When the unit is hours", ->
+          data = {unit: "hours", unitPosition: "after"}
+
+          it 'singularises', ->
+            expect(rangeSlider._addUnitToValue(data, "1")).toBe("1 hour")
+            expect(rangeSlider._addUnitToValue(data, "30")).toBe("30 hours")
+
+          it 'rounds up hours to days', ->
+            expect(rangeSlider._addUnitToValue(data, "60")).toBe("2 days")
+            expect(rangeSlider._addUnitToValue(data, "80")).toBe("3 days")
+
+        describe "When the unit is fish", ->
+          data = {unit: "fish", unitPosition: "after"}
+
+          it 'adds the unit after', ->
+            expect(rangeSlider._addUnitToValue(data, "30")).toBe("30 fish")
+
+      describe "positioned after", ->
+
+        describe "When the unit is $", ->
+          data = {unit: "$", unitPosition: "before"}
+
+          it 'adds it before', ->
+            expect(rangeSlider._addUnitToValue(data, "1")).toBe("$1")
+            expect(rangeSlider._addUnitToValue(data, "2000")).toBe("$2000")
