@@ -1,10 +1,11 @@
 .search__result
   @extend %rounded-corners
   padding: 0
-  height: 192px
+  height: 185px
 
 .search__result-figure
-  +size(192px)
+  width: 192px
+  height: 185px
   position: relative
   display: block
 
@@ -23,10 +24,6 @@
 .search__result-figure__image
   border-top-left-radius: 4px
   border-bottom-left-radius: 4px
-
-.search__result-figure__image
-  min-width: 100%
-  max-width: 100%
 
 .search__result-figure__icon
   +size(100%)
@@ -74,9 +71,8 @@
     background: $card-figure-bg
 
   .search__result-figure__image
-    min-width: 0
-    max-height: 170px
-    margin: 11px auto
+    height: 170px
+    margin: 6px auto 9px
 
 .search__result--hero
   height: auto

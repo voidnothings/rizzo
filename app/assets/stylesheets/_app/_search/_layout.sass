@@ -14,3 +14,16 @@
 .search__filters
   float: right
   margin-top: -10px
+
+.search__pagination
+  margin-top: 20px
+  text-align: center
+
+.search__nav-button
+  margin: 0 .5em
+
+.search__result-list
+  transition: opacity .5s
+  .is-changed + &,
+  .is-empty + &
+    opacity: .25

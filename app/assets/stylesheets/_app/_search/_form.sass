@@ -3,9 +3,6 @@
   margin: 50px 0 30px
   border-bottom: 2px solid mix($grey-highlight, $body-background, 30)
 
-  &.is-populated:after
-    display: none
-
 .search__label
   display: block
   margin-bottom: .5em
@@ -19,19 +16,25 @@
   +placeholder
     color: mix($grey-highlight, $body-background, 30)
 
-.search__form:after,
+.search__submit,
 .search__reset
   +size(40px)
   +icon-color(body-grey)
   position: absolute
   right: 0
   bottom: 10px
-
-.search__reset
   border: 0
   overflow: hidden
   text-indent: -999px
   background-color: transparent
 
-  .is-empty &
+.search__submit
+  display: none
+  .is-empty &,
+  .is-changed &
+    display: block
+
+.search__reset
+  .is-empty &,
+  .is-changed &
     display: none
