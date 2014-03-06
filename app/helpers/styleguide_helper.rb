@@ -324,6 +324,7 @@ module StyleguideHelper
         end[0].gsub("@mixin ", "+")
       end
     end
+    decorated_snippet[:syntax_lang] = "sass"
     decorated_snippet
   end
 
