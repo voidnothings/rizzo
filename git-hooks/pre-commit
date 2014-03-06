@@ -10,7 +10,7 @@ else
 fi
 
 if
-  test "$(git diff-index --cached Gemfile* -G'path(:|\s?=\>)' $against -- Gemfile*)"
+  test "$(git diff-index --cached -G'path(:|\s?=\>)' $against -- Gemfile*)"
 then
   echo "Error: Attempt to add a local gemfile"
   exit 1

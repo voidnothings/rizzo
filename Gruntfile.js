@@ -145,7 +145,7 @@ module.exports = function(grunt) {
     },
     jasmine: {
       rizzo: {
-        src: [ "./public/assets/javascripts/lib/**/*.js" ],
+        src: [ "./public/assets/javascripts/lib/**/*.js", "!./public/assets/javascripts/lib/styleguide/*.js" ],
         options: {
           helpers: [ "./spec/javascripts/helpers/**/*.js", "./vendor/assets/javascripts/jquery/jquery.js" ],
           host: "http://127.0.0.1:8888/",

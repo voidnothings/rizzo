@@ -16,7 +16,7 @@ define ["jquery"], ($) ->
 
         # Prevent the click event bubbling so we can update this component
         # by click elsewhere on the document
-        # 
+        #
         # Replace it with the toggleActive/click event
         event.stopPropagation()
         @broadcast($el)
@@ -28,7 +28,7 @@ define ["jquery"], ($) ->
         @_updateClasses($(target))
 
     broadcast: ($el) ->
-      $el.trigger(':toggleActive/click', {isActive: $el.hasClass('is-active')})
+      $el.trigger(':toggleActive/click', { isActive: $el.hasClass('is-active'), targets: @_getTargetEls($el) })
 
 
     # Private
@@ -44,4 +44,7 @@ define ["jquery"], ($) ->
       classList += $el.data('toggleClass') if $el.data('toggleClass')
 
       $el.toggleClass(classList) if $el.data('toggleMe')
-      $($el.data('toggleTarget')).toggleClass(classList)
+      @_getTargetEls($el).toggleClass(classList)
+
+    _getTargetEls: ($el) ->
+      $($el.data('toggleTarget'))

@@ -13,13 +13,17 @@ define([ "jquery" ], function($) {
 
       if (data.isActive) {
         $document.on("click.toggleActive", function(event) {
-          if (!$(event.target).closest(".js-filter-flyout").length) {
-            $("#js-row--content").trigger(":toggleActive/update", target);
-            $document.off("click.toggleActive");
+          if (!$(event.target).closest(data.targets).length) {
+            _this._closeFlyout(target);
+          }
+        });
+        $document.on("keyup", function(event) {
+          if (event.keyCode === 27) {
+            _this._closeFlyout(target);
           }
         });
       } else {
-        $document.off("click.toggleActive");
+        $document.off("click.toggleActive keyup");
       }
 
     });
@@ -29,6 +33,13 @@ define([ "jquery" ], function($) {
         _this.$facetCount.text("(" + data.filterCount + ")");
       }
     });
+
+    // Private(ish)
+
+    this._closeFlyout = function(target) {
+      $("#js-row--content").trigger(":toggleActive/update", target);
+      $(document).off("click.toggleActive keyup");
+    };
 
     return this;
 
