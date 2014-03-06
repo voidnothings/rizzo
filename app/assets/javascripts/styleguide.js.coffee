@@ -12,14 +12,13 @@ require ['jquery'], ($) ->
     'lib/styleguide/svg'
     'lib/styleguide/colours'
     'lib/styleguide/typography'
+    'lib/styleguide/lightbox'
     'lib/utils/feature_detect'
   ], (SelectGroupManager, ScrollPerf) ->
 
     new ScrollPerf
-
-    $ ->
-      new SelectGroupManager()
-      d = new Date()
-      $('.input--datepicker').pickadate({
-        min: [d.getFullYear(), (d.getMonth() + 1), d.getDate()]
-      })
+    new SelectGroupManager()
+    d = new Date()
+    $('.input--datepicker').pickadate({
+      min: [d.getFullYear(), (d.getMonth() + 1), d.getDate()]
+    })

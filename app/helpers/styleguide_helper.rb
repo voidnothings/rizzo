@@ -203,6 +203,10 @@ module StyleguideHelper
               slug: "cards"
             },
             {
+              name: "Lightbox",
+              path: "lightbox"
+            },
+            {
               name: "Page title",
               slug: "page-title"
             },

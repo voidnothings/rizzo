@@ -1,0 +1,33 @@
+/**
+ * Based on Lea Verou's CSS Lightbox, taken on webplatform.org
+ * For redistribution purposes
+ * @author Lea Verou <lea@w3.org>
+ */
+.lightbox
+  background: white
+  box-shadow: 2px 2px 10px rgba(0,0,0,.5)
+  left: 50%
+  opacity: 0
+  position: fixed
+  transition: .5s all
+  top: 50%
+  visibility: hidden
+  z-index: -1
+
+.lightbox.is-open
+  box-shadow: 2px 2px 10px rgba(0,0,0,.5), 0 0 0 4000px rgba(0,0,0,.3)
+  opacity: 1
+  visibility: visible
+  z-index: 999
+
+.lightbox > iframe
+  border: 0
+  height: 100%
+  width: 100%
+
+.lightbox > iframe
+  background: black
+  display: none
+
+.lightbox.open > iframe
+  display: block
