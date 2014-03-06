@@ -204,7 +204,7 @@ module StyleguideHelper
             },
             {
               name: "Lightbox",
-              path: "lightbox"
+              slug: "lightbox"
             },
             {
               name: "Page title",
