@@ -28,13 +28,14 @@
   text-indent: -999px
   background-color: transparent
 
-.search__submit
-  display: none
-  .is-empty &,
-  .is-changed &
+.js-loaded
+  .search__reset
     display: block
-
-.search__reset
-  .is-empty &,
-  .is-changed &
+  .search__submit
     display: none
+
+.is-changed
+  .search__reset
+    display: none
+  .search__submit
+    display: block
