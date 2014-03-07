@@ -40,7 +40,6 @@
           - else # [x] [√] [√] [c] [√] [√] [x] [x] [x]
             - start = properties[:current_page] - offset + 1
             - finish = properties[:current_page] + offset - 1
-
         - for num in start..finish
           - if properties[:current_page] != num
             %a.pagination__link{ href: href.gsub(/%i/, num.to_s), data: { current: properties[:current_page], num: num} }<
@@ -48,6 +47,12 @@
           - else
             .pagination__link.pagination__link--current<
               = num
+        = single_content_for :pagination_links_rels do
+          - if (start..finish).cover?(properties[:current_page]-1)
+            %link{rel: 'prev', href: href.gsub(/%i/, (properties[:current_page]-1).to_s)}<
+          - if (start..finish).cover?(properties[:current_page]+1)
+            %link{rel: 'next', href: href.gsub(/%i/, (properties[:current_page]+1).to_s)}<
+
 
     - if properties[:show_detailed] && properties[:total_results] > 0
       .pagination__detailed-info
