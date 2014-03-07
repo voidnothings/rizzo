@@ -37,7 +37,7 @@ define([ "jquery" ], function($) {
     // Private(ish)
 
     this._closeFlyout = function(target) {
-      $("#js-row--content").trigger(":toggleActive/update", target);
+      $("#js-row--content").trigger(":flyout/close").trigger(":toggleActive/update", target);
       $(document).off("click.toggleActive keyup");
     };
 

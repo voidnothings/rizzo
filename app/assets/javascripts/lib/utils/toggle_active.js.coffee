@@ -28,7 +28,7 @@ define ["jquery"], ($) ->
         @_updateClasses($(target))
 
     broadcast: ($el) ->
-      $el.trigger(':toggleActive/click', { isActive: $el.hasClass('is-active'), targets: @_getTargetEls($el) })
+      $el.trigger(':toggleActive/click', { isActive: $($el.data('toggleTarget')).hasClass('is-active'), targets: @_getTargetEls($el) })
 
 
     # Private

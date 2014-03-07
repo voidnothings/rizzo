@@ -110,6 +110,10 @@ module StyleguideHelper
             {
               name: "Image Helper",
               slug: "image-helper"
+            },
+            {
+              name: "Lightbox",
+              slug: "lightbox"
             }
           ]
         }
@@ -201,10 +205,6 @@ module StyleguideHelper
             {
               name: "Cards",
               slug: "cards"
-            },
-            {
-              name: "Lightbox",
-              slug: "lightbox"
             },
             {
               name: "Page title",

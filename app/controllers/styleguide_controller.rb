@@ -151,7 +151,7 @@ class StyleguideController < GlobalController
   end
 
   def lightbox
-    render '/styleguide/ui-components/lightbox'
+    render '/styleguide/js-components/lightbox'
   end
 
   #===== yeoman hook =====#

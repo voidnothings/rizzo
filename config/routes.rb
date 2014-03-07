@@ -61,12 +61,12 @@ Rizzo::Application.routes.draw do
   get 'styleguide/ui-components/range-slider'             => 'styleguide#rangeSlider'
   get 'styleguide/ui-components/alerts'                   => 'styleguide#alerts'
   get 'styleguide/ui-components/tooltips'                 => 'styleguide#tooltips'
-  get 'styleguide/ui-components/lightbox'                 => 'styleguide#lightbox'
 
   get 'styleguide/js-components/toggle-active'            => 'styleguide#toggle_active'
   get 'styleguide/js-components/proximity-loader'         => 'styleguide#proximity_loader'
   get 'styleguide/js-components/asset-reveal'             => 'styleguide#asset_reveal'
   get 'styleguide/js-components/image-helper'             => 'styleguide#image_helper'
+  get 'styleguide/js-components/lightbox'                 => 'styleguide#lightbox'
 
   get 'styleguide/css-utilities/utility-classes'          => 'styleguide#utilityClasses'
   get 'styleguide/css-utilities/legacy'                   => 'styleguide#legacy'

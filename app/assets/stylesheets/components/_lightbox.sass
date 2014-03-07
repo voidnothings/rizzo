@@ -1,8 +1,6 @@
-/**
- * Based on Lea Verou's CSS Lightbox, taken on webplatform.org
- * For redistribution purposes
- * @author Lea Verou <lea@w3.org>
- */
+// Based on Lea Verou's CSS Lightbox, taken on webplatform.org
+// For redistribution purposes
+// @author Lea Verou <lea@w3.org>
 .lightbox
   background: white
   box-shadow: 2px 2px 10px rgba(0,0,0,.5)
@@ -14,20 +12,17 @@
   visibility: hidden
   z-index: -1
 
-.lightbox.is-open
-  box-shadow: 2px 2px 10px rgba(0,0,0,.5), 0 0 0 4000px rgba(0,0,0,.3)
-  opacity: 1
-  visibility: visible
-  z-index: 999
+  &.is-active
+    box-shadow: 2px 2px 10px rgba(0,0,0,.5), 0 0 0 4000px rgba(0,0,0,.3)
+    opacity: 1
+    visibility: visible
+    z-index: 999
+    > iframe
+      display: block
 
-.lightbox > iframe
-  border: 0
-  height: 100%
-  width: 100%
-
-.lightbox > iframe
-  background: black
-  display: none
-
-.lightbox.open > iframe
-  display: block
+  > iframe
+    background: black
+    border: 0
+    display: none
+    height: 100%
+    width: 100%
