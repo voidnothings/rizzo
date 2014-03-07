@@ -50,8 +50,21 @@ define([ "jquery", "nouislider/jquery.nouislider" ], function($) {
     if (data.unitPosition === "before") {
       return data.unit + value;
     } else {
+      if (data.unit === "hours") {
+        return this._getDurationUnit(data.unit, value);
+      }
       return value + " " + data.unit;
     }
+  };
+
+  RangeSlider.prototype._getDurationUnit = function(unit, value) {
+    if (value > 48) {
+      unit = "days";
+      value = parseInt(value / 24, 10);
+    } else if (value === "1") {
+      unit = "hour";
+    }
+    return value + " " + unit;
   };
 
   // ---------------------------------------------------------------------------

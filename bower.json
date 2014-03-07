@@ -1,11 +1,12 @@
 {
   "name": "rizzo",
   "dependencies": {
-    "flamsteed": "latest",
-    "jquery": "jquery#1.11",
     "fastclick": "latest",
-    "pickadate": "3.3.1",
+    "flamsteed": "latest",
+    "hogan": "latest",
+    "jquery": "jquery#1.11",
     "nouislider": "latest",
+    "pickadate": "3.3.1",
     "requirejs": "~2.1.11"
   }
 }

@@ -1,11 +1,13 @@
 .search__result
   @extend %rounded-corners
   padding: 0
+  height: 185px
 
 .search__result-figure
+  width: 192px
+  height: 185px
   position: relative
   display: block
-  width: 200px
 
 .search__result-figure__overlay
   position: absolute
@@ -17,17 +19,14 @@
   .search__result-title
     color: #FFF
 
+.search__result-figure,
 .search__result-figure__icon,
 .search__result-figure__image
   border-top-left-radius: 4px
   border-bottom-left-radius: 4px
 
-.search__result-figure__image
-  min-width: 100%
-  max-width: 100%
-
 .search__result-figure__icon
-  +size(200px)
+  +size(100%)
   background: mix($linkblue, white, 20%)
   &:before
     +size(40px)
@@ -49,20 +48,34 @@
 .search__result-title
   @extend %truncate-text
   margin-bottom: 5px
+  color: $body-copy
 
 .search__result-description
   +font-size(14)
   line-height: 1.35
   color: $feature-copy
 
+  strong
+    padding: 2px .25em
+    font-weight: normal
+    background: $highlight-warning
+
 .search__result--guide
 
-  // Guide images are not square and isolated on a white BG
+  // Allow for the price tag
+  .search__result-title
+    padding-right: 60px
+
+  // Guide images are not square
+  .search__result-figure
+    background: $card-figure-bg
+
   .search__result-figure__image
-    min-width: 0
-    margin: 0 auto
+    height: 170px
+    margin: 6px auto 9px
 
 .search__result--hero
+  height: auto
   margin-bottom: 30px
 
   .copy--icon--before:before
@@ -82,5 +95,5 @@
     font-weight: 700
 
   .search__result-count
-    font-weight: 300
+    font-weight: normal
     color: $feature-copy
