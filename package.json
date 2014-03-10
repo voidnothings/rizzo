@@ -22,6 +22,6 @@
         "matchdep": "latest"
     },
     "optionalDependencies": {
-      "yeoman-generators": "git+ssh://git@github.com:lonelyplanet/yeoman#a3d24d596c8257ae2783cd6af9ab9f5851408dd2"
+      "yeoman-generators": "git+ssh://git@github.com:lonelyplanet/yeoman#3d0ec64a1e0db74d74c4fd2420d89475c56b93b4"
     }
 }
