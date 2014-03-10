@@ -225,7 +225,7 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
       highlightPois(id: id, map: map)
 
     highlightPois = ({id, map}) ->
-      poiElements.removeClass('nearby-pois__poi--highlighted');
+      poiElements.removeClass('nearby-pois__poi--highlighted')
       if id is mapManager.currentPOI
         mapManager.currentPOI = null
         map.removeClass('map--has-focus')
@@ -233,6 +233,6 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
       else
         mapManager.currentPOI = id
         map.addClass('map--has-focus')
-        element = poiElements.filter("[data-slug='#{id}']").addClass('nearby-pois__poi--highlighted').get(0);
+        element = poiElements.filter("[data-slug='#{id}']").addClass('nearby-pois__poi--highlighted').get(0)
         element.scrollIntoViewIfNeeded(true, true)
         highlightPin(id)
