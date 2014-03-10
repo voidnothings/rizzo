@@ -1,14 +1,24 @@
 {
-  "name": "jquery.dfp.js",
-  "homepage": "https://github.com/coop182/jquery.dfp.js",
-  "version": "1.0.19",
-  "_release": "1.0.19",
+  "name": "jquery.dfp",
+  "main": "jquery.dfp.js",
+  "ignore": [
+    "img/",
+    "tests/",
+    ".gitattributes",
+    ".gitignore",
+    ".travis.yml",
+    ".vimrc",
+    "Gruntfile.js",
+    "example-bootstrap.js"
+  ],
+  "homepage": "https://github.com/i-like-robots/jquery.dfp.js",
+  "_release": "bff044e01d",
   "_resolution": {
-    "type": "version",
-    "tag": "1.0.19",
-    "commit": "24792c074fd7f1726075118e357e59f9a8638f69"
+    "type": "branch",
+    "branch": "i-like-robots-bower-manifest",
+    "commit": "bff044e01dcb8ac9f50aa9c8fd6e002b281c05df"
   },
-  "_source": "git://github.com/coop182/jquery.dfp.js.git",
-  "_target": "~1.0.0",
-  "_originalSource": "jquery.dfp.js"
+  "_source": "git://github.com/i-like-robots/jquery.dfp.js.git",
+  "_target": "i-like-robots-bower-manifest",
+  "_originalSource": "git://github.com/i-like-robots/jquery.dfp.js.git"
 }

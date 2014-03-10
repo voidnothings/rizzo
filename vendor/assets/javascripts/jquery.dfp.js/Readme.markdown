@@ -2,8 +2,6 @@ jQuery DFP - A jQuery implementation for Google DFP
 ======================================================
 
 [![Build Status](https://travis-ci.org/coop182/jquery.dfp.js.png?branch=master)](https://travis-ci.org/coop182/jquery.dfp.js)
-[![Analytics](https://ga-beacon.appspot.com/UA-46853690-1/jquery.dfp.js/readme)](https://github.com/igrigorik/ga-beacon)
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/coop182/jquery.dfp.js/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 This script is a drop in solution for getting Double Click for Publishers (DFP) by Google working on your page. By including this script on your page and then initialising it in the ways described below you should find it very easy to get DFP working.
 
@@ -122,6 +120,18 @@ $('selector').dfp({
     setLocation: { latitude: 34, longitude: -45.12, precision: 1000 } 
 });
 </pre>
+<pre>
+$('selector').dfp({
+    dfpID:'xxxxxxxxx',
+    sizeMapping: {
+        'my-default': [
+        	{browser: [1024, 768], ad_sizes: [980, 185]},
+	        {browser: [ 980, 600], ad_sizes: [[728, 90], [640, 480]]}
+	        {browser: [   0,   0], ad_sizes: [88, 31]}
+        ],
+    }
+});
+</pre>
 
 Available Options
 -----------------
@@ -163,6 +173,10 @@ Available Options
     <tr>
         <td>refreshExisting</td>
         <td>This boolean controls what happens when dfp is called multiple times on ad units. By default it is set to true which means that if an already initialised ad is initialised again it will instead be refreshed.</td>
+    </tr>
+    <tr>
+        <td>sizeMapping</td>
+        <td>Defines named size maps that can be used with in combination with the data-size-mapping attribute to enable responsive ad sizing (https://support.google.com/dfp_premium/answer/3423562?hl=en).</td>
     </tr>
     <tr>
         <td>afterEachAdLoaded</td>
@@ -265,4 +279,6 @@ Thanks a lot to these contributors:
     <li>@larryaubstore - https://github.com/larryaubstore</li>
     <li>@MikeSilvis - https://github.com/MikeSilvis</li>
     <li>@soreng - https://github.com/soreng</li>
+    <li>@i-like-robots - https://github.com/i-like-robots</li>
+    <li>@pdbreen - https://github.com/pdbreen</li>
 </ul>
