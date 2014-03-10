@@ -25,6 +25,11 @@ define([ "jquery" ], function($) {
     return $iframe.find("img").width() === 1;
   };
 
+  AdUnit.prototype.refresh = function() {
+    var slot = this.$target.data("googleAdUnit");
+    window.googletag.pubads().refresh([ slot ]);
+  };
+
   return AdUnit;
 
 });

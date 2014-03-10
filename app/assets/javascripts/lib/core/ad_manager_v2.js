@@ -52,6 +52,10 @@ define([ "jquery", "lib/core/ad_unit", "dfp" ], function($, AdUnit) {
     return keywords;
   };
 
+  AdManager.prototype.refresh = function() {
+    window.googletag.pubads().refresh();
+  };
+
   return AdManager;
 
 });
