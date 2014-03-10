@@ -130,7 +130,7 @@ define ['jquery', 'gpt'], ->
         thisCard = $(adEl).closest('.js-card-ad').addClass('ad-house')
         $(adEl).removeClass('is-faded-out')
 
-      else if iframe.height() > $(adEl).height()
+      else if iframe.height() > $(adEl).closest("js-card-ad").height()
         # We need a timeout here because the leaderboard might be animating down which messes with our 'top' calc.
         setTimeout ->
           thisCard = $(adEl).closest('.js-card-ad').addClass 'ad-doubleMpu'
