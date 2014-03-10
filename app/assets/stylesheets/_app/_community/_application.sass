@@ -20,17 +20,20 @@
     padding-bottom: 2px
     padding-top: 2px
 
+.nav--secondary
+  margin-top: 2px
+
 .thorntree-search
   position: relative
   top: -3px
 
   .input--text
     background: #fff
+    padding-right: 22px
   .search__button
     position: absolute
-    right: 4px
-    top: 4px
-
+    right: 8px
+    top: 1px
     &:hover
       background: none
 
@@ -95,9 +98,9 @@
     width: 58%
 
 .forum-leaderboard
-  +transition(all, 0.5, ease)
+  @extend %transition--slower
   height: 90px
-  margin: 0 auto 10px
+  margin: 10px auto
   width: 728px
 
   &.is-closed
@@ -114,6 +117,7 @@
   text-align: center
 
 .centered-footer--notice
+  margin: 30px 0
   &:before
     +size(1.5em)
     top: 0.4em

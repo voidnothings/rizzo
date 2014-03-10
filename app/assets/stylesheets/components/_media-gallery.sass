@@ -12,6 +12,7 @@
   ~ .card--page__aside
     @extend %transition--slower
     top: -262px
+    margin-bottom: -232px
 
   .media-gallery__container, .tab__content, .slider__viewport, .slider__slide
     height: 241px
@@ -63,6 +64,7 @@
       display: none
   ~ .card--page__aside
     top: 0
+    margin-bottom: 30px
 
 .media-gallery--full
   @extend %visually-hide
@@ -99,7 +101,7 @@
   margin: 15%
 
 .media-gallery__container
-  +perspective()
+  perspective: 600
   background-color: $body-background
   overflow: hidden
   position: relative
@@ -109,10 +111,6 @@
       top: 50%
   &.is-loading:after
     top: 50%
-
-  .map &
-    // Avoids WebKit/Blink bug of map moving when changing POI
-    overflow: visible
 
 .media-gallery__img
   @extend %transition--base

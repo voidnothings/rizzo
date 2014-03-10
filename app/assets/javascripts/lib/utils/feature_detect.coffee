@@ -50,9 +50,7 @@ require ['jquery'], ($) ->
 
       unless window.lp.supportsAvailable
         window.lp.supportsAvailable = true
-        available = document.createEvent('Event')
-        available.initEvent(':featureDetect/available', false, true)
-        document.dispatchEvent(available)
+        $(document).trigger(':featureDetect/available')
 
       return
     )()

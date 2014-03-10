@@ -12,9 +12,45 @@ describe "components/_pagination.html.haml" do
   }
 
   describe 'pagination container' do
+    describe "rel links in head" do
+      before(:each) do
+        stub_template 'layouts/application' => <<-VIEW
+          <html>
+            <head><%= yield :pagination_links_rels %></head>
+            <body><%= yield %></body>
+          </html>
+        VIEW
+      end
+
+      it "adds next and prev rel links to head if next and prev page exists" do
+        view.stub(properties: default_properties.merge(current_page: 2))
+
+        render template: 'components/_pagination', layout: 'layouts/application'
+
+        rendered.should have_css('head link[rel="prev"]')
+        rendered.should have_css('head link[rel="next"]')
+      end
+
+      it "adds only next rel link on first page" do
+        view.stub(properties: default_properties.merge(current_page: 1))
+
+        render template: 'components/_pagination', layout: 'layouts/application'
+
+        rendered.should_not have_css('head link[rel="prev"]')
+        rendered.should have_css('head link[rel="next"]')
+      end
+
+      it "add only prev rel link on last page" do
+        view.stub(properties: default_properties.merge(current_page: 5))
+
+        render template: 'components/_pagination', layout: 'layouts/application'
+
+        rendered.should have_css('head link[rel="prev"]')
+        rendered.should_not have_css('head link[rel="next"]')
+      end
+    end
 
     it 'adds any passed in classes' do
-
       view.stub(properties: default_properties.merge( :classes => 'foo bar' ))
 
       render
@@ -48,7 +84,6 @@ describe "components/_pagination.html.haml" do
       rendered.should_not have_css('.pagination__backwards')
       rendered.should_not have_css('.pagination__link--prev')
       rendered.should_not have_css('.pagination__link--first')
-
     end
 
   end

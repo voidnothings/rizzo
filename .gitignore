@@ -50,3 +50,11 @@ app/assets/stylesheets/icons/critical.png.css
 vendor/assets/javascripts/pickadate/lib/compressed/
 vendor/assets/javascripts/pickadate/lib/themes/
 vendor/assets/javascripts/pickadate/lib/translations/
+
+# hogan
+vendor/assets/javascripts/hogan/lib
+vendor/assets/javascripts/hogan/test
+vendor/assets/javascripts/hogan/tools
+vendor/assets/javascripts/hogan/web
+vendor/assets/javascripts/hogan/wrappers
+vendor/assets/javascripts/hogan/.*

@@ -3,13 +3,13 @@
 // -----------------------------------------------------------------------------
 
 .search-results
-  
+
   .is-open
     display: none
 
   .pagination,
   .topic
-    +transition(opacity)
+    transition: opacity
 
   &.is-active
     .is-closed
@@ -25,7 +25,7 @@
       margin-top: 6px
 
 .advanced-search
-  
+
   .simple-form__field
     float: left
     margin-right: 10px
@@ -36,7 +36,7 @@
     display: none
   .field__content
     width: 100%
-  
+
   .is-not-active &
     display: none
   .is-active &

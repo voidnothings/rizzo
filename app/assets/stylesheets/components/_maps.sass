@@ -30,8 +30,8 @@
     .map__poi-list
       opacity: 1
       visibility: visible
-      +transform(rotateY(0deg) translateX(0px) translateZ(0px))
-      +transition(all, 1, cubic-bezier(0.075, 0.820, 0.165, 1.000))
+      transform: rotateY(0deg) translateX(0px) translateZ(0px)
+      transition: all 1s cubic-bezier(0.075, 0.820, 0.165, 1.000)
       right: 12px
       z-index: 1
     .infobox__interesting-places
@@ -48,7 +48,7 @@
 .map__poi-list
   @extend %rounded-corners
   @extend %transition--slower
-  +transform(rotateY(70deg) translateX(100px) translateZ(-250px))
+  transform: rotateY(70deg) translateX(100px) translateZ(-250px)
   background: #fff
   height: 360px
   position: absolute
@@ -66,7 +66,7 @@
     &::-webkit-scrollbar
       width: 4px
     &::-webkit-scrollbar-thumb
-      +border-radius(2)
+      border-radius: 2px
       background: $details-panel-border
     &::-webkit-scrollbar-track
       background: none
@@ -92,9 +92,9 @@
 .infobox--location
   @extend %rounded-corners
   @extend %standard-shadow
-  +box-shadow(0, 3, 2, 0, $new-header-grey-shadow)
   +css-arrow-central(bottom, $size: 25px)
-  +multiple-transitions(opacity 0.5s ease-in-out, visibility  0 linear 0)
+  transition: opacity 0.5s ease-in-out, visibility 0 linear 0
+  box-shadow: 0 3px 2px 0 $new-header-grey-shadow
   background: #fff
   bottom: 20px
   left: -51%
@@ -104,7 +104,7 @@
   opacity: 1
   visibility: visible
   .map--has-focus &
-    +multiple-transitions(visibility 0 linear 0.5s, opacity 0.5s ease-in-out)
+    transition: visibility 0 linear 0.5s, opacity 0.5s ease-in-out
     opacity: 0
     visibility: hidden
     pointer-events: none
@@ -112,7 +112,7 @@
   &:after
     color: #fff
     position: absolute
-    +filter(drop-shadow(0 3px 2px $new-header-grey-shadow))
+    filter: drop-shadow(0 3px 2px $new-header-grey-shadow)
 
   .copy--body
     @extend %lp-font-stack // infobox overrides with roboto font

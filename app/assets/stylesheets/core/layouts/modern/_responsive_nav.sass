@@ -2,7 +2,7 @@ $responsive-nav-width: 240px
 
 // Create a page wrapper so that we don't show a scrollbar
 .wrapper
-  +backface-visibility()
+  backface-visibility: hidden
   position: relative
   overflow: hidden
   width: 100%
@@ -10,15 +10,15 @@ $responsive-nav-width: 240px
 // The container for our off-screen navigation
 .nav-container
   +hardware-acceleration()
-  +backface-visibility()
+  backface-visibility: hidden
   @extend %clearfix
   width: 100%
   background: $lpblue
   overflow: visible
   height: 55px
   .responsive &
-    +box-shadow(16, 4, 20, -6, rgba(0, 0, 0, 0.2), true)
     @extend %transition--nav
+    box-shadow: 16px 4px 20px -6px rgba(0, 0, 0, 0.2) inset
     position: absolute
     overflow: hidden
     top: 0
@@ -81,4 +81,4 @@ $responsive-nav-width: 240px
   &:checked ~ .row--content,
   &:checked ~ .logo--header,
   &:checked ~ .wrapper--footer
-    +transform(translateX(-$responsive-nav-width))
+    transform: translateX(-$responsive-nav-width)

@@ -31,7 +31,7 @@
 // -----------------------------------------------------------------------------
 
 @mixin css-arrow-central($side: top, $size: 28px, $offset: 0)
-  @include css-arrow($side, $size, $offset)
+  +css-arrow($side, $size, $offset)
   @if $side == top
     &:after
       left: 50%

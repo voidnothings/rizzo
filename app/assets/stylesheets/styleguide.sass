@@ -4,25 +4,38 @@
 @import 'prism'
 
 .box
-  +box-sizing
+  box-sizing: border-box
   padding: 20px
 
 pre[class*="language-"]
-  +box-sizing()
+  box-sizing: border-box
   padding: 1em
   overflow: auto
-  max-height: 300px
+  max-height: 200px
+  background: $body-background-offset
+  border-top: 1px solid #DEE2E6
+  border-bottom: 1px solid #DEE2E6
+
   .tag
     +font-size(16)
     margin: 0
     float: none
 
 pre[class*="language-"].styleguide
-  margin: 0
+  margin: 20px -20px 10px
   font-size: 15px
+  .styleguide-intro__inner &
+    margin: 0
 
 pre.styleguide.is-open
   max-height: none
+  &:after
+    background: none
+
+.snippet-expand
+  width: 100%
+  border-radius: 0 0 4px 4px
+  margin-bottom: -15px
 
 .clearfix
   @extend %clearfix
@@ -64,9 +77,10 @@ pre.styleguide.is-open
     padding: 5px 0
     margin-bottom: 0
   pre.language-markup
-    background: none
-    padding: 0
+    padding: 7px
     line-height: 1
+    span, &
+      font-size: 14px
   .styleguide-block__items
     margin-bottom: 20px
   .styleguide-block__item
@@ -104,11 +118,13 @@ pre.styleguide.is-open
   text-align: center
   .copy--h4
     padding: 10px
+  .card
+    @extend %rounded-corners
+    overflow: hidden
 
 .styleguide-block__item--colour
-  border: 6px solid #FFF
   font-size: 13px
-  padding: 4px 0
+  padding: 12px 0
   color: white
   margin: 0
 
@@ -118,7 +134,7 @@ pre.styleguide.is-open
     border-color: transparent
 
 .styleguide-block__description
-  +box-sizing()
+  box-sizing: border-box
   overflow: hidden
   padding: 20px
 
@@ -144,8 +160,8 @@ pre.styleguide.is-open
   .tooltip--focus
 
 .styleguide__partial
-  border: 2px solid $body-background
-  padding: 5px
+  padding: 10px 0
+  font-weight: bold
 
 .filter--links
   min-width: 200px

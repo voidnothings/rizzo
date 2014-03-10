@@ -272,10 +272,6 @@ module StyleguideHelper
     }
   end
 
-  def ad_config
-    {hints: "", channels: ""}
-  end
-
   def ui_component(slug, properties={})
     render "components/#{slug}", properties
   end
@@ -328,6 +324,7 @@ module StyleguideHelper
         end[0].gsub("@mixin ", "+")
       end
     end
+    decorated_snippet[:syntax_lang] = "sass"
     decorated_snippet
   end
 

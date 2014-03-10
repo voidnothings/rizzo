@@ -2,7 +2,7 @@
 - tooltip = properties[:tooltip]
 
 .dropdown.js-select-group-manager{ class: "#{properties[:class]}#{no_options ? ' is-disabled' : ''}#{!tooltip.nil? ? ' tooltip--container' : ''}" }
-  %label.dropdown__value.js-select-overlay.icon--chevron-down--after
+  %label.dropdown__value.js-select-overlay.icon--chevron-down--after{ for: properties[:id] }
     - unless no_options
       = properties[:selected] || properties[:placeholder] || properties[:options].first[:title] || ""
 

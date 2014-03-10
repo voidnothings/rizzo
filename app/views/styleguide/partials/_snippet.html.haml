@@ -5,5 +5,5 @@
     - properties[:description].each do |paragraph|
       %p #{paragraph}
 
-  %pre.styleguide.copy--body.language-ruby
+  %pre.styleguide.copy--body{ class: "language-#{properties[:syntax_lang] || "ruby"}" }
     %code #{properties[:snippet]}
