@@ -1,4 +1,4 @@
-define(["jquery", "lib/core/ad_unit", "dfp"], function($, AdUnit) {
+define([ "jquery", "lib/core/ad_unit", "dfp" ], function($, AdUnit) {
 
   "use strict";
 
@@ -34,11 +34,11 @@ define(["jquery", "lib/core/ad_unit", "dfp"], function($, AdUnit) {
 
   AdManager.prototype.formatKeywords = function() {
     var keywords = {
-      "ctt": this.config.continent,
-      "cnty": this.config.country,
-      "dest": this.config.destination,
-      "thm": this.config.adThm,
-      "tnm": this.config.adTnm ? this.config.adTnm.replace(/\s/, "").split(",") : ""
+      ctt: this.config.continent,
+      cnty: this.config.country,
+      dest: this.config.destination,
+      thm: this.config.adThm,
+      tnm: this.config.adTnm ? this.config.adTnm.replace(/\s/, "").split(",") : ""
     };
 
     if (this.config.keyValues && !$.isEmptyObject(this.config.keyValues)) {
