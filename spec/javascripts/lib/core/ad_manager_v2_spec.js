@@ -6,7 +6,7 @@ require(["public/assets/javascripts/lib/core/ad_manager_v2"], function(AdManager
 
     beforeEach(function() {
       loadFixtures("ad_iframe.html");
-      instance = new AdManager(123456, {});
+      instance = new AdManager({ networkID: "xxxx" });
     });
 
     describe("._init()", function() {
