@@ -162,7 +162,8 @@ module.exports = function(grunt) {
                 jplugs: "./vendor/assets/javascripts/jquery-plugins",
                 sCode: "./vendor/assets/javascripts/omniture/s_code",
                 gpt: "http://www.googletagservices.com/tag/js/gpt",
-                pickadate: "./vendor/assets/javascripts/pickadate"
+                pickadate: "./vendor/assets/javascripts/pickadate",
+                dfp: "./vendor/assets/javascripts/jquery.dfp.js/jquery.dfp"
               }
             }
           }
