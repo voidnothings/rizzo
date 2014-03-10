@@ -1,13 +1,15 @@
 define(["jquery"], function($) {
 
+  "use strict";
+
   function AdUnit($target) {
-    this.$target = $target
+    this.$target = $target;
     this._init();
   }
 
   AdUnit.prototype._init = function() {
     if (!this.isEmpty()) {
-      this.$target.closest('.is-closed').removeClass('is-closed');
+      this.$target.closest(".is-closed").removeClass("is-closed");
     }
   };
 

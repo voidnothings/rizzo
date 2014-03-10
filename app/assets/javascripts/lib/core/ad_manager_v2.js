@@ -1,5 +1,7 @@
 define(["jquery", "lib/core/ad_unit", "dfp"], function($, AdUnit) {
 
+  "use strict";
+
   var networkID = 4817;
 
   function AdManager(config) {
