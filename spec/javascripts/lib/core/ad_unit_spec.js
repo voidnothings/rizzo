@@ -1,23 +1,29 @@
-require(["public/assets/javascripts/lib/core/ad_unit"], function(AdUnit) {
+require([ "public/assets/javascripts/lib/core/ad_unit" ], function(AdUnit) {
 
   describe("Ad Unit", function() {
 
-    var instance;
+    var instance, stub;
 
     beforeEach(function() {
       loadFixtures("ad_iframe.html");
+
+      AdUnit.prototype.extensions.mpu = jasmine.createSpy();
+
       instance = new AdUnit($(".adunit"));
     });
 
     describe("._init()", function() {
 
-      it ("Should remove 'is-closed' class from closest ancestor", function() {
+      it("Should remove 'is-closed' class from closest ancestor", function() {
         var $fixture = $(".is-closed");
 
         spyOn(instance, "isEmpty").andReturn(false);
-        instance._init();
 
         expect($fixture.hasClass("is-closed")).toBe(false);
+      });
+
+      it("Should call extension if defined", function() {
+        expect(instance.extensions.mpu).toHaveBeenCalled();
       });
 
     });

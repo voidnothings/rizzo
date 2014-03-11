@@ -5,11 +5,10 @@ define([ "jquery" ], function($) {
   function DoubleMPU($target, $card) {
     this.$target = $target;
     this.$card = $card;
+    this._init();
   }
 
   DoubleMPU.prototype._init = function() {
-    this.$target.detach();
-
     var $grid = this.$card.closest(".js-stack"),
         $cards = $grid.find(".js-card"),
         position = this.$card.position(),

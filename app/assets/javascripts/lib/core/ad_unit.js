@@ -1,4 +1,4 @@
-define([ "jquery", "lib/core/ads/interstitial", "lib/core/ads/double_mpu" ], function($, Interstitial, DoubleMPU) {
+define([ "jquery", "lib/core/ads/double_mpu" ], function($, DoubleMPU) {
 
   "use strict";
 
@@ -15,7 +15,7 @@ define([ "jquery", "lib/core/ads/interstitial", "lib/core/ads/double_mpu" ], fun
 
     this.$target.closest(".is-closed").removeClass("is-closed");
 
-    var extension = this.$target("extension");
+    var extension = this.$target.data("extension");
 
     if (extension && this.extensions[extension]) {
       this.extensions[extension].call(this);
@@ -40,15 +40,6 @@ define([ "jquery", "lib/core/ads/interstitial", "lib/core/ads/double_mpu" ], fun
   };
 
   AdUnit.prototype.extensions = {
-
-    wallpaper: function() {
-      var $link = this.$iframe.contents().find("#ad-link");
-
-      if ($link.length) {
-        this.$target.addClass("ad-interstitial");
-        this.extension = new Interstitial(this.$target, $link);
-      }
-    },
 
     mpu: function() {
       var $container = this.$target.closest(".js-card-ad");
