@@ -5,6 +5,7 @@ define([ "jquery", "lib/core/ad_unit", "dfp" ], function($, AdUnit) {
   var networkID = 4817;
 
   function AdManager(config) {
+    this.$listener = $(config.$listener || "#js-row--content");
     this.config = config;
     this.loadedAds = [];
     this._init();
@@ -25,6 +26,8 @@ define([ "jquery", "lib/core/ad_unit", "dfp" ], function($, AdUnit) {
       enableSingleRequest: false,
       afterEachAdLoaded: boundCallback
     });
+
+    this.$listener.on(":ads/refresh", this.refresh);
   };
 
   AdManager.prototype._adCallback = function($adunit) {
