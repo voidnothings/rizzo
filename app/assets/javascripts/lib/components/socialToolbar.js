@@ -6,10 +6,9 @@
 
 // TODO
 //
-// 1. Update the urls on the print & email buttons after ajax success
-// 2. Implement an easy teardown/rebuild function after ajax success, to ensure correct data
-// 3. Ship it
-// 4. Re-implement (2) to see if we can update/refresh the buttons without redownloading assets
+// 1. Implement an easy teardown/rebuild function after ajax success, to ensure correct data
+// 2. Ship it
+// 3. Re-implement (1) to see if we can update/refresh the buttons without redownloading assets
 
 define([ "jquery", "lib/components/proximity_loader", "lib/utils/page_state" ], function($, ProximityLoader, PageState) {
 
