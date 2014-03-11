@@ -5,9 +5,10 @@ define([ "jquery" ], function($) {
   var asFlyout = function(args) {
     var _this = this;
 
-    this.$facetCount = $(args.facet),
+    this.$facetCount = $(args.facet);
+    this.$listener = $("#js-row--content" || args.$listener);
 
-    this.close = $("#js-row--content").on(":toggleActive/click", function(event, data) {
+    this.close = this.$listener.on(":toggleActive/click", function(event, data) {
       var target = event.target,
           $document = $(document);
 
@@ -28,7 +29,7 @@ define([ "jquery" ], function($) {
 
     });
 
-    this.updateCount = $("#js-row--content").on(":cards/received", function(event, data) {
+    this.updateCount = this.$listener.on(":cards/received", function(event, data) {
       if (data && data.filterCount) {
         _this.$facetCount.text("(" + data.filterCount + ")");
       }
@@ -37,7 +38,7 @@ define([ "jquery" ], function($) {
     // Private(ish)
 
     this._closeFlyout = function(target) {
-      $("#js-row--content").trigger(":flyout/close").trigger(":toggleActive/update", target);
+      this.$listener.trigger(":flyout/close").trigger(":toggleActive/update", target);
       $(document).off("click.toggleActive keyup");
     };
 
