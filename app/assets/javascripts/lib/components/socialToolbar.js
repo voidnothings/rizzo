@@ -11,7 +11,7 @@
 // 3. Ship it
 // 4. Re-implement (2) to see if we can update/refresh the buttons without redownloading assets
 
-define([ "jquery", "lib/components/proximity_loader" ], function($, ProximityLoader) {
+define([ "jquery", "lib/components/proximity_loader", "lib/utils/page_state" ], function($, ProximityLoader, PageState) {
 
   "use strict";
 
@@ -23,6 +23,8 @@ define([ "jquery", "lib/components/proximity_loader" ], function($, ProximityLoa
     this.$el = $(args.el);
     this.$el.length && this.init();
   }, _this;
+
+  $.extend(SocialToolbar.prototype, PageState.prototype);
 
   SocialToolbar.prototype.init = function() {
     _this = this;
@@ -38,6 +40,7 @@ define([ "jquery", "lib/components/proximity_loader" ], function($, ProximityLoa
 
     this.$listener.on(":page/received", function(e, data) {
       if (_this._shouldLoadButtons(data)) {
+        _this._updateMailtoLink(_this.getUrl());
         _this._load();
       } else {
         _this.$el.addClass("is-hidden");
@@ -61,6 +64,14 @@ define([ "jquery", "lib/components/proximity_loader" ], function($, ProximityLoa
       list: "#js-facebook-like, #js-tweet, #js-google-plus",
       success: ":asset/uncommentScript"
     });
+  };
+
+  SocialToolbar.prototype._updateMailtoLink = function(url) {
+    var $link = this.$el.find(".js-mailto-link"),
+        existingUrl = $link.attr("href"),
+        newUrl = existingUrl.substr(0, existingUrl.indexOf("http")) + url;
+
+    $link.attr("href", $link.attr("href").split("body=")[0] + newUrl);
   };
 
   return SocialToolbar;

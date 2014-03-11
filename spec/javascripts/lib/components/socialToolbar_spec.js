@@ -83,10 +83,16 @@ require([ "jquery", "public/assets/javascripts/lib/components/socialToolbar.js" 
             loadFixtures("socialToolbar.html");
             window.socialToolbar = new SocialToolbar({ el: "#js-social-loaded" });
             spyOn(window.socialToolbar, "_shouldLoadButtons").andReturn(true);
+            spyOn(window.socialToolbar, "getUrl").andReturn("http://www.lonelyplanet.com/foo");
             $("#js-row--content").trigger(":page/received");
           });
 
-          it("is refreshes the buttons and updates the url", function() {
+          it("updates the url on the mailto link", function() {
+            var newUrl = $("#js-social-loaded").find(".js-mailto-link").attr("href");
+            expect(newUrl).toContain("http://www.lonelyplanet.com/foo")
+          });
+
+          it("refreshes the buttons and updates the url", function() {
             expect(false).toBe(true);
           });
         });
@@ -96,7 +102,13 @@ require([ "jquery", "public/assets/javascripts/lib/components/socialToolbar.js" 
             loadFixtures("socialToolbar.html");
             window.socialToolbar = new SocialToolbar({ el: "#js-social-not-to-be-displayed" });
             spyOn(window.socialToolbar, "_shouldLoadButtons").andReturn(true);
+            spyOn(window.socialToolbar, "getUrl").andReturn("http://www.lonelyplanet.com/foo");
             $("#js-row--content").trigger(":page/received");
+          });
+
+          it("updates the url on the mailto link", function() {
+            var newUrl = $("#js-social-not-to-be-displayed").find(".js-mailto-link").attr("href");
+            expect(newUrl).toContain("http://www.lonelyplanet.com/foo");
           });
 
           it("it loads and displays them", function() {
