@@ -181,7 +181,8 @@ We use the Sass format which means:
 
 * 2 spaces are used for indentation
 * Curly braces are omitted
-* Use + instead of @include
+* Use the shorthand mixin syntax (`+mixin()`)
+* Only use the `@extend` directive to extend placeholders, not other selectors
 
 Comments are encouraged and should follow the below pattern:
 
