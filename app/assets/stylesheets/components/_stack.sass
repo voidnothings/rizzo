@@ -79,13 +79,14 @@ $stack-intro-lines-to-show: 2
   .copy--h1 + &
     margin-top: 0.8em
 
-// Temporary type styling until crazy harry is updated and rowlf run (20/5/2013)
+// SHAME: Stack intros without classes
 .stack__intro__content
+  @extend %text--body
   p:first-of-type
-    @extend .copy--feature
+    @extend %text--feature
   h2
-    @extend .copy--h2
-  @extend .copy--body
+    @extend %heading--2
+
 
 
 // -----------------------------------------------------------------------------
@@ -129,9 +130,9 @@ $stack-intro-lines-to-show: 2
   color: white
 
 .list-view__section-heading
+  @extend %heading--2
   margin-left: 10px
   margin-top: 10px
-  @extend .copy--h2
 
 .list-view__heading
   +font-size(36)
