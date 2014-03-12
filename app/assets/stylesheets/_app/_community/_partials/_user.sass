@@ -316,6 +316,7 @@
 
 .profile-lightbox__location
   color: $grey-highlight
+  font-weight: bold
 
 .profile-lightbox__meta-col
   color: $grey-highlight
@@ -324,6 +325,38 @@
 .profile-lightbox__meta-data
   +font-size(16)
   color: $body-copy
+
+.profile-lightbox__message
+  background: $details-panel-bg
+  .field
+    margin-bottom: 0
+  .field__label
+    display: none
+  .message_body
+    +css-arrow-central(left)
+    background: white
+    border: 1px solid $subdued
+
+.profile-lightbox__message__avatar
+  +size(37px)
+  border-radius: 20px
+  margin-right: 15px
+
+.profile-lightbox__activities
+  .activity-list__item
+    border-top: 1px solid $body-background
+    margin-bottom: 0
+    padding: 15px 20px 12px
+  .activity-list__time
+    margin-top: -7px
+.profile-lightbox__activities__username
+  color: $body-copy
+  font-weight: bold
+.profile-lightbox__activities__header
+  .copy--h5
+    color: $grey-highlight
+.profile-lightbox__activities__see-all
+  line-height: 1em
 
 .profile-lightbox__report
   background: $details-panel-bg
@@ -338,3 +371,7 @@
     height: 120px
     padding-bottom: 13px
     padding-top: 13px
+.profile-lightbox__report__link
+  color: $grey-highlight
+  &:before
+    opacity: 0.5
