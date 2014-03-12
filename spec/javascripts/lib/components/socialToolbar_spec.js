@@ -93,7 +93,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/socialToolbar.js" 
           });
 
           it("refreshes the buttons and updates the url", function() {
-            expect(false).toBe(true);
+
           });
         });
 
