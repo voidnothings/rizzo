@@ -156,7 +156,7 @@
   line-height: 1em
   margin-bottom: 0.1em
   margin-right: 0.3em
-  padding: 4px
+  padding: 3px 5px
   text-transform: uppercase
 
 .user-info__online
@@ -279,3 +279,54 @@
   color: $body-copy
   margin-bottom: 20px
   text-align: center
+
+// -----------------------------------------------------------------------------
+// Profile Lightbox
+// -----------------------------------------------------------------------------
+.profile-lightbox
+  border-radius: 10px
+  position: relative
+  width: 500px
+
+.profile-lightbox__close
+  +size(25px)
+  position: absolute
+  right: 20px
+  top: 20px
+
+.profile-lightbox__header
+  background: $offscreen-nav-background
+  color: white
+  height: 65px
+.profile-lightbox__header__user-info
+  padding: 8px 0 30px 15px
+
+.profile-lightbox__avatar
+  +size(80px)
+  border: 5px solid white
+  border-radius: 45px
+  // The inset shadow mitigates the look of ugly antialiasing due to the border-radius
+  box-shadow: inset 0 0 0 5px white
+  filter: drop-shadow(0 0 0 2px $subdued)
+  margin: -5px 0 -12px -10px
+
+.profile-lightbox__username
+  color: white
+  margin-right: 5px
+
+.profile-lightbox__location
+  color: $grey-highlight
+
+.profile-lightbox__report
+  background: $details-panel-bg
+.profile-lightbox__report-form
+  @extend %transition--base
+  overflow: hidden
+  &.is-not-active
+    height: 0
+    padding-bottom: 0
+    padding-top: 0
+  &.is-active
+    height: 120px
+    padding-bottom: 13px
+    padding-top: 13px
