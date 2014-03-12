@@ -307,7 +307,7 @@
   border-radius: 45px
   // The inset shadow mitigates the look of ugly antialiasing due to the border-radius
   box-shadow: inset 0 0 0 5px white
-  filter: drop-shadow(0 0 0 2px $subdued)
+  filter: drop-shadow(0 1px 0 $subdued)
   margin: -5px 0 -12px -10px
 
 .profile-lightbox__username
@@ -316,6 +316,14 @@
 
 .profile-lightbox__location
   color: $grey-highlight
+
+.profile-lightbox__meta-col
+  color: $grey-highlight
+  float: left
+  margin-right: 15px
+.profile-lightbox__meta-data
+  +font-size(16)
+  color: $body-copy
 
 .profile-lightbox__report
   background: $details-panel-bg
