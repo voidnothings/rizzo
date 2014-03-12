@@ -150,6 +150,10 @@ class StyleguideController < GlobalController
     render '/styleguide/css-utilities/utility-mixins'
   end
 
+  def lightbox
+    render '/styleguide/js-components/lightbox'
+  end
+
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 end

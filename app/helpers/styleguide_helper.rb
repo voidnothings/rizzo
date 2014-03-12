@@ -110,6 +110,10 @@ module StyleguideHelper
             {
               name: "Image Helper",
               slug: "image-helper"
+            },
+            {
+              name: "Lightbox",
+              slug: "lightbox"
             }
           ]
         }
