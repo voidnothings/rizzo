@@ -1,48 +1,34 @@
 // -----------------------------------------------------------------------------
 // Headings
-// 
+//
 // Headings only inherit their margins when included within a .context--content
 // container. This allows for fewer overrides when using them elsewhere.
 // -----------------------------------------------------------------------------
 
 .copy--h1
-  +font-size(32)
-  color: $header-blue
-  line-height: 1.3em
-
+  @extend %heading--1
   .context--content &
     margin-bottom: 0.8em
 
 .copy--h2
-  +font-size(16)
-  font-weight: bold
-  color: $header-blue
-  text-transform: uppercase
-  letter-spacing: 0.1em
-
+  @extend %heading--2
   .context--content &
     margin: 1.8em 0 0.9em
     &:first-child
       margin-top: 0
 
 .copy--h3
-  +font-size(20)
-  color: $header-blue
-  font-weight: bold
-
+  @extend %heading--3
   .context--content &
     margin-bottom: 1em
 
 .copy--h4
-  +font-size(16)
-  font-weight: bold
-
+  @extend %heading--4
   .context--content &
     margin-bottom: 1em
 
 .copy--h5
-  @extend .copy--h2
-  +font-size(12)
+  @extend %heading--5
 
 
 // -----------------------------------------------------------------------------
@@ -50,15 +36,10 @@
 // -----------------------------------------------------------------------------
 
 .copy--feature
-  +font-size(24)
-  color: $feature-copy
-  line-height: 1.3em
+  @extend %text--feature
 
 .copy--body
-  +font-size(16)
-  line-height: 1.5em
-  p
-    margin-bottom: 15px
+  @extend %text--body
 
 // Copy with a long line length
 .copy--full-width,
@@ -66,19 +47,16 @@
   +font-size(18)
 
 .copy--meta
-  +font-size(15)
-  line-height: 1.66em
+  @extend %text--meta
 
 .copy--caption
-  +font-size(12)
-  display: block
-  font-style: italic
+  @extend %text--caption
 
 .copy--disclaimer
   +font-size(11)
 
 // -----------------------------------------------------------------------------
-// Links  
+// Links
 // -----------------------------------------------------------------------------
 
 .copy--body__link, .copy a
