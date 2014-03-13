@@ -7,6 +7,7 @@ paths:
   sailthru: "sailthru/v1"
   sCode: "omniture/s_code"
   trackjs: "trackjs/trackjs"
+  dfp: "jquery.dfp.js/jquery.dfp"
 
 modules:
   - name: 'app_core'

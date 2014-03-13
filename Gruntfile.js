@@ -145,7 +145,7 @@ module.exports = function(grunt) {
     },
     jasmine: {
       rizzo: {
-        src: [ "./public/assets/javascripts/lib/**/*.js" ],
+        src: [ "./public/assets/javascripts/lib/**/*.js", "!./public/assets/javascripts/lib/styleguide/*.js" ],
         options: {
           helpers: [ "./spec/javascripts/helpers/**/*.js", "./vendor/assets/javascripts/jquery/jquery.js" ],
           host: "http://127.0.0.1:8888/",
@@ -162,7 +162,8 @@ module.exports = function(grunt) {
                 jplugs: "./vendor/assets/javascripts/jquery-plugins",
                 sCode: "./vendor/assets/javascripts/omniture/s_code",
                 gpt: "http://www.googletagservices.com/tag/js/gpt",
-                pickadate: "./vendor/assets/javascripts/pickadate"
+                pickadate: "./vendor/assets/javascripts/pickadate",
+                dfp: "./vendor/assets/javascripts/jquery.dfp.js/jquery.dfp"
               }
             }
           }

@@ -110,6 +110,10 @@ module StyleguideHelper
             {
               name: "Image Helper",
               slug: "image-helper"
+            },
+            {
+              name: "Lightbox",
+              slug: "lightbox"
             }
           ]
         }
@@ -324,6 +328,7 @@ module StyleguideHelper
         end[0].gsub("@mixin ", "+")
       end
     end
+    decorated_snippet[:syntax_lang] = "sass"
     decorated_snippet
   end
 
