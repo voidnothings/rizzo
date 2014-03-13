@@ -320,20 +320,24 @@
   color: $grey-highlight
   font-weight: bold
 
+// Meta
 .profile-lightbox__meta-col
   color: $grey-highlight
   float: left
   margin-right: 15px
+
 .profile-lightbox__meta-data
   +font-size(16)
   color: $body-copy
 
+// PM
 .profile-lightbox__message
   background: $details-panel-bg
   .field
     margin-bottom: 0
   .field__label
     display: none
+
 .profile-lightbox__message__input
   padding-left: 10px
   position: relative
@@ -345,6 +349,7 @@
     padding-left: 0
     .input
       width: 345px
+
 .profile-lightbox__message__input--arrow
   +css-arrow-central(left, $size: 25px)
   +size(25px)
@@ -357,13 +362,16 @@
     filter: drop-shadow(-1px 0 0 $details-panel-border)
   .no-cssfilters-support &
     display: none
+
 .profile-lightbox__message__submit
   width: 62px
+
 .profile-lightbox__message__avatar
   +size(37px)
   border-radius: 20px
   margin-right: 5px
 
+// Activities
 .profile-lightbox__activities
   .activity-list__item
     border-top: 1px solid $body-background
@@ -371,28 +379,33 @@
     padding: 15px 20px 12px
   .activity-list__time
     margin-top: -7px
+
 .profile-lightbox__activities__username
   color: $body-copy
   font-weight: bold
+
 .profile-lightbox__activities__header
   .copy--h5
     color: $grey-highlight
+
 .profile-lightbox__activities__see-all
   line-height: 1em
 
+// Report
 .profile-lightbox__report
   background: $details-panel-bg
+
 .profile-lightbox__report-form
   @extend %transition--base
+  height: 0
   overflow: hidden
-  &.is-not-active
-    height: 0
-    padding-bottom: 0
-    padding-top: 0
+  padding-bottom: 0
+  padding-top: 0
   &.is-active
     height: 120px
     padding-bottom: 13px
     padding-top: 13px
+
 .profile-lightbox__report__link
   color: $grey-highlight
   &:before

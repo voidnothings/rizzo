@@ -25,10 +25,8 @@ define([ "jquery", "lib/mixins/flyout" ], function($, asFlyout) {
     this.$lightbox = $(".lightbox");
     if (!this.$lightbox.length) {
       this.$lightbox = $("<div class='lightbox'></div>");
-      
-      if (this.customClass) {
-        this.$lightbox.addClass(this.customClass);
-      }
+
+      this.customClass && this.$lightbox.addClass(this.customClass);
 
       $("body").prepend(this.$lightbox);
 

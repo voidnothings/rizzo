@@ -5,7 +5,7 @@ define ["jquery"], ($) ->
     LISTENER = '#js-row--content'
 
     # @args = {}
-    # context: {string} selector so that we can add a context/scope. Useful for dynamically added content.
+    # context: {string} selector so that we can add a context/scope. Useful for loading content in dynamically (where ToggleActive wouldn't be initialised) and not affecting existing ToggleActive instances.
     constructor: (args) ->
       this.context = args.context if args
       @listen()
