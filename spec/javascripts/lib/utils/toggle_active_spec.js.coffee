@@ -10,6 +10,7 @@ require ['public/assets/javascripts/lib/utils/toggle_active.js'], (ToggleActive)
       beforeEach ->
         loadFixtures('toggle_active.html')
         window.toggleActive = new ToggleActive()
+        spyOn(window.toggleActive, "_debounce").andReturn(true)
 
       it 'Initially adds the is-not-active class', ->
         expect($('.foo')[0]).toHaveClass('is-not-active')
@@ -50,6 +51,7 @@ require ['public/assets/javascripts/lib/utils/toggle_active.js'], (ToggleActive)
       beforeEach ->
         loadFixtures('toggle_active.html')
         window.toggleActive = new ToggleActive()
+        spyOn(window.toggleActive, "_debounce").andReturn(true)
         spyEvent = spyOnEvent($('#evented'), ':toggleActive/click')
 
       it 'on click it triggers :toggleActive/click', ->
