@@ -112,6 +112,10 @@ module StyleguideHelper
               slug: "image-helper"
             },
             {
+              name: "Konami",
+              path: "konami"
+            },
+            {
               name: "Lightbox",
               slug: "lightbox"
             }
@@ -237,6 +241,9 @@ module StyleguideHelper
       group[:items].map do |item|
         item[:slug] = "#{preceding_slug}#{item[:slug]}"
         item[:active] = (item[:slug] == request.path) ? true : false
+        if item[:name] == "Konami"
+          item[:extra_style] = "nav--left__item--konami"
+        end
         item
       end
       group

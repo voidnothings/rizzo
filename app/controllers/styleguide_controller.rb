@@ -154,6 +154,10 @@ class StyleguideController < GlobalController
     render '/styleguide/js-components/lightbox'
   end
 
+  def konami
+    render '/styleguide/js-components/konami'
+  end
+
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 end
