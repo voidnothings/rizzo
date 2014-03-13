@@ -4,25 +4,19 @@ define ["jquery"], ($) ->
 
     LISTENER = '#js-row--content'
 
-    constructor: ->
+    # @args = {}
+    # context: {string} selector so that we can add a context/scope. Useful for dynamically added content.
+    constructor: (args) ->
+      this.context = args.context if args
       @listen()
       @_addInitialState()
 
 
     listen: ->
-      $('.js-toggle-active').on 'click', (event) =>
-        $el = $(event.target)
-        @_updateClasses($el)
-
-        # Prevent the click event bubbling so we can update this component
-        # by click elsewhere on the document
-        #
-        # Replace it with the toggleActive/click event
-        event.stopPropagation()
-        @broadcast($el)
-
-        if event.target.nodeName.toUpperCase() is 'A'
-          event.preventDefault()
+      if (this.context)
+        $(this.context).on 'click', '.js-toggle-active', this._handleToggle
+      else
+        $('.js-toggle-active').on 'click', this._handleToggle
 
       $(LISTENER).on ':toggleActive/update', (e, target) =>
         @_updateClasses($(target))
@@ -33,8 +27,24 @@ define ["jquery"], ($) ->
 
     # Private
 
+    _handleToggle: (event) =>
+      $el = $(event.target)
+      @_updateClasses($el)
+
+      # Prevent the click event bubbling so we can update this component
+      # by click elsewhere on the document
+      #
+      # Replace it with the toggleActive/click event
+      event.stopPropagation()
+      @broadcast($el)
+
+      if event.target.nodeName.toUpperCase() is 'A'
+        event.preventDefault()
+
     _addInitialState: ->
-      $('.js-toggle-active').each ->
+      toggles = if this.context then $(".js-toggle-active", this.context) else $(".js-toggle-active")
+
+      toggles.each ->
         $el = $(@)
         $($el.data('toggleTarget')).addClass('is-not-active')
         $el.addClass('is-not-active') if $el.data('toggleMe')
