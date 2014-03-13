@@ -2,11 +2,11 @@ define ["jquery"], ($) ->
 
   class ToggleActive
 
-    LISTENER = '#js-row--content'
+    LISTENER = "#js-row--content"
     lastUpdate = false
 
     # @args = {}
-    # context: {string} selector so that we can add a context/scope. Useful for loading content in dynamically (where ToggleActive wouldn't be initialised) and not affecting existing ToggleActive instances.
+    # context: {string} selector so that we can add a context/scope. Useful for loading content in dynamically (where ToggleActive wouldn"t be initialised) and not affecting existing ToggleActive instances.
     constructor: (args) ->
       this.context = args.context if args
       @listen()
@@ -15,15 +15,15 @@ define ["jquery"], ($) ->
 
     listen: ->
       if (this.context)
-        $(this.context).on 'click', '.js-toggle-active', this._handleToggle
+        $(this.context).on "click", ".js-toggle-active", this._handleToggle
       else
-        $('.js-toggle-active').on 'click', this._handleToggle
+        $(".js-toggle-active").on "click", this._handleToggle
 
-      $(LISTENER).on ':toggleActive/update', (e, target) =>
+      $(LISTENER).on ":toggleActive/update", (e, target) =>
         @_updateClasses($(target))
 
     broadcast: ($el) ->
-      $el.trigger(':toggleActive/click', { isActive: $($el.data('toggleTarget')).hasClass('is-active'), targets: @_getTargetEls($el) })
+      $el.trigger(":toggleActive/click", { isActive: $($el.data("toggleTarget")).hasClass("is-active"), targets: @_getTargetEls($el) })
 
 
     # Private
@@ -39,7 +39,7 @@ define ["jquery"], ($) ->
       event.stopPropagation()
       @broadcast($el)
 
-      if event.target.nodeName.toUpperCase() is 'A'
+      if event.target.nodeName.toUpperCase() is "A"
         event.preventDefault()
 
     _addInitialState: ->
@@ -47,20 +47,23 @@ define ["jquery"], ($) ->
 
       toggles.each ->
         $el = $(@)
-        $($el.data('toggleTarget')).addClass('is-not-active')
-        $el.addClass('is-not-active') if $el.data('toggleMe')
+        $($el.data("toggleTarget")).addClass("is-not-active")
+        $el.addClass("is-not-active") if $el.data("toggleMe")
+
+    # Add a 250ms debounce
+    _debounce: ->
+      now = new Date().getTime()
+      !lastUpdate || now - lastUpdate > 250
 
     _updateClasses: ($el) ->
-      now = new Date().getTime()
-      # Add a 250ms debounce
-      if (!lastUpdate || now - lastUpdate > 250)
-        classList = 'is-active is-not-active '
-        classList += $el.data('toggleClass') if $el.data('toggleClass')
+      if (this._debounce())
+        classList = "is-active is-not-active "
+        classList += $el.data("toggleClass") if $el.data("toggleClass")
 
-        $el.toggleClass(classList) if $el.data('toggleMe')
+        $el.toggleClass(classList) if $el.data("toggleMe")
         @_getTargetEls($el).toggleClass(classList)
 
         lastUpdate = new Date().getTime()
 
     _getTargetEls: ($el) ->
-      $($el.data('toggleTarget'))
+      $($el.data("toggleTarget"))
