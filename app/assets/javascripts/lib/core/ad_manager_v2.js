@@ -5,6 +5,7 @@ define([ "jquery", "lib/core/ad_unit", "dfp" ], function($, AdUnit) {
   var networkID = 4817;
 
   function AdManager(config) {
+    this.$listener = $(config.$listener || "#js-row--content");
     this.config = config;
     this.loadedAds = [];
     this._init();
@@ -24,6 +25,10 @@ define([ "jquery", "lib/core/ad_unit", "dfp" ], function($, AdUnit) {
       collapseEmptyDivs: true,
       enableSingleRequest: false,
       afterEachAdLoaded: boundCallback
+    });
+
+    this.$listener.on(":ads/refresh", function(e, type) {
+      self.refresh(type);
     });
   };
 
@@ -50,6 +55,18 @@ define([ "jquery", "lib/core/ad_unit", "dfp" ], function($, AdUnit) {
     }
 
     return keywords;
+  };
+
+  AdManager.prototype.refresh = function(type) {
+    if (type) {
+      for (var i = 0, len = this.loadedAds.length; i < len; i++) {
+        if (this.loadedAds[i].getType() === type) {
+          this.loadedAds[i].refresh();
+        }
+      }
+    } else {
+      window.googletag.pubads().refresh();
+    }
   };
 
   return AdManager;
