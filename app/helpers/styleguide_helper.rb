@@ -112,12 +112,12 @@ module StyleguideHelper
               slug: "image-helper"
             },
             {
-              name: "Lightbox",
-              slug: "lightbox"
-            },
-            {
               name: "Konami",
               path: "konami"
+            },
+            {
+              name: "Lightbox",
+              slug: "lightbox"
             }
           ]
         }
