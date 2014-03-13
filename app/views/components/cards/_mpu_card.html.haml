@@ -1,6 +1,5 @@
-
-.card.card--ad.card--no-image.js-card.js-card-ad.card--double
+.card.card--ad.card--ad--mpu.card--no-image.js-card.js-card-ad.card--double
   .tag--horizontal.tag--horizontal--left
     Advertisement
   .card__content.ad-mpu
-    #js-ad-mpu.adunit{ data: { dimensions: '300x250,300x600,394x380', extension: 'mpu' } }
+    = ui_component('ads/mpu', properties: { extension: 'stackMPU' })
