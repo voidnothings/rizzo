@@ -6,7 +6,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
 
     beforeEach(function() {
       loadFixtures("lightbox.html");
-      window.lightbox = new LightBox({ el: ".js-lightbox-spec" });
+      window.lightbox = new LightBox({ el: ".js-lightbox-spec", customClass: "lightbox-foo" });
     });
 
     describe("Initialisation", function() {
@@ -43,6 +43,10 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
 
         expect($(".lightbox").css("margin-left")).toBe("-400px");
         expect($(".lightbox").css("margin-top")).toBe("-300px");
+      });
+
+      it("can add a custom class to the lightbox", function() {
+        expect($(".lightbox")).toHaveClass("lightbox-foo");
       });
 
     });
