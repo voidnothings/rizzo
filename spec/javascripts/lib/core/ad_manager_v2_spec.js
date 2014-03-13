@@ -1,4 +1,4 @@
-require(["public/assets/javascripts/lib/core/ad_manager_v2"], function(AdManager) {
+require([ "public/assets/javascripts/lib/core/ad_manager_v2" ], function(AdManager) {
 
   describe("Ad Manager v2", function() {
 
@@ -24,7 +24,7 @@ require(["public/assets/javascripts/lib/core/ad_manager_v2"], function(AdManager
         }, "DFP should be loaded", 250);
 
         runs(function() {
-          expect($('.adunit').hasClass("display-none")).toBe(true);
+          expect($(".adunit").hasClass("display-none")).toBe(true);
         });
 
       });
@@ -34,25 +34,59 @@ require(["public/assets/javascripts/lib/core/ad_manager_v2"], function(AdManager
     describe(".formatKeywords()", function() {
 
       it("Should return the instance config formatted for jQuery.dfp targeting", function() {
-        var config = instance.config = {
-          "continent": "europe",
-          "country": "france",
-          "city": "destination",
-          "adThm": "honeymoons,world-food",
-          "adTnm": "overview,poi-list",
-          "keyValues": {
-            "foo": "bar"
+        instance.config = {
+          continent: "europe",
+          country: "france",
+          city: "destination",
+          adThm: "honeymoons,world-food",
+          adTnm: "overview,poi-list",
+          keyValues: {
+            foo: "bar"
           }
         };
 
         var result = instance.formatKeywords();
 
-        expect(result.ctt).toEqual(config.continent);
-        expect(result.cnty).toEqual(config.country);
-        expect(result.dest).toEqual(config.destination);
-        expect(result.tnm).toEqual(config.adTnm.split(","));
-        expect(result.foo).toEqual(config.keyValues.foo);
+        expect(result.ctt).toEqual(instance.config.continent);
+        expect(result.cnty).toEqual(instance.config.country);
+        expect(result.dest).toEqual(instance.config.destination);
+        expect(result.tnm).toEqual(instance.config.adTnm.split(","));
+        expect(result.foo).toEqual(instance.config.keyValues.foo);
       });
+    });
+
+    describe(".refresh()", function() {
+
+      it("Should call the refresh method on ad units filtered by type", function() {
+
+        function MockAdUnit(type) {
+          this.type = type;
+        }
+        MockAdUnit.prototype.getType = function() {
+          return this.type;
+        };
+
+        [ "leaderboard", "adSense", "mpu" ].forEach(function(type) {
+          var mock = new MockAdUnit(type);
+          mock.refresh = jasmine.createSpy("refresh");
+          instance.loadedAds.push(mock);
+        });
+
+        instance.refresh("leaderboard");
+        expect(instance.loadedAds[0].refresh).toHaveBeenCalled();
+
+        instance.refresh("adSense");
+        expect(instance.loadedAds[1].refresh).toHaveBeenCalled();
+
+        instance.refresh("mpu");
+        expect(instance.loadedAds[2].refresh).toHaveBeenCalled();
+
+        expect(instance.loadedAds[0].refresh.callCount).toEqual(1);
+        expect(instance.loadedAds[1].refresh.callCount).toEqual(1);
+        expect(instance.loadedAds[2].refresh.callCount).toEqual(1);
+
+      });
+
     });
 
   });
