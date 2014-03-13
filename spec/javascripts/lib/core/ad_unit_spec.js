@@ -47,6 +47,21 @@ require([ "public/assets/javascripts/lib/core/ad_unit" ], function(AdUnit) {
 
     });
 
+    describe(".getType()", function() {
+
+      it("Should return the ad type based on the element ID", function() {
+        instance.$target.attr("id", "js-ad-leaderboard");
+        expect(instance.getType()).toBe("leaderboard");
+
+        instance.$target.attr("id", "js-ad-adSense");
+        expect(instance.getType()).toBe("adSense");
+
+        instance.$target.attr("id", "js-ad-unknown");
+        expect(instance.getType()).toBe(null);
+      });
+
+    });
+
   });
 
 });

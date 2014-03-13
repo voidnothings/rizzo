@@ -34,6 +34,13 @@ define([ "jquery", "lib/core/ads/double_mpu" ], function($, DoubleMPU) {
     return $iframe.find("img").width() === 1;
   };
 
+  AdUnit.prototype.getType = function() {
+    var patterns = /^js-ad-(leaderboard|mpu|trafficDriver|adSense|sponsorTile)/,
+        matches = this.$target.attr("id").match(patterns);
+
+    return matches ? matches[1] : null;
+  };
+
   AdUnit.prototype.refresh = function() {
     var slot = this.$target.data("googleAdUnit");
     window.googletag.pubads().refresh([ slot ]);
@@ -41,7 +48,7 @@ define([ "jquery", "lib/core/ads/double_mpu" ], function($, DoubleMPU) {
 
   AdUnit.prototype.extensions = {
 
-    mpu: function() {
+    stackMPU: function() {
       var $container = this.$target.closest(".js-card-ad");
 
       if (this.$iframe.height() > $container.height()) {

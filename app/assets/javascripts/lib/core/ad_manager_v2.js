@@ -27,7 +27,9 @@ define([ "jquery", "lib/core/ad_unit", "dfp" ], function($, AdUnit) {
       afterEachAdLoaded: boundCallback
     });
 
-    this.$listener.on(":ads/refresh", this.refresh);
+    this.$listener.on(":ads/refresh", function(e, type) {
+      self.refresh(type);
+    });
   };
 
   AdManager.prototype._adCallback = function($adunit) {
@@ -55,8 +57,16 @@ define([ "jquery", "lib/core/ad_unit", "dfp" ], function($, AdUnit) {
     return keywords;
   };
 
-  AdManager.prototype.refresh = function() {
-    window.googletag.pubads().refresh();
+  AdManager.prototype.refresh = function(type) {
+    if (type) {
+      for (var i = 0, len = this.loadedAds.length; i < len; i++) {
+        if (this.loadedAds[i].getType() === type) {
+          this.loadedAds[i].refresh();
+        }
+      }
+    } else {
+      window.googletag.pubads().refresh();
+    }
   };
 
   return AdManager;
