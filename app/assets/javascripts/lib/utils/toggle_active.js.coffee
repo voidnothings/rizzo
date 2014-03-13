@@ -3,6 +3,7 @@ define ["jquery"], ($) ->
   class ToggleActive
 
     LISTENER = '#js-row--content'
+    lastUpdate = false
 
     # @args = {}
     # context: {string} selector so that we can add a context/scope. Useful for loading content in dynamically (where ToggleActive wouldn't be initialised) and not affecting existing ToggleActive instances.
@@ -50,11 +51,16 @@ define ["jquery"], ($) ->
         $el.addClass('is-not-active') if $el.data('toggleMe')
 
     _updateClasses: ($el) ->
-      classList = 'is-active is-not-active '
-      classList += $el.data('toggleClass') if $el.data('toggleClass')
+      now = new Date().getTime()
+      # Add a 250ms debounce
+      if (!lastUpdate || now - lastUpdate > 250)
+        classList = 'is-active is-not-active '
+        classList += $el.data('toggleClass') if $el.data('toggleClass')
 
-      $el.toggleClass(classList) if $el.data('toggleMe')
-      @_getTargetEls($el).toggleClass(classList)
+        $el.toggleClass(classList) if $el.data('toggleMe')
+        @_getTargetEls($el).toggleClass(classList)
+
+        lastUpdate = new Date().getTime()
 
     _getTargetEls: ($el) ->
       $($el.data('toggleTarget'))
