@@ -156,7 +156,7 @@
   line-height: 1em
   margin-bottom: 0.1em
   margin-right: 0.3em
-  padding: 4px
+  padding: 3px 5px
   text-transform: uppercase
 
 .user-info__online
@@ -279,3 +279,134 @@
   color: $body-copy
   margin-bottom: 20px
   text-align: center
+
+// -----------------------------------------------------------------------------
+// Profile Lightbox
+// -----------------------------------------------------------------------------
+.profile-lightbox
+  background: white
+  border-radius: 5px
+  overflow: hidden
+  width: 500px
+
+.profile-lightbox__close
+  +size(25px)
+  position: absolute
+  right: 20px
+  top: 20px
+  z-index: 10
+
+.profile-lightbox__header
+  background: $offscreen-nav-background
+  color: white
+  height: 65px
+.profile-lightbox__header__user-info
+  padding: 8px 0 30px 15px
+
+.profile-lightbox__avatar
+  +size(80px)
+  border: 5px solid white
+  border-radius: 45px
+  // The inset shadow mitigates the look of ugly antialiasing due to the border-radius
+  box-shadow: inset 0 0 0 5px white
+  filter: drop-shadow(0 1px 0 $subdued)
+  margin: -5px 0 -12px -10px
+
+.profile-lightbox__username
+  color: white
+  margin-right: 5px
+
+.profile-lightbox__location
+  color: $grey-highlight
+  font-weight: bold
+
+// Meta
+.profile-lightbox__meta-col
+  color: $grey-highlight
+  float: left
+  margin-right: 15px
+
+.profile-lightbox__meta-data
+  +font-size(16)
+  color: $body-copy
+
+// PM
+.profile-lightbox__message
+  background: $details-panel-bg
+  .field
+    margin-bottom: 0
+  .field__label
+    display: none
+
+.profile-lightbox__message__input
+  padding-left: 10px
+  position: relative
+  .input
+    background: white
+    border: 1px solid $details-panel-border
+    width: 335px
+  .no-cssfilters-support &
+    padding-left: 0
+    .input
+      width: 345px
+
+.profile-lightbox__message__input--arrow
+  +css-arrow-central(left, $size: 25px)
+  +size(25px)
+  left: -4px
+  position: absolute
+  top: 16px
+  z-index: 10
+  &:after
+    display: block
+    filter: drop-shadow(-1px 0 0 $details-panel-border)
+  .no-cssfilters-support &
+    display: none
+
+.profile-lightbox__message__submit
+  width: 62px
+
+.profile-lightbox__message__avatar
+  +size(37px)
+  border-radius: 20px
+  margin-right: 5px
+
+// Activities
+.profile-lightbox__activities
+  .activity-list__item
+    border-top: 1px solid $body-background
+    margin-bottom: 0
+    padding: 15px 20px 12px
+  .activity-list__time
+    margin-top: -7px
+
+.profile-lightbox__activities__username
+  color: $body-copy
+  font-weight: bold
+
+.profile-lightbox__activities__header
+  .copy--h5
+    color: $grey-highlight
+
+.profile-lightbox__activities__see-all
+  line-height: 1em
+
+// Report
+.profile-lightbox__report
+  background: $details-panel-bg
+
+.profile-lightbox__report-form
+  @extend %transition--base
+  height: 0
+  overflow: hidden
+  padding-bottom: 0
+  padding-top: 0
+  &.is-active
+    height: 135px
+    padding-bottom: 13px
+    padding-top: 13px
+
+.profile-lightbox__report__link
+  color: $grey-highlight
+  &:before
+    opacity: 0.5

@@ -31,6 +31,8 @@ require ['jquery'], ($) ->
           has3d isnt `undefined` and has3d.length > 0 and has3d isnt "none"
         'cssmasks': ->
           document.body.style[ '-webkit-mask-repeat' ] isnt undefined
+        'cssfilters': ->
+          document.body.style.webkitFilter isnt undefined and document.body.style.filter isnt undefined
         'placeholder': ->
           "placeholder" of document.createElement("input")
         'pointer-events': ->
