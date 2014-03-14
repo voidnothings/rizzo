@@ -22,6 +22,12 @@
 
 $gutter-widths: 10, 15, 20, 30
 
+.responsive
+  [class*="grid-wrapper--"]
+    margin-left: 0
+    > [class*="col--"]
+      padding-left: 0
+
 @each $gutter-width in $gutter-widths
 
   .grid-wrapper--#{$gutter-width}
@@ -30,19 +36,13 @@ $gutter-widths: 10, 15, 20, 30
     > [class*="col--"]
       padding-left: #{$gutter-width}px
 
-  +respond-to(medium-view)
-    .responsive
+  .responsive
+    +respond-to(wide-view)
       .grid-wrapper--#{$gutter-width}
         margin-left: -#{$gutter-width}px
 
         > [class*="col--"]
           padding-left: #{$gutter-width}px
-
-.responsive
-  [class*="grid-wrapper--"]
-    margin-left: 0
-    > [class*="col--"]
-      padding-left: 0
     
 
 // -----------------------------------------------------------------------------
