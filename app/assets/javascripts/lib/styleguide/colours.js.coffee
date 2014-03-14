@@ -33,6 +33,7 @@ require ['jquery'], ($) ->
 
   resetProximity = ->
     document.getElementById("proximityMatch").value = ""
+    $(".styleguide__colours").removeAttr("style")
     $(".js-card-container .card").each ->
       @.removeAttribute "style"
       @.classList.remove('isnt-approximate')
@@ -41,10 +42,12 @@ require ['jquery'], ($) ->
 
   matchProximity = ->
     colour = document.getElementById("proximityMatch").value
+    sections = $(".styleguide__colours").removeClass("has-match").removeAttr("style")
+
     colourBlocks = $(".styleguide-block__item--colour")
     colourBlocks.each ->
       proximity = colourProximity(colour, @.innerHTML)
-      
+
       # Remove previous classes
       @.parentNode.removeAttribute "style"
       @.parentNode.className = @.parentNode.className.replace(" is-approximate", "").replace(" isnt-approximate", "")
@@ -52,11 +55,17 @@ require ['jquery'], ($) ->
         @.style["border-color"] = (if /^#/.test(colour) then colour else "#" + colour)
         @.parentNode.className += " is-approximate"
         @.parentNode.className += " is-exact icon--tick--before"  if proximity is 0
+        $(@).closest(".styleguide__colours").addClass("has-match")
       else
         @.parentNode.className += " isnt-approximate"
 
+    sections.filter(".has-match").css
+      backgroundColor: "#"+colour.replace("#", "")
+      paddingRight: 10
+      paddingTop: 10
 
-  # Mostly ripped from here: http://stackoverflow.com/questions/13586999/color-difference-similarity-between-two-values-with-js 
+
+  # Mostly ripped from here: http://stackoverflow.com/questions/13586999/color-difference-similarity-between-two-values-with-js
   colourProximity = (v1, v2) ->
     i = undefined
     d = 0
