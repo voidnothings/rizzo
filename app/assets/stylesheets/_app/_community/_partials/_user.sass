@@ -284,11 +284,15 @@
   margin-left: -23px
   padding: 12px
   position: absolute
-  top: 16px
+  top: 397px
   text-transform: uppercase
+
+  .user-account--sign-in &
+    top: 310px
   
   +respond-to(medium-view)
-    top: 16px
+    &, .user-account--sign-in &
+      top: 16px
 
 .user-account__header
   color: $body-copy
