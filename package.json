@@ -16,7 +16,7 @@
         "grunt-grunticon": "latest",
         "grunt-svgmin": "latest",
         "grunt-concurrent": "latest",
-        "grunt-template-jasmine-requirejs": "latest",
+        "grunt-template-jasmine-requirejs": "0.1.9",
         "grunt-plato": "latest",
         "grunt-open": "latest",
         "matchdep": "latest"
