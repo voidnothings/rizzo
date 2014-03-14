@@ -11,20 +11,20 @@ define([ "jquery" ], function($) {
   "use strict";
 
   // The keycodes for the konami code.
-  var KONAMI = "38,38,40,40,37,39,37,39,66,65,13";
+  var KONAMI = "38,38,40,40,37,39,37,39,66,65,13",
 
-  // @args = {}
-  // listener: {string} selector for the listener (defaults to body)
-  var Konami = function(args) {
-    // Only initialise once.
-    if (Konami.prototype.initialised) {
-      return;
-    }
+      // @args = {}
+      // listener: {string} selector for the listener (defaults to body)
+      Konami = function(args) {
+        // Only initialise once.
+        if (Konami.prototype.initialised) {
+          return;
+        }
 
-    this.$listener = $("body" || args.listener);
-    this.currentCode = [];
-    this.init();
-  }, _this;
+        this.$listener = $("body" || args.listener);
+        this.currentCode = [];
+        this.init();
+      }, _this;
 
   Konami.prototype.init = function() {
     _this = this;
