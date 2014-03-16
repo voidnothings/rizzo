@@ -326,7 +326,7 @@
   +respond-to(medium-view)
     border-bottom: 0
     border-right: 1px solid $subdued
-    padding-bottom: 0
+    padding-bottom: 10px
   .simple-form__field.boolean
     margin: 25px 0 20px
   .boolean
@@ -337,11 +337,31 @@
   .field
     .input
       float: none
+      min-height: 40px
+
+  .dropdown__value
+    +font-size(18)
+    font-weight: normal
+    padding: 11px 40px 8px 10px
+
+
+.user-account__terms
+  display: block
+  margin: 15px 0
+  .user-account__checkbox
+    float: left
+  .user-account__terms__label
+    padding-left: 20px
+
+.user-account__help-link
+  display: block
+  margin-bottom: 5px
+  &:first-of-type
+    margin-top: 20px
 
 .user-account__social
   .btn
     +font-size(18)
-    padding: 14px 25px
 
 .user-account__or
   background: white
@@ -354,7 +374,7 @@
 
   .user-account--sign-in &
     top: 310px
-  
+
   +respond-to(medium-view)
     &, .user-account--sign-in &
       top: 16px
