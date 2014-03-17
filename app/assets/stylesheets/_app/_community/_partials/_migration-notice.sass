@@ -1,10 +1,10 @@
 .migration-notice
   +font-size(18)
-  width: 270px
   margin-left: auto
   margin-right: auto
-  text-align: center
   margin-bottom: 40px
+  text-align: center
+  width: 270px
 
   +respond-to(wide-view)
     width: auto
@@ -32,28 +32,41 @@
   clear: both
 
   .migration-instructions__section
-    padding: 25px
+    padding-top: 60px
+    padding-left: 16px
+    padding-right: 16px
+
+    &:last-child
+      padding-bottom: 30px
 
     +respond-to(wide-view)
       box-sizing: border-box
-      width: 50%
       float: left
+      width: 50%
+      padding-bottom: 60px
+
+      &:nth-child(odd)
+        padding-left: 60px
+        padding-right: 30px
+      &:nth-child(even)
+        padding-left: 30px
+        padding-right: 60px
+
+
+.migration-instructions__section--image__header
+  +font-size(32)
+  margin-bottom: 10px
+
+.migration-instructions__image
+  width: 100%
+  margin: 20px auto 0
 
 .migration-instructions__section--image
-  h2
-    +font-size(32)
-    margin-bottom: 10px
-
-  padding: 25px 0
-  p
-    padding: 0 25px
-  img
-    width: 100%
-    margin: 20px auto 0
+  padding: 25px 0 0
+  .migration-instructions__copy
+    padding-left: 25px
+    padding-right: 25px
   
-  +respond-to(wide-view)
-    img
-      width: auto
 
 .migration-instructions__contact
   +font-size(14)
@@ -71,8 +84,7 @@
   margin: 0 auto 20px
 
 .disc__inner
-  width: 100%
-  height: 100%
+  +size(100%)
 
 .disc--reset
   background-color: $linkblue
