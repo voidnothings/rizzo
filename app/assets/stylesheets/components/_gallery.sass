@@ -1,5 +1,6 @@
+$slide-height: 400px
+
 .gallery
-  margin: -10px
   .slider__pagination
     display: none
   &.theme--dark
@@ -10,22 +11,20 @@
 
 .gallery__slide-container
   clear: both
-  height: 400px
+  height: $slide-height
   margin-bottom: 20px
   position: relative
   transition: margin-left 0.2s ease-in-out
-  width: 100%
   .is-loading &
     transition: none
 
 .gallery__slide
   +hardware-acceleration()
   float: left
-  height: 400px
+  height: $slide-height
   opacity: 0
   transition: opacity 0.3s ease-in-out
-  width: 1020px
-  zoom: 1
+  width: 1000px
   .is-loading &
     display: none
   &.is-current
@@ -38,19 +37,16 @@
 
 .gallery__img
   display: none
+  width: 100%
+  height: 100%
   .gallery__slide.is-current &,
   .gallery__slide.is-previous &,
   .gallery__slide.is-next &
     display: block
 
-.gallery__img
-  width: 100%
-  height: 100%
-
 .gallery__description
+  @extend %inline-block
   width: 50%
-  *display: inline
-  display: inline-block
 
 .gallery__breadcrumb
   font-weight: bold
