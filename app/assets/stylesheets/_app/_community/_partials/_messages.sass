@@ -19,7 +19,7 @@
   &:last-child
     border-bottom: 1px solid $body-background
   &.message--unread
-    background: $subdued
+    background: mix($subdued, white, 15%)
     border-left-color: $linkblue
   &.is-active
     background: mix($yella-highlight, #FFF, 25%)
@@ -33,9 +33,9 @@
 
 .message__body
   .message--sent &
-    padding-left: 145px
+    padding-left: 75px
   .message--received &
-    padding-right: 145px
+    padding-right: 75px
 
 // Message in a conversation thread
 .message--thread
@@ -56,10 +56,10 @@
 
   .message__content--received
     margin-left: 20px
-    background: mix($teal, #FFF, 8%)
+    background: mix($subdued, white, 15%)
     &:before
       left: 0
-      border-right-color: mix($teal, #FFF, 8%)
+      border-right-color: mix($subdued, white, 15%)
 
   .message__content--sent
     margin-right: 20px

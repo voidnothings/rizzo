@@ -1,5 +1,4 @@
 - cache "#{__FILE__}--#{local_assigns.map(&:to_s).join}" do
   .row.row--leaderboard.is-closed{ class: defined?(additional_row_class) ? additional_row_class : "" }
     .row__inner
-      .ad-leaderboard
-        #js-ad-leaderboard.adunit.ad-leaderboard__inner{ data: { dimensions: '728x90,970x66' } }
+      = ui_component('ads/leaderboard')

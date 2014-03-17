@@ -98,14 +98,16 @@
     width: 58%
 
 .forum-leaderboard
-  @extend %transition--slower
-  height: 90px
-  margin: 10px auto
-  width: 728px
+  .adunit
+    @extend %transition--slower
+    height: 90px
+    margin: 10px auto
+    width: 728px
 
   &.is-closed
     height: 0
     padding: 0
+    margin: 0
     min-height: 0
     width: 0
 
@@ -121,3 +123,15 @@
   &:before
     +size(1.5em)
     top: 0.4em
+
+.no-results
+  +font-size(32)
+  background: transparent
+  color: $grey-highlight
+  padding: 20px 0
+  text-align: center
+
+.results
+  margin-top: 20px
+  .card--forum
+    margin-bottom: 20px

@@ -8,23 +8,50 @@
     &.locked, &.private
       font-style: italic
 
+  .stack
+    margin-left: 0
+  .card--single
+    float: none
+    width: auto
+
+    +respond-to(wide-view)
+      float: left
+      margin-right: 10px
+      width: 192px
+
 .user-profile--edit
   .btn--inline
     overflow: visible
 
 .user-profile__left
-  padding: 0 10px
+  @extend %clearfix
+  padding: 0
   text-align: center
 
   .btn--full-width
+    @extend %inline-block
     margin-bottom: 10px
-    padding: 10px 0
+    margin-right: 10px
+    width: auto
+
+    +respond-to(wide-view)
+      display: block
+      margin-right: 0
+      padding: 10px 0
+      width: 100%
 
 // -----------------------------------------------------------------------------
 // The Avatar on the user profile page
 // -----------------------------------------------------------------------------
 .user-profile__avatar
   margin-bottom: 20px
+  margin-right: 20px
+
+  +respond-to(medium-view)
+    float: left
+  +respond-to(wide-view)
+    float: none
+    margin-right: 0
 
 .user-profile__avatar__field
   margin-bottom: 10px
@@ -79,29 +106,60 @@
 // -----------------------------------------------------------------------------
 // The user's stats in the left hand column on the profile page.
 // -----------------------------------------------------------------------------
+.user-profile__stats
+  margin: 0 auto
+  padding: 22px 0
+  text-align: left
+  width: 250px
+
+  +respond-to(medium-view)
+    margin: 0
+    width: auto
+  +respond-to(wide-view)
+    padding-top: 0
+    text-align: center
 .user-profile__stat-title
   +font-size(12)
   color: $feature-copy
+  float: left
   font-weight: bold
+  line-height: 1.5em
+  margin-right: 10px
   text-transform: uppercase
+  width: 90px
+
+  +respond-to(wide-view)
+    float: none
+    line-height: normal
+    margin-right: 0
+    width: auto
 .user-profile__stat-detail
-  margin-bottom: 20px
+  margin-bottom: 5px
+
+  +respond-to(medium-view)
+    margin-bottom: 20px
+  +respond-to(wide-view)
+    padding: 0 10px
 
 // -----------------------------------------------------------------------------
 // Stuff for the user profile page's main content.
 // -----------------------------------------------------------------------------
 .user-profile__information
+  margin-bottom: 0
   width: 100%
 
 .user-profile__summary
-  background: $details-panel-bg
+  background: mix($subdued, white, 15%)
   border-bottom: 1px solid $subdued
   border-top: 1px solid $subdued
+  color: $feature-copy
   padding: 20px 20px 5px
 
 .user-profile__label
   color: $lpblue
   margin-right: 10px
+  padding-bottom: 12px
+  padding-top: 12px
   width: 175px
 .user-profile__value
   color: $body-copy
@@ -113,10 +171,12 @@
     color: $feature-copy
     font-style: italic
   .is-private
-    position: absolute
-    right: 22px
+    display: block
     .user-profile__icon
       margin: 0 0 0 5px
+
+    +respond-to(wide-view)
+      display: inline
   &.is-empty
     .is-private
       position: static
@@ -154,10 +214,12 @@
   @extend %inline-block
   color: #fff
   line-height: 1em
-  margin-bottom: 0.1em
-  margin-right: 0.3em
+  margin: 0.7em 0.3em 0.1em 0
   padding: 3px 5px
   text-transform: uppercase
+
+  +respond-to(wide-view)
+    margin-top: 0.4em
 
 .user-info__online
   +font-size(12)
@@ -232,6 +294,13 @@
   .card--forum__row--content
     padding: 13px 35px
 
+  .col--one-half
+    float: none
+    width: 100%
+    +respond-to(medium-view)
+      float: left
+      width: 50%
+
   .simple-form__field
     .input,
     .dropdown__select,
@@ -252,7 +321,12 @@
   text-align: center
 
 .user-account__email
-  border-right: 1px solid $subdued
+  border-bottom: 1px solid $subdued
+  padding-bottom: 20px
+  +respond-to(medium-view)
+    border-bottom: 0
+    border-right: 1px solid $subdued
+    padding-bottom: 0
   .simple-form__field.boolean
     margin: 25px 0 20px
   .boolean
@@ -260,6 +334,9 @@
   .field__label.boolean
     margin-left: 12px
     width: 405px
+  .field
+    .input
+      float: none
 
 .user-account__social
   .btn
@@ -269,11 +346,18 @@
 .user-account__or
   background: white
   left: 50%
-  margin-left: -11px
-  padding: 12px 0
+  margin-left: -23px
+  padding: 12px
   position: absolute
-  top: 16px
+  top: 397px
   text-transform: uppercase
+
+  .user-account--sign-in &
+    top: 310px
+  
+  +respond-to(medium-view)
+    &, .user-account--sign-in &
+      top: 16px
 
 .user-account__header
   color: $body-copy

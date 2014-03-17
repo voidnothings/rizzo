@@ -3,6 +3,7 @@ require ['jquery'], ($) ->
     'lib/managers/select_group_manager'
     'lib/utils/scroll_perf'
     'lib/utils/toggle_active'
+    'lib/utils/konami'
     'lib/components/range_slider'
     'lib/components/lightbox'
     'pickadate/lib/picker'
@@ -15,8 +16,9 @@ require ['jquery'], ($) ->
     'lib/styleguide/colours'
     'lib/styleguide/typography'
     'lib/styleguide/lightbox'
+    'lib/styleguide/konami'
     'lib/utils/feature_detect'
-  ], (SelectGroupManager, ScrollPerf, ToggleActive) ->
+  ], (SelectGroupManager, ScrollPerf, ToggleActive, Konami) ->
 
     new ScrollPerf
     new SelectGroupManager()
@@ -25,3 +27,4 @@ require ['jquery'], ($) ->
     $('.input--datepicker').pickadate({
       min: [d.getFullYear(), (d.getMonth() + 1), d.getDate()]
     })
+    new Konami()
