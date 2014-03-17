@@ -61,6 +61,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/ui-components/range-slider'             => 'styleguide#rangeSlider'
   get 'styleguide/ui-components/alerts'                   => 'styleguide#alerts'
   get 'styleguide/ui-components/tooltips'                 => 'styleguide#tooltips'
+  get 'styleguide/ui-components/ad-units'                 => 'styleguide#adUnits'
 
   get 'styleguide/js-components/toggle-active'            => 'styleguide#toggle_active'
   get 'styleguide/js-components/proximity-loader'         => 'styleguide#proximity_loader'

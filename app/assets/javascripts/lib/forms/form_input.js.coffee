@@ -61,7 +61,7 @@ define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
 
     _clearValidation: (extra_classes, removeUsernameError) ->
       @inputParent.removeClass "field__input--error icon--cross--after #{extra_classes}"
-      className = removeUsernameError ? '.js-error:not(.js-username-error)' : '.js-error'
+      className = if removeUsernameError then '.js-error' else '.js-error:not(.js-username-error)'
       @inputParent.find(className).remove()
 
     _showError: (message, extra_classes) ->
@@ -78,6 +78,7 @@ define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
             @_indicateUsernameValidity(data)
 
     _indicateUsernameValidity: (data) ->
+      debugger
       @_clearValidation("field__input--valid icon--tick--after", true)
       if data.unique
         @_showValid()
