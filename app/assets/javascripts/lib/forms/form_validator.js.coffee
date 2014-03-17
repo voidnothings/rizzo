@@ -49,4 +49,7 @@ define ["jquery", "lib/forms/form_input"], ($, FormInput) ->
       for input in @inputs
         valid = false unless input is byPassEl or input.isValid(triggerErrors)
 
+      if @form.find(".js-username-error").length
+        valid = false
+
       valid
