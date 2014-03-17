@@ -6,7 +6,7 @@ define ["jquery", "lib/forms/validators", "lib/forms/error_messages"], ($, Valid
       @input = input
       @label = label
       @validator = validator
-      @_initialize() if @input and @label and @validator
+      @_initialize() if @input and @validator
 
     isValid: ->
       Validators[@name](@input, @args)

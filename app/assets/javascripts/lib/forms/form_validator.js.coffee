@@ -11,7 +11,7 @@ define ["jquery", "lib/forms/form_input"], ($, FormInput) ->
     _initialize: ->
       @inputs = []
       @form.find(inputsSelector).not('[type="hidden"], [type="submit"], [type="reset"]').each (index, elem) =>
-        label = $(elem).closest('.js-field').find('.js-field-label').text()
+        label = @_getLabel(elem)
         @inputs.push(new FormInput(elem, label))
       @_listen()
 
@@ -20,21 +20,28 @@ define ["jquery", "lib/forms/form_input"], ($, FormInput) ->
       @form.on "submit", (e) =>
 
         if @isValid()
-          $submit.removeProp('disabled')
+          $submit.attr('disabled', false)
         else
-          $submit.prop('disabled', 'disabled')
+          $submit.attr('disabled', true)
           e.preventDefault()
 
       for input in @inputs
-        input.input.on "blur", input , (e) =>
+        input.input.on "change", input , (e) =>
           e.data.isValid(true)
-
-          if @isValid(false, e.data)
-            $submit.removeProp('disabled')
+          if @isValid(false)
+            $submit.attr('disabled', false)
           else
-            $submit.prop('disabled', 'disabled')
+            $submit.attr('disabled', true)
 
-      $submit.prop('disabled', 'disabled') unless @isValid(false)
+      $submit.attr('disabled', true) unless @isValid(false)
+
+    _getLabel: (formField) ->
+      $formField = $(formField)
+      $label = $formField.closest('.js-field').find('.js-field-label').text()
+      if $label
+        return $label
+      else
+        return $formField.attr('placeholder')
 
     isValid: (triggerErrors, byPassEl) ->
       valid = true
@@ -42,5 +49,8 @@ define ["jquery", "lib/forms/form_input"], ($, FormInput) ->
 
       for input in @inputs
         valid = false unless input is byPassEl or input.isValid(triggerErrors)
+
+      if @form.find(".js-username-error").length
+        valid = false
 
       valid

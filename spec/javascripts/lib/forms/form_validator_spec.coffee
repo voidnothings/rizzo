@@ -25,7 +25,7 @@ require ['lib/forms/form_validator'], (FormValidator) ->
 
       it 'disables the submit button when there are invalid fields on init', ->
         form = new FormValidator('#test-form')
-        
+
         expect($('#test-form [type="submit"]').attr('disabled')).toBe 'disabled'
 
     describe 'creating form field objects from the form', ->
@@ -52,10 +52,10 @@ require ['lib/forms/form_validator'], (FormValidator) ->
 
         expect($('#test-form [type="submit"]').attr('disabled')).toBe 'disabled'
 
-      it 'validates the fields individually on blur', ->
+      it 'validates the fields individually on change', ->
         form = new FormValidator('#test-form')
 
-        $('#test-form input').first().trigger('blur')
+        $('#test-form input').first().trigger('change')
         expect($('#test-form .input__container').first().hasClass('field__input--error')).toBe true
 
       it 'is valid if the fields are valid', ->
@@ -66,7 +66,7 @@ require ['lib/forms/form_validator'], (FormValidator) ->
         $('#first-select').val(1);
         $('#second-select').val(1);
 
-        $('#test-form input').first().trigger('blur')
+        $('#test-form input').first().trigger('change')
 
         expect(form.isValid()).toBe true
         expect($('#test-form input[type="submit"]').attr('disabled')).toBe undefined
