@@ -3,8 +3,8 @@ define ['jquery', 'gpt'], ->
     # sizes is all that's needed for the new implementation.
     sizes:
       adSense: [155,256]
-      leaderboard: [[970,66], [728,90]]
-      leaderboard_small: [728,90]
+      leaderboard: [[970,66], [728,90], [320,50]]
+      leaderboard_small: [728,90, [320,50]]
       mpu: [[300,250], [300, 600], [394,380]]
       oneByOne: [1,1]
       sponsorTile: [276,32]
