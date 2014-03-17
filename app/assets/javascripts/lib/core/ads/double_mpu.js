@@ -11,15 +11,14 @@ define([ "jquery" ], function($) {
   DoubleMPU.prototype._init = function() {
     var $grid = this.$card.closest(".js-stack"),
         $cards = $grid.find(".js-card"),
+        index = $cards.index(this.$card),
         position = this.$card.position(),
-        cardsPerRow = Math.floor( $grid.width() / $cards.filter(".card--single").width() );
+        cardsPerRow = Math.floor( $grid.width() / $cards.filter(".card--single").width() ),
+        placeholderHTML = "<div class='card card--double ad--placeholder js-card' />";
 
-    // Eliminate all cards preceding our ad element so we can place a dummy
-    // element at the nth position *after* the current one using .eq()
-    $cards = $cards.slice( $cards.index(this.$card) );
-
-    // cardsPerRow - 2 because the MPU is the width of 2 cards.
-    $cards.eq(cardsPerRow - 2).after("<div class='card card--double ad--placeholder js-card' />");
+    // The placeholder is two cards wide
+    $cards.eq(index).before(placeholderHTML);
+    $cards.eq(index + (cardsPerRow - 2)).after(placeholderHTML);
 
     this.$card.css({
       position: "absolute",
