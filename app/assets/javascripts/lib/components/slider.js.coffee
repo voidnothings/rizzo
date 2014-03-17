@@ -166,7 +166,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
       .end().next().addClass('is-next')
 
     _updateCount: ->
-      currentHTML = $('.slider__control--next').html()
+      currentHTML = $('.slider__control--next').html() || ""
       nextIndex = @current_slide + 1
       prevIndex = @current_slide - 1
 
