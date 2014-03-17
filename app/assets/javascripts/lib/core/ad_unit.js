@@ -27,11 +27,9 @@ define([ "jquery", "lib/core/ads/double_mpu" ], function($, DoubleMPU) {
       return true;
     }
 
-    var $iframe = this.$target.find("iframe").contents();
-
     // Sometimes DFP will return uesless 1x1 blank images
     // so we must check for them.
-    return $iframe.find("img").width() === 1;
+    return this.$iframe.contents().find("img").width() === 1;
   };
 
   AdUnit.prototype.getType = function() {
