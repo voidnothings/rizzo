@@ -26,11 +26,11 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
     # slides_container: {string} selector for the element containing the slides
     constructor: (args) ->
       $.extend config, args
-
       @current_slide = 1
       @$el = $(config.el)
       @$slides = @$el.find(config.slides)
       @numSlides = @$el.find(@$slides).length
+      @$currentSlide = @$slides.filter('.is-current')
 
       if @$el.length is 0 or @numSlides < 2
         return false
@@ -59,6 +59,9 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
         $('input[name="'+$(this).attr('for')+'"]').toggleClass('is-checked')
 
     init: ->
+      if @$currentSlide.length
+        @_goToSlide([].indexOf.call(@$slides, @$currentSlide.get(0)) + 1)
+
       @$slider_controls.append(@$next, @$prev)
       @$slider_controls_container.append(@$slider_controls)
 
@@ -114,6 +117,8 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
         @_loadHiddenContent(@$el.find(@$slides)) if config.deferLoading
 
       @_updateCount()
+
+      @$slides_viewport.removeClass('is-loading')
 
       # if @page.isLegacy() && !!window.addEventListener
       #   require ['pointer','touchwipe'], =>
