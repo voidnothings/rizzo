@@ -195,6 +195,10 @@ module StyleguideHelper
           title: "Components",
           items: [
             {
+              name: "Ad units",
+              slug: "ad-units"
+            },
+            {
               name: "Alerts",
               slug: "alerts"
             },

@@ -158,6 +158,10 @@ class StyleguideController < GlobalController
     render '/styleguide/js-components/konami'
   end
 
+  def adUnits
+    render '/styleguide/ui-components/ad-units'
+  end
+
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 end
