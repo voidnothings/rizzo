@@ -139,18 +139,13 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
       config.deferLoading = false
 
     _nextSlide: ->
-      return if @current_slide is @$slides.length
-      @current_slide++
-      percentOffset = (@current_slide - 1) * 100
-      @$slides_container.css('marginLeft', (-1 * percentOffset)+'%')
-      @_updateCount()
+      return if @$slides_viewport.is('.at-end')
+      @_goToSlide @current_slide + 1
 
     _previousSlide: ->
-      return if @current_slide is 0
-      @current_slide--
-      percentOffset = (@current_slide - 1) * 100
-      @$slides_container.css('marginLeft', (-1 * percentOffset)+'%')
-      @_updateCount()
+      return if @$slides_viewport.is('.at-beginning')
+      @_goToSlide @current_slide - 1
+
 
     _goToSlide: (index) ->
       if index < 1
