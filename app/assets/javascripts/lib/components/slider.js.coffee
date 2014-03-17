@@ -156,7 +156,14 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
       percentOffset = (index - 1) * 100
       @$slides_container.css('marginLeft', (-1 * percentOffset)+'%')
       @current_slide = index
+      @_updateSlideClasses()
       @_updateCount()
+
+    _updateSlideClasses: ->
+      @$slides.removeClass('is-current is-previous is-next')
+      @$slides.eq(@current_slide - 1).addClass('is-current')
+      .prev().addClass('is-previous')
+      .end().next().addClass('is-next')
 
     _updateCount: ->
       currentHTML = $('.slider__control--next').html()
