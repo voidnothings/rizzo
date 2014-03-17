@@ -89,7 +89,7 @@ require( [ "lib/forms/form_input" ], function(FormInput) {
 
         expect(inputParent).toHaveClass("field__input--error");
         expect(inputParent.find(".js-error").length).toBe(1);
-        expect(inputParent.find(".js-error").text()).toBe("That username is taken.");
+        expect(inputParent.find(".js-error").text()).toBe("Sorry. That’s taken by another member. Please try again.");
       });
 
       it("indicates when a username is available", function() {

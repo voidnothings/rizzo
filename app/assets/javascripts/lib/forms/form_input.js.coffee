@@ -80,4 +80,4 @@ define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
       if data.unique
         @_showValid()
       else
-        @_showError("That username is taken.")
+        @_showError("Sorry. That’s taken by another member. Please try again.")
