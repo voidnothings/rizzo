@@ -6,14 +6,10 @@ define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
       @input = $(input)
       @label = @input.data('label') || label
 
-      # Because the validators are all synchronous and expect an immediate true/false
-      # response we need to handle this separately.
-      @has_username_check = /username_check/.test(@input.data('rules'))
-
       @_initialize() if @input.length is 1
 
     isValid: (triggerErrors) ->
-      @_clearValidation() if triggerErrors and !@has_username_check
+      @_clearValidation() if triggerErrors
       valid = true
 
       for validator in @validators
@@ -30,7 +26,7 @@ define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
       rules = if @input.data('rules') then @input.data('rules').split(' ') else []
 
       for validator in rules
-        if @has_username_check
+        if @_isUsernameCheck(validator)
           @_usernameListen()
         else
           @validators.push(new InputValidator(@input, @label, validator))
@@ -45,6 +41,11 @@ define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
         @input.on 'change', (e) =>
           @isValid()
 
+    _isUsernameCheck: (rule) ->
+      # Because the validators are all synchronous and expect an immediate true/false
+      # response we need to handle this separately.
+      @has_username_check = /username_check/.test(rule)
+
     _usernameListen: ->
       validator = @input.data('rules').match(/(username_check\(.*?\))/)[1]
       inputValidator = new InputValidator(@input, @label, validator)
@@ -58,26 +59,27 @@ define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
           @_usernameCheck(validator_rules[2])
         , 250
 
-    _clearValidation: (extra_classes) ->
+    _clearValidation: (extra_classes, removeUsernameError) ->
       @inputParent.removeClass "field__input--error icon--cross--after #{extra_classes}"
-      @inputParent.find('.js-error').remove()
+      className = removeUsernameError ? '.js-error:not(.js-username-error)' : '.js-error'
+      @inputParent.find(className).remove()
 
-    _showError: (message) ->
+    _showError: (message, extra_classes) ->
       @inputParent.addClass 'field__input--error icon--cross--after icon--custom--after'
-      @inputParent.append $("<div class='field__error js-error'>#{message}</div>")
+      @inputParent.append $("<div class='field__error js-error #{extra_classes}'>#{message}</div>")
 
     _showValid: ->
       @inputParent.addClass 'field__input--valid icon--tick--after icon--custom--after'
 
     _usernameCheck: (url) ->
-      if (@input.val().length > 3)
+      if (@input.val().length > 4)
         $.ajax url + "/" + @input.val(),
           success: (data) =>
             @_indicateUsernameValidity(data)
 
     _indicateUsernameValidity: (data) ->
-      @_clearValidation("field__input--valid icon--tick--after")
+      @_clearValidation("field__input--valid icon--tick--after", true)
       if data.unique
         @_showValid()
       else
-        @_showError("That username is taken.")
+        @_showError("Sorry. That’s taken by another member. Please try again.", "js-username-error")
