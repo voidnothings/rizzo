@@ -11,6 +11,7 @@ define([ "jquery", "lib/mixins/flyout" ], function($, asFlyout) {
   // @args = {}
   // el: {string} selector for parent element
   var LightBox = function(args) {
+    this.customClass = args.customClass;
     this.$listener = $("#js-row--content" || args.$listener);
     this.$el = $(args.el);
     this.$el && this.init();
@@ -24,6 +25,9 @@ define([ "jquery", "lib/mixins/flyout" ], function($, asFlyout) {
     this.$lightbox = $(".lightbox");
     if (!this.$lightbox.length) {
       this.$lightbox = $("<div class='lightbox'></div>");
+
+      this.customClass && this.$lightbox.addClass(this.customClass);
+
       $("body").prepend(this.$lightbox);
 
       // Just in case there are defined dimensions already specified.
@@ -73,7 +77,10 @@ define([ "jquery", "lib/mixins/flyout" ], function($, asFlyout) {
 
   // Self instantiate if the default class is used.
   if ($(".js-lightbox-toggle").length) {
-    new LightBox({ el: "js-lightbox-toggle" });
+    new LightBox({
+      customClass: $(".js-lightbox-toggle").data("lightbox-class"),
+      el: "js-lightbox-toggle"
+    });
   }
 
   return LightBox;

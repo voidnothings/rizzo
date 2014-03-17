@@ -14,7 +14,8 @@
     Success
   
   .alert.alert--success.icon--tick--before
-    Congratulations, that was a success.
+    .alert__title
+      Congratulations, that was a success.
 
   %pre.styleguide.copy--body.language-markup.media__body
     %code
@@ -22,7 +23,8 @@
 
 .card.styleguide-block__description.card.context--content
   %h2.copy--h2.styleguide-block__heading
-    Error
+    .alert__title
+      Error
   
   .alert.alert--error.icon--cross--before
     Oops, there was an error.
@@ -33,7 +35,8 @@
 
 .card.styleguide-block__description.card.context--content
   %h2.copy--h2.styleguide-block__heading
-    Warning
+    .alert__title
+      Warning
   
   .alert.alert--warning.icon--caution--before
     There are currently travel issues with this destination.
@@ -41,3 +44,16 @@
   %pre.styleguide.copy--body.language-markup.media__body
     %code
       &lt;div class="alert alert--warning icon--caution--before">There are currently travel issues with this destination.&lt;/div>
+
+.card.styleguide-block__description.card.context--content
+  %h2.copy--h2.styleguide-block__heading
+    Alert with a heading
+  
+  .alert.alert--success.icon--tick--before
+    .alert__title Congratulations that was a success.
+    %p.alert__content
+      Pass go, collect £200. Do not go to jail.
+
+  %pre.styleguide.copy--body.language-markup.media__body
+    %code
+      &lt;div class="alert alert--success icon--tick--before">Congratulations, that was a success.&lt;/div>
