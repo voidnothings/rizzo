@@ -37,10 +37,11 @@ define ["jquery", "lib/forms/form_input"], ($, FormInput) ->
 
     _getLabel: (formField) ->
       $formField = $(formField)
-      if $formField.attr('placeholder')
-        return $formField.attr('placeholder')
+      $label = $formField.closest('.js-field').find('.js-field-label').text()
+      if $label
+        return $label
       else
-        return $formField.closest('.js-field').find('.js-field-label').text()
+        return $formField.attr('placeholder')
 
     isValid: (triggerErrors, byPassEl) ->
       valid = true
