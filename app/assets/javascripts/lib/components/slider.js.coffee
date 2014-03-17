@@ -60,7 +60,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
 
     init: ->
       if @$currentSlide.length
-        @_goToSlide([].indexOf.call(@$slides, @$currentSlide.get(0)) + 1)
+        @_goToSlide([].indexOf.call(@$slides.index(@$currentSlide)) + 1)
 
       @$slider_controls.append(@$next, @$prev)
       @$slider_controls_container.append(@$slider_controls)
@@ -145,7 +145,6 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
     _previousSlide: ->
       return if @$slides_viewport.is('.at-beginning')
       @_goToSlide @current_slide - 1
-
 
     _goToSlide: (index) ->
       if index < 1
