@@ -145,17 +145,21 @@
 // Stuff for the user profile page's main content.
 // -----------------------------------------------------------------------------
 .user-profile__information
+  margin-bottom: 0
   width: 100%
 
 .user-profile__summary
-  background: $details-panel-bg
+  background: mix($subdued, white, 15%)
   border-bottom: 1px solid $subdued
   border-top: 1px solid $subdued
+  color: $feature-copy
   padding: 20px 20px 5px
 
 .user-profile__label
   color: $lpblue
   margin-right: 10px
+  padding-bottom: 12px
+  padding-top: 12px
   width: 175px
 .user-profile__value
   color: $body-copy
@@ -290,6 +294,13 @@
   .card--forum__row--content
     padding: 13px 35px
 
+  .col--one-half
+    float: none
+    width: 100%
+    +respond-to(medium-view)
+      float: left
+      width: 50%
+
   .simple-form__field
     .input,
     .dropdown__select,
@@ -310,7 +321,12 @@
   text-align: center
 
 .user-account__email
-  border-right: 1px solid $subdued
+  border-bottom: 1px solid $subdued
+  padding-bottom: 20px
+  +respond-to(medium-view)
+    border-bottom: 0
+    border-right: 1px solid $subdued
+    padding-bottom: 0
   .simple-form__field.boolean
     margin: 25px 0 20px
   .boolean
@@ -330,11 +346,18 @@
 .user-account__or
   background: white
   left: 50%
-  margin-left: -11px
-  padding: 12px 0
+  margin-left: -23px
+  padding: 12px
   position: absolute
-  top: 16px
+  top: 397px
   text-transform: uppercase
+
+  .user-account--sign-in &
+    top: 310px
+  
+  +respond-to(medium-view)
+    &, .user-account--sign-in &
+      top: 16px
 
 .user-account__header
   color: $body-copy
