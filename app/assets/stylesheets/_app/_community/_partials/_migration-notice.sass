@@ -1,0 +1,87 @@
+.migration-notice
+  +font-size(18)
+  width: 270px
+  margin-left: auto
+  margin-right: auto
+  text-align: center
+  margin-bottom: 40px
+
+  +respond-to(wide-view)
+    width: auto
+
+.migration-notice__header
+  +font-size(50)
+  margin-bottom: 20px
+
+.migration-instructions
+  text-align: center
+  .card
+    @extend %rounded-corners
+
+.migration-instructions__header
+  +font-size(18)
+  margin-bottom: 10px
+  font-weight: bold
+
+.migration-instructions__copy
+  +font-size(16)
+  line-height: 20px
+
+.migration-instructions__block
+  @extend %clearfix
+  clear: both
+
+  .migration-instructions__section
+    padding: 25px
+
+    +respond-to(wide-view)
+      box-sizing: border-box
+      width: 50%
+      float: left
+
+.migration-instructions__section--image
+  h2
+    +font-size(32)
+    margin-bottom: 10px
+
+  padding: 25px 0
+  p
+    padding: 0 25px
+  img
+    width: 100%
+    margin: 20px auto 0
+  
+  +respond-to(wide-view)
+    img
+      width: auto
+
+.migration-instructions__contact
+  +font-size(14)
+  margin: 40px auto 0
+  line-height: 22px
+  width: 90%
+  +respond-to(wide-view)
+    width: 750px
+
+.disc
+  height: 35px
+  width: 35px
+  padding: 16px
+  border-radius: 50%
+  margin: 0 auto 20px
+
+.disc__inner
+  width: 100%
+  height: 100%
+
+.disc--reset
+  background-color: $linkblue
+
+.disc--instructions
+  background-color: $red
+
+.disc--while-youre-there
+  background-color: #c7e6aa
+
+.disc--private-messaging
+  background-color: $orange
