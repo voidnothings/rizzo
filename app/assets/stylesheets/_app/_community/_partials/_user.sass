@@ -338,12 +338,19 @@
     .input
       float: none
       min-height: 40px
+      .ie7 &, .ie8 &
+        padding: 5px
+        min-height: 0
 
   .dropdown__value
     +font-size(18)
     font-weight: normal
     padding: 11px 40px 8px 10px
 
+.user__placeholder-label
+  .ie7 &, .ie8 &
+    position: static
+    display: block
 
 .user-account__terms
   display: block
