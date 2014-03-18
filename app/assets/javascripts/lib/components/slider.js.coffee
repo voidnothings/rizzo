@@ -26,11 +26,11 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
     # slides_container: {string} selector for the element containing the slides
     constructor: (args) ->
       $.extend config, args
-
       @current_slide = 1
       @$el = $(config.el)
       @$slides = @$el.find(config.slides)
       @numSlides = @$el.find(@$slides).length
+      @$currentSlide = @$slides.filter('.is-current')
 
       if @$el.length is 0 or @numSlides < 2
         return false
@@ -59,6 +59,9 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
         $('input[name="'+$(this).attr('for')+'"]').toggleClass('is-checked')
 
     init: ->
+      if @$currentSlide.length
+        @_goToSlide([].indexOf.call(@$slides.index(@$currentSlide)) + 1)
+
       @$slider_controls.append(@$next, @$prev)
       @$slider_controls_container.append(@$slider_controls)
 
@@ -115,6 +118,8 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
 
       @_updateCount()
 
+      @$slides_viewport.removeClass('is-loading')
+
       # if @page.isLegacy() && !!window.addEventListener
       #   require ['pointer','touchwipe'], =>
       #     # Swiping navigation.
@@ -134,18 +139,12 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
       config.deferLoading = false
 
     _nextSlide: ->
-      return if @current_slide is @$slides.length
-      @current_slide++
-      percentOffset = (@current_slide - 1) * 100
-      @$slides_container.css('marginLeft', (-1 * percentOffset)+'%')
-      @_updateCount()
+      return if @$slides_viewport.is('.at-end')
+      @_goToSlide @current_slide + 1
 
     _previousSlide: ->
-      return if @current_slide is 0
-      @current_slide--
-      percentOffset = (@current_slide - 1) * 100
-      @$slides_container.css('marginLeft', (-1 * percentOffset)+'%')
-      @_updateCount()
+      return if @$slides_viewport.is('.at-beginning')
+      @_goToSlide @current_slide - 1
 
     _goToSlide: (index) ->
       if index < 1
@@ -156,10 +155,17 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
       percentOffset = (index - 1) * 100
       @$slides_container.css('marginLeft', (-1 * percentOffset)+'%')
       @current_slide = index
+      @_updateSlideClasses()
       @_updateCount()
 
+    _updateSlideClasses: ->
+      @$slides.removeClass('is-current is-previous is-next')
+      @$slides.eq(@current_slide - 1).addClass('is-current')
+      .prev().addClass('is-previous')
+      .end().next().addClass('is-next')
+
     _updateCount: ->
-      currentHTML = $('.slider__control--next').html()
+      currentHTML = $('.slider__control--next').html() || ""
       nextIndex = @current_slide + 1
       prevIndex = @current_slide - 1
 

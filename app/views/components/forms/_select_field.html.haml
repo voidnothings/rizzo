@@ -20,7 +20,7 @@
       - else
         - dropdown_class = "dropdown--middle"
 
-    - if dropdown[:error]
+    - if dropdown[:error] || dropdown[:has_error]
       - input_class += " field__input--error"
 
     .input__container.js-input{ class: input_class }
