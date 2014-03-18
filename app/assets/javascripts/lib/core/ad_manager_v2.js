@@ -1,4 +1,4 @@
-define([ "jquery", "lib/core/ad_unit", "dfp" ], function($, AdUnit) {
+define([ "jquery", "lib/core/ad_unit" ], function($, AdUnit) {
 
   "use strict";
 
@@ -19,17 +19,21 @@ define([ "jquery", "lib/core/ad_unit", "dfp" ], function($, AdUnit) {
       self._adCallback.call(self, $adunit);
     }
 
-    $.dfp({
-      dfpID: this.config.networkID || networkID,
-      setTargeting: this.formatKeywords(),
-      namespace: this.config.layers.join("/"),
-      collapseEmptyDivs: true,
-      enableSingleRequest: false,
-      afterEachAdLoaded: boundCallback
-    });
+    require([ "dfp" ], function() {
 
-    this.$listener.on(":ads/refresh", function(e, type) {
-      self.refresh(type);
+      $.dfp({
+        dfpID: self.config.networkID || networkID,
+        setTargeting: self.formatKeywords(),
+        namespace: self.config.layers.join("/"),
+        collapseEmptyDivs: true,
+        enableSingleRequest: false,
+        afterEachAdLoaded: boundCallback
+      });
+
+      self.$listener.on(":ads/refresh", function(e, type) {
+        self.refresh(type);
+      });
+
     });
   };
 
