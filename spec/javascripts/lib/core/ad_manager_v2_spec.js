@@ -6,7 +6,12 @@ require([ "public/assets/javascripts/lib/core/ad_manager_v2" ], function(AdManag
 
     beforeEach(function() {
       loadFixtures("ad_iframe.html");
-      instance = new AdManager({ networkID: "xxxx" });
+      instance = new AdManager({
+        networkID: "xxxx",
+        template: "overview",
+        theme: "family-holiday",
+        layers: [ "lonelyplanet", "destinations" ]
+      });
     });
 
     describe("._init()", function() {
@@ -35,11 +40,8 @@ require([ "public/assets/javascripts/lib/core/ad_manager_v2" ], function(AdManag
 
       it("Should return the instance config formatted for jQuery.dfp targeting", function() {
         instance.config = {
-          continent: "europe",
-          country: "france",
-          city: "destination",
-          adThm: "honeymoons,world-food",
-          adTnm: "overview,poi-list",
+          theme: "honeymoons,world-food",
+          template: "overview,poi-list",
           keyValues: {
             foo: "bar"
           }
@@ -47,10 +49,8 @@ require([ "public/assets/javascripts/lib/core/ad_manager_v2" ], function(AdManag
 
         var result = instance.formatKeywords();
 
-        expect(result.ctt).toEqual(instance.config.continent);
-        expect(result.cnty).toEqual(instance.config.country);
-        expect(result.dest).toEqual(instance.config.destination);
-        expect(result.tnm).toEqual(instance.config.adTnm.split(","));
+        expect(result.thm).toEqual(instance.config.theme);
+        expect(result.tnm).toEqual(instance.config.template.split(","));
         expect(result.foo).toEqual(instance.config.keyValues.foo);
       });
     });

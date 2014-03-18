@@ -21,7 +21,7 @@ define([ "jquery", "lib/core/ad_unit", "dfp" ], function($, AdUnit) {
     $.dfp({
       dfpID: this.config.networkID || networkID,
       setTargeting: this.formatKeywords(),
-      namespace: this.config.layers ? this.config.layers.join("/") : "",
+      namespace: this.config.layers.join("/"),
       collapseEmptyDivs: true,
       enableSingleRequest: false,
       afterEachAdLoaded: boundCallback
@@ -39,11 +39,8 @@ define([ "jquery", "lib/core/ad_unit", "dfp" ], function($, AdUnit) {
 
   AdManager.prototype.formatKeywords = function() {
     var keywords = {
-      ctt: this.config.continent,
-      cnty: this.config.country,
-      dest: this.config.destination,
-      thm: this.config.adThm,
-      tnm: this.config.adTnm ? this.config.adTnm.replace(/\s/, "").split(",") : ""
+      thm: this.config.theme || this.config.adThm,
+      tnm: (this.config.template || this.config.adTnm).replace(/\s/, "").split(",")
     };
 
     if (this.config.keyValues && !$.isEmptyObject(this.config.keyValues)) {
