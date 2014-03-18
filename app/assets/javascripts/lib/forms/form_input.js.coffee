@@ -64,6 +64,13 @@ define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
       className = if removeUsernameError then '.js-error' else '.js-error:not(.js-username-error)'
       @inputParent.find(className).remove()
 
+    _clearUserNameValidation: ->
+      if @inputParent.find(".js-username-error").length
+        @inputParent.removeClass("field__input--error icon--cross--after")
+        .find(".js-username-error").remove()
+      else
+        @inputParent.removeClass("field__input--valid icon--tick--after")
+
     _showError: (message, extra_classes) ->
       @inputParent.addClass 'field__input--error icon--cross--after icon--custom--after'
       @inputParent.append $("<div class='field__error js-error #{extra_classes}'>#{message}</div>")
@@ -76,11 +83,13 @@ define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
         $.ajax url + "/" + @input.val(),
           success: (data) =>
             @_indicateUsernameValidity(data)
+      else
+        @_clearUserNameValidation()
 
     _indicateUsernameValidity: (data) ->
-      debugger
       @_clearValidation("field__input--valid icon--tick--after", true)
       if data.unique
         @_showValid()
       else
         @_showError("Sorry. That’s taken by another member. Please try again.", "js-username-error")
+      @input.trigger(":validation/received")
