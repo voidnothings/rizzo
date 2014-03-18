@@ -2,6 +2,12 @@ require ['jquery', 'lib/core/base', 'flamsteed', 'lib/utils/scroll_perf', 'polyf
   $ ->
     base = new Base()
     new ScrollPerf
-    window.lp.fs = new _FS({events: window.lp.fs.buffer, u: $.cookies.get('lpUid')})
+
+    # Currently we can't serve Flamsteed over https because of f.staticlp.com
+    # New community is using this file rather than app_secure_core
+    # Trello card: https://trello.com/c/2RCd59vk/201-move-f-staticlp-com-off-cloudfront-and-on-to-fastly-so-we-can-serve-over-https
+    unless window.location.protocol is "https:"
+      window.lp.fs = new _FS({events: window.lp.fs.buffer, u: $.cookies.get('lpUid')})
+
     require ['sailthru'], ->
       Sailthru.setup(domain: 'horizon.lonelyplanet.com')

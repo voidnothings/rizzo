@@ -27,9 +27,10 @@ module FooterHelper
 
   def footer_nav_thorntree_items
     [
-      {:title=>'Departure lounge', :url=>'category.jspa?categoryID=2'},
-      {:title=>'Check in with Lonely Planet', :url=>'category.jspa?categoryID=11'},
-      {:title=>'The lobby', :url=>'category.jspa?categoryID=3'}
+      {:title=>'Country forums', :url=>'categories/country-forums'},
+      {:title=>'Talk to Lonely Planet', :url=>'categories/talk-to-lonely-planet'},
+      {:title=>'Interest forums', :url=>'categories/interest-forums'},
+      {:title=>'Travel buddies & for sale', :url=>'categories/travel-buddies-for-sale'}
     ]
   end
 
