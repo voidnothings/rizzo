@@ -1,4 +1,6 @@
 - cache "#{__FILE__}--#{local_assigns.map(&:to_s).join}" do
   .row.row--leaderboard.is-closed{ class: defined?(additional_row_class) ? additional_row_class : "" }
     .row__inner
-      = ui_component('ads/leaderboard')
+      .ad-leaderboard
+        .ad-leaderboard__inner
+          = ui_component('ads/leaderboard')
