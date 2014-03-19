@@ -81,13 +81,12 @@ define ['jquery', 'lib/utils/page_state'], ($, PageState)->
     userOptionsMenu: ->
       userOptions = @getUserOptions()
       optionElements = ("<a class='nav__item nav__submenu__item nav__submenu__link nav-user-options__item js-nav-item #{u.style}' href='#{u.uri}'>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
-      userMenu = "<span class='wv--hidden nav--offscreen__title'>#{@lpUserName}</span><div class='nav__submenu nav__submenu--user'><div class='nav--stacked nav__submenu__content icon--arrow-up--green--after nav__submenu__content--user nav-user-options js-user-options'><div class='nav__submenu__item nav__submenu__title'>#{@lpUserName}</div>#{optionElements}</div></div>"
+      userMenu = "<span class='wv--hidden nav--offscreen__title'>#{@lpUserName}</span><div class='nav__submenu nav__submenu--user'><div class='nav--stacked nav__submenu__content icon--tapered-arrow-up--after icon--custom--after nav__submenu__content--user nav-user-options js-user-options'><div class='nav__submenu__item nav__submenu__title'>#{@lpUserName}</div>#{optionElements}</div></div>"
 
     responsiveOptionsMenu: ->
       userOptions = @getUserOptions()
       responsiveOptionElements =  ("<a class='nav__item nav__item--primary' href='#{u.uri}'><i class='nav__icon copy--icon--before icon--#{u.icon}--before icon--white--before'></i>#{u.title}#{u.extra || ''}</a>" for u in userOptions).join('')
       resonsiveMenu = "<div class='wv--nav--inline nav__item--user-menu'>#{responsiveOptionElements}</div>"
-
 
     userAvatar: ->
       if window.lp.user then window.lp.user.avatar else "#{@options.membersUrl}/#{@lpUserName}/mugshot/mini"

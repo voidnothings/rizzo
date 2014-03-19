@@ -17,10 +17,14 @@
     vertical-align: top
     width: 798px
     max-width: 798px
-    .responsive
-      width: 1000px
-      max-width: 1000px
+    .responsive &
+      clear: both
+      display: block
+      max-width: 100%
+      width: 100%
       +respond-to(wide-view)
+        clear: none
+        display: table-cell
         width: 798px
         max-width: 798px
     .ie7  &

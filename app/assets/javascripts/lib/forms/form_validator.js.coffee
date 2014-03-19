@@ -33,6 +33,12 @@ define ["jquery", "lib/forms/form_input"], ($, FormInput) ->
           else
             $submit.attr('disabled', true)
 
+      @form.on ":validation/received", =>
+        if @isValid(false)
+          $submit.attr('disabled', false)
+        else
+          $submit.attr('disabled', true)
+
       $submit.attr('disabled', true) unless @isValid(false)
 
     _getLabel: (formField) ->
