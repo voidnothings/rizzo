@@ -18,9 +18,13 @@
     width: 798px
     max-width: 798px
     .responsive &
-      width: 100%
+      clear: both
+      display: block
       max-width: 100%
+      width: 100%
       +respond-to(wide-view)
+        clear: none
+        display: table-cell
         width: 798px
         max-width: 798px
     .ie7  &
