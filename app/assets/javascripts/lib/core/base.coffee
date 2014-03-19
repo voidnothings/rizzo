@@ -1,4 +1,4 @@
-define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager', 'lib/core/ad_manager', 'lib/core/ad_manager_v2'], ($, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroupManager, AdManager, AdManager2) ->
+define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager', 'lib/core/ad_manager_v2'], ($, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroupManager, AdManager) ->
 
   class Base
 
@@ -33,18 +33,8 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
           @auth.update()
 
     initAds: ->
-
-      if (lp.getCookie('lpAdManager'))
-        @adManager = new AdManager2(window.lp.ads)
-      else
-        # Treat ad manager as a singleton so that we don't attempt to re-init
-        # in apps that require and call this manually.
-        if ($('html').data('topic') is "community")
-          if $(window).width() > 810
-            AdManager.init()
-        else
-          AdManager.init()
-
+      if (window.lp && window.lp.ads)
+        @adManager = new AdManager(window.lp.ads)
 
     showUserBasket: ->
       shopCart = new ShoppingCart()
