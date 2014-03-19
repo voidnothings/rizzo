@@ -2,12 +2,19 @@ define([ "jquery", "lib/core/ad_unit" ], function($, AdUnit) {
 
   "use strict";
 
-  // var networkID = 9885583;
-  var networkID = 4817;
+  var defaultConfig = {
+    // networkID: 9885583,
+    networkID: 4817,
+    listener: "#js-row--content",
+    layers: [ "2009.lonelyplanet" ],
+    adThm: "",
+    adTnm: "",
+    topic: ""
+  };
 
   function AdManager(config) {
-    this.$listener = $(config.$listener || "#js-row--content");
-    this.config = config;
+    this.config = $.extend({}, defaultConfig, config);
+    this.$listener = $(this.config.listener);
     this.loadedAds = [];
     this._init();
   }
@@ -22,7 +29,7 @@ define([ "jquery", "lib/core/ad_unit" ], function($, AdUnit) {
     require([ "dfp" ], function() {
 
       $.dfp({
-        dfpID: self.config.networkID || networkID,
+        dfpID: self.config.networkID,
         setTargeting: self.formatKeywords(),
         namespace: self.config.layers.join("/"),
         collapseEmptyDivs: true,
@@ -44,6 +51,7 @@ define([ "jquery", "lib/core/ad_unit" ], function($, AdUnit) {
 
   AdManager.prototype.formatKeywords = function() {
     var keywords = {
+      topic: this.config.topic,
       thm: this.config.theme || this.config.adThm,
       tnm: (this.config.template || this.config.adTnm).replace(/\s/, "").split(",")
     };
