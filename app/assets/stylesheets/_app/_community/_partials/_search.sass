@@ -8,23 +8,42 @@
     display: none
 
   .pagination,
-  .topic
+  .topic,
+  .new-post
     transition: opacity
 
   &.is-active
-    .is-closed
-      display: none
-    .is-open
-      display: inline-block
+    .advanced-toggle
+      .is-closed
+        display: none
+      .is-open
+        display: inline-block
+
     .pagination,
-    .topic
+    .topic,
+    .new-post
       opacity: 0.2
 
   .stack__intro
     .advanced-toggle
       margin-top: 6px
 
+  .new-post
+    &.is-active
+      .new-post__form
+        display: block
+
+      .is-closed
+        display: none
+      .is-open
+        display: inline-block
+
+  .new-post__form
+    display: none
+    margin-top: 10px
+
 .advanced-search
+  margin-top: 10px
 
   .simple-form__field
     float: left
