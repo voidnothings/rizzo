@@ -39,7 +39,11 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
       else
         # Treat ad manager as a singleton so that we don't attempt to re-init
         # in apps that require and call this manually.
-        AdManager.init()
+        if ($('html').data('topic') is "community")
+          if $(window).width() > 810
+            AdManager.init()
+        else
+          AdManager.init()
 
 
     showUserBasket: ->
