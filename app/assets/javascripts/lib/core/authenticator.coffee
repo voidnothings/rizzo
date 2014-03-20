@@ -88,7 +88,10 @@ define ['jquery', 'lib/utils/page_state'], ($, PageState)->
       resonsiveMenu = "<div class='wv--nav--inline nav__item--user-menu'>#{responsiveOptionElements}</div>"
 
     userAvatar: ->
-      if window.lp.user then window.lp.user.avatar else "#{@options.membersUrl}/#{@lpUserName}/mugshot/mini"
+      if window.lp.user
+        window.lp.user.avatar
+      else
+        "//www.#{@getDomain()}/thorntree/placeholders/avatars/small.png"
 
     update: ->
       @options = @createUrls(@getDomain())
