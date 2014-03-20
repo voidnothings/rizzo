@@ -102,7 +102,7 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
 
         it 'has an avatar thumbnail', ->
           expect($('img.user-box__img')).toExist()
-          expect(@auth.userAvatar()).toBe("#{@auth.options.membersUrl}/#{@auth.lpUserName}/mugshot/mini")
+          expect(@auth.userAvatar()).toBe("//www.lonelyplanet.com/thorntree/placeholders/avatars/small.png")
 
 
     describe 'options menu', ->
