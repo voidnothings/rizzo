@@ -2,7 +2,7 @@ require ['public/assets/javascripts/lib/maps/map_manager'], (MapManager) ->
 
   describe 'MapManager', ->
 
-    window.lp = {
+    window.lp = window.lp || {
       lodging:
         map: {}
     }

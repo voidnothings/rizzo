@@ -4,6 +4,7 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
 
     beforeEach ->
       localStorage.removeItem('lp-uname')
+      window.lp.supports.localStorage = true
 
     it 'is defined', ->
       expect(Authenticator).toBeDefined()
@@ -71,11 +72,7 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
           expect($('a.js-user-join').attr('href')).toBe(@auth.options.registerLink)
 
         it 'has a sign-in url', ->
-          expect($('a.js-user-signin').attr('href')).toBe(@auth.signInUrl())
-
-        # it 'has a sign-in url with the current service uri', ->  
-        #   expect(@auth.signInUrl()).toMatch(/\?service/)
-        #   expect(@auth.signInUrl()).toMatch(/localhost/)
+          expect($('a.js-user-signin').attr('href')).toBe(@auth.options.signInUrl)
 
 
     describe 'logged-in', ->
@@ -100,14 +97,14 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
         it 'does not has a register link', ->
           expect($('a.js-user-join')).not.toExist()
 
-        it 'has user box', ->  
+        it 'has user box', ->
           expect($('div.user-box')).toExist()
-        
+
         it 'has an avatar thumbnail', ->
           expect($('img.user-box__img')).toExist()
           expect(@auth.userAvatar()).toBe("#{@auth.options.membersUrl}/#{@auth.lpUserName}/mugshot/mini")
 
-    
+
     describe 'options menu', ->
 
       beforeEach ->
@@ -144,25 +141,71 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
            expect($('a.js-user-signout').text()).toBe('Sign out')
            expect($('a.js-user-signout').attr('href')).toBe(@auth.options.signOutUrl)
 
+    describe 'new thorntree auth', ->
+
+      beforeEach ->
+
+        @auth = new Authenticator()
+        window.lp.user =
+          id: 1234
+          avatar: "path/to/image.jpg"
+          facebookUID: "facebookUID"
+          loginTimestamp: "timestamp"
+          profile_slug: "username"
+          username: "username"
+        window.lpLoggedInUsername = lp.user.username;
+        window.facebookUserId = lp.user.facebookUID;
+        window.surveyEnabled = "false";
+        window.timestamp = lp.user.loginTimestamp;
+        window.referer = "null";
+
+        @auth.constructor()
+
+      it 'produces the correct new status url when NOT on the live site or thorntree staging', ->
+        spyOn(@auth, 'getUrl').andReturn('http://shop.lonelyplanet.com')
+        expect(@auth.getNewStatusUrl()).toBe('/users/status')
+
+      it 'produces the correct new status url when on the live site', ->
+        spyOn(@auth, 'getUrl').andReturn('http://www.lonelyplanet.com')
+        expect(@auth.getNewStatusUrl()).toBe('/thorntree/users/status')
+
+      it 'produces the correct new status url when on thorntree staging', ->
+        spyOn(@auth, 'getUrl').andReturn('https://community.lonelyplanet.com')
+        expect(@auth.getNewStatusUrl()).toBe('/thorntree/users/status')
+
+      it 'generates the correct urls', ->
+        expect(@auth.options.registerLink).toBe('/users/sign_up')
+        expect(@auth.options.signInUrl).toBe("/users/sign_in")
+        expect(@auth.options.signOutUrl).toBe("/users/sign_out")
+        expect(@auth.options.membersUrl).toBe("/profiles/username")
+        expect(@auth.options.forumPostsUrlTemplate).toBe("/profiles/username/activities")
+        # Annoyingly, this url needs to go to forum settings, but must remain named profileEditUrl since that's what it is on the old thorn tree
+        expect(@auth.options.profileEditUrl).toBe("/forums/settings")
+        expect(@auth.options.messagesUrl).toBe("/profiles/username/messages")
+
+      it 'uses the correct avatar', ->
+        expect(@auth.userAvatar()).toBe('path/to/image.jpg')
+
+
 
     # describe 'messages count', ->
-    # 
+    #
     #   describe 'user', ->
-    #     
+    #
     #     beforeEach ->
     #       loadFixtures('userBox.html')
     #       window.localStorage.setItem('lp-uname', 'KellyJones')
     #       Authenticator.prototype.showMessageCount = ()-> console.log('me')
     #       @auth = new Authenticator()
-    # 
+    #
     #     it 'has no messages to read', ->
     #       expect($('span.js-user-msg-unread')).not.toExist()
-    # 
+    #
     #     it 'has 7 messages to read', ->
-    #       data = 
+    #       data =
     #         received_count: 0
     #         sent_count: 0
     #         unread_count: 7
     #       @auth.messageCountCallBack(data)
     #       expect($('span.js-user-msg-unread').text()).toBe('7')
-    # 
+    #

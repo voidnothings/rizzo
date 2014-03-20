@@ -8,7 +8,7 @@ require ['lib/analytics/analytics'], (Analytics) ->
     }
 
     beforeEach ->
-      window.lp = {}
+      window.lp = window.lp || {}
       window.analytics = new Analytics()
       window.s.channel = "test"
 

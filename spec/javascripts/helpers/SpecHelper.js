@@ -1,5 +1,6 @@
 window.lp = {};
-lp.isMobile = false;
+window.lp.supports = {};
+window.lp.isMobile = false;
 
 require.config({
   paths:{

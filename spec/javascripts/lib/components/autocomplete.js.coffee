@@ -577,7 +577,7 @@ require ['lib/components/autocomplete'], (AutoComplete) ->
             anchor = item.childNodes[0]
             expect(anchor.tagName).toBe 'A'
             expect(anchor.getAttribute('href')).toBe SEARCH_RESULTS[0].uri
-            expect(anchor.className).toBe 'autocomplete__result__link'
+            expect(anchor.className).toContain 'autocomplete__result__link'
 
           it 'should contain an anchor tag containing the highlighted search term', ->
             anchor = item.childNodes[0]
