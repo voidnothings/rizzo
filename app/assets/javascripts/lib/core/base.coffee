@@ -34,7 +34,11 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
 
     initAds: ->
       if (window.lp && window.lp.ads)
-        @adManager = new AdManager(window.lp.ads)
+        if ($('html').data('topic') is "community")
+          if $(window).width() > 810
+            @adManager = new AdManager(window.lp.ads)
+        else
+          @adManager = new AdManager(window.lp.ads)
 
     showUserBasket: ->
       shopCart = new ShoppingCart()
