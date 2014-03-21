@@ -10,14 +10,17 @@
 
 .activity-list__item
   +font-size(15)
-  border-bottom: 1px solid $body-background
+  border-top: 1px solid $body-background
   line-height: 1em
   margin-bottom: 6px
-  padding-bottom: 6px
+  padding-top: 6px
+  &:first-of-type
+    border-top: 0
+    padding-top: 0
   +respond-to(medium-view)
-    border-bottom: 0
+    border-top: 0
     margin-bottom: 12px
-    padding-bottom: 0
+    padding-top: 0
 
 .activity-list__icon
   &:before
