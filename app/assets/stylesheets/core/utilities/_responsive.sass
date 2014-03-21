@@ -25,6 +25,14 @@
     +respond-to(wide-view)
       display: none
 
+// [doc] Hide content on wide screens (shows with block properties). [/doc]
+.wv--hidden-block
+  display: none
+  .responsive &
+    display: block
+    +respond-to(wide-view)
+      display: none
+
 // [doc] Hide content but show it on wider screens. [/doc]
 .wv--block
   display: block
@@ -89,6 +97,15 @@
   display: none
   .responsive &
     display: inline-block
+    +respond-to(medium-view)
+      display: none
+  background-image: none !important
+
+// [doc] Hide content on medium screens (shows with block properties). [/doc]
+.mv--hidden-block
+  display: none
+  .responsive &
+    display: block
     +respond-to(medium-view)
       display: none
 
