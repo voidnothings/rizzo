@@ -10,8 +10,14 @@
 
 .activity-list__item
   +font-size(15)
+  border-bottom: 1px solid $body-background
   line-height: 1em
-  margin-bottom: 12px
+  margin-bottom: 6px
+  padding-bottom: 6px
+  +respond-to(medium-view)
+    border-bottom: 0
+    margin-bottom: 12px
+    padding-bottom: 0
 
 .activity-list__icon
   &:before
@@ -28,7 +34,17 @@
     font-weight: normal
 
 .activity-list__time
-  margin-left: 20px
+  line-height: 1.2em
+  margin-bottom: 4px
+  margin-left: -2px
+  &.media__img
+    float: none
+  +respond-to(medium-view)
+    line-height: 1em
+    margin-bottom: 0
+    margin-left: 20px
+    &.media__img
+      float: right
 
 .activity-list__message
   padding-bottom: 2px
