@@ -3,7 +3,12 @@
 // -----------------------------------------------------------------------------
 
 .topic__title
-  margin-bottom: 20px
+  margin-bottom: 10px
+  +respond-to(medium-view)
+    margin-bottom: 20px
+  .copy--meta
+    margin-left: 0
 
 .topic__content
-  padding-bottom: 16px
+  +respond-to(medium-view)
+    padding-bottom: 16px

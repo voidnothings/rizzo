@@ -20,13 +20,15 @@
     .responsive &
       clear: both
       display: block
+      margin-left: 0
       max-width: 100%
       width: 100%
       +respond-to(wide-view)
         clear: none
         display: table-cell
-        width: 798px
+        margin-left: 10px
         max-width: 798px
+        width: 798px
     .ie7  &
       display: block
       overflow: hidden
@@ -52,6 +54,11 @@ $stack-intro-lines-to-show: 2
 
   .copy--h1
     margin: 0
+
+  .responsive &
+    padding: 10px
+    +respond-to(medium-view)
+      padding: 25px
 
 .stack__intro--empty
   padding: 10px 25px

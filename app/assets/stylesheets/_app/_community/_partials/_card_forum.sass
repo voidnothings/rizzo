@@ -23,7 +23,7 @@ $forum-horizontal-padding: 20px
 .card--forum__row
   @extend %clearfix
   border-top: 1px solid $body-background
-  
+
   &:first-child
     border-top: 0
 
@@ -49,7 +49,9 @@ $forum-horizontal-padding: 20px
     border-top: none
 
 .card--forum__row--content
-  padding: 13px $forum-horizontal-padding
+  padding: 10px
+  +respond-to(medium-view)
+    padding: 13px $forum-horizontal-padding
 
 .card--forum__row--filters
   padding: 10px 5px
@@ -60,10 +62,19 @@ $forum-horizontal-padding: 20px
   .googleHeading
     text-align: right
   .ad
-    float: left
-    // Each ad takes up 1/3 of the space so 33% = 30% width + 3% margin.
-    margin-right: 3%
-    width: 30%
+    border-top: 1px solid $body-background
+    padding-top: 10px
+    &:first-of-type
+      border-top: none
+      padding-top: 0
+
+    +respond-to(medium-view)
+      border-top: none
+      float: left
+      // Each ad takes up 1/3 of the space so 33% = 30% width + 3% margin.
+      margin-right: 3%
+      padding-top: 0
+      width: 30%
 
 .card--moderation
   .card--forum__row--heading
