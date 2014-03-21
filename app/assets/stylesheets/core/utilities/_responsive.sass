@@ -131,21 +131,6 @@
     +respond-to(medium-view)
       display: table-cell
 
-// [doc] Toggles a stacked nav to an inline nav for medium screens. [/doc]
-.mv--nav--inline
-  .responsive &
-    display: block
-    > .nav__item
-      display: block
-    +respond-to(medium-view)
-      display: inline-block
-      > .nav__item
-        vertical-align: top
-        display: inline-block
-    .ie7 &
-      .nav__item
-        float: left
-
 // [doc] Floats content left but only on medium screens. [/doc]
 .mv--split--left
   float: left
