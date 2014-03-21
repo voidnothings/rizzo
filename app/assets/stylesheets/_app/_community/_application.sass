@@ -78,6 +78,14 @@ em
     &.icon--lp-blue
       background-position: 50% 61%
 
+  .country-selector__container
+    float: none
+    margin-bottom: 10px
+
+    +respond-to(medium-view)
+      float: right
+      margin-bottom: 0
+
 .icon--settings
   display: inline-block
   height: 22px
@@ -137,9 +145,12 @@ em
   text-align: center
 
 .results
-  margin-top: 20px
   .card--forum
-    margin-bottom: 20px
+    margin-bottom: 10px
+  +respond-to(medium-view)
+    margin-top: 20px
+    .card--forum
+      margin-bottom: 20px
 
 .help__index--item
   .context--content &

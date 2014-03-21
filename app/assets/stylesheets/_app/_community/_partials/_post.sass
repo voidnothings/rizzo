@@ -53,7 +53,9 @@
 .post__meta
   +font-size(13)
   color: $feature-copy
-  margin-top: 20px
+
+  +respond-to(medium-view)
+    margin-top: 20px
 
   &.icon--time--before:before
     display: inline-block
@@ -76,11 +78,14 @@
 // The icons and links on the right hand side of a post.
 // -----------------------------------------------------------------------------
 .post-links
-  margin-left: 20px
-  padding-left: 35px
+  margin-left: 10px
   position: relative
   text-align: center
   z-index: 2
+
+  +respond-to(medium-view)
+    margin-left: 20px
+    padding-left: 35px
 
 .post-links__icon
   @extend %transition--base

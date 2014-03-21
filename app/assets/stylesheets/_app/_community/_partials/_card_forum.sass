@@ -49,7 +49,9 @@ $forum-horizontal-padding: 20px
     border-top: none
 
 .card--forum__row--content
-  padding: 13px $forum-horizontal-padding
+  padding: 10px
+  +respond-to(medium-view)
+    padding: 13px $forum-horizontal-padding
 
 .card--forum__row--filters
   padding: 10px 5px
