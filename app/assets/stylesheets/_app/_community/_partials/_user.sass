@@ -204,15 +204,16 @@
   +font-size(15)
   color: $feature-copy
   margin-right: 10px
+  width: 60px
   +respond-to(medium-view)
     width: 150px
 
 .user-info__avatar
+  +size(50px)
   border-radius: 25px
-  height: 50px
-  margin-bottom: 12px
   overflow: hidden
-  width: 50px
+  +respond-to(medium-view)
+    margin-bottom: 5px
 
 .user-info__username
   color: $body-copy
@@ -224,11 +225,10 @@
   @extend %inline-block
   color: #fff
   line-height: 1em
-  margin: 0.7em 0.3em 0.1em 0
+  margin: 0 0.3em 0.1em 0
   padding: 3px 5px
   text-transform: uppercase
-
-  +respond-to(wide-view)
+  +respond-to(medium-view)
     margin-top: 0.4em
 
 .user-info__online
