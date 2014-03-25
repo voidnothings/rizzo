@@ -11,13 +11,13 @@ define([ "jquery", "lib/mixins/flyout" ], function($, asFlyout) {
   // @args = {}
   // el: {string} selector for parent element
   var LightBox = function(args) {
-        this.customClass = args.customClass;
-        this.$listener = $("#js-row--content" || args.$listener);
-        this.$el = $(args.el);
-        this.$el && this.init();
-      },
-      _this,
-      $window = $(window);
+    this.customClass = args.customClass;
+    this.$listener = $("#js-row--content" || args.$listener);
+    this.$el = $(args.el);
+    this.$el && this.init();
+  },
+  _this,
+  $window = $(window);
 
   // -------------------------------------------------------------------------
   // Mixins
