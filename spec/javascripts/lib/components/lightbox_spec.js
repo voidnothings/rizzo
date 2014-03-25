@@ -9,8 +9,6 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
     beforeEach(function() {
       loadFixtures("lightbox.html");
       lightbox = new LightBox({ el: ".js-lightbox-spec", customClass: "lightbox-foo" });
-      // This would normally happen in the css, and is required to test that the lightbox container dimensions == body dimensions
-      $(".lightbox").css("position", "absolute");
     });
 
     describe("Initialisation", function() {
