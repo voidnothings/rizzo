@@ -39,11 +39,21 @@ require ['jquery'], ($) ->
           element = document.createElement("smile")
           element.style.cssText = "pointer-events: auto"
           element.style.pointerEvents is "auto"
-
+        'transitionend': ->
+          transitions =
+            webkitTransition: "webkitTransitionEnd"
+            oTransition: "oTransitionEnd otransitionend"
+            mozTransition: "transitionend"
+            transition: "transitionend"
+          element = document.createElement("div")
+          for transition of transitions
+            if element.style[transition] isnt undefined
+              return transitions[transition]
+          return false
 
       for feature of features
         camelFeature = ($.camelCase and $.camelCase feature) or feature
-        window.lp.supports[camelFeature] = !!features[feature]()
+        window.lp.supports[camelFeature] = features[feature]()
 
         if window.lp.supports[camelFeature]
           document.documentElement.className += ' supports-'+feature
