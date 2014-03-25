@@ -12,7 +12,7 @@ define([ "jquery", "lib/mixins/flyout" ], function($, asFlyout) {
   // el: {string} selector for parent element
   var LightBox = function(args) {
     this.customClass = args.customClass;
-    this.$listener = $("#js-row--content" || args.$listener);
+    this.$listener = $(args.$listener || "#js-row--content");
     this.$el = $(args.el);
     this.$el && this.init();
   }, _this;
