@@ -68,7 +68,7 @@ require([ "public/assets/javascripts/lib/core/ad_manager_v2" ], function(AdManag
       it("Should return the default network ID if no cookie and no URL parameter are set", function() {
         spyOn(instance, "_networkCookie").andReturn(null);
         spyOn(instance, "_networkParam").andReturn(null);
-        expect(instance.getNetworkID()).toBe(4817);
+        expect(instance.getNetworkID()).toBe(9885583);
       });
 
       it("Should return the network ID specified in a cookie", function() {
