@@ -1,13 +1,10 @@
-$slide-height: 400px
-
+$slide-height: 540px
 .gallery
-  .slider__pagination
-    display: none
-  &.theme--dark
-    background: $body-copy
-    color: white
-    [class*="icon--"]
-      +icon-color(white)
+  margin: auto
+  max-width: 805px
+  color: white
+  [class*="icon--"]
+    +icon-color(white)
 
 .gallery__slide-container
   clear: both
@@ -24,25 +21,21 @@ $slide-height: 400px
   height: $slide-height
   opacity: 0
   transition: opacity 0.3s ease-in-out
-  width: 1000px
+  width: 805px
   .is-loading &
-    display: none
   &.is-current
     display: block
     opacity: 1
   &.is-previous,
   &.is-next
+    cursor: pointer
     display: block
-    opacity: .5
+    opacity: .6
+    filter: blur(1px)
 
 .gallery__img
-  display: none
   width: 100%
   height: 100%
-  .gallery__slide.is-current &,
-  .gallery__slide.is-previous &,
-  .gallery__slide.is-next &
-    display: block
 
 .gallery__description
   @extend %inline-block
@@ -83,3 +76,22 @@ $slide-height: 400px
   padding: 5px 0 5px 15px
   &.gallery__quote--sight
     border-color: $red
+
+.gallery-box
+  background: rgba($body-copy, 0.99)
+  bottom: 0
+  min-height: 100%
+  opacity: 0
+  overflow: hidden
+  position: fixed
+  right: 0
+  transition: opacity 1s
+  width: 100%
+  z-index: 20
+  &.is-active
+    opacity: 1
+
+.gallery-box__close
+  +size(40px)
+  margin: 40px 20px
+  cursor: pointer
