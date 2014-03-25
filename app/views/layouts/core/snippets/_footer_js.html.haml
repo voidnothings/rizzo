@@ -9,10 +9,3 @@
   - if defined?($JS_VARS)
     :javascript
       #{js_hash($JS_VARS)}
-
-  :javascript
-    (function(w,c){
-      if (w.lp.ads && c) {
-        w.lp.ads.networkCode=w.lp.ads.networkID=c.pop?c.pop():c
-      }
-    }(window,lp.getCookie('lpNetworkCode') || window.location.search.match(/lpNetworkCode=([0-9]{4,8})/)));

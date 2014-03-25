@@ -6,6 +6,13 @@ require([ "public/assets/javascripts/lib/core/ad_manager_v2" ], function(AdManag
 
     beforeEach(function() {
       loadFixtures("ad_iframe.html");
+
+      window.lp = window.lp || {};
+
+      window.lp.getCookie = function() {
+        return [];
+      };
+
       instance = new AdManager({
         networkID: "xxxx",
         template: "overview",
@@ -42,6 +49,7 @@ require([ "public/assets/javascripts/lib/core/ad_manager_v2" ], function(AdManag
         instance.config = {
           theme: "honeymoons,world-food",
           template: "overview,poi-list",
+          layers: [],
           keyValues: {
             foo: "bar"
           }
@@ -53,6 +61,28 @@ require([ "public/assets/javascripts/lib/core/ad_manager_v2" ], function(AdManag
         expect(result.tnm).toEqual(instance.config.template.split(","));
         expect(result.foo).toEqual(instance.config.keyValues.foo);
       });
+    });
+
+    describe(".getNetworkID()", function() {
+
+      it("Should return the default network ID if no cookie and no URL parameter are set", function() {
+        spyOn(instance, "_networkCookie").andReturn(null);
+        spyOn(instance, "_networkParam").andReturn(null);
+        expect(instance.getNetworkID()).toBe(4817);
+      });
+
+      it("Should return the network ID specified in a cookie", function() {
+        spyOn(instance, "_networkCookie").andReturn(123456);
+        spyOn(instance, "_networkParam").andReturn(null);
+        expect(instance.getNetworkID()).toBe(123456);
+      });
+
+      it("Should return the network ID specified in the URL", function() {
+        spyOn(instance, "_networkCookie").andReturn(null);
+        spyOn(instance, "_networkParam").andReturn(78910);
+        expect(instance.getNetworkID()).toBe(78910);
+      });
+
     });
 
     describe(".refresh()", function() {
