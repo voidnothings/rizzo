@@ -30,7 +30,7 @@ module FooterHelper
       {:title=>'Country forums', :url=>'categories/country-forums'},
       {:title=>'Talk to Lonely Planet', :url=>'categories/talk-to-lonely-planet'},
       {:title=>'Interest forums', :url=>'categories/interest-forums'},
-      {:title=>'Travel buddies & for sale', :url=>'categories/travel-buddies-for-sale'}
+      {:title=>'Travel buddies & for sale', :url=>'categories/sell-swap-meet-up'}
     ]
   end
 
