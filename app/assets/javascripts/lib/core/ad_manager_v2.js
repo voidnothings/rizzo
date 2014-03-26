@@ -5,10 +5,19 @@ define([ "jquery", "lib/core/ad_unit" ], function($, AdUnit) {
   var defaultConfig = {
     adunits: ".adunit",
     listener: "#js-row--content",
+
+    // Ad targeting properties
     layers: [ "2009.lonelyplanet" ],
+    theme: "",
+    template: "",
+    topic: "",
+
+    // Deprecated targeting properties
     adThm: "",
     adTnm: "",
-    topic: ""
+    continent: "",
+    country: "",
+    destination: ""
   };
 
   function AdManager(config) {
@@ -71,9 +80,16 @@ define([ "jquery", "lib/core/ad_unit" ], function($, AdUnit) {
 
   AdManager.prototype.formatKeywords = function() {
     var keywords = {
+      theme: this.config.theme || this.config.adThm,
+      template: this.config.template,
       topic: this.config.topic,
+
+      // Deprecated targeting properties
       thm: this.config.theme || this.config.adThm,
-      tnm: (this.config.template || this.config.adTnm).replace(/\s/, "").split(",")
+      tnm: (this.config.template || this.config.adTnm).replace(/\s/, "").split(","),
+      ctt: this.config.continent,
+      cnty: this.config.country,
+      dest: this.config.destination
     };
 
     if (this.config.keyValues && !$.isEmptyObject(this.config.keyValues)) {
