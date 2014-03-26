@@ -3,14 +3,21 @@ define([ "jquery", "lib/core/ad_unit" ], function($, AdUnit) {
   "use strict";
 
   var defaultConfig = {
-    // networkID: 9885583,
-    networkID: 4817,
     adunits: ".adunit",
     listener: "#js-row--content",
+
+    // Ad targeting properties
     layers: [ "2009.lonelyplanet" ],
+    theme: "",
+    template: "",
+    topic: "",
+
+    // Deprecated targeting properties
     adThm: "",
     adTnm: "",
-    topic: ""
+    continent: "",
+    country: "",
+    destination: ""
   };
 
   function AdManager(config) {
@@ -34,7 +41,7 @@ define([ "jquery", "lib/core/ad_unit" ], function($, AdUnit) {
       for (var i = 0, len = sizeGroups.length; i < len; i++) {
         var sizeSet = sizeGroups[i].split("x");
 
-        if (parseInt(sizeSet[0], 10) < bodyWidth) {
+        if (parseInt(sizeSet[0], 10) <= bodyWidth) {
           filteredGroups.push(sizeGroups[i]);
         }
       }
@@ -51,7 +58,7 @@ define([ "jquery", "lib/core/ad_unit" ], function($, AdUnit) {
     require([ "dfp" ], function() {
 
       self.$adunits.dfp({
-        dfpID: self.config.networkID,
+        dfpID: self.getNetworkID(),
         setTargeting: self.formatKeywords(),
         namespace: self.config.layers.join("/"),
         collapseEmptyDivs: true,
@@ -73,9 +80,16 @@ define([ "jquery", "lib/core/ad_unit" ], function($, AdUnit) {
 
   AdManager.prototype.formatKeywords = function() {
     var keywords = {
+      theme: this.config.theme || this.config.adThm,
+      template: this.config.template,
       topic: this.config.topic,
+
+      // Deprecated targeting properties
       thm: this.config.theme || this.config.adThm,
-      tnm: (this.config.template || this.config.adTnm).replace(/\s/, "").split(",")
+      tnm: (this.config.template || this.config.adTnm).replace(/\s/, "").split(","),
+      ctt: this.config.continent,
+      cnty: this.config.country,
+      dest: this.config.destination
     };
 
     if (this.config.keyValues && !$.isEmptyObject(this.config.keyValues)) {
@@ -87,6 +101,29 @@ define([ "jquery", "lib/core/ad_unit" ], function($, AdUnit) {
     }
 
     return keywords;
+  };
+
+  AdManager.prototype.getNetworkID = function() {
+    var networkID = 9885583,
+        cookie = this._networkCookie(),
+        param = this._networkParam();
+
+    if (param) {
+      networkID = param;
+    } else if (cookie) {
+      networkID = cookie;
+    }
+
+    return networkID;
+  };
+
+  AdManager.prototype._networkCookie = function() {
+    return window.lp.getCookie("lpNetworkCode");
+  };
+
+  AdManager.prototype._networkParam = function() {
+    var props = window.location.search.match(/lpNetworkCode=([0-9]{4,8})/);
+    return props ? props.pop() : null;
   };
 
   AdManager.prototype.refresh = function(type) {
