@@ -104,8 +104,7 @@ define([ "jquery", "lib/core/ad_unit" ], function($, AdUnit) {
   };
 
   AdManager.prototype.getNetworkID = function() {
-    // var networkID = 9885583,
-    var networkID = 4817,
+    var networkID = 9885583,
         cookie = this._networkCookie(),
         param = this._networkParam();
 
