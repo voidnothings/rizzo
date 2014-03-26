@@ -1,24 +1,23 @@
-// Based on Lea Verou's CSS Lightbox, taken on webplatform.org
-// For redistribution purposes
-// @author Lea Verou <lea@w3.org>
 .lightbox
-  box-shadow: 0 0 10px rgba(0,0,0,.5)
-  left: 50%
+  background: rgba($body-copy, 0.2)
+  left: 0
   opacity: 0
-  position: fixed
+  position: absolute
   transition: .5s all
-  top: 50%
+  top: 0
   visibility: hidden
-  z-index: -1
+  z-index: 100
 
   &.is-active
-    box-shadow: 0 0 10px rgba(0,0,0,.5), 0 0 0 4000px rgba(0,0,0,.3)
     opacity: 1
     visibility: visible
-    z-index: 999
-    > iframe
-      display: block
 
+    .lightbox__content
+      > iframe
+        display: block
+
+.lightbox__content
+  position: absolute
   > iframe
     background: black
     border: 0
