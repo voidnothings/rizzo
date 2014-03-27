@@ -1,13 +1,19 @@
 $slide-height: 540px
+$nav-height: 187px
 .gallery
   margin: auto
   max-width: 805px
+  padding-left: 0
+  transition: left .5s ease
+  .is-loading &
+    padding-left: 100%
 
 .gallery__slide-container
   clear: both
   height: $slide-height
   position: relative
   transition: margin-left 0.2s ease-in-out
+  overflow: hidden
   .is-loading &
     transition: none
 
@@ -28,6 +34,9 @@ $slide-height: 540px
     display: block
     opacity: .6
     filter: blur(1px)
+    &:hover
+      filter: none
+      opacity: .7
 
 .gallery__img
   width: 100%
@@ -36,6 +45,7 @@ $slide-height: 540px
 .gallery__overlay
   bottom: 0
   height: 20%
+  pointer-events: none
   position: absolute
   width: 100%
   z-index: 10
@@ -110,13 +120,14 @@ $slide-height: 540px
     border-color: $red
 
 .gallery-box
-  background: rgba($body-background, 0.8)
-  bottom: 0
-  min-height: 100%
+  background: rgba($body-background, 0.95)
+  left: 0
+  height: 100%
+  min-height: 1440px
   opacity: 0
   overflow: hidden
-  position: fixed
-  right: 0
+  position: absolute
+  top: $nav-height
   transition: opacity 1s
   width: 100%
   z-index: 20
@@ -132,15 +143,48 @@ $slide-height: 540px
 .gallery__next,
 .gallery__previous
   background: rgba(#000, 0.5)
-  padding: 20px
-  display: block
+  padding: 10px 0
+  display: inline-block
+  font-weight: bold
+  height: 50px
+  line-height: 50px
   position: absolute
   top: $slide-height / 2
   color: white
   text-decoration: none
+  transition: left 0.2s, right 0.2s, opacity 0.1s
+  width: 100px
+  z-index: 10
+  .gallery-box &
+    top: ($nav-height + $slide-height) / 2
+
+.gallery__next:before,
+.gallery__previous:after
+  display: inline-block
+  height: 50px
+  vertical-align: top
+  width: 35px
 
 .gallery__previous
-  left: 0
+  left: -50px
+  border-radius: 0 50px 50px 0
+  .at-beginning &
+    opacity: 0
+    pointer-events: none
+  &:after
+    margin-right: 15px
+  &:hover,
+  &.is-hover
+    left: 0
 
 .gallery__next
-  right: 0
+  right: -50px
+  border-radius: 50px 0 0 50px
+  .at-end &
+    opacity: 0
+    pointer-events: none
+  &:before
+    margin-left: 15px
+  &:hover,
+  &.is-hover
+    right: 0
