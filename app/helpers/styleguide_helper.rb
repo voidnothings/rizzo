@@ -18,6 +18,10 @@ module StyleguideHelper
       {
         title: "CSS Utilities",
         slug: "/css-utilities"
+      },
+      {
+        title: "Bootstrap",
+        slug: "/bootstrap"
       }
     ]
   end
@@ -30,6 +34,15 @@ module StyleguideHelper
     # NB! The below line is required for our yeoman generator and should not be changed.
     #===== yeoman begin-hook =====#
     {
+      bootstrap: [
+        {
+          title: "Options",
+          items: [
+            name: "Download",
+            slug: "download"
+          ]
+        }
+      ],
       css_utilities: [
         {
           title: "Classes",

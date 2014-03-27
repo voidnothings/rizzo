@@ -162,6 +162,10 @@ class StyleguideController < GlobalController
     render '/styleguide/ui-components/ad-units'
   end
 
+  def download
+    render '/styleguide/bootstrap/download'
+  end
+
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 end
