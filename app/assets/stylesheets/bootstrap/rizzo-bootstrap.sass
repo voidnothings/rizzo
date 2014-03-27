@@ -15,6 +15,7 @@ $offscreen-nav-border: #23394B !default
 $offscreen-nav-border-hover: #508DBB !default
 $offscreen-nav-background: #1C3043 !default
 $input-border: #d0d7d8 !default
+$dark-blue-gray: #2f4662 !default
 $responsive-nav-width: 240px
 $wide-view: 1025px
 $medium-view: 600px
@@ -44,6 +45,9 @@ $is-ie: false
 @mixin hardware-acceleration()
   transform: translateZ(0)
   z-index: 1
+@mixin vertically-center($x: 20)
+  height: #{$x + px}
+  line-height: #{$x + px}
 
 //Extends
 %lp-font-stack
@@ -793,28 +797,12 @@ ul.copy--list
   @extend %subpixel-text
   @extend %transition--nav
   position: relative
-
-
-// ----------------------------------------------------------------------------
-//
-// Generic footer row
-//
-// ----------------------------------------------------------------------------
-
 .row__inner--footer
-
   .responsive &
     padding: 10px
     width: 100%
     +respond-to(wide-view)
       padding: 0
-
-// ----------------------------------------------------------------------------
-//
-// Row Sitemap
-//
-// ----------------------------------------------------------------------------
-
 .row--sitemap
   margin-bottom: 30px
   border-top: 1px solid $input-border
@@ -824,14 +812,12 @@ ul.copy--list
     +respond-to(wide-view)
       margin-bottom: 30px
       border-top: 1px solid $input-border
-
 .row--sitemap__inner
   padding-top: 20px
   .responsive &
     padding: 0
     +respond-to(wide-view)
       padding-top: 20px
-
 .col--footer,
 .col--footer--last
   .responsive &
@@ -840,7 +826,6 @@ ul.copy--list
     +respond-to(wide-view)
       border: none
       padding: 0
-
 .col--footer
   float: left
   margin: 0 30px 15px 0
@@ -852,8 +837,6 @@ ul.copy--list
       margin: 0 30px 15px 0
     @if $is-ie == true
       margin: 0 20px 15px 0
-
-
 .col--footer--last
   float: right
   width: 240px
@@ -869,13 +852,11 @@ ul.copy--list
       margin-right: 10px
     @if $is-ie == true
       width: 200px
-
   .btn--green
     .responsive &
       width: 100%
       +respond-to(wide-view)
         width: auto
-
 .nav__item--footer
   line-height: 18px
   .responsive &
@@ -886,16 +867,12 @@ ul.copy--list
       padding: 0
       &:last-child
         padding-bottom: 0
-
 .nav__item--sitemap
   color: $body-copy
   &:hover
     color: $body-copy
-
 .title--footer
   font-weight: bold
-
-
 .title--list--footer
   display: block
   font-weight: bold
@@ -909,10 +886,6 @@ ul.copy--list
       padding: 0
       display: block
       margin-bottom: 15px
-
-
-// Override some of the default accordion styles
-
 .col--footer, .col--footer--last
   .accordion__target--mid
     max-height: none
@@ -920,27 +893,17 @@ ul.copy--list
       max-height: 40px
       +respond-to(wide-view)
         max-height: none
-
   .accordion__title
     display: none
     .responsive &
       display: block
       +respond-to(wide-view)
         display: none
-
   .accordion__title--footer
     float: right
     padding-right: 0
     width: 50%
     height: 30px
-
-
-// ----------------------------------------------------------------------------
-//
-// Social Icons
-//
-// ----------------------------------------------------------------------------
-
 .responsive
   .nav--social
     padding: 0 10px
@@ -1034,3 +997,63 @@ ul.copy--list
   padding-bottom: 20px
   &:hover
     text-decoration: none
+.row--secondary
+  padding-top: 40px
+  margin-bottom: 18px
+  .responsive &
+    padding-top: 20px
+    +respond-to(wide-view)
+      padding-top: 40px
+  .wv--split--right
+    .responsive &
+      +respond-to(400)
+        float: right
+        text-align: right
+.row--secondary__inner
+  +respond-to(wide-view)
+    width: $fixed-layout-width
+    margin: 0 auto
+.row__title--secondary
+  background: $body-background
+  max-width: 340px
+  .responsive &
+    max-width: 100%
+    margin-bottom: 20px
+    padding: 4px 0
+    +respond-to(400)
+      max-width: 70%
+      float: left
+      margin-bottom: 0
+    +respond-to(medium-view)
+      max-width: 340px
+    +respond-to(wide-view)
+      +vertically-center(30)
+      padding: 0
+  &:hover
+    max-width: none
+.nav--secondary
+  +font-size(13)
+  @extend %subpixel-text
+  +font-size(14)
+.nav--secondary__dropdown
+  box-sizing: border-box
+  width: 100%
+  +respond-to(400)
+    width: auto
+  +respond-to(wide-view)
+    margin-left: 10px
+  .dropdown__value
+    background-color: white
+    +font-size(16)
+.nav__item--secondary
+  padding: 6px 8px
+  &, &:active
+    color: $body-copy
+  &:hover
+    color: $dark-blue-gray
+  &.current
+    @extend %active-background
+    @extend %rounded-corners
+    &:hover
+      color: white
+
