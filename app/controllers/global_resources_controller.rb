@@ -41,4 +41,8 @@ class GlobalResourcesController < GlobalController
     render '/styleguide/colours', :layout=> 'styleguide'
   end
 
+  def backendUi
+    render '/atlas/backend_ui'
+  end
+
 end

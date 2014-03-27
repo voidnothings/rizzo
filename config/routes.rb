@@ -39,6 +39,7 @@ Rizzo::Application.routes.draw do
   get 'modern'                           => 'global_resources#modern'
   get 'responsive'                       => 'global_resources#responsive'
   get 'homepage'                         => 'global_resources#homepage'
+  get 'backendui'                        => 'global_resources#backendUi'
 
   # Styleguide
   get 'styleguide/',               to: redirect('/styleguide/ui-components/colours')
