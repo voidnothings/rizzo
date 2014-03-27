@@ -162,8 +162,20 @@ class StyleguideController < GlobalController
     render '/styleguide/ui-components/ad-units'
   end
 
-  def download
-    render '/styleguide/bootstrap/download'
+  def bootstrapCSS
+    render '/styleguide/bootstrap/css'
+  end
+
+  def bootstrapJS
+    render '/styleguide/bootstrap/js'
+  end
+
+  def bootstrapHTML
+    render '/styleguide/bootstrap/html'
+  end
+
+  def bootstrapUsage
+    render '/styleguide/bootstrap/usage'
   end
 
   #===== yeoman hook =====#

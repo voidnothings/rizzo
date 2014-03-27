@@ -39,7 +39,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/ui-components',  to: redirect('/styleguide/ui-components/colours')
   get 'styleguide/js-components',  to: redirect('/styleguide/js-components/toggle-active')
   get 'styleguide/css-utilities/', to: redirect('/styleguide/css-utilities/utility-classes')
-  get 'styleguide/bootstrap/',     to: redirect('/styleguide/bootstrap/download')
+  get 'styleguide/bootstrap/',     to: redirect('/styleguide/bootstrap/usage')
 
   get 'styleguide/ui-components/colours'                  => 'styleguide#colours'
   get 'styleguide/ui-components/secondary-nav'            => 'styleguide#secondaryNavigation'
@@ -83,7 +83,10 @@ Rizzo::Application.routes.draw do
   get 'styleguide/css-utilities/media-mixins'             => 'styleguide#mediaMixins'
   get 'styleguide/css-utilities/utility-mixins'           => 'styleguide#utilityMixins'
 
-  get 'styleguide/bootstrap/download'                      => 'styleguide#download'
+  get 'styleguide/bootstrap/usage'                        => 'styleguide#bootstrapUsage'
+  get 'styleguide/bootstrap/css'                          => 'styleguide#bootstrapCSS'
+  get 'styleguide/bootstrap/js'                           => 'styleguide#bootstrapJS'
+  get 'styleguide/bootstrap/html'                         => 'styleguide#bootstrapHTML'
 
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.

@@ -36,10 +36,24 @@ module StyleguideHelper
     {
       bootstrap: [
         {
-          title: "Options",
+          title: "Rizzo Bootstrap",
           items: [
-            name: "Download",
-            slug: "download"
+            {
+              name: "Usage",
+              slug: "usage"
+            },
+            {
+              name: "CSS",
+              slug: "css"
+            },
+            {
+              name: "Javascript",
+              slug: "js"
+            },
+            {
+              name: "HTML",
+              slug: "html"
+            }
           ]
         }
       ],
