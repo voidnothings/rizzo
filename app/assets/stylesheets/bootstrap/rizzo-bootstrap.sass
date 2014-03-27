@@ -13,6 +13,8 @@ $feature-copy: #67747c !default
 $linkblue: #288ad6 !default
 $offscreen-nav-border: #23394B !default
 $offscreen-nav-border-hover: #508DBB !default
+$offscreen-nav-background: #1C3043 !default
+$responsive-nav-width: 240px
 $wide-view: 1025px
 $medium-view: 600px
 $freight-font-size: 0.875em/1 !default
@@ -38,6 +40,9 @@ $is-ie: false
 @mixin font-size($sizeValue: 14)
   font-size: #{$sizeValue + px}
   font-size: #{($sizeValue / $base-font-size) + rem}
+@mixin hardware-acceleration()
+  transform: translateZ(0)
+  z-index: 1
 
 //Extends
 %lp-font-stack
@@ -235,6 +240,11 @@ body
   .overthrow
     overflow: auto
     -webkit-overflow-scrolling: touch
+.wrapper
+  backface-visibility: hidden
+  position: relative
+  overflow: hidden
+  width: 100%
 .row
   @extend %clearfix
 .row__inner
@@ -660,6 +670,33 @@ ul.copy--list
   margin-left: 0.1em
 .copy--icon--before:before
   margin-right: 0.1em
+.nav-container
+  +hardware-acceleration()
+  backface-visibility: hidden
+  @extend %clearfix
+  width: 100%
+  background: $lpblue
+  overflow: visible
+  height: 55px
+  .responsive &
+    @extend %transition--nav
+    box-shadow: 16px 4px 20px -6px rgba(0, 0, 0, 0.2) inset
+    position: absolute
+    overflow: hidden
+    top: 0
+    right: -$responsive-nav-width
+    width: $responsive-nav-width
+    height: 100%
+    z-index: 2
+    background: $offscreen-nav-background
+    +respond-to(wide-view)
+      box-shadow: none
+      width: 100%
+      background: $lpblue
+      overflow: visible
+      height: 55px
+      left: 0
+      right: auto
 .row--primary
   z-index: 6
   position: relative
@@ -758,4 +795,3 @@ ul.copy--list
         height: 22px
       +respond-to(wide-view)
         display: none
-
