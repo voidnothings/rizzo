@@ -42,7 +42,7 @@ class GlobalResourcesController < GlobalController
   end
 
   def backendUi
-    render '/atlas/backend_ui'
+    render '/atlas/backend_ui', :layout=> 'atlas_backend_ui'
   end
 
 end

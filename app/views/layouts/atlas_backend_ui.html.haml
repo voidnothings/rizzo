@@ -1,0 +1,33 @@
+!!! 5
+%html{class: 'no-js no-freight', lang: "en"}
+
+  %head
+    = render 'layouts/core/head', responsive: false, homepage: false, suppress_tynt: (defined?(suppress_tynt) ? suppress_tynt : false)
+    / Included styleguide stylesheet to include left nav menu, will be needed for backend UI
+    = stylesheet_link_tag 'styleguide', :media => "all"
+
+  %body
+
+    .wrapper.js-wrapper
+      .nav-container
+        .row.row--primary
+          .split--left
+            .wv--nav--inline.nav--primary#js-nav--primary
+              %a.media--lp-logo.logo--header.icon--lp-logo.icon--white{href: 'http://rizzo.lonelyplanet.com/styleguide'}
+              %h1.title--primary.title--styleguide Atlas
+
+      .row.row--content#js-row--content
+        .row__inner.row__inner--content
+
+          .row.row--secondary#js-secondary-nav
+            .row__inner.row__inner--secondary
+              = yield :secondary
+
+          .grid-wrapper--10
+
+            .main-content.stack#js-main-content
+              = yield
+
+
+    .js-config.is-hidden
+      = render 'layouts/core/snippets/atlas/footer_js'
