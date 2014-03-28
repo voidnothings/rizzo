@@ -9,13 +9,14 @@ $nav-height: 187px
     padding-left: 100%
 
 .gallery__slide-container
+  +hardware-acceleration()
   clear: both
   height: $slide-height
   position: relative
   transition: margin-left 0.2s ease-in-out
   overflow: hidden
   .is-loading &
-    transition: none
+    padding-left: 100%
 
 .gallery__slide
   +hardware-acceleration()
@@ -33,9 +34,7 @@ $nav-height: 187px
     cursor: pointer
     display: block
     opacity: .6
-    filter: blur(1px)
     &:hover
-      filter: none
       opacity: .7
 
 .gallery__img
@@ -84,6 +83,7 @@ $nav-height: 187px
 
 .gallery__social .sharing
   padding: 10px 0 40px 0
+  border-top: none
   .split--right
     display: none
   .sharing__label
@@ -157,6 +157,8 @@ $nav-height: 187px
   z-index: 10
   .gallery-box &
     top: ($nav-height + $slide-height) / 2
+  .supports-touch &
+    display: none
 
 .gallery__next:before,
 .gallery__previous:after

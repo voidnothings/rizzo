@@ -7,11 +7,11 @@
 # The corresponding function should return true or false.
 #
 # ------------------------------------------------------------------------------
-require ['jquery'], ($) ->
+require ["jquery"], ($) ->
   $ ->
     (->
       features =
-        '3d': ->
+        "3d": ->
           el = document.createElement("p")
           has3d = undefined
           transforms =
@@ -29,17 +29,18 @@ require ['jquery'], ($) ->
               has3d = window.getComputedStyle(el).getPropertyValue(transforms[t])
           document.body.removeChild el
           has3d isnt `undefined` and has3d.length > 0 and has3d isnt "none"
-        'cssmasks': ->
-          document.body.style[ '-webkit-mask-repeat' ] isnt undefined
-        'cssfilters': ->
+        "cssmasks": ->
+          document.body.style[ "-webkit-mask-repeat" ] isnt undefined
+        "cssfilters": ->
           document.body.style.webkitFilter isnt undefined and document.body.style.filter isnt undefined
-        'placeholder': ->
+        "placeholder": ->
           "placeholder" of document.createElement("input")
-        'pointer-events': ->
+        "pointer-events": ->
           element = document.createElement("smile")
           element.style.cssText = "pointer-events: auto"
           element.style.pointerEvents is "auto"
-        'transitionend': ->
+
+        "transitionend": ->
           transitions =
             webkitTransition: "webkitTransitionEnd"
             oTransition: "oTransitionEnd otransitionend"
@@ -51,18 +52,31 @@ require ['jquery'], ($) ->
               return transitions[transition]
           return false
 
+        # this does not cover microsoft devices, who use pointer api,
+        # and who need a test with navigator.maxTouchPoints > 0
+        "touch": ->
+          $window = $(window)
+          $window.on "touchstart", firstTouch = ->
+            if window.lp.supportsAvailable
+              window.lp.supports.touch = true
+            else
+              $(document).on ":featureDetect/available", -> window.lp.supports.touch = true
+            $(document).trigger ":featureDetect/supportsTouch"
+            $window.off "touchstart", firstTouch
+          return "ontouchstart" of window and "maybe"
+
       for feature of features
         camelFeature = ($.camelCase and $.camelCase feature) or feature
         window.lp.supports[camelFeature] = features[feature]()
 
         if window.lp.supports[camelFeature]
-          document.documentElement.className += ' supports-'+feature
+          document.documentElement.className += " supports-#{feature}"
         else
-          document.documentElement.className += ' no-'+feature+'-support'
+          document.documentElement.className += " no-#{feature}-support"
 
       unless window.lp.supportsAvailable
         window.lp.supportsAvailable = true
-        $(document).trigger(':featureDetect/available')
+        $(document).trigger(":featureDetect/available")
 
       return
     )()
