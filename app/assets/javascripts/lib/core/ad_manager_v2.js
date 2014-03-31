@@ -57,7 +57,9 @@ define([ "jquery", "lib/core/ad_unit" ], function($, AdUnit) {
   };
 
   AdManager.prototype._adCallback = function($adunit) {
-    this.loadedAds.push(new AdUnit($adunit));
+    if (!$adunit.data("googleAdUnit")) {
+      this.loadedAds.push(new AdUnit($adunit));
+    }
     // TODO: analytics here
   };
 
