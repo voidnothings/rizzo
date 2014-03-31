@@ -33,7 +33,7 @@ define([ "jquery", "lib/core/ads/double_mpu" ], function($, DoubleMPU) {
   };
 
   AdUnit.prototype.getType = function() {
-    var patterns = /^js-ad-(leaderboard|mpu|trafficDriver|adSense|sponsorTile)/,
+    var patterns = /(leaderboard|mpu|trafficDriver|adSense|sponsorTile)/,
         matches = this.$target.attr("id").match(patterns);
 
     return matches ? matches[1] : null;
