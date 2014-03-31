@@ -158,7 +158,6 @@ define ['jquery', 'lib/extends/events', 'lib/utils/page_state'], ($, EventEmitte
       .prev().addClass('is-previous').end()
       .next().addClass('is-next')
       @$slides.removeClass('is-hidden')
-      @$slides.filter('.is-previous, .is-next').find('img').removeClass('is-hidden')
 
     _updateCount: ->
       currentHTML = $('.slider__control--next').html() || ""
