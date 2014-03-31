@@ -5,8 +5,18 @@ $slide-width: 805px
 
 .gallery
   margin: auto
-  max-width: $slide-width
+  // todo: respond ,
+  width: $slide-width
   transition: left .5s ease
+
+.gallery__slide-background
+  background: $body-copy
+  height: $slide-height
+  left: 0
+  position: absolute
+  width: 100%
+  .gallery-box &
+    top: 120px
 
 .gallery__slide-container
   +hardware-acceleration()
@@ -42,18 +52,8 @@ $slide-width: 805px
   height: 100%
 
 .gallery__title
-  background: linear-gradient(to bottom, rgba($darkblue, 0.0), rgba($darkblue, 0.2) 50%, rgba($darkblue, 0.2) 100%)
-  bottom: 0
-  color: white
-  left: 0
-  opacity: 0
-  padding: 40px 15px 15px 20px
-  position: absolute
-  transition: opacity 0.3s ease-in-out
-  width: 770px
-  z-index: 20
-  .is-current &
-    opacity: 1
+  color: $body-copy
+  padding-bottom: 10px
 
 .gallery__breadcrumb
   font-weight: bold
@@ -62,6 +62,7 @@ $slide-width: 805px
   &:before
     +size(14px)
     display: inline-block
+    vertical-align: middle
 
 .gallery__footer
   background: white
@@ -133,7 +134,7 @@ $slide-width: 805px
   right: 0
   top: 0
   transition: opacity 1s
-  z-index: 5
+  z-index: 10
   &.is-active
     opacity: 1
 
@@ -144,7 +145,7 @@ $slide-width: 805px
   opacity: 0
   overflow: hidden
   position: absolute
-  top: $nav-height
+  top: 0
   transition: opacity .5s, left 1s
   width: 100%
   z-index: 20
