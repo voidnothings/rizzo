@@ -1,22 +1,22 @@
-$slide-height: 400px
+$footer-height: 250px
+$nav-height: 187px
+$slide-height: 540px
+$slide-width: 805px
 
 .gallery
-  .slider__pagination
-    display: none
-  &.theme--dark
-    background: $body-copy
-    color: white
-    [class*="icon--"]
-      +icon-color(white)
+  margin: auto
+  max-width: $slide-width
+  transition: left .5s ease
 
 .gallery__slide-container
+  +hardware-acceleration()
   clear: both
   height: $slide-height
-  margin-bottom: 20px
   position: relative
   transition: margin-left 0.2s ease-in-out
+  overflow: hidden
   .is-loading &
-    transition: none
+    padding-left: 100%
 
 .gallery__slide
   +hardware-acceleration()
@@ -24,29 +24,36 @@ $slide-height: 400px
   height: $slide-height
   opacity: 0
   transition: opacity 0.3s ease-in-out
-  width: 1000px
+  width: $slide-width
   .is-loading &
-    display: none
   &.is-current
     display: block
     opacity: 1
   &.is-previous,
   &.is-next
+    cursor: pointer
     display: block
-    opacity: .5
+    opacity: .6
+    &:hover
+      opacity: .7
 
 .gallery__img
-  display: none
   width: 100%
   height: 100%
-  .gallery__slide.is-current &,
-  .gallery__slide.is-previous &,
-  .gallery__slide.is-next &
-    display: block
 
-.gallery__description
-  @extend %inline-block
-  width: 50%
+.gallery__title
+  background: linear-gradient(to bottom, rgba($darkblue, 0.0), rgba($darkblue, 0.2) 50%, rgba($darkblue, 0.2) 100%)
+  bottom: 0
+  color: white
+  left: 0
+  opacity: 0
+  padding: 40px 15px 15px 20px
+  position: absolute
+  transition: opacity 0.3s ease-in-out
+  width: 770px
+  z-index: 20
+  .is-current &
+    opacity: 1
 
 .gallery__breadcrumb
   font-weight: bold
@@ -55,19 +62,45 @@ $slide-height: 400px
   &:before
     +size(14px)
     display: inline-block
-    vertical-align: middle
+
+.gallery__footer
+  background: white
+  height: $footer-height
+  overflow: hidden
+  width: $slide-width
+
+.gallery__description
+  background: white
+  border-radius: 0 0 0 4px
+  box-sizing: border-box
+  float: left
+  height: $footer-height
+  padding: 20px
+  position: relative
+  width: 505px
+
+.gallery__social .sharing
+  padding: 10px 0 40px 0
+  border-top: none
+  .split--right
+    display: none
+  .sharing__label
+    display: none
+  .facebook-like
+    margin: 0
+    top: 0
 
 .gallery__subject-leadin
   +font-size(12)
-  color: mix($darkblue, white, 25%)
+  color: $darkblue
   font-weight: bold
-  text-transform: UPPERCASE
+  text-transform: uppercase
 
 .gallery__poi-title
   +font-size(18)
   font-weight: bold
-  color: white
   line-height: 2
+  color: $body-copy
   &:before
     width: 20px
     height: 24px
@@ -83,3 +116,97 @@ $slide-height: 400px
   padding: 5px 0 5px 15px
   &.gallery__quote--sight
     border-color: $red
+
+.gallery__mpu
+  float: left
+  height: $footer-height
+  width: 300px
+  background: white
+
+.gallery-underlay
+  background: $body-background
+  background: rgba($body-background, 0.95)
+  bottom: 0
+  left: 0
+  opacity: 0
+  position: fixed
+  right: 0
+  top: 0
+  transition: opacity 1s
+  z-index: 5
+  &.is-active
+    opacity: 1
+
+.gallery-box
+  +hardware-acceleration()
+  left: 0
+  height: 100%
+  opacity: 0
+  overflow: hidden
+  position: absolute
+  top: $nav-height
+  transition: opacity .5s, left 1s
+  width: 100%
+  z-index: 20
+  &.is-active
+    opacity: 1
+  &.is-loading
+    left: 100%
+
+.gallery-box__close
+  +size(40px)
+  margin: 40px 20px
+  cursor: pointer
+  opacity: .25
+
+.gallery__next,
+.gallery__previous
+  background: #888
+  background: rgba(#000, 0.5)
+  padding: 10px 0
+  display: inline-block
+  font-weight: bold
+  height: 50px
+  line-height: 50px
+  position: absolute
+  top: $slide-height / 2
+  color: white
+  text-decoration: none
+  transition: left 0.2s, right 0.2s, opacity 0.1s
+  width: 100px
+  z-index: 10
+  .gallery-box &
+    top: ($nav-height + $slide-height) / 2
+  .supports-touch &
+    display: none
+
+.gallery__next:before,
+.gallery__previous:after
+  display: inline-block
+  height: 50px
+  vertical-align: top
+  width: 35px
+
+.gallery__previous
+  left: -50px
+  border-radius: 0 50px 50px 0
+  .at-beginning &
+    opacity: 0
+    pointer-events: none
+  &:after
+    margin-right: 15px
+  &:hover,
+  &.is-hover
+    left: 0
+
+.gallery__next
+  right: -50px
+  border-radius: 50px 0 0 50px
+  .at-end &
+    opacity: 0
+    pointer-events: none
+  &:before
+    margin-left: 15px
+  &:hover,
+  &.is-hover
+    right: 0
