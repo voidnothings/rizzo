@@ -1,0 +1,7 @@
+.hero-banner.row{style: "background-image: #{properties[:image_url]}"}
+  .hero-banner_content.row__inner
+    .hero-banner_text
+      %h1.hero-banner_header
+        = properties[:title]
+      %p.hero-banner_strapline
+        = properties[:strapline]

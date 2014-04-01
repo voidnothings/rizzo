@@ -63,6 +63,17 @@
   .card--full-image &
     margin-bottom: 0
 
+  .card--mini--article &
+    position: absolute
+    text-align: center
+    z-index: 5
+    top: 50%
+    color: white
+    font-weight: bold
+
+  .card--quote &
+    height: 115px
+
 .hero__call-to-action
   bottom: 0
   position: absolute
@@ -298,3 +309,24 @@
     display: block
     margin-left: -5px
     margin-top: -5px
+
+// -----------------------------------------------------------------------------
+// Quote cards
+// -----------------------------------------------------------------------------
+
+.card__source
+  +font-size(16)
+  font-style: italic
+  word-spacing: 5px
+  color: #444
+
+.card__avatar
+  +size(25px)
+  border-radius: 50%
+  display: inline-block
+  vertical-align: middle
+
+.card__username
+  font-weight: bold
+  font-style: normal
+  color: #333

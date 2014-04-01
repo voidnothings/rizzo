@@ -30,6 +30,10 @@ class StyleguideController < GlobalController
     render '/styleguide/ui-components/page_title'
   end
 
+  def headers
+    render '/styleguide/ui-components/headers'
+  end
+
   def colours
     render '/styleguide/ui-components/colours'
   end
