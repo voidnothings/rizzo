@@ -23,7 +23,6 @@ define([ "jquery", "lib/core/ad_unit" ], function($, AdUnit) {
   function AdManager(config) {
     this.config = $.extend({}, defaultConfig, config);
     this.$listener = $(this.config.listener);
-    this.loadedAds = [];
     this._init();
   }
 
@@ -57,21 +56,23 @@ define([ "jquery", "lib/core/ad_unit" ], function($, AdUnit) {
   };
 
   AdManager.prototype._adCallback = function($adunit) {
-    if (!$adunit.hasClass("is-initialised")) {
-      this.loadedAds.push(new AdUnit($adunit));
+    var unit = $adunit.data("adUnit");
+
+    if (!unit) {
+      $.data($adunit, "adUnit", new AdUnit($adunit));
     }
     // TODO: analytics here
   };
 
   AdManager.prototype.formatKeywords = function() {
     var keywords = {
-      theme: this.config.theme || this.config.adThm,
+      theme: this.config.theme,
       template: this.config.template,
       topic: this.config.topic,
 
       // Deprecated targeting properties
-      thm: this.config.theme || this.config.adThm,
-      tnm: (this.config.template || this.config.adTnm).replace(/\s/, "").split(","),
+      thm: this.config.adThm,
+      tnm: this.config.adTnm.replace(/\s/, "").split(","),
       ctt: this.config.continent,
       cnty: this.config.country,
       dest: this.config.destination
@@ -129,10 +130,14 @@ define([ "jquery", "lib/core/ad_unit" ], function($, AdUnit) {
   };
 
   AdManager.prototype.refresh = function(type) {
+    var i, len, unit;
+
     if (type) {
-      for (var i = 0, len = this.loadedAds.length; i < len; i++) {
-        if (this.loadedAds[i].getType() === type) {
-          this.loadedAds[i].refresh();
+      for (i = 0, len = this.$adunits.length; i < len; i++) {
+        unit = this.$adunits.eq(i).data("adUnit");
+
+        if (unit.getType() === type) {
+          unit.refresh();
         }
       }
     } else {
