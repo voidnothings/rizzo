@@ -13,9 +13,9 @@ Rizzo::Application.routes.draw do
   get 'client-solutions/global-body-footer' => 'global_resources#show', :defaults => { :snippet => "body_footer", :cs => "true" }
 
   # Core for exposing modern layout as a service
-  get 'modern/head'        => 'global_resources#show', :defaults => { :snippet => "modern_head" }
-  get 'modern/body-header' => 'global_resources#show', :defaults => { :snippet => "modern_body_header" }
-  get 'modern/body-footer' => 'global_resources#show', :defaults => { :snippet => "modern_body_footer" }
+  get 'modern/head'        => 'global_resources#show', :defaults => { :snippet => "head" }
+  get 'modern/body-header' => 'global_resources#show', :defaults => { :snippet => "body_header" }
+  get 'modern/body-footer' => 'global_resources#show', :defaults => { :snippet => "body_footer" }
 
   # Legacy
   get 'global-head'                  => 'global_resources#show', :defaults => { :snippet => "head", :legacystyle => "true" }

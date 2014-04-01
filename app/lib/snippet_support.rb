@@ -10,7 +10,7 @@ module SnippetSupport
     elsif legacystyle
       "layouts/legacy/snippets/_#{snippet}"
     else
-      "layouts/core/snippets/_#{snippet}"
+      "layouts/core/snippets/_modern_#{snippet}"
     end
   end
 
