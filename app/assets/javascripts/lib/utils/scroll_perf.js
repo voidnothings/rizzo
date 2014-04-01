@@ -4,6 +4,9 @@ define([ "jquery", "lib/utils/feature_detect" ], function($) {
 
   var ScrollPerf = function ScrollPerf() {
     this.cover = document.getElementById("js-pointer-cover");
+    if (!this.cover) {
+      return;
+    }
     this.scrolling = false;
     this.clicked = false;
     this.position = [ 0, 0 ];
