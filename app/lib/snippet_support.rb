@@ -1,6 +1,6 @@
 module SnippetSupport
 
-  def template_for(snippet, secure=false, noscript=false, cs=false, legacystyle=false)
+  def template_for(snippet, secure=false, noscript=false, cs=false, legacystyle=false, modernstyle=false)
     if secure
       "layouts/legacy/snippets/_secure_#{snippet}"
     elsif noscript
@@ -9,8 +9,10 @@ module SnippetSupport
       "layouts/core/snippets/_cs_#{snippet}"
     elsif legacystyle
       "layouts/legacy/snippets/_#{snippet}"
+    elsif modernstyle
+      "layouts/core/snippets/_modern_#{snippet}"
     else
-      "layouts/core/snippets/_#{snippet}"
+      "layouts/legacy/snippets/_#{snippet}"
     end
   end
 
