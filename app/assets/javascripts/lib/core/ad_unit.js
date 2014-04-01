@@ -13,7 +13,10 @@ define([ "jquery", "lib/core/ads/double_mpu" ], function($, DoubleMPU) {
       return;
     }
 
-    this.$target.closest(".is-closed").removeClass("is-closed");
+    this.$target
+      .addClass("is-initialised")
+      .closest(".is-closed")
+      .removeClass("is-closed");
 
     var extension = this.$target.data("extension");
 
@@ -27,7 +30,7 @@ define([ "jquery", "lib/core/ads/double_mpu" ], function($, DoubleMPU) {
       return true;
     }
 
-    // Sometimes DFP will return uesless 1x1 blank images
+    // Sometimes DFP will return useless 1x1 blank images
     // so we must check for them.
     return this.$iframe.contents().find("img").width() === 1;
   };

@@ -57,7 +57,7 @@ define([ "jquery", "lib/core/ad_unit" ], function($, AdUnit) {
   };
 
   AdManager.prototype._adCallback = function($adunit) {
-    if (!$adunit.data("googleAdUnit")) {
+    if (!$adunit.hasClass("is-initialised")) {
       this.loadedAds.push(new AdUnit($adunit));
     }
     // TODO: analytics here
