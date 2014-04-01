@@ -22,7 +22,7 @@ require([ "public/assets/javascripts/lib/core/ad_manager_v2" ], function(AdManag
     });
 
     afterEach(function() {
-      $(".adunit").removeData("googleAdUnit");
+      $(".adunit").removeData("googleAdUnit adUnit");
     });
 
     describe("._init()", function() {
@@ -53,8 +53,8 @@ require([ "public/assets/javascripts/lib/core/ad_manager_v2" ], function(AdManag
 
       it("Should return the instance config formatted for jQuery.dfp targeting", function() {
         instance.config = {
-          theme: "honeymoons,world-food",
-          template: "overview,poi-list",
+          adThm: "honeymoons,world-food",
+          adTnm: "overview,poi-list",
           layers: [],
           keyValues: {
             foo: "bar"
@@ -63,8 +63,8 @@ require([ "public/assets/javascripts/lib/core/ad_manager_v2" ], function(AdManag
 
         var result = instance.formatKeywords();
 
-        expect(result.thm).toEqual(instance.config.theme);
-        expect(result.tnm).toEqual(instance.config.template.split(","));
+        expect(result.thm).toEqual(instance.config.adThm);
+        expect(result.tnm).toEqual(instance.config.adTnm.split(","));
         expect(result.foo).toEqual(instance.config.keyValues.foo);
       });
     });
@@ -112,7 +112,7 @@ require([ "public/assets/javascripts/lib/core/ad_manager_v2" ], function(AdManag
       it("Should not reload already loaded ads", function() {
 
         runs(function() {
-          $(".adunit").data("googleAdUnit", {});
+          $(".adunit").data("adUnit", true);
           spyOn(instance, "_adCallback").andReturn(null);
           spyOn(instance, "load").andCallThrough();
         });
@@ -132,6 +132,7 @@ require([ "public/assets/javascripts/lib/core/ad_manager_v2" ], function(AdManag
     describe(".refresh()", function() {
 
       it("Should call the refresh method on ad units filtered by type", function() {
+        var unit;
 
         function MockAdUnit(type) {
           this.type = type;
@@ -140,24 +141,27 @@ require([ "public/assets/javascripts/lib/core/ad_manager_v2" ], function(AdManag
           return this.type;
         };
 
+        instance.$adunits = $([]);
+
         [ "leaderboard", "adSense", "mpu" ].forEach(function(type) {
           var mock = new MockAdUnit(type);
           mock.refresh = jasmine.createSpy("refresh");
-          instance.loadedAds.push(mock);
+          var $unit = $("<div>").data("adUnit", mock);
+          instance.$adunits = instance.$adunits.add($unit);
         });
 
         instance.refresh("leaderboard");
-        expect(instance.loadedAds[0].refresh).toHaveBeenCalled();
+        expect(instance.$adunits.eq(0).data("adUnit").refresh).toHaveBeenCalled();
 
         instance.refresh("adSense");
-        expect(instance.loadedAds[1].refresh).toHaveBeenCalled();
+        expect(instance.$adunits.eq(1).data("adUnit").refresh).toHaveBeenCalled();
 
         instance.refresh("mpu");
-        expect(instance.loadedAds[2].refresh).toHaveBeenCalled();
+        expect(instance.$adunits.eq(2).data("adUnit").refresh).toHaveBeenCalled();
 
-        expect(instance.loadedAds[0].refresh.callCount).toEqual(1);
-        expect(instance.loadedAds[1].refresh.callCount).toEqual(1);
-        expect(instance.loadedAds[2].refresh.callCount).toEqual(1);
+        expect(instance.$adunits.eq(0).data("adUnit").refresh.callCount).toEqual(1);
+        expect(instance.$adunits.eq(1).data("adUnit").refresh.callCount).toEqual(1);
+        expect(instance.$adunits.eq(2).data("adUnit").refresh.callCount).toEqual(1);
 
       });
 

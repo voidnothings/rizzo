@@ -13,10 +13,7 @@ define([ "jquery", "lib/core/ads/double_mpu" ], function($, DoubleMPU) {
       return;
     }
 
-    this.$target
-      .addClass("is-initialised")
-      .closest(".is-closed")
-      .removeClass("is-closed");
+    this.$target.closest(".is-closed").removeClass("is-closed");
 
     var extension = this.$target.data("extension");
 
