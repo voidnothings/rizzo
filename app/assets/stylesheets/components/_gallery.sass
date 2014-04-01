@@ -1,17 +1,43 @@
+$ad-width: 300px
 $footer-height: 250px
 $nav-height: 187px
-$slide-height: 540px
-$slide-width: 805px
+$slide-width-phone-small: 320px
+$slide-width-phone: 480px
+$slide-width-tablet: 768px
+$slide-width: 1000px
+
+@mixin slide-width($offset: 0)
+  width: $slide-width-phone-small
+  +respond-to(480)
+    width: $slide-width-phone + $offset
+  +respond-to(768)
+    width: $slide-width-tablet + $offset
+  +respond-to(1000)
+    width: $slide-width + $offset
+
+@mixin slide-height()
+  height: ($slide-width-phone-small / 3) * 2
+  +respond-to(480)
+    height: ($slide-width-phone / 3) * 2
+  +respond-to(768)
+    height: ($slide-width-tablet / 16) * 9
+  +respond-to(1000)
+    height: ($slide-width / 3) * 2
 
 .gallery
+  +slide-width()
   margin: auto
-  // todo: respond ,
-  width: $slide-width
   transition: left .5s ease
 
+.gallery__controls
+  +slide-height()
+  left: 0
+  position: absolute
+  width: 100%
+
 .gallery__slide-background
+  +slide-height()
   background: $body-copy
-  height: $slide-height
   left: 0
   position: absolute
   width: 100%
@@ -20,8 +46,8 @@ $slide-width: 805px
 
 .gallery__slide-container
   +hardware-acceleration()
+  +slide-height()
   clear: both
-  height: $slide-height
   position: relative
   transition: margin-left 0.2s ease-in-out
   overflow: hidden
@@ -30,11 +56,11 @@ $slide-width: 805px
 
 .gallery__slide
   +hardware-acceleration()
+  +slide-height()
+  +slide-width()
   float: left
-  height: $slide-height
   opacity: 0
   transition: opacity 0.3s ease-in-out
-  width: $slide-width
   .is-loading &
   &.is-current
     display: block
@@ -48,8 +74,15 @@ $slide-width: 805px
       opacity: .7
 
 .gallery__img
-  width: 100%
+  display: block
   height: 100%
+  width: 100%
+
+.gallery__img--portrait
+  display: block
+  height: 100%
+  margin: auto
+  width: auto
 
 .gallery__title
   color: $body-copy
@@ -65,12 +98,13 @@ $slide-width: 805px
     vertical-align: middle
 
 .gallery__footer
+  +slide-width()
   background: white
   height: $footer-height
   overflow: hidden
-  width: $slide-width
 
 .gallery__description
+  +slide-width(- $ad-width)
   background: white
   border-radius: 0 0 0 4px
   box-sizing: border-box
@@ -78,7 +112,6 @@ $slide-width: 805px
   height: $footer-height
   padding: 20px
   position: relative
-  width: 505px
 
 .gallery__social .sharing
   padding: 10px 0 40px 0
@@ -119,10 +152,13 @@ $slide-width: 805px
     border-color: $red
 
 .gallery__mpu
+  background: white
+  display: none
   float: left
   height: $footer-height
-  width: 300px
-  background: white
+  width: $ad-width
+  +respond-to(480)
+    display: block
 
 .gallery-underlay
   background: $body-background
@@ -170,14 +206,14 @@ $slide-width: 805px
   height: 50px
   line-height: 50px
   position: absolute
-  top: $slide-height / 2
   color: white
   text-decoration: none
+  top: 50%
   transition: left 0.2s, right 0.2s, opacity 0.1s
   width: 100px
   z-index: 10
   .gallery-box &
-    top: ($nav-height + $slide-height) / 2
+    top: 50%
   .supports-touch &
     display: none
 
