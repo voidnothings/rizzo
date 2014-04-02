@@ -131,7 +131,7 @@ $slide-width: 1000px
   text-transform: uppercase
 
 .gallery__poi-title
-  +font-size(18)
+  +font-size(12)
   font-weight: bold
   line-height: 2
   color: $body-copy
@@ -140,6 +140,12 @@ $slide-width: 1000px
     height: 24px
     display: inline-block
     vertical-align: middle
+  +respond-to(480)
+    +font-size(14)
+  +respond-to(768)
+    +font-size(16)
+  +respond-to(1000)
+    +font-size(18)
 
 .gallery__quote
   +font-size(14)
@@ -248,3 +254,11 @@ $slide-width: 1000px
   &:hover,
   &.is-hover
     right: 0
+
+.gallery__slide-counter
+  bottom: 0
+  display: none
+  right: 0
+  padding: 1em
+  position: absolute
+  z-index: 10
