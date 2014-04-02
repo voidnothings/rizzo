@@ -59,9 +59,7 @@ $slide-width: 1000px
   +slide-height()
   +slide-width()
   float: left
-  opacity: 0
-  transition: opacity 0.3s ease-in-out
-  &.is-loading:after
+  &.is-loading.is-current:after
     content: " "
     position: absolute
     top: 50%
@@ -72,20 +70,25 @@ $slide-width: 1000px
     background: rgba(125, 125, 125, 0.5)
     border-radius: 100%
     animation: discmove 2s cubic-bezier(0.6, 1, 1, 1) infinite
-  &.is-loaded.is-current
-    opacity: 1
-  &.is-loaded.is-previous,
-  &.is-loaded.is-next
+  &.is-previous,
+  &.is-next
     cursor: pointer
-    display: block
-    opacity: .6
+    opacity: .9
     &:hover
-      opacity: .7
+      opacity: 1
 
 .gallery__img
   display: block
   height: 100%
+  opacity: 0
+  transition: opacity 0.3s ease-in-out
   width: 100%
+  .gallery__slide.is-loaded.is-current &
+    opacity: 1
+  .gallery__slide.is-loaded.is-previous &,
+  .gallery__slide.is-loaded.is-next &
+    display: block
+    opacity: .7
 
 .gallery__img--portrait
   display: block
