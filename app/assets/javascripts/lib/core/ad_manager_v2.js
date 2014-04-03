@@ -22,76 +22,57 @@ define([ "jquery", "lib/core/ad_unit" ], function($, AdUnit) {
 
   function AdManager(config) {
     this.config = $.extend({}, defaultConfig, config);
-    this.$adunits = $(this.config.adunits);
     this.$listener = $(this.config.listener);
-    this.loadedAds = [];
     this._init();
   }
 
   AdManager.prototype._init = function() {
-    var self = this,
-        bodyWidth = $("body").width();
+    var self = this;
 
-    // TODO: a proper responsive implementation
-    this.$adunits = this.$adunits.filter(function(index) {
-      var filteredGroups = [],
-          $adunit = self.$adunits.eq(index),
-          contextualWidth = $adunit.data("context"),
-          sizeGroups = $adunit.data("dimensions").split(",");
-
-      if (contextualWidth) {
-        contextualWidth = $(contextualWidth).width();
+    this.pluginConfig = {
+      dfpID: this.getNetworkID(),
+      setTargeting: this.formatKeywords(),
+      namespace: this.config.layers.join("/"),
+      collapseEmptyDivs: true,
+      enableSingleRequest: false,
+      afterEachAdLoaded: function($adunit) {
+        self._adCallback.call(self, $adunit);
       }
-
-      for (var i = 0, len = sizeGroups.length; i < len; i++) {
-        var sizeSet = sizeGroups[i].split("x");
-
-        if (parseInt(sizeSet[0], 10) <= (contextualWidth || bodyWidth)) {
-          filteredGroups.push(sizeGroups[i]);
-        }
-      }
-
-      $adunit.data("dimensions", filteredGroups.join(","));
-
-      return filteredGroups.length;
-    });
-
-    function boundCallback($adunit) {
-      self._adCallback.call(self, $adunit);
-    }
+    };
 
     require([ "dfp" ], function() {
 
-      self.$adunits.dfp({
-        dfpID: self.getNetworkID(),
-        setTargeting: self.formatKeywords(),
-        namespace: self.config.layers.join("/"),
-        collapseEmptyDivs: true,
-        enableSingleRequest: false,
-        afterEachAdLoaded: boundCallback
-      });
+      self.load();
 
       self.$listener.on(":ads/refresh", function(e, type) {
         self.refresh(type);
+      });
+
+      self.$listener.on(":ads/reload", function(e) {
+        self.load();
       });
 
     });
   };
 
   AdManager.prototype._adCallback = function($adunit) {
-    this.loadedAds.push(new AdUnit($adunit));
+    var unit = $adunit.data("adUnit");
+
+    if (!unit) {
+      $.data($adunit, "adUnit", new AdUnit($adunit));
+    }
     // TODO: analytics here
   };
 
   AdManager.prototype.formatKeywords = function() {
     var keywords = {
-      theme: this.config.theme || this.config.adThm,
+      theme: this.config.theme,
       template: this.config.template,
       topic: this.config.topic,
 
       // Deprecated targeting properties
-      thm: this.config.theme || this.config.adThm,
-      tnm: (this.config.template || this.config.adTnm).replace(/\s/, "").split(","),
+      thm: this.config.adThm,
+      tnm: this.config.adTnm.replace(/\s/, "").split(","),
       ctt: this.config.continent,
       cnty: this.config.country,
       dest: this.config.destination
@@ -131,16 +112,56 @@ define([ "jquery", "lib/core/ad_unit" ], function($, AdUnit) {
     return props ? props.pop() : null;
   };
 
+  AdManager.prototype.load = function() {
+    var self = this;
+
+    this.$adunits = $(this.config.adunits);
+
+    // Filter out ad units that have already been loaded then
+    // ad dimensions that may be too large for their context
+    this.$adunits
+      .filter(function(index) {
+        return self.$adunits.eq(index).data("googleAdUnit") === undefined;
+      })
+      .filter(function(index) {
+        return self._filterAdUnitDimensions(self.$adunits.eq(index)).length;
+      })
+      .dfp(this.pluginConfig);
+  };
+
   AdManager.prototype.refresh = function(type) {
+    var i, len, unit;
+
     if (type) {
-      for (var i = 0, len = this.loadedAds.length; i < len; i++) {
-        if (this.loadedAds[i].getType() === type) {
-          this.loadedAds[i].refresh();
+      for (i = 0, len = this.$adunits.length; i < len; i++) {
+        unit = this.$adunits.eq(i).data("adUnit");
+
+        if (unit.getType() === type) {
+          unit.refresh();
         }
       }
     } else {
       window.googletag.pubads().refresh();
     }
+  };
+
+  AdManager.prototype._filterAdUnitDimensions = function($adunit) {
+    var filteredGroups = [],
+        context = $adunit.data("context"),
+        contextWidth = $(context || "body").width(),
+        sizeGroups = $adunit.data("dimensions").split(",");
+
+    for (var i = 0, len = sizeGroups.length; i < len; i++) {
+      var sizeSet = sizeGroups[i].split("x");
+
+      if (parseInt(sizeSet[0], 10) <= contextWidth) {
+        filteredGroups.push(sizeGroups[i]);
+      }
+    }
+
+    $adunit.data("dimensions", filteredGroups.join(","));
+
+    return filteredGroups;
   };
 
   return AdManager;

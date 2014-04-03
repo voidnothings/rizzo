@@ -163,15 +163,15 @@ require ['public/assets/javascripts/lib/core/authenticator'], (Authenticator) ->
 
       it 'produces the correct new status url when NOT on the live site or thorntree staging', ->
         spyOn(@auth, 'getUrl').andReturn('http://shop.lonelyplanet.com')
-        expect(@auth.getNewStatusUrl()).toBe('/users/status')
+        expect(@auth.getNewStatusUrl()).toBe('//www.lonelyplanet.com/thorntree/users/status')
 
       it 'produces the correct new status url when on the live site', ->
         spyOn(@auth, 'getUrl').andReturn('http://www.lonelyplanet.com')
-        expect(@auth.getNewStatusUrl()).toBe('/thorntree/users/status')
+        expect(@auth.getNewStatusUrl()).toBe('//www.lonelyplanet.com/thorntree/users/status')
 
       it 'produces the correct new status url when on thorntree staging', ->
         spyOn(@auth, 'getUrl').andReturn('https://community.lonelyplanet.com')
-        expect(@auth.getNewStatusUrl()).toBe('/thorntree/users/status')
+        expect(@auth.getNewStatusUrl()).toBe('//www.lonelyplanet.com/thorntree/users/status')
 
       it 'generates the correct urls', ->
         expect(@auth.options.registerLink).toBe('/users/sign_up')

@@ -9,8 +9,8 @@
   margin-bottom: 10px
   position: relative
 
-  // apply hover state only to cards in the results area
-  .results &
+  .results &,
+  &.card--hover
     &:hover
       box-shadow: 0 2px 2px 0 rgba(3, 46, 92, 0.10)
 
@@ -275,3 +275,6 @@
 
   .tag--price__inner
     border-radius: 0 3px 3px 3px
+
+.card--mini
+  +size(192px)

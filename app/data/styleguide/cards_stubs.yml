@@ -47,6 +47,22 @@ cards:
     :strapline: "Just a little article about the many ways to say hello"
 
   -
+    :styleguide_title: "Article Card"
+    :slug: "#"
+    :title: "The world's best housekeeper"
+    :style: "mini"
+    :image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
+    :icon: "housekeeping"
+
+  -
+    :styleguide_title: "Quote Card"
+    :slug: "#"
+    :title: "See your breakfast on the big screen - submit your Ulster fry film!"
+    :context: "Thorntree"
+    :name: "Shadyguy17"
+    :avatar: "http://assets.staticlp.com/assets/stubs/article.jpg"
+
+  -
     :styleguide_title: "Blog Card"
     :slug: "#"
     :title: "Hello"

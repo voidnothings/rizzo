@@ -35,7 +35,7 @@ define ['jquery', 'lib/utils/page_state'], ($, PageState)->
         signOutUrl: "https://secure.#{baseDomain}/sign-in/logout"
 
     getNewStatusUrl: ->
-      if /https?:\/\/(www\.|[a-zA-Z-.]*community\.)?lonelyplanet\.com/.test(@getUrl()) then "/thorntree/users/status" else "/users/status"
+      "//www.lonelyplanet.com/thorntree/users/status"
 
     getUserOptions: ->
       [

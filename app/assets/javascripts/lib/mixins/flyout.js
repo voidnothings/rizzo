@@ -4,9 +4,10 @@ define([ "jquery" ], function($) {
 
   var asFlyout = function(args) {
     var _this = this;
+    args || (args = {});
 
     this.$facetCount = $(args.facet);
-    this.$listener = $("#js-row--content" || args.$listener);
+    this.$listener = $(args.$listener || "#js-row--content");
 
     this.close = this.$listener.on(":toggleActive/click", function(event, data) {
       var target = event.target,

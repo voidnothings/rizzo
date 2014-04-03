@@ -215,6 +215,10 @@ module StyleguideHelper
               slug: "cards"
             },
             {
+              name: "Headers",
+              slug: "headers"
+            },
+            {
               name: "Page title",
               slug: "page-title"
             },
