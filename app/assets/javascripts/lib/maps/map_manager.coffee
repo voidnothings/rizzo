@@ -225,7 +225,13 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
 
     highlightPois = ({id, map}) ->
       poiElements.removeClass('nearby-pois__poi--highlighted')
-      map.find('.js-resizer').eq(0).click()
+
+      $resizer = map.find('.js-resizer')
+      resizeCheckbox = document.getElementById($resizer.attr('for'))
+
+      if resizeCheckbox and not resizeCheckbox.checked
+        $resizer.click()
+
       if id is mapManager.currentPOI
         mapManager.currentPOI = null
         map.removeClass('map--has-focus')
