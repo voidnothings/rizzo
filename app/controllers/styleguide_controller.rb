@@ -162,6 +162,10 @@ class StyleguideController < GlobalController
     render '/styleguide/js-components/konami'
   end
 
+  def template
+    render '/styleguide/js-components/template'
+  end
+
   def adUnits
     render '/styleguide/ui-components/ad-units'
   end

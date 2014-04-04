@@ -1,0 +1,32 @@
+= render 'styleguide/partials/shared'
+
+.card.styleguide-intro.copy--body.context--content
+  .clearfix
+    %h1.copy--h1 Template
+
+    %p.copy--feature A super lightweight and overtly simple templating util until we have enough reason to include all of Hogan.js within Rizzo.
+
+    %p
+      %em Note:
+      Given the simple nature of this util, it will only work one level deep within the given object and has no looping or conditional logic whatsoever.
+
+.styleguide-block.styleguide-block__description.card.copy--body
+
+  %h2.copy--h2.styleguide-block__heading
+    Usage
+
+  %pre.styleguide.copy--body.language-javascript
+    %code
+      = preserve do
+        :plain
+          require([ "public/assets/javascripts/lib/utils/template" ], function(Template) {
+            var obj = { foo: "one", bar: "two", baz: "three" },
+                template = "{{foo}} - {{bar}}, {{baz}}",
+                rendered;
+
+            // Where the magic happens...
+            rendered = Template.render(template, obj);
+            // rendered is now "one - two, three"
+
+            $(".js-rendered-template").html(rendered);
+          });

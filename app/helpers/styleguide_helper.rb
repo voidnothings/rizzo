@@ -118,6 +118,10 @@ module StyleguideHelper
             {
               name: "Lightbox",
               slug: "lightbox"
+            },
+            {
+              name: "Template",
+              slug: "template"
             }
           ]
         }
