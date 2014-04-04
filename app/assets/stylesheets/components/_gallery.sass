@@ -238,7 +238,6 @@ $slide-width: 1000px
   top: 50%
   transition: left 0.2s, right 0.2s, opacity 0.1s
   white-space: nowrap
-  width: 100px
   z-index: 10
   &:hover
     text-decoration: none
@@ -253,8 +252,9 @@ $slide-width: 1000px
   width: 35px
 
 .gallery__previous
-  left: -50px
   border-radius: 0 50px 50px 0
+  left: -50px
+  width: 100px
   .at-beginning &
     opacity: 0
     pointer-events: none
@@ -265,8 +265,9 @@ $slide-width: 1000px
     left: 0
 
 .gallery__next
-  right: -50px
   border-radius: 50px 0 0 50px
+  right: -70px
+  width: 120px
   .at-end &
     opacity: 0
     pointer-events: none
