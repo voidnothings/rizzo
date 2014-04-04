@@ -75,6 +75,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/js-components/image-helper'             => 'styleguide#image_helper'
   get 'styleguide/js-components/lightbox'                 => 'styleguide#lightbox'
   get 'styleguide/js-components/konami'                   => 'styleguide#konami'
+  get 'styleguide/js-components/template'                 => 'styleguide#template'
 
   get 'styleguide/css-utilities/utility-classes'          => 'styleguide#utilityClasses'
   get 'styleguide/css-utilities/legacy'                   => 'styleguide#legacy'
