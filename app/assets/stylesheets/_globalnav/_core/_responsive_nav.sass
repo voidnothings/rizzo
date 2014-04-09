@@ -2,7 +2,7 @@ $responsive-nav-width: 240px
 
 // Create a page wrapper so that we don't show a scrollbar
 .wrapper
-  +backface-visibility()
+  backface-visibility: hidden
   position: relative
   overflow: hidden
   width: 100%
@@ -10,15 +10,15 @@ $responsive-nav-width: 240px
 // The container for our off-screen navigation
 .nav-container
   +hardware-acceleration()
-  +backface-visibility()
+  backface-visibility: hidden
   @extend %clearfix
   width: 100%
   background: $lpblue
   overflow: visible
   height: 55px
   .responsive &
-    +box-shadow(16, 4, 20, -6, rgba(0, 0, 0, 0.2), true)
     @extend %transition--nav
+    box-shadow: 16px 4px 20px -6px rgba(0, 0, 0, 0.2) inset
     position: absolute
     overflow: hidden
     top: 0
@@ -61,7 +61,7 @@ $responsive-nav-width: 240px
     color: white
     display: block
     top: 10px
-    right: 10px
+    right: 5%
     width: 35px
     height: 35px
     position: absolute
@@ -74,11 +74,31 @@ $responsive-nav-width: 240px
 
 // On click..
 // Move the responsive nav onto the screen
-.nav--primary__trigger,
-.m-hidden-menu,
-.row--content,
-.logo--header,
-.wrap--footer
-  #nav--primary__trigger:checked ~ &,
-  .show-nav &
+.show-nav .nav--primary__trigger,
+.show-nav .m-hidden-menu,
+.show-nav .row--content,
+.show-nav .logo--header,
+.show-nav .wrap--footer
+  +transform(translateX(-$responsive-nav-width))
+
+#nav--primary__trigger
+  &:checked + .nav--primary__trigger,
+  &:checked ~ .m-hidden-menu,
+  &:checked ~ .row--content,
+  &:checked ~ .logo--header,
+  &:checked ~ .wrap--footer
     +transform(translateX(-$responsive-nav-width))
+
+.wv--nav--inline
+  .responsive &
+    display: block
+    > .nav__item
+      display: block
+    +respond-to(wide-view)
+      display: inline-block
+      > .nav__item
+        vertical-align: top
+        display: inline-block
+    .ie7 &
+      .nav__item
+        float: left

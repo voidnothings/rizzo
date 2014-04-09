@@ -8,7 +8,10 @@ define [required], ($)->
       el: '#js-row--content'
 
     constructor: (args) ->
-      @config = $.extend({}, defaults, args)
+      @config = defaults
+      for prop of args
+        @config[prop] = args[prop]
+
       @$listener = $(@config.el)
       @listen() unless @$listener.length is 0
 

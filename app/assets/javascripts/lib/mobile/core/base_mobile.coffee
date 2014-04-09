@@ -3,17 +3,11 @@ define ['jsmin', 'lib/mobile/core/authenticator_mobile','lib/mobile/core/shoppin
   class Base
 
     constructor: (args={})->
-      @authenticateUser()
       @showUserBasket()
       @initialiseSelectGroupManager()
       @addNavTracking()
       @scrollPerf() unless window.lp.touch is true
       new ToggleActive
-
-    authenticateUser: ->
-      @auth = new Authenticator()
-      AssetFetch.get "https://secure.lonelyplanet.com/sign-in/status", () =>
-        @auth.update()
 
     showUserBasket: ->
       shopCart = new ShoppingCart()

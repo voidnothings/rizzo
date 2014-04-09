@@ -4,7 +4,9 @@ define [required, 'lib/extends/events'], ($, EventEmitter) ->
 
   class ProximityLoader
 
-    $.extend(@prototype, EventEmitter)
+    for prop of EventEmitter
+      unless @prototype[prop]
+        @prototype[prop] = EventEmitter[prop]
 
     defaults =
       el: '#js-row--content'
@@ -16,7 +18,9 @@ define [required, 'lib/extends/events'], ($, EventEmitter) ->
 
     constructor: (args) ->
 
-      @config = $.extend({}, defaults, args)
+      @config = defaults
+      for prop of args
+        @config[prop] = args[prop]
 
       @$el = $(@config.el)
 
