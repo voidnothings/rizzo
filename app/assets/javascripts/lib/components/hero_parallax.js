@@ -1,34 +1,24 @@
 
-define([ "jquery" ], function($) {
-
+define([ "jquery", "lib/utils/viewport_helper" ], function($, feature) {
   "use strict";
 
   var _pageYOffset,
       started = false,
-      speed = 15;
+      speed = 15,
+      els;
 
-  var HeroParallax = function (args) {
-    this.$els = $('.js-bg-parallax');
-    this.init();
+  var HeroParallax = function ( args ) {
+    this.$els = args.els;
+    $(window).bind('scroll', $.proxy(this._onScroll, this));
   };
 
-  HeroParallax.prototype.init = function () {
-    var scroll_ok;
-    scroll_ok = true;
-    setInterval(function() {
-      return scroll_ok = true;
-    }, 33);
-
-    $(window).bind('scroll', $.proxy(this._onScroll, this));
-  }
-
-  HeroParallax.prototype._updateBg = function (i, el) {
+  HeroParallax.prototype._updateBg = function ( i, el ) {
     el = $(el);
-    if (this._isElementInViewport(el)) {
+    if (el.isInViewport()) {
       var percent = 30 + (((el.offset().top - _pageYOffset) * speed) / el.height());
       el.css('backgroundPosition', "center " + percent + "%");
     }
-  }
+  };
 
   HeroParallax.prototype._update = function () {
     requestAnimationFrame($.proxy(this._update, this));
@@ -48,23 +38,14 @@ define([ "jquery" ], function($) {
     this._startrAF();
   };
 
-  HeroParallax.prototype._isElementInViewport = function($el) {
-    var bounds, viewport, win;
+  if ( window.lp.supports.requestAnimationFrame ){
+    els = $(".js-bg-parallax");
+    if (els.length) {
+      new HeroParallax({
+        els: els
+      });
+    }
+  }
 
-    win = $(window);
-    viewport = {
-      top: win.scrollTop(),
-      left: win.scrollLeft()
-    };
 
-    viewport.right = viewport.left + win.width();
-    viewport.bottom = viewport.top + win.height();
-    bounds = $el.offset();
-    bounds.right = bounds.left + $el.outerWidth();
-    bounds.bottom = bounds.top + $el.outerHeight();
-    return !(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom);
-
-  };
-
-  return HeroParallax;
 });
