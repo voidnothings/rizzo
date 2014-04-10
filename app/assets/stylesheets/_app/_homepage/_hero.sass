@@ -150,7 +150,7 @@
   display: none
   +respond-to(medium-view)
     display: block
-  
+
   .autocomplete__active &
     +transform(translateY(100px))
 
@@ -255,7 +255,6 @@
     +respond-to(medium-view)
       display: none
 
-
 .hero__author__story
   +box-sizing()
   position: absolute
@@ -313,6 +312,10 @@
 @if $is-ie == true
   .promo--win:after
     background: none
+
+.hero__author__copy--body__link
+  &:hover
+    color: inherit
 
 .hero__product__text
   color: white
