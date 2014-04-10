@@ -5,7 +5,7 @@
 
       - unless line == ""
 
-        - colour_pair = line.gsub(" !default", "").gsub(" ", "").split(':')
+        - colour_pair = line.gsub(" !default", "").strip().split(':')
         - colour_value = get_colour_value(colour_pair[1], "_colour_palette")
 
         - if colour_value

@@ -384,7 +384,7 @@ module StyleguideHelper
   end
 
   def extract_variable(line)
-    matches = line.match(/(\$[0-9a-zA-Z]+)\s*(!default)?/)
+    matches = line.match(/(\$[0-9a-zA-Z_-]+)\s*(!default)?/)
     matches ? matches[1] : matches
   end
 
