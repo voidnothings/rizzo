@@ -6,7 +6,7 @@
 // Always use this mixin to apply breakpoints so we can support legacy browsers.
 //
 // You can pass in named arguments or integers.
-// Named argument options are: medium-view (600px) and wide-view(1025px).
+// Named argument options are: narrow-view (360px), medium-view (600px) and wide-view(1025px).
 //
 // Example of use: http://sassmeister.com/gist/8047633.
 //
@@ -17,7 +17,9 @@
   // We have to set up a blank variable here or sass errors out
   $breakpoint: ''
 
-  @if $screen-width == medium-view
+  @if $screen-width == narrow-view
+    $breakpoint: 360
+  @else if $screen-width == medium-view
     $breakpoint: 600
   @else if $screen-width == wide-view
     $breakpoint: 980
