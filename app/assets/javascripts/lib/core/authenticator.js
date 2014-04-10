@@ -31,7 +31,8 @@ define([ "jquery", "lib/utils/template" ], function($, Template) {
 
     $.ajax({
       url: this.statusUrl,
-      dataType: "json",
+      dataType: "jsonp",
+      jsonpCallback: "lpUserStatusCallback",
       error: this._updateStatus,
       success: this._updateStatus
     });

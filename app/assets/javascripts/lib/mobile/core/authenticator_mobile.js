@@ -30,7 +30,9 @@ define([ "jsmin", "lib/utils/asset_fetch", "lib/utils/template" ], function($, A
       this.$template.innerHTML = this.templateContainer.innerHTML;
     }
 
-    AssetFetch.get(this.statusUrl, this._updateStatus);
+    window.lpUserStatusCallback = this._updateStatus
+
+    AssetFetch.get(this.statusUrl+"?callback=lpUserStatusCallback");
   };
 
   // -------------------------------------------------------------------------
