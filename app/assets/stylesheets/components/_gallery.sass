@@ -126,6 +126,13 @@ $slide-width: 1000px
     display: inline-block
     vertical-align: middle
 
+.gallery__breadcrumb-item
+  color: $body-copy
+  &:after
+    content: " / "
+  &:last-child:after
+    content: ""
+
 .gallery__footer
   +slide-width()
   background: white
@@ -158,6 +165,9 @@ $slide-width: 1000px
   color: $darkblue
   font-weight: bold
   text-transform: uppercase
+
+.gallery__poi
+  display: none
 
 .gallery__poi-title
   +font-size(12)
