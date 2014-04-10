@@ -366,6 +366,7 @@ module StyleguideHelper
     colours.delete_if(&:empty?)
     groups = []
     counter = -1
+
     colours.each do |section|
       if section[0..1] == "//"
         groups.push({title: section})
@@ -375,6 +376,28 @@ module StyleguideHelper
       end
     end
     groups
+  end
+
+  def extract_colour(contents, variable)
+    matches = contents.match(/(#{Regexp.escape(variable)})\s*:\s*(#[a-fA-F0-9]{3,6})\s*(!default)?/)
+    matches ? matches[2] : matches
+  end
+
+  def extract_variable(line)
+    matches = line.match(/(\$[0-9a-zA-Z]+)\s*(!default)?/)
+    matches ? matches[1] : matches
+  end
+
+  def get_colour_value(value, ref)
+    @ref_colours ||= File.read(File.expand_path("../../assets/stylesheets/sass/variables/#{ref}.sass", __FILE__))
+
+    variable = extract_variable(value)
+
+    if variable
+      value = extract_colour(@ref_colours, variable)
+    end
+
+    value
   end
 
   def get_luminance(hex)
