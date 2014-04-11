@@ -1,8 +1,9 @@
 
 define([ "jquery" ], function($, feature) {
 
-  $.fn.isInViewport = function() {
-    var bounds, viewport, win;
+  return function(el) {
+    var bounds, viewport, win
+        $el = $(el);
 
     win = $(window);
     viewport = {
@@ -12,9 +13,9 @@ define([ "jquery" ], function($, feature) {
 
     viewport.right = viewport.left + win.width();
     viewport.bottom = viewport.top + win.height();
-    bounds = this.offset();
-    bounds.right = bounds.left + this.outerWidth();
-    bounds.bottom = bounds.top + this.outerHeight();
+    bounds = $el.offset();
+    bounds.right = bounds.left + $el.outerWidth();
+    bounds.bottom = bounds.top + $el.outerHeight();
     return !(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom);
   };
 
