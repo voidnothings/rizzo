@@ -1,6 +1,4 @@
 - price_parts = properties[:price].to_s.split(".")
-- price_integer = price_parts.first
-- price_decimal = price_parts.length == 2 ? ".#{price_parts.last}" : ""
 
 .tag.tag--price{ id: properties[:id] ? properties[:id] : nil }
   .tag--price__inner
@@ -10,9 +8,9 @@
         %span.tag--price__currency.js-currency<
           = properties[:currency]
         %span.js-price<
-          = price_integer
+          = price_parts.first
           %span.tag--price__decimal<
-            = price_decimal
+            = price_parts.length == 2 ? ".#{price_parts.last}" : ""
 
       - if properties[:scope]
         %span.tag--price__scope.js-scope<
