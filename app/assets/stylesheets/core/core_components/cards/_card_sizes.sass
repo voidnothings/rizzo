@@ -36,3 +36,13 @@
   float: none
   width: auto
   clear: left
+
+.responsive
+  .card--list__horizontal
+    .card--single
+      width: 100%
+      margin: 10px 0px
+      +respond-to(medium-view)
+        margin-left: 10px
+        width: $card-width
+

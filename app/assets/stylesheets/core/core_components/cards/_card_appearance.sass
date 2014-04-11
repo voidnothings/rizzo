@@ -59,6 +59,11 @@
 
   .card--standard-image &
     +font-size(19)
+    .card--list__horizontal &
+      .responsive &
+        +font-size(19)
+        +respond-to(medium-view)
+          +font-size(19)
 
   .card--full-image &
     margin-bottom: 0
@@ -73,6 +78,13 @@
 
   .card--quote &
     height: 115px
+
+  .card--list__horizontal &
+    .responsive &
+      +font-size(19)
+      +respond-to(medium-view)
+        +font-size(22)
+
 
 .hero__call-to-action
   bottom: 0
@@ -104,6 +116,12 @@
 .card__description
   +font-size(13)
   line-height: 14px
+  .card--list__horizontal &
+    .responsive &
+      display: none
+      +respond-to(medium-view)
+        display: initial
+
 
 .card__list
   +font-size(13)
@@ -144,6 +162,12 @@
   z-index: 3
   .homepage &
     display: none
+  .card--list__horizontal &
+    .responsive &
+      display: none
+      +respond-to(medium-view)
+        display: initial
+
 
   .btn
     +font-size(13)

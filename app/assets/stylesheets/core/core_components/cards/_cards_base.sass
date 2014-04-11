@@ -36,10 +36,15 @@
     left: 0
     top: 0
     width: 100%
-  .responsive &
-    height: $mobile-standard-card-image-height
-    +respond-to(medium-view)
-      height: $standard-card-image-height
+  .card--list__horizontal &
+    .responsive &
+      float: left
+      height: 140px
+      width: 145px
+      +respond-to(medium-view)
+        height: $standard-card-image-height
+        float: none
+        width: auto
 
   .card__image
     height: 100%
@@ -60,6 +65,15 @@
 
   .card--small-image &
     height: $small-card-image-height
+    .card--list__horizontal &
+      .responsive &
+        float: left
+        height: 140px
+        width: 145px
+        +respond-to(medium-view)
+          height: $small-card-image-height
+          width: auto
+
 
   .card--full-image &
     height: $card-grid-height
@@ -98,6 +112,11 @@
   margin-bottom: $card-content-vertical-padding
   overflow: hidden
   padding: $card-content-vertical-padding $card-content-horizontal-padding 0 $card-content-horizontal-padding
+  .card--list__horizontal &
+    .responsive &
+      height: 100%
+      +respond-to(medium-view)
+        height: ($card-grid-height - $standard-card-image-height - (2 * $card-content-vertical-padding) )
 
   .card--no-image &
     height: $card-grid-height - $default-card-top-padding - $card-content-vertical-padding
@@ -105,10 +124,15 @@
 
   .card--small-image &
     height: ($card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
-    .responsive &
-      height: ($mobile-card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
-      +respond-to(medium-view)
-        height: ($card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
+    .card--list__horizontal &
+      .responsive &
+        height: 100%
+        +respond-to(medium-view)
+          height: ($card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
+    // .responsive &
+    //   height: ($mobile-card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
+    //   +respond-to(medium-view)
+    //     height: ($card-grid-height - $small-card-image-height - (2 * $card-content-vertical-padding) )
 
   .card--full-image &
     @extend %transition--base
@@ -159,10 +183,16 @@
 .card--extended-content,
 .card--extended-content--half
   height: $card-grid-height
-  .responsive &
-    height: $mobile-card-grid-height
-    +respond-to(medium-view)
-      height: $card-grid-height
+  .card--list__horizontal &
+    .responsive &
+      height: 140px
+      +respond-to(medium-view)
+        height: $card-grid-height
+  // .responsive &
+  //   height: $mobile-card-grid-height
+  //   +respond-to(medium-view)
+  //     height: $card-grid-height
+
 
   .card__content
     backface-visibility: hidden
@@ -184,6 +214,18 @@
       left: 0
       right: 0
       bottom: 0
+
+    .card--list__horizontal &
+      .responsive &
+        position: initial
+        padding: 5px 5px 0 10px
+        &:after
+          background: none
+        +respond-to(medium-view)
+          position: absolute
+          padding: $card-content-vertical-padding $card-content-horizontal-padding 0 $card-content-horizontal-padding
+
+
 
   &:hover
     .card__content
