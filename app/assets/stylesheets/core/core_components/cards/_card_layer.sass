@@ -1,0 +1,46 @@
+// -----------------------------------------------------------------------------
+//
+//  Card page module
+//
+// -----------------------------------------------------------------------------
+
+.card--layer
+  width: 600px
+  margin: 50px auto
+
+.card--layer__content
+  @extend %clearfix
+  @extend %rounded-corners
+  padding: 25px
+  position: relative
+  padding: 25px 25px 0px 25px
+
+  .copy--h1
+    line-height: 1.1em
+    margin: 0 0 10px 0
+    width: 90%
+  .sharing
+    clear: left
+
+  .copy--feature
+    +font-size(20)
+
+  .related
+    width: 650px
+    .related_articles, .related_guides
+      margin: 0px
+
+.card--layer__close
+  position: absolute
+  width: 30px
+  height: 30px
+  top: 20px
+  right: 20px
+
+.card--layer__header
+  border-bottom: 1px solid $body-background
+  margin-bottom: 20px
+  padding-bottom: 20px
+
+.card--layer__article
+  padding-bottom: 10px
