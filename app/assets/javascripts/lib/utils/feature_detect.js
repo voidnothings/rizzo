@@ -1,14 +1,16 @@
-// # ------------------------------------------------------------------------------
-// #
-// # Bucket Class for all our feature detection
-// #
-// # To add a new feature, extend the features object.
-// # The key will become the class added to the <html>.
-// # The corresponding function should return true or false.
-// #
-// # ------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
+//
+// Bucket Class for all our feature detection
+//
+// To add a new feature, extend the features object.
+// The key will become the class added to the <html>.
+// The corresponding function should return true or false.
+//
+// ------------------------------------------------------------------------------
 (function() {
-  require(["jquery"], function($) {
+  "use strict";
+
+  require( [ "jquery" ], function($) {
     var camelFeature, feature, features;
 
     features = {
@@ -33,13 +35,13 @@
         document.body.removeChild(el);
         return has3d !== undefined && has3d.length > 0 && has3d !== "none";
       },
-      "cssmasks": function() {
+      cssmasks: function() {
         return document.body.style["-webkit-mask-repeat"] !== void 0;
       },
-      "cssfilters": function() {
+      cssfilters: function() {
         return document.body.style.webkitFilter !== void 0 && document.body.style.filter !== void 0;
       },
-      "placeholder": function() {
+      placeholder: function() {
         return "placeholder" in document.createElement("input");
       },
       "pointer-events": function() {
@@ -48,7 +50,7 @@
         element.style.cssText = "pointer-events: auto";
         return element.style.pointerEvents === "auto";
       },
-      "transitionend": function() {
+      transitionend: function() {
         var element, transition, transitions;
         transitions = {
           webkitTransition: "webkitTransitionEnd",
@@ -64,7 +66,7 @@
         }
         return false;
       },
-      "touch": function() {
+      touch: function() {
         var $window, firstTouch;
         $window = $(window);
         $window.on("touchstart", firstTouch = function() {
@@ -72,7 +74,7 @@
             window.lp.supports.touch = true;
           } else {
             $(document).on(":featureDetect/available", function() {
-              return window.lp.supports.touch = true;
+              window.lp.supports.touch = true;
             });
           }
           $(document).trigger(":featureDetect/supportsTouch");
@@ -80,12 +82,11 @@
         });
         return "ontouchstart" in window && "maybe";
       },
-      "requestAnimationFrame": function(){
+      requestAnimationFrame: function() {
 
-        var _requestAnimationFrame = function(win, t) {
-          return win["webkitR" + t] || win["r" + t] || win["mozR" + t]
-                  || win["msR" + t] || false
-        }(window, "equestAnimationFrame");
+        var _requestAnimationFrame = (function( win, t ) {
+          return win["webkitR" + t] || win["r" + t] || win["mozR" + t] || win["msR" + t] || false;
+        }(window, "equestAnimationFrame"));
 
         return _requestAnimationFrame;
       }
@@ -105,8 +106,8 @@
       $(document).trigger(":featureDetect/available");
     }
 
-    return true
+    return true;
 
   });
 
-}).call(this)
+}).call(this);
