@@ -7,7 +7,9 @@
   right: 8px
   z-index: 5
   top: -3px
-
+	
+.card--page .card__tags
+  top: -4px
 
 // -----------------------------------------------------------------------------
 // Base classes for hanging tags used on cards
@@ -81,6 +83,9 @@
 .tag--price
   +tag-curl-top($yella)
   min-width: 50px
+	
+.card--page .tag--price
+  +tag-curl-top-large($yella)
 
 .tag--price__inner
   @extend %tag--top
@@ -91,15 +96,19 @@
   background-color: $yella
   padding: 4px 4px 4px 2px
   line-height: 15px
+	
+.card--page .tag--price__values
+  padding: 6px 8px
+  line-height: 20px
 
 .tag--price__icon
   width: 100%
-  height: 22px
+  height: 20px
   text-align: center
   &:before
     display: inline-block
-    width: 22px
-    height: 22px
+    width: 18px
+    height: 18px
 
 .tag--price__amount
   +font-size(20)
@@ -110,14 +119,13 @@
   line-height: 0
   position: relative
   top: -0.35em
-  left: 2px
+  left: 4px
   word-spacing: -2px
 
 .tag--price__decimal
-  +font-size(14)
+  +font-size(12)
   position: relative
-  top: -.25em
-  left: -.25em
+  top: -.4em
 
 .tag--price__retail
   +font-size(12)

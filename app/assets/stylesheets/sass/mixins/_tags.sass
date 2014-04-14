@@ -17,6 +17,22 @@
     left: -4px
     top: 0
     width: 4px
+		
+@mixin tag-curl-top-large($background: blue)
+  &:before
+    background-color: $background
+    height: 3px
+    left: -2px
+    top: 0
+    width: 2px
+  &:after
+    background-color: desaturate(darken($background, 25%), 15%)
+    border-top-left-radius: 4px
+    border-top-right-radius: 4px
+    height: 4px
+    left: -7px
+    top: 0
+    width: 7px
 
 @mixin tag-curl-left($background: blue)
   &:before
