@@ -23,6 +23,8 @@
     $breakpoint: 600
   @else if $screen-width == wide-view
     $breakpoint: 980
+  @else if $screen-width == larger-than-ipad
+    $breakpoint: 1025
   @else
     $breakpoint: $screen-width
 
