@@ -45,7 +45,7 @@ define([ "jquery", "lib/utils/viewport_helper" ], function($, isInViewport) {
       });
     }
   }
-  
+
   return HeroParallax;
 
 });
