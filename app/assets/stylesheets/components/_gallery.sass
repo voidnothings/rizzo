@@ -200,10 +200,10 @@ $slide-width: 1000px
   +respond-to(768)
     width: 100%
 
-  @for $i from 1 through length($poi-types)
-    $type: nth($poi-types, $i)
+  @for $i from 1 through length($poi-names)
+    $type: nth($poi-names, $i)
     &.gallery__quote--#{$type}
-      border-color: $section--#{$type}
+      border-color: nth($poi-colors, $i)
 
 .gallery__poi-more
   color: $body-copy
