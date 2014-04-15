@@ -31,6 +31,19 @@
       padding-left: 0
       &:before
         content: ''
+    .responsive &
+      display: none
+      &.current
+        display: inline-block
+        padding-left: 0
+        &:before
+          display: none
+      +respond-to(medium-view)
+        display: inline-block
+        &.current
+          padding-left: 0.65em
+          &:before
+            display: block
 
 // Qualified selector because not all breadcrumbs are links
 // with slugs and should not be underlined
