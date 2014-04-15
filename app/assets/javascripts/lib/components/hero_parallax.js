@@ -1,4 +1,3 @@
-
 define([ "jquery", "lib/utils/viewport_helper" ], function($, isInViewport) {
   "use strict";
 
@@ -46,5 +45,7 @@ define([ "jquery", "lib/utils/viewport_helper" ], function($, isInViewport) {
       });
     }
   }
+  
+  return HeroParallax;
 
 });
