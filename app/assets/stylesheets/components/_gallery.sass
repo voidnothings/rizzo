@@ -199,28 +199,11 @@ $slide-width: 1000px
     width: $slide-width-phone - 50px
   +respond-to(768)
     width: 100%
-  &.gallery__quote--sight
-    border-color: $section--sight
-  &.gallery__quote--activity
-    border-color: $section--activity
-  &.gallery__quote--tour
-    border-color: $section--tour
-  &.gallery__quote--hotel
-    border-color: $section--hotel
-  &.gallery__quote--restaurant
-    border-color: $section--restaurant
-  &.gallery__quote--shopping
-    border-color: $section--shopping
-  &.gallery__quote--festival
-    border-color: $section--festival
-  &.gallery__quote--entertainment
-    border-color: $section--entertainment
-  &.gallery__quote--article
-    border-color: $section--article
-  &.gallery__quote--need
-    border-color: $section--need-to-know
-  &.gallery__quote--transport
-    border-color: $section--transport
+
+  @for $i from 1 through length($poi-types)
+    $type: nth($poi-types, $i)
+    &.gallery__quote--#{$type}
+      border-color: $section--#{$type}
 
 .gallery__poi-more
   color: $body-copy
