@@ -1,5 +1,5 @@
 // http://www.thecssninja.com/javascript/follow-up-60fps-scroll
-define([ "jquery", "lib/utils/feature_detect" ], function($) {
+define([ "jquery", "lib/utils/debounce", "lib/utils/feature_detect" ], function($, debounce) {
   "use strict";
 
   var ScrollPerf = function ScrollPerf() {
@@ -7,6 +7,7 @@ define([ "jquery", "lib/utils/feature_detect" ], function($) {
     if (!this.cover) {
       return;
     }
+    this.scollCallback = debounce(this._scrollEnd.bind(this), 100);
     this.scrolling = false;
     this.clicked = false;
     this.position = [ 0, 0 ];
@@ -27,20 +28,24 @@ define([ "jquery", "lib/utils/feature_detect" ], function($) {
 
   ScrollPerf.prototype._onScroll = function onScroll() {
     if (!this.scrolling) {
-      this.cover.style.pointerEvents = "auto";
-      this.scrolling = true;
+      this._scrollStart();
     }
 
-    clearTimeout(this.timer);
+    this.scollCallback();
+  };
 
-    this.timer = setTimeout(function() {
-      this.scrolling = false;
-      this.cover.style.pointerEvents = "none";
-      if (this.clicked) {
-        this._proxyClick(this.position);
-        this.clicked = false;
-      }
-    }.bind(this), 100);
+  ScrollPerf.prototype._scrollStart = function scrollStart() {
+    this.cover.style.pointerEvents = "auto";
+    this.scrolling = true;
+  };
+
+  ScrollPerf.prototype._scrollEnd = function scrollEnd() {
+    this.scrolling = false;
+    this.cover.style.pointerEvents = "none";
+    if (this.clicked) {
+      this._proxyClick(this.position);
+      this.clicked = false;
+    }
   };
 
   ScrollPerf.prototype._onClick = function onClick(event) {

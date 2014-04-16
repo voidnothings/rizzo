@@ -142,7 +142,7 @@ $slide-width: 1000px
 .gallery__footer
   +slide-width()
   background: white
-  height: $footer-height
+  min-height: $footer-height
   overflow: hidden
 
 .gallery__description
@@ -151,12 +151,12 @@ $slide-width: 1000px
   border-radius: 0 0 0 4px
   box-sizing: border-box
   float: left
-  height: $footer-height
-  padding: 20px
+  min-height: $footer-height
+  padding: 20px 20px 0 20px
   position: relative
 
 .gallery__social .sharing
-  padding: 10px 0 40px 0
+  padding: 10px 0 20px 0
   border-top: none
   .split--right
     display: none
@@ -167,24 +167,26 @@ $slide-width: 1000px
     top: 0
 
 .gallery__subject-leadin
-  +font-size(12)
+  +font-size(14)
   color: $darkblue
   font-weight: bold
+  line-height: 1.5
   text-transform: uppercase
 
 .gallery__poi
-  display: none
+  margin-bottom: 10px
 
 .gallery__poi-title
-  +font-size(12)
+  +font-size(16)
+  color: $body-copy
   font-weight: bold
   line-height: 2
-  color: $body-copy
   &:before
-    width: 20px
-    height: 24px
     display: inline-block
+    height: 24px
+    margin-right: 2px
     vertical-align: middle
+    width: 20px
 
 .gallery__quote
   +font-size(14)
@@ -192,9 +194,21 @@ $slide-width: 1000px
   border-left-width: 2px
   line-height: 1.2
   margin-left: 9px
-  padding: 5px 0 5px 15px
-  &.gallery__quote--sight
-    border-color: $red
+  padding: 5px 10px 5px 15px
+  +respond-to(480)
+    width: $slide-width-phone - 50px
+  +respond-to(768)
+    width: 100%
+
+  @for $i from 1 through length($poi-names)
+    $type: nth($poi-names, $i)
+    &.gallery__quote--#{$type}
+      border-color: nth($poi-colors, $i)
+
+.gallery__poi-more
+  color: $body-copy
+  font-style: italic
+  font-weight: bold
 
 .gallery__mpu
   background: white

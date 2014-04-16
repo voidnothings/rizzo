@@ -49,15 +49,11 @@ define ["jquery", "lib/forms/input_validator"], ($, InputValidator) ->
     _usernameListen: ->
       validator = @input.data('rules').match(/(username_check\(.*?\))/)[1]
       inputValidator = new InputValidator(@input, @label, validator)
-      timer = false
       validator_rules = inputValidator.get_validation_rules()
 
-      @input.on "keyup", (e) =>
-        clearTimeout(timer) if timer
-
-        timer = setTimeout =>
-          @_usernameCheck(validator_rules[2])
-        , 250
+      @input.on "keyup", debounce( =>
+        @_usernameCheck(validator_rules[2])
+      , 250)
 
     _clearValidation: (extra_classes, removeUsernameError) ->
       @inputParent.removeClass "field__input--error icon--cross--after #{extra_classes}"
