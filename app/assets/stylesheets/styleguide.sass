@@ -8,13 +8,13 @@
   padding: 20px
 
 pre[class*="language-"]
-  box-sizing: border-box
-  padding: 1em
-  overflow: auto
-  max-height: 200px
   background: $body-background-offset
   border-top: 1px solid #DEE2E6
   border-bottom: 1px solid #DEE2E6
+  box-sizing: border-box
+  max-height: 200px
+  overflow: auto
+  padding: 1em
 
   .tag
     +font-size(16)
@@ -31,6 +31,12 @@ pre.styleguide.is-open
   max-height: none
   &:after
     background: none
+
+*:not(pre) > code[class*="language-"]
+  background: $body-background-offset
+  border: 1px solid #DEE2E6
+  font-size: 1rem
+  padding: .1em .3em
 
 .snippet-expand
   width: 100%
