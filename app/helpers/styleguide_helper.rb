@@ -116,6 +116,10 @@ module StyleguideHelper
               path: "konami"
             },
             {
+              name: "Link To",
+              slug: "link-to"
+            },
+            {
               name: "Lightbox",
               slug: "lightbox"
             },
