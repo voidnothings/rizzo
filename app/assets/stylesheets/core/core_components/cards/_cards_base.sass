@@ -43,16 +43,15 @@
   .card--mini &
     height: 192px
   .card__image
-    height: 100%
+    width: auto
+    min-height: 100%
+    max-height: 100%
     &.is-portrait
-      height: auto
+      min-width: 100%
       max-width: 100%
-    .responsive &
-      width: 100%
       height: auto
-      +respond-to(medium-view)
-        height: 100%
-        width: auto
+      min-height: 0
+      max-height: none
 
   // darken the image when card is hovered over
   .card:hover &
