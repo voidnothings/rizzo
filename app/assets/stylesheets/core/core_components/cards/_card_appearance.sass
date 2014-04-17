@@ -81,9 +81,6 @@
     text-align: center
     color: white
 
-  .card--quote &
-    height: 115px
-
 .hero__call-to-action
   bottom: 0
   position: absolute
@@ -324,19 +321,30 @@
 // Quote cards
 // -----------------------------------------------------------------------------
 
-.card__source
-  +font-size(16)
-  font-style: italic
-  word-spacing: 5px
-  color: #444
+.card--quote
 
-.card__avatar
-  +size(25px)
-  border-radius: 50%
-  display: inline-block
-  vertical-align: middle
+  .card__name
+    position: relative
+    height: 115px
+    overflow: hidden
+    &:after
+      @extend %empty-abs-generated-content
+      bottom: 0
+      right: 0
+      left: 0
+      height: 25px
+      background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.9))
 
-.card__username
-  font-weight: bold
-  font-style: normal
-  color: #333
+  .card__source
+    +font-size(14)
+    font-style: italic
+    white-space: nowrap
+
+  .card__avatar
+    +size(25px)
+    border-radius: 50%
+    vertical-align: middle
+
+  .card__username
+    font-weight: bold
+    font-style: normal
