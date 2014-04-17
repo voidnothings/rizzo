@@ -170,6 +170,10 @@ class StyleguideController < GlobalController
     render '/styleguide/ui-components/ad-units'
   end
 
+  def link_to
+    render '/styleguide/js-components/link-to'
+  end
+
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 end
