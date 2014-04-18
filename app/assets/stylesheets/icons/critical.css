@@ -49,6 +49,9 @@
 .icon--rss--before:before, .icon--rss--after:after,
 .icon--rss { background-image: url('png/rss.png'); background-repeat: no-repeat; }
 
+.icon--entertainment--before:before, .icon--entertainment--after:after,
+.icon--entertainment { background-image: url('png/subscribe.png'); background-repeat: no-repeat; }
+
 .icon--sa--before:before, .icon--sa--after:after,
 .icon--sa { background-image: url('png/sa.png'); background-repeat: no-repeat; }
 
