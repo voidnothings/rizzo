@@ -22,10 +22,10 @@ require ['jquery'], ($) ->
     'lib/utils/feature_detect'
   ], (SelectGroupManager, ScrollPerf, ToggleActive, Konami, Swipe) ->
 
-    new ScrollPerf
+    new ScrollPerf()
     new SelectGroupManager()
     new ToggleActive()
-    new Swipe
+    new Swipe()
     d = new Date()
     $('.input--datepicker').pickadate({
       min: [d.getFullYear(), (d.getMonth() + 1), d.getDate()]
