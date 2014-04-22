@@ -53,7 +53,7 @@ define(["jquery"], function($) {
       var target = swipe.getTarget(event.target);
       if (!target.length) return;
       event = event.originalEvent;
-			swipe.scrollTop = document.body.scrollTop;
+      swipe.scrollTop = document.body.scrollTop;
       swipe.startPoint = swipe.eventToPoint(event);
     };
 
@@ -78,7 +78,6 @@ define(["jquery"], function($) {
     swipe.gestureEnds = function(event) {
       var target = swipe.getTarget(event.target);
       if (!target.length) return;
-			console.log("what")
       var threshold = target.data("swipe-threshold") || 10;
 
       if (swipe.difference) {

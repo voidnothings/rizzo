@@ -126,6 +126,10 @@ module StyleguideHelper
             {
               name: "Template",
               slug: "template"
+            },
+            {
+              name: "Swipe",
+              slug: "swipe"
             }
           ]
         }
