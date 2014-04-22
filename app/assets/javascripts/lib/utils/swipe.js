@@ -28,7 +28,8 @@ define(["jquery"], function($) {
     };
 
     swipe.getTarget = function(element) {
-      return listener.find(element).closest(selector);
+      element = listener.find(element);
+      return element.is(selector)? element: element.closest(selector);
     };
 
     swipe.eventToPoint = function(event) {
@@ -49,11 +50,16 @@ define(["jquery"], function($) {
       };
     };
 
+    // only for ie
+    swipe.getScrollTop = function() {
+      return (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+    }
+
     swipe.gestureBegins = function(event) {
       var target = swipe.getTarget(event.target);
       if (!target.length) return;
       event = event.originalEvent;
-      swipe.scrollTop = document.body.scrollTop;
+      swipe.scrollTop = swipe.getScrollTop();
       swipe.startPoint = swipe.eventToPoint(event);
     };
 
@@ -71,11 +77,12 @@ define(["jquery"], function($) {
       if (Math.abs(swipe.difference.x) > Math.abs(swipe.difference.y)) {
         $window.on("touchmove", prevent);
       } else if (swipe.isPointerTouchEvent(event)) {
-        window.scrollTo(0, (-diff.y) + swipe.scrollTop);
+        window.scrollTo(0, (-swipe.difference.y) + swipe.scrollTop);
       }
     };
 
     swipe.gestureEnds = function(event) {
+      $window.off("touchmove", prevent);
       var target = swipe.getTarget(event.target);
       if (!target.length) return;
       var threshold = target.data("swipe-threshold") || 10;
@@ -89,15 +96,14 @@ define(["jquery"], function($) {
       }
 
       if (swipe.isPointerTouchEvent(event.originalEvent)) {
-        swipe.scrollTop = document.body.scrollTop;
+        swipe.scrollTop = swipe.getScrollTop();
       }
-      $window.off("touchmove", prevent);
+
       delete swipe.difference;
     };
 
-    listener.on("touchstart pointerdown MSPointerDown", swipe.gestureBegins);
-    listener.on("touchmove pointermove MSPointerMove", swipe.gestureMoves);
-    listener.on("touchend touchleave pointerend pointerleave MSPointerEnd MSPointerLeave", swipe.gestureEnds);
-    listener.find("selector").css("-ms-touch-action", "none");
+    listener.on("touchstart pointerdown MSPointerDown", selector, swipe.gestureBegins);
+    listener.on("touchmove pointermove MSPointerMove", selector, swipe.gestureMoves);
+    listener.on("touchend touchleave pointerout MSPointerOut", selector, swipe.gestureEnds);
   };
 });
