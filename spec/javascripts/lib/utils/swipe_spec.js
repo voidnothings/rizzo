@@ -37,12 +37,12 @@ require(["jquery", "public/assets/javascripts/lib/utils/swipe.js"], function($, 
 
     describe("pointer event test", function() {
       it("should return true if the pointer is a finger", function() {
-        var result = swipe.isPointerTouchEvent(pointerTouch);
+        var result = swipe._isPointerTouchEvent(pointerTouch);
         expect(result).toBe(true);
       });
 
       it("should return false if the pointer is a moose", function() {
-        var result = swipe.isPointerTouchEvent(pointerMouse);
+        var result = swipe._isPointerTouchEvent(pointerMouse);
 
         expect(result).toBe(false);
       });
@@ -50,12 +50,12 @@ require(["jquery", "public/assets/javascripts/lib/utils/swipe.js"], function($, 
 
     describe("w3c-style touch event test", function() {
       it("should return true for an object with targetTouches", function() {
-        var result = swipe.isW3CTouchEvent(w3cTouch);
+        var result = swipe._isW3CTouchEvent(w3cTouch);
         expect(result).toBe(true);
       });
 
       it("should return false for an object with a pointerEvent-style interface", function() {
-        var result = swipe.isW3CTouchEvent(pointerTouch);
+        var result = swipe._isW3CTouchEvent(pointerTouch);
         expect(result).toBe(false);
       });
     });
@@ -69,7 +69,7 @@ require(["jquery", "public/assets/javascripts/lib/utils/swipe.js"], function($, 
 
     describe("begins", function() {
       if("correctly sets up a startPoint from the beginning touch coords", function() {
-        window.swipe.gestureBegins(w3cTouch);
+        window.swipe._gestureBegins(w3cTouch);
         expect(window.swipe.startPoint).toEqual({
           x: 47,
           y: 74,
@@ -84,7 +84,7 @@ require(["jquery", "public/assets/javascripts/lib/utils/swipe.js"], function($, 
           x: 50,
           y: 50
         }
-        window.swipe.gestureMoves({
+        window.swipe._gestureMoves({
           changedTouches: [{
             clientX: 100,
             clientY: 52
@@ -115,7 +115,7 @@ require(["jquery", "public/assets/javascripts/lib/utils/swipe.js"], function($, 
           swooped = true;
         });
 
-        window.swipe.gestureEnds({
+        window.swipe._gestureEnds({
           target: ".target",
           originalEvent: {}
         });
