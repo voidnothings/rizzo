@@ -57,5 +57,5 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
         window.s.linkstacker("footer")
 
     initSwipe: ->
-      new Swipe
+      new Swipe()
 )

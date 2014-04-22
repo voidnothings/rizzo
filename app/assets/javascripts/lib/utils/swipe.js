@@ -3,18 +3,18 @@ define(["jquery"], function($) {
     var config = $.extend({
       listener: $("#js-row--content"),
       selector: ".js-onswipe"
-    }, options);
+    }, options),
 
-    var listener = config.listener;
+    listener = config.listener,
 
     // the selector that will be announcing on swipes
-    var selector = config.selector;
+    selector = config.selector,
 
-    var $window = $(window);
+    $window = $(window),
 
-    var swipe = this;
+    swipe = this,
 
-    var prevent = function(event) {
+    prevent = function(event) {
       event.preventDefault();
       return false;
     };
@@ -64,10 +64,10 @@ define(["jquery"], function($) {
     };
 
     swipe.gestureMoves = function(event) {
-      var x, y, diff, target = swipe.getTarget(event.target);
+      var currentPoint, x, y, diff, target = swipe.getTarget(event.target);
       if (!target.length) return;
       event = event.originalEvent;
-      var currentPoint = swipe.eventToPoint(event);
+      currentPoint = swipe.eventToPoint(event);
 
       swipe.difference = {
         x: currentPoint.x - swipe.startPoint.x,
@@ -83,9 +83,9 @@ define(["jquery"], function($) {
 
     swipe.gestureEnds = function(event) {
       $window.off("touchmove", prevent);
-      var target = swipe.getTarget(event.target);
+      var threshold, target = swipe.getTarget(event.target);
       if (!target.length) return;
-      var threshold = target.data("swipe-threshold") || 10;
+      threshold = target.data("swipe-threshold") || 10;
 
       if (swipe.difference) {
         if (swipe.difference.x < threshold) {
