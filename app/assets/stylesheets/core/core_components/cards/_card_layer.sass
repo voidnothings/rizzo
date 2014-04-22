@@ -5,7 +5,7 @@
 // -----------------------------------------------------------------------------
 
 .card--layer
-  width: 600px
+  width: 800px
   margin: 50px auto
 
 .card--layer__content
@@ -26,9 +26,14 @@
     +font-size(20)
 
   .related
-    width: 650px
+    margin-left: -25px
+    width: 800px
     .related_articles, .related_guides
       margin: 0px
+
+  a > img
+    width: 100%
+    height: auto
 
 .card--layer__close
   position: absolute
@@ -36,11 +41,6 @@
   height: 30px
   top: 20px
   right: 20px
-
-.card--layer__header
-  border-bottom: 1px solid $body-background
-  margin-bottom: 20px
-  padding-bottom: 20px
 
 .card--layer__article
   padding-bottom: 10px
