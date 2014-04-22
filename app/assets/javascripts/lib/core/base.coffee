@@ -1,4 +1,4 @@
-define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager', 'lib/core/ad_manager_v2', 'lib/utils/swipe'], ($, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroupManager, AdManager, Swipe) ->
+define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager', 'lib/core/ad_manager_v2', 'lib/core/nav_search', 'lib/utils/swipe'], ($, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroupManager, AdManager, NavSearch, Swipe) ->
 
   class Base
 
@@ -9,6 +9,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
       @initialiseSelectGroupManager()
       @addNavTracking()
       @initSwipe()
+      @addAutocomplete()
 
     initAds: ->
       if (window.lp && window.lp.ads)
@@ -33,7 +34,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
               $('div.js-cookie-compliance').removeClass('is-open')
               $('div.js-cookie-compliance').addClass('is-closed')
             onAdd : ->
-              window.setTimeout( ( => $('div.js-cookie-compliance').addClass('is-open')), 1)
+              
         msg = new Msg(args)
         LocalStore.set('cookie-compliance', true)
 
@@ -43,9 +44,6 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
 
       $('#js-primary-nav').on 'click', '.js-nav-cart', ->
         window.s.linkstacker("shopping-cart")
-
-      $('#js-primary-nav').on 'submit', '.js-nav-search', ->
-        window.s.linkstacker("search")
 
       $('#js-secondary-nav').on 'click', '.js-nav-item', ->
         window.s.linkstacker($(@).text() + "-sub")
@@ -58,4 +56,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
 
     initSwipe: ->
       new Swipe()
+
+    addAutocomplete: ->
+      new NavSearch(".js-primary-search")
 )
