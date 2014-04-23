@@ -170,6 +170,10 @@ class StyleguideController < GlobalController
     render '/styleguide/js-components/template'
   end
 
+  def swipe
+    render '/styleguide/js-components/swipe'
+  end
+
   def adUnits
     render '/styleguide/ui-components/ad-units'
   end
