@@ -10,7 +10,7 @@ require ['jquery'], ($) ->
     'pickadate/lib/picker'
     'pickadate/lib/picker.date'
     'pickadate/lib/legacy'
-    'lib/styleguide/ajax-content'
+    # 'lib/styleguide/ajax-content'
     'lib/styleguide/copy'
     'lib/styleguide/snippet-expand'
     'lib/styleguide/svg'
