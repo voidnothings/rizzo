@@ -3,17 +3,27 @@ define([ "jquery" ], function($) {
   "use strict";
 
   var asFlyout = function(args) {
-    var _this = this;
+    var _this = this,
+        $flyoutTrigger;
     args || (args = {});
 
     this.$facetCount = $(args.facet);
     this.$listener = $(args.$listener || "#js-row--content");
 
-    this.close = this.$listener.on(":toggleActive/click", function(event, data) {
+    this.listenForFlyout = function($el) {
+      $flyoutTrigger = $el;
+      this.$listener.on(":toggleActive/click", this.close);
+    };
+
+    this.close = function(event, data) {
       var target = event.target,
           $document = $(document);
 
-      if (data.isActive) {
+      if (event.target !== $flyoutTrigger[0]) {
+        return;
+      }
+
+      if (!data.isActive) {
         $document.on("click.toggleActive", function(event) {
           if (!$(event.target).closest(data.targets).length) {
             _this._closeFlyout(target);
@@ -28,7 +38,7 @@ define([ "jquery" ], function($) {
         $document.off("click.toggleActive keyup");
       }
 
-    });
+    };
 
     this.updateCount = this.$listener.on(":cards/received", function(event, data) {
       if (data && data.filterCount) {

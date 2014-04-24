@@ -65,6 +65,7 @@ define([ "jquery", "lib/mixins/flyout" ], function($, asFlyout) {
   // -------------------------------------------------------------------------
 
   LightBox.prototype.listen = function() {
+    this.listenForFlyout(this.$el);
 
     this.$listener.on(":lightbox/updateContent", function(event, content) {
       _this._updateContent(content);
