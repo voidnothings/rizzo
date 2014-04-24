@@ -199,6 +199,10 @@ module StyleguideHelper
               slug: "buttons"
             },
             {
+              name: "Preloader",
+              slug: "preloader"
+            },
+            {
               name: "Page title",
               slug: "page-title"
             },
