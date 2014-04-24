@@ -4,11 +4,16 @@
   .clearfix
     %h1.copy--h1 Lightbox
 
-    %p 
+    .btn.js-toggle-active{ data: { toggle_target: ".js-toggle-me", toggle_class: "is-hidden" } } Toggle it
+
+    %p.js-toggle-me.is-hidden
+      You've toggled me!
+
+    %p
       The lightbox goes hand-in-hand with the
       %a{ href: "/styleguide/js-components/toggle-active" } ToggleActive component
       so as to avoid duplication of functionality. As such, this component only appends the lightbox container and provides an event for updating the lightbox content.
-    
+
     %p
       %a.btn.btn--icon.icon--sight--before.icon--white--before.js-lightbox-toggle.js-toggle-active.sg-lightbox-toggle{ href: "#", data: { toggle_target: ".lightbox" } } Example lightbox
 
