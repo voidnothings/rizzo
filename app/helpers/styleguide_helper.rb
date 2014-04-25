@@ -126,6 +126,10 @@ module StyleguideHelper
             {
               name: "Template",
               slug: "template"
+            },
+            {
+              name: "AutoComplete",
+              slug: "autocomplete"
             }
           ]
         }
