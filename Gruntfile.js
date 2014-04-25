@@ -72,9 +72,9 @@ module.exports = function(grunt) {
       dist: {
         files: [ {
           expand: true,
-          cwd: "./app/assets/images/icons/active",
-          src: [ "*.svg" ],
-          dest: "./app/assets/images/icons/active",
+          cwd: "./app/assets/images/icons",
+          src: [ "**/*.svg" ],
+          dest: "./app/assets/images/icons",
           ext: ".svg"
         } ]
       }
