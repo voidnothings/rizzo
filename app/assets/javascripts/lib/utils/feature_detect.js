@@ -89,6 +89,14 @@
         }(window, "equestAnimationFrame"));
 
         return _requestAnimationFrame;
+      },
+      cancelAnimationFrame: function() {
+
+        var _cancelAnimationFrame = (function( win, t ) {
+          return win["webkitC" + t] || win["c" + t] || win["mozC" + t] || win["msC" + t] || false;
+        }(window, "ancelAnimationFrame"));
+
+        return _cancelAnimationFrame;
       }
     };
 
