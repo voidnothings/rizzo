@@ -12,10 +12,13 @@ define ["jquery", "lib/utils/debounce"], ($, debounce) ->
       @_addInitialState()
 
     listen: ->
+      $toggleActive = $(".js-toggle-active")
       if (@context)
         $(@context).on "click", ".js-toggle-active", @_handleToggle
       else
-        $(".js-toggle-active").on "click", @_handleToggle
+        $toggleActive.on "click", @_handleToggle
+
+      $toggleActive.css "cursor", "pointer"
 
       $(LISTENER).on ":toggleActive/update", (e, target) =>
         @_updateClasses($(target))
