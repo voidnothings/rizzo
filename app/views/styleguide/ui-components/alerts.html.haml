@@ -3,16 +3,21 @@
 .card.styleguide-intro.copy--body.context--content
   .clearfix
     %h1.copy--h1 Alerts
-    %p.copy--h2 Please note: 
+    %p.copy--h2 Please note:
     %p
-      Alerts do not call this component directly as the abstraction would be overkill. Alerts should always look like these through a combination of the modifier classes detailed below and in 
+      Alerts do not call this component directly as the abstraction would be overkill. Alerts should always look like these through a combination of the modifier classes detailed below and in
       %a{href: 'https://github.com/lonelyplanet/rizzo/blob/master/app/assets/stylesheets/components/_alerts.sass'}
         alerts.sass
+
+    %p.copy--meta
+      You can add (or remove) the
+      %code.language--css is-closed
+      class to animate the alert in/out.
 
 .card.styleguide-block__description.card.context--content
   %h2.copy--h2.styleguide-block__heading
     Success
-  
+
   .alert.alert--success.icon--tick--before
     .alert__title
       Congratulations, that was a success.
@@ -25,7 +30,7 @@
   %h2.copy--h2.styleguide-block__heading
     .alert__title
       Error
-  
+
   .alert.alert--error.icon--cross--before
     Oops, there was an error.
 
@@ -37,7 +42,7 @@
   %h2.copy--h2.styleguide-block__heading
     .alert__title
       Warning
-  
+
   .alert.alert--warning.icon--caution--before
     There are currently travel issues with this destination.
 
@@ -48,7 +53,7 @@
 .card.styleguide-block__description.card.context--content
   %h2.copy--h2.styleguide-block__heading
     Alert with a heading
-  
+
   .alert.alert--success.icon--tick--before
     .alert__title Congratulations that was a success.
     %p.alert__content
