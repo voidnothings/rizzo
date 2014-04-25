@@ -3,3 +3,111 @@
 .card.styleguide-intro.copy--body.context--content
   .clearfix
     %h1.copy--h1 AutoComplete
+
+    %p.copy--feature A widget built to be as reusable as possible.
+    %p Means a tiny bit more work for the instantiator, but hopefully flexible and simple enough to be used in different contexts.
+
+    %p
+      %strong Note:
+      This guide presents an example usage for users search in Thorn Tree Forum user profile. For full guide go to <a href="https://github.com/lonelyplanet/autocomplete">AutoComplete repository</a>.
+
+.styleguide-block
+
+  .styleguide-block.styleguide-block__description.card.copy--body
+
+    %h2.copy--h2.styleguide-block__heading
+      Define Element
+
+    %pre.styleguide.copy--body.language-markup
+      %code
+        = preserve do
+          :plain
+            &lt;input type="text" class="js-autocomplete-users">&lt;/input>
+
+
+  .styleguide-block.styleguide-block__description.card.copy--body
+
+    %h2.copy--h2.styleguide-block__heading
+      autocomplete-config.js
+
+    %pre.styleguide.copy--body.language-javascript
+      %code
+        = preserve do
+          :plain
+            require(["autocomplete"], function(AutoComplete) {
+              jQuery(function($) {
+                // Contents described below
+              });
+            });
+
+
+  .styleguide-block.styleguide-block__description.card.copy--body
+
+    %h2.copy--h2.styleguide-block__heading
+      Define fetch function
+
+    %pre.styleguide.copy--body.language-javascript
+      %code
+        = preserve do
+          :plain
+            var fetchUsers = function(searchTerm, callback) {
+              $.ajax({
+                dataType: "json",
+                url: "/thorntree/friendships/search.json",
+                data: { q: searchTerm }
+              }).done(callback(data));
+            };
+
+
+  .styleguide-block.styleguide-block__description.card.copy--body
+
+    %h2.copy--h2.styleguide-block__heading
+      Define onItem function
+
+    %pre.styleguide.copy--body.language-javascript
+      %code
+        = preserve do
+          :plain
+             var onItemUsername = function(el) {
+               var elAttr = $(el).attr("data-username);
+                $(js-autocomplete-users).val(elAttr);
+             },
+
+
+  .styleguide-block.styleguide-block__description.card.copy--body
+
+    %h2.copy--h2.styleguide-block__heading
+      Configure parameters
+
+    %pre.styleguide.copy--body.language-javascript
+      %code
+        = preserve do
+          :plain
+            var config = {
+              el: ".js-autocomplete-users",
+              fetch: fetchUsers
+              onItem: onItemUsername
+              threshold: 2,
+              limit: 4,
+              template: {
+                elementWrapper: "&lt;div class='js-autocomplete'>&lt;/div>",
+                resultsWrapper: "&lt;div class='autocomplete nav__submenu'>&lt;/div>",
+                resultsContainer: "&lt;div class='autocomplete__results nav__submenu__content nav--stacked icon--tapered-arrow-up--after icon--white--after icon--white--bordered'>&lt;/div>",
+                resultsItem: "&lt;div class='autocomplete__results__item autocomplete__results__item--user-avatar nav__submenu__item nav__item nav__submenu__link' style='background-image: url({{avatar_url}})' data-username='{{username}}'>{{username}}&lt;/div>",
+                resultsItemHighlightClass: "autocomplete__results__item--highlight",
+                searchTermHighlightClass: "autocomplete__search-term--highlight",
+                hiddenClass: "is-hidden"
+               }
+             };
+
+
+  .styleguide-block.styleguide-block__description.card.copy--body
+
+    %h2.copy--h2.styleguide-block__heading
+      Initialize AutoComplete
+
+    %pre.styleguide.copy--body.language-javascript
+      %code
+        = preserve do
+          :plain
+            var ac = new AutoComplete(config);
