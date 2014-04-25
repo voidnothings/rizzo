@@ -8,6 +8,8 @@
   z-index: 5
   top: -3px
 
+  &.card__tags--large
+    top: -4px
 
 // -----------------------------------------------------------------------------
 // Base classes for hanging tags used on cards
@@ -82,6 +84,12 @@
   +tag-curl-top($yella)
   min-width: 50px
 
+.tag--price--small
+  min-width: 32px
+
+.tag--price--large
+  +tag-curl-top-large($yella)
+
 .tag--price__inner
   @extend %tag--top
   @extend %subpixel-text
@@ -89,35 +97,62 @@
 
 .tag--price__values
   background-color: $yella
-  padding: 4px 4px 4px 2px
+  padding: 4px 2px
   line-height: 15px
+
+  .tag--price--small &
+    padding: 2px 1px
+    line-height: 13px
+
+  .tag--price--large &
+    padding: 6px 10px 6px 8px
+    line-height: 20px
+    +font-size(12)
 
 .tag--price__icon
   width: 100%
-  height: 22px
+  height: 20px
   text-align: center
   &:before
     display: inline-block
-    width: 22px
-    height: 22px
+    width: 18px
+    height: 18px
 
 .tag--price__amount
   +font-size(20)
   display: block
+
+  .tag--price--small &
+    +font-size(16)
+
+  .tag--price--large &
+    +font-size(28)
+    line-height: 26px
 
 .tag--price__currency
   font-size: 0.65em
   line-height: 0
   position: relative
   top: -0.35em
-  left: 2px
+  left: 4px
   word-spacing: -2px
 
+  .tag--price--large &
+    font-size: 0.55em
+    top: -0.5em
+
 .tag--price__decimal
-  +font-size(14)
+  +font-size(12)
   position: relative
-  top: -.25em
-  left: -.25em
+  top: -.4em
+  left: -.3em
+
+  .tag--price--small &
+    +font-size(10)
+
+  .tag--price--large &
+    top: -.55em
+    +font-size(16)
 
 .tag--price__retail
   +font-size(12)
