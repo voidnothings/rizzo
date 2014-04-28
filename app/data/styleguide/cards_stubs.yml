@@ -49,9 +49,10 @@ cards:
   -
     :styleguide_title: "Symbol Card"
     :slug: "#"
-    :title: "The world's best housekeeper"
+    :title: "Canada, aye"
     :image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
-    :icon: "housekeeping"
+    :icon_type: "destinations"
+    :icon: "canada"
 
   -
     :styleguide_title: "Quote Card"

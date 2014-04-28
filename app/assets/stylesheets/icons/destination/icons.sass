@@ -1,9 +1,15 @@
 .icon--destinations
-  height: 30px
-  width: 28px
-  display: inline-block
-  top: 7px
-  position: relative
+  height: 40px
+  width: 38px
+
+@each $icon in $best-in-travel--cities
+  @include svg-bg-icon($icon, 'destination')
+
+@each $icon in $best-in-travel--regions
+  @include svg-bg-icon($icon, 'destination')
+
+@each $icon in $best-in-travel--countries
+  @include svg-bg-icon($icon, 'destination')
 
 @each $icon in $destination-icons
   @include svg-bg-icon($icon, 'destination')
