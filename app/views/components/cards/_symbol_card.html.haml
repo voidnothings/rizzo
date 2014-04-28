@@ -6,6 +6,6 @@
     - else
       %figure.card__hero.card__hero--no-image
     .card__content
-      .card__icon.icon--white{class: "icon--#{properties[:icon]}"}
+      .card__icon{class: "icon--#{properties[:icon_type]} icon--#{properties[:icon]}"}
       %h2.card__name
         = properties[:title]
