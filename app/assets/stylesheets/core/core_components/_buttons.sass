@@ -4,8 +4,9 @@
 
 .btn
   +font-size(16)
-  @extend %rounded-corners
   @extend %inline-block
+  @extend %rounded-corners
+  @extend %transition--base
   box-sizing: border-box
   background-color: $linkblue
   color: white
@@ -21,9 +22,18 @@
   &.is-disabled, &[disabled]
     background-color: $subduedgray
     color: white
+    cursor: default
     &:hover
       background-color: $subduedgray
+    &.is-loading
+      color: $subduedgray
+  &.is-loading
+    position: relative
+    min-width: 74px
 
+    &:before,
+    &:after
+      display: none
 
 // -----------------------------------------------------------------------------
 // Button Size Modifiers
@@ -44,6 +54,8 @@
   padding: 4px 6px
 
 .btn--icon
+  &.is-loading
+    background-image: none
   &:before
     display: inline-block
     height: 1em
@@ -60,6 +72,8 @@
   @extend %image-replacement
   padding: 10px 20px
   width: 1em
+  &.is-loading
+    background-image: none
 
 .btn--icon--minus:before
   content: '\2212'

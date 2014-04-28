@@ -182,6 +182,10 @@ class StyleguideController < GlobalController
     render '/styleguide/js-components/link-to'
   end
 
+  def preloader
+    render '/styleguide/ui-components/preloader'
+  end
+
   #===== yeoman hook =====#
   # NB! The above line is required for our yeoman generator and should not be changed.
 end

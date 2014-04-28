@@ -58,6 +58,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/ui-components/badges'                   => 'styleguide#badges'
   get 'styleguide/ui-components/page-title'               => 'styleguide#pageTitle'
   get 'styleguide/ui-components/pagination'               => 'styleguide#pagination'
+  get 'styleguide/ui-components/preloader'                => 'styleguide#preloader'
   get 'styleguide/ui-components/activity_list'            => 'styleguide#activity_list'
   get 'styleguide/ui-components/tags'                     => 'styleguide#tags'
   get 'styleguide/ui-components/inputs'                   => 'styleguide#inputs'
