@@ -53,12 +53,12 @@
             = thorntree[:title]
 
     .col--footer
-      %input{type: "checkbox", id: 'ac-themes', class: "accordion__input"}
+      %input{type: "checkbox", id: 'ac-interests', class: "accordion__input"}
       .nav--stacked.accordion__target.accordion__target--mid
-        %label{for: 'ac-themes', class: 'accordion__title accordion__title--footer icon--chevron-down--after'}
-        %a.js-nav-item.title--footer.title--list--footer(href='http://www.lonelyplanet.com/themes') Themes
-        - footer_nav_themes_items.each do |theme|
-          %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "http://www.lonelyplanet.com/themes/#{theme[:url]}"}<
+        %label{for: 'ac-interests', class: 'accordion__title accordion__title--footer icon--chevron-down--after'}
+        %a.js-nav-item.title--footer.title--list--footer(href='http://www.lonelyplanet.com/interests') Interests
+        - footer_nav_interests_items.each do |theme|
+          %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "http://www.lonelyplanet.com/interest/#{theme[:url]}"}<
             = theme[:title]
 
     .col--footer
