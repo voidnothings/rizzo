@@ -3,6 +3,8 @@
 
     - unless properties[:image_info]
       .hero-banner__text
+        %p.hero-banner__lead-in
+          = properties[:lead_in]
         %h1.hero-banner__header
           = properties[:title]
         - if properties[:strapline]
