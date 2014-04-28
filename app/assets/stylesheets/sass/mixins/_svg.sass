@@ -23,6 +23,8 @@
 // [/doc]
 // -----------------------------------------------------------------------------
 @mixin svg-bg-icon($iconName, $section)
-  .icon--#{$iconName}
+  .icon--#{$iconName},
+  .icon--#{$iconName}--after:after,
+  .icon--#{$iconName}--before:before
     .supports-svg &
       background-image: image_url(icons/#{$section}/#{$iconName}#{"."}svg)
