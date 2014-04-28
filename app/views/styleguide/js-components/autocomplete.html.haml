@@ -7,28 +7,47 @@
     %p.copy--feature A widget built to be as reusable as possible.
     %p Means a tiny bit more work for the instantiator, but hopefully flexible and simple enough to be used in different contexts.
 
-    %p
-      %strong Note:
-      This guide presents an example usage for users search in Thorn Tree Forum user profile. For full guide go to <a href="https://github.com/lonelyplanet/autocomplete">AutoComplete repository</a>.
+.styleguide-block.styleguide-block__description.card.copy--body
+  
+  %p <strong>Note:</strong><br>
+  This guide presents an example usage taken from <a href="https://www.lonelyplanet.com/thorntree/friendships">Thorn Tree user search</a>. 
+  For full guide go to <a href="https://github.com/lonelyplanet/autocomplete">AutoComplete repository</a>.
+
+
 
 .styleguide-block
 
+
   .styleguide-block.styleguide-block__description.card.copy--body
 
     %h2.copy--h2.styleguide-block__heading
-      Define Element
+      1. Define Input Element
 
     %pre.styleguide.copy--body.language-markup
       %code
+        :escaped
+          <input class="js-autocomplete-all-users" type="text">
+
+
+    %p <strong>Note:</strong><br>
+    If using
+    %code.language-markup simple_form 
+    in 
+    %code.language-markup slim 
+    pass autocomplete parameter as in example below:
+
+    %pre.styleguide.copy--body.language-slim
+      %code
         = preserve do
           :plain
-            &lt;input type="text" class="js-autocomplete-users">&lt;/input>
+            = f.input :friend_id, as: :rizzo_text_field, placeholder: 'Find user...', input_html: { autocomplete: 'all-users' }
+
 
 
   .styleguide-block.styleguide-block__description.card.copy--body
 
     %h2.copy--h2.styleguide-block__heading
-      autocomplete-config.js
+      2. Create Config File
 
     %pre.styleguide.copy--body.language-javascript
       %code
@@ -36,15 +55,20 @@
           :plain
             require(["autocomplete"], function(AutoComplete) {
               jQuery(function($) {
-                // Contents described below
+                // 2.1 Define fetch function
+                // 2.2 Define onItem function
+                // 2.3 Configure parameters
+                // 2.4 Initialize AutoComplete
+                // (Detailed description below)
               });
             });
+
 
 
   .styleguide-block.styleguide-block__description.card.copy--body
 
     %h2.copy--h2.styleguide-block__heading
-      Define fetch function
+      2.1 Define fetch function
 
     %pre.styleguide.copy--body.language-javascript
       %code
@@ -55,14 +79,17 @@
                 dataType: "json",
                 url: "/thorntree/friendships/search.json",
                 data: { q: searchTerm }
-              }).done(callback(data));
+              }).done(function(data) {
+                callback(data)
+              });
             };
+
 
 
   .styleguide-block.styleguide-block__description.card.copy--body
 
     %h2.copy--h2.styleguide-block__heading
-      Define onItem function
+      2.2 Define onItem function
 
     %pre.styleguide.copy--body.language-javascript
       %code
@@ -70,21 +97,29 @@
           :plain
              var onItemUsername = function(el) {
                var elAttr = $(el).attr("data-username);
-                $(js-autocomplete-users).val(elAttr);
+                $(js-autocomplete-all-users).val(elAttr);
              },
+
 
 
   .styleguide-block.styleguide-block__description.card.copy--body
 
     %h2.copy--h2.styleguide-block__heading
-      Configure parameters
+      2.3 Set Options & Template
+
+    %p 
+      Template in this example is based on rizzo's
+      %code.language-markup _nav_flyout.sass
+      <br>Some styles had to be overwritten, hence the custom 
+      %code.language-markup _autocomplete.sass
+      
 
     %pre.styleguide.copy--body.language-javascript
       %code
         = preserve do
           :plain
             var config = {
-              el: ".js-autocomplete-users",
+              el: ".js-autocomplete-all-users",
               fetch: fetchUsers
               onItem: onItemUsername
               threshold: 2,
@@ -101,13 +136,15 @@
              };
 
 
+
   .styleguide-block.styleguide-block__description.card.copy--body
 
     %h2.copy--h2.styleguide-block__heading
-      Initialize AutoComplete
+      2.4 Initialize AutoComplete
 
     %pre.styleguide.copy--body.language-javascript
       %code
         = preserve do
           :plain
             var ac = new AutoComplete(config);
+
