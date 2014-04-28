@@ -11,14 +11,12 @@
       .wv--split--right
         .nav--inline.nav--social.split--right__inner
           - if responsive
-            %a.wv--hidden.row--footer--social__logo.media--lp-logo.media--lp-logo--dark(href='http://www.lonelyplanet.com')
-          .title--footer.title--social.nav__item Follow us
+            %a.wv--hidden.row--footer--social__logo.media--lp-logo.icon--lp-logo(href='http://www.lonelyplanet.com')
           .nav--social__inner.nav__item
             .nav--inline
               - social_media_nav.each do |item|
                 %a.nav__item.nav__item--social{href: "#{item[:url]}", class: "icon--#{item[:title]}"}
                   = item[:title].capitalize
-
 
   .row.row--smallprint
     .row__inner.row__inner--footer.row--smallprint__inner

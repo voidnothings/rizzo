@@ -1,7 +1,8 @@
-@import 'base_helpers'
-@import 'sprites/pois_sprite'
-@import 'components/*'
-@import 'prism'
+@import "base_helpers"
+@import "sprites/pois_sprite"
+@import "components/*"
+@import "icons/**/*"
+@import "prism"
 
 .box
   box-sizing: border-box
@@ -74,6 +75,8 @@ pre.styleguide.is-open
 .styleguide-block__item--left
   float: left
   margin-right: 20px
+  .styleguide--section__tiles &
+    width: 323px
 
 .styleguide__subtitle
   margin: 20px 10px
@@ -253,8 +256,6 @@ pre.styleguide.is-open
     &.is-closed
       height: 100px
 
-
-
 .filter--links
   .svg-colourise
     width: 170px
@@ -276,3 +277,11 @@ pre.styleguide.is-open
     height: 17px
     padding-bottom: 12px
     padding-top: 12px
+
+.styleguide-preloader
+  border: 1px solid $body-background-offset
+  height: 100px
+  position: relative
+
+.js-onswipe
+  -ms-touch-action: none
