@@ -1,20 +1,22 @@
+require 'sanitize'
+
 module JsHelper
   LP_DEFAULT_JS_NAMESPACE = "window.lp"
-  
+
   class Config
     JS_OBJECT_SEPARATOR_CHAR = "."
     JS_ROOT_NAMESPACE        = "window"
 
     attr_reader :root_namespace
-    
+
     def initialize(root_namespace = JS_ROOT_NAMESPACE)
       @root_namespace = root_namespace
     end
-    
+
     def configurations
       @configurations ||= Hash.new { |h, k| h[k] = {} }
     end
-    
+
     def add(namespace, configuration)
       namespace_with_root = [root_namespace, namespace].compact.join(JS_OBJECT_SEPARATOR_CHAR)
       self.configurations[namespace_with_root].merge!(configuration)
@@ -29,7 +31,7 @@ module JsHelper
       end.uniq
     end
   end
-  
+
   def configure_js(namespace, config)
     # source url
     @js_config ||= Config.new(LP_DEFAULT_JS_NAMESPACE)
@@ -57,10 +59,15 @@ module JsHelper
         output += "if (!#{target}.hasOwnProperty('#{k}')) #{target}.#{k} = {};"
         output += js_hash(v, "#{target}.#{k}")
       else
-        output += "#{target}.#{k} = #{v.to_json};"
+        v = sanitize(v) if v.is_a?(String)
+        output += "#{target}.#{sanitize(k.to_s)} = #{v.to_json};"
       end
     end
     output
+  end
+
+  def sanitize(param)
+    Sanitize.clean(param)
   end
 
 end

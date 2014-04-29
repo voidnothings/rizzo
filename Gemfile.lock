@@ -147,6 +147,8 @@ GEM
       railties (>= 3.0)
       rspec (~> 2.10.0)
     rubyzip (0.9.9)
+    sanitize (2.1.0)
+      nokogiri (>= 1.4.4)
     sass (3.2.10)
     sass-globbing (1.1.0)
       sass (>= 3.1)
@@ -202,6 +204,7 @@ DEPENDENCIES
   rspec (~> 2.10.0)
   rspec-rails
   rubyzip (< 1.0.0)
+  sanitize
   sass
   sass-globbing
   sass-rails (~> 3.2.3)

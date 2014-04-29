@@ -13,6 +13,7 @@ gem 'uglifier', '>= 1.0.3'
 gem 'autoprefixer-rails'
 gem 'unicorn'
 gem 'rake'
+gem 'sanitize'
 
 group :test do
   gem 'rspec', '~> 2.10.0'
