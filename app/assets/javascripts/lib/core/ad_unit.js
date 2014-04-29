@@ -27,13 +27,13 @@ define([ "jquery", "lib/core/ads/double_mpu" ], function($, DoubleMPU) {
       return true;
     }
 
-    // Sometimes DFP will return uesless 1x1 blank images
+    // Sometimes DFP will return useless 1x1 blank images
     // so we must check for them.
     return this.$iframe.contents().find("img").width() === 1;
   };
 
   AdUnit.prototype.getType = function() {
-    var patterns = /^js-ad-(leaderboard|mpu|trafficDriver|adSense|sponsorTile)/,
+    var patterns = /(leaderboard|mpu|trafficDriver|adSense|sponsorTile)/,
         matches = this.$target.attr("id").match(patterns);
 
     return matches ? matches[1] : null;

@@ -58,13 +58,12 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
           , config.centerDelay || 0
 
 
-    @loadLib: ->
+    @loadLib: =>
       return if @map
       # pointer to google-maps callback, not possible inside the regular closure environment
       lp.MapManager = MapManager
       script = document.createElement('script')
-      script.type = 'text/javascript'
-      script.src = "http://maps.googleapis.com/maps/api/js?key=#{@apiKey}&v=2&sensor=false&callback=lp.MapManager.initMap"
+      script.src = "http://maps.googleapis.com/maps/api/js?key=#{@apiKey}&sensor=false&callback=lp.MapManager.initMap"
       document.body.appendChild(script)
 
     @initMap: =>
@@ -226,7 +225,13 @@ define ['jquery', 'lib/maps/map_styles', 'lib/utils/css_helper', 'polyfills/scro
 
     highlightPois = ({id, map}) ->
       poiElements.removeClass('nearby-pois__poi--highlighted')
-      map.find('.js-resizer').eq(0).click()
+
+      $resizer = map.find('.js-resizer')
+      resizeCheckbox = document.getElementById($resizer.attr('for'))
+
+      if resizeCheckbox and not resizeCheckbox.checked
+        $resizer.click()
+
       if id is mapManager.currentPOI
         mapManager.currentPOI = null
         map.removeClass('map--has-focus')

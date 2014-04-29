@@ -28,6 +28,7 @@
   display: block
   padding: 10px 40px 10px 10px
   text-overflow: ellipsis
+  text-align: left
   white-space: nowrap
   .is-flat &
     background-color: transparent
@@ -45,7 +46,7 @@
     background-color: #fff
 
   .inverted &
-    border: 1px solid $subdued
+    border: 1px solid $subduedgray
     box-shadow: none
 
   &:after
@@ -53,6 +54,8 @@
     right: 5px
     top: 33%
     width: 14px
+    @if $is-ie
+      top: 3px
 
   .field__input--error &
     padding-right: 50px

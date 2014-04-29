@@ -2,8 +2,8 @@
 require File.expand_path('../lib/rizzo/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.authors       = ["Marc","Anselmo da Silva"]
-  gem.email         = ["marcky.sharky@googlemail.com","anselmo.da.silva@lonelyplanet.com"]
+  gem.authors       = ["Lonely Planet"]
+  gem.email         = ["online-dev@lonelyplanet.com"]
   gem.description   = %q{LP Common UI Application}
   gem.summary       = %q{Rails engine for centralising user interface logic}
   gem.homepage      = "http://www.lonelyplanet.com"
@@ -18,6 +18,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'haml'
   gem.add_dependency 'sass'
   gem.add_dependency 'addressable'
+  gem.add_dependency 'sanitize'
 
   gem.add_development_dependency 'rspec', '2.10.0'
   gem.add_development_dependency 'rspec-rails', '2.10.0'

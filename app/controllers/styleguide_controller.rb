@@ -14,6 +14,10 @@ class StyleguideController < GlobalController
     render '/styleguide/ui-components/cards'
   end
 
+  def tiles
+    render '/styleguide/ui-components/tiles'
+  end
+
   def buttons
     render '/styleguide/ui-components/buttons'
   end
@@ -28,6 +32,10 @@ class StyleguideController < GlobalController
 
   def pageTitle
     render '/styleguide/ui-components/page_title'
+  end
+
+  def headers
+    render '/styleguide/ui-components/headers'
   end
 
   def colours
@@ -158,8 +166,24 @@ class StyleguideController < GlobalController
     render '/styleguide/js-components/konami'
   end
 
+  def template
+    render '/styleguide/js-components/template'
+  end
+
+  def swipe
+    render '/styleguide/js-components/swipe'
+  end
+
   def adUnits
     render '/styleguide/ui-components/ad-units'
+  end
+
+  def link_to
+    render '/styleguide/js-components/link-to'
+  end
+
+  def preloader
+    render '/styleguide/ui-components/preloader'
   end
 
   #===== yeoman hook =====#

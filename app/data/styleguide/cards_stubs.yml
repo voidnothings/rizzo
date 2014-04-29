@@ -47,6 +47,22 @@ cards:
     :strapline: "Just a little article about the many ways to say hello"
 
   -
+    :styleguide_title: "Symbol Card"
+    :slug: "#"
+    :title: "Canada, aye"
+    :image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
+    :icon_type: "destinations"
+    :icon: "canada"
+
+  -
+    :styleguide_title: "Quote Card"
+    :slug: "#"
+    :title: "See your breakfast on the big screen - submit your Ulster fry film!"
+    :context: "Thorntree"
+    :name: "Shadyguy17"
+    :avatar: "http://assets.staticlp.com/assets/stubs/article.jpg"
+
+  -
     :styleguide_title: "Blog Card"
     :slug: "#"
     :title: "Hello"

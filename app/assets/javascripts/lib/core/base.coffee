@@ -1,36 +1,14 @@
-define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager', 'lib/core/ad_manager_v2'], ($, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroupManager, AdManager) ->
+define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager', 'lib/core/ad_manager_v2', 'lib/utils/swipe'], ($, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroupManager, AdManager, Swipe) ->
 
   class Base
 
     constructor: (args={})->
-      @authenticateUser()
-
       @showUserBasket()
       @initAds() unless args.secure
       @showCookieComplianceMsg()
       @initialiseSelectGroupManager()
       @addNavTracking()
-
-    authenticateUser: ->
-      @auth = new Authenticator()
-
-      $.ajax
-        url: @auth.getNewStatusUrl()
-        dataType: "json"
-        error: =>
-          @auth.update()
-        success: (user) =>
-          # The data returned is defined in community at: app/controllers/users_controller.rb@status
-          window.lp.user = user
-
-          # Legacy, keep until the old stuff is discarded and Authenticator has been refactored.
-          window.lpLoggedInUsername = user.username || "";
-          window.facebookUserId = user.facebook_uid;
-          window.surveyEnabled = "false";
-          window.timestamp = user.timestamp;
-          window.referer = "null";
-
-          @auth.update()
+      @initSwipe()
 
     initAds: ->
       if (window.lp && window.lp.ads)
@@ -77,4 +55,7 @@ define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/sh
 
       $('#js-footer-nav').on 'click', '.js-nav-item', ->
         window.s.linkstacker("footer")
+
+    initSwipe: ->
+      new Swipe()
 )

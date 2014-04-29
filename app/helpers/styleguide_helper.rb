@@ -8,6 +8,10 @@ module StyleguideHelper
     # Add new sections here.
     [
       {
+        title: "Design Elements",
+        slug: "/design-elements"
+      },
+      {
         title: "UI Components",
         slug: "/ui-components"
       },
@@ -31,6 +35,19 @@ module StyleguideHelper
     #===== yeoman begin-hook =====#
     {
       css_utilities: [
+        {
+          title: "Grids",
+          items: [
+            {
+              name: "Proportional Grid",
+              slug: "proportional-grid"
+            },
+            {
+              name: "Cards Grid",
+              slug: "cards-grid"
+            }
+          ]
+        },
         {
           title: "Classes",
           items: [
@@ -116,13 +133,25 @@ module StyleguideHelper
               path: "konami"
             },
             {
+              name: "Link To",
+              slug: "link-to"
+            },
+            {
               name: "Lightbox",
               slug: "lightbox"
+            },
+            {
+              name: "Template",
+              slug: "template"
+            },
+            {
+              name: "Swipe",
+              slug: "swipe"
             }
           ]
         }
       ],
-      ui_components: [
+      design_elements: [
         {
           title: "Design",
           items: [
@@ -141,6 +170,57 @@ module StyleguideHelper
             {
               name: "Typography",
               slug: "typography"
+            }
+          ]
+        }
+      ],
+      ui_components: [
+        {
+          title: "Components",
+          items: [
+            {
+              name: "Cards",
+              slug: "cards"
+            },
+            {
+              name: "Ad units",
+              slug: "ad-units"
+            },
+            {
+              name: "Alerts",
+              slug: "alerts"
+            },
+            {
+              name: "Badges",
+              slug: "badges"
+            },
+            {
+              name: "Buttons",
+              slug: "buttons"
+            },
+            {
+              name: "Preloader",
+              slug: "preloader"
+            },
+            {
+              name: "Page title",
+              slug: "page-title"
+            },
+            {
+              name: "Pagination",
+              slug: "pagination"
+            },
+            {
+              name: "Tiles",
+              slug: "tiles"
+            },
+            {
+              name: "Tags",
+              slug: "tags"
+            },
+            {
+              name: "Tooltips",
+              slug: "tooltips"
             }
           ]
         },
@@ -162,19 +242,6 @@ module StyleguideHelper
           ]
         },
         {
-          title: "Helpers",
-          items: [
-            {
-              name: "Proportional Grid",
-              slug: "proportional-grid"
-            },
-            {
-              name: "Cards Grid",
-              slug: "cards-grid"
-            }
-          ]
-        },
-        {
           title: "Form Elements",
           items: [
             {
@@ -188,47 +255,6 @@ module StyleguideHelper
             {
               name: "Range Slider",
               slug: "range-slider"
-            }
-          ]
-        },
-        {
-          title: "Components",
-          items: [
-            {
-              name: "Ad units",
-              slug: "ad-units"
-            },
-            {
-              name: "Alerts",
-              slug: "alerts"
-            },
-            {
-              name: "Badges",
-              slug: "badges"
-            },
-            {
-              name: "Buttons",
-              slug: "buttons"
-            },
-            {
-              name: "Cards",
-              slug: "cards"
-            },
-            {
-              name: "Page title",
-              slug: "page-title"
-            },
-            {
-              name: "Pagination",
-              slug: "pagination"
-            },
-            {
-              name: "Tags",
-              slug: "tags"
-            },
-            {
-              name: "Tooltips",
-              slug: "tooltips"
             }
           ]
         }
@@ -358,6 +384,7 @@ module StyleguideHelper
     colours.delete_if(&:empty?)
     groups = []
     counter = -1
+
     colours.each do |section|
       if section[0..1] == "//"
         groups.push({title: section})
@@ -367,6 +394,28 @@ module StyleguideHelper
       end
     end
     groups
+  end
+
+  def extract_colour(contents, variable)
+    matches = contents.match(/(#{Regexp.escape(variable)})\s*:\s*(#[a-fA-F0-9]{3,6})\s*(!default)?/)
+    matches ? matches[2] : matches
+  end
+
+  def extract_variable(line)
+    matches = line.match(/(\$[0-9a-zA-Z_-]+)\s*(!default)?/)
+    matches ? matches[1] : matches
+  end
+
+  def get_colour_value(value, ref)
+    @ref_colours ||= File.read(File.expand_path("../../assets/stylesheets/sass/variables/#{ref}.sass", __FILE__))
+
+    variable = extract_variable(value)
+
+    if variable
+      value = extract_colour(@ref_colours, variable)
+    end
+
+    value
   end
 
   def get_luminance(hex)

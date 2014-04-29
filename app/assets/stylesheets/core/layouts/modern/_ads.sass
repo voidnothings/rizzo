@@ -9,7 +9,9 @@
   background-color: $row-leaderboard
   overflow: hidden
   padding: 16px 0
+  position: relative
   min-height: 90px
+  z-index: 6
 
   .homepage &
     background-color: white
@@ -21,13 +23,6 @@
     height: 0
     padding: 0
     min-height: 0
-
-  // This can be removed when switching to the new DFP server
-  .ad-leaderboard__inner
-    .homepage &
-      border: 1px solid $subdued
-      &:after
-        background-position: -106px 4px
 
   > .row__inner
     display: table
@@ -63,6 +58,13 @@
 //
 // ----------------------------------------------------------------------------
 
+.ad-billboard
+  text-align: center
+
+.ad-billboard__inner
+  display: inline-block
+  vertical-align: bottom
+
 .ad-label
   +font-size(10)
   color: $feature-copy
@@ -96,12 +98,12 @@
     .card__content
       padding-top: 45px
 
-.ad-trafficDriver, .ad-sponsorTile, .ad-mpu, .ad-doubleMpu
+.ad-traffic-driver, .ad-sponsorTile, .ad-mpu, .ad-doubleMpu
   &.card__content
     margin: 0 auto
     transition: all 1s ease
 
-.ad-trafficDriver
+.ad-traffic-driver
   &.card__content
     height: 380px
     padding: 0
@@ -114,8 +116,10 @@
   z-index: 1
 
 .ad-sponsorTile
+  @extend %transition--base
   height: 32px
   width: 276px
+  opacity: 1
 
   .stack__intro &
     position: absolute
@@ -124,6 +128,13 @@
 
   + .copy--h1
     width: 450px
+
+  &.is-closed
+    opacity: 0
+
+.ad-sponsorTile__tag
+  text-align: right
+  margin-bottom: 2px
 
 .ad-mpu.card__content
   width: 300px

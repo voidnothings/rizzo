@@ -1,2 +1,2 @@
 - properties = properties || {}
-#js-ad-sponsorTile.adunit.adunit--sponsortile{ data: { dimensions: properties[:sizes] || '276x32', extension: properties[:extension] || nil } }
+.adunit.adunit--sponsortile{ id: properties[:id] || "js-ad-sponsorTile-#{Time.now.to_i}", data: { dimensions: properties[:sizes] || '276x32', extension: properties[:extension] || nil, targeting: properties[:targeting] || nil } }
