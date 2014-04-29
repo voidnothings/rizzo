@@ -27,5 +27,7 @@
             = image_info[:image_title]
 
     - if properties[:sponsored]
-      .hero-banner__sponsor.ad-sponsorTile
+      .hero-banner__sponsor.ad-sponsorTile.is-closed
+        .ad-sponsorTile__tag
+          Sponsored by
         = ui_component('ads/sponsor_tile', properties: { sizes: '150x120' })
