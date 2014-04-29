@@ -116,8 +116,10 @@
   z-index: 1
 
 .ad-sponsorTile
+  @extend %transition--base
   height: 32px
   width: 276px
+  opacity: 1
 
   .stack__intro &
     position: absolute
@@ -126,6 +128,13 @@
 
   + .copy--h1
     width: 450px
+
+  &.is-closed
+    opacity: 0
+
+.ad-sponsorTile__tag
+  text-align: right
+  margin-bottom: 2px
 
 .ad-mpu.card__content
   width: 300px
