@@ -1,4 +1,14 @@
-%article.card.card--single.card--mini.card--symbol.js-card
+:ruby
+
+  css_classes = [
+
+    "card",
+    "card--symbol",
+    properties[:double?] ? "card--double card--full-image" : "card--single card--mini",
+
+  ].join(" ")
+
+%article.js-card{class: css_classes}
   %a.link--wrapper{href: properties[:slug]}
     - if properties[:image_url]
       %figure.card__hero
