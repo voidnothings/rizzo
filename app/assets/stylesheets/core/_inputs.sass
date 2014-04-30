@@ -54,13 +54,11 @@ input[type="submit"]
   @if $is-ie
     float: left
   .responsive &
-    background-color: white
     width: 75%
     margin: 12px auto 0
     +respond-to(wide-view)
-      background-color: $row-primary--darker
       width: auto
-      margin: 12px 0 0
+      margin: 10px 0
 
 .search--primary--mobile
   display: none
@@ -121,55 +119,69 @@ input[type="submit"]
     opacity: 1
     background-position: 0 -28px
 
-.autocomplete
-  position: relative
-  display: block
-  width: 100%
-  margin: 0
-  left: 0
-  top: 75%
-  .autocomplete__results
-    list-style: none
-    top: 4px
-    left: 0px
+.primary-search-autocomplete
+  .autocomplete
+    position: relative
+    display: block
     width: 100%
-    margin: 0px
-    background-color: white
-    border: 1px solid $subduedgray
-    border-radius: 4px
-    position: absolute
-    &:after
+    margin: 0
+    left: 0
+    top: 75%
+    .autocomplete__results
+      @extend %transition--base
+      @extend %fly-out-shadow
+      @extend %rounded-corners
+      list-style: none
+      top: 4px
+      left: 0px
+      width: 100%
+      margin: 0px
+      background-color: white
       position: absolute
-      top: -15px
-      left: 50%
-      margin-left: -10px
-      width: 20px
-      height: 20px      
-    .autocomplete__results__item
-      cursor: pointer
-      +font-size(14)
-      color: $bodygray
-      display: block
-      padding: 10px 10px 10px 40px
-      font-weight: normal
-      background-repeat: no-repeat
-      background-size: auto 100%
-      cursor: pointer
-      border-bottom: 1px solid $subduedgray
-      position: relative
-      text-decoration: none
-      &:last-child
-        border: 0px
-      &:before
-        width: 20px
-        height: 20px
+      background-color: white
+      padding: 4px 0
+      +css-arrow-central(top, $size: 30px)
+      &:after
         position: absolute
-        top: 6px
-        left: 9px
-      &:hover, .autocomplete__results__item--highlight
-        background: $body-background-offset
-    .autocomplete__search-term--highlight
-      font-weight: bold
+        -webkit-filter: drop-shadow(0 -1px 0px rgba(0,0,0,.3))
+        -moz-filter: drop-shadow(0 -1px 0px rgba(0,0,0,.3))
+        -ms-filter: drop-shadow(0 -1px 0px rgba(0,0,0,.3))
+        -o-filter: drop-shadow(0 -1px 0px rgba(0,0,0,.3))
+        filter: drop-shadow(0 -1px 0px rgba(0,0,0,.3))
+      .backup-button
+        width: 90%
+        margin: 10px auto
+        display: block
+        text-transform: uppercase
+        +font-size(13)
+
+      .autocomplete__results__item
+        cursor: pointer
+        +font-size(14)
+        color: $titlegray
+        display: block
+        padding: 12px 12px 12px 39px
+        font-weight: normal
+        background-repeat: no-repeat
+        background-size: auto 100%
+        cursor: pointer
+        border-bottom: 1px solid $subduedgray
+        position: relative
+        text-decoration: none
+        &:last-child
+          border: 0px
+        &:before
+          width: 20px
+          height: 20px
+          position: absolute
+          top: 8px
+          left: 9px
+        &:hover
+          background: $body-background-offset
+        &.autocomplete__results__item--highlight
+          background: $body-background-offset
+        .autocomplete__search-term--highlight
+          font-weight: bold
 
 // -----------------------------------------------------------------------------
 //

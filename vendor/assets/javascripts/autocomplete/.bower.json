@@ -1,6 +1,6 @@
 {
   "name": "AutoComplete",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "authors": [
     "Ben Tedder <ben.tedder@lonelyplanet.com>"
   ],
@@ -28,11 +28,11 @@
     "url": "git://github.com/lonelyplanet/autocomplete.git"
   },
   "homepage": "https://github.com/lonelyplanet/autocomplete",
-  "_release": "0.1.3",
+  "_release": "0.1.5",
   "_resolution": {
     "type": "version",
-    "tag": "v0.1.3",
-    "commit": "fe53119367a06d91c6b7cee0bf8800da433a8e85"
+    "tag": "v0.1.5",
+    "commit": "84b0aed8f269b64f3d0d3868f9a9f268f4e85acd"
   },
   "_source": "git://github.com/lonelyplanet/autocomplete.git",
   "_target": "*",
