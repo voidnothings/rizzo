@@ -18,11 +18,11 @@
     height: 241px
     width: 427px
   .media-gallery__container, .tab__content, .slider__viewport
+    +z-layer
     @extend %clearfix
     @extend %transition--slower
-    z-index: 0
     &.is-active
-      z-index: 1
+      +z-layer(middle)
   .slider__controls
     @extend %transition--slower
     top: 95px
@@ -75,6 +75,7 @@
     +media-gallery-full()
 
 .media-gallery__resizer
+  +z-layer(top)
   @extend %transition--base
   background: rgba(0,0,0,0.6)
   bottom: 0
@@ -85,7 +86,6 @@
   position: absolute
   right: 0
   width: 40px
-  z-index: 6
   &:hover
     @extend %opaque
   &:before
@@ -113,11 +113,11 @@
     top: 50%
 
 .media-gallery__img
+  +z-layer
   @extend %transition--base
   opacity: 1
   position: relative
   width: 100%
-  z-index: 1
   &.is-portrait, &.is-wider
     height: 100%
     width: auto

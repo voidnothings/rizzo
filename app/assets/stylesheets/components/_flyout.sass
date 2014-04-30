@@ -3,6 +3,7 @@
 
 .flyout
   +css-arrow(top, 40px, 230px)
+  +z-layer(middle)
   @extend %rounded-corners
   box-sizing: border-box
   position: absolute
@@ -12,7 +13,6 @@
   width: 320px
   background-color: $body-copy
   color: white
-  z-index: 10
 
   &:after
     position: absolute

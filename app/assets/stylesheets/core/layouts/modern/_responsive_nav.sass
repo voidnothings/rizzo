@@ -17,6 +17,7 @@ $responsive-nav-width: 240px
   overflow: visible
   height: 55px
   .responsive &
+    +z-layer(middle)
     @extend %transition--nav
     box-shadow: 16px 4px 20px -6px rgba(0, 0, 0, 0.2) inset
     position: absolute
@@ -25,7 +26,6 @@ $responsive-nav-width: 240px
     right: -$responsive-nav-width
     width: $responsive-nav-width
     height: 100%
-    z-index: 2
     background: $offscreen-nav-background
     +respond-to(wide-view)
       box-shadow: none
@@ -36,7 +36,7 @@ $responsive-nav-width: 240px
       left: 0
       right: auto
   .homepage &
-    z-index: 3
+    +z-layer(top)
     +respond-to(wide-view)
       background: none
 
@@ -57,6 +57,7 @@ $responsive-nav-width: 240px
 .nav--primary__trigger
   display: none
   .responsive &
+    +z-layer(middle)
     @extend %transition--nav
     color: white
     display: block
@@ -65,7 +66,6 @@ $responsive-nav-width: 240px
     width: 35px
     height: 35px
     position: absolute
-    z-index: 2
     cursor: pointer
     +respond-to(wide-view)
       top: 10px

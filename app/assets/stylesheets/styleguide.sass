@@ -203,6 +203,7 @@ pre.styleguide.is-open
   position: relative
 
   > a:first-child
+    +z-layer
     @extend %transition--base
     display: block
     position: absolute
@@ -211,7 +212,6 @@ pre.styleguide.is-open
     width: 25px
     height: 25px
     opacity: 0.5
-    z-index: 1
     &:hover
       opacity: 1
 

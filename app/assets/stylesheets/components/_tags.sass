@@ -3,9 +3,9 @@
 // -----------------------------------------------------------------------------
 
 .card__tags
+  +z-layer(middle)
   position: absolute
   right: 8px
-  z-index: 5
   top: -3px
 
   &.card__tags--large
@@ -54,6 +54,7 @@
 // -----------------------------------------------------------------------------
 
 .tag--horizontal
+  +z-layer
   @extend %tag
   +font-size(12)
   color: #fff
@@ -62,7 +63,6 @@
   padding: 6px 10px
   text-transform: uppercase
   background: $green
-  z-index: 1
   top: 12px
 
 .tag--horizontal--left
@@ -231,11 +231,11 @@
   border-top-left-radius: 0
   border-bottom-left-radius: 0
   .tag__ribbon
+    +z-layer(below)
     position: absolute
     width: 0
     bottom: 0px
     left: -20px
-    z-index: -2
     border: 15px solid $lpblue
     border-left-color: transparent
     border-left-width: 8px

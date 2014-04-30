@@ -6,6 +6,7 @@
   position: relative
 
 .tooltip
+  +z-layer(below)
   @extend %rounded-corners
   @extend %standard-shadow
   @extend %transition--base
@@ -16,7 +17,6 @@
   position: absolute
   text-align: center
   text-shadow: 0px 4px 2px $new-header-grey-shadow
-  z-index: -1
   box-shadow: 0 1px 1px 2px $new-header-grey-shadow
 
   .ie7 &, .ie8 &, .browserIE7 &, .browserIE8 &
@@ -86,8 +86,8 @@
   top: -5px
 
 %tooltip-visible
+  +z-layer(modal)
   opacity: 1
-  z-index: 999
   .ie7 &, .ie8 &, .browserIE7 &, .browserIE8 &
     display: block
 

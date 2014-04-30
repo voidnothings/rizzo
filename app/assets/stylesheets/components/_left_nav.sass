@@ -79,11 +79,11 @@
   position: relative
 
   &:before, &:after
+    +z-layer(middle)
     @extend %empty-abs-generated-content
     background-color: $body-background
     height: 10px
     bottom: 100%
-    z-index: 2
 
   &:before
     border-radius: 0 4px 4px 0
