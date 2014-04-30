@@ -59,14 +59,14 @@ module JsHelper
         output += "if (!#{target}.hasOwnProperty('#{k}')) #{target}.#{k} = {};"
         output += js_hash(v, "#{target}.#{k}")
       else
-        v = sanitize(v) if v.is_a?(String)
-        output += "#{target}.#{sanitize(k.to_s)} = #{v.to_json};"
+        v = js_sanitize(v) if v.is_a?(String)
+        output += "#{target}.#{js_sanitize(k.to_s)} = #{v.to_json};"
       end
     end
     output
   end
 
-  def sanitize(param)
+  def js_sanitize(param)
     Sanitize.clean(param)
   end
 
