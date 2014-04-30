@@ -29,7 +29,7 @@ define ["jquery", "lib/utils/debounce"], ($, debounce) ->
     # Private
 
     _handleToggle: (event) =>
-      $el = $(event.target)
+      $el = $(event.currentTarget)
 
       unless @debounced
         @debounced = debounce( =>
@@ -47,7 +47,8 @@ define ["jquery", "lib/utils/debounce"], ($, debounce) ->
 
       @broadcast($el)
 
-      if event.target.nodeName.toUpperCase() is "A" and !$el.closest(".js-toggle-active").data("allowLinks")
+
+      if event.currentTarget.nodeName.toUpperCase() is "A" and !$el.closest(".js-toggle-active").data("allowLinks")
         event.preventDefault()
 
     _addInitialState: ->
