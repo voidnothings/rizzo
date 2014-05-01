@@ -7,8 +7,8 @@
   background-position: center 30%
 
   &:before
-    +image-overlay--gradient
     +z-layer
+    +image-overlay--gradient($color-end: $darkgray, $opacity-end: 0.1, $stop: 100%)
     content: ''
     position: absolute
     width: 100%
@@ -16,29 +16,22 @@
 
   // While we're using the static layout don't hide
   // all the breakpoints behind the responsive flag
+  +respond-to(wide-view)
+    height: 300px
+  +respond-to(1200)
+    height: 350px
   +respond-to(1500)
     height: 450px
-
-  .responsive &
-    height: 200px
-    +respond-to(wide-view)
-      height: 300px
-    +respond-to(1200)
-      height: 350px
-    +respond-to(1500)
-      height: 450px
 
 .hero-banner--flickr
   height: 400px
 
   // While we're using the static layout don't hide
   // all the breakpoints behind the responsive flag
+  +respond-to(1200)
+    height: 400px
   +respond-to(1500)
     height: 450px
-
-  .responsive &
-    +respond-to(1200)
-      height: 400px
 
 .hero-banner__content
   +z-layer(middle)
@@ -66,12 +59,10 @@
   font-weight: bold
   line-height: .8
 
-  .responsive &
-    +font-size(45)
-    +respond-to(wide-view)
-      +font-size(85)
-    +respond-to(1500)
-      +font-size(100)
+  // While we're using the static layout don't hide
+  // all the breakpoints behind the responsive flag
+  +respond-to(1500)
+    +font-size(100)
 
 .hero-banner__strapline
   +font-size(18)
@@ -124,9 +115,10 @@
   vertical-align: middle
   border-radius: 50%
 
-  .responsive &
-    +respond-to(wide-view)
-      +size(50px)
+  // While we're using the static layout don't hide
+  // all the breakpoints behind the responsive flag
+  +respond-to(wide-view)
+    +size(50px)
 
 .hero-banner__username
   font-weight: bold
