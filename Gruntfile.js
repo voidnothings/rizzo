@@ -25,9 +25,9 @@ module.exports = function(grunt) {
       active: {
         files: [ {
           expand: true,
-          cwd: "app/assets/images/icons/active",
+          cwd: "app/assets/images/icons",
           dest: "app/assets/stylesheets/icons",
-          src: [ "*.svg" ]
+          src: [ "active/*.svg", "interest/*.svg" ]
         } ],
         options: {
           cssprefix: ".icon--",
