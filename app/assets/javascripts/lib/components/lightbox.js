@@ -40,7 +40,7 @@ define([ "jquery", "lib/mixins/flyout" ], function($, asFlyout) {
 
     if (!this.$lightbox.length) {
       this.$lightboxContent = $("<div class='lightbox__content' />");
-      this.$lightbox = $("<div class='lightbox' />");
+      this.$lightbox = $("<div class='lightbox js-lightbox' />");
 
       this.customClass && this.$lightbox.addClass(this.customClass);
 
