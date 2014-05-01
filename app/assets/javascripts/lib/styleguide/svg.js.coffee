@@ -1,6 +1,6 @@
 require ['jquery'], ($) ->
   content = $(document.body)
-  intro = content.find('.styleguide-intro--icons')
+  intro = content.find('.js-styleguide-intro--icons')
   colorFilter = intro.find('#js-icon-filter')
   colorSelect = intro.find('.js-select')
   icons = content.find('.js-icon')

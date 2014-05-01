@@ -5,13 +5,13 @@
 // ----------------------------------------------------------------------------
 
 .row--leaderboard
+  +z-layer(middle)
   @extend %transition--slower
   background-color: $row-leaderboard
   overflow: hidden
   padding: 16px 0
   position: relative
   min-height: 90px
-  z-index: 6
 
   .homepage &
     background-color: white
@@ -111,13 +111,15 @@
     top: 0
 
 .ad--placeholder
+  +z-layer
   height: 380px
   visibility: hidden
-  z-index: 1
 
 .ad-sponsorTile
+  @extend %transition--base
   height: 32px
   width: 276px
+  opacity: 1
 
   .stack__intro &
     position: absolute
@@ -126,6 +128,13 @@
 
   + .copy--h1
     width: 450px
+
+  &.is-closed
+    opacity: 0
+
+.ad-sponsorTile__tag
+  text-align: right
+  margin-bottom: 2px
 
 .ad-mpu.card__content
   width: 300px
@@ -163,8 +172,8 @@
         min-height: 380px
 
   &.ad-doubleMpu
+    +z-layer(top)
     height: 770px
-    z-index: 10
 
     .card__content
       height: 600px
@@ -177,12 +186,13 @@
   position: relative
 
   .row__inner--content
-    z-index: 2
+    +z-layer(middle)
     padding-right: 22px
     padding-left: 22px
     background-color: $body-background
 
   &:after
+    +z-layer
     @extend %empty-abs-generated-content
     background: linear-gradient(to bottom, rgba(255,255,255,0), $body-background)
     height: 150px
@@ -190,7 +200,6 @@
     //  but until traffickers start uploading the new ones, this will have to do.
     top: 1150px
     width: 100%
-    z-index: 1
 
   .row__inner
     cursor: default
@@ -218,6 +227,7 @@
   display: none
 
 .ad-interstitial-wrap
+  +z-layer(top)
   background: #333
   background: rgba(0,0,0,0.8)
   bottom: 0px
@@ -226,18 +236,17 @@
   position: fixed
   right: 0px
   top: 0px
-  z-index: 10000
   zoom: 1
   transition: opacity 0.5s ease
 
 .ad-interstitial
+  +z-layer(modal)
   position: absolute
   background: white
   border: 1px solid #e3e3e3
   display: none // Gets shown later via JS when there's content.
   margin: 0 auto
   padding: 25px 10px
-  z-index: 10001
   box-shadow: 5px 5px 5px rgba(0,0,0,0.5)
 
   iframe

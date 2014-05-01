@@ -28,12 +28,12 @@
 @mixin map-show-pois
   ~ .map
     .map__poi-list
+      +z-layer
       opacity: 1
       visibility: visible
       transform: rotateY(0deg) translateX(0px) translateZ(0px)
       transition: all 1s cubic-bezier(0.075, 0.820, 0.165, 1.000)
       right: 12px
-      z-index: 1
     .infobox__interesting-places
       display: none
 
@@ -46,6 +46,7 @@
     +map-show-pois()
 
 .map__poi-list
+  +z-layer(below)
   @extend %rounded-corners
   @extend %transition--slower
   transform: rotateY(70deg) translateX(100px) translateZ(-250px)
@@ -57,7 +58,6 @@
   width: 294px
   opacity: 0
   visibility: hidden
-  z-index: -1
   padding-bottom: 20px
 
   .nearby-pois

@@ -5,7 +5,7 @@
 // ----------------------------------------------------------------------------
 
 .row--primary
-  z-index: 6
+  +z-layer(middle)
   position: relative
   .responsive &
     position: static
@@ -19,11 +19,11 @@
 // ----------------------------------------------------------------------------
 
 .logo--header
+  +z-layer(middle)
   @extend %transition--nav
   position: absolute
   top: 0
   left: 10px
-  z-index: 3
   +respond-to(wide-view)
     left: 20px
   .homepage &
@@ -36,12 +36,12 @@
       margin: 0
 
 .media--lp-logo
+  +z-layer(middle)
   @extend %inline-block
   height: 41px
   margin: 7px 10px 0 0
   width: 82px
   vertical-align: top
-  z-index: 3
   padding-top: 3px
   .responsive &
     margin-left: 2%
@@ -76,7 +76,7 @@
       margin-left: 157px
 
 .nav__item--primary
-  padding: 21px 4px
+  padding: 20px 4px
   .nav__icon
     display: none
   .responsive &

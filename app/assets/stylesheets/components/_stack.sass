@@ -47,10 +47,10 @@ $stack-intro-lines-to-show: 2
     position: relative
 
 .stack__intro
+  // Ensure flyout filters sit up above the other cards
+  +z-layer(middle)
   @extend %rounded-corners
   padding: 25px
-  // Ensure flyout filters sit up above the other cards
-  z-index: 10
 
   .copy--h1
     margin: 0

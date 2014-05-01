@@ -388,3 +388,5 @@ For example:
     ```
 
 * Try to use a function expression unless a function declaration [is necessary](http://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/)
+
+whitespace
