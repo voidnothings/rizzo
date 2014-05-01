@@ -58,7 +58,7 @@
         %label{for: 'ac-interests', class: 'accordion__title accordion__title--footer icon--chevron-down--after'}
         %a.js-nav-item.title--footer.title--list--footer(href='http://www.lonelyplanet.com/interests') Interests
         - footer_nav_interests_items.each do |theme|
-          %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "http://www.lonelyplanet.com/interest/#{theme[:url]}"}<
+          %a.js-nav-item.nav__item.nav__item--sitemap.nav__item--footer{href: "http://www.lonelyplanet.com/#{theme[:url]}"}<
             = theme[:title]
 
     .col--footer
