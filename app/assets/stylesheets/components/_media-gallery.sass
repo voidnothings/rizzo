@@ -18,11 +18,11 @@
     height: 241px
     width: 427px
   .media-gallery__container, .tab__content, .slider__viewport
-    +z-layer
+    +z-layer(middle)
     @extend %clearfix
     @extend %transition--slower
     &.is-active
-      +z-layer(middle)
+      +z-layer(top)
   .slider__controls
     @extend %transition--slower
     top: 95px
