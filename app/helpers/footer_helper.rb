@@ -35,16 +35,16 @@ module FooterHelper
 
   def footer_nav_interests_items
     [
-      {title:'Adventure travel', uri:'adventure-travel'},
-      {title:'Beaches', uri:'beaches'},
-      {title:'Budget travel', uri:'budget-travel'},
-      {title:'Family travel', uri:'family-travel'},
-      {title:'Festivals and events', uri:'festivals-and-events'},
-      {title:'Food and drink', uri:'food-and-drink'},
-      {title:'Honeymoons and romance', uri:'honeymoons-and-romance'},
-      {title:'Luxury travel', uri:'luxury-travel'},
-      {title:'Round the world travel', uri:'round-the-world-travel'},
-      {title:'Wildlife and nature', uri:'wildlife-and-nature'}
+      {title:'Adventure travel', url:'adventure-travel'},
+      {title:'Beaches', url:'beaches'},
+      {title:'Budget travel', url:'budget-travel'},
+      {title:'Family travel', url:'family-travel'},
+      {title:'Festivals and events', url:'festivals-and-events'},
+      {title:'Food and drink', url:'food-and-drink'},
+      {title:'Honeymoons and romance', url:'honeymoons-and-romance'},
+      {title:'Luxury travel', url:'luxury-travel'},
+      {title:'Round the world travel', url:'round-the-world-travel'},
+      {title:'Wildlife and nature', url:'wildlife-and-nature'}
     ]
   end
 
