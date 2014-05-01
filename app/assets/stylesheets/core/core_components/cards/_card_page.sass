@@ -39,8 +39,8 @@
   > img
     width: 100%
   .card__content
+    +z-layer
     padding: 13px 25px
-    z-index: 1
   .card__name
     +font-size(32)
     margin-bottom: 5px
@@ -87,6 +87,7 @@
   position: relative
   text-transform: uppercase
   &:before
+    +z-layer(middle)
     content: ''
     float: left
     height: 20px
@@ -94,7 +95,6 @@
     position: relative
     top: 2px
     width: 15px
-    z-index: 4
   &.icon--place--pin--before
     line-height: initial
     &:before

@@ -226,6 +226,7 @@ $slide-width: 1000px
       display: block
 
 .gallery-underlay
+  +z-layer(middle)
   background: $body-background
   background: rgba($body-background, 0.95)
   bottom: 0
@@ -235,11 +236,11 @@ $slide-width: 1000px
   right: 0
   top: 0
   transition: opacity 1s
-  z-index: 10
   &.is-active
     opacity: 1
 
 .gallery-box
+  +z-layer(top)
   left: 0
   height: 100%
   opacity: 0
@@ -248,7 +249,6 @@ $slide-width: 1000px
   top: 0
   transition: opacity .5s, left 1s
   width: 100%
-  z-index: 20
   &.is-active
     opacity: 1
   &.is-loading
@@ -262,6 +262,7 @@ $slide-width: 1000px
 
 .gallery__next,
 .gallery__previous
+  +z-layer(middle)
   background: #888
   background: rgba(#000, 0.5)
   padding: 10px 0
@@ -277,7 +278,6 @@ $slide-width: 1000px
   transition: left 0.2s, right 0.2s, opacity 0.1s
   white-space: nowrap
   width: 120px
-  z-index: 10
   &:hover
     text-decoration: none
   .supports-touch &
@@ -316,6 +316,7 @@ $slide-width: 1000px
     right: 0
 
 .gallery__slide-counter
+  +z-layer(middle)
   bottom: 0
   color: white
   display: none
@@ -324,6 +325,5 @@ $slide-width: 1000px
   right: 0
   padding: 1em
   position: absolute
-  z-index: 10
   .supports-touch
     display: block

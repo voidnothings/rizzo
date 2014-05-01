@@ -1,14 +1,14 @@
 .tab__content
+  +z-layer(below)
   @extend %transition--slower
   opacity: 0
   perspective: 600
   position: absolute
   left: 0
   top: 0
-  z-index: -1
   &.is-active
     opacity: 1
-    z-index: 1
+    +z-layer
   @if $is-ie
     display: none
     &.is-active
@@ -17,6 +17,7 @@
 .tab
   +font-size(12)
   +css-arrow-central(top, $size: 10px)
+  +z-layer(middle)
   background: $body-copy
   color: #fff
   display: block
@@ -26,7 +27,6 @@
   padding: 0 10px
   position: relative
   text-transform: uppercase
-  z-index: 2
   &:after
     +font-size(32)
     display: none

@@ -78,11 +78,11 @@
       height: $small-card-image-height
 
 .card__hero__overlay
+  +z-layer(middle)
   height: $standard-card-image-height
   left: 0
   position: absolute
   top: 0
-  z-index: 3
 
   img
     height: 100%
@@ -169,13 +169,13 @@
       height: $card-grid-height
 
   .card__content
+    +z-layer(middle)
     backface-visibility: hidden
     background: #fff
     bottom: 0
     left: 0
     position: absolute
     right: 0
-    z-index: 3
     padding: $card-content-vertical-padding $card-content-horizontal-padding 0 $card-content-horizontal-padding
     margin-bottom: $card-content-vertical-padding
     // Ensure cards are clickable during this section transitioning
