@@ -216,6 +216,9 @@
 .icon--ferry--before:before, .icon--ferry--after:after,
 .icon--ferry { background-image: url('png/ferry.png'); background-repeat: no-repeat; }
 
+.icon--festival-travel--before:before, .icon--festival-travel--after:after,
+.icon--festival-travel { background-image: url('png/festival-travel.png'); background-repeat: no-repeat; }
+
 .icon--festivals-and-events--before:before, .icon--festivals-and-events--after:after,
 .icon--festivals-and-events { background-image: url('png/festivals-and-events.png'); background-repeat: no-repeat; }
 
@@ -282,6 +285,9 @@
 .icon--home--before:before, .icon--home--after:after,
 .icon--home { background-image: url('png/home.png'); background-repeat: no-repeat; }
 
+.icon--honeymoon--before:before, .icon--honeymoon--after:after,
+.icon--honeymoon { background-image: url('png/honeymoon.png'); background-repeat: no-repeat; }
+
 .icon--honeymoons-and-romance--before:before, .icon--honeymoons-and-romance--after:after,
 .icon--honeymoons-and-romance { background-image: url('png/honeymoons-and-romance.png'); background-repeat: no-repeat; }
 
@@ -326,6 +332,9 @@
 
 .icon--ipad--before:before, .icon--ipad--after:after,
 .icon--ipad { background-image: url('png/ipad.png'); background-repeat: no-repeat; }
+
+.icon--island--before:before, .icon--island--after:after,
+.icon--island { background-image: url('png/island.png'); background-repeat: no-repeat; }
 
 .icon--italics--before:before, .icon--italics--after:after,
 .icon--italics { background-image: url('png/italics.png'); background-repeat: no-repeat; }
@@ -411,6 +420,9 @@
 .icon--pets--before:before, .icon--pets--after:after,
 .icon--pets { background-image: url('png/pets.png'); background-repeat: no-repeat; }
 
+.icon--photography--before:before, .icon--photography--after:after,
+.icon--photography { background-image: url('png/photography.png'); background-repeat: no-repeat; }
+
 .icon--pinterest--before:before, .icon--pinterest--after:after,
 .icon--pinterest { background-image: url('png/pinterest.png'); background-repeat: no-repeat; }
 
@@ -461,6 +473,9 @@
 
 .icon--round-the-world-travel--before:before, .icon--round-the-world-travel--after:after,
 .icon--round-the-world-travel { background-image: url('png/round-the-world-travel.png'); background-repeat: no-repeat; }
+
+.icon--round-the-world--before:before, .icon--round-the-world--after:after,
+.icon--round-the-world { background-image: url('png/round-the-world.png'); background-repeat: no-repeat; }
 
 .icon--rss--before:before, .icon--rss--after:after,
 .icon--rss { background-image: url('png/rss.png'); background-repeat: no-repeat; }
@@ -612,6 +627,9 @@
 .icon--user--before:before, .icon--user--after:after,
 .icon--user { background-image: url('png/user.png'); background-repeat: no-repeat; }
 
+.icon--value-travel--before:before, .icon--value-travel--after:after,
+.icon--value-travel { background-image: url('png/value-travel.png'); background-repeat: no-repeat; }
+
 .icon--video--line--before:before, .icon--video--line--after:after,
 .icon--video--line { background-image: url('png/video--line.png'); background-repeat: no-repeat; }
 
@@ -626,6 +644,12 @@
 
 .icon--wildlife-and-nature--before:before, .icon--wildlife-and-nature--after:after,
 .icon--wildlife-and-nature { background-image: url('png/wildlife-and-nature.png'); background-repeat: no-repeat; }
+
+.icon--wildlife--before:before, .icon--wildlife--after:after,
+.icon--wildlife { background-image: url('png/wildlife.png'); background-repeat: no-repeat; }
+
+.icon--world-food--before:before, .icon--world-food--after:after,
+.icon--world-food { background-image: url('png/world-food.png'); background-repeat: no-repeat; }
 
 .icon--youtube--before:before, .icon--youtube--after:after,
 .icon--youtube { background-image: url('png/youtube.png'); background-repeat: no-repeat; }
