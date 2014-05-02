@@ -1,7 +1,15 @@
 define([ "jquery" ], function($) {
 
   "use strict";
-  var AutoComplete, methods;
+
+  // polyfill for older browsers that don't support .trim()
+  if (!String.prototype.trim) {
+    String.prototype.trim = function () {
+      return this.replace(/^\s+|\s+$/g, "");
+    };
+  }
+  
+  var AutoComplete, methods, typingTimer;
 
   AutoComplete = function(args) {
 
@@ -10,6 +18,7 @@ define([ "jquery" ], function($) {
       threshold: 0,
       limit: 0,
       fetch: this.defaultFetch,
+      debounceTime: 300,
       template: {
         elementWrapper: "<div class='js-autocomplete'></div>",
         resultsWrapper: "<div class='autocomplete'></div>",
@@ -51,6 +60,7 @@ define([ "jquery" ], function($) {
     // I like this method of storing methods and then attaching to the prototype at the end...
 
     init: function() {
+      this.$el.attr("autocomplete", "off"); // turn off native browser autocomplete feature
       this.wrapEl();
       this.setupListeners();
     },
@@ -116,6 +126,7 @@ define([ "jquery" ], function($) {
 
     setupListeners: function() {
       var _this = this;
+
       this.$wrapper.on("keypress", function(e) {
         if(e.which === 13) {
           e.preventDefault();
@@ -125,6 +136,10 @@ define([ "jquery" ], function($) {
 
       this.$wrapper.on("keyup", function(e) {
         _this.processTyping(e);
+      });
+
+      this.$wrapper.on("keydown", function() {
+        clearTimeout(typingTimer);
       });
 
       // 'blur' fires before 'click' so we have to use 'mousedown'
@@ -159,24 +174,35 @@ define([ "jquery" ], function($) {
     },
 
     processTyping: function(e) {
+      var _this = this;
       // if there is an above-threshold value passed
       if (e.target.value) {
         var keyName = this.specialkeys[e.keyCode];
         if (keyName && this.displayed) {
           this.processSpecialKey(keyName, e);
         } else if (!keyName) {
-          this.searchTerm = e.target.value;
-          this.processSearch(e.target.value);
+          _this.debounceTyping(function() {
+            _this.searchTerm = e.target.value;
+            _this.processSearch(e.target.value);
+          });
         }
       } else {
         this.clearResults();
       }
     },
 
+    debounceTyping: function(callback) {
+      var _this = this;
+      clearTimeout(typingTimer);
+      typingTimer = setTimeout(function() {
+        callback();
+      }, _this.config.debounceTime);
+    },
+
     processSearch: function(searchTerm) {
       var _this = this;
       this.resultIndex = 0;
-      if (searchTerm && searchTerm.length >= this.config.threshold) {
+      if (searchTerm && searchTerm.trim().length >= this.config.threshold) {
         this.callFetch(searchTerm, function() {
           _this.populateResultPanel();
         });
