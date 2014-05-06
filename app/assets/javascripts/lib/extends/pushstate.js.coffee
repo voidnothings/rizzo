@@ -1,5 +1,6 @@
 define ['jquery', 'lib/utils/page_state', 'lib/extends/events'], ($, PageState, EventEmitter) ->
 
+
   class Controller extends PageState
 
     $.extend(@prototype, EventEmitter)
