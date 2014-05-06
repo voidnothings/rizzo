@@ -28,6 +28,15 @@ $discBoxSize: $discSize + ($discMargin * 2)
     top: 200px
     z-index: 10
 
+  .card &
+    margin-left: -#{$discBoxSize * 4 / 2} + 10 // 4 = number of discs
+    box-shadow: 0 2px 1px 0 rgba(0,0,0,0.2)
+    border-radius: 8px
+    background-color: #fff
+    padding: $discSize -2
+    top: 50%
+    z-index: 100
+
 .preloader__disc
   background: #dbe6ec
   border-radius: $discSize / 2
@@ -93,5 +102,9 @@ $discBoxSize: $discSize + ($discMargin * 2)
     background-image: url("#{image_path('shared/spinner-subduedgray.svg')}")
 
   .results &
+    left: 13px
+    top: 2px
+
+  .card &
     left: 13px
     top: 2px
