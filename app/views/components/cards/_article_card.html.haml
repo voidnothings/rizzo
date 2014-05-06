@@ -9,7 +9,8 @@
     properties[:double?] ? "card--double card--full-image" : "card--single card--small-image card--extended-content"    
   ].join(" ")
 
-%article.js-card{class: css_classes}  
+%article.js-card{class: css_classes}
+  = ui_component('preloader')  
   %a.link--wrapper.js-lightbox-toggle.js-toggle-active{href: properties[:url], data: {toggle: {target: '.lightbox'} }}  
     = render partial: "components/cards/partials/card_content", locals: {properties: properties}
 
