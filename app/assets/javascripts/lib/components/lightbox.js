@@ -92,6 +92,10 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
       _this._updateContent(content);
     });
 
+    this.$listener.on(":htmlpage/received", function(event, content) {
+      _this._updateContent(content);
+    });
+
   };
 
   // -------------------------------------------------------------------------
