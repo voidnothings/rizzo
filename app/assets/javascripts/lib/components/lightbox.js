@@ -31,6 +31,7 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
   // Initialise
   // -------------------------------------------------------------------------
 
+
   LightBox.prototype.init = function() {
     var $body = $("body");
 
