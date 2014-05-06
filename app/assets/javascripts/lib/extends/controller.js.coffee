@@ -1,4 +1,4 @@
-define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/deparam'], ($, PageState, EventEmitter) ->
+define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/extends/pushstate', 'lib/utils/deparam'], ($, PageState, EventEmitter, PushState) ->
 
   class Controller extends PageState
 
@@ -8,37 +8,39 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
     state: {}
 
     constructor: (args = {}) ->
-      # Ignore initial popstate in chrome
-      # https://code.google.com/p/chromium/issues/detail?id=63040
-      @popStateFired = false
-      @currentUrl = @getUrl()
-
       $.extend @config, args
+
+      @pushstate      = new PushState()
+
       @init()
       @listen()
+
 
     init: ->
       # Controller uses the main listening element for pub & sub
       @$el = $(LISTENER)
       @_generateState()
-      @_initHistory()
 
 
     # Subscribe
     listen: ->
       $(LISTENER).on ':cards/request', (e, data, analytics) =>
         @_updateState(data)
-        @_callServer(@_createRequestUrl(), @replace, analytics)
+        @_callServer(@pushstate.createRequestUrl(@_serializeState()), @replace, analytics)
 
       $(LISTENER).on ':cards/append', (e, data, analytics) =>
         @_updateState(data)
         # We don't want to modify the url for appending content
         existingUrl = @getUrl()
-        @_callServer(@_createRequestUrl(existingUrl), @append, analytics)
+        @_callServer(@pushstate.createRequestUrl(@_serializeState(), existingUrl), @append, analytics)
 
       $(LISTENER).on ':page/request', (e, data, analytics) =>
         @newDocumentRoot = data.url.split('?')[0]
-        @_callServer(@_createRequestUrl(@newDocumentRoot), @newPage, analytics)
+        @_callServer(@pushstate.createRequestUrl(@_serializeState(), @newDocumentRoot), @newPage, analytics)
+
+      $(LISTENER).on ':htmlpage/request', (e, data, analytics) =>
+        @newDocumentRoot = data.url.split('?')[0]
+        @_callServer(@pushstate.createRequestUrl(@_serializeState(), @newDocumentRoot), @htmlPage, analytics, 'html')
 
 
     # Publish
@@ -46,7 +48,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
     # Page offset currently lives within search so we must check and update each time
     replace: (data, analytics) =>
       @_updateOffset(data.pagination) if data.pagination and data.pagination.page_offsets
-      @_navigate(@_createUrl())
+      @pushstate.navigate(@_serializeState())
       @trigger(':cards/received', [data, @state, analytics])
 
     append: (data, analytics) =>
@@ -56,45 +58,21 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
 
     newPage: (data, analytics) =>
       @_updateOffset(data.pagination) if data.pagination and data.pagination.page_offsets
-      @_navigate(@_createUrl(@newDocumentRoot))
+      @pushstate.navigate(@_serializeState(), @newDocumentRoot)
       @trigger(':page/received', [data, @state, analytics])
+
+    htmlPage: (data, analytics) =>
+      @pushstate.navigate(@_serializeState(), @newDocumentRoot)
+      @trigger(':htmlpage/received', [data, @state, analytics])
 
 
     # Private
-    _callServer: (url, callback, analytics) ->
+    _callServer: (url, callback, analytics, dataType) ->
       $.ajax
         url: url
-        dataType: 'json'
+        dataType: dataType || 'json'
         success: (data) ->
           callback(data, analytics)
-
-    _initHistory: ->
-      if @_supportsHistory()
-        $(window).bind 'popstate', =>
-          @_handlePopState()
-      else if @_supportsHash()
-        #ie8 and ie9
-        @allowHistoryNav = true
-        # Set up our event listener to listen to hashchange (back/forward)
-        $(window).on('hashchange', @_onHashChange)
-        # If there's a hash on page load, fire the _onHashChange function and redirect the user to the correct page.
-        @_onHashChange() if @getHash()
-      else
-        #ie7
-        false
-
-    # WebKit fires a popstate event on document load
-    _handlePopState: () ->
-      if !@popStateFired
-        @popStateFired = true
-        if @getUrl() is @currentUrl then return
-      @setUrl(@getUrl())
-
-    _supportsHistory: ->
-      @isHistoryEnabled ?= (window.history and window.history.pushState and window.history.replaceState and !navigator.userAgent.match(/((iPod|iPhone|iPad).+\bOS\s+[1-4]|WebApps\/.+CFNetwork)/))
-
-    _supportsHash: ->
-      @isHashEnabled ?= ("onhashchange" of window)
 
     _generateState: ->
       @state = $.deparam(@getParams())
@@ -115,53 +93,3 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/utils/depar
     _serializeState: ->
       $.param(@state)
 
-    # If navigating to a subsection we pass in the new document root
-    _createRequestUrl: (rootUrl) ->
-      documentRoot = rootUrl or @getDocumentRoot()
-      documentRoot = documentRoot.replace(/\/$/, '')
-      documentRoot + ".json?" + @_serializeState()
-
-    # If navigating to a subsection we pass in the new document root
-    _createUrl: (rootUrl) ->
-      documentRoot = rootUrl or @getDocumentRoot()
-      params = if @_serializeState() then "?" + @_serializeState() else ""
-      if @_supportsHistory()
-        base = documentRoot + params
-      else
-        base = "#!" + documentRoot + params
-
-    _navigate: (url, callback) ->
-      if (@_supportsHistory() or @_supportsHash())
-        @_setState(url)
-      else
-        @setUrl(url)
-
-    _replaceUrl: (url, callback) ->
-      if (@_supportsHistory() or @_supportsHash())
-        @_setState(url, true)
-      else
-        @setUrl(url)
-
-    _setState: (url, replaceState=false) ->
-      if @_supportsHistory()
-        if replaceState
-          window.history.replaceState({}, null, url)
-        else
-          window.history.pushState({}, null, url)
-
-          # Chrome workaround
-          @currentUrl = @getUrl;
-      else
-        # Ensure we don't trigger a refresh
-        @allowHistoryNav = false
-        # Store the new url in the hash
-        @setHash(url)
-
-    _onHashChange: () =>
-      # Only cause a refresh if it's back/forward
-      if @allowHistoryNav
-        hash = @getHash()
-        url = if hash then (hash.substring(2)) else @getUrl()
-        @setUrl(url)
-      # Ensure we are always listening for back/forward navigation
-      @allowHistoryNav = true
