@@ -70,6 +70,10 @@ define([ "jquery", "lib/mixins/flyout" ], function($, asFlyout) {
       _this._updateContent(content);
     });
 
+    this.$listener.on(":lightbox/updateContentAjax", function(event, url) {
+      _this._updateContentAjax(url);
+    });
+
     this.$listener.on(":flyout/close", function() {
       _this.$lightboxContent.empty();
     });
@@ -80,16 +84,24 @@ define([ "jquery", "lib/mixins/flyout" ], function($, asFlyout) {
       }
     });
 
+    this.$listener.on(":htmlpage/received", function(event, content) {
+      _this._updateContent(content);
+    });
+
   };
 
   // -------------------------------------------------------------------------
   // Private Functions
   // -------------------------------------------------------------------------
 
+  LightBox.prototype._updateContentAjax = function(url) {
+    $("#js-card-holder").trigger(":htmlpage/request", { url: url });
+  };
+
   // @content: {string} the content to dump into the lightbox.
   LightBox.prototype._updateContent = function(content) {
-    this.$lightboxContent.html(content);
-    this._centerLightbox();
+    _this.$lightboxContent.html(content);
+    _this._centerLightbox();
   };
 
   LightBox.prototype._centerLightbox = function() {
