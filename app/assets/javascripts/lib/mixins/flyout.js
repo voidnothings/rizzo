@@ -13,7 +13,7 @@ define([ "jquery" ], function($) {
       var target = event.target,
           $document = $(document);
 
-      if (data.isActive) {
+      if (!data.isActive) {
         $document.on("click.toggleActive", function(event) {
           if (!$(event.target).closest(data.targets).length) {
             _this._closeFlyout(target);
