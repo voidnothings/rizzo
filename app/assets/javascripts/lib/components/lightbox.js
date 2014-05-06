@@ -100,6 +100,7 @@ define([ "jquery", "lib/mixins/flyout" ], function($, asFlyout) {
 
   // @content: {string} the content to dump into the lightbox.
   LightBox.prototype._updateContent = function(content) {
+    _this.$listener.trigger(":lightbox/contentUpdated", _this.$el);
     _this.$lightboxContent.html(content);
     _this._centerLightbox();
   };
