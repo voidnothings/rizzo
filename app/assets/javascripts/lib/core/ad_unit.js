@@ -47,10 +47,10 @@ define([ "jquery", "lib/core/ads/double_mpu" ], function($, DoubleMPU) {
   AdUnit.prototype.extensions = {
 
     stackMPU: function() {
-      var $container = this.$target.closest(".js-card-ad");
+      var $container = this.$target.closest(".js-card-sponsored");
 
       if (this.$iframe.height() > $container.height()) {
-        $container.addClass("ad-doubleMpu");
+        $container.addClass("card--sponsored--double-mpu");
         this.extension = new DoubleMPU(this.$target, $container);
       }
     }
