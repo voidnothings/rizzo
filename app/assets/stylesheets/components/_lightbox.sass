@@ -19,6 +19,12 @@
 .lightbox__content
   @extend %large-shadow
   position: absolute
+  .lightbox--article &
+    @extend %rounded-corners
+    width: 800px
+    padding: 30px
+    background-color: white
+
   > iframe
     background: black
     border: 0
