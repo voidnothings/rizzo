@@ -5,19 +5,19 @@
   .tag--price__inner
     .tag--price__values
       from
-      .tag--price__amount<
-        %span.tag--price__currency.js-currency<
+      .tag--price__amount<>
+        %span.tag--price__currency.js-currency<>
           = properties[:currency]
-        %span.js-price<
+        %span.js-price<>
           = price_parts.first
-          %span.tag--price__decimal<
+          %span.tag--price__decimal<>
             = price_parts.length == 2 ? ".#{price_parts.last}" : ""
 
       - if properties[:scope]
-        %span.tag--price__scope.js-scope<
+        %span.tag--price__scope.js-scope<>
           = properties[:scope]
 
     - if properties[:on_sale?]
-      .tag--price__retail<
+      .tag--price__retail<>
         = properties[:currency]
         = properties[:retail_price]
