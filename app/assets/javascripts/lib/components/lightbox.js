@@ -4,7 +4,7 @@
 //
 // ------------------------------------------------------------------------------
 
-define([ "jquery", "lib/mixins/flyout" ], function($, asFlyout) {
+define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper" ], function($, asFlyout, viewportHelper) {
 
   "use strict";
 
@@ -13,6 +13,7 @@ define([ "jquery", "lib/mixins/flyout" ], function($, asFlyout) {
   var LightBox = function(args) {
     this.customClass = args.customClass;
     this.$listener = $(args.$listener || "#js-row--content");
+    this.preloader = args.preloader || false;
     this.$el = $(args.el);
     this.$el && this.init();
   },
@@ -95,12 +96,19 @@ define([ "jquery", "lib/mixins/flyout" ], function($, asFlyout) {
   // -------------------------------------------------------------------------
 
   LightBox.prototype._updateContentAjax = function(url) {
+    if (this.preloader){
+      _this.$lightboxContent.html( this._getPreloaderHTML() );
+      _this.$lightbox.addClass("is-loading");
+      _this._centerLightbox();
+    }
+
     $("#js-card-holder").trigger(":htmlpage/request", { url: url });
   };
 
   // @content: {string} the content to dump into the lightbox.
   LightBox.prototype._updateContent = function(content) {
     _this.$listener.trigger(":lightbox/contentUpdated", _this.$el);
+    _this.$lightbox.removeClass("is-loading");
     _this.$lightboxContent.html(content);
     _this._centerLightbox();
   };
@@ -114,10 +122,9 @@ define([ "jquery", "lib/mixins/flyout" ], function($, asFlyout) {
 
   LightBox.prototype._centeredLeftPosition = function() {
     var lightboxW = this.$lightboxContent.width(),
-        viewportDimensions = this._viewportDimensions(),
-        left = $window.scrollLeft() + (viewportDimensions.w / 2) - (lightboxW / 2);
+        left = $window.scrollLeft() + (viewportHelper.viewport().width / 2) - (lightboxW / 2);
 
-    if (lightboxW > viewportDimensions.w) {
+    if (lightboxW > viewportHelper.viewport().width) {
       left = $window.scrollLeft();
     }
 
@@ -126,10 +133,9 @@ define([ "jquery", "lib/mixins/flyout" ], function($, asFlyout) {
 
   LightBox.prototype._centeredTopPosition = function() {
     var lightboxH = this.$lightboxContent.height(),
-        viewportDimensions = this._viewportDimensions(),
-        top = $window.scrollTop() + (viewportDimensions.h / 2) - (lightboxH / 2);
+        top = $window.scrollTop() + (viewportHelper.viewport().height / 2) - (lightboxH / 2);
 
-    if (lightboxH > viewportDimensions.h) {
+    if (lightboxH > viewportHelper.viewport().height) {
       top = $window.scrollTop();
     }
 
@@ -144,10 +150,16 @@ define([ "jquery", "lib/mixins/flyout" ], function($, asFlyout) {
     };
   };
 
+  LightBox.prototype._getPreloaderHTML = function() {
+    return "<div class='preloader'><div class='preloader__disc'><div class='preloader__disc--coloured preloader__disc--blue'></div></div><div class='preloader__disc'><div class='preloader__disc--coloured preloader__disc--red'></div></div><div class='preloader__disc'><div class='preloader__disc--coloured preloader__disc--green'></div></div><div class='preloader__disc'><div class='preloader__disc--coloured preloader__disc--orange'></div></div><div class='preloader__cover'></div></div>";
+  };
+
   // Self instantiate if the default class is used.
   if ($(".js-lightbox-toggle").length) {
+    var $lightboxToggle = $(".js-lightbox-toggle");
     new LightBox({
-      customClass: $(".js-lightbox-toggle").data("lightbox-class"),
+      customClass: $lightboxToggle.data("lightbox-class"),
+      preloader: $lightboxToggle.data("lightbox-preloader"),
       el: ".js-lightbox-toggle"
     });
   }
