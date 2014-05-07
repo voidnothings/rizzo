@@ -3,8 +3,6 @@
 // LightBox
 //
 // ------------------------------------------------------------------------------
-
-
 define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/template" ], function($, asFlyout, viewportHelper, Template) {
 
   "use strict";
@@ -31,7 +29,6 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
   // -------------------------------------------------------------------------
   // Initialise
   // -------------------------------------------------------------------------
-
 
   LightBox.prototype.init = function() {
     var $body = $("body");
@@ -106,7 +103,6 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
 
   LightBox.prototype._updateContentAjax = function(url) {
     if (this.preloader){
-
       _this.$lightboxContent.html( this.preloaderTmpl );
       _this.$lightbox.addClass("is-loading");
       _this._centerLightbox();
@@ -158,10 +154,6 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
       h: $window.height(),
       w: $window.width()
     };
-  };
-
-  LightBox.prototype._getPreloaderHTML = function() {
-    return "<div class='preloader'><div class='preloader__disc'><div class='preloader__disc--coloured preloader__disc--blue'></div></div><div class='preloader__disc'><div class='preloader__disc--coloured preloader__disc--red'></div></div><div class='preloader__disc'><div class='preloader__disc--coloured preloader__disc--green'></div></div><div class='preloader__disc'><div class='preloader__disc--coloured preloader__disc--orange'></div></div><div class='preloader__cover'></div></div>";
   };
 
   // Self instantiate if the default class is used.
