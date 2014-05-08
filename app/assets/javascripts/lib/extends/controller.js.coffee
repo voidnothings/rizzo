@@ -38,10 +38,9 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/extends/pus
         @newDocumentRoot = data.url.split('?')[0]
         @_callServer(@pushstate.createRequestUrl(@_serializeState(), @newDocumentRoot), @newPage, analytics)
 
-      $(LISTENER).on ':htmlpage/request', (e, data, analytics) =>
+      $(LISTENER).on ':layer/request', (e, data, analytics) =>
         @newDocumentRoot = data.url.split('?')[0]
         @_callServer(@pushstate.createRequestUrl(@_serializeState(), @newDocumentRoot), @htmlPage, analytics, 'html')
-
 
     # Publish
 
@@ -63,7 +62,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/extends/pus
 
     htmlPage: (data, analytics) =>
       @pushstate.navigate(@_serializeState(), @newDocumentRoot)
-      @trigger(':htmlpage/received', [data, @state, analytics])
+      @trigger(':layer/received', [data, @state, analytics])
 
 
     # Private

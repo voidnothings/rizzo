@@ -25,7 +25,7 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
   // -------------------------------------------------------------------------
   // The argument with the facet is required at the moment and is soon to be
   // removed from the flyout mixin.
-  asFlyout.call(LightBox.prototype, { facet: ".to-be-removed" });
+  asFlyout.call(LightBox.prototype, { facet: ".to-be-removed", $listener: $(".lightbox__content") });
 
   // -------------------------------------------------------------------------
   // Initialise
@@ -82,13 +82,13 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
       _this.$lightboxContent.empty();
     });
 
-    this.$lightbox.on("click", function(e) {
-      if (e.target == e.currentTarget) {
-        _this.$listener.trigger(":toggleActive/update", _this.$el);
-      }
-    });
+    // this.$lightbox.on("click", function(e) {
+    //   if (e.target == e.currentTarget) {
+    //     _this.$listener.trigger(":toggleActive/update", _this.$el);
+    //   }
+    // });
 
-    this.$listener.on(":htmlpage/received", function(event, content) {
+    this.$listener.on(":layer/received", function(event, content) {
       _this._updateContent(content);
     });
 
@@ -105,7 +105,7 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
       _this._centerLightbox();
     }
 
-    $("#js-card-holder").trigger(":htmlpage/request", { url: url });
+    $("#js-card-holder").trigger(":layer/request", { url: url });
   };
 
   // @content: {string} the content to dump into the lightbox.
