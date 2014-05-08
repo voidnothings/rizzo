@@ -1,23 +1,26 @@
 // ----------------------------------------------------------------------------
-// Site leaderboard
+// Ad layout rows
 // ----------------------------------------------------------------------------
 
-.row--leaderboard
-  +z-layer(middle)
+.row--sponsored
   @extend %transition--slower
-  position: relative
-  min-height: 90px
+  min-height: 50px
   padding: 16px 0
   overflow: hidden
-  background-color: $row-leaderboard
 
   &.is-closed
     min-height: 0
     height: 0
     padding: 0
 
+// ----------------------------------------------------------------------------
+// Site leaderboard
+// ----------------------------------------------------------------------------
+
+.row--leaderboard
+  background-color: $row-leaderboard
+
 .ad-leaderboard
-  @extend %transition--slower
   text-align: center
 
 .ad-leaderboard__inner
@@ -42,6 +45,9 @@
 // ----------------------------------------------------------------------------
 // Page billboard
 // ----------------------------------------------------------------------------
+
+.row--billboard
+  background: darken($body-background, 2.5%)
 
 .ad-billboard
   text-align: center
