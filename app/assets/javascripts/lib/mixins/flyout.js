@@ -6,7 +6,6 @@ define([ "jquery" ], function($) {
     var _this = this;
     args || (args = {});
 
-    this.$facetCount = $(args.facet);
     this.$listener = $(args.$listener || "#js-row--content");
 
     this.close = this.$listener.on(":toggleActive/click", function(event, data) {
@@ -28,12 +27,6 @@ define([ "jquery" ], function($) {
         $document.off("click.toggleActive keyup");
       }
 
-    });
-
-    this.updateCount = this.$listener.on(":cards/received", function(event, data) {
-      if (data && data.filterCount) {
-        _this.$facetCount.text("(" + data.filterCount + ")");
-      }
     });
 
     // Private(ish)
