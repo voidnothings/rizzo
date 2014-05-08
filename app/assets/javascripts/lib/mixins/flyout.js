@@ -38,8 +38,8 @@ define([ "jquery" ], function($) {
 
     // Private(ish)
 
-    this._closeFlyout = function() {
-      this.$listener.trigger(":flyout/close");
+    this._closeFlyout = function(target) {
+      this.$listener.trigger(":flyout/close").trigger(":toggleActive/update", target);
       $(document).off("click.toggleActive keyup");
     };
 
