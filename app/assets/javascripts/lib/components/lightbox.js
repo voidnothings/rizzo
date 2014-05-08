@@ -12,6 +12,7 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
   var LightBox = function(args) {
     this.customClass = args.customClass;
     this.$listener = $(args.$listener || "#js-row--content");
+    this.$opener = $(args.$opener || ".js-lightbox-toggle");
     this.preloader = args.preloader || false;
     this.$el = $(args.el);
     this.$el && this.init();
@@ -24,7 +25,7 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
   // -------------------------------------------------------------------------
   // The argument with the facet is required at the moment and is soon to be
   // removed from the flyout mixin.
-  asFlyout.call(LightBox.prototype, { facet: ".to-be-removed", $listener: $(".lightbox__content") });
+  asFlyout.call(LightBox.prototype, { facet: ".to-be-removed" });
 
   // -------------------------------------------------------------------------
   // Initialise
@@ -56,6 +57,7 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
       height: $body.height(),
       width: $body.width()
     });
+
     if (this.preloader) {
       this.preloaderTmpl = Template.render($("#tmpl-preloader").text(), {});
     }
@@ -69,6 +71,14 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
 
   LightBox.prototype.listen = function() {
 
+    this.$opener.on("click", function(event) {
+      _this.$listener.trigger(":lightbox/open", { opener: event.currentTarget,  target: _this.$lightboxContent });
+      _this.$lightbox.addClass("is-active");
+      return false;
+    });
+
+    this.$listener.on(":lightbox/open", this.listenToFlyout);
+
     this.$listener.on(":lightbox/updateContent", function(event, content) {
       _this._updateContent(content);
     });
@@ -78,14 +88,8 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
     });
 
     this.$listener.on(":flyout/close", function() {
-      _this.$lightboxContent.empty();
+      _this.$lightbox.removeClass("is-active");
     });
-
-    // this.$lightbox.on("click", function(e) {
-    //   if (e.target == e.currentTarget) {
-    //     _this.$listener.trigger(":toggleActive/update", _this.$el);
-    //   }
-    // });
 
     this.$listener.on(":layer/received", function(event, content) {
       _this._updateContent(content);
