@@ -5,7 +5,10 @@
 // it is special because it allows vertical scrolling on left/right swipeables
 //
 // ------------------------------------------------------------------------------
-define([ "jquery" ], function($) {
+define([
+  "jquery"
+], function($) {
+
   "use strict";
 
   var Swipe = function Swipe(args) {
@@ -86,7 +89,9 @@ define([ "jquery" ], function($) {
 
   Swipe.prototype._gestureBegins = function(event) {
     var target = _this._getTarget(event.target);
+
     if (!target.length) { return; }
+
     event = event.originalEvent;
     _this.scrollTop = _this._getScrollTop();
     _this.startPoint = _this._eventToPoint(event);
@@ -95,6 +100,7 @@ define([ "jquery" ], function($) {
   Swipe.prototype._gestureMoves = function(event) {
     var currentPoint,
         target = _this._getTarget(event.target);
+
     if (!target.length) { return; }
     event = event.originalEvent;
     currentPoint = _this._eventToPoint(event);
@@ -114,7 +120,9 @@ define([ "jquery" ], function($) {
   Swipe.prototype._gestureEnds = function(event) {
     var threshold,
         target = _this._getTarget(event.target);
+
     if (!target.length) { return; }
+
     threshold = target.data("swipe-threshold") || 10;
 
     if (_this.difference) {

@@ -21,7 +21,7 @@ require ['lib/analytics/analytics'], (Analytics) ->
       beforeEach ->
         analytics._add(stub)
 
-      it 'adds a simple object to the onniture config', ->
+      it 'adds a simple object to the omniture config', ->
         expect(analytics.config.test).toBe(stub.test)
         expect(analytics.config.test2).toBe(stub.test2)
 
@@ -130,4 +130,3 @@ require ['lib/analytics/analytics'], (Analytics) ->
 
         it 'does not call restore', ->
           expect(analytics._restore).not.toHaveBeenCalled()
-
