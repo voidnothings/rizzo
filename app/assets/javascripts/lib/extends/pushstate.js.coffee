@@ -8,9 +8,6 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events'], ($, PageState, 
     state: {}
 
     constructor: (args = {}) ->
-      # Ignore initial popstate in chrome
-      # https://code.google.com/p/chromium/issues/detail?id=63040
-      @popStateFired = false
       @currentUrl = @getUrl()
 
       $.extend @config, args
@@ -53,9 +50,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events'], ($, PageState, 
 
     # WebKit fires a popstate event on document load
     _handlePopState: () ->
-      if !@popStateFired
-        @popStateFired = true
-        if @getUrl() is @currentUrl then return
+      if @getUrl() is @currentUrl then return
       @setUrl(@getUrl())
 
     _supportsHistory: ->
