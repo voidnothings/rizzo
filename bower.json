@@ -1,7 +1,6 @@
 {
   "name": "rizzo",
   "dependencies": {
-    "fastclick": "latest",
     "flamsteed": "latest",
     "hogan": "latest",
     "jquery": "jquery#1.11",
