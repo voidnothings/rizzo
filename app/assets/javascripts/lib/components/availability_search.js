@@ -48,6 +48,7 @@ define([
       _this._block();
     });
 
+    /* jshint ignore:start */
     $(LISTENER).on(":cards/received", function(e, data) {
       if (_this.hasSearched()) {
         _this._hide();
@@ -59,6 +60,7 @@ define([
         _this._set("page_offsets", data.pagination.page_offsets);
       }
     });
+    /* jshint ignore:end */
 
     $(LISTENER).on(":search/change", function() {
       _this._show();

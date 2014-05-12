@@ -144,8 +144,6 @@
     "!=="
   ],
 
-  "requireCamelCaseOrUpperCaseIdentifiers": true,
-
   "disallowMultipleLineStrings": true,
 
   "disallowMultipleLineBreaks": true,
