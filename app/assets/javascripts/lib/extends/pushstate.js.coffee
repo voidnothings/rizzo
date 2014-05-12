@@ -6,7 +6,6 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events'], ($, PageState, 
     $.extend(@prototype, EventEmitter)
 
     LISTENER = '#js-card-holder'
-    state: {}
 
     constructor: (args = {}) ->
       @currentUrl = @getUrl()
@@ -49,9 +48,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events'], ($, PageState, 
         #ie7
         false
 
-    # WebKit fires a popstate event on document load
     _handlePopState: () ->
-      if @getUrl() is @currentUrl then return
       @setUrl(@getUrl())
 
     _supportsHistory: ->

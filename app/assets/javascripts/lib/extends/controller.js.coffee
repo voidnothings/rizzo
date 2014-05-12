@@ -26,21 +26,21 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/extends/pus
     listen: ->
       $(LISTENER).on ':cards/request', (e, data, analytics) =>
         @_updateState(data)
-        @_callServer(@pushstate.createRequestUrl(@_serializeState()), @replace, analytics)
+        @_callServer(@_createRequestUrl(@_serializeState()), @replace, analytics)
 
       $(LISTENER).on ':cards/append', (e, data, analytics) =>
         @_updateState(data)
         # We don't want to modify the url for appending content
         existingUrl = @getUrl()
-        @_callServer(@pushstate.createRequestUrl(@_serializeState(), existingUrl), @append, analytics)
+        @_callServer(@_createRequestUrl(@_serializeState(), existingUrl), @append, analytics)
 
       $(LISTENER).on ':page/request', (e, data, analytics) =>
         @newDocumentRoot = data.url.split('?')[0]
-        @_callServer(@pushstate.createRequestUrl(@_serializeState(), @newDocumentRoot), @newPage, analytics)
+        @_callServer(@_createRequestUrl(@_serializeState(), @newDocumentRoot), @newPage, analytics)
 
       $(LISTENER).on ':layer/request', (e, data, analytics) =>
         @newDocumentRoot = data.url.split('?')[0]
-        @_callServer(@pushstate.createRequestUrl(@_serializeState(), @newDocumentRoot), @htmlPage, analytics, 'html')
+        @_callServer(@_createRequestUrl(@_serializeState(), @newDocumentRoot), @htmlPage, analytics, 'html')
 
     # Publish
 
@@ -91,4 +91,9 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/extends/pus
 
     _serializeState: ->
       $.param(@state)
+
+    # For testing, do not remove
+
+    _createRequestUrl: (state, rootUrl) ->
+      @pushstate.createRequestUrl(state, rootUrl)
 

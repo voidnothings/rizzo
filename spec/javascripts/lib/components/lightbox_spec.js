@@ -26,11 +26,15 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
       });
 
       it("extends the flyout functionality", function() {
-        expect(lightbox.close).toBeDefined();
+        expect(lightbox.listenToFlyout).toBeDefined();
       });
 
       it("defines a way to update the contents", function() {
         expect(lightbox._updateContent).toBeDefined();
+      });
+
+      it("defines a way to update the contents via ajax", function() {
+        expect(lightbox._updateContentAjax).toBeDefined();
       });
 
       it("sets up the container to be the full height and width of the document", function() {

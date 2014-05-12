@@ -127,9 +127,10 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
 
   LightBox.prototype._centeredLeftPosition = function() {
     var lightboxW = this.$lightboxContent.width(),
-        left = $window.scrollLeft() + (viewportHelper.viewport().width / 2) - (lightboxW / 2);
+        viewportDimensions = this._viewportDimensions(),
+        left = $window.scrollLeft() + (viewportDimensions.w / 2) - (lightboxW / 2);
 
-    if (lightboxW > viewportHelper.viewport().width) {
+    if (lightboxW > viewportDimensions.w) {
       left = $window.scrollLeft();
     }
 
@@ -138,9 +139,10 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
 
   LightBox.prototype._centeredTopPosition = function() {
     var lightboxH = this.$lightboxContent.height(),
-        top = $window.scrollTop() + (viewportHelper.viewport().height / 2) - (lightboxH / 2);
+        viewportDimensions = this._viewportDimensions(),
+        top = $window.scrollTop() + (viewportDimensions.h / 2) - (lightboxH / 2);
 
-    if (lightboxH > viewportHelper.viewport().height) {
+    if (lightboxH > viewportDimensions.h) {
       top = $window.scrollTop();
     }
 
@@ -150,8 +152,8 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
   // This is useful for testing. Do not remove.
   LightBox.prototype._viewportDimensions = function() {
     return {
-      h: $window.height(),
-      w: $window.width()
+      h: viewportHelper.viewport().height,
+      w: viewportHelper.viewport().width
     };
   };
 

@@ -56,19 +56,6 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         expect(controller._generateState).toHaveBeenCalled()
 
 
-    describe 'initialisation without support for history.pushState', ->
-      beforeEach ->
-        window.controller = new Controller()
-        spyOn(controller, "_supportsHistory").andReturn(false)
-        spyOn(controller, "_onHashChange")
-        controller.popStateFired = false;
-        controller.init()
-
-      it 'calls _onHashChange', ->
-        $(window).trigger('hashchange')
-        expect(controller._onHashChange).toHaveBeenCalled()
-
-
 
     # --------------------------------------------------------------------------
     # Private Methods
@@ -95,52 +82,6 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         expect(controller.state.filters["property_type"]["4star"]).toBe(true)
 
 
-    describe 'creating the url', ->
-      beforeEach ->
-        window.controller = new Controller()
-        spyOn(controller, "getParams").andReturn(serialized.newUrlWithSearchAndFilters)
-        spyOn(controller, "getDocumentRoot").andReturn("/")
-        controller._generateState()
-
-      describe 'with pushState support', ->
-        it 'serializes the application state with the document root', ->
-
-          newUrl = controller._createUrl()
-          expect(newUrl).toBe("/?" + serialized.newUrlWithSearchAndFilters)
-
-        it 'serializes the application state with the *new* document root', ->
-
-          newUrl = controller._createUrl("/reviewed")
-          expect(newUrl).toBe("/reviewed?" + serialized.newUrlWithSearchAndFilters)
-
-      describe 'without pushState support', ->
-        beforeEach ->
-          spyOn(controller, "_supportsHistory").andReturn(false)
-
-        it 'creates a hashbang url with the document root', ->
-          newUrl = controller._createUrl()
-          expect(newUrl).toBe("#!/" + "?" + serialized.newUrlWithSearchAndFilters)
-
-        it 'creates a hashbang url with the *new* document root', ->
-          newUrl = controller._createUrl("/reviewed")
-          expect(newUrl).toBe("#!/reviewed" + "?" + serialized.newUrlWithSearchAndFilters)
-
-
-    describe 'creating the request url', ->
-      beforeEach ->
-        window.controller = new Controller()
-        spyOn(controller, "_serializeState").andReturn(serialized.newUrlWithSearchAndFilters)
-        spyOn(controller, "getDocumentRoot").andReturn("/foo")
-
-      it 'serializes the application state with the document root and appends .json', ->
-        newUrl = controller._createRequestUrl()
-        expect(newUrl).toBe("/foo.json?" + serialized.newUrlWithSearchAndFilters)
-
-      it 'serializes the application state with the *new* document root and appends .json', ->
-        newUrl = controller._createRequestUrl("/bar")
-        expect(newUrl).toBe("/bar.json?" + serialized.newUrlWithSearchAndFilters)
-
-
     describe 'updating the page offset', ->
       beforeEach ->
         window.controller = new Controller()
@@ -160,76 +101,6 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
       it 'params do not include page', ->
         expect(controller.state.page).toBe(undefined)
 
-
-    describe 'updating push state', ->
-      beforeEach ->
-        spyOn(history, 'pushState');
-        window.controller = new Controller()
-        controller._navigate("/test")
-
-      it 'history.pushState is called', ->
-        expect(history.pushState).toHaveBeenCalledWith({}, null, "/test")
-
-      afterEach ->
-        controller.popStateFired = false
-
-
-    describe 'updating hash bang', ->
-      beforeEach ->
-        window.controller = new Controller()
-        spyOn(controller, '_supportsHistory').andReturn(false)
-        spyOn(controller, '_supportsHash').andReturn(true)
-        spyOn(controller, 'setHash')
-        controller.popStateFired = false
-        controller._navigate("/test")
-
-      afterEach ->
-        window.location.hash = ""
-
-      it 'the hash is appended to the url', ->
-        expect(controller.setHash).toHaveBeenCalledWith('/test')
-
-
-    describe 'when we dont support pushState', ->
-
-      beforeEach ->
-        window.controller = new Controller()
-        spyOn(controller, '_supportsHistory').andReturn(false)
-
-      describe 'when we have a hash', ->
-        beforeEach ->
-          spyOn(controller, 'getHash').andReturn("#!/testing")
-          spyOn(controller, 'setUrl')
-
-        describe 'and history navigation is enabled', ->
-          beforeEach ->
-            controller.allowHistoryNav = true
-            controller._onHashChange()
-
-          it 'replaces the url with the stored hash url', ->
-            expect(controller.setUrl).toHaveBeenCalledWith('/testing')
-
-        describe 'and history navigation is disabled', ->
-          beforeEach ->
-            controller.allowHistoryNav = false
-            controller._onHashChange()
-
-          it 'does not update the url', ->
-            expect(controller.getHash).not.toHaveBeenCalled()
-            expect(controller.setUrl).not.toHaveBeenCalled()
-
-      describe 'when we dont have a hash and history navigation is enabled', ->
-        beforeEach ->
-          spyOn(controller, 'getHash').andReturn("")
-          spyOn(controller, 'getUrl').andReturn("www.lonelyplanet.com/testing")
-          spyOn(controller, 'setUrl')
-          controller.allowHistoryNav = true
-          controller._onHashChange()
-
-        it 'replaces the url with the current url', ->
-          expect(controller.setUrl).toHaveBeenCalledWith('www.lonelyplanet.com/testing')
-
-
     describe 'calling the server', ->
       beforeEach ->
         window.controller = new Controller()
@@ -238,50 +109,6 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
 
       it 'enters the ajax function', ->
         expect($.ajax).toHaveBeenCalled()
-
-
-    # --------------------------------------------------------------------------
-    # Back / Forward
-    # --------------------------------------------------------------------------
-
-    describe 'on first load', ->
-      beforeEach ->
-        window.controller = new Controller()
-        spyOn(controller, "setUrl")
-        controller.popStateFired = false;
-        controller._handlePopState()
-
-      it 'does not refresh the page', ->
-        expect(controller.setUrl).not.toHaveBeenCalled()
-
-      afterEach ->
-        controller.popStateFired = false
-
-
-    describe 'after first load', ->
-      beforeEach ->
-        window.controller = new Controller()
-        spyOn(controller, "getUrl").andReturn("http://www.lonelyplanet.com/england/london?search=foo")
-        spyOn(controller, "setUrl")
-        controller.popStateFired = false;
-        controller.currentUrl = "http://www.lonelyplanet.com/england/london"
-        controller._handlePopState()
-
-      it 'refreshes the page', ->
-        expect(controller.setUrl).toHaveBeenCalled()
-
-
-    describe 'returning to the first page', ->
-      beforeEach ->
-        window.controller = new Controller()
-        spyOn(controller, "getUrl").andReturn("http://www.lonelyplanet.com/england/london")
-        spyOn(controller, "setUrl")
-        controller.popStateFired = true;
-        controller.currentUrl = "http://www.lonelyplanet.com/england/london"
-        controller._handlePopState()
-
-      it 'refreshes the page', ->
-        expect(controller.setUrl).toHaveBeenCalled()
 
 
     # --------------------------------------------------------------------------
@@ -331,34 +158,12 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
         loadFixtures('controller.html')
         window.controller = new Controller()
         spyEvent = spyOnEvent(controller.$el, ':cards/received');
-        spyOn(controller, "_createUrl").andReturn('foo')
-        spyOn(controller, "_navigate")
         spyOn(controller, "_updateOffset")
         controller.replace(newParams)
 
       it 'updates the page offset', ->
         expect(controller._updateOffset).toHaveBeenCalledWith(newParams.pagination)
 
-      it 'updates the push state', ->
-        expect(controller._navigate).toHaveBeenCalledWith('foo')
-
       it 'triggers the cards/received event', ->
         expect(':cards/received').toHaveBeenTriggeredOnAndWith(controller.$el, newParams)
 
-
-    describe 'when the server returns data and there is no support for pushState', ->
-      beforeEach ->
-        loadFixtures('controller.html')
-        window.controller = new Controller()
-        spyEvent = spyOnEvent(controller.$el, ':cards/received');
-        spyOn(controller, "_supportsHistory").andReturn(false)
-        spyOn(controller, "_supportsHash").andReturn(true)
-        spyOn(controller, "_createUrl").andReturn('foo')
-        spyOn(controller, "_navigate")
-        controller.replace(newParams)
-
-      it 'updates the hashbang', ->
-        expect(controller._navigate).toHaveBeenCalledWith('foo')
-
-      it 'trigger the cards/received event', ->
-        expect(':cards/received').toHaveBeenTriggeredOnAndWith(controller.$el, newParams)
