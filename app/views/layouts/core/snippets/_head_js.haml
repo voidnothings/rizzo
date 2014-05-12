@@ -13,7 +13,13 @@
 
 :javascript
   // Setup our namespace
-  window.lp = {};
+  window.lp = {
+    tracking: {},
+    analytics: {
+      dataLayer: {}
+    },
+    supports: {}
+  };
 
   // Utility cookie retrieval function
   window.lp.getCookie = function (name) {
@@ -21,7 +27,6 @@
   };
 
   // Test for LocalStorage support (and space)
-  window.lp.supports = {};
   window.lp.supports.localStorage = 'localStorage' in window && (function() {
     try {
       localStorage.setItem("test", "test");
@@ -50,15 +55,16 @@
     time: function(x){!!window.performance && !!window.performance.now && this.buffer.push({e: x, t: window.performance.now()})}
   };
 
-  // Dev analytics package
+  // Google analytics
   (function(d,t,c){
-    if (!d.cookie.match(/lpDev/)) return;
-    var g=d.createElement(t);
-    var s=d.getElementsByTagName(t)[0];
-    g.src="//assets.staticlp.com/analytics/analytics.dev.js?"+c.getTime();
+    var filepath = d.cookie.match(/lpDev/) ? "analytics.dev.js?" +c.getTime() : "analytics.min.js",
+        g=d.createElement(t),
+        s=d.getElementsByTagName(t)[0];
+    g.src="//assets.staticlp.com/analytics/" + filepath;
     s.parentNode.insertBefore(g,s);
   }(document,"script",new Date));
 
+= yield :head_js
 = render 'layouts/core/inline_js/cut_the_mustard'
 = render 'layouts/core/inline_js/fonts_loader'
 = render 'layouts/core/inline_js/grunticon', sheet: 'active'

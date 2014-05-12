@@ -47,12 +47,12 @@ cards:
     :strapline: "Just a little article about the many ways to say hello"
 
   -
-    :styleguide_title: "Article Card"
+    :styleguide_title: "Symbol Card"
     :slug: "#"
-    :title: "The world's best housekeeper"
-    :style: "mini"
+    :title: "Canada, aye"
     :image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
-    :icon: "housekeeping"
+    :icon_type: "destinations"
+    :icon: "canada"
 
   -
     :styleguide_title: "Quote Card"
@@ -176,13 +176,6 @@ cards:
     :slug: "#"
     :title: "Cassis"
     :strapline: "Some information about Cassis and its environs"
-  -
-    :styleguide_title: "Place Card"
-    :slug: "#"
-    :title: "Madrid"
-    :style: "mini"
-    :image_url: "http://assets.staticlp.com/assets/stubs/article.jpg"
-    :icon: "insurance"
 
   -
     :styleguide_title: "Link Card"

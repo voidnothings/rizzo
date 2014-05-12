@@ -65,6 +65,21 @@ require ['lib/forms/validators'], (Validators) ->
 
         expect(Validators.min(inputText, 3)).toBe false
 
+    describe 'maximum validator', ->
+
+      beforeEach ->
+        inputText = $('<input type="text" />')
+
+      it 'passes if minimum length entered', ->
+        inputText.val('123')
+
+        expect(Validators.max(inputText, 3)).toBe true
+
+      it 'fails if less than minimum length entered', ->
+        inputText.val('abcd')
+
+        expect(Validators.max(inputText, 3)).toBe false
+
     describe 'exactLength validator', ->
 
       beforeEach ->

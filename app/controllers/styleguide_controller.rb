@@ -2,6 +2,18 @@ class StyleguideController < GlobalController
 
   layout proc{|c| c.request.xhr? ? false : "styleguide" }
 
+  def interfaceIcons
+    render '/styleguide/design-elements/icons/interface'
+  end
+
+  def destinationIcons
+    render '/styleguide/design-elements/icons/destination'
+  end
+
+  def interestIcons
+    render '/styleguide/design-elements/icons/interest'
+  end
+
   def secondaryNavigation
     render '/styleguide/ui-components/secondary_nav'
   end
@@ -44,14 +56,6 @@ class StyleguideController < GlobalController
 
   def uiColours
     render '/styleguide/ui-components/ui_colours'
-  end
-
-  def icons
-    render '/styleguide/ui-components/icons'
-  end
-
-  def inactiveIcons
-    render '/styleguide/ui-components/inactive-icons'
   end
 
   def pagination
@@ -174,12 +178,20 @@ class StyleguideController < GlobalController
     render '/styleguide/js-components/template'
   end
 
+  def swipe
+    render '/styleguide/js-components/swipe'
+  end
+
   def adUnits
     render '/styleguide/ui-components/ad-units'
   end
 
   def link_to
     render '/styleguide/js-components/link-to'
+  end
+
+  def preloader
+    render '/styleguide/ui-components/preloader'
   end
 
   #===== yeoman hook =====#

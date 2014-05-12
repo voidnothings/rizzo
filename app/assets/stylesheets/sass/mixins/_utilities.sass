@@ -24,10 +24,25 @@
   height: $h
   width: $w
 
-// [doc] Gradient Background overlay (for images). 35% percent. [/doc]
-@mixin image-overlay--gradient( $percent: 0.35, $color: $darkgray )
-  background: linear-gradient(to bottom, rgba(255,255,255, 0) 0, rgba($darkgray, $percent) 100%)
+// [doc] Gradient Background overlay (for images). [/doc]
+@mixin image-overlay--gradient( $color-start: $darkgray, $opacity-start: 0.35, $color-end: #FFF, $opacity-end: 0, $start: 0, $stop: 35% )
+  background: linear-gradient(to top, rgba($color-start, $opacity-start) $start, rgba($color-end, $opacity-end) $stop)
 
 // [doc] Flat Background overlay (for images). 35% percent. [/doc]
 @mixin image-overlay--flat( $percent: 0.35, $color: $darkgray )
-  background: rgba($darkgray, $percent)
+  background-color: rgba($darkgray, $percent)
+
+// [doc] A mixin to help clean up z-index madness. Options are: `below`, `default`, `middle`, `top`, and `modal` [/doc]
+@mixin z-layer( $layer: default )
+  @if $layer == below
+    z-index: -1
+  @else if $layer == default
+    z-index: 1
+  @else if $layer == middle
+    z-index: 10
+  @else if $layer == top
+    z-index: 20
+  @else if $layer == modal
+    z-index: 9999
+  @else
+    z-index: 1

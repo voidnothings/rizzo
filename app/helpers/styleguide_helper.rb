@@ -8,6 +8,10 @@ module StyleguideHelper
     # Add new sections here.
     [
       {
+        title: "Design Elements",
+        slug: "/design-elements"
+      },
+      {
         title: "UI Components",
         slug: "/ui-components"
       },
@@ -31,6 +35,19 @@ module StyleguideHelper
     #===== yeoman begin-hook =====#
     {
       css_utilities: [
+        {
+          title: "Grids",
+          items: [
+            {
+              name: "Proportional Grid",
+              slug: "proportional-grid"
+            },
+            {
+              name: "Cards Grid",
+              slug: "cards-grid"
+            }
+          ]
+        },
         {
           title: "Classes",
           items: [
@@ -130,11 +147,15 @@ module StyleguideHelper
             {
               name: "AutoComplete",
               slug: "autocomplete"
+            },
+            {
+              name: "Swipe",
+              slug: "swipe"
             }
           ]
         }
       ],
-      ui_components: [
+      design_elements: [
         {
           title: "Design",
           items: [
@@ -147,12 +168,76 @@ module StyleguideHelper
               slug: "ui-colours"
             },
             {
-              name: "Icons",
-              slug: "icons"
-            },
-            {
               name: "Typography",
               slug: "typography"
+            }
+          ]
+        },
+        {
+          title: "Icons",
+          items: [
+            {
+              name: "Interface",
+              slug: "icons/interface"
+            },
+            {
+              name: "Destination",
+              slug: "icons/destination"
+            },
+            {
+              name: "Interests",
+              slug: "icons/interests"
+            }
+          ]
+        }
+      ],
+      ui_components: [
+        {
+          title: "Components",
+          items: [
+            {
+              name: "Cards",
+              slug: "cards"
+            },
+            {
+              name: "Ad units",
+              slug: "ad-units"
+            },
+            {
+              name: "Alerts",
+              slug: "alerts"
+            },
+            {
+              name: "Badges",
+              slug: "badges"
+            },
+            {
+              name: "Buttons",
+              slug: "buttons"
+            },
+            {
+              name: "Preloader",
+              slug: "preloader"
+            },
+            {
+              name: "Page title",
+              slug: "page-title"
+            },
+            {
+              name: "Pagination",
+              slug: "pagination"
+            },
+            {
+              name: "Tiles",
+              slug: "tiles"
+            },
+            {
+              name: "Tags",
+              slug: "tags"
+            },
+            {
+              name: "Tooltips",
+              slug: "tooltips"
             }
           ]
         },
@@ -174,19 +259,6 @@ module StyleguideHelper
           ]
         },
         {
-          title: "Helpers",
-          items: [
-            {
-              name: "Proportional Grid",
-              slug: "proportional-grid"
-            },
-            {
-              name: "Cards Grid",
-              slug: "cards-grid"
-            }
-          ]
-        },
-        {
           title: "Form Elements",
           items: [
             {
@@ -200,55 +272,6 @@ module StyleguideHelper
             {
               name: "Range Slider",
               slug: "range-slider"
-            }
-          ]
-        },
-        {
-          title: "Components",
-          items: [
-            {
-              name: "Ad units",
-              slug: "ad-units"
-            },
-            {
-              name: "Alerts",
-              slug: "alerts"
-            },
-            {
-              name: "Badges",
-              slug: "badges"
-            },
-            {
-              name: "Buttons",
-              slug: "buttons"
-            },
-            {
-              name: "Cards",
-              slug: "cards"
-            },
-            {
-              name: "Tiles",
-              path: "tiles"
-            },
-            {
-              name: "Forms",
-              path: "forms"
-            },
-            {
-              name: "Page title",
-              slug: "page-title"
-            },
-            {
-              name: "Pagination",
-              slug: "pagination"
-            },
-            {
-              name: "Tags",
-              slug: "tags"
-            },
-            {
-              name: "Tooltips",
-              slug: "tooltips"
             }
           ]
         }

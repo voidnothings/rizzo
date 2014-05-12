@@ -35,7 +35,23 @@ module GlobalResourcesHelper
           {title:'South America', uri:'http://www.lonelyplanet.com/south-america'}
         ]
       },
-      {title:'Themes', uri: "http://www.lonelyplanet.com/themes", icon_class: "icon--image--line--before icon--white--before",},
+      {title:'Interests',
+        uri: 'http://www.lonelyplanet.com/interests',
+        icon_class: 'icon--place--pin--line--before icon--white--before',
+        submenu: [
+          {title:'Adventure travel', uri:'http://www.lonelyplanet.com/adventure-travel'},
+          {title:'Beaches', uri:'http://www.lonelyplanet.com/beaches'},
+          {title:'Budget travel', uri:'http://www.lonelyplanet.com/budget-travel'},
+          {title:'Coasts and islands', uri:'http://www.lonelyplanet.com/coasts-and-islands'},
+          {title:'Family travel', uri:'http://www.lonelyplanet.com/family-travel'},
+          {title:'Festivals and events', uri:'http://www.lonelyplanet.com/festivals-and-events'},
+          {title:'Food and drink', uri:'http://www.lonelyplanet.com/food-and-drink'},
+          {title:'Honeymoons and romance', uri:'http://www.lonelyplanet.com/honeymoons-and-romance'},
+          {title:'Luxury travel', uri:'http://www.lonelyplanet.com/luxury-travel'},
+          {title:'Round the world travel', uri:'http://www.lonelyplanet.com/round-the-world-travel'},
+          {title:'Wildlife and nature', uri:'http://www.lonelyplanet.com/wildlife-and-nature'}
+        ]
+      },
       {title:'Shop', uri: "http://shop.lonelyplanet.com", icon_class: "icon--shop-basket--line--before icon--white--before"},
       {title:'Thorn Tree Forum', uri: "http://www.lonelyplanet.com/thorntree", icon_class: "icon--comment--line--before icon--white--before"},
       {title:'Bookings',
@@ -44,7 +60,7 @@ module GlobalResourcesHelper
         submenu: [
           {title:'Hotels', uri:'http://www.lonelyplanet.com/hotels', style:'hotels', icon_class: 'icon--hotel--before'},
           {title:'Flights', uri:'http://www.lonelyplanet.com/flights/', style:'flights', icon_class: 'icon--flights--before'},
-          {title:'Car Rental', uri:'http://www.lonelyplanet.com/car-rental/', style:'car-rental', icon_class: 'icon--car--before'},
+          {title:'Car rental', uri:'http://www.lonelyplanet.com/car-rental/', style:'car-rental', icon_class: 'icon--car--before'},
           {title:'Adventure tours', uri:'http://www.lonelyplanet.com/adventure-tours/', style:'adventure-tours', icon_class: 'icon--tour--before'},
           {title:'Sightseeing tours', uri:'http://www.lonelyplanet.com/sightseeing-tours/', style:'sightseeing-tours', icon_class: 'icon--activity--before'},
         ]

@@ -13,6 +13,9 @@ define ['jquery'], ($) ->
   min: (field, length) ->
     field.val()?.length >= length
 
+  max: (field, length) ->
+    field.val()?.length <= length
+
   exactLength: (field, length) ->
     field.val().length is length
 

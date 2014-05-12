@@ -34,18 +34,18 @@ module FooterHelper
     ]
   end
 
-  def footer_nav_themes_items
+  def footer_nav_interests_items
     [
-      {:title=>'Adventure travel', :url=>'adventure-travel'},
-      {:title=>'Beaches', :url=>'beaches'},
-      {:title=>'Best in Travel', :url=>'best-in-travel-2013'},
-      {:title=>'Family travel', :url=>'family-travel'},
-      {:title=>'Honeymoons', :url=>'honeymoons'},
-      {:title=>'Photography', :url=>'photography'},
-      {:title=>'Road trips', :url=>'road-trips'},
-      {:title=>'Value travel', :url=>'value-travel'},
-      {:title=>'Wildlife', :url=>'wildlife'},
-      {:title=>'World food', :url=>'world-food'}
+      {title:'Adventure travel', url:'adventure-travel'},
+      {title:'Beaches', url:'beaches'},
+      {title:'Budget travel', url:'budget-travel'},
+      {title:'Family travel', url:'family-travel'},
+      {title:'Festivals and events', url:'festivals-and-events'},
+      {title:'Food and drink', url:'food-and-drink'},
+      {title:'Honeymoons and romance', url:'honeymoons-and-romance'},
+      {title:'Luxury travel', url:'luxury-travel'},
+      {title:'Round the world travel', url:'round-the-world-travel'},
+      {title:'Wildlife and nature', url:'wildlife-and-nature'}
     ]
   end
 

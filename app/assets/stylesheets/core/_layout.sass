@@ -89,8 +89,6 @@ body
       display: none
 
 
-
-
 // ----------------------------------------------------------------------------
 //
 // Row Container
@@ -98,10 +96,10 @@ body
 // ----------------------------------------------------------------------------
 
 .row--content
+  +z-layer
   margin-bottom: 40px
   // Ensure that nav dropdowns sit above any content
   position: relative
-  z-index: 1
   .responsive &
     @extend %transition--nav
     margin-top: 55px
@@ -120,13 +118,26 @@ body
 // ----------------------------------------------------------------------------
 
 .pointer-cover
+  +z-layer(modal)
   transform: translate3d(0,0,0)
   top: 0
   right: 0
   left: 0
   bottom: 0
   opacity: 0
-  z-index: 11000
   position: fixed
   pointer-events: none
   display: none
+
+
+// -----------------------------------------------------------------------------
+//
+// Microsoft touch actions
+//
+// This is so that while you are swiping that element, internet explorer won't
+// override it with history fiddling and whatever else it feels like.
+//
+// -----------------------------------------------------------------------------
+
+.js-onswipe
+  -ms-touch-action: none
