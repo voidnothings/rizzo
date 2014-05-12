@@ -14,6 +14,9 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
     this.$listener = $(args.$listener || "#js-row--content");
     this.$opener = $(args.$opener || ".js-lightbox-toggle");
     this.preloader = args.preloader || false;
+
+    this.hasRequest = false;
+
     this.$el = $(args.el);
     this.$el && this.init();
   },
@@ -84,10 +87,14 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
     });
 
     this.$listener.on(":lightbox/updateContentAjax", function(event, url) {
+      _this.hasRequest = true;
       _this._updateContentAjax(url);
     });
 
     this.$listener.on(":flyout/close", function() {
+      if (_this.hasRequest){
+        $("#js-card-holder").trigger(":controller/back");
+      }
       _this.$lightbox.removeClass("is-active");
     });
 
