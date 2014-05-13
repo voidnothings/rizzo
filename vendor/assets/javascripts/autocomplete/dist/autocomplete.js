@@ -9,7 +9,7 @@ define([ "jquery" ], function($) {
     };
   }
   
-  var AutoComplete, methods;
+  var AutoComplete, methods, typingTimer;
 
   AutoComplete = function(args) {
 
@@ -18,6 +18,7 @@ define([ "jquery" ], function($) {
       threshold: 0,
       limit: 0,
       fetch: this.defaultFetch,
+      debounceTime: 300,
       template: {
         elementWrapper: "<div class='js-autocomplete'></div>",
         resultsWrapper: "<div class='autocomplete'></div>",
@@ -59,6 +60,7 @@ define([ "jquery" ], function($) {
     // I like this method of storing methods and then attaching to the prototype at the end...
 
     init: function() {
+      this.$el.attr("autocomplete", "off"); // turn off native browser autocomplete feature
       this.wrapEl();
       this.setupListeners();
     },
@@ -124,6 +126,7 @@ define([ "jquery" ], function($) {
 
     setupListeners: function() {
       var _this = this;
+
       this.$wrapper.on("keypress", function(e) {
         if(e.which === 13) {
           e.preventDefault();
@@ -135,10 +138,23 @@ define([ "jquery" ], function($) {
         _this.processTyping(e);
       });
 
+      this.$wrapper.on("keydown", function() {
+        clearTimeout(typingTimer);
+      });
+
+      var resultsItem = $(_this.config.template.resultsItem)[0].tagName;
+
       // 'blur' fires before 'click' so we have to use 'mousedown'
-      this.$resultsPanel.on("mousedown", $(_this.config.template.resultsItem)[0].tagName, function(e) {
-        _this.config.onItem(this);
+      this.$resultsPanel.on("mousedown", resultsItem, function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        _this.config.onItem(this, e);
         _this.clearResults();
+      });
+
+      this.$resultsPanel.on("mouseenter", resultsItem, function() {
+        _this.resultIndex = $(this).index();
+        _this.highlightResult();
       });
 
       this.$el.on("blur", function() {
@@ -165,18 +181,29 @@ define([ "jquery" ], function($) {
     },
 
     processTyping: function(e) {
+      var _this = this;
       // if there is an above-threshold value passed
       if (e.target.value) {
         var keyName = this.specialkeys[e.keyCode];
         if (keyName && this.displayed) {
           this.processSpecialKey(keyName, e);
         } else if (!keyName) {
-          this.searchTerm = e.target.value;
-          this.processSearch(e.target.value);
+          _this.debounceTyping(function() {
+            _this.searchTerm = e.target.value.trim();
+            _this.processSearch(_this.searchTerm);
+          });
         }
       } else {
         this.clearResults();
       }
+    },
+
+    debounceTyping: function(callback) {
+      var _this = this;
+      clearTimeout(typingTimer);
+      typingTimer = setTimeout(function() {
+        callback();
+      }, _this.config.debounceTime);
     },
 
     processSearch: function(searchTerm) {
@@ -192,27 +219,26 @@ define([ "jquery" ], function($) {
     processSpecialKey: function(keyName, e) {
       var changed = false;
       switch (keyName) {
-      case "up": {
-        changed = this.changeIndex("up");
-        break;
+        case "up": {
+          changed = this.changeIndex("up");
+          break;
+        }
+        case "down": {
+          changed = this.changeIndex("down");
+          break;
+        }
+        case "enter": {
+          this.selectResult();
+          break;
+        }
+        case "esc": {
+          this.clearResults();
+          break;
+        }
+        default: {
+          break;
+        }
       }
-      case "down": {
-        changed = this.changeIndex("down");
-        break;
-      }
-      case "enter": {
-        this.selectResult();
-        break;
-      }
-      case "esc": {
-        this.clearResults();
-        break;
-      }
-      default: {
-        break;
-      }
-      }
-
       if (changed) {
         this.highlightResult();
       }
