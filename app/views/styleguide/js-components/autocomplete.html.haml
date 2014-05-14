@@ -74,9 +74,7 @@
                 dataType: "json",
                 url: "/thorntree/friendships/search.json",
                 data: { q: searchTerm }
-              }).done(function(data) {
-                callback(data)
-              });
+              }).done(callback)
             };
 
   .styleguide-block.styleguide-block__description.card.copy--body
@@ -89,8 +87,8 @@
         = preserve do
           :plain
              var onItemUsername = function(el) {
-               var elAttr = $(el).attr("data-username);
-                $(js-autocomplete-all-users).val(elAttr);
+               var elAttr = $(el).attr("data-username");
+                $(".js-autocomplete-all-users").val(elAttr);
              },
 
   .styleguide-block.styleguide-block__description.card.copy--body
