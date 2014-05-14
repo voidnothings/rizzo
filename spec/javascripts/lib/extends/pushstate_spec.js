@@ -49,11 +49,12 @@ require([ "jquery", "public/assets/javascripts/lib/extends/pushstate.js" ], func
         window.pushstate = new Pushstate();
         spyOn(pushstate, "_supportsHistory").andReturn(false);
         spyOn(pushstate, "_onHashChange");
-        return pushstate.init();
+        pushstate.popStateFired = false;
+        pushstate._initHistory();
       });
-      return it("calls _onHashChange", function() {
+      it("calls _onHashChange", function() {
         $(window).trigger("hashchange");
-        return expect(pushstate._onHashChange).toHaveBeenCalled();
+        expect(pushstate._onHashChange).toHaveBeenCalled();
       });
     });
 
@@ -68,46 +69,29 @@ require([ "jquery", "public/assets/javascripts/lib/extends/pushstate.js" ], func
         it("serializes the application state with the document root", function() {
           var newUrl;
           newUrl = pushstate._createUrl(serialized.newUrlWithSearchAndFilters);
-          return expect(newUrl).toBe("/?" + serialized.newUrlWithSearchAndFilters);
+          expect(newUrl).toBe("/?" + serialized.newUrlWithSearchAndFilters);
         });
-        return it("serializes the application state with the *new* document root", function() {
+        it("serializes the application state with the *new* document root", function() {
           var newUrl;
           newUrl = pushstate._createUrl(serialized.newUrlWithSearchAndFilters, "/reviewed");
-          return expect(newUrl).toBe("/reviewed?" + serialized.newUrlWithSearchAndFilters);
+          expect(newUrl).toBe("/reviewed?" + serialized.newUrlWithSearchAndFilters);
         });
       });
 
-      return describe("without pushState support", function() {
+      describe("without pushState support", function() {
         beforeEach(function() {
-          return spyOn(pushstate, "_supportsHistory").andReturn(false);
+          spyOn(pushstate, "_supportsHistory").andReturn(false);
         });
         it("creates a hashbang url with the document root", function() {
           var newUrl;
           newUrl = pushstate._createUrl(serialized.newUrlWithSearchAndFilters);
-          return expect(newUrl).toBe("#!/" + "?" + serialized.newUrlWithSearchAndFilters);
+          expect(newUrl).toBe("#!/" + "?" + serialized.newUrlWithSearchAndFilters);
         });
-        return it("creates a hashbang url with the *new* document root", function() {
+        it("creates a hashbang url with the *new* document root", function() {
           var newUrl;
           newUrl = pushstate._createUrl(serialized.newUrlWithSearchAndFilters, "/reviewed");
-          return expect(newUrl).toBe("#!/reviewed" + "?" + serialized.newUrlWithSearchAndFilters);
+          expect(newUrl).toBe("#!/reviewed" + "?" + serialized.newUrlWithSearchAndFilters);
         });
-      });
-    });
-
-    describe("creating the request url", function() {
-      beforeEach(function() {
-        window.pushstate = new Pushstate();
-        return spyOn(pushstate, "getDocumentRoot").andReturn("/foo");
-      });
-      it("serializes the application state with the document root", function() {
-        var newUrl;
-        newUrl = pushstate.createRequestUrl(serialized.newUrlWithSearchAndFilters);
-        return expect(newUrl).toBe("/foo?" + serialized.newUrlWithSearchAndFilters);
-      });
-      return it("serializes the application state with the *new* document root and appends .json", function() {
-        var newUrl;
-        newUrl = pushstate.createRequestUrl(serialized.newUrlWithSearchAndFilters, "/bar");
-        return expect(newUrl).toBe("/bar?" + serialized.newUrlWithSearchAndFilters);
       });
     });
 
@@ -115,10 +99,10 @@ require([ "jquery", "public/assets/javascripts/lib/extends/pushstate.js" ], func
       beforeEach(function() {
         spyOn(history, "pushState");
         window.pushstate = new Pushstate();
-        return pushstate.navigate("", "/test");
+        pushstate.navigate("", "/test");
       });
       it("history.pushState is called", function() {
-        return expect(history.pushState).toHaveBeenCalledWith({}, null, "/test");
+        expect(history.pushState).toHaveBeenCalledWith({}, null, "/test");
       });
     });
 
@@ -128,56 +112,56 @@ require([ "jquery", "public/assets/javascripts/lib/extends/pushstate.js" ], func
         spyOn(pushstate, "_supportsHistory").andReturn(false);
         spyOn(pushstate, "_supportsHash").andReturn(true);
         spyOn(pushstate, "setHash");
-        return pushstate.navigate("", "/test");
+        pushstate.navigate("", "/test");
       });
       afterEach(function() {
         window.location.hash = "";
       });
-      return it("the hash is appended to the url", function() {
-        return expect(pushstate.setHash).toHaveBeenCalledWith("#!/test");
+      it("the hash is appended to the url", function() {
+        expect(pushstate.setHash).toHaveBeenCalledWith("#!/test");
       });
     });
 
     describe("when we dont support pushState", function() {
       beforeEach(function() {
         window.pushstate = new Pushstate();
-        return spyOn(pushstate, "_supportsHistory").andReturn(false);
+        spyOn(pushstate, "_supportsHistory").andReturn(false);
       });
       describe("when we have a hash", function() {
         beforeEach(function() {
           spyOn(pushstate, "getHash").andReturn("#!/testing");
-          return spyOn(pushstate, "setUrl");
+          spyOn(pushstate, "setUrl");
         });
         describe("and history navigation is enabled", function() {
           beforeEach(function() {
             pushstate.allowHistoryNav = true;
-            return pushstate._onHashChange();
+            pushstate._onHashChange();
           });
-          return it("replaces the url with the stored hash url", function() {
-            return expect(pushstate.setUrl).toHaveBeenCalledWith("/testing");
+          it("replaces the url with the stored hash url", function() {
+            expect(pushstate.setUrl).toHaveBeenCalledWith("/testing");
           });
         });
-        return describe("and history navigation is disabled", function() {
+        describe("and history navigation is disabled", function() {
           beforeEach(function() {
             pushstate.allowHistoryNav = false;
-            return pushstate._onHashChange();
+            pushstate._onHashChange();
           });
-          return it("does not update the url", function() {
+          it("does not update the url", function() {
             expect(pushstate.getHash).not.toHaveBeenCalled();
-            return expect(pushstate.setUrl).not.toHaveBeenCalled();
+            expect(pushstate.setUrl).not.toHaveBeenCalled();
           });
         });
       });
-      return describe("when we dont have a hash and history navigation is enabled", function() {
+      describe("when we dont have a hash and history navigation is enabled", function() {
         beforeEach(function() {
           spyOn(pushstate, "getHash").andReturn("");
           spyOn(pushstate, "getUrl").andReturn("www.lonelyplanet.com/testing");
           spyOn(pushstate, "setUrl");
           pushstate.allowHistoryNav = true;
-          return pushstate._onHashChange();
+          pushstate._onHashChange();
         });
-        return it("replaces the url with the current url", function() {
-          return expect(pushstate.setUrl).toHaveBeenCalledWith("www.lonelyplanet.com/testing");
+        it("replaces the url with the current url", function() {
+          expect(pushstate.setUrl).toHaveBeenCalledWith("www.lonelyplanet.com/testing");
         });
       });
     });
@@ -185,6 +169,34 @@ require([ "jquery", "public/assets/javascripts/lib/extends/pushstate.js" ], func
     // --------------------------------------------------------------------------
     // Back / Forward
     // --------------------------------------------------------------------------
+
+    describe("on first load", function() {
+      beforeEach(function() {
+        window.pushstate = new Pushstate();
+        spyOn(pushstate, "setUrl");
+        pushstate.popStateFired = false;
+        pushstate._handlePopState();
+      });
+
+      it("does not refresh the page", function() {
+        expect(pushstate.setUrl).not.toHaveBeenCalled();
+      });
+    });
+
+    describe("after first load", function() {
+      beforeEach(function() {
+        window.pushstate = new Pushstate();
+        spyOn(pushstate, "getUrl").andReturn("http://www.lonelyplanet.com/england/london?search=foo");
+        spyOn(pushstate, "setUrl");
+        pushstate.popStateFired = false;
+        pushstate.currentUrl = "http://www.lonelyplanet.com/england/london";
+        pushstate._handlePopState();
+      });
+
+      it("refreshes the page", function() {
+        expect(pushstate.setUrl).toHaveBeenCalled();
+      });
+    });
 
     describe("returning to the first page", function() {
       beforeEach(function() {

@@ -35,21 +35,22 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
     analytics =
       callback: "setSearch"
 
+    beforeEach ->
+      loadFixtures('controller.html')
 
     describe 'Object', ->
 
       it 'is defined', ->
         expect(Controller).toBeDefined()
 
-      it 'has a state object', ->
-        expect(Controller::state).toBeDefined()
+      it 'has a state array', ->
+        expect(Controller::states).toBeDefined()
 
 
     describe 'initialisation', ->
       beforeEach ->
         window.controller = new Controller()
         spyOn(controller, "_generateState")
-        controller.popStateFired = false;
         controller.init()
 
       it 'calls generateState with the current url', ->
@@ -68,7 +69,7 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
 
       it 'updates the application state object with the search parameters', ->
         controller._generateState()
-        expect(controller.state).toEqual(deserialized)
+        expect(controller.states[controller.states.length-1].state).toEqual(deserialized)
 
 
     describe 'updating application state', ->
@@ -79,27 +80,42 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
 
       it 'creates a new application state', ->
         controller._updateState(newParams)
-        expect(controller.state.filters["property_type"]["4star"]).toBe(true)
+        expect(controller.states[controller.states.length-1].state.filters["property_type"]["4star"]).toBe(true)
+
+
+    describe 'creating the request url', ->
+      beforeEach ->
+        window.controller = new Controller()
+        spyOn(controller, "_serializeState").andReturn(serialized.newUrlWithSearchAndFilters)
+        spyOn(controller, "getDocumentRoot").andReturn("/foo")
+
+      it 'serializes the application state with the document root', ->
+        newUrl = controller._createRequestUrl()
+        expect(newUrl).toBe("/foo?" + serialized.newUrlWithSearchAndFilters)
+
+      it 'serializes the application state with the *new* document root', ->
+        newUrl = controller._createRequestUrl("/bar")
+        expect(newUrl).toBe("/bar?" + serialized.newUrlWithSearchAndFilters)
 
 
     describe 'updating the page offset', ->
       beforeEach ->
         window.controller = new Controller()
-        controller.state = deserialized
+        controller.states[controller.states.length-1].state = deserialized
         controller._updateOffset({page_offsets: 3})
 
       it 'should update the application state with the returned page offset', ->
-        expect(controller.state.search.page_offsets).toBe(3)
+        expect(controller.states[controller.states.length-1].state.search.page_offsets).toBe(3)
 
 
     describe 'Remove the page param', ->
       beforeEach ->
         window.controller = new Controller()
-        controller.state = appendParams
+        controller.states[controller.states.length-1].state = appendParams
         controller._removePageParam()
 
       it 'params do not include page', ->
-        expect(controller.state.page).toBe(undefined)
+        expect(controller.states[controller.states.length-1].state.page).toBe(undefined)
 
     describe 'calling the server', ->
       beforeEach ->
@@ -117,14 +133,13 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
 
     describe 'on cards request', ->
       beforeEach ->
-        loadFixtures('controller.html')
         window.controller = new Controller()
         spyOn(controller, "_callServer")
         spyOn(controller, "_createRequestUrl").andReturn("http://www.lonelyplanet.com/foo.json?foo=bar")
         $(LISTENER).trigger(':cards/request', newParams, analytics)
 
       it 'updates the internal state', ->
-        expect(controller.state.filters).toBe(newParams.filters)
+        expect(controller.states[controller.states.length-1].state.filters).toBe(newParams.filters)
 
       it 'requests data from the server', ->
         expect(controller._callServer).toHaveBeenCalledWith("http://www.lonelyplanet.com/foo.json?foo=bar", controller.replace, controller.analytics)
@@ -132,14 +147,13 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
 
     describe 'on cards append request', ->
       beforeEach ->
-        loadFixtures('controller.html')
         window.controller = new Controller()
         spyOn(controller, "_callServer")
         spyOn(controller, "_createRequestUrl").andReturn("http://www.lonelyplanet.com/foo.json?foo=bar")
         $(LISTENER).trigger(':cards/append', {page: 2}, analytics)
 
       it 'updates the internal state', ->
-        expect(controller.state.page).toBe(2)
+        expect(controller.states[controller.states.length-1].state.page).toBe(2)
 
       it 'requests data from the server', ->
         expect(controller._callServer).toHaveBeenCalledWith("http://www.lonelyplanet.com/foo.json?foo=bar", controller.append, controller.analytics)
@@ -147,7 +161,6 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
 
     describe 'on page request', ->
       beforeEach ->
-        loadFixtures('controller.html')
         window.controller = new Controller()
         spyOn(controller, "_callServer")
         spyOn(controller, "_augmentDocumentRoot")
@@ -155,7 +168,6 @@ require ['public/assets/javascripts/lib/extends/controller.js'], (Controller) ->
 
     describe 'when the server returns data', ->
       beforeEach ->
-        loadFixtures('controller.html')
         window.controller = new Controller()
         spyEvent = spyOnEvent(controller.$el, ':cards/received');
         spyOn(controller, "_updateOffset")
