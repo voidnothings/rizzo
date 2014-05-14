@@ -5,8 +5,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/extends/pus
     $.extend(@prototype, EventEmitter)
 
     LISTENER = '#js-card-holder'
-    state: []
-    documentRoot: []
+    states: null
 
     constructor: (args = {}) ->
       $.extend @config, args
@@ -28,47 +27,47 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/extends/pus
       $(LISTENER).on ':cards/request', (e, data, analytics) =>
         @_updateState(data)
         @_navigate(@_serializeState())
-        @_callServer(@_createRequestUrl(@_serializeState()), @replace, analytics)
+        @_callServer(@_createRequestUrl(), @replace, analytics)
 
       $(LISTENER).on ':cards/append', (e, data, analytics) =>
         @_updateState(data)
         # We don't want to modify the url for appending content
         existingUrl = @getUrl()
-        @_callServer(@_createRequestUrl(@_serializeState(), existingUrl), @append, analytics)
+        @_callServer(@_createRequestUrl(existingUrl), @append, analytics)
 
       $(LISTENER).on ':page/request', (e, data, analytics) =>
         @_generateState( data.url.split('?')[0] )
-        @_navigate(@_serializeState(), @documentRoot[@currentState])
-        @_callServer(@_createRequestUrl(@_serializeState(), @documentRoot[@currentState]), @newPage, analytics)
+        @_navigate(@_serializeState(), @states[@currentState].documentRoot)
+        @_callServer(@_createRequestUrl(@states[@currentState].documentRoot), @newPage, analytics)
 
       $(LISTENER).on ':layer/request', (e, data, analytics) =>
         @_generateState( data.url.split('?')[0] )
-        @_navigate(@_serializeState(), @documentRoot[@currentState])
-        @_callServer(@_createRequestUrl(@_serializeState(), @documentRoot[@currentState]), @htmlPage, analytics, 'html')
+        @_navigate(@_serializeState(), @states[@currentState].documentRoot)
+        @_callServer(@_createRequestUrl(@states[@currentState].documentRoot), @htmlPage, analytics, 'html')
 
       $(LISTENER).on ':controller/back', (e, data, analytics) =>
         @_removeState()
-        @_generateState(@documentRoot[@currentState])
-        @_navigate(@_serializeState(), @documentRoot[@currentState])
+        @_generateState(@states[@currentState].documentRoot)
+        @_navigate(@_serializeState(), @states[@currentState].documentRoot)
 
     # Publish
 
     # Page offset currently lives within search so we must check and update each time
     replace: (data, analytics) =>
       @_updateOffset(data.pagination) if data.pagination and data.pagination.page_offsets
-      @trigger(':cards/received', [data, @state[@currentState], analytics])
+      @trigger(':cards/received', [data, @states[@currentState].state, analytics])
 
     append: (data, analytics) =>
       @_updateOffset(data.pagination) if data.pagination and data.pagination.page_offsets
       @_removePageParam() # All other requests display the first page
-      @trigger(':cards/append/received', [data, @state[@currentState], analytics])
+      @trigger(':cards/append/received', [data, @states[@currentState].state, analytics])
 
     newPage: (data, analytics) =>
       @_updateOffset(data.pagination) if data.pagination and data.pagination.page_offsets
-      @trigger(':page/received', [data, @state[@currentState], analytics])
+      @trigger(':page/received', [data, @states[@currentState].state, analytics])
 
     htmlPage: (data, analytics) =>
-      @trigger(':layer/received', [data, @state[@currentState], analytics])
+      @trigger(':layer/received', [data, @states[@currentState].state, analytics])
 
 
     # Private
@@ -80,35 +79,40 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/extends/pus
           callback(data, analytics)
 
     _generateState: (newDocumentRoot) ->
+      @states = [] if !@states
       if @currentState is undefined then @currentState = 0 else @currentState += 1
-      @state.push $.deparam(@getParams())
-      @documentRoot.push(newDocumentRoot || @getDocumentRoot())
+      @states.push {
+        state: $.deparam(@getParams()),
+        documentRoot: newDocumentRoot || @getDocumentRoot()
+      }
       @_removePageParam()
 
     _removeState: ->
-      @state.splice @state.length-1, 1
-      @documentRoot.splice @documentRoot.length-1, 1
+      @states.splice @states.length-1, 1
       @currentState = @currentState - 1;
 
     _updateState: (params) ->
+      state = @states[@currentState].state
       for key of params
         if params.hasOwnProperty(key)
-          @state[@currentState][key] = params[key]
+          state[key] = params[key]
 
     _updateOffset: (pagination) ->
-      @state[@currentState].search.page_offsets = pagination.page_offsets if @state.search
+      @states[@currentState].state.search.page_offsets = pagination.page_offsets if @states[@currentState].state.search
 
     _removePageParam: ->
-      delete(@state[@currentState].page)
-      delete(@state[@currentState].nearby_offset)
+      delete(@states[@currentState].state.page)
+      delete(@states[@currentState].state.nearby_offset)
 
     _serializeState: ->
-      $.param(@state[@currentState])
+      $.param(@states[@currentState].state)
 
     # For testing, do not remove
 
-    _createRequestUrl: (state, rootUrl) ->
-      @pushstate.createRequestUrl(state, rootUrl)
+    _createRequestUrl: (rootUrl) ->
+      documentRoot = rootUrl or @getDocumentRoot()
+      documentRoot = documentRoot.replace(/\/$/, '')
+      documentRoot + "?" + @_serializeState()
 
     _navigate: (state, rootUrl, callback) ->
       @pushstate.navigate(state, rootUrl, callback)

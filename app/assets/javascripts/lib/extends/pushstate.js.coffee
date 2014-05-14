@@ -3,27 +3,18 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events'], ($, PageState, 
 
   class Controller extends PageState
 
-    $.extend(@prototype, EventEmitter)
-
     LISTENER = '#js-card-holder'
 
     constructor: (args = {}) ->
+      # Ignore initial popstate in chrome
+      # https://code.google.com/p/chromium/issues/detail?id=63040
+      @popStateFired = false
       @currentUrl = @getUrl()
 
       $.extend @config, args
-      @init()
-
-    init: ->
       @_initHistory()
 
-
-    # If navigating to a subsection we pass in the new document root
-    createRequestUrl: (state, rootUrl) ->
-      documentRoot = rootUrl or @getDocumentRoot()
-      documentRoot = documentRoot.replace(/\/$/, '')
-      documentRoot + "?" + state
-
-    navigate: (state, rootUrl, callback) ->
+    navigate: (state, rootUrl) ->
       url = @_createUrl(state, rootUrl)
 
       if (@_supportsHistory() or @_supportsHash())
@@ -48,7 +39,11 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events'], ($, PageState, 
         #ie7
         false
 
+    # WebKit fires a popstate event on document load
     _handlePopState: () ->
+      if !@popStateFired
+        @popStateFired = true
+        if @getUrl() is @currentUrl then return
       @setUrl(@getUrl())
 
     _supportsHistory: ->

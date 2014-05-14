@@ -3,7 +3,7 @@
 // LightBox
 //
 // ------------------------------------------------------------------------------
-define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/template" ], function($, asFlyout, viewportHelper, Template) {
+define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/template", "lib/extends/events", "lib/utils/debounce" ], function($, asFlyout, viewportHelper, Template, EventEmitter, debounce) {
 
   "use strict";
 
@@ -11,14 +11,16 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
   // el: {string} selector for parent element
   var LightBox = function(args) {
     this.customClass = args.customClass;
-    this.$listener = $(args.$listener || "#js-row--content");
+    this.$listener = this.$el = $(args.$listener || "#js-row--content");
     this.$opener = $(args.$opener || ".js-lightbox-toggle");
-    this.preloader = args.preloader || false;
+    this.showPreloader = args.showPreloader || false;
 
-    this.hasRequest = false;
+    this.$lightbox = $("#js-lightbox");
+    this.$lightboxContent = this.$lightbox.find(".js-lightbox-content");
 
-    this.$el = $(args.el);
-    this.$el && this.init();
+    this.requestMade = false;
+
+    this.init();
   },
   _this,
   $window = $(window);
@@ -28,7 +30,9 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
   // -------------------------------------------------------------------------
   // The argument with the facet is required at the moment and is soon to be
   // removed from the flyout mixin.
-  asFlyout.call(LightBox.prototype, { facet: ".to-be-removed" });
+  asFlyout.call(LightBox.prototype);
+  $.extend(LightBox.prototype, EventEmitter);
+  $.extend(LightBox.prototype, viewportHelper);
 
   // -------------------------------------------------------------------------
   // Initialise
@@ -36,33 +40,21 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
 
   LightBox.prototype.init = function() {
     var $body = $("body");
-
     _this = this;
 
-    this.$lightbox = $(".lightbox");
-    this.$lightboxContent = this.$lightbox.find(".lightbox__content");
+    this.customClass && this.$lightbox.addClass(this.customClass);
 
-    if (!this.$lightbox.length) {
-      this.$lightboxContent = $("<div class='lightbox__content' />");
-      this.$lightbox = $("<div class='lightbox js-lightbox' />");
-
-      this.customClass && this.$lightbox.addClass(this.customClass);
-
-      this.$lightbox.append(this.$lightboxContent);
-
-      $body.prepend(this.$lightbox);
-
-      // Just in case there are defined dimensions already specified.
-      this._centerLightbox();
-    }
+    // Just in case there are defined dimensions already specified.
+    this._centerLightbox();
 
     this.$lightbox.css({
       height: $body.height(),
       width: $body.width()
     });
 
-    if (this.preloader) {
+    if (this.showPreloader) {
       this.preloaderTmpl = Template.render($("#tmpl-preloader").text(), {});
+      _this.$lightboxContent.parent().append( this.preloaderTmpl );
     }
 
     this.listen();
@@ -75,31 +67,40 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
   LightBox.prototype.listen = function() {
 
     this.$opener.on("click", function(event) {
-      _this.$listener.trigger(":lightbox/open", { opener: event.currentTarget,  target: _this.$lightboxContent });
-      _this.$lightbox.addClass("is-active");
+      event.preventDefault();
+      _this.trigger(":lightbox/open", { opener: event.currentTarget,  target: _this.$lightboxContent });
       return false;
     });
 
-    this.$listener.on(":lightbox/open", this.listenToFlyout);
-
-    this.$listener.on(":lightbox/updateContent", function(event, content) {
-      _this._updateContent(content);
+    this.$listener.on(":lightbox/open", function(event, data) {
+      _this.$lightbox.addClass("is-active");
+      var listenToFlyoutCallback = debounce(_this.listenToFlyout.bind(this, event, data), 20);
+      listenToFlyoutCallback();
     });
 
-    this.$listener.on(":lightbox/updateContentAjax", function(event, url) {
-      _this.hasRequest = true;
-      _this._updateContentAjax(url);
+    this.$listener.on(":lightbox/fetchContent", function(event, url) {
+      _this.requestMade = true;
+      _this._fetchContent(url);
     });
 
     this.$listener.on(":flyout/close", function() {
-      if (_this.hasRequest){
-        $("#js-card-holder").trigger(":controller/back");
+      if (_this.$lightbox.hasClass("is-active")){
+        if (_this.requestMade){
+          _this.requestMade = false;
+          $("#js-card-holder").trigger(":controller/back");
+        }
+        _this.$lightbox.removeClass("is-active");
+
+        _this.$lightbox.on(window.lp.supports.transitionend, function() {
+          _this.$lightboxContent.empty();
+          _this.$lightbox.off(window.lp.supports.transitionend);
+        });
       }
-      _this.$lightbox.removeClass("is-active");
+
     });
 
-    this.$listener.on(":layer/received", function(event, content) {
-      _this._updateContent(content);
+    this.$listener.on(":layer/received :lightbox/renderContent", function(event, content) {
+      _this._renderContent(content);
     });
   };
 
@@ -107,37 +108,32 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
   // Private Functions
   // -------------------------------------------------------------------------
 
-  LightBox.prototype._updateContentAjax = function(url) {
-    if (this.preloader){
-      _this.$lightboxContent.html( this.preloaderTmpl );
-      _this.$lightbox.addClass("is-loading");
-      _this._centerLightbox();
-    }
+  LightBox.prototype._fetchContent = function(url) {
+    _this.$lightbox.addClass("is-loading");
+    _this._centerLightbox();
 
     $("#js-card-holder").trigger(":layer/request", { url: url });
   };
 
   // @content: {string} the content to dump into the lightbox.
-  LightBox.prototype._updateContent = function(content) {
-    _this.$listener.trigger(":lightbox/contentUpdated", _this.$el);
+  LightBox.prototype._renderContent = function(content) {
     _this.$lightbox.removeClass("is-loading");
     _this.$lightboxContent.html(content);
     _this._centerLightbox();
   };
 
   LightBox.prototype._centerLightbox = function() {
-    this.$lightboxContent.css({
+    this.$lightboxContent.parent().css({
       left: this._centeredLeftPosition(),
       top: this._centeredTopPosition()
     });
   };
 
   LightBox.prototype._centeredLeftPosition = function() {
-    var lightboxW = this.$lightboxContent.width(),
-        viewportDimensions = this._viewportDimensions(),
-        left = $window.scrollLeft() + (viewportDimensions.w / 2) - (lightboxW / 2);
+    var lightboxW = this.$lightboxContent.parent().width(),
+        left = $window.scrollLeft() + (_this.viewport().width / 2) - (lightboxW / 2);
 
-    if (lightboxW > viewportDimensions.w) {
+    if (lightboxW > _this.viewport().width) {
       left = $window.scrollLeft();
     }
 
@@ -145,23 +141,14 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
   };
 
   LightBox.prototype._centeredTopPosition = function() {
-    var lightboxH = this.$lightboxContent.height(),
-        viewportDimensions = this._viewportDimensions(),
-        top = $window.scrollTop() + (viewportDimensions.h / 2) - (lightboxH / 2);
+    var lightboxH = this.$lightboxContent.parent().height(),
+        top = $window.scrollTop() + (_this.viewport().height / 2) - (lightboxH / 2);
 
-    if (lightboxH > viewportDimensions.h) {
+    if (lightboxH > _this.viewport().height) {
       top = $window.scrollTop();
     }
 
     return top;
-  };
-
-  // This is useful for testing. Do not remove.
-  LightBox.prototype._viewportDimensions = function() {
-    return {
-      h: viewportHelper.viewport().height,
-      w: viewportHelper.viewport().width
-    };
   };
 
   // Self instantiate if the default class is used.
@@ -169,8 +156,7 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
     var $lightboxToggle = $(".js-lightbox-toggle");
     new LightBox({
       customClass: $lightboxToggle.data("lightbox-class"),
-      preloader: $lightboxToggle.data("lightbox-preloader"),
-      el: ".js-lightbox-toggle"
+      showPreloader: $lightboxToggle.data("lightbox-showpreloader")
     });
   }
 
