@@ -36,6 +36,9 @@ GEM
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
     addressable (2.3.5)
+    airbrake (3.1.16)
+      builder
+      multi_json
     arel (3.0.3)
     autoprefixer-rails (1.1.20140222)
       execjs
@@ -187,6 +190,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  airbrake
   autoprefixer-rails
   better_errors
   capybara (< 2.0.0)
