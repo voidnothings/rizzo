@@ -79,6 +79,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/js-components/link-to'                  => 'styleguide#link_to'
   get 'styleguide/js-components/konami'                   => 'styleguide#konami'
   get 'styleguide/js-components/template'                 => 'styleguide#template'
+  get 'styleguide/js-components/autocomplete'             => 'styleguide#autocomplete'
   get 'styleguide/js-components/swipe'                    => 'styleguide#swipe'
 
   get 'styleguide/css-utilities/proportional-grid'        => 'styleguide#proportionalGrid'

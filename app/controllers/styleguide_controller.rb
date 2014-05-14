@@ -110,6 +110,10 @@ class StyleguideController < GlobalController
     render '/styleguide/js-components/image-helper'
   end
 
+  def autocomplete
+    render '/styleguide/js-components/autocomplete'
+  end
+
   def alerts
     render '/styleguide/ui-components/alerts'
   end
