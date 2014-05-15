@@ -1,13 +1,13 @@
 define([ "jquery" ], function($) {
 
   "use strict";
+  var _this;
 
-  var Meta = function() {
+  function Meta() {
     _this = this;
     this.$listener = $("#js-card-holder");
     this.listen();
-  },
-  _this;
+  }
 
   Meta.prototype.listen = function() {
     this.$listener.on(":cards/received", this._received);
@@ -16,7 +16,7 @@ define([ "jquery" ], function($) {
 
   // Private
 
-  Meta.prototype._received = function(e, data) {
+  Meta.prototype._received = function( e, data ) {
     if (data.copy && data.copy.title){
       _this._updateTitle(data.copy.title);
       _this._updateMeta(data);
