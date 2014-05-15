@@ -6,11 +6,17 @@
     "card--poi",
     "card--poi--article",
     "icon--article--pin--before",
-    properties[:double?] ? "card--double card--full-image" : "card--single card--small-image card--extended-content"    
+    properties[:double?] ? "card--double card--full-image" : "card--single card--small-image card--extended-content"
   ].join(" ")
   
 %article.js-card{class: css_classes}
-  %a.link--wrapper.js-lightbox-toggle{href: properties[:url], data: {lightbox: {preloader: 'true', class: 'lightbox--layer'}, toggle: {target: '.lightbox'} }}  
+  - if properties[:show_in_layer]  
+    - link_properties =  {href: properties[:url], class: 'js-lightbox-toggle', data: {lightbox: {showpreloader: 'true', class: 'lightbox--layer'} }}
+  - else  
+    - link_properties =  {href: properties[:url]}
+
+  %a.link--wrapper{ link_properties }
+  
     = render partial: "components/cards/partials/card_content", locals: {properties: properties}
 
     - if properties[:post_date] && !properties[:double?]
