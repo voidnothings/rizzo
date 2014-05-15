@@ -1,25 +1,23 @@
 define([ "jquery" ], function($) {
 
   "use strict";
-  var _this;
 
   function Meta() {
-    _this = this;
     this.$listener = $("#js-card-holder");
     this.listen();
   }
 
   Meta.prototype.listen = function() {
-    this.$listener.on(":cards/received", this._received);
-    this.$listener.on(":page/received", this._received);
+    this.$listener.on(":cards/received", this._received.bind(this));
+    this.$listener.on(":page/received", this._received.bind(this));
   };
 
   // Private
 
   Meta.prototype._received = function( e, data ) {
     if (data.copy && data.copy.title){
-      _this._updateTitle(data.copy.title);
-      _this._updateMeta(data);
+      this._updateTitle(data.copy.title);
+      this._updateMeta(data);
     }
   };
 
