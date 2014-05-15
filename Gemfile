@@ -14,6 +14,7 @@ gem 'autoprefixer-rails'
 gem 'unicorn'
 gem 'rake'
 gem 'sanitize'
+gem 'dotenv'
 
 group :test do
   gem 'rspec', '~> 2.10.0'
