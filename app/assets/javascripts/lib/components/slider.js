@@ -189,6 +189,12 @@ define([ "jquery", "lib/extends/events" ], function($, EventEmitter) {
 
   Slider.prototype._updateCount = function() {
     var currentHTML, nextIndex, prevIndex;
+
+    // This is a temporary hotfix and will get overwritten with Chee's image gallery refactor thing.
+    if (!this.$next) {
+      return false;
+    }
+
     currentHTML = this.$next.html() || "";
     nextIndex = this.currentSlide + 1;
     prevIndex = this.currentSlide - 1;
