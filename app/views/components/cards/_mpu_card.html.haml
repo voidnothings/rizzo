@@ -1,5 +1,6 @@
-.card.card--ad.card--ad--mpu.card--no-image.js-card.js-card-ad.card--double
+.card.card--no-image.card--sponsored.card--sponsored--mpu.js-card.js-card-sponsored.card--double
   .tag--horizontal.tag--horizontal--left
     Advertisement
-  .card__content.ad-mpu
-    = ui_component('ads/mpu', properties: properties.merge({ extension: 'stackMPU' }))
+  .card__content
+    .ad-mpu
+      = ui_component('ads/mpu', properties: properties.merge({ extension: 'stackMPU' }))

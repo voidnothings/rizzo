@@ -28,10 +28,7 @@
   position: relative
   &:after
     @extend %empty-abs-generated-content
-    filter: drop-shadow(0 0 15px #{rgba($darkblue, 0.3)})
-    background-repeat: no-repeat
-    background-size: 250px
-    background-position: center
+    +image-overlay--gradient($stop: 50%)
     top: 0
     left: 0
     width: 100%

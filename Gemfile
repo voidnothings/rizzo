@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.17'
+gem 'rails', '3.2.18'
 gem 'haml'
 gem 'sass'
 gem 'sass-globbing'
@@ -14,6 +14,7 @@ gem 'autoprefixer-rails'
 gem 'unicorn'
 gem 'rake'
 gem 'sanitize'
+gem 'dotenv'
 
 group :test do
   gem 'rspec', '~> 2.10.0'
@@ -33,4 +34,5 @@ end
 group :production do
   gem "lograge"
   gem "logstash-event"
+  gem "airbrake"
 end

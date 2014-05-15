@@ -82,12 +82,13 @@
 
 .tag--price
   +tag-curl-top($yella)
-  min-width: 50px
+  min-width: 46px
 
 .tag--price--small
   min-width: 32px
 
 .tag--price--large
+  min-width: 60px
   +tag-curl-top-large($yella)
 
 .tag--price__inner
@@ -97,16 +98,15 @@
 
 .tag--price__values
   background-color: $yella
-  padding: 4px 2px
+  padding: 4px 6px
   line-height: 15px
 
   .tag--price--small &
-    padding: 2px 1px
+    padding: 2px 4px
     line-height: 13px
 
   .tag--price--large &
-    padding: 6px 10px 6px 8px
-    line-height: 20px
+    padding: 6px 10px
     +font-size(12)
 
 .tag--price__icon
@@ -134,7 +134,6 @@
   line-height: 0
   position: relative
   top: -0.35em
-  left: 4px
   word-spacing: -2px
 
   .tag--price--large &
@@ -145,13 +144,12 @@
   +font-size(12)
   position: relative
   top: -.4em
-  left: -.3em
 
   .tag--price--small &
     +font-size(10)
 
   .tag--price--large &
-    top: -.55em
+    top: -.5em
     +font-size(16)
 
 .tag--price__retail
@@ -189,7 +187,7 @@
   .icon--white
     @extend %image-replacement
     width: 32px
-    height: 22px
+    height: 23px
 
   .tag--top-choice &
     &:after

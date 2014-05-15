@@ -9,6 +9,8 @@
   margin-bottom: 10px
   position: relative
 
+  .results &
+    +z-layer
   .results &,
   &.card--hover
     &:hover
@@ -78,7 +80,7 @@
       height: $small-card-image-height
 
 .card__hero__overlay
-  +z-layer(middle)
+  +z-layer
   height: $standard-card-image-height
   left: 0
   position: absolute
@@ -112,7 +114,6 @@
 
   .card--full-image &
     @extend %transition--base
-    background: linear-gradient(to bottom, rgba($darkblue, 0.0), rgba($darkblue, 0.5) 50%, rgba($darkblue, 0.5) 100%)
     bottom: 0
     color: #fff
     left: 0
@@ -169,7 +170,7 @@
       height: $card-grid-height
 
   .card__content
-    +z-layer(middle)
+    +z-layer
     backface-visibility: hidden
     background: #fff
     bottom: 0
@@ -282,3 +283,47 @@
 
 .card--media-container .card
   margin-left: 0
+
+// ----------------------------------------------------------------------------
+// Ads in cards
+// ----------------------------------------------------------------------------
+
+.card--sponsored
+  @extend %transition--slower
+
+  &.is-closed
+    width: 0
+    height: 0
+    margin: 0
+    padding: 0
+    overflow: hidden
+
+.card--sponsored--mpu
+
+  .card__content
+    text-align: center
+
+    .adunit
+      display: inline-block
+
+.card--sponsored--double-mpu
+  +z-layer(top)
+  height: 770px
+
+  .card__content
+    height: 600px
+    top: 80px
+
+.card--sponsored--traffic-driver
+
+  .card__content
+    top: 0
+    width: 192px
+    height: 380px
+    margin: 0 auto
+    padding: 0
+
+.card--sponsored--placeholder
+  +z-layer
+  height: 380px
+  visibility: hidden

@@ -145,6 +145,10 @@ module StyleguideHelper
               slug: "template"
             },
             {
+              name: "AutoComplete",
+              slug: "autocomplete"
+            },
+            {
               name: "Swipe",
               slug: "swipe"
             }
