@@ -3,14 +3,13 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/extends/pus
   class Controller extends PageState
 
     $.extend(@prototype, EventEmitter)
+    $.extend(@prototype, PushState.prototype)
 
     LISTENER = '#js-card-holder'
     states: null
 
     constructor: (args = {}) ->
       $.extend @config, args
-
-      @pushstate      = new PushState()
 
       @init()
       @listen()
@@ -26,7 +25,7 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/extends/pus
     listen: ->
       $(LISTENER).on ':cards/request', (e, data, analytics) =>
         @_updateState(data)
-        @_navigate(@_serializeState())
+        @navigate(@_serializeState())
         @_callServer(@_createRequestUrl(), @replace, analytics)
 
       $(LISTENER).on ':cards/append', (e, data, analytics) =>
@@ -37,18 +36,18 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/extends/pus
 
       $(LISTENER).on ':page/request', (e, data, analytics) =>
         @_generateState( data.url.split('?')[0] )
-        @_navigate(@_serializeState(), @states[@currentState].documentRoot)
+        @navigate(@_serializeState(), @states[@currentState].documentRoot)
         @_callServer(@_createRequestUrl(@states[@currentState].documentRoot), @newPage, analytics)
 
       $(LISTENER).on ':layer/request', (e, data, analytics) =>
         @_generateState( data.url.split('?')[0] )
-        @_navigate(@_serializeState(), @states[@currentState].documentRoot)
+        @navigate(@_serializeState(), @states[@currentState].documentRoot)
         @_callServer(@_createRequestUrl(@states[@currentState].documentRoot), @htmlPage, analytics, 'html')
 
       $(LISTENER).on ':controller/back', (e, data, analytics) =>
         @_removeState()
         @_generateState(@states[@currentState].documentRoot)
-        @_navigate(@_serializeState(), @states[@currentState].documentRoot)
+        @navigate(@_serializeState(), @states[@currentState].documentRoot)
 
     # Publish
 
@@ -107,13 +106,9 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/extends/pus
     _serializeState: ->
       $.param(@states[@currentState].state)
 
-    # For testing, do not remove
-
     _createRequestUrl: (rootUrl) ->
       documentRoot = rootUrl or @getDocumentRoot()
       documentRoot = documentRoot.replace(/\/$/, '')
       documentRoot + "?" + @_serializeState()
 
-    _navigate: (state, rootUrl, callback) ->
-      @pushstate.navigate(state, rootUrl, callback)
 
