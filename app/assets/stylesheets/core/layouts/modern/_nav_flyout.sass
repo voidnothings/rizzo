@@ -22,10 +22,10 @@ $submenu__arrow--width:  10px
 
 // padding around the submenu gives the submenu flyout more area to hover over
 .nav__submenu
+  +z-layer(middle)
   position: absolute
   display: none
   width: $submenu--width
-  z-index: 10
   padding: 20px 10px 10px
   // Centralise the submenu relative to its parent
   left: 50%

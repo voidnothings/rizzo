@@ -2,7 +2,7 @@
 - price_is_from ||= false
 - price_parts = properties[:price].to_s.split(".")
 
-.tag.tag--price
+.tag.tag--price{ class: properties[:size] ? "tag--price--#{properties[:size]}" : nil }
   .tag--price__inner
     .tag--price__values
       - if icon == :book
@@ -11,14 +11,14 @@
         .icon--ipad--before.tag--price__icon
       - if price_is_from
         from
-      .tag--price__amount<
-        %span.tag--price__currency
+      .tag--price__amount<>
+        %span.tag--price__currency<>
           = raw(properties[:currency_symbol])
-        %span.js-price<
+        %span.js-price<>
           = price_parts.first
-          %span.tag--price__decimal<
+          %span.tag--price__decimal<>
             = price_parts.length == 2 ? ".#{price_parts.last}" : ""
     - if properties[:on_sale_here?]
-      .tag--price__retail<
+      .tag--price__retail<>
         = raw(properties[:currency_symbol])
         = properties[:retail_price]

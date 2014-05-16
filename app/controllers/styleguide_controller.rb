@@ -2,6 +2,18 @@ class StyleguideController < GlobalController
 
   layout proc{|c| c.request.xhr? ? false : "styleguide" }
 
+  def interfaceIcons
+    render '/styleguide/design-elements/icons/interface'
+  end
+
+  def destinationIcons
+    render '/styleguide/design-elements/icons/destination'
+  end
+
+  def interestIcons
+    render '/styleguide/design-elements/icons/interest'
+  end
+
   def secondaryNavigation
     render '/styleguide/ui-components/secondary_nav'
   end
@@ -44,14 +56,6 @@ class StyleguideController < GlobalController
 
   def uiColours
     render '/styleguide/ui-components/ui_colours'
-  end
-
-  def icons
-    render '/styleguide/ui-components/icons'
-  end
-
-  def inactiveIcons
-    render '/styleguide/ui-components/inactive-icons'
   end
 
   def pagination
@@ -104,6 +108,10 @@ class StyleguideController < GlobalController
 
   def image_helper
     render '/styleguide/js-components/image-helper'
+  end
+
+  def autocomplete
+    render '/styleguide/js-components/autocomplete'
   end
 
   def alerts

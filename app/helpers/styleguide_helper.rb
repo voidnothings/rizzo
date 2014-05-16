@@ -145,6 +145,10 @@ module StyleguideHelper
               slug: "template"
             },
             {
+              name: "AutoComplete",
+              slug: "autocomplete"
+            },
+            {
               name: "Swipe",
               slug: "swipe"
             }
@@ -164,12 +168,25 @@ module StyleguideHelper
               slug: "ui-colours"
             },
             {
-              name: "Icons",
-              slug: "icons"
-            },
-            {
               name: "Typography",
               slug: "typography"
+            }
+          ]
+        },
+        {
+          title: "Icons",
+          items: [
+            {
+              name: "Interface",
+              slug: "icons/interface"
+            },
+            {
+              name: "Destination",
+              slug: "icons/destination"
+            },
+            {
+              name: "Interests",
+              slug: "icons/interests"
             }
           ]
         }

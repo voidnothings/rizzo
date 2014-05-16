@@ -48,8 +48,10 @@ Rizzo::Application.routes.draw do
 
   get 'styleguide/design-elements/colours'                => 'styleguide#colours'
   get 'styleguide/design-elements/ui-colours'             => 'styleguide#uiColours'
-  get 'styleguide/design-elements/icons'                  => 'styleguide#icons'
   get 'styleguide/design-elements/typography'             => 'styleguide#typography'
+  get 'styleguide/design-elements/icons/interface'        => 'styleguide#interfaceIcons'
+  get 'styleguide/design-elements/icons/destination'      => 'styleguide#destinationIcons'
+  get 'styleguide/design-elements/icons/interests'        => 'styleguide#interestIcons'
   get 'styleguide/ui-components/secondary-nav'            => 'styleguide#secondaryNavigation'
   get 'styleguide/ui-components/left-nav'                 => 'styleguide#leftNavigation'
   get 'styleguide/ui-components/navigational_dropdown'    => 'styleguide#navigational_dropdown'
@@ -77,6 +79,7 @@ Rizzo::Application.routes.draw do
   get 'styleguide/js-components/link-to'                  => 'styleguide#link_to'
   get 'styleguide/js-components/konami'                   => 'styleguide#konami'
   get 'styleguide/js-components/template'                 => 'styleguide#template'
+  get 'styleguide/js-components/autocomplete'             => 'styleguide#autocomplete'
   get 'styleguide/js-components/swipe'                    => 'styleguide#swipe'
 
   get 'styleguide/css-utilities/proportional-grid'        => 'styleguide#proportionalGrid'

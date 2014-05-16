@@ -61,6 +61,10 @@ ul
   margin-bottom: 0 !important
   font-size: 14px
 
+.row__inner--secondary
+  padding-top: 0
+  padding-bottom: 0
+
 .nav--primary, .nav-primary--user, .nav--secondary, .nav__submenu, .nav--primary--user
   a
     cursor: pointer
@@ -83,10 +87,10 @@ ul
     color: #fff
 
 .row--content
+  // Ensure that the primary--nav dropdowns sit above mpu units
+  +z-layer
   position: relative
   padding-top: 25px
-  // Ensure that the primary--nav dropdowns sit above mpu units
-  z-index: 1
   margin-bottom: 18px
   font-size: 12px
   background-color:  #fff!important
@@ -148,8 +152,11 @@ body.ad-wallpaper
   overflow-x: visible !important
 
 .ad-wallpaper
-  .row--content, .row__inner--content
+  .row--content, .row__inner--content, .row__inner--secondary
     background-color: transparent !important
+    padding-left: 0
+    padding-right: 0
+
 
 // Thorntree
 
@@ -187,8 +194,8 @@ body.ad-wallpaper
     display: none
 
 #headMast
+  +z-layer
   position: relative
-  z-index: 1
 
 // Shop
 
@@ -228,7 +235,7 @@ body.ad-wallpaper
 
 #container
   .currencyType
-    top: -60px !important
+    top: -43px !important
 
 // Statler
 .globalListControls

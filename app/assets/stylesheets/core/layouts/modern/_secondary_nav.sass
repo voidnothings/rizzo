@@ -5,23 +5,21 @@
 // ----------------------------------------------------------------------------
 
 .row--secondary
-  padding-top: 40px
-  margin-bottom: 18px
-  .responsive &
-    padding-top: 20px
-    +respond-to(wide-view)
-      padding-top: 40px
-
   .wv--split--right
     .responsive &
       +respond-to(400)
         float: right
         text-align: right
 
-.row--secondary__inner
-  +respond-to(wide-view)
-    width: $fixed-layout-width
-    margin: 0 auto
+.row__inner--secondary
+  padding-top: 40px
+  padding-bottom: 18px
+  .responsive &
+    padding-top: 20px
+    +respond-to(wide-view)
+      width: $fixed-layout-width
+      margin: 0 auto
+      padding-top: 40px
 
 .row__title--secondary
   background: $body-background

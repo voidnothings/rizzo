@@ -37,10 +37,10 @@ html
     background-color: white
 
 .row--introduction
+  +z-layer(top)
   background-color: white
   border-bottom: solid 20px $body-background // mask
   position: relative
-  z-index: 100
   color: $body-copy
   text-align: center
   +respond-to(wide-view)
@@ -262,12 +262,12 @@ html
   position: relative
 
 .top-ten__list--clone
+  +z-layer(middle)
   background-color: $body-copy
   transition: all 0.3s ease-in-out
   position: absolute
   left: 0
   bottom: 0
-  z-index: 50
   &.is-fully-concealed
     bottom: -100px
   &.is-partially-concealed
@@ -382,10 +382,10 @@ html
     display: none
 
   @if $is-ie == false
+    +z-layer(top)
     @extend %image-replacement
     width: 249px
     height: 117px
-    z-index: 100
     position: absolute
     bottom: 20px
     right: 20px

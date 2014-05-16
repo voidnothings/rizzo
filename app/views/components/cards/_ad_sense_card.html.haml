@@ -1,5 +1,6 @@
-.card.card--no-image.card--ad.card--ad--adsense.js-card.js-card-ad{ :class => properties[:double?] ? 'card--double' : 'card--single' }
+.card.card--no-image.card--sponsored.card--sponsored--adsense.js-card.js-card-sponsored{ :class => properties[:double?] ? 'card--double' : 'card--single' }
   .tag--horizontal.tag--horizontal--left
     Advertisement
-  .card__content.ad-adSense
-    = ui_component('ads/ad_sense')
+  .card__content
+    .ad-adSense
+      = ui_component('ads/ad_sense')

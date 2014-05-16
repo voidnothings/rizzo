@@ -4,8 +4,8 @@ define ['jquery'], ($) ->
 
     LISTENER = '.js-wrapper'
 
-    constructor: () ->
-      @selectContainers = $(LISTENER)
+    constructor: (context) ->
+      @selectContainers = $(context || LISTENER)
       @addHandlers()
 
     addHandlers: ->

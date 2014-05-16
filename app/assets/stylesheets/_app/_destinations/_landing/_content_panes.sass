@@ -4,10 +4,10 @@
       padding-top: 10px
 
 .content-pane
+  +z-layer(middle)
   position: absolute
   top: 0
   left: 0
-  z-index: 30
   height: 100%
   width: 100%
   opacity: 1
@@ -56,6 +56,7 @@
     text-decoration: none
 
 .content-pane__hide
+  +z-layer(top)
   transition: all 0.1s ease-in
   position: absolute
   top: 10px
@@ -63,7 +64,6 @@
   width: 40px
   height: 40px
   display: block
-  z-index: 50
 
 .content-pane__inner
   @extend %clearfix
@@ -186,6 +186,7 @@
 
 .content-pane__rank
   +font-size(18)
+  +z-layer(middle)
   color: white
   position: absolute
   font-weight: 700
@@ -196,22 +197,21 @@
   height: 25px
   position: absolute
   color: white
-  z-index: 20
   overflow: hidden
   background-size: cover
   line-height: 22px
   margin-top: -5px
 
   &:before
+    +z-layer(below)
     content: ""
     position: absolute
     display: block
     bottom: -.8em
-    z-index: -1
     left: -1.3em
 
 .content-pane__nav
-  z-index: 50
+  +z-layer(top)
 
 .content-pane__title
   +font-size(100)
@@ -261,13 +261,13 @@
 
     .top-ten__list--#{$key}--1
       .top-ten__list__item__link:before
+        +z-layer(top)
         @extend %empty-abs-generated-content
         background-image: url(#{image_path('best-in-travel/ribbon-sprite.png')})
         background-repeat: no-repeat
         background-position: 0 #{$navValue}
         background-size: cover
         top: -2px
-        z-index: 50
         left: 0
         width: #{$navBox}
         height: #{$navBox}

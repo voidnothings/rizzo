@@ -8,7 +8,7 @@ require([ "public/assets/javascripts/lib/core/ads/double_mpu" ], function(Double
       loadFixtures("double_mpu.html");
 
       $target = $(".adunit");
-      $card = $target.closest(".js-card-ad");
+      $card = $target.closest(".js-card-sponsored");
       $stack = $card.closest(".js-stack");
 
       originalPosition = $card.offset();
@@ -19,7 +19,7 @@ require([ "public/assets/javascripts/lib/core/ads/double_mpu" ], function(Double
     describe("._init()", function() {
 
       it("Should create a placeholder card in the correct grid position", function() {
-        var $placeholder = $stack.find(".ad--placeholder");
+        var $placeholder = $stack.find(".card--sponsored--placeholder");
         expect($placeholder.length).toBe(2);
         expect($stack.find(".js-card").index($placeholder.eq(0))).toBe(2);
         expect($stack.find(".js-card").index($placeholder.eq(1))).toBe(6);

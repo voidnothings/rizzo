@@ -1,0 +1,41 @@
+// -----------------------------------------------------------------------------
+//
+// Styles for the autocomplete js component.
+//
+// -----------------------------------------------------------------------------
+
+.autocomplete
+  position: absolute
+  display: block
+  width: 100%
+  padding: 10px 0
+  margin: 5px 0 0 0
+  left: 0
+  top: 75%
+
+.autocomplete__results
+  background-color: #fff
+  padding: 10px 0
+  border: 1px solid $subduedgray
+
+.autocomplete__results__item
+  color: $titlegray
+  font-weight: normal
+  cursor: pointer
+  border-color: $body-background
+  border-width: 1px 0 0 0
+  &:last-child
+    border-width: 1px 0
+
+.autocomplete__results__item--user-avatar
+  padding-left: 50px
+  background-repeat: no-repeat
+  background-size: auto 100%
+
+.autocomplete__results__item:hover,
+.autocomplete__results__item--highlight
+  background-color: $body-background
+  border-color: $body-background
+
+.autocomplete__search-term--highlight
+  font-weight: bold

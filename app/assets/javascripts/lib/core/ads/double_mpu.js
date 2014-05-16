@@ -14,7 +14,7 @@ define(function() {
         index = $cards.index(this.$card),
         position = this.$card.position(),
         cardsPerRow = Math.floor( $grid.width() / $cards.filter(".card--single").width() ),
-        placeholderHTML = "<div class='card card--double ad--placeholder js-card' />";
+        placeholderHTML = "<div class='card card--double card--sponsored--placeholder js-card' />";
 
     // The placeholder is two cards wide
     $cards.eq(index).before(placeholderHTML);
