@@ -3,7 +3,7 @@
 // LightBox
 //
 // ------------------------------------------------------------------------------
-define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/template", "lib/extends/events", "lib/utils/debounce" ], function($, asFlyout, viewportHelper, Template, EventEmitter, debounce) {
+define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/template", "lib/extends/events" ], function($, asFlyout, viewportHelper, Template, EventEmitter) {
 
   "use strict";
 
@@ -73,8 +73,10 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
 
     this.$el.on(":lightbox/open", function(event, data) {
       _this.$lightbox.addClass("is-active");
-      var listenToFlyoutCallback = debounce(_this.listenToFlyout.bind(this, event, data), 20);
-      listenToFlyoutCallback();
+      setTimeout(function() {
+        _this.listenToFlyout(event, data);
+      }, 20);
+
     });
 
     this.$el.on(":lightbox/fetchContent", function(event, url) {
