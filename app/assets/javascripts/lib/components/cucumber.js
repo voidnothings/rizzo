@@ -8,10 +8,8 @@ define([ "jquery" ], function($) {
 
   "use strict";
 
-  // @args = {}
-  // listener: {string} selector for the listener.
-  function Cucumber(args) {
-    this.$listener = $(args.listener || "#js-card-holder");
+  function Cucumber() {
+    this.$listener = $("#js-card-holder");
     this.init();
   }
 
