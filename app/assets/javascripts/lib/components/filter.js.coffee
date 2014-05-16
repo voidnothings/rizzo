@@ -90,7 +90,7 @@ define ['jquery', 'lib/extends/events', 'lib/utils/serialize_form'], ($, EventEm
       @$el.find(element).siblings('.js-filter-label').toggleClass('is-active')
 
     _updateFacetCount: (data) ->
-      if (@$facetCount)
+      if (@$facetCount && data.filterCount)
         @$facetCount.text("(" + data.filterCount + ")");
 
     _serialize : ->

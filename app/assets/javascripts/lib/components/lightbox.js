@@ -11,7 +11,7 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
   // el: {string} selector for parent element
   var LightBox = function(args) {
     this.customClass = args.customClass;
-    this.$listener = this.$el = $(args.$listener || "#js-row--content");
+    this.$el = $(args.$el || "#js-row--content");
     this.$opener = $(args.$opener || ".js-lightbox-toggle");
     this.showPreloader = args.showPreloader || false;
 
@@ -69,21 +69,20 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
     this.$opener.on("click", function(event) {
       event.preventDefault();
       _this.trigger(":lightbox/open", { opener: event.currentTarget,  target: _this.$lightboxContent });
-      return false;
     });
 
-    this.$listener.on(":lightbox/open", function(event, data) {
+    this.$el.on(":lightbox/open", function(event, data) {
       _this.$lightbox.addClass("is-active");
       var listenToFlyoutCallback = debounce(_this.listenToFlyout.bind(this, event, data), 20);
       listenToFlyoutCallback();
     });
 
-    this.$listener.on(":lightbox/fetchContent", function(event, url) {
+    this.$el.on(":lightbox/fetchContent", function(event, url) {
       _this.requestMade = true;
       _this._fetchContent(url);
     });
 
-    this.$listener.on(":flyout/close", function() {
+    this.$el.on(":flyout/close", function() {
       if (_this.$lightbox.hasClass("is-active")){
         if (_this.requestMade){
           _this.requestMade = false;
@@ -99,7 +98,7 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
 
     });
 
-    this.$listener.on(":layer/received :lightbox/renderContent", function(event, content) {
+    this.$el.on(":layer/received :lightbox/renderContent", function(event, content) {
       _this._renderContent(content);
     });
   };

@@ -10,7 +10,7 @@
   ].join(" ")
   
 %article.js-card{class: css_classes}
-  - if properties[:show_in_layer]  
+  - if !properties[:show_in_layer]  
     - link_properties =  {href: properties[:url], class: 'js-lightbox-toggle', data: {lightbox: {showpreloader: 'true', class: 'lightbox--layer'} }}
   - else  
     - link_properties =  {href: properties[:url]}
