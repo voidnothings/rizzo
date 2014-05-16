@@ -114,6 +114,7 @@
 // -----------------------------------------------------------------------------
 
 .related
+  box-sizing: border-box
   padding: 40px 20px
   margin: 0 -25px -10px
   background: $high-contrast-bg
@@ -133,6 +134,13 @@
   +respond-to(narrow-view)
     margin-bottom: 0
     padding-bottom: 0
+
+.related__list--articles
+  border-bottom: 1px solid $high-contrast-fg
+  margin-bottom: 20px
+  +respond-to(medium-view)
+    border-bottom: none
+    margin-bottom: 0
 
 .related__list-title
   +font-size(24)

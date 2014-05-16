@@ -6,7 +6,7 @@
   - else
     .place-title{class: "icon--#{ properties[:icon] || "place--pin"}--before"}<>
       - if properties[:no_place_link] == true || !properties[:slug]
-        %span.place-title-heading #{properties[:title]}<>
+        %span.place-title-heading<> #{properties[:title]}
       - else
         %a.place-title-heading{href: "/#{properties[:slug].sub(/^\//, '')}"}<> #{properties[:title]}
 
