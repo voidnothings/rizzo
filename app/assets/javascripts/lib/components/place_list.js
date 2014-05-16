@@ -36,10 +36,6 @@ define([ "jquery", "lib/extends/events", "lib/utils/page_state" ], function($, E
   // Private
   // ------------------
 
-  // PlacesList.prototype._handleReceived = function() {
-  //   this._update();
-  // };
-
   PlacesList.prototype._update = function() {
     var link,
         newParams = this.getParams();
