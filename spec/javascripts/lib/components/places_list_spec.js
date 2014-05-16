@@ -50,6 +50,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/place_list" ], fun
         loadFixtures( "places_list.html" );
         placesList = new PlaceList(config);
         spyOn(placesList, "_update");
+        placesList.listen();
         $(LISTENER).trigger(":cards/received");
       });
 

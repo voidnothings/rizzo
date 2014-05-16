@@ -12,9 +12,7 @@ define([ "jquery", "lib/extends/events", "lib/utils/page_state" ], function($, E
     this.$el = $(args.el);
     this.$list = $(args.list);
 
-    if (this.$el.length){
-      this.init();
-    }
+    this.$el && this.init();
 
   }
 
@@ -31,16 +29,16 @@ define([ "jquery", "lib/extends/events", "lib/utils/page_state" ], function($, E
   };
 
   PlacesList.prototype.listen = function() {
-    $(LISTENER).on( ":cards/received", this._handleReceived.bind(this));
+    $(LISTENER).on( ":cards/received", this._update.bind(this));
   };
 
   // -----------------
   // Private
   // ------------------
 
-  PlacesList.prototype._handleReceived = function() {
-    this._update();
-  };
+  // PlacesList.prototype._handleReceived = function() {
+  //   this._update();
+  // };
 
   PlacesList.prototype._update = function() {
     var link,
