@@ -65,7 +65,7 @@ require([ "jquery" ], function($) {
         properties.js = transform;
         properties.css = transforms[transform];
       }
-    };
+    }
     return properties.js && properties.css && properties;
   };
 
