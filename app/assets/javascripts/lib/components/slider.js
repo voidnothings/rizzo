@@ -221,7 +221,7 @@ define([
     }
 
     this.$sliderControlsContainer.find(".js-slider-next").html(currentHTML.replace(/(^[0-9]+)/, nextIndex));
-    this.$sliderControlsContainer.find(".js-slider-prev").html(currentHTML.replace(/(^[0-9]+)/, prevIndex));
+    this.$sliderControlsContainer.find(".js-slider-previous").html(currentHTML.replace(/(^[0-9]+)/, prevIndex));
     this.$sliderControlsContainer.find(".slider__pagination--link.is-active").removeClass("is-active");
     this.$sliderControlsContainer.find(".slider__pagination--link").eq(this.currentSlide - 1).addClass("is-active");
   };

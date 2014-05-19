@@ -8,8 +8,7 @@ define([
   return function(args) {
     var $listener = args.$listener,
       fn = args.fn,
-      delay = args.delay,
-      afterTransition;
+      delay = args.delay;
 
     if (window.lp.supports.transitionend) {
       $listener.on(window.lp.supports.transitionend, fn);
