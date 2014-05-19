@@ -19,9 +19,7 @@ module Rizzo::Assets
       'icons/active.css',
       'icons/critical.css',
       'fonts.css',
-      'styleguide.js',
       'styleguide.css',
-      'lonelyplanet_minjs/dist/$.js',
       'jquery/jquery.js',
       'requirejs/require.js'
     ]
