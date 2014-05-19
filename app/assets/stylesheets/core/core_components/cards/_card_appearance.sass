@@ -104,6 +104,7 @@
 
 .card__footer
   +font-size(12)
+  +z-layer(middle)
   position: absolute
   background: #fff
   bottom: 0
@@ -111,7 +112,6 @@
   line-height: 12px
   padding: 7px
   right: 0
-  z-index: 3
   .homepage &
     display: none
 
@@ -319,7 +319,7 @@
 
   .card__hero
     &:after
-      +image-overlay--flat(.15)
+      +image-overlay--gradient($stop: 50%)
 
   .card__hero--no-image
     background: $lpblue image_url('cards/symbol-noimage.png') no-repeat
@@ -332,11 +332,6 @@
     width: 100%
     height: auto
     color: white
-
-  .card__icon
-    width: 30px
-    height: 30px
-    margin-bottom: 6px
 
   .card__name
     +font-size(18)

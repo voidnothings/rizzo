@@ -1,5 +1,5 @@
-require ['jquery'], ($) ->
-  require ['lib/core/base', 'flamsteed', 'lib/utils/scroll_perf', 'polyfills/function_bind', 'trackjs', 'polyfills/xdr'], (Base, _FS, ScrollPerf) ->
+require ['jquery', 'polyfills/function_bind'], ($) ->
+  require ['lib/core/base', 'flamsteed', 'lib/utils/scroll_perf', 'trackjs', 'polyfills/xdr'], (Base, _FS, ScrollPerf) ->
     $ ->
       base = new Base()
       new ScrollPerf

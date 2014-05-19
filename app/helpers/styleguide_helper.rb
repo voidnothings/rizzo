@@ -43,6 +43,10 @@ module StyleguideHelper
               slug: "proportional-grid"
             },
             {
+              name: "Responsive Grid",
+              slug: "responsive-grid"
+            },
+            {
               name: "Cards Grid",
               slug: "cards-grid"
             }
@@ -145,6 +149,10 @@ module StyleguideHelper
               slug: "template"
             },
             {
+              name: "AutoComplete",
+              slug: "autocomplete"
+            },
+            {
               name: "Swipe",
               slug: "swipe"
             }
@@ -164,12 +172,25 @@ module StyleguideHelper
               slug: "ui-colours"
             },
             {
-              name: "Icons",
-              slug: "icons"
-            },
-            {
               name: "Typography",
               slug: "typography"
+            }
+          ]
+        },
+        {
+          title: "Icons",
+          items: [
+            {
+              name: "Interface",
+              slug: "icons/interface"
+            },
+            {
+              name: "Destination",
+              slug: "icons/destination"
+            },
+            {
+              name: "Interests",
+              slug: "icons/interests"
             }
           ]
         }
@@ -199,12 +220,20 @@ module StyleguideHelper
               slug: "buttons"
             },
             {
+              name: "Preloader",
+              slug: "preloader"
+            },
+            {
               name: "Page title",
               slug: "page-title"
             },
             {
               name: "Pagination",
               slug: "pagination"
+            },
+            {
+              name: "Social Buttons",
+              slug: "social-buttons"
             },
             {
               name: "Tiles",

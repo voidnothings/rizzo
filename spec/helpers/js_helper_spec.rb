@@ -2,16 +2,16 @@ require 'spec_helper'
 
 describe JsHelper do
   let(:namespace) { "my.namespace" }
-  
+
   describe "#configure_js" do
     let(:configuration) { Hash.new }
     let(:config)        { double "config object" }
-    
+
     before do
       JsHelper::Config.stub(:new => config)
       config.stub(:add)
     end
-    
+
     it "accepts a js namespace string and a hash" do
       helper.configure_js(namespace, {})
     end
@@ -39,7 +39,7 @@ describe JsHelper do
     it 'output nil without configuration' do
       helper.js_configuration().should be_nil
     end
-    
+
     it "output a script tag" do
       helper.configure_js('foo', {:bar=>'bizz'})
       helper.configure_js('bot', {:lot=>'op'})
@@ -56,6 +56,9 @@ describe JsHelper do
     it "checks sets values on nested objects" do
       helper.js_hash({'aaa' => 'bbb', 'ccc' => {'ddd' => 'eee'}}).should == "window.aaa = \"bbb\";if (!window.hasOwnProperty('ccc')) window.ccc = {};window.ccc.ddd = \"eee\";"
     end
+    it "sanitizes the keys" do
+      helper.js_hash({'<script>aaa</script>' => "<script>foo</script>"}).should == "window.aaa = \"foo\";"
+    end
   end
 
   describe ::JsHelper::Config do
@@ -68,7 +71,7 @@ describe JsHelper do
         JsHelper::Config.new("foo").root_namespace.should eq "foo"
       end
     end
-    
+
     describe "#configurations" do
       it "by default, returns a an empty hash for any key" do
         subject.configurations[:some_key].should eq({})
@@ -79,7 +82,7 @@ describe JsHelper do
         subject.configurations.should eq(namespace => configuration)
       end
     end
-    
+
     describe "#add" do
       it "stores the configuration against the namespace prepended with the root namespace" do
         subject.stub(:root_namespace => "my.root")
@@ -94,7 +97,7 @@ describe JsHelper do
       before do
         namespaces.each { |n| subject.add(n, {}) }
       end
-      
+
       it "returns a list of unique namespace parts to vivify" do
         subject.namespaces_to_vivify.should =~ %w(foo foo.bar foo.bar.zap foo.bar.zip foo.bar.zip.quux blap blap.bar blap.bar.quux)
       end

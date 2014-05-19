@@ -1,8 +1,8 @@
 require ['jquery'], ($) ->
-  $(".js-select").on "change", (e) ->
+  $(".js-colours .js-select").on "change", (e) ->
     sortBy(@value)
 
-  $(".styleguide-proximity__input").on "keyup", (event) ->
+  $(".js-colours .styleguide-proximity__input").on "keyup", (event) ->
     return resetProximity() if (!event.target.value)
     event.keyCode is 13 and matchProximity()
 

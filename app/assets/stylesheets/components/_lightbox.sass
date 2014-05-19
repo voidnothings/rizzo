@@ -1,12 +1,12 @@
 .lightbox
-  background: rgba($body-copy, 0.2)
+  +z-layer(top)
+  background: rgba($body-background, 0.95)
   left: 0
   opacity: 0
   position: absolute
   transition: .5s all
   top: 0
   visibility: hidden
-  z-index: 100
 
   &.is-active
     opacity: 1
@@ -17,6 +17,7 @@
         display: block
 
 .lightbox__content
+  @extend %large-shadow
   position: absolute
   > iframe
     background: black

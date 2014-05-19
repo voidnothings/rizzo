@@ -20,6 +20,27 @@ body
     overflow: auto
     -webkit-overflow-scrolling: touch
 
+
+
+// -----------------------------------------------------------------------------
+// Main page layout - Left Nav + Content
+//
+// We have to adapt it for when we don't have a left nav in responsive view
+// -----------------------------------------------------------------------------
+
+.grid--main-layout
+
+  .responsive &
+    margin-left: 0
+    +respond-to(wide-view)
+      margin-left: -10px
+
+    > [class*="col--"]
+      padding-left: 0
+      +respond-to(wide-view)
+        padding-left: 10px
+
+
 // ----------------------------------------------------------------------------
 //
 // Row
@@ -38,6 +59,9 @@ body
     width: 90%
     +respond-to(wide-view)
       max-width: $fixed-layout-width
+
+  &.row__inner--full-width
+    width: 100%
 
 .row--text-centered
   text-align: center
@@ -65,18 +89,6 @@ body
   padding-right: 20px
   .responsive &
     min-width: 0
-
-.row--billboard
-  @extend %transition--slower
-  overflow: hidden
-  padding: 16px 0
-  min-height: 50px
-  background: darken($body-background, 2.5%)
-
-  &.is-closed
-    min-height: 0
-    height: 0
-    padding: 0
 
 
 // ----------------------------------------------------------------------------
@@ -108,16 +120,15 @@ body
 // ----------------------------------------------------------------------------
 
 .row--content
+  +z-layer
   margin-bottom: 40px
   // Ensure that nav dropdowns sit above any content
   position: relative
-  z-index: 1
   .responsive &
     @extend %transition--nav
-    margin-top: 55px
+    padding-top: 55px
   .homepage &
     margin-top: 0
-
 
 
 // ----------------------------------------------------------------------------
@@ -130,13 +141,13 @@ body
 // ----------------------------------------------------------------------------
 
 .pointer-cover
+  +z-layer(modal)
   transform: translate3d(0,0,0)
   top: 0
   right: 0
   left: 0
   bottom: 0
   opacity: 0
-  z-index: 11000
   position: fixed
   pointer-events: none
   display: none

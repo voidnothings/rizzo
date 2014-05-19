@@ -6,21 +6,45 @@
   %p
     A simple component to replace the so called <a href="http://css-tricks.com/the-checkbox-hack/">"checkbox hack"</a> which we can't use because of issues in iOS, Android, and old IE.
   %p
-    This component has a simple event-driven api if you wish to extend its functionality. Hook into
+    This component has an event-driven API if you wish to extend its functionality. Hook into
     %code.language-javascript :toggleActive/click
     events to be notified of when the component updates, fire
-    %code.language-javascript :toggleActive/Update
+    %code.language-javascript :toggleActive/update
     to trigger the update function (passing in the target node).
-  %p
-    To use it in an app, make sure it's required in the main js file as follows:
 
-  %pre.styleguide.copy--body.language-coffeescript
-    %code
-      :plain
-        require ['lib/utils/toggle_active'], (ToggleActive) ->
-          new ToggleActive()
 
 .styleguide-block
+
+  .styleguide-block__description.card.copy--body
+
+    %h2.copy--h2.styleguide-block__heading
+      Setup
+
+    %pre.styleguide.copy--body.language-javascript
+      %code
+        = preserve do
+          :plain
+            require([ "lib/utils/toggle_active" ], (ToggleActive) {
+              new ToggleActive(arguments);
+            });
+
+    %h3.copy--h2.styleguide-block__heading
+      Arguments
+
+    %p
+      %code.language-markup selector
+      Selector for the toggle elements, default:
+      %code .js-toggle-active
+
+    %p
+      %code.language-markup context
+      Listen for all toggles within this context, default:
+      %code null
+
+    %p
+      %code.language-markup listener
+      Element to attach listeners onto, default:
+      %code #js-row--content
 
   .styleguide-block__description.card.copy--body
 

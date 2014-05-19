@@ -2,6 +2,18 @@ class StyleguideController < GlobalController
 
   layout proc{|c| c.request.xhr? ? false : "styleguide" }
 
+  def interfaceIcons
+    render '/styleguide/design-elements/icons/interface'
+  end
+
+  def destinationIcons
+    render '/styleguide/design-elements/icons/destination'
+  end
+
+  def interestIcons
+    render '/styleguide/design-elements/icons/interest'
+  end
+
   def secondaryNavigation
     render '/styleguide/ui-components/secondary_nav'
   end
@@ -46,14 +58,6 @@ class StyleguideController < GlobalController
     render '/styleguide/ui-components/ui_colours'
   end
 
-  def icons
-    render '/styleguide/ui-components/icons'
-  end
-
-  def inactiveIcons
-    render '/styleguide/ui-components/inactive-icons'
-  end
-
   def pagination
     render '/styleguide/ui-components/pagination'
   end
@@ -70,20 +74,20 @@ class StyleguideController < GlobalController
     render '/styleguide/ui-components/range_slider'
   end
 
-  def proportionalGrid
-    render '/styleguide/ui-components/proportional-grid'
-  end
-
-  def cardsGrid
-    render '/styleguide/ui-components/cards-grid'
-  end
-
   def activity_list
     render '/styleguide/ui-components/activity_list'
   end
 
   def navigational_dropdown
     render '/styleguide/ui-components/navigational_dropdown'
+  end
+
+  def social_buttons
+    render '/styleguide/ui-components/social_buttons'
+  end
+
+  def tooltips
+    render '/styleguide/ui-components/tooltips'
   end
 
   def toggle_active
@@ -106,8 +110,24 @@ class StyleguideController < GlobalController
     render '/styleguide/js-components/image-helper'
   end
 
+  def autocomplete
+    render '/styleguide/js-components/autocomplete'
+  end
+
   def alerts
     render '/styleguide/ui-components/alerts'
+  end
+
+  def proportionalGrid
+    render '/styleguide/css-utilities/proportional-grid'
+  end
+
+  def responsiveGrid
+    render '/styleguide/css-utilities/responsive-grid'
+  end
+
+  def cardsGrid
+    render '/styleguide/css-utilities/cards-grid'
   end
 
   def utilityClasses
@@ -128,10 +148,6 @@ class StyleguideController < GlobalController
 
   def responsive
     render '/styleguide/css-utilities/responsive'
-  end
-
-  def tooltips
-    render '/styleguide/ui-components/tooltips'
   end
 
   def utilityPlaceholders
@@ -180,6 +196,10 @@ class StyleguideController < GlobalController
 
   def link_to
     render '/styleguide/js-components/link-to'
+  end
+
+  def preloader
+    render '/styleguide/ui-components/preloader'
   end
 
   #===== yeoman hook =====#

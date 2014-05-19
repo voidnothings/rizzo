@@ -1,17 +1,19 @@
+$discMargin: 2px
 $discSize: 12px
+$discBoxSize: $discSize + ($discMargin * 2)
 
 .preloader
   @extend %transition--base
-  display: none
   left: 50%
-  margin-left: -#{$discSize * 4} // 4 = number of discs
-  margin-top: -10px
+  margin-left: -#{$discBoxSize * 4 / 2} // 4 = number of discs
+  margin-top: -#{$discBoxSize / 2}
+  opacity: 0
   overflow: hidden
   position: absolute
   top: 50%
   z-index: 0
   .is-loading &
-    display: block
+    opacity: 1
   .no-3d-support &
     // Put this behind this flag so that we don't get a flash of the fallback
     background: url("#{image_path('shared/spinner.gif')}") no-repeat center center
@@ -32,9 +34,13 @@ $discSize: 12px
   display: block
   float: left
   height: $discSize
-  margin: 2px
+  margin: $discMargin
   overflow: hidden
   width: $discSize
+
+  .is-disabled &,
+  [disabled] &
+    background: white
 
 .preloader__disc--coloured
   +hardware-acceleration()
@@ -82,6 +88,9 @@ $discSize: 12px
 
   .media-gallery &
     background-image: url("#{image_path('shared/spinner-grey.svg')}")
+  .is-disabled &,
+  [disabled] &
+    background-image: url("#{image_path('shared/spinner-subduedgray.svg')}")
 
   .results &
     left: 13px

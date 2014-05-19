@@ -18,12 +18,12 @@
   .slothified &
     background-image: url(#{image_path('rainforest.jpg')})
     &:after
+      +z-layer(middle)
       @extend %empty-abs-generated-content
       background-image: url("#{image_path('sloth.png')}")
       background-repeat: no-repeat
       width: 100%
       height: 270px
-      z-index: 5
       top: -68px
       left: 70%
       pointer-events: none
@@ -57,12 +57,12 @@
     position: relative
     overflow: visible
     &:after
+      +z-layer(middle)
       @extend %empty-abs-generated-content
       background-image: url("#{image_path('sloth2.png')}")
       background-repeat: no-repeat
       width: 100%
       height: 270px
-      z-index: 5
       top: -182px
       right: -30px
       pointer-events: none
@@ -112,8 +112,8 @@
   +respond-to(wide-view)
     +font-size(52)
   .slothified &
+    +z-layer(top)
     position: relative
-    z-index: 10
 
 .speech-bubble
   @extend %rounded-corners
@@ -140,13 +140,13 @@
       overflow: visible
 
 .hero__author
+  +z-layer(middle)
   transition: all .3s ease-out
   color: white
   position: absolute
   bottom: 20px
   right: 20px
   min-width: 180px
-  z-index: 2
   display: none
   +respond-to(medium-view)
     display: block

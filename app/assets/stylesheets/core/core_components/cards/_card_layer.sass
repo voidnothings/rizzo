@@ -1,0 +1,57 @@
+// -----------------------------------------------------------------------------
+//
+//  Card layer module
+//
+// -----------------------------------------------------------------------------
+
+.card--layer
+  width: 800px
+  margin: 0px auto
+  .row--billboard
+    width: 100%
+    background: transparent
+  .row--secondary
+    padding-top: 20px
+  .row__title--secondary
+    max-width: 100%
+    .place-title
+      padding-left: 28px
+      &:before
+        +size(24px)
+        top: 0px
+        left: 0px
+
+.card--layer__content
+  @extend %clearfix
+  @extend %rounded-corners
+  position: relative
+  margin-top: 50px
+  padding: 25px 25px 0px 25px
+  background-color: white
+
+  .copy--h1
+    width: 90%
+    margin: 0 0 10px 0
+    line-height: 1.1em
+
+  .copy--feature
+    +font-size(20)
+
+  .related
+    width: 800px
+    margin-left: -25px
+    .related_articles, .related_guides
+      margin: 0px
+
+  a > img
+    width: 100%
+    height: auto
+
+.card--layer__close
+  +size(30px)
+  position: absolute
+  top: 20px
+  right: 20px
+
+.card--layer__article
+  padding-bottom: 10px

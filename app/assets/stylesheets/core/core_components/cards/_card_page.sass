@@ -7,19 +7,25 @@
 .card--page
   @extend %clearfix
   @extend %rounded-corners
-  padding: 25px
+  padding: 25px 25px 10px
   position: relative
 
   .copy--h1
     line-height: 1.1em
     margin: 0 0 10px 0
-  .sharing
-    clear: left
 
   .tag
     +font-size(14)
   .tag--price__amount
     +font-size(30)
+
+  .row__inner--full-width &
+    border-radius: 0
+    +respond-to(wide-view)
+      border-radius: 4px
+
+.card--page--full-image
+  margin-bottom: 0
 
 .card--page__hero
   border-radius: 4px 4px 0 0
@@ -28,10 +34,7 @@
   position: relative
   &:after
     @extend %empty-abs-generated-content
-    filter: drop-shadow(0 0 15px #{rgba($darkblue, 0.3)})
-    background-repeat: no-repeat
-    background-size: 250px
-    background-position: center
+    +image-overlay--gradient($stop: 50%)
     top: 0
     left: 0
     width: 100%
@@ -39,8 +42,8 @@
   > img
     width: 100%
   .card__content
+    +z-layer
     padding: 13px 25px
-    z-index: 1
   .card__name
     +font-size(32)
     margin-bottom: 5px
@@ -57,6 +60,8 @@
   border-bottom: 1px solid $body-background
   margin-bottom: 20px
   padding-bottom: 20px
+  &.has-social
+    margin-bottom: 0
 
 .card--top-choice
   &:after
@@ -87,6 +92,7 @@
   position: relative
   text-transform: uppercase
   &:before
+    +z-layer(middle)
     content: ''
     float: left
     height: 20px
@@ -94,7 +100,6 @@
     position: relative
     top: 2px
     width: 15px
-    z-index: 4
   &.icon--place--pin--before
     line-height: initial
     &:before
