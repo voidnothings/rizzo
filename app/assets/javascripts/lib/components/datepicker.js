@@ -8,7 +8,7 @@ define([ "jquery", "pickadate/lib/picker", "pickadate/lib/picker.date", "pickada
 
   "use strict";
 
-  var config = {
+  var defaults = {
     callbacks: {},
     dateFormat: "d mmm yyyy",
     dateFormatLabel: "yyyy/mm/dd",
@@ -23,11 +23,11 @@ define([ "jquery", "pickadate/lib/picker", "pickadate/lib/picker.date", "pickada
   // el: {string} selector for parent element
   // listener: {string} selector for the listener
   function Datepicker(args) {
-    $.extend(config, args);
+    this.config = $.extend({}, defaults, args);
 
-    this.$listener = $(config.listener);
-    this.$el = $(config.el);
-    this.$el && this.init();
+    this.$listener = $(this.config.listener);
+    this.$el = $(this.config.el);
+    this.$el.length && this.init();
   }
 
   Datepicker.prototype.init = function() {
@@ -36,10 +36,10 @@ define([ "jquery", "pickadate/lib/picker", "pickadate/lib/picker.date", "pickada
         d = new Date(),
         inOpts, outOpts;
 
-    this.inDate = $(config.target).find(config.startSelector);
-    this.outDate = $(config.target).find(config.endSelector);
-    this.inLabel = $(config.startLabelSelector);
-    this.outLabel = $(config.endLabelSelector);
+    this.inDate = $(this.config.target).find(this.config.startSelector);
+    this.outDate = $(this.config.target).find(this.config.endSelector);
+    this.inLabel = $(this.config.startLabelSelector);
+    this.outLabel = $(this.config.endLabelSelector);
     this.firstTime = this.inDate.val() ? false : true;
     this.day = 86400000;
 
@@ -47,19 +47,19 @@ define([ "jquery", "pickadate/lib/picker", "pickadate/lib/picker.date", "pickada
     tomorrow.push(d.getFullYear(), d.getMonth(), (d.getDate() + 1));
 
     inOpts = {
-      format: config.dateFormat,
+      format: this.config.dateFormat,
       onSet: function() {
-        this._dateSelected(this.get("select", config.dateFormatLabel), "start");
+        this._dateSelected(this.get("select", this.config.dateFormatLabel), "start");
       }.bind(this)
     };
     outOpts = {
-      format: config.dateFormat,
+      format: this.config.dateFormat,
       onSet: function() {
-        this._dateSelected(this.get("select", config.dateFormatLabel), "end");
+        this._dateSelected(this.get("select", this.config.dateFormatLabel), "end");
       }.bind(this)
     };
 
-    if (config.backwards) {
+    if (this.config.backwards) {
       inOpts.max = today;
       outOpts.max = today;
     } else {
@@ -90,17 +90,17 @@ define([ "jquery", "pickadate/lib/picker", "pickadate/lib/picker.date", "pickada
 
     this.firstTime = false;
 
-    if (config.callbacks.onDateSelect) {
-      config.callbacks.onDateSelect(date, type);
+    if (this.config.callbacks.onDateSelect) {
+      this.config.callbacks.onDateSelect(date, type);
     }
   };
 
   Datepicker.prototype._inValue = function() {
-    new Date($(this.inDate).data("pickadate").get("select", config.dateFormatLabel));
+    new Date($(this.inDate).data("pickadate").get("select", this.config.dateFormatLabel));
   };
 
   Datepicker.prototype._outValue = function() {
-    new Date($(this.outDate).data("pickadate").get("select", config.dateFormatLabel));
+    new Date($(this.outDate).data("pickadate").get("select", this.config.dateFormatLabel));
   };
 
   Datepicker.prototype._isValidEndDate = function() {
