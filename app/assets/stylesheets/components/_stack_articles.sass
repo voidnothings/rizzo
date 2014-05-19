@@ -170,12 +170,14 @@
   padding-bottom: 0
 
 .related__list-item--guide
-  width: 95px
+  width: 75px
   display: inline-block
   position: relative
   vertical-align: top
   &:not(:last-child)
     margin-right: 20px
+  +respond-to(medium-view)
+    width: 95px
 
 .related__list-date
   display: block
