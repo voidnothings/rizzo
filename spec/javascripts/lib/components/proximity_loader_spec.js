@@ -41,6 +41,7 @@ require([ "public/assets/javascripts/lib/components/proximity_loader.js" ], func
         loadFixtures("proximity_loader.html");
         window.proximityLoader = new ProximityLoader(config);
         spyOn(proximityLoader, "_check");
+        spyOn(proximityLoader, "_getViewportEdge").andReturn(150);
         $(window).trigger("scroll");
         waits(100);
       });

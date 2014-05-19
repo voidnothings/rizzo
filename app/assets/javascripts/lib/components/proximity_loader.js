@@ -15,9 +15,7 @@ define([ "jquery", "lib/extends/events", "lib/utils/debounce" ], function($, Eve
     this.config = $.extend({}, defaults, args);
     this.$el = $(this.config.el);
 
-    if (this.$el.length) {
-      this._init();
-    }
+    this.$el.length && this._init();
   }
 
   $.extend(ProximityLoader.prototype, EventEmitter);
@@ -29,33 +27,33 @@ define([ "jquery", "lib/extends/events", "lib/utils/debounce" ], function($, Eve
   };
 
   ProximityLoader.prototype._setupElements = function($elements) {
-    var _this = this,
+    var i, len, $element,
         elements = [];
 
-    $elements.each(function(i) {
-      var $element = $elements.eq(i);
+    for (i = 0, len = $elements.length; i < len; i++) {
+
+      $element = $elements.eq(i);
 
       elements.push({
         $el: $element,
         top: $element.offset().top,
-        threshold: parseInt($element.data("threshold") || _this.config.threshold, 10)
+        threshold: parseInt($element.data("threshold") || this.config.threshold, 10)
       });
-    });
+    }
 
     return elements;
   };
 
   ProximityLoader.prototype._getViewportEdge = function() {
-    var scrolled = window.pageYOffset ? window.pageYOffset : document.documentElement.scrollTop;
+    var scrolled = window.pageYOffset || document.documentElement.scrollTop;
     return scrolled + document.documentElement.clientHeight;
   };
 
   ProximityLoader.prototype._watch = function() {
-    var _this = this;
-
     $(window).on("scroll", debounce(function() {
-      _this._check();
-    }, this.config.debounce));
+      // Wrapped in a closure so we can keep test spies on _check method
+      this._check();
+    }.bind(this), this.config.debounce));
   };
 
   ProximityLoader.prototype._check = function() {
