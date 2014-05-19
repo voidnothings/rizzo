@@ -1,4 +1,4 @@
-define( ['jquery','lib/utils/asset_fetch', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager', 'lib/core/ad_manager_v2', 'lib/utils/swipe'], ($, AssetFetch, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroupManager, AdManager, Swipe) ->
+define( ['jquery', 'lib/core/authenticator','lib/core/shopping_cart', 'lib/core/msg', 'lib/utils/local_store', 'lib/managers/select_group_manager', 'lib/core/ad_manager_v2', 'lib/utils/swipe'], ($, Authenticator, ShoppingCart, Msg, LocalStore, SelectGroupManager, AdManager, Swipe) ->
 
   class Base
 
