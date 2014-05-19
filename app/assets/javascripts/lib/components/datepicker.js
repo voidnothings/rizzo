@@ -30,7 +30,8 @@ define([ "jquery", "pickadate/lib/picker", "pickadate/lib/picker.date", "pickada
   }
 
   Datepicker.prototype.init = function() {
-    var today = [],
+    var _this = this,
+        today = [],
         tomorrow = [],
         d = new Date(),
         inOpts, outOpts;
@@ -48,14 +49,14 @@ define([ "jquery", "pickadate/lib/picker", "pickadate/lib/picker.date", "pickada
     inOpts = {
       format: this.config.dateFormat,
       onSet: function() {
-        this._dateSelected(this.get("select", this.config.dateFormatLabel), "start");
-      }.bind(this)
+        _this._dateSelected(this.get("select", _this.config.dateFormatLabel), "start");
+      }
     };
     outOpts = {
       format: this.config.dateFormat,
       onSet: function() {
-        this._dateSelected(this.get("select", this.config.dateFormatLabel), "end");
-      }.bind(this)
+        _this._dateSelected(this.get("select", _this.config.dateFormatLabel), "end");
+      }
     };
 
     if (this.config.backwards) {
