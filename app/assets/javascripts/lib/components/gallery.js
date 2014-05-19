@@ -1,9 +1,10 @@
 define([
   "jquery",
+  "lib/utils/debounce",
   "lib/components/slider",
   "lib/analytics/analytics",
   "lib/utils/on_transition_end"
-], function($, Slider, Analytics, onTransitionEnd) {
+], function($, debounce, Slider, Analytics, onTransitionEnd) {
 
   "use strict";
 
@@ -58,17 +59,25 @@ define([
   };
 
   Gallery.prototype._handleEvents = function() {
-    var afterTransition = function() {
+    var afterTransition = debounce(function() {
       this.analytics.track();
       this._updateImageInfo();
       this._updateSlug();
       this.$listener.trigger(":ads/refresh");
-    }.bind(this);
+    }.bind(this), 200);
 
     onTransitionEnd({
-      $listener: this.$listener,
+      $listener: this.slider.$slides,
       fn: afterTransition
     });
+
+    this.$gallery.on("click", ".is-previous", function() {
+      this.slider._previousSlide();
+    }.bind(this));
+
+    this.$gallery.on("click", ".is-next", function() {
+      this.slider._nextSlide();
+    }.bind(this));
   };
 
   return Gallery;

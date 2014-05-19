@@ -170,7 +170,8 @@ define([
       slides = this.$slides;
     } else {
       var left = Math.max(this.currentSlide - this.config.assetBalance, 0),
-        right = Math.min(this.currentSlide + this.config.assetBalance, this.$slides.length);
+          right = Math.min(this.currentSlide + this.config.assetBalance, this.$slides.length);
+
       slides = this.$slides.slice(left, right);
     }
 
@@ -190,8 +191,10 @@ define([
 
   Slider.prototype._goToSlide = function(index) {
     this.currentSlide = Math.min(Math.max(index, 1), this.$slides.length);
+    this.$currentSlide = this.$slides.eq(index - 1);
     this._updateSlideClasses();
     this._updateCount();
+    this._loadHiddenContent();
     this.$listener.trigger(":slider/slideChanged");
   };
 
@@ -217,8 +220,8 @@ define([
       this.$sliderControlsContainer.addClass("at-end");
     }
 
-    this.$sliderControlsContainer.find(".slider__control--next").html(currentHTML.replace(/(^[0-9]+)/, nextIndex));
-    this.$sliderControlsContainer.find(".slider__control--prev").html(currentHTML.replace(/(^[0-9]+)/, prevIndex));
+    this.$sliderControlsContainer.find(".js-slider-next").html(currentHTML.replace(/(^[0-9]+)/, nextIndex));
+    this.$sliderControlsContainer.find(".js-slider-prev").html(currentHTML.replace(/(^[0-9]+)/, prevIndex));
     this.$sliderControlsContainer.find(".slider__pagination--link.is-active").removeClass("is-active");
     this.$sliderControlsContainer.find(".slider__pagination--link").eq(this.currentSlide - 1).addClass("is-active");
   };

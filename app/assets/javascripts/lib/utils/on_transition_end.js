@@ -8,13 +8,11 @@ define([
   return function(args) {
     var $listener = args.$listener,
       fn = args.fn,
-      delay = args.delay;
+      delay = args.delay,
+      afterTransition;
 
     if (window.lp.supports.transitionend) {
-      $listener.on(window.lp.supports.transitionend, function afterTransition() {
-        fn();
-        $listener.off(window.lp.supports.transitionend, afterTransition);
-      });
+      $listener.on(window.lp.supports.transitionend, fn);
     } else {
       setTimeout(fn, delay | 0);
     }
