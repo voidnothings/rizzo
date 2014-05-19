@@ -1,7 +1,7 @@
 define ['jquery', 'lib/utils/page_state', 'lib/extends/events'], ($, PageState, EventEmitter) ->
 
 
-  class Controller extends PageState
+  class PushState extends PageState
 
     LISTENER = '#js-card-holder'
 

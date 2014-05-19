@@ -16,7 +16,9 @@ define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/extends/pus
 
 
     init: ->
+
       # Controller uses the main listening element for pub & sub
+      new PushState();
       @$el = $(LISTENER)
       @_generateState()
 
