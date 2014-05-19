@@ -4,6 +4,12 @@
 //
 // ----------------------------------------------------------------------------
 
+.row--breadcrumbs
+  .responsive &
+    padding: 0 10px
+    +respond-to(wide-view)
+      padding: 0
+
 .nav__item--breadcrumbs
   @extend %left-icon
   padding: 20px 8px 18px 20px
