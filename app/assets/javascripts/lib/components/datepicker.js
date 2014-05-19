@@ -26,8 +26,7 @@ define([ "jquery", "pickadate/lib/picker", "pickadate/lib/picker.date", "pickada
     this.config = $.extend({}, defaults, args);
 
     this.$listener = $(this.config.listener);
-    this.$el = $(this.config.el);
-    this.$el.length && this.init();
+    this.init();
   }
 
   Datepicker.prototype.init = function() {
