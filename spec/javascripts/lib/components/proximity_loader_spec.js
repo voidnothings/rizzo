@@ -7,61 +7,65 @@ require([ "public/assets/javascripts/lib/components/proximity_loader.js" ], func
   };
 
   describe("Proximity Loader", function() {
-    describe("Object", function() {
-      it("is defined", function() {
-        expect(ProximityLoader).toBeDefined();
+    var instance, eventSpy;
+
+    beforeEach(function() {
+      loadFixtures("proximity_loader.html");
+      instance = new ProximityLoader(config);
+      eventSpy = spyOnEvent(instance.$el, ":foo/bar");
+    });
+
+    afterEach(function() {
+      instance && instance.teardown();
+      eventSpy && eventSpy.reset();
+    });
+
+    describe("._init()", function() {
+      beforeEach(function() {
+        spyOn(instance, "_getViewportEdge").andReturn(0);
+        instance._init();
+      });
+
+      it("finds target elements", function() {
+        expect(instance.targets.length).toBe(3);
       });
     });
 
-    describe("Initialisation", function() {
-      beforeEach(function() {
-        loadFixtures("proximity_loader.html");
-        window.proximityLoader = new ProximityLoader(config);
-        spyOn(proximityLoader, "_check");
-        spyOn(proximityLoader, "_getViewportEdge").andReturn(0);
-        proximityLoader.constructor(config);
-      });
+    describe("._setupElements()", function() {
+      it("creates objects of positions and thresholds for each element", function() {
+        var result = instance._setupElements($(".js-loader"));
 
-      it("creates an object of positions and thresholds for each element", function() {
-        expect(window.proximityLoader.targets[0].top).toEqual(100);
-        expect(window.proximityLoader.targets[0].threshold).toEqual(50);
-        expect(window.proximityLoader.targets[1].top).toEqual(200);
-        expect(window.proximityLoader.targets[1].threshold).toEqual(50);
-        expect(window.proximityLoader.targets[2].top).toEqual(300);
-        expect(window.proximityLoader.targets[2].threshold).toEqual(50);
-      });
-
-      it("checks to see if we have any elements that require scripts loading", function() {
-        expect(proximityLoader._check).toHaveBeenCalled();
-      });
+        expect(result.length).toBe(3);
+        expect(result[0].top).toEqual(100);
+        expect(result[0].threshold).toEqual(50);
+        expect(result[1].top).toEqual(200);
+        expect(result[1].threshold).toEqual(50);
+        expect(result[2].top).toEqual(300);
+        expect(result[2].threshold).toEqual(50);
+      })
     });
 
-    describe("Scrolling", function() {
+    describe("._check()", function() {
+      var viewportHeights = [0, 200, 500];
+
       beforeEach(function() {
-        loadFixtures("proximity_loader.html");
-        window.proximityLoader = new ProximityLoader(config);
-        spyOn(proximityLoader, "_check");
-        spyOn(proximityLoader, "_getViewportEdge").andReturn(150);
-        $(window).trigger("scroll");
-        waits(100);
+        spyOn(instance, "_getViewportEdge").andReturn(viewportHeights.shift());
+        instance._init();
       });
 
-      it("calls _check", function() {
-        expect(proximityLoader._check).toHaveBeenCalled();
-      });
-    });
-
-    describe("Firing the success event when required", function() {
-      beforeEach(function() {
-        loadFixtures("proximity_loader.html");
-        window.proximityLoader = new ProximityLoader(config);
-        spyOn(proximityLoader, "_getViewportEdge").andReturn(150);
+      it("returns all the elements not in the viewport", function() {
+        expect(instance.targets.length).toBe(3);
+        expect(eventSpy).not.toHaveBeenTriggered();
       });
 
-      it("triggers the asset reveal event with the element and the classname", function() {
-        var spyEvent = spyOnEvent(proximityLoader.$el, ":foo/bar");
-        proximityLoader.constructor(config);
-        expect(":foo/bar").toHaveBeenTriggeredOn(proximityLoader.$el);
+      it("returns the only element not within the viewport", function() {
+        expect(instance.targets.length).toBe(1);
+        expect(eventSpy).toHaveBeenTriggered();
+      });
+
+      it("returns no elements when they're all within the viewport", function() {
+        expect(instance.targets.length).toBe(0);
+        expect(eventSpy).toHaveBeenTriggered();
       });
     });
 
