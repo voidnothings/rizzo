@@ -63,6 +63,8 @@
 
   .card--full-image &
     height: $card-grid-height
+    &:after
+      +image-overlay--gradient()
     .responsive &
       height: $mobile-card-grid-height
       +respond-to(medium-view)
@@ -245,7 +247,7 @@
 
   .card__hero
     height: 100px
-    width: 100px
+    width: 100%
     &:after
       width: 0
       height: 0

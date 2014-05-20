@@ -7,6 +7,8 @@ define([ "jquery" ], function($) {
 
     viewport: function() {
       return {
+        width: win.width(),
+        height: win.height(),
         top: win.scrollTop(),
         left: win.scrollLeft(),
         right: win.scrollLeft() + win.width(),

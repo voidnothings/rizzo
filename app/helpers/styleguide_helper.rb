@@ -43,6 +43,10 @@ module StyleguideHelper
               slug: "proportional-grid"
             },
             {
+              name: "Responsive Grid",
+              slug: "responsive-grid"
+            },
+            {
               name: "Cards Grid",
               slug: "cards-grid"
             }
@@ -226,6 +230,10 @@ module StyleguideHelper
             {
               name: "Pagination",
               slug: "pagination"
+            },
+            {
+              name: "Social Buttons",
+              slug: "social-buttons"
             },
             {
               name: "Tiles",
