@@ -7,9 +7,31 @@ require([ "jquery", "public/assets/javascripts/lib/components/datepicker.js" ], 
 
     describe("Initialisation", function() {
 
+      beforeEach(function() {
+        loadFixtures("datepicker.html");
+      });
+
       it("is defined", function() {
         var datepicker = new Datepicker({});
         expect(datepicker).toBeDefined();
+      });
+
+      it("sets up the datepicker with default class names", function() {
+        new Datepicker({ target: ".js-standard" });
+
+        expect($(".js-standard .picker").length).toBe(2);
+      });
+
+      it("sets up the datepicker with custom class names", function() {
+        new Datepicker({
+          target: ".js-custom",
+          startSelector: "#js-custom-start",
+          endSelector: "#js-custom-end",
+          startLabelSelector: ".js-custom-start-label",
+          endLabelSelector: ".js-custom-end-label"
+        });
+
+        expect($(".js-custom .picker").length).toBe(2);
       });
 
     });
@@ -18,12 +40,6 @@ require([ "jquery", "public/assets/javascripts/lib/components/datepicker.js" ], 
 
       beforeEach(function() {
         loadFixtures("datepicker.html");
-      });
-
-      it("gets set up with empty fields", function() {
-        new Datepicker({ target: ".js-standard" });
-
-        expect($(".picker").length).toBe(2);
       });
 
       it("fires a given 'onDateSelect' callback when a date is selected", function() {
@@ -47,9 +63,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/datepicker.js" ], 
       it("selecting an 'end' date before the selected 'start' date updates the 'start' date to the day before", function() {
         var expected, selected;
 
-        new Datepicker({
-          target: ".js-standard"
-        });
+        new Datepicker({ target: ".js-standard" });
 
         $("#js-av-start").trigger("focus");
         $(".js-start-container .picker__day--infocus:not(.picker__day--disabled)").eq(5).trigger("click");
@@ -68,9 +82,7 @@ require([ "jquery", "public/assets/javascripts/lib/components/datepicker.js" ], 
       it("selecting a 'start' date after the selected 'end' date updates the 'end' date to the day after", function() {
         var expected, selected;
 
-        new Datepicker({
-          target: ".js-standard"
-        });
+        new Datepicker({ target: ".js-standard" });
 
         $("#js-av-end").trigger("focus");
         $(".js-end-container .picker__day--infocus:not(.picker__day--disabled)").eq(4).trigger("click");
