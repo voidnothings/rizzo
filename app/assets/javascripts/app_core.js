@@ -19,7 +19,6 @@ require([ "jquery" ], function($) {
       new ScrollPerf;
 
       // Currently we can"t serve Flamsteed over https because of f.staticlp.com
-      // New community is using this file rather than app_secure_core
       // https://trello.com/c/2RCd59vk/201-move-f-staticlp-com-off-cloudfront-and-on-to-fastly-so-we-can-serve-over-https
       if (!secure) {
         window.lp.fs = new Flamsteed({

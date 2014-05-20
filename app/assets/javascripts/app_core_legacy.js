@@ -20,12 +20,16 @@ require([ "jquery" ], function($) {
 
     $(function() {
 
-      new Base;
+      var secure = window.location.protocol === "https:";
 
-      window.lp.fs = new Flamsteed({
-        events: window.lp.fs.buffer,
-        u: $.cookies.get("lpUid")
-      });
+      new Base({ secure: secure });
+
+      if (!secure) {
+        window.lp.fs = new Flamsteed({
+          events: window.lp.fs.buffer,
+          u: $.cookies.get("lpUid")
+        });
+      }
 
     });
 
