@@ -20,7 +20,7 @@ require([ "jquery" ], function($) {
 
     $(function() {
 
-      new Base;
+      new Base({ secure: true });
 
       window.lp.fs = new Flamsteed({
         events: window.lp.fs.buffer,
