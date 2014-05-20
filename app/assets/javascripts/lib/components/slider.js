@@ -33,6 +33,7 @@ define([
     this._gatherElements();
     this._addClasses();
 
+    // if gatherElements finds an element called "is-current", go there.
     if (this.$currentSlide.length) {
       this._goToSlide(this.$slides.index(this.$currentSlide) + 1);
     }
