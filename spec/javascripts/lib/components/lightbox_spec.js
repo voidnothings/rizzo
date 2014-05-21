@@ -83,7 +83,12 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
       });
 
       it("when the viewport has sufficient space", function() {
-        spyOn(lightbox, "viewport").andReturn({ height: 800, width: 1000 });
+        spyOn(lightbox, "viewport").andReturn({
+          left: 0,
+          height: 800,
+          top: 0,
+          width: 1000
+        });
 
         lightbox._centerLightbox();
 
@@ -92,7 +97,12 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
       });
 
       it("when the viewport isn't tall enough", function() {
-        spyOn(lightbox, "viewport").andReturn({ height: 400, width: 1000 });
+        spyOn(lightbox, "viewport").andReturn({
+          left: 0,
+          height: 400,
+          top: 0,
+          width: 1000
+        });
 
         lightbox._centerLightbox();
 
@@ -100,7 +110,12 @@ require([ "jquery", "public/assets/javascripts/lib/components/lightbox.js" ], fu
       });
 
       it("when the viewport isn't wide enough", function() {
-        spyOn(lightbox, "viewport").andReturn({ height: 800, width: 600 });
+        spyOn(lightbox, "viewport").andReturn({
+          left: 0,
+          height: 800,
+          top: 0,
+          width: 600
+        });
         lightbox._centerLightbox();
 
         expect(lightbox._centeredLeftPosition()).toBe(0);

@@ -22,8 +22,7 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
 
     this.init();
   },
-  _this,
-  $window = $(window);
+  _this;
 
   // -------------------------------------------------------------------------
   // Mixins
@@ -132,10 +131,11 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
 
   LightBox.prototype._centeredLeftPosition = function() {
     var lightboxW = this.$lightboxContent.parent().width(),
-        left = $window.scrollLeft() + (_this.viewport().width / 2) - (lightboxW / 2);
+        viewport = _this.viewport(),
+        left = viewport.left + (viewport.width / 2) - (lightboxW / 2);
 
     if (lightboxW > _this.viewport().width) {
-      left = $window.scrollLeft();
+      left = viewport.left;
     }
 
     return left;
@@ -143,10 +143,11 @@ define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/
 
   LightBox.prototype._centeredTopPosition = function() {
     var lightboxH = this.$lightboxContent.parent().height(),
-        top = $window.scrollTop() + (_this.viewport().height / 2) - (lightboxH / 2);
+        viewport = _this.viewport(),
+        top = viewport.top + (viewport.height / 2) - (lightboxH / 2);
 
     if (lightboxH > _this.viewport().height) {
-      top = $window.scrollTop();
+      top = viewport.top;
     }
 
     return top;
