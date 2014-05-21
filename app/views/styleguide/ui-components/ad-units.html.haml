@@ -45,17 +45,23 @@
             = ui_component("ads/leaderboard", properties: {...})
 
     %p
-      Ad components can be configured in two ways:
+      Ad components can be configured in three ways:
 
     %dl
       %dt.copy--h5 Size
       %dd 
         The ad unit size is a comma-separated list of dimensions in the format 
         <code>{width}x{height}</code>.
+      
       %dt.copy--h5 Extension
       %dd
         Certain ad unit types require a callback to further configure them, for instance a
         double height MPU unit within a card stack needs to make space for itself.
+
+      %dt.copy--h5 Targeting
+      %dd
+        If you plan to use multiple versions of the same ad unit on one page, you will 
+        need to differentiate them with a unique identifier. This is done using the targeting property. 
 
     %pre.styleguide.copy--body.language-html
       %code
@@ -63,6 +69,9 @@
           :plain
             // Don't include the double height MPU
             = ui_component('ads/mpu', properties: { sizes: '300x250,394x380' })
+            
+            // Include a second leaderboard on the homepage
+            = ui_component("ads/leaderboard", properties: { targeting: { homepage: "lower-leaderboard"} })
 
 .card.styleguide-block.copy--body.context--content
 
