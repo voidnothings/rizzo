@@ -13,6 +13,7 @@ define([ "jquery", "pickadate/lib/picker", "pickadate/lib/picker.date", "pickada
     dateFormat: "d mmm yyyy",
     dateFormatLabel: "yyyy/mm/dd",
     listener: "#js-row--content",
+    target: "#js-row--content",
     startSelector: "#js-av-start",
     endSelector: "#js-av-end",
     startLabelSelector: ".js-av-start-label",
