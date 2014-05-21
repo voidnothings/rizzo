@@ -67,11 +67,11 @@ define([
   Slider.prototype._handleEvents = function() {
     var _this = this;
 
-    this.$listener.on(":slider/next", this._nextSlide);
-    this.$listener.on(":slider/previous", this._previousSlide);
+    this.$listener.on(":slider/next", this._nextSlide.bind(this));
+    this.$listener.on(":slider/previous", this._previousSlide.bind(this));
 
-    this.$slides.on(":swipe/left", this._nextSlide);
-    this.$slides.on(":swipe/right", this._previousSlide);
+    this.$el.on(":swipe/left", this._nextSlide.bind(this));
+    this.$el.on(":swipe/right", this._previousSlide.bind(this));
 
     this.$next.on("click", function() {
       _this._nextSlide();

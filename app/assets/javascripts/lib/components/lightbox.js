@@ -3,7 +3,13 @@
 // LightBox
 //
 // ------------------------------------------------------------------------------
-define([ "jquery", "lib/mixins/flyout", "lib/utils/viewport_helper", "lib/utils/template", "lib/extends/events" ], function($, asFlyout, viewportHelper, Template, EventEmitter) {
+define([
+  "jquery",
+  "lib/mixins/flyout",
+  "lib/utils/template",
+  "lib/extends/events",
+  "lib/utils/viewport_helper"
+], function($, asFlyout, Template, EventEmitter, viewportHelper) {
 
   "use strict";
 
