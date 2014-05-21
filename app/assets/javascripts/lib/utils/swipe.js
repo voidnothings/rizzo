@@ -74,8 +74,12 @@ define([
     if (this._isPointerTouchEvent(event) && event.buttons > 0)  {
       point = event;
     } else if (this._isW3CTouchEvent(event)) {
-      event.changedTouched && event.changedTouched.length && (point = event.changedTouches[0]);
-      event.targetTouches && event.targetTouches.length && (point = event.targetTouches[0]);
+      if (event.changedTouches && event.changedTouches.length) {
+        point = event.changedTouches[0];
+      }
+      if (event.targetTouches && event.targetTouches.length) {
+        point = event.targetTouches[0];
+      }
     } else {
       return false;
     }
@@ -120,7 +124,7 @@ define([
         this.$window.on("touchmove", this._prevent).data("scrollfreeze", true);
       }
     } else if (this._isPointerTouchEvent(event)) {
-      window.scrollTo(0, ( -this.difference.y) + this.scrollTop);
+      window.scrollTo(0, ( -1 * this.difference.y ) + this.scrollTop);
     }
   };
 
@@ -130,7 +134,7 @@ define([
     if (!target.length) { return; }
 
     if (this.difference) {
-      if (this.difference.x < 0 && this.difference.x < -this.config.threshold) {
+      if (this.difference.x < 0 && this.difference.x < ( -1 * this.config.threshold )) {
         target.trigger(":swipe/left");
       } else if (this.difference.x > 0 && this.difference.x > this.config.threshold) {
         target.trigger(":swipe/right");
