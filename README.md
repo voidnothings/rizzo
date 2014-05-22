@@ -287,16 +287,6 @@ For example:
 
 * Stick to double quotes
 
-* Spaces are encouraged, to improve readability
-   
-    ```javascript
-    if ( true ) {
-      this;
-    } else {
-      that;
-    }
-    ```
-
 * Declare variables at the top of their scope:
 
     ```javascript
@@ -311,20 +301,22 @@ For example:
 * Use strict as the first line inside your require function
 
     ```javascript
-    require("website", function( website ) {
+    require("website", function(website) {
+
       "use strict";
+
       website.respond();
       website.enhance({ method: "progressive" });
     });
     ```
    
-* No space before paren in function decl, but spaces within:
+* No space before paren in function declaration :<
   
     ```javascript
-    function getDressed( hat, suit, scarf, cane ) {
+    function getDressed(hat, suit, scarf, cane) {
       // statements, innit
     }
-    var antelope = function( colour ) {
+    var antelope = function(colour) {
       // . . .
     }
     ```
@@ -352,24 +344,24 @@ For example:
 * test for truthiness:
 
     ```javascript
-    if ( collection.length ) ...
-    if ( string ) ...
-    if ( truthyThing )
+    if (collection.length) ...
+    if (string) ...
+    if (truthyThing)
     ```
  
     __not__
 
     ```javascript
-    if ( collection.length > 0 ) ...
-    if ( string !== "" )
-    if ( truthyThing === true )
+    if (collection.length > 0) ...
+    if (string !== "")
+    if (truthyThing === true)
     ```
 
 * Put comments before the line or block they are about. Never use eol comments
  
     ```javascript
-    // sanitizes animals for collection by spooks
-    var animalSanitizer = function( animal ) {
+    // sanitize animals for collection by spooks
+    var animalSanitizer = function(animal) {
       animal.cut(animal.hair).shampoo().rinse();
     }
     ```
@@ -377,7 +369,7 @@ For example:
     __never__
  
     ```javascript
-    var animalSanitizer = function( animal ) {
+    var animalSanitizer = function(animal) {
       animal.cut(animal.hair).shampoo().rinse(); // sanitizes animals for collection by spooks
     }
     ```
