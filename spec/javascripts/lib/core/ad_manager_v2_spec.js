@@ -38,7 +38,7 @@ require([ "public/assets/javascripts/lib/core/ad_manager_v2" ], function(AdManag
 
         waitsFor(function() {
           return $.hasOwnProperty("dfp");
-        }, "DFP should be loaded", 250);
+        }, "DFP should be loaded", 1000);
 
         runs(function() {
           expect(instance.load).toHaveBeenCalled();
