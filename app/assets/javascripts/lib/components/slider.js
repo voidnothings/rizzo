@@ -67,11 +67,11 @@ define([
   Slider.prototype._handleEvents = function() {
     var _this = this;
 
-    this.$listener.on(":slider/next", this._nextSlide);
-    this.$listener.on(":slider/previous", this._previousSlide);
+    this.$listener.on(":slider/next", this._nextSlide.bind(this));
+    this.$listener.on(":slider/previous", this._previousSlide.bind(this));
 
-    this.$slides.on(":swipe/left", this._nextSlide);
-    this.$slides.on(":swipe/right", this._previousSlide);
+    this.$el.on(":swipe/left", this._nextSlide.bind(this));
+    this.$el.on(":swipe/right", this._previousSlide.bind(this));
 
     this.$next.on("click", function() {
       _this._nextSlide();
@@ -209,20 +209,22 @@ define([
   };
 
   Slider.prototype._updateCount = function() {
-    var currentHTML = this.$sliderControlsContainer.find(".js-slider-next").html() || "",
+    var next = this.$sliderControlsContainer.find(".js-slider-next"),
+        previous = this.$sliderControlsContainer.find(".js-slider-previous"),
+        currentHTML = next.html() || "",
         nextIndex = Math.min(this.currentSlide + 1, this.$slides.length),
         prevIndex = Math.max(this.currentSlide - 1, 1);
 
     this.$sliderControlsContainer.removeClass("at-beginning at-end");
 
-    if (this.currentSlide === 1) {
+    if (this.currentSlide == 1) {
       this.$sliderControlsContainer.addClass("at-beginning");
-    } else if (this.currentSlide === this.$slides.length) {
+    } else if (this.currentSlide == this.$slides.length) {
       this.$sliderControlsContainer.addClass("at-end");
     }
 
-    this.$sliderControlsContainer.find(".js-slider-next").html(currentHTML.replace(/(^[0-9]+)/, nextIndex));
-    this.$sliderControlsContainer.find(".js-slider-previous").html(currentHTML.replace(/(^[0-9]+)/, prevIndex));
+    next.html(currentHTML.replace(/([0-9]+)/, nextIndex));
+    previous.html(currentHTML.replace(/([0-9]+)/, prevIndex));
     this.$sliderControlsContainer.find(".slider__pagination--link.is-active").removeClass("is-active");
     this.$sliderControlsContainer.find(".slider__pagination--link").eq(this.currentSlide - 1).addClass("is-active");
   };

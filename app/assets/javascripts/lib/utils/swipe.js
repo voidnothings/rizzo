@@ -11,11 +11,14 @@ define([
 
   "use strict";
 
-  var Swipe = function Swipe(args) {
-    this.config = $.extend({
-      listener: "#js-row--content",
-      selector: ".js-onswipe"
-    }, args);
+  var defaults = {
+    listener: "#js-row--content",
+    selector: ".js-onswipe",
+    threshold: 10
+  },
+
+  Swipe = function(args) {
+    this.config = $.extend({}, defaults, args);
 
     this.$listener = $(this.config.listener);
 
@@ -25,10 +28,11 @@ define([
     this.$window = $(window);
 
     this.init();
-  }, _this;
+  };
 
   Swipe.prototype.init = function() {
-    _this = this;
+    var threshold = this.$listener.find(this.selector).data("swipe-threshold");
+    threshold && (this.config.threshold = threshold);
     this.listen();
   };
 
@@ -37,9 +41,9 @@ define([
   // ----------------------------------------------------------------------------
 
   Swipe.prototype.listen = function() {
-    _this.$listener.on("touchstart pointerdown MSPointerDown", _this.selector, _this._gestureBegins);
-    _this.$listener.on("touchmove pointermove MSPointerMove", _this.selector, _this._gestureMoves);
-    _this.$listener.on("touchend touchleave pointerout MSPointerOut", _this.selector, _this._gestureEnds);
+    this.$listener.on("touchstart pointerdown MSPointerDown", this.selector, this._gestureBegins.bind(this));
+    this.$listener.on("touchmove pointermove MSPointerMove", this.selector, this._gestureMoves.bind(this));
+    this.$listener.on("touchend touchleave pointerout MSPointerOut", this.selector, this._gestureEnds.bind(this));
   };
 
   // ----------------------------------------------------------------------------
@@ -60,18 +64,22 @@ define([
   };
 
   Swipe.prototype._getTarget = function(element) {
-    element = _this.$listener.find(element);
-    return element.is(_this.selector) ? element : element.closest(_this.selector);
+    element = this.$listener.find(element);
+    return element.is(this.selector) ? element : element.closest(this.selector);
   };
 
   Swipe.prototype._eventToPoint = function(event) {
     var point;
 
-    if (_this._isPointerTouchEvent(event) && event.buttons > 0)  {
+    if (this._isPointerTouchEvent(event) && event.buttons > 0)  {
       point = event;
-    } else if (_this._isW3CTouchEvent(event)) {
-      event.changedTouched && event.changedTouched.length && (point = event.changedTouches[0]);
-      event.targetTouches && event.targetTouches.length && (point = event.targetTouches[0]);
+    } else if (this._isW3CTouchEvent(event)) {
+      if (event.changedTouches && event.changedTouches.length) {
+        point = event.changedTouches[0];
+      }
+      if (event.targetTouches && event.targetTouches.length) {
+        point = event.targetTouches[0];
+      }
     } else {
       return false;
     }
@@ -88,58 +96,58 @@ define([
   };
 
   Swipe.prototype._gestureBegins = function(event) {
-    var target = _this._getTarget(event.target);
+    var target = this._getTarget(event.target);
 
     if (!target.length) { return; }
 
     event = event.originalEvent;
-    _this.scrollTop = _this._getScrollTop();
-    _this.startPoint = _this._eventToPoint(event);
+    this.startPoint = this._eventToPoint(event);
+
+    if (this._isPointerTouchEvent(event)) {
+      this.scrollTop = this._getScrollTop();
+    }
   };
 
   Swipe.prototype._gestureMoves = function(event) {
-    var currentPoint,
-        target = _this._getTarget(event.target);
+    var currentPoint;
 
-    if (!target.length) { return; }
     event = event.originalEvent;
-    currentPoint = _this._eventToPoint(event);
+    currentPoint = this._eventToPoint(event);
 
-    _this.difference = {
-      x: currentPoint.x - _this.startPoint.x,
-      y: currentPoint.y - _this.startPoint.y
+    this.difference = {
+      x: currentPoint.x - this.startPoint.x,
+      y: currentPoint.y - this.startPoint.y
     };
 
-    if (Math.abs(_this.difference.x) > Math.abs(_this.difference.y)) {
-      _this.$window.on("touchmove", _this._prevent);
-    } else if (_this._isPointerTouchEvent(event)) {
-      window.scrollTo(0, ( -_this.difference.y) + _this.scrollTop);
+    if (Math.abs(this.difference.x) > Math.abs(this.difference.y)) {
+      if (!this.$window.data("scrollfreeze")) {
+        this.$window.on("touchmove", this._prevent).data("scrollfreeze", true);
+      }
+    } else if (this._isPointerTouchEvent(event)) {
+      window.scrollTo(0, ( -1 * this.difference.y ) + this.scrollTop);
     }
   };
 
   Swipe.prototype._gestureEnds = function(event) {
-    var threshold,
-        target = _this._getTarget(event.target);
+    var target = this._getTarget(event.target);
 
     if (!target.length) { return; }
 
-    threshold = target.data("swipe-threshold") || 10;
-
-    if (_this.difference) {
-      if (_this.difference.x < threshold) {
+    if (this.difference) {
+      if (this.difference.x < 0 && this.difference.x < ( -1 * this.config.threshold )) {
         target.trigger(":swipe/left");
-      } else if (_this.difference.x > threshold) {
+      } else if (this.difference.x > 0 && this.difference.x > this.config.threshold) {
         target.trigger(":swipe/right");
       }
     }
 
-    if (_this._isPointerTouchEvent(event.originalEvent)) {
-      _this.scrollTop = _this._getScrollTop();
+    if (this._isPointerTouchEvent(event.originalEvent)) {
+      this.scrollTop = this._getScrollTop();
     }
 
-    _this.$window.off("touchmove", _this._prevent);
+    this.$window.off("touchmove", this._prevent).removeData("scrollfreeze");
 
-    delete _this.difference;
+    this.difference = null;
   };
 
   return Swipe;
