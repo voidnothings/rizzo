@@ -61,6 +61,9 @@
 .icon--shop-basket--before:before, .icon--shop-basket--after:after,
 .icon--shop-basket { background-image: url('png/shop-basket.png'); background-repeat: no-repeat; }
 
+.icon--stumbleupon--before:before, .icon--stumbleupon--after:after,
+.icon--stumbleupon { background-image: url('png/stumbleupon.png'); background-repeat: no-repeat; }
+
 .icon--top-choice--before:before, .icon--top-choice--after:after,
 .icon--top-choice { background-image: url('png/top-choice.png'); background-repeat: no-repeat; }
 
