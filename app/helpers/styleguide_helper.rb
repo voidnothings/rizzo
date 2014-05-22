@@ -246,6 +246,10 @@ module StyleguideHelper
             {
               name: "Tooltips",
               slug: "tooltips"
+            },
+            {
+              name: "Hero Banner",
+              slug: "hero_banner"
             }
           ]
         },

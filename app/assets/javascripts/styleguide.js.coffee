@@ -7,6 +7,7 @@ require ['jquery'], ($) ->
     'lib/utils/swipe'
     'lib/components/range_slider'
     'lib/components/lightbox'
+    'lib/components/hero_parallax'
     'pickadate/lib/picker'
     'pickadate/lib/picker.date'
     'pickadate/lib/legacy'
