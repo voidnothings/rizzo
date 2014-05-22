@@ -1,4 +1,8 @@
-define([ "jquery", "lib/utils/viewport_helper" ], function($, viewportHelper) {
+define([
+  "jquery",
+  "lib/utils/viewport_helper"
+], function($, viewportHelper) {
+
   "use strict";
 
   var HeroParallax,
