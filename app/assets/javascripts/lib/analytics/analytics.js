@@ -38,7 +38,9 @@ define([ "jquery", "lib/analytics/analytics_auth", "lib/analytics/analytics_perf
     });
 
     $listener.on(":page/received", function(e, data, state, analytics) {
-      this["_" + analytics.callback](analytics.url, analytics.stack);
+      if (analytics) {
+        this["_" + analytics.callback](analytics.url, analytics.stack);
+      }
     });
   };
 
@@ -53,7 +55,7 @@ define([ "jquery", "lib/analytics/analytics_auth", "lib/analytics/analytics_perf
     this._add(params);
     this._copy();
     if (typeof(window.s.tl) == "function") {
-      window.s.tl();
+      window.s.tl && window.s.tl();
     }
     this._restore();
   };
@@ -68,7 +70,7 @@ define([ "jquery", "lib/analytics/analytics_auth", "lib/analytics/analytics_perf
     this._add(params);
     this._copy();
     if (typeof(window.s.t) == "function") {
-      window.s.t();
+      window.s.t && window.s.t();
     }
     if (restore) {
       this._restore();
