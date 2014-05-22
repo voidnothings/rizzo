@@ -1,6 +1,6 @@
 define([
   "jquery",
-  "lib/utils/viewport_helper"
+  "lib/page/viewport_helper"
 ], function($, viewportHelper) {
 
   "use strict";

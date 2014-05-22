@@ -1,4 +1,4 @@
-define([ "jquery", "lib/extends/events", "lib/utils/page_state" ], function($, EventEmitter, PageState) {
+define([ "jquery", "lib/mixins/events", "lib/mixins/page_state" ], function($, EventEmitter, PageState) {
 
   "use strict";
 

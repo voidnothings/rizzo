@@ -1,4 +1,4 @@
-define ['jquery', 'lib/utils/page_state', 'lib/extends/events', 'lib/extends/pushstate', 'lib/utils/deparam'], ($, PageState, EventEmitter, PushState) ->
+define ['jquery', 'lib/mixins/page_state', 'lib/mixins/events', 'lib/page/pushstate', 'lib/utils/deparam'], ($, PageState, EventEmitter, PushState) ->
 
   class Controller extends PageState
 

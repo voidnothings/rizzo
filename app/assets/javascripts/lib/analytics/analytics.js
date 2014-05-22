@@ -4,7 +4,7 @@
 //
 // ------------------------------------------------------------------------------
 
-define([ "jquery", "lib/analytics/analytics_auth", "lib/analytics/analytics_perf", "sCode" ], function($, AnalyticsAuth, AnalyticsPerf) {
+define([ "jquery", "lib/analytics/analytics_auth", "sCode" ], function($, AnalyticsAuth) {
 
   "use strict";
 
@@ -92,7 +92,7 @@ define([ "jquery", "lib/analytics/analytics_auth", "lib/analytics/analytics_perf
   };
 
   Analytics.prototype.trackView = function() {
-    this.track(this._pagePerf(), true);
+    this.track();
   };
 
   // -------------------------------------------------------------------------
@@ -139,11 +139,6 @@ define([ "jquery", "lib/analytics/analytics_auth", "lib/analytics/analytics_perf
 
   Analytics.prototype._userAuth = function() {
     var params = new AnalyticsAuth();
-    return params.get();
-  };
-
-  Analytics.prototype._pagePerf = function() {
-    var params = new AnalyticsPerf();
     return params.get();
   };
 

@@ -6,10 +6,10 @@
 define([
   "jquery",
   "lib/mixins/flyout",
+  "lib/mixins/events",
   "lib/utils/template",
-  "lib/extends/events",
-  "lib/utils/viewport_helper"
-], function($, asFlyout, Template, EventEmitter, viewportHelper) {
+  "lib/page/viewport_helper"
+], function($, asFlyout, EventEmitter, Template, viewportHelper) {
 
   "use strict";
 

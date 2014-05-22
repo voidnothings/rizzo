@@ -1,6 +1,6 @@
 define([
   "jquery",
-  "lib/extends/events",
+  "lib/mixins/events",
   "lib/utils/serialize_form"
 ], function($, EventEmitter, Serializer) {
 

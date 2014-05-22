@@ -1,5 +1,5 @@
 
-define([ "jquery", "lib/extends/events", "lib/components/world_places" ], function($, EventEmitter) {
+define([ "jquery", "lib/mixins/events", "lib/components/world_places" ], function($, EventEmitter) {
 
   "use strict";
 

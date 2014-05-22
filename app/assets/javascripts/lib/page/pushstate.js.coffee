@@ -1,4 +1,4 @@
-define ['jquery', 'lib/utils/page_state', 'lib/extends/events'], ($, PageState, EventEmitter) ->
+define ['jquery', 'lib/mixins/page_state', 'lib/mixins/events'], ($, PageState, EventEmitter) ->
 
 
   class PushState extends PageState

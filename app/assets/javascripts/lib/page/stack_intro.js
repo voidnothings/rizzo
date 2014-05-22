@@ -1,4 +1,4 @@
-define([ "jquery", "lib/extends/events" ], function($, EventEmitter) {
+define([ "jquery", "lib/mixins/events" ], function($, EventEmitter) {
 
   "use strict";
 

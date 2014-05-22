@@ -1,4 +1,4 @@
-define([ "jquery", "lib/extends/events", "lib/utils/debounce" ], function($, EventEmitter, debounce) {
+define([ "jquery", "lib/mixins/events", "lib/utils/debounce" ], function($, EventEmitter, debounce) {
 
   "use strict";
 
