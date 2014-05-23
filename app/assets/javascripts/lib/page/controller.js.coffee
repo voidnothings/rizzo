@@ -1,9 +1,9 @@
-define ['jquery', 'lib/mixins/events', 'lib/page/pushstate', 'lib/utils/deparam'], ($, asEventEmitter, withPushState) ->
+define ['jquery', 'lib/mixins/events', 'lib/page/pushstate', 'lib/utils/deparam'], ($, asEventEmitter, PushState) ->
 
   class Controller
 
     asEventEmitter.call(@prototype);
-    withPushState.call(@prototype);
+    $.extend(@prototype, PushState.prototype)
 
     LISTENER = '#js-card-holder'
     states: null
@@ -18,6 +18,7 @@ define ['jquery', 'lib/mixins/events', 'lib/page/pushstate', 'lib/utils/deparam'
     init: ->
 
       # Controller uses the main listening element for pub & sub
+      new PushState()
       @$el = $(LISTENER)
       @_generateState(@getSlug())
 
