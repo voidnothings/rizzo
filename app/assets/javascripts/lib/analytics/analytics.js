@@ -29,19 +29,19 @@ define([ "jquery", "lib/analytics/analytics_auth", "sCode" ], function($, Analyt
       }
 
       this["_" + analytics.callback].apply(this, args);
-    });
+    }.bind(this));
 
     $listener.on(":cards/append/received", function(e, data, state, analytics) {
       if (analytics) {
         this["_" + analytics.callback](state);
       }
-    });
+    }.bind(this));
 
     $listener.on(":page/received", function(e, data, state, analytics) {
       if (analytics) {
         this["_" + analytics.callback](analytics.url, analytics.stack);
       }
-    });
+    }.bind(this));
   };
 
   // -------------------------------------------------------------------------
