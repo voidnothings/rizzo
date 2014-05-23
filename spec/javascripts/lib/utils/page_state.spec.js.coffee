@@ -1,4 +1,4 @@
-require ['public/assets/javascripts/lib/utils/page_state.js'], (PageState) ->
+require ['public/assets/javascripts/lib/mixins/page_state.js'], (PageState) ->
 
   describe 'PageState', ->
 

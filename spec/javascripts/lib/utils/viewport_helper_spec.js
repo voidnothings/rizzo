@@ -1,4 +1,4 @@
-require([ "jquery", "public/assets/javascripts/lib/utils/viewport_helper.js" ], function($, viewportHelper) {
+require([ "jquery", "public/assets/javascripts/lib/page/viewport_helper.js" ], function($, viewportHelper) {
 
   "use strict";
 
