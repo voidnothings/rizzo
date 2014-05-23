@@ -4,10 +4,16 @@ require([ "jquery", "public/assets/javascripts/lib/page/viewport_helper.js" ], f
 
   describe("asViewportHelper", function() {
 
+    var viewportHelper;
+
+    beforeEach(function() {
+      viewportHelper = asViewportHelper.call({});
+    });
+
     describe("Initialisation", function() {
 
       it("is defined", function() {
-        expect(asViewportHelper).toBeDefined();
+        expect(viewportHelper).toBeDefined();
       });
 
     });
@@ -15,7 +21,7 @@ require([ "jquery", "public/assets/javascripts/lib/page/viewport_helper.js" ], f
     describe("Functionality", function() {
 
       beforeEach(function() {
-        spyOn(asViewportHelper, "_getWindow").andReturn({
+        spyOn(viewportHelper, "_getWindow").andReturn({
           height: function() { return 600; },
           scrollLeft: function() { return 100; },
           scrollTop: function() { return 100; },
@@ -24,7 +30,7 @@ require([ "jquery", "public/assets/javascripts/lib/page/viewport_helper.js" ], f
       });
 
       it("returns an object with the correct dimensions", function() {
-        var viewport = asViewportHelper.viewport();
+        var viewport = viewportHelper.viewport();
 
         expect(viewport.width).toBe(800);
         expect(viewport.height).toBe(600);
@@ -48,7 +54,7 @@ require([ "jquery", "public/assets/javascripts/lib/page/viewport_helper.js" ], f
           outerWidth: function() { return 50; }
         };
 
-        expect(asViewportHelper.withinViewport(elStub)).toBe(true);
+        expect(viewportHelper.withinViewport(elStub)).toBe(true);
       });
 
       it("knows whether an element is outside the viewport", function() {
@@ -65,7 +71,7 @@ require([ "jquery", "public/assets/javascripts/lib/page/viewport_helper.js" ], f
           outerWidth: function() { return 50; }
         };
 
-        expect(asViewportHelper.withinViewport(elStub)).toBe(false);
+        expect(viewportHelper.withinViewport(elStub)).toBe(false);
       });
 
     });

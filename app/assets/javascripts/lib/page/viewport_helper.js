@@ -42,6 +42,8 @@ define([ "jquery" ], function($) {
       return $(window);
     };
 
+    return this;
+
   };
 
   return asViewportHelper;
