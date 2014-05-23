@@ -1,13 +1,13 @@
-require([ "jquery", "public/assets/javascripts/lib/page/viewport_helper.js" ], function($, viewportHelper) {
+require([ "jquery", "public/assets/javascripts/lib/page/viewport_helper.js" ], function($, asViewportHelper) {
 
   "use strict";
 
-  describe("viewportHelper", function() {
+  describe("asViewportHelper", function() {
 
     describe("Initialisation", function() {
 
       it("is defined", function() {
-        expect(viewportHelper).toBeDefined();
+        expect(asViewportHelper).toBeDefined();
       });
 
     });
@@ -15,7 +15,7 @@ require([ "jquery", "public/assets/javascripts/lib/page/viewport_helper.js" ], f
     describe("Functionality", function() {
 
       beforeEach(function() {
-        spyOn(viewportHelper, "_getWindow").andReturn({
+        spyOn(asViewportHelper, "_getWindow").andReturn({
           height: function() { return 600; },
           scrollLeft: function() { return 100; },
           scrollTop: function() { return 100; },
@@ -24,7 +24,7 @@ require([ "jquery", "public/assets/javascripts/lib/page/viewport_helper.js" ], f
       });
 
       it("returns an object with the correct dimensions", function() {
-        var viewport = viewportHelper.viewport();
+        var viewport = asViewportHelper.viewport();
 
         expect(viewport.width).toBe(800);
         expect(viewport.height).toBe(600);
@@ -48,7 +48,7 @@ require([ "jquery", "public/assets/javascripts/lib/page/viewport_helper.js" ], f
           outerWidth: function() { return 50; }
         };
 
-        expect(viewportHelper.withinViewport(elStub)).toBe(true);
+        expect(asViewportHelper.withinViewport(elStub)).toBe(true);
       });
 
       it("knows whether an element is outside the viewport", function() {
@@ -65,7 +65,7 @@ require([ "jquery", "public/assets/javascripts/lib/page/viewport_helper.js" ], f
           outerWidth: function() { return 50; }
         };
 
-        expect(viewportHelper.withinViewport(elStub)).toBe(false);
+        expect(asViewportHelper.withinViewport(elStub)).toBe(false);
       });
 
     });

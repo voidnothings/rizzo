@@ -1,5 +1,5 @@
 
-define([ "jquery", "lib/mixins/events", "lib/mixins/page_state" ], function($, EventEmitter, PageState) {
+define([ "jquery", "lib/mixins/events", "lib/mixins/page_state" ], function($, asEventEmitter, asPageState) {
 
   "use strict";
 
@@ -20,8 +20,8 @@ define([ "jquery", "lib/mixins/events", "lib/mixins/page_state" ], function($, E
   // Extends
   // ------------------
 
-  $.extend(PlacesList.prototype, PageState.prototype);
-  $.extend(PlacesList.prototype, EventEmitter);
+  asPageState.call(PlacesList.prototype);
+  asEventEmitter.call(PlacesList.prototype);
 
   PlacesList.prototype.init = function() {
     this.list = this.$el.find(this.list);

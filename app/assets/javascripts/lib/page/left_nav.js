@@ -1,4 +1,4 @@
-define([ "jquery", "lib/mixins/events" ], function($, EventEmitter) {
+define([ "jquery", "lib/mixins/events" ], function($, asEventEmitter) {
 
   "use strict";
 
@@ -20,7 +20,7 @@ define([ "jquery", "lib/mixins/events" ], function($, EventEmitter) {
     }
   }
 
-  $.extend(LeftNav.prototype, EventEmitter);
+  asEventEmitter.call(LeftNav.prototype);
 
   LeftNav.prototype._init = function() {
     this.$list = this.$el.find(this.config.list);

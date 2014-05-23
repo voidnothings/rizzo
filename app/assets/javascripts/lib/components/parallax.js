@@ -1,7 +1,7 @@
 define([
   "jquery",
   "lib/page/viewport_helper"
-], function($, viewportHelper) {
+], function($, asViewportHelper) {
 
   "use strict";
 
@@ -20,7 +20,7 @@ define([
 
   HeroParallax.prototype._updateBg = function( i ) {
     var $el = this.$els.eq(i);
-    if (viewportHelper.withinViewport($el)) {
+    if (asViewportHelper.withinViewport($el)) {
       var percent = 30 + ((($el.offset().top - _pageYOffset) * speed) / $el.height());
       $el.css("backgroundPosition", "center " + percent + "%");
     }
